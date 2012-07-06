@@ -1,0 +1,11 @@
+@(pagename: String)(body: => Html)
+
+@topImage = {
+      <div class="message">
+        <img src="@routes.Assets.at("images/scalaTestHeading.gif")" width="700"
+             height="200" alt="ScalaTest: Less code, more clarity"/>
+      </div>
+}
+
+@main(pagename, topImage){@body}
+

@@ -1,0 +1,19 @@
+@(pagename: String)
+
+@genlink(title: String, url: String) = {
+  @if(pagename == title) {
+        <span><em>@title</em></span>
+  } else {
+        <a href="@url">@title</a>
+  }
+}
+
+<div id="Nav">
+  @genlink("Home",        routes.Application.index.url) |
+  @genlink("Download",    routes.Application.download.url) |
+  @genlink("Quick Start", routes.Application.quickStart.url) |
+  @genlink("User Guide",  routes.UserGuide.userGuideIndex.url) |
+  @genlink("Scaladoc",    routes.Application.scaladoc.url) |
+  @genlink("Community",   routes.Application.community.url) |
+  @genlink("About",       routes.Application.about.url)
+</div> <!-- Nav -->

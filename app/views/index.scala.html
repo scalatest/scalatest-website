@@ -1,0 +1,85 @@
+@import controllers.Application.latestVersion
+
+@homePage("Home") {
+    
+<pre class="scala">
+<span class="reserved">import</span> org.scalatest.FlatSpec
+<span class="reserved">import</span> org.scalatest.matchers.ShouldMatchers
+
+<span class="reserved">class</span> <span class="type">StackSpec</span> <span class="reserved">extends</span> <span class="type">FlatSpec</span> <span class="reserved">with</span> <span class="type">ShouldMatchers</span> {
+
+  <span class="quotedString">"A Stack"</span> should <span class="quotedString">"pop values in last-in-first-out order"</span> in {
+    <span class="reserved">val</span> stack = <span class="reserved">new</span> <span class="type">Stack[Int]</span>
+    stack.push(<span class="literal">1</span>)
+    stack.push(<span class="literal">2</span>)
+    stack.pop() should equal (<span class="literal">2</span>)
+    stack.pop() should equal (<span class="literal">1</span>)
+  }
+
+  it should <span class="quotedString">"throw NoSuchElementException if an empty stack is popped"</span> in {
+    <span class="reserved">val</span> emptyStack = <span class="reserved">new</span> <span class="type">Stack[String]</span>
+    evaluating { emptyStack.pop() } should produce [<span class="type">NoSuchElementException</span>]
+  }
+}
+</pre>
+
+<div style="text-align: left">
+  <p>
+With ScalaTest, <strong>you can test either Scala or Java code</strong>. By integrating with popular tools
+such as JUnit, TestNG, Ant, Maven, and sbt, ScalaTest makes it easy to take your testing to a higher, more productive level in new or existing Scala or Java projects.
+  </p>
+
+<p>
+Like the Scala language on which it is built, <strong>ScalaTest is
+designed to grow with the demands of its users</strong>: You can easily extend and compose ScalaTest's core components
+to address just about any special requirements you may have. As a result, ScalaTest can scale to projects of all sizes, from
+an individual exploring a new idea to large teams collaborating on mission-critical software.
+</p>
+
+<p>
+One way ScalaTest scales down is that despite its rich feature set, <strong>ScalaTest is easy to get into</strong>. Building on what you already know
+from experience with other test frameworks, you can <a href="quick_start">become productive with ScalaTest</a> in about ten minutes.
+</p>
+
+<p>
+To maximize your productivity, ScalaTest uses its own extension points to support several styles of testing out of the box.
+You can select and mix together whatever <em>traits</em> best helps you solve the problem at hand.  For instance, the above example
+uses traits <code>FlatSpec</code> and <code>ShouldMatchers</code> to select a Behavior-Driven Development (BDD) style.  When
+you run it, you get an informal specification of the software being tested:
+</p>
+</div>
+
+<pre class="scala">
+$ scala -cp scalatest-@{latestVersion}.jar org.scalatest.run StackSpec
+<span class="type">Run starting. Expected test count is: 2</span>
+<span class="literal">StackSpec:
+A Stack 
+- should pop values in last-in-first-out order
+- should throw NoSuchElementException if an empty stack is popped</span>
+<span class="type">Run completed in 96 milliseconds.
+Total number of tests run: 2
+Suites: completed 1, aborted 0
+Tests: succeeded 2, failed 0, ignored 0, pending 0</span>
+<span class="literal">All tests passed.</span>
+</pre>
+
+<div style="text-align: left">
+  <p>
+ScalaTest does not try to impose a testing philosophy on you, but rather is designed from the philosophy that 
+<strong>the tool should get out of your way and let you work the way you find most productive</strong>.
+If <code>FlatSpec</code> doesn't meet your needs, that's not a problem. ScalaTest has other traits to choose from (or you can design your own).
+</p>
+
+</p>
+If you want to continue writing tests with JUnit or TestNG, but
+write them in Scala, ScalaTest has traits for that. If you prefer functional to unit testing, or need to do integration or acceptance testing, ScalaTest
+has traits for that. And much more. In short, <strong>ScalaTest
+is a workbench providing many small, focused tools</strong> you can bring together to solve the problems you
+face today, yet grow with you as your needs change tomorrow.
+  </p>
+
+  <p>
+Why not give it a try? Just <a href="download">Download ScalaTest</a>, then visit the <a href="@routes.Application.quickStart.url">Quick Start</a> page.
+  </p>
+</div>
+}

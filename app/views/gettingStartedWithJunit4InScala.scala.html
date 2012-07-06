@@ -1,0 +1,235 @@
+@import controllers.Application.latestVersion
+
+@widePage("Getting started with JUnit 4 in Scala") {
+<div style="text-align: left">
+
+<h1>Getting started with JUnit 4 and Scala</h1>
+
+<p>
+If you want to write JUnit 4 tests in Scala that you run with JUnit, you can
+enjoy more concise code by using ScalaTest's assertions and/or matchers.
+To use assertions, mix <code>org.scalatest.junit.AssertionsForJUnit</code> into your test class:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">import</span> org.scalatest.junit.AssertionsForJUnit
+<span class="stReserved">import</span> scala.collection.mutable.ListBuffer
+<span class="stReserved">import</span> org.junit.Assert._
+<span class="stReserved">import</span> org.junit.Test
+<span class="stReserved">import</span> org.junit.Before
+
+<span class="stReserved">class</span> <span class="stType">ExampleSuite</span> <span class="stReserved">extends</span> <span class="stType">AssertionsForJUnit</span> {
+
+  <span class="stReserved">var</span> sb: <span class="stType">StringBuilder</span> = _
+  <span class="stReserved">var</span> lb: <span class="stType">ListBuffer[String]</span> = _
+
+  @@<span class="stType">Before</span> <span class="stReserved">def</span> initialize() {
+    sb = <span class="stReserved">new</span> <span class="stType">StringBuilder</span>(<span class="stQuotedString">"ScalaTest is "</span>)
+    lb = <span class="stReserved">new</span> <span class="stType">ListBuffer[String]</span>
+  }
+
+  @@<span class="stType">Test</span> <span class="stReserved">def</span> verifyEasy() { <span class="linecomment">// Uses JUnit-style assertions</span>
+    sb.append(<span class="stQuotedString">"easy!"</span>)
+    assertEquals(<span class="stQuotedString">"ScalaTest is easy!"</span>, sb.toString)
+    assertTrue(lb.isEmpty)
+    lb += <span class="stQuotedString">"sweet"</span>
+    <span class="stReserved">try</span> {
+      <span class="stQuotedString">"verbose"</span>.charAt(-<span class="stLiteral">1</span>)
+      fail()
+    }
+    <span class="stReserved">catch</span> {
+      <span class="stReserved">case</span> e: <span class="stType">StringIndexOutOfBoundsException</span> =&gt; <span class="linecomment">// Expected</span>
+    }
+  }
+
+  @@<span class="stType">Test</span> <span class="stReserved">def</span> verifyFun() { <span class="linecomment">// Uses ScalaTest assertions</span>
+    sb.append(<span class="stQuotedString">"fun!"</span>)
+    assert(sb.toString === <span class="stQuotedString">"ScalaTest is fun!"</span>)
+    assert(lb.isEmpty)
+    lb += <span class="stQuotedString">"sweeter"</span>
+    intercept[<span class="stType">StringIndexOutOfBoundsException</span>] {
+      <span class="stQuotedString">"concise"</span>.charAt(-<span class="stLiteral">1</span>)
+    }
+  }
+}
+</pre>
+
+<blockquote>
+<em>Note:</em> JUnit traditionally differentiated between exceptions resulting from assertions, which it called <em>failures</em>,
+and unexpected exceptions, which it called <em>errors</em>. Although this JUnit 3 distinction was dropped from JUnit 4, many tools
+that integrate JUnit 4 still observe the distinction.
+By mixing in <code>org.scalatest.junit.AssertionsForJUnit</code>, you ensure JUnit tools will report failures of ScalaTest assertions
+as failures not errors.
+</blockquote>
+
+<p>
+You can see the difference in conciseness between the JUnit assertions used by <code>verifyEasy</code> and the ScalaTest assertions
+used by <code>verifyFun</code>.  If you compile this class with the Scala compiler, JUnit will happily run the resulting class
+file. Here's how you compile it:
+</p>
+
+<pre class="scala">
+scalac -cp scalatest-@{latestVersion}.jar:junit-4.4.jar ExampleSuite.scala
+</pre>
+
+<p>
+Here's one way to run it using JUnit:
+</p>
+
+<pre class="scala">
+$ scala -cp .:scalatest-@{latestVersion}.jar:junit-4.4.jar org.junit.runner.JUnitCore ExampleSuite
+JUnit version 4.4
+..
+Time: 0.046
+
+OK (2 tests)
+</pre>
+
+<p>
+If you wish to give yourself the option of running with either JUnit or ScalaTest, mix in <code>org.scalatest.junit.JUnitSuite</code>. Trait
+<code>JUnitSuite</code> already mixes in <code>AssertionsForJUnit</code>:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">import</span> org.scalatest.junit.JUnitSuite
+<span class="stReserved">import</span> scala.collection.mutable.ListBuffer
+<span class="stReserved">import</span> org.junit.Assert._
+<span class="stReserved">import</span> org.junit.Test
+<span class="stReserved">import</span> org.junit.Before
+
+<span class="stReserved">class</span> <span class="stType">ExampleSuite</span> <span class="stReserved">extends</span> <span class="stType">JUnitSuite</span> {
+
+  <span class="stReserved">var</span> sb: <span class="stType">StringBuilder</span> = _
+  <span class="stReserved">var</span> lb: <span class="stType">ListBuffer[String]</span> = _
+
+  @@<span class="stType">Before</span> <span class="stReserved">def</span> initialize() {
+    sb = <span class="stReserved">new</span> <span class="stType">StringBuilder</span>(<span class="stQuotedString">"ScalaTest is "</span>)
+    lb = <span class="stReserved">new</span> <span class="stType">ListBuffer[String]</span>
+  }
+
+  @@<span class="stType">Test</span> <span class="stReserved">def</span> verifyEasy() { <span class="linecomment">// Uses JUnit-style assertions</span>
+    sb.append(<span class="stQuotedString">"easy!"</span>)
+    assertEquals(<span class="stQuotedString">"ScalaTest is easy!"</span>, sb.toString)
+    assertTrue(lb.isEmpty)
+    lb += <span class="stQuotedString">"sweet"</span>
+    <span class="stReserved">try</span> {
+      <span class="stQuotedString">"verbose"</span>.charAt(-<span class="stLiteral">1</span>)
+      fail()
+    }
+    <span class="stReserved">catch</span> {
+      <span class="stReserved">case</span> e: <span class="stType">StringIndexOutOfBoundsException</span> =&gt; <span class="linecomment">// Expected</span>
+    }
+  }
+
+  @@<span class="stType">Test</span> <span class="stReserved">def</span> verifyFun() { <span class="linecomment">// Uses ScalaTest assertions</span>
+    sb.append(<span class="stQuotedString">"fun!"</span>)
+    assert(sb.toString === <span class="stQuotedString">"ScalaTest is fun!"</span>)
+    assert(lb.isEmpty)
+    lb += <span class="stQuotedString">"sweeter"</span>
+    intercept[<span class="stType">StringIndexOutOfBoundsException</span>] {
+      <span class="stQuotedString">"concise"</span>.charAt(-<span class="stLiteral">1</span>)
+    }
+  }
+}
+</pre>
+
+<p>
+Because <code>ExampleSuite</code> is still a valid JUnit test class, it can still be run with JUnit:
+</p>
+
+<pre class="scala">
+$ scala -cp .:scalatest-@{latestVersion}.jar:junit-4.4.jar org.junit.runner.JUnitCore ExampleSuite
+JUnit version 4.4
+..
+Time: 0.121
+
+OK (2 tests)
+</pre>
+
+<p>
+But because it is also a ScalaTest <code>Suite</code>, you can now also run it with ScalaTest:
+</p>
+
+<pre class="scala">
+$ scala -cp scalatest-@{latestVersion}.jar:junit-4.4.jar org.scalatest.run ExampleSuite
+<span class="cyanincolor">Run starting. Expected test count is: 2</span>
+<span class="greenincolor">ExampleSuite:
+- verifyFun
+- verifyEasy</span>
+<span class="cyanincolor">Run completed in 190 milliseconds.
+Total number of tests run: 2
+Suites: completed 1, aborted 0
+Tests: succeeded 2, failed 0, ignored 0, pending 0</span>
+<span class="greenincolor">All tests passed.</span>
+</pre>
+
+<p>
+One final variation you may wish to try is to use ScalaTest's matchers DSL. Simply mix
+in <code>ShouldMatchersForJUnit</code> (or <code>MustMatchersForJUnit</code> if you prefer "must" to "should").
+Here's an example:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">import</span> org.scalatest.junit.JUnitSuite
+<span class="stReserved">import</span> org.scalatest.junit.ShouldMatchersForJUnit
+<span class="stReserved">import</span> scala.collection.mutable.ListBuffer
+<span class="stReserved">import</span> org.junit.Test
+<span class="stReserved">import</span> org.junit.Before
+
+<span class="stReserved">class</span> <span class="stType">ExampleSuite</span> <span class="stReserved">extends</span> <span class="stType">JUnitSuite</span> <span class="stReserved">with</span> <span class="stType">ShouldMatchersForJUnit</span> {
+
+  <span class="stReserved">var</span> sb: <span class="stType">StringBuilder</span> = _
+  <span class="stReserved">var</span> lb: <span class="stType">ListBuffer[String]</span> = _
+
+  @@<span class="stType">Before</span> <span class="stReserved">def</span> initialize() {
+    sb = <span class="stReserved">new</span> <span class="stType">StringBuilder</span>(<span class="stQuotedString">"ScalaTest is "</span>)
+    lb = <span class="stReserved">new</span> <span class="stType">ListBuffer[String]</span>
+  }
+
+  @@<span class="stType">Test</span> <span class="stReserved">def</span> verifyEasy() { <span class="linecomment">// Uses ScalaTest assertions</span>
+    sb.append(<span class="stQuotedString">"easy!"</span>)
+    assert(sb.toString === <span class="stQuotedString">"ScalaTest is easy!"</span>)
+    assert(lb.isEmpty)
+    lb += <span class="stQuotedString">"sweet"</span>
+    intercept[<span class="stType">StringIndexOutOfBoundsException</span>] {
+      <span class="stQuotedString">"concise"</span>.charAt(-<span class="stLiteral">1</span>)
+    }
+  }
+
+  @@<span class="stType">Test</span> <span class="stReserved">def</span> verifyFun() { <span class="linecomment">// Uses ScalaTest matchers</span>
+    sb.append(<span class="stQuotedString">"fun!"</span>)
+    sb.toString should be (<span class="stQuotedString">"ScalaTest is fun!"</span>)
+    lb should be (<span class="stQuotedString">'empty</span>)
+    lb += <span class="stQuotedString">"sweet"</span>
+    evaluating { <span class="stQuotedString">"concise"</span>.charAt(-<span class="stLiteral">1</span>) } should produce [<span class="stType">StringIndexOutOfBoundsException</span>]
+  }
+}
+</pre>
+
+<p>
+As before, you can run this class with either JUnit or ScalaTest:
+</p>
+
+<pre class="scala">
+$ scala -cp .:scalatest-@{latestVersion}.jar:junit-4.4.jar org.junit.runner.JUnitCore ExampleSuite
+JUnit version 4.4
+..
+Time: 0.136
+
+OK (2 tests)
+
+$ scala -cp scalatest-@{latestVersion}.jar:junit-4.4.jar org.scalatest.runner ExampleSuite
+<span class="cyanincolor">Run starting. Expected test count is: 2</span>
+<span class="greenincolor">ExampleSuite:
+- verifyFun
+- verifyEasy</span>
+<span class="cyanincolor">Run completed in 182 milliseconds.
+Total number of tests run: 2
+Suites: completed 1, aborted 0
+Tests: succeeded 2, failed 0, ignored 0, pending 0</span>
+<span class="greenincolor">All tests passed.</span>
+</pre>
+
+</div>
+
+}

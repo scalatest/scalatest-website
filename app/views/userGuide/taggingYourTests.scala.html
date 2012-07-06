@@ -1,0 +1,109 @@
+@userGuidePage("Tagging your tests") {
+<div style="text-align: left">
+
+<h1>Tagging your tests</h1>
+
+
+<p>
+ScalaTest allows you to define arbitrary test categories, to "tag" tests as belonging to those categories, and filter tests to run based on
+their tags. For example, you could tag some tests as being slow and chose to exclude the slow tests during some runs. ScalaTest supports
+one tag by default: ignore. You can tag a test as ignored to "switch it off" temporarily.
+</p>
+
+<h2>Tagging tests as ignored</h2>
+
+<p>
+To support the common use case of &#8220;temporarily&#8221; disabling a test, with the
+good intention of resurrecting the test at a later time, each style trait provides a way to tag tests as ignored.
+For example, in a <code>FlatSpec</code> you can change an <code>it</code> or an <code>in</code> to <code>ignore</code>:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">import</span> org.scalatest.FlatSpec
+<span class="stReserved">import</span> scala.collection.mutable.Stack
+<br /><span class="stReserved">class</span> <span class="stType">StackSpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> {
+<br />  <span class="stQuotedString">&quot;A Stack&quot;</span> should <span class="stQuotedString">&quot;pop values in last-in-first-out order&quot;</span> in {
+      <span class="stReserved">val</span> stack = <span class="stReserved">new</span> <span class="stType">Stack[Int]</span>
+      stack.push(<span class="stLiteral">1</span>)
+      stack.push(<span class="stLiteral">2</span>)
+      assert(stack.pop() === <span class="stLiteral">2</span>)
+      assert(stack.pop() === <span class="stLiteral">1</span>)
+    }
+<br />  ignore should <span class="stQuotedString">&quot;throw NoSuchElementException if an empty stack is popped&quot;</span> in {
+    <span class="stReserved">val</span> emptyStack = <span class="stReserved">new</span> <span class="stType">Stack[String]</span>
+    intercept[<span class="stType">NoSuchElementException</span>] {
+      emptyStack.pop()
+    }
+  }
+}
+</pre>
+
+<p>
+If you run this version of <code>StackSpec</code> in the Scala interpreter with:
+</p>
+
+<pre class="stREPL">
+scala> (new StackSpec).execute()
+</pre>
+
+<p>
+It will run only the first test and report that the second test was ignored:
+</p>
+
+<pre class="stREPL">
+<span class="stGreen">A Stack
+- should pop values in last-in-first-out order</span>
+<span class="stYellow">- should throw NoSuchElementException if an empty stack is popped !!! IGNORED !!!</span>
+</pre>
+
+<h2>Defining and using your own tags</h2>
+
+<p>
+Each style trait provides a way to tag tests. To tag tests in a <code>FlatSpec</code>, for example,
+you pass objects that extend abstract class <code>org.scalatest.Tag</code> to <code>taggedAs</code>
+just before the <code>in</code>. Class <code>Tag</code> takes one parameter, a string name.
+Here's how you might define tags to mark tests that are slow or require a database:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">import</span> org.scalatest.Tag
+<br /><span class="stReserved">object</span> <span class="stType">SlowTest</span> <span class="stReserved">extends</span> <span class="stType">Tag</span>(<span class="stQuotedString">"com.mycompany.tags.SlowTest"</span>)
+<span class="stReserved">object</span> <span class="stType">DbTest</span> <span class="stReserved">extends</span> <span class="stType">Tag</span>(<span class="stQuotedString">"com.mycompany.tags.DbTest"</span>)
+</pre>
+
+<p>
+Given these definitions, you could tag <code>FlatSpec</code> tests like this:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">import</span> org.scalatest.FlatSpec
+<br /><span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> {
+<br />  <span class="stQuotedString">&quot;The Scala language&quot;</span> must <span class="stQuotedString">&quot;add correctly&quot;</span> taggedAs(<span class="stType">SlowTest</span>) in {
+      <span class="stReserved">val</span> sum = <span class="stLiteral">1</span> + <span class="stLiteral">1</span>
+      assert(sum === <span class="stLiteral">2</span>)
+    }
+<br />  it must <span class="stQuotedString">&quot;subtract correctly&quot;</span> taggedAs(<span class="stType">SlowTest</span>, <span class="stType">DbTest</span>) in {
+    <span class="stReserved">val</span> diff = <span class="stLiteral">4</span> - <span class="stLiteral">1</span>
+    assert(diff === <span class="stLiteral">3</span>)
+  }
+}
+</pre>
+
+<p>This code marks both tests with the <code>com.mycompany.tags.SlowTest</code> tag,
+and test <code>"The Scala language should subtract correctly"</code> with the <code>com.mycompany.tags.DbTest</code> tag.
+</p>
+
+<p>
+When executing a suite, tests can optionally be included and/or excluded (<em>i.e.</em>, <em>filtered</em>) based on their tags. Here's how:
+</p>
+
+<ul>
+<li><a href="using_the_runner#filtering">filter tests via the </code>Runner</code></a></li>
+<li><a href="using_the_scalatest_ant_task#filtering">filter tests via ScalaTest's ant task</a></li>
+</ul>
+
+<p>
+Next, learn about <a href="/user_guide/running_your_tests">running your tests</a>.
+</p>
+</div>
+}

@@ -1,0 +1,514 @@
+@import controllers.Application.latestScaladoc
+
+@userGuidePage("Matchers quick reference") {
+<div style="text-align: left">
+
+<h1>Matchers quick reference</h1>
+
+<p>
+(See also <a href="using_matchers">Using matchers</a>, a tutorial.)
+</p>
+
+<table style="border-collapse: collapse; border: 1px solid black">
+<tr>
+<th colspan="2" class="quickref">Equality and identity</th>
+</tr>
+
+<tr>
+<td class="quickref"><code>result should equal (<span class="stLiteral">3</span>)</code></td>
+<td class="quickref">Calls <em>left</em> <code>==</code> <em>right</em>, except for arrays</td>
+</tr>
+
+<tr>
+<td class="quickref"><code><span class="stType">Array</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>) should equal (<span class="stType">Array</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>))</code></td>
+<td class="quickref">Arrays are compared structurally, by calling <em>left</em><code>.deep</code> <code>==</code> <em>right</em><code>.deep</code></td></tr>
+<tr>
+
+<td class="quickref"><code>result should be (<span class="stLiteral">"hi"</span>)</code></td>
+<td class="quickref">Calls <em>left</em> <code>==</code> <em>right</em>, except for arrays</td>
+</tr>
+
+<tr>
+<td class="quickref"><code><span class="stType">Array</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>) should be (<span class="stType">Array</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>))</code></td>
+<td class="quickref">Arrays are compared structurally, by calling <em>left</em><code>.deep</code> <code>==</code> <em>right</em><code>.deep</code></td></tr>
+<tr>
+
+<tr>
+<td class="quickref"><code>result should be === <span class="stLiteral">7</span></code></td>
+<td class="quickref">Calls <em>left</em> <code>==</code> <em>right</em>, except for arrays</td>
+</tr>
+
+<tr>
+<td class="quickref"><code><span class="stType">Array</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>) should be === (<span class="stType">Array</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>))</code></td>
+<td class="quickref">Arrays are compared structurally, by calling <em>left</em><code>.deep</code> <code>==</code> <em>right</em><code>.deep</code></td></tr>
+<tr>
+
+<tr>
+<td class="quickref"><code>ref1 should be theSameInstanceAs ref2</code></td>
+<td class="quickref">Calls <em>left</code> <code>eq</code> <em>right</em></td>
+</tr>
+
+<tr>
+<th colspan="2" class="quickref">Expected exceptions</th>
+</tr>
+
+<tr>
+<td class="quickref">
+<pre>evaluating {
+  s.charAt(-<span class="stLiteral">1</span>)
+} should produce [<span class="stType">IndexOutOfBoundsException</span>]</pre></td>
+<td class="quickref">Checks that a particular exception type is thrown by a bit of code</td>
+</tr>
+
+<tr>
+<td class="quickref">
+<pre>
+val caught = evaluating {
+  s.charAt(-<span class="stLiteral">1</span>)
+} should produce [<span class="stType">IndexOutOfBoundsException</span>]
+
+caught.getMessage should be (<span class="stQuotedString">"String index out of range: -1"</span>)
+</pre>
+</td>
+<td class="quickref">Inspects the caught exception</td>
+</tr>
+
+<tr>
+<th colspan="2" class="quickref">Size and length</th>
+</tr>
+
+<tr>
+<td class="quickref"><code>result should have length <span class="stLiteral">3</span></code></td>
+<td class="quickref">Works for any object with <code>length</code> field or method or <code>getLength</code> method; length can be <code>Int</code> or </code>Long</code></td>
+</tr>
+
+<tr>
+<td class="quickref"><code>result should have size <span class="stLiteral">3</span></code></td>
+<td class="quickref">Works for any object with <code>size</code> field or method or <code>getSize</code> method; size can be <code>Int</code> or </code>Long</code></td>
+</tr>
+
+<tr>
+<th colspan="2" class="quickref">Strings and regular expressions</th>
+</tr>
+
+<tr>
+<td class="quickref"><code>string should startWith (<span class="stQuotedString">"Hello"</span>)</code></td>
+<td class="quickref">Starts with substring</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>string should endWith (<span class="stQuotedString">"world"</span>)</code></td>
+<td class="quickref">Ends with substring</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>string should include (<span class="stQuotedString">"seven"</span>)</code></td>
+<td class="quickref">Includes substring</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>string should startWith regex <span class="stQuotedString">"Hel*o"</span></code></td>
+<td class="quickref">Starts with substring matching regular expression string</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>string should startWith regex <span class="stQuotedString">"Hel*o"</span>.r</code></td>
+<td class="quickref">Starts with substring matching regular expression <code>Regex</code></td>
+</tr>
+
+<tr>
+<td class="quickref"><code>string should endWith regex <span class="stQuotedString">"wo.ld"</span></code></td>
+<td class="quickref">Ends with substring matching regular expression string</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>string should endWith regex <span class="stQuotedString">"wo.ld"</span>.r</code></td>
+<td class="quickref">Ends with substring matching regular expression <code>Regex</code></td>
+</tr>
+
+<tr>
+<td class="quickref"><code>string should include regex <span class="stQuotedString">"wo.ld"</span></code></td>
+<td class="quickref">Includes substring matching regular expression string</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>string should include regex <span class="stQuotedString">"wo.ld"</span>.r</code></td>
+<td class="quickref">Includes substring matching regular expression <code>Regex</code></td>
+</tr>
+
+<tr>
+<td class="quickref"><code>string should fullyMatch regex <span class="stQuotedString">&#34;&#34;&#34;(-)?(\d+)(\.\d*)?&#34;&#34;&#34;</span></code></td>
+<td class="quickref">Fully matches regular expression string</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>string should fullyMatch regex <span class="stQuotedString">&#34;&#34;&#34;(-)?(\d+)(\.\d*)?&#34;&#34;&#34;</span>.r</code></td>
+<td class="quickref">Fully matches regular expression <code>Regex</code></td>
+</tr>
+
+<tr>
+<th colspan="2" class="quickref">Order and ranges</th>
+</tr>
+
+<tr>
+<td class="quickref"><code>one should be &lt; <span class="stLiteral">7</span></code></td>
+<td class="quickref">Works for any type implicitly convertible to <code>Ordered[T]</code></td>
+</tr>
+
+<tr>
+<td class="quickref"><code>one should be &gt; <span class="stLiteral">0</span></code></td>
+<td class="quickref">Works for any type implicitly convertible to <code>Ordered[T]</code></td>
+</tr>
+
+<tr>
+<td class="quickref"><code>one should be &lt;= <span class="stLiteral">7</span></code></td>
+<td class="quickref">Works for any type implicitly convertible to <code>Ordered[T]</code></td>
+</tr>
+
+<tr>
+<td class="quickref"><code>one should be &gt;= <span class="stLiteral">0</span></code></td>
+<td class="quickref">Works for any type implicitly convertible to <code>Ordered[T]</code></td>
+</tr>
+
+<tr>
+<td class="quickref"><code>num should (be &gt;= <span class="stLiteral">1</span> and be &lt;= <span class="stLiteral">10</span>)</code></td>
+<td class="quickref">One way to ensure within a range or tolerance</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>seven should be (<span class="stLiteral">6</span> plusOrMinus <span class="stLiteral">2</span>)</code></td>
+<td class="quickref">Another way to ensure within a range or tolerance</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>sevenDotOh should be (<span class="stLiteral">6.9</span> plusOrMinus <span class="stLiteral">0.2</span>)</code></td>
+<td class="quickref"><code>plusOrMinus</code> works for both integral and floating point types</td>
+</tr>
+
+<tr>
+<th colspan="2" class="quickref">Checking boolean properties with <code>be</code></th>
+</tr>
+
+<tr>
+<td class="quickref"><code>emptySet should be (<span class="stQuotedString">'empty</span>)</code></td>
+<td class="quickref">Accesses <code>empty</code> or <code>isEmpty</code> dynamically (For the details on how a field or method is dynamically selected, see the documentation for <a href="@latestScaladoc/#org.scalatest.matchers.Matchers$BeWord"><code>BeWord</code></a>.)</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>temp should be a (<span class="stQuotedString">'file</span>)</code></td>
+<td class="quickref">Can insert an 'a'</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>keyEvent should be an (<span class="stQuotedString">'actionKey</span>)</code></td>
+<td class="quickref">Can insert an 'an'</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>temp should be a file</code></td>
+<td class="quickref">For static checking (and to get rid of the unslightly tick mark), use a <a href="@latestScaladoc/#org.scalatest.matchers.BePropertyMatcher"><code>BePropertyMatcher</code></a></td>
+</tr>
+
+<tr>
+<th colspan="2" class="quickref">Using arbitrary <code>be</code> matchers</th>
+</tr>
+
+<tr>
+<td class="quickref"><code>num should be (odd)</code></td>
+<td class="quickref">To place an arbitrary token after <code>be</code>, use a <a href="@latestScaladoc/#org.scalatest.matchers.BeMatcher"><code>BeMatcher</code></a>.
+</tr>
+
+<tr>
+<th colspan="2" class="quickref">Checking arbitrary properties with <code>have</code></th>
+</tr>
+
+<tr>
+<td class="quickref">
+<pre>
+book should have (
+  <span class="stQuotedString">'title</span> (<span class="stQuotedString">"Programming in Scala"</span>),
+  <span class="stQuotedString">'author</span> (<span class="stType">List</span>(<span class="stQuotedString">"Odersky"</span>, <span class="stQuotedString">"Spoon"</span>, <span class="stQuotedString">"Venners"</span>)),
+  <span class="stQuotedString">'pubYear</span> (<span class="stLiteral">2008</span>)
+)
+</pre></td>
+<td class="quickref">Check arbitrary properties dynamically with <code>Symbols</code> (For the details on how a field or method is selected during this
+process, see <a href="@latestScaladoc/#org.scalatest.matchers.Matchers$HavePropertyMatcherGenerator"><code>HavePropertyMatcherGenerator</code></a>.)</td>
+</tr>
+
+<tr>
+<td class="quickref">
+<pre>
+book should have (
+  <span class="stQuotedString">title</span> (<span class="stQuotedString">"Programming in Scala"</span>),
+  <span class="stQuotedString">author</span> (<span class="stType">List</span>(<span class="stQuotedString">"Odersky"</span>, <span class="stQuotedString">"Spoon"</span>, <span class="stQuotedString">"Venners"</span>)),
+  <span class="stQuotedString">pubYear</span> (<span class="stLiteral">2008</span>)
+)
+</pre></td>
+<td class="quickref">Check arbitrary properties statically with <a href="@latestScaladoc/#org.scalatest.matchers.HavePropertyMatcher"><code>HavePropertyMatchers</code></a></td>
+</tr>
+
+<tr>
+<th colspan="2" class="quickref">Working with Scala and Java collections</th>
+</tr>
+
+<tr>
+<td class="quickref"><code>traversable should be (<span class="stQuotedString">'empty</span>)</code></td>
+<td class="quickref">Check whether a collection is empty</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>list should be (<span class="stType">Nil</span>)</code></td>
+<td class="quickref">Another way to check whether a list is empty</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>map should be (<span class="stType">Map()</span>)</code></td>
+<td class="quickref">Another way to check whether a map (or other collection type) is empty</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>set should be (<span class="stType">Set.empty</span>)</code></td>
+<td class="quickref">Another way to check whether a set (or other collection type) is empty</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>traversable should have size (<span class="stLiteral">20</span>)</code></td>
+<td class="quickref">Check the size of a collection</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>seq should have length (<span class="stLiteral">9</span>)</code></td>
+<td class="quickref">Check the length of a <code>Seq</code></td>
+</tr>
+
+<tr>
+<td class="quickref"><code>traversable should contain (<span class="stQuotedString">"five"</span>)</code></td>
+<td class="quickref">Check whether a traversable contains an element</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>map should contain key (<span class="stLiteral">1</span>)</code></td>
+<td class="quickref">Check whether a map contains a particular key</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>map should contain value (<span class="stQuotedString">"Howdy"</span>)</code></td>
+<td class="quickref">Check whether a map contains a particular value</td>
+</tr>
+
+<tr>
+<td class="quickref"><code><span class="stReserved">import</span> org.scalatest.PartialFunctionValues._<br />map.valueAt(<span class="stQuotedString">"IV"</span>) should equal (<span class="stQuotedString">4</span>)</code></td>
+<td class="quickref">State both that a map is defined at a key as well as something about its value</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>javaCollection should be (<span class="stQuotedString">'empty</span>)</code></td>
+<td class="quickref">Check the size of a <code>java.util.Collection</code></td>
+</tr>
+
+<tr>
+<td class="quickref"><code>javaMap should have size (<span class="stLiteral">20</span>)</code></td>
+<td class="quickref">Check the size of a <code>java.util.Map</code></td>
+</tr>
+
+<tr>
+<td class="quickref"><code>javaList should have length (<span class="stLiteral">9</span>)</code></td>
+<td class="quickref">Check the length of a <code>java.util.List</code></td>
+</tr>
+
+<tr>
+<td class="quickref"><code>javaCollection should contain (<span class="stQuotedString">"five"</span>)</code></td>
+<td class="quickref">Check whether a <code>java.util.Collection</code> contains a particular element</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>javaMap should contain key (<span class="stLiteral">1</span>)</code></td>
+<td class="quickref">Check whether a <code>java.util.Map</code> contains a particular key</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>javaMap should contain value (<span class="stQuotedString">"Howdy"</span>)</code></td>
+<td class="quickref">Check whether a <code>java.util.Map</code> contains a particular value</td>
+</tr>
+
+<tr>
+<th colspan="2" class="quickref">Working with <code>Option</code> and <code>Either</code></th>
+</tr>
+
+<tr>
+
+<td class="quickref"><code>option should be (<span class="stType">Some</span>(<span class="stLiteral">1</span>))</code></td>
+<td class="quickref">Check whether an option contains a certain value</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>option should be (<span class="stLiteral">'defined</span>)</code></td>
+<td class="quickref">Check whether an option is defined</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>option should be (<span class="stLiteral">'empty</span>)</code></td>
+<td class="quickref">Check whether an option is empty</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>option should be (<span class="stType">None</span>)</code></td>
+<td class="quickref">Another way to check whether an option is empty</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>import org.scalatest.OptionValues._<br />option.value should be &lt; <span class="stLiteral">7</span></code></td>
+<td class="quickref">State both that an option is defined as well as something about its value</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>either should be (<span class="stType">Left</span>(<span class="stLiteral">1</span>))</code></td>
+<td class="quickref">Check whether an either is <code>Left</code> with a certain value</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>either should be (<span class="stType">'left</span>)</code></td>
+<td class="quickref">Check whether an either is left</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>either should be (<span class="stType">Right</span>(<span class="stLiteral">1</span>))</code></td>
+<td class="quickref">Check whether an either is <code>Right</code> with a certain value</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>either should be (<span class="stLiteral">'right<span>)</code></td>
+<td class="quickref">Check whether an either is right</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>import org.scalatest.EitherValues._<br />either.right.value should be &lt; <span class="stLiteral">7</span></code></td>
+<td class="quickref">State both how an either is defined as well as something about its value</td>
+</tr>
+
+<tr>
+<th colspan="2" class="quickref">Logical expressions with <code>and</code>, <code>or</code>, and <code>not</code></th>
+</tr>
+
+<tr>
+<td class="quickref"><code>result should (be &gt; <span class="stLiteral">0</span> and be &lt; <span class="stLiteral">10</span>)</code></td>
+<td class="quickref">You can <em>and</em> matcher expressions together with <code>and</code></td>
+</tr>
+
+<tr>
+
+<td class="quickref"><code>map should (contain key (<span class="stQuotedString">"hi"</span>) or contain key (<span class="stQuotedString">"ho"</span>))</code></td>
+<td class="quickref">You can <em>or</em> matcher expressions together with <code>or</code></td>
+</tr>
+
+<tr>
+<td class="quickref"><code>result should not be (<span class="stReserved">null</span>)</code></td>
+<td class="quickref">You can negate the meaning of a matcher expression with <code>not</code></td>
+</tr>
+
+<tr>
+<td class="quickref"><code>map should (contain key (<span class="stQuotedString">"two"</span>) and not contain value (<span class="stLiteral">7</span>))</code></td>
+<td class="quickref">Another example of negation with <code>not</code></td>
+</tr>
+
+<tr>
+<th colspan="2" class="quickref">When you need a different matcher</th>
+</tr>
+
+<tr>
+<td class="quickref"><code>keyEvent should be an (<span class="stQuotedString">'actionKey</span>)</code></td>
+<td class="quickref">You can check boolean properties dynamically with <code>be</code> and a <code>Symbol</code> (the tick mark syntax); For statically typed approach,
+use a <a href="@latestScaladoc/#org.scalatest.matchers.BePropertyMatcher"><code>BePropertyMatcher</code></a> or
+<a href="@latestScaladoc/#org.scalatest.matchers.BeMatcher"><code>BeMatcher</code></a>.</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>book should have ('title(<span class="stQuotedString">"A Tale of Two Cities"</span>))</code></td>
+<td class="quickref">You can check arbitrary properties dynamically with <code>have</code> and a <code>Symbol</code> (the tick mark syntax); For a statically type approach,
+use a <a href="@latestScaladoc/#org.scalatest.matchers.HavePropertyMatcher"><code>HavePropertyMatchers</code></a></td>
+</tr>
+
+<tr>
+<td class="quickref"><pre>
+<span class="stReserved">val</span> defined = <span class="stQuotedString">'defined</span>
+<span class="stType">Some</span>(<span class="stQuotedString">"hi"</span>) should be (defined)
+</pre></td>
+<td class="quickref">One way to get rid of the tick mark for a dynamic property check</td>
+</tr>
+
+<tr>
+<td class="quickref">
+<pre>
+<span class="stReserved">val</span> beDefined = be (<span class="stQuotedString">'defined</span>)
+<span class="stType">Some</span>(<span class="stQuotedString">"hi"</span>) should beDefined
+</pre>
+</td>
+<td class="quickref">One way to get rid of the tick mark <em>and</em> a pair of parentheses</td>
+</tr>
+
+<tr>
+<td class="quickref">
+<pre>
+<span class="stReserved">val</span> beWithinTolerance = be &gt;= <span class="stLiteral">0</span> and be <= <span class="stLiteral">10</span>
+num should beWithinTolerance
+</pre>
+</td>
+<td class="quickref">You can create new matchers by combining existing matchers with <code>and</code>, <code>or</code>, and <code>not</code></td>
+</tr>
+
+<tr>
+<td class="quickref">
+<pre>
+<span class="stReserved">val</span> beOddAsInt = beOdd compose { (s: <span class="stType">String</span>) =&gt; s.toInt }
+<span class="stQuotedString">"3"</span> should beOddAsInt
+</pre>
+</td>
+<td class="quickref">You can compose a matcher with a function that transforms the input type</td>
+</tr>
+
+<tr>
+<td class="quickref">
+<pre>
+<span class="stReserved">val</span> beOdd =
+  <span class="stType">Matcher</span> { (left: <span class="stType">Int</span>) =>
+    <span class="stType">MatchResult</span>(
+      left % <span class="stLiteral">2</span> == <span class="stLiteral">1</span>,
+      left + <span class="stQuotedString">" was not odd"</span>,
+      left + <span class="stQuotedString">" was odd"</span>
+    )
+  }
+
+<span class="stLiteral">3</span> should beOdd
+</pre>
+</td>
+<td class="quickref">You can use a factory method to define a custom matcher (such factory methods
+also exist for <a href="@latestScaladoc/#org.scalatest.matchers.BeMatcher"><code>BeMatcher</code></a>, <a href="@latestScaladoc/#org.scalatest.matchers.BePropertyMatcher"><code>BePropertyMatcher</code></a>, and <a href="@latestScaladoc/#org.scalatest.matchers.HavePropertyMatcher"><code>HavePropertyMatcher</code></a>).</td>
+</tr>
+
+<tr>
+<td class="quickref">
+<pre>
+<span class="stReserved">val</span> beOdd =
+  <span class="stReserved">new</span> <span class="stType">Matcher[Int]</span> {
+    <span class="stReserved">def</span> apply(left: <span class="stType">Int</span>) =
+      <span class="stType">MatchResult</span>(
+        left % <span class="stLiteral">2</span> == <span class="stLiteral">1</span>,
+        left + <span class="stQuotedString">" was not odd"</span>,
+        left + <span class="stQuotedString">" was odd"</span>
+      )
+  }
+
+<span class="stLiteral">3</span> should beOdd
+</pre>
+</td>
+<td class="quickref">Or you can write a full-blown matcher.</td>
+</tr>
+
+</table>
+
+
+<p>
+Return to the full tutorial on <a href="/user_guide/using_matchers">using matchers</a>.
+</p>
+</div>
+}

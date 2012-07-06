@@ -1,0 +1,30 @@
+@(pagename: String)
+
+@genlink(title: String, url: String) = {
+  @if(pagename == title) {
+    <span><em>@title</em></span>
+  } else {
+    <a href="@url">@title</a>
+  }
+<br />
+<br />
+}
+
+<strong>ScalaTest User Guide</strong><br /><br />
+@genlink("Writing your first test", routes.UserGuide.writingYourFirstTest.url)
+@genlink("Using assertions", routes.UserGuide.usingAssertions.url)
+@genlink("Tagging your tests", routes.UserGuide.taggingYourTests.url)
+@genlink("Running your tests", "/user_guide/running_your_tests")
+@genlink("Sharing fixtures", "/user_guide/sharing_fixtures")
+@genlink("Sharing tests", "/user_guide/sharing_tests")
+@genlink("Using matchers", "/user_guide/using_matchers")
+@genlink("Testing with mock objects", "/user_guide/testing_with_mock_objects")
+@genlink("Tests as specifications", "/user_guide/tests_as_specifications")
+@genlink("Property-based testing", "/user_guide/property_based_testing")
+@genlink("Other goodies", "/user_guide/other_goodies")
+@genlink("Philosophy and design", "/user_guide/philosophy_and_design")
+@genlink("Selecting a style", "/user_guide/selecting_a_style")
+<!--
+@genlink("Customizing ScalaTest", "/user_guide/customizing_scalatest")
+-->
+

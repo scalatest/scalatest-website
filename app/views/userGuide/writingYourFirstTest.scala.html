@@ -1,0 +1,108 @@
+@import controllers.Application.latestScaladoc
+
+@userGuidePage("Writing your first test") {
+<div style="text-align: left">
+
+<h1>Writing your first test</h1>
+
+<p>
+1. In ScalaTest, you define tests inside classes that extend a <em>style trait</em> such as <a href="@latestScaladoc/#org.scalatest.FlatSpec"><code>FlatSpec</code></a>:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">import</span> org.scalatest.FlatSpec
+<br /><span class="stReserved">class</span> <span class="stType">FirstSpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> {
+  // tests go here...
+}
+</pre>
+
+<p>
+2. Each test in a <code>FlatSpec</code> is composed of a sentence that specifies a bit of required behavior and a block of code that tests it.
+The sentence needs a subject, such as <code>"A Stack"</code>; a verb, either <code>should</code>, <code>must</code>, or <code>can</code>; and 
+the rest of the sentence. Here's an example:
+</p>
+
+<pre class="stHighlighted">
+<span class="stQuotedString">&quot;A Stack&quot;</span> should <span class="stQuotedString">&quot;pop values in last-in-first-out order&quot;</span>
+</pre>
+
+<p>
+If you have multiple tests about the same subject, you can use <code>it</code> to refer to the previous subject:
+</p>
+
+<pre class="stHighlighted">
+it should <span class="stQuotedString">&quot;throw NoSuchElementException if an empty stack is popped&quot;</span>
+</pre>
+
+<p>
+After the sentence you put the word <code>in</code> followed by the body of the test in curly braces. Here's a complete example:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">import</span> org.scalatest.FlatSpec
+<span class="stReserved">import</span> scala.collection.mutable.Stack
+<br /><span class="stReserved">class</span> <span class="stType">StackSpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> {
+<br />  <span class="stQuotedString">&quot;A Stack&quot;</span> should <span class="stQuotedString">&quot;pop values in last-in-first-out order&quot;</span> in {
+    <span class="stReserved">val</span> stack = <span class="stReserved">new</span> <span class="stType">Stack[Int]</span>
+    stack.push(<span class="stLiteral">1</span>)
+    stack.push(<span class="stLiteral">2</span>)
+    assert(stack.pop() === <span class="stLiteral">2</span>)
+    assert(stack.pop() === <span class="stLiteral">1</span>)
+  }
+<br />  it should <span class="stQuotedString">&quot;throw NoSuchElementException if an empty stack is popped&quot;</span> in {
+    <span class="stReserved">val</span> emptyStack = <span class="stReserved">new</span> <span class="stType">Stack[String]</span>
+    intercept[<span class="stType">NoSuchElementException</span>] {
+      emptyStack.pop()
+    }
+  }
+}
+</pre>
+
+<p>
+3. Place this in a file called <code>StackSpec.scala</code> and compile it with:
+</p>
+
+<pre class="stExamples">
+$ scalac -cp scalatest-1.7.2.jar StackSpec.scala
+</pre>
+
+<p>
+4. You can run it from the command line by invoking ScalaTest's <a href="using_the_runner">Runner application</a>:
+</p>
+
+<pre class="stExamples">
+$ scala -cp scalatest.jar org.scalatest.tools.Runner -p . -o -s StackSpec
+<span class="stCyan">Run starting. Expected test count is: 2</span>
+<span class="stGreen">StackSpec:
+A Stack 
+- should pop values in last-in-first-out order
+- should throw NoSuchElementException if an empty stack is popped</span>
+<span class="stCyan">Run completed in 96 milliseconds.
+Total number of tests run: 2
+Suites: completed 1, aborted 0
+Tests: succeeded 2, failed 0, ignored 0, pending 0</span>
+<span class="stGreen">All tests passed.</span>
+</pre>
+
+<p>
+5. Or you can run it from the Scala interpreter using the <a href="using_the_scalatest_shell">ScalaTest shell</a>: 
+</p>
+
+<pre class="stExamples">
+$ scala -cp scalatest-1.7.2.jar
+
+scala&gt; import org.scalatest._
+import org.scalatest._
+
+scala&gt; run(new StackSpec)
+<span class="stGreen">StackSpec:
+A Stack 
+- should pop values in last-in-first-out order
+- should throw NoSuchElementException if an empty stack is popped</span>
+</pre>
+
+<p>
+Next, learn about <a href="using_assertions">using assertions</a>.
+</p>
+</div>
+}
