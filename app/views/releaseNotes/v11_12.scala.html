@@ -1,0 +1,30 @@
+@releaseNotesPage("ScalaTest Release Notes for versions 1.1 and 1.2") {
+<div style="text-align: left">
+
+<h1>ScalaTest Release Notes</h1>
+
+<a name="release11and12"></a>
+<h2>Changes in 1.1 (for Scala 2.7.x) and 1.2 (for Scala 2.8.x)</h2>
+
+<p>
+Note: ScalaTest 1.1 and 1.2 basically have identical feature sets. The only difference is the Scala version they support. ScalaTest 1.1 works with Scala 2.7,
+and ScalaTest 1.2 with Scala 2.8. For a while we will support both 2.7 and 2.8 with new enhancements, with corresponding ScalaTest 1.1.x and 1.2.x releases.
+At some point we'll bump up to 1.3 and only support Scala 2.8 and beyond.
+</p>
+
+<ul>
+<li>The main change from 1.0 to 1.1/1.2 is many changes to support Scala 2.8. Many of these changes went into both 1.1 and 1.2 codebases to
+simplify supporting both codebases in future releases. Some changes went just to the 1.2 branch. None of these should be visible 
+to users of ScalaTest. In other words, the ScalaTest API did not need to change between Scala 2.7 and Scala 2.8, only its implementation.</li>
+<li>Added <code>dir</code> attribute to ScalaTest ant task.</li>
+<li>Renamed XML reporter to <code>junitxml</code> in the ScalaTest ant task.</li>
+<li>Made <code>Tag</code> a concrete class (in earlier releases it was abstract), and added a <code>Tag</code> companion object with an <code>apply</code> method. The
+abstract <code>Tag</code> class enabled users to define tags with <code>object SlowTest extends Tag("SlowTest")</code>. This enhancements allows
+tags to also be created on the fly, for example, with <code>Tag("SlowTest")</code>.</li>
+<li>Added <code>ScalaTestFramework</code> to support sbt.</li>
+<li>Fixed "smiley-face" bug in XML reporter, an extra few characters that caused the XML to be invalid.</li>
+<li>When running failed or ignored tests in WordSpec, print the "should" verb in the GUI report, which was missing.</li>
+</ul>
+
+</div>
+}

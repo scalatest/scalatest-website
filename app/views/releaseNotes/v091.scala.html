@@ -1,0 +1,31 @@
+@releaseNotesPage("ScalaTest 0.9.1 Release Notes") {
+<div style="text-align: left">
+
+<h1>ScalaTest 0.9.1 Release Notes</h1>
+
+<h2>Changes in 0.9.1</h2>
+
+<ul>
+<li>Changed <code>testGroups</code> method name to <code>groups</code>.</li>
+<li>Changed operand names of <code>===</code>, from <code>expected === actual</code> to <code>left === right</code>.</li>
+<li>Changed message generated from <code>2 === 1</code>, from <code>"Expected 1, but got 2"</code> to <code>"2 did not equal 1"</code>.</li>
+<li>Changed <code>expect</code> method name to <code>intercept</code>.</li>
+<li>Dropped <code>expectNPE</code> and <code>expectIAE</code> methods.</li>
+<li>Added a different <code>expect</code> method, which takes an expected and actual value. <code>expect(1) {2}</code> would generate
+the error message <code>"Expected 1, but got 2</code>.</li>
+<li>Made versions of <code>expect</code> and <code>intercept</code> that take a <code>message</code>.</li>
+<li>Implemented a <code>Suite</code> discovery mechanism in <code>Runner</code>, accessed via <code>-m</code> or <code>-w</code>
+command-line arguments.</li>
+<li>Dropped <code>!==</code> method from the great <code>Equalizer</code>.</li>
+</ul>
+
+<h2>Known issues</h2>
+
+<ol>
+<li>Reloading classes from JAR files between runs in the GUI doesn't work, because URLClassLoader uses a JAR cache. For now, you'll have to restart the app to pick
+up new classes in JAR files. But a better alternative is to simply point ScalaTest to the build directory containing .class files produced by the Scala and
+Java compiler. URLClassLoader will not cache these files, so changes to them will be picked up each time you press the Run or Rerun buttons.</li>
+</ol>
+
+</div>
+}

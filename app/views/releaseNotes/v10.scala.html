@@ -1,0 +1,73 @@
+@releaseNotesPage("ScalaTest 1.0 Release Notes") {
+<div style="text-align: left">
+
+<h1>ScalaTest 1.0 Release Notes</h1>
+
+<a name="release10"></a>
+<h2>Changes in 1.0 (for Scala 2.7.x)</h2>
+
+<ul>
+<li>Dropped <code>ImpSuite</code>, which had been deprecated for two releases</li>
+<li>Changed <code>JUnit3Suite</code> so it delegates to JUnit 4's <code>JUnitCore</code> class to run the tests. Before it was simulating JUnit execution without 
+actually using JUnit.</li>
+<li>Dropped two forms of <code>intercept</code>, which had been deprecated for two releases</li>
+<li>Made <code>Distributor</code> into a function (breaking change).</li>
+<li>Made <code>Stopper</code> into a function (breaking change).</li>
+<li>Renamed <code>Rerunnable</code> into <code>Rerunner</code> and made it a function. Deprecated <code>Rerunnable</code> (breaking change).</li>
+<li>Renamed main <code>execute</code> method (the one with many parameters) in <code>Suite</code> to <code>run</code>. Changed its signature (breaking change).</li>
+<li>Added two more final <code>execute</code> methods to <code>Suite</code> that each take a <code>configMap</code></li>
+<li>Added a sealed hierarcy of <code>Event</code> classes.</li>
+<li>Refactored <code>Reporter</code> so that instead of having one method per event type, it has one <code>apply</code> method, which takes an <code>Event</code> (breaking change).</li>
+<li>Added <code>ResourcefulReporter</code>, which models a <code>Reporter</code> that holds finite, non-memory resources.</li>
+<li>Added <code>Ordinal</code>. Every <code>Event</code> class includes an <code>Ordinal</code> so that the events of parallel runs can be sorted
+in sequential order. Made changes to all <code>Suite</code> traits to ensure they fire events with proper <code>Ordinal</code>s.</li>
+<li>Added <code>Tracker</code> to support the inclusion of good <code>Ordinal</code>s in fired <code>Event</code>s.</li>
+<li>Added <code>Filter</code>, which changes how tags to include and exclude are handled. Previously the two include and exclude sets were passed into
+<code>Suite</code> methods, and it was the responsibility of those methods to filter tests correctly. Now the two include and exclude sets are passed to a <code>Filter</code>,
+and the <code>Filter</code> is passed to the <code>Suite</code> methods, which can delegate to <code>Filter</code> to do the filtering.</li>
+<li>Renamed <code>groups</code> to <code>tags</code> (deprecated <code>groups</code>)</li>
+<li>Greatly improved JUnit integration. Added <code>JUnitSuite</code>, <code>JUnitRunner</code>, <code>JUnitWrapperSuite</code>, <code>AssertionsForJUnit</code>, <code>ShouldMatchersForJUnit</code>, <code>MustMatchersForJUnit</code>, <code>JUnitTestFailedError</code></li>
+<li>Added -j option to <code>Runner</code> to run JUnit tests with the <code>JUnitWrapperSuite</code></li>
+<li>Changed the configuration parameters for <code>Reporters</code>. The old ones will be accepted but have no effect for a two-release deprecation
+cycle, after which they will cause <code>Runner</code> to halt with an error message.</li>
+<li>Added optional color output to standard out, standard error, and file reporters.</li>
+<li>Added <code>Reporter</code> configuration parameters for turning off color, showing durations, and showing full stack traces.</li>
+<li>Added a <code>jvmargs</code> option to the Ant task, which makes it possible to pass args to the underlying JVM (important if you need more memory)</li>
+<li>Added a <code>fork</code> option to the Ant task, which makes it possible to run ScalaTest in a separate JVM from Ant (also useful for dealing with memory problems).</li>
+<li>Renamed <code>goodies</code> to <code>configMap</code>.</li>
+<li>Renamed the Ant task from <code>ScalaTestTask</code> to <code>ScalaTestAntTask</code>. Deprecated <code>ScalaTestTask</code>.</li>
+<li>Added ability to specify the number of threads to use when running tests in parallel, in both <code>Runner</code> and the Ant task.</li>
+<li>Enhanced <code>Runner</code> so that it treats a backslash followed by a space as a literal space in a runpath element, rather than a space separating two
+runpath elements. This was necessary to allow people to include pathnames in the runpath that included spaces.</li>
+<li>Added two new forms to matchers DSL: <code>result should be === 7</code> and <code>evaluating { "hi".charAt(-1) } should produce [StringIndexOutOfBoundsException]</code>.</li>
+<li>Added support for pending tests.</li>
+<li>Added <code>pendingUntilFixed</code> method to <code>Suite</code>.</li>
+<li>Deprecated <code>Report</code> and <code>SpecReport</code>. These are no longer used, as they were made obsolete by the <code>Reporter</code> refactor. Instead
+of <code>SpecReport</code>, the <code>Formatter</code> and its two subclasses, <code>MotionToSuppress</code> and <code>IndentedText</code> are used to format 
+specification-style output.</li>
+<li>Added the <code>org.scalatest.concurrent</code> package, which includes <code>Conductor</code>, <code>ConductorFixture</code>, <code>ConductorMultiFixture</code>,
+and <code>ConductorMethods</code>.</li>
+<li>Added the <code>org.scalatest.mock</code> package, which includes <code>EasyMockSugar</code>, <code>JMockCycle</code>, <code>JMockCycleFixture</code>, <code>JMockExpectations</code>, and <code>MockitoSugar</code>.</li>
+<li>Added three new BDD traits: <code>WordSpec</code>, <code>FlatSpec</code>, and <code>FeatureSpec</code>.</li>
+<li>Added the <code>org.scalatest.fixture</code> package, which includes <code>FixtureSuite</code>, <code>FixtureFunSuite</code>, <code>FixtureSpec</code>, <code>FixtureWordSpec</code>, <code>FixtureFlatSpec</code>, <code>FixtureFeatureSpec</code>, <code>ConfigMapFixture</code>, <code>MultipleFixtureFunSuite</code>, <code>MultipleFixtureSpec</code>, <code>MultipleFixtureWordSpec</code>, <code>MultipleFixtureFlatSpec</code>, and <code>MultipleFixtureFeatureSpec</code>.</li>
+<li>Added the <code>org.scalatest.verb</code> package to support <code>FlatSpec</code> and <code>WordSpec</code>.</li>
+<li>Split the <code>BeforeAndAfter</code> trait into <code>BeforeAndAfterEach</code> and <code>BeforeAndAfterAll</code>. Deprecated <code>BeforeAndAfter</code>.</li>
+<li>Added trait <code>GivenWhenThen</code>.</li>
+<li>Renamed <code>Group</code> to <code>Tag</code>. Deprecated <code>Group</code>. Also renamed <code>groups</code> method to <code>tags</code> in <code>Suite</code>,
+and deprecated <code>groups</code>.</li>
+<li>Added <code>TagAnnotation</code> to serve as base class for tag annotations for <code>Suite</code>, however, won't enforce for a two-release deprecation cycle
+that tag annotations used on <code>Suite</code> test methods need to extend <code>TagAnnotation</code>.</li>
+<li>Dropped the <code>apply</code> method that takes a <code>Report</code> (which is no longer used) from <code>Informer</code>, and also dropped
+the <code>nameForReport</code> method (breaking changes).</li>
+<li>Added the <code>OneInstancePerTest</code> trait.</li>
+<li>Added the <code>ParallelTestExecution</code> trait.</li>
+<li>Added the <code>SequentialNestedSuiteExecution</code> trait.</li>
+<li>Refactored <code>TestFailedException</code> so that it extends <code>StackDepthException</code>, which mixes in <code>StackDepth</code>. Added other
+<code>StackDepthExceptions</code> so that other errors in test code beyond just assertion failures will be reported with stack depths:
+<code>DuplicateTestNameException</code>, <code>NotAllowedException</code>, and <code>TestRegistrationClosedException</code>. Set aside <code>StackDepth</code>
+as a separate trait to support <code>JUnitTestFailedError</code>.</li>
+<li>Renamed <code>ExecuteAndRun</code> to <code>AbstractSuite</code>, and added more methods to it, to facilitate the stackable trait pattern (breaking change).</li>
+</ul>
+
+</div>
+}
