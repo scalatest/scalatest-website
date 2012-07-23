@@ -34,9 +34,11 @@ object Application extends Controller {
     Ok(views.html.about())
   }
 
+/*
   def releaseNotes = Action {
     Ok(views.html.releaseNotes())
   }
+*/
 
   def gettingStartedWithFunSuite = Action {
     Ok(views.html.gettingStartedWithFunSuite())

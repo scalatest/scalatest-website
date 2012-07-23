@@ -4,9 +4,40 @@
 <h1>ScalaTest 2.0.M2 Release Notes</h1>
 
 <p>
-ScalaTest 2.0 is a major release focused on easing one of the main pain points for Scala users: tools support. The ScalaTest 2.0 effort has involved not only
-menhancements
-to ScalaTest to support tools integration, as well as 
+ScalaTest 2.0 is a major release focused on easing one of the main pain points for Scala
+users: tools support. The ScalaTest 2.0 effort has involved not only enhancements
+to ScalaTest, but also to tools themselves, such as IntelliJ IDEA, the Scala IDE for Eclipse,
+and sbt. We still have a bit more work to do prior to releasing ScalaTest 2.0 final, but
+2.0.M2 is a very stable, fully tested and documented milestone release that already includes
+the changes in the <a href="#detailedList">detailed list</a> below.
+For a higher level view, here are some highlights of 2.0.M2:
+</p>
+
+<p>
+<em>2.0.M2 Highlights:</em>
+</p>
+
+<ul>
+<li>Added the ability to dynamically tag tests, which facilitates features such as test name
+wildcards and rerunning previously failed tests; Dynamic tagging enables selection of tests
+even in nested suites that can't be instantiated directly.</li>
+<li>Added to <a href="http://www.artima.com/docs-scalatest-2.0.M2/#org.scalatest.tools.Runner$"><code>Runner</code></a> a way to specify tests to run by full or partial ("wildcard") name.</li>
+<li>Enabled on-the-fly sorting of events (with a timeout) during parallel runs.</li>
+<li>Added the ability to cancel tests if a needed resource is not available.</li>
+<li>Added ability to <a href="http://www.artima.com/docs-scalatest-2.0.M2/#org.scalatest.Tag">tag</a> all tests in a suite class by annotating the class with a tag
+annotation. For example, can ignore all tests in a suite class with <a href="http://www.artima.com/docs-scalatest-2.0.M2/#org.scalatest.Ignore"><code>@@Ignore</code></a>.</li>
+<li>Added a <a href="http://www.artima.com/docs-scalatest-2.0.M2/#org.scalatest.DoNotDiscover"><code>@@DoNotDiscover</code></a> annotation that prevents discovery of an otherwise discoverable <code>Suite</code> class.</li>
+<li>Simplified <a href="http://www.artima.com/docs-scalatest-2.0.M2/#org.scalatest.Suite"><code>Suite</code></a>'s <code>run</code> method signatures, to make them more pleasant to override.</li>
+<li>Enabled pretty output for test methods defined in backticks;
+Deprecated old-style test method names in <a href="http://www.artima.com/docs-scalatest-2.0.M2/#org.scalatest.Suite"><code>Suite</code></a> in favor of
+<code>`test: ...`</code> style.</li>
+<li>DSL-ified <a href="http://www.artima.com/docs-scalatest-2.0.M2/#org.scalatest.Suite"><code>Suite</code></a>'s <code>execute</code> method, including treating a given test name as a wildcard.</li>
+<li>Reworked much of ScalaTest's extensive Scaladoc documentation to make code examples simpler, clearer, ensuring only the best, recommended style is shown. Added "Recommended Usage" <a href="http://www.artima.com/docs-scalatest-2.0.M2/#org.scalatest.FlatSpec">callout boxes</a>, <a href="http://www.artima.com/docs-scalatest-2.0.M2/#org.scalatest.FlatSpec@@sharedFixtures">tables</a>, and text to ensure it is easy to understand the intended purpose of each of the various traits and features.</li>
+</ul>
+
+<a name="detailedList"></a>
+<p>
+<em>Detailed list of changes:</em>
 </p>
 
 <p>
@@ -62,8 +93,8 @@ methods, except instead of throwing <a href="http://www.artima.com/docs-scalates
 <li>Added a <a href="http://www.artima.com/docs-scalatest-2.0.M2/#org.scalatest.Style"><code>Style</code></a> annotation (maybe r3538)</li>
 <li>Added a <a href="http://www.artima.com/docs-scalatest-2.0.M2/#org.scalatest.DoNotDiscover"><code>DoNotDiscover</code></a> annotation to prevent <code>Suite</code> classes that would otherwise be discoverable (because they extend <code>Suite</code> and have a public, no-arg constructor) from being discovered by <code>Runner</code>.</li>
 <li>Added a <code>-i</code> command line argument to <code>Runner</code> to provide a way to specify a suite by suite ID. This complements the <code>-s</code> command, which allows you to identify a suite by fully qualified name. The <code>-i</code> command was added primarily to allow IDEs and other tools to rerun failed (or otherwise selected) tests.</li>
-<li>Added a <code>-t</code> to <a href="http://www.artima.com/docs-scalatest-2.0.M2/#org.scalatest.tools.Runner"><code>Runner</code></a>, a way to specify a specific test name. A <code>-t</code> clauses must follow <code>-s</code> or <code>-i</code>. All <code>-t</code>'s immediately following a <code>-s</code> or <code>-i</code> will be considered tests of the suite specified by that <code>-s</code> or <code>-i</code>.</li>
-<li>Added a <code>-z</code> argument to <a href="http://www.artima.com/docs-scalatest-2.0.M2/#org.scalatest.tools.Runner"><code>Runner</code></a>, a means to specify test names via a wildcard: any test whose string name includes the string specified with <code>-z</code> will be selected. <code>-z</code> clauses must follow <code>-s</code> or <code>-i</code> clauses. All <code>-z</code>'s immediately following a <code>-s</code> or <code>-i</code> will be considered wildcards selecting tests of the suite by that <code>-s</code> or <code>-i</code>. (Note: This approach to wildcard test names was suggested by Mathias Doenitz.)</li>
+<li>Added a <code>-t</code> to <a href="http://www.artima.com/docs-scalatest-2.0.M2/#org.scalatest.tools.Runner$"><code>Runner</code></a>, a way to specify a specific test name. A <code>-t</code> clauses must follow <code>-s</code> or <code>-i</code>. All <code>-t</code>'s immediately following a <code>-s</code> or <code>-i</code> will be considered tests of the suite specified by that <code>-s</code> or <code>-i</code>.</li>
+<li>Added a <code>-z</code> argument to <a href="http://www.artima.com/docs-scalatest-2.0.M2/#org.scalatest.tools.Runner$"><code>Runner</code></a>, a means to specify test names via a wildcard: any test whose string name includes the string specified with <code>-z</code> will be selected. <code>-z</code> clauses must follow <code>-s</code> or <code>-i</code> clauses. All <code>-z</code>'s immediately following a <code>-s</code> or <code>-i</code> will be considered wildcards selecting tests of the suite by that <code>-s</code> or <code>-i</code>. (Note: This approach to wildcard test names was suggested by Mathias Doenitz.)</li>
 <li>Changed the result type of <code>nestedSuites</code> from <code>List</code> to <code>IndexedSeq</code>. (Under the covers we currently return a <code>Vector</code>.) When ScalaTest 1.0 was initially released, <code>Vector</code> did not yet exist in the Scala library and <code>List</code> was considered by many to be the default <code>Seq</code> type to use. In practice, it was discovered that it is too easy to use <code>List</code> (and other <code>LinearSeq</code>'s) in a non-performant way. In 2.0 we wanted to take the opportunity to make the potentially <a href="#breakingChanges20">breaking change</a> of replacing <code>List</code> result types with <code>IndexedSeq</code>. This potentially breaking change is expected to affect very little, if any, user code.</li>
 <li>Added a new overloaded <code>apply</code> method to <a href="http://www.artima.com/docs-scalatest-2.0.M2/#org.scalatest.Distributor"><code>Distributor</code></a> that takes a <a href="http://www.artima.com/docs-scalatest-2.0.M2/#org.scalatest.RunArgs"><code>RunArgs</code></a>, and deprecated the old form. During the deprecation period, the old form will call the new form with default args. The purpose of this change was to make more information available to <a href="http://www.artima.com/docs-scalatest-2.0.M2/#org.scalatest.RunArgs"><code>Distributor</code></a> implementations.</li>
 <li>Added a <code>recordedEvents</code> field to test completion events: <a href="http://www.artima.com/docs-scalatest-2.0.M2/#org.scalatest.events.TestPending"><code>TestPending</code></a>, <a href="http://www.artima.com/docs-scalatest-2.0.M2/#org.scalatest.events.TestSucceeded"><code>TestSucceeded</code></a>, <a href="http://www.artima.com/docs-scalatest-2.0.M2/#org.scalatest.events.TestFailed"><code>TestFailed</code></a>, and <a href="http://www.artima.com/docs-scalatest-2.0.M2/#org.scalatest.events.TestCanceled"><code>TestCanceled</code></a>. Added sealed trait <a href="http://www.artima.com/docs-scalatest-2.0.M2/#org.scalatest.events.RecordedEvent"><code>RecordedEvent</code></a>, which extends <a href="http://www.artima.com/docs-scalatest-2.0.M2/#org.scalatest.events.Event"><code>Event</code></a> and has two subtraits: <a href="http://www.artima.com/docs-scalatest-2.0.M2/#org.scalatest.events.InfoProvided"><code>InfoProvided</code></a> and <a href="http://www.artima.com/docs-scalatest-2.0.M2/#org.scalatest.events.TestCanceled"><code>MarkupProvided</code></a>. Prior to 2.0, <code>InfoProvided</code> events were recorded during tests and played back after, so that they could appear
@@ -82,15 +113,14 @@ specified with <code>-T</code> plus one second is used for suite sorting.</li>
 <li>Ensure <code>info()</code> invocations in <a href="http://www.artima.com/docs-scalatest-2.0.M2/#org.scalatest.fixture.Suite"><code>fixture.Suite</code></a> are recorded and reported in the completion event.</li>
 <li>Modified <a href="http://www.artima.com/docs-scalatest-2.0.M2/#org.scalatest.OneInstancePerTest"><code>OneInstancePerTest</code></a> so that it calls <code>super.runTests</code> which emits events for scopes (such as <code>describe</code> clauses in <a href="http://www.artima.com/docs-scalatest-2.0.M2/#org.scalatest.FunSpec"><code>FunSpec</code></a>).</li>
 <li>Similarly, modified <a href="http://www.artima.com/docs-scalatest-2.0.M2/#org.scalatest.ParallelTestExecution"><code>ParallelTestExecution</code></a> so that it calls <code>super.runTests</code> which emits events for scopes (such as <code>describe</code> clauses in <a href="http://www.artima.com/docs-scalatest-2.0.M2/#org.scalatest.FunSpec"><code>FunSpec</code></a>).</li>
-<li>TODO: Added new information to reporter output. Check into what that was. Might be some in (r2988)</li>
-<li>TODO: Added duration to more events, including I think TestPending. Check diff to see if more than TestPending and TestCanceled. (r3018)</li>
+<li>Added duration to <code>TestPending</code> event.</li>
 <li>Changed the overloaded <code>apply</code> factory methods in <a href="http://www.artima.com/docs-scalatest-2.0.M2/#org.scalatest.Filter"><code>Filter</code></a> to one <code>apply</code> method with default args.</li>
 <li>Deprecated the old form of the public constructor in <a href="http://www.artima.com/docs-scalatest-2.0.M2/#org.scalatest.Filter"><code>Filter</code></a>, in favor of just using the <code>apply</code> method in the <code>Filter</code> companion object.</li>
 <li>Adding type aliases in <code>org.scalatest</code> package object for <code>ShouldMatchers</code> and <code>MustMatchers</code> to save an import when using matchers.</li>
 <li>Added new-style test method names (in backticks, starting with "test: ") in <a href="http://www.artima.com/docs-scalatest-2.0.M2/#org.scalatest.Suite"><code>Suite</code></a> and deprecated the old-style names.</li>
 <li>Changed <a href="http://www.artima.com/docs-scalatest-2.0.M2/#org.scalatest.ConfigMapFixture"><code>ConfigMapFixture</code></a> so that it calls <code>withFixture(test.toNoArgTest(...))</code> in its <code>withFixture(OneArgTest)</code> implementation. Previously it was just calling the test function directly. This enhancement enables trait stacking.</li>
 <li>Added <code>expectResult</code> to <a href="http://www.artima.com/docs-scalatest-2.0.M2/#org.scalatest.Assertions"><code>Assertions</code></a>, and deprecated <code>expect</code>. <code>expect</code> will be used for a different purpose in a future version of ScalaTest.</li>
-<li>Did a major overhaul of the ScalaTest Scaldoc documentation. Most examples were rewritten to be simpler and clearer, ensuring they only show the best, recommended style. Callout boxes, tables, and text were added to ensure it is easy to understand the recommended usage of the various tools. Also aded a table of command-line arguments for <code>Runner</code>.</li>
+<li>Did a major overhaul of the ScalaTest Scaladoc documentation. Most examples were rewritten to be simpler and clearer, ensuring they only show the best, recommended style. Callout boxes, tables, and text were added to ensure it is easy to understand the recommended usage of the various tools. Also aded a table of command-line arguments for <code>Runner</code>.</li>
 <li>Enable tagging of all tests in a suite by annotating the suite class with a tag annotation. One common use case for this is to annotate a suite class with <a href="http://www.artima.com/docs-scalatest-2.0.M2/#org.scalatest.Ignore"><code>@@Ignore</code></a> to ignore all tests in the suite.</li>
 <li>Hacked up a way to get ScalaTest's annotations (<code>@@DoNotDiscover</code>, <code>@@Ignore</code>, <code>@@Style</code>, <code>@@TagAnnotation</code>, and <code>@@WrapWith</code>), which must be implemented in Java, to appear in ScalaTest's Scaladoc. This was done by pretending they are traits that extend <code>java.lang.annotation.Annotation</code>, and explaining at the top of the documentation that they are really Java <code>@@interface</code>s.</li>
 </ul>

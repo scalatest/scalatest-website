@@ -9,7 +9,7 @@ GET     /user_guide                                      controllers.UserGuide.u
 GET     /scaladoc                                        controllers.Application.scaladoc
 GET     /community                                       controllers.Application.community
 GET     /about                                           controllers.Application.about
-GET     /release_notes                                   controllers.Application.releaseNotes
+GET     /release_notes                                   controllers.ReleaseNotes.releaseNotesIndex
 GET     /getting_started_with_fun_suite                  controllers.Application.gettingStartedWithFunSuite
 GET     /getting_started_with_fun_spec                   controllers.Application.gettingStartedWithFunSpec
 GET     /getting_started_with_feature_spec               controllers.Application.gettingStartedWithFeatureSpec
@@ -17,6 +17,15 @@ GET     /writing_junit_and_testng_tests_in_scala         controllers.Application
 GET     /getting_started_with_junit_4_in_scala           controllers.Application.gettingStartedWithJunit4InScala
 GET     /getting_started_with_junit_3_in_scala           controllers.Application.gettingStartedWithJunit3InScala
 GET     /getting_started_with_testng_in_scala            controllers.Application.gettingStartedWithTestngInScala
+
+GET     /release_notes/2.0.M2                            controllers.ReleaseNotes.v20m2
+GET     /release_notes/1.8                               controllers.ReleaseNotes.v18
+GET     /release_notes/1.7-1.7.2                         controllers.ReleaseNotes.v17
+GET     /release_notes/1.5-1.6.1                         controllers.ReleaseNotes.v15_16
+GET     /release_notes/1.3-1.4.1                         controllers.ReleaseNotes.v13_14
+GET     /release_notes/1.1-1.2                           controllers.ReleaseNotes.v11_12
+GET     /release_notes/1.0                               controllers.ReleaseNotes.v10
+GET     /release_notes/0.9.1-0.9.4                       controllers.ReleaseNotes.v091_094
 
 GET     /user_guide/using_assertions                     controllers.UserGuide.usingAssertions
 GET     /user_guide/writing_your_first_test              controllers.UserGuide.writingYourFirstTest
