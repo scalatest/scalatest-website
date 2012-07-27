@@ -1,8 +1,9 @@
-@import controllers.Application.latestVersion
+@import controllers.Application.latestMilestoneVersion
 
 @homePage("Home") {
     
 <pre class="scala">
+<span class="reserved">import</span> collection.mutable.Stack
 <span class="reserved">import</span> org.scalatest._
 
 <span class="reserved">class</span> <span class="type">StackSpec</span> <span class="reserved">extends</span> <span class="type">FlatSpec</span> <span class="reserved">with</span> <span class="type">ShouldMatchers</span> {
@@ -49,7 +50,7 @@ you run it, you get an informal specification of the software being tested:
 </div>
 
 <pre class="scala">
-$ scala -cp scalatest-@{latestVersion}.jar org.scalatest.run StackSpec
+$ scala -cp scalatest-@{latestMilestoneVersion}.jar org.scalatest.run StackSpec
 <span class="type">Run starting. Expected test count is: 2</span>
 <span class="literal">StackSpec:
 A Stack 
