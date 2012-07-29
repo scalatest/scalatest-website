@@ -1,0 +1,164 @@
+@import controllers.Application.latestScaladoc
+
+@userGuidePage("Using ScalaTest with Eclipe") {
+<div style="text-align: left">
+
+<h1>Using ScalaTest with Eclipse</h1>
+
+<p>
+For Eclipse users, ScalaTest offers a powerful plugin that provides seamless support for testing in the Scala IDE for Eclipse.
+This page will show you how to install and use the ScalaTest plugin in Scala IDE 2.0.
+</p>
+
+
+<h2>Prerequisites</h2>
+
+<ul>
+<li>Eclipse 3.7.2 (Indigo) with Scala IDE for Scala 2.9 installed (update site: <a href="http://download.scala-ide.org/releases-29/stable/site">http://download.scala-ide.org/releases-29/stable/site</a>).</li>
+
+<li>Check the <a href="http://scala-ide.org/docs/user/gettingstarted.html">getting started page</a> for instructions on how to install Scala IDE.</li>
+
+<li>Basic knowledge of the Eclipse user interface is required (in this guide).</li>
+
+<li>Basic knowledge of the Scala language is required (in this guide).</li>
+
+<li>Basic knowledge of the ScalaTest is required (in this guide).</li>
+</ul>
+
+<h2>Using ScalaTest in a Scala project</h2>
+
+<p>
+To use ScalaTest in your Scala project, you must include ScalaTest in Build path of your project.
+</p>
+
+<p>
+You can use any ScalaTest 1.x release or the latest 2.0.M2 (recommended).  Using ScalaTest 2.0 enables the following:
+</p>
+
+<ul>
+<li>Test result view built in the eclipse workspace.</li>
+<li>Running of selected specific test or scope.</li>
+</ul>
+
+<p>
+When using ScalaTest 1.x, the GUI Runner provided by ScalaTest will be used instead of the built-in test result view.
+<p>
+
+<h2>Running using ScalaTest 2.0.M2</h2>
+
+<p>
+<a href="http://www.scalatest.org/assets/images/eclipseScreenshot.png"><img src="@routes.Assets.at("images/eclipseScreenshot.png")" width="100%"
+             alt="Screenshot using ScalaTest 2.0.M2" border="0"/></a>
+</p>
+
+<h2>Running using ScalaTest 1.x</h2>
+<p>
+<a href="http://www.scalatest.org/assets/images/eclipseScreenshot18.png"><img src="@routes.Assets.at("images/eclipseScreenshot18.png")" width="100%"
+             alt="Screenshot using ScalaTest 18" border="0"/></a>
+</p>
+
+<h2>Running a Selected Suite</h2>
+
+<p>
+To run a selected suite, you can select the suite using 2 different ways:-
+</p>
+
+<ul>
+<li>By choosing the suite source in an opened Scala source file within the editor.</li>
+<li>By choosing the suite class from Project Explorer/Navigator/Outline view.</li>
+</ul>
+
+<p>
+After you choose the target suite element, just right click and choose:-
+</p>
+
+<pre>
+  Run As -&gt; ScalaTest - Suite
+</pre>
+
+<p>
+A Run Configuration with the suite name will be created automatically.
+</p>
+
+<h2>Running a Selected Test</h2>
+
+<p>
+To run a selected test, click on the target test element in the editor, right click and choose:-
+</p>
+
+<pre>
+  Run As -&gt; ScalaTest - Test
+</pre>
+
+<p>
+A Run Configuration with the test name will be created automatically.
+</p>
+
+<h2>Running a Selected Scope</h2>
+
+<p>
+To run a selected scope, click on the target scope element in the editor, right click and choose:-
+</p>
+
+<pre>
+  Run As -&gt; ScalaTest - Test
+</pre>
+
+<p>
+A Run Configuration with the scope name will be created automatically.
+</p>
+
+<h2>Running All Suites in a Selected File</h2>
+
+<p>
+To run all ScalaTest suites in a selected file, you can select the file using 2 different ways:
+</p>
+
+<ul>
+<li>By choosing an opened Scala source file containing ScalaTest suite(s) in the editor.</li>
+<li>By choosing the Scala source file containing ScalaTest suite(s)  from Project Explorer/Navigator.</li>
+</ul>
+
+<p>
+After you choose the target Scala source file, just right click and choose:-
+</p>
+
+<pre>
+  Run As -&gt; ScalaTest - File
+</pre>
+
+<p>
+All ScalaTest suites in the selected Scala source file will be run.
+</p>
+
+<p>
+A Run Configuration with the file name will be created automatically.
+</p>
+
+<h2>Running All Suites in Selected Package</h2>
+
+<p>
+To run all ScalaTests suites in a package, you can right click on a package in Project Explorer and choose:-
+</p>
+
+<pre>
+  Run As -&gt; ScalaTest Package
+</pre>
+
+<p>
+All ScalaTest suites in the selected package (not nested package) will be run.  To include ScalaTest suites in nested packages, you'll need to select the 'Include Nested' option in the Run Configuration.
+</p>
+
+<p>
+A Run Configuration with the package name will be created automatically.
+</p>
+
+<h2>Run Configuration Types</h2>
+
+<ul>
+<li>Suite   - You specify Suite class name (mandatory) and test name(s) to run.  If no test name is specified, all test(s) in the suite will be run.</li>
+<li>File    - You specify Suite file (mandatory) to run, all ScalaTest suites in the selected file will be run.</li>
+<li>Package - You specify Package name (mandatory) and whether to include nested package, all ScalaTest suites in the selected package will be run.  If 'Include Nested' is selected, all ScalaTest suites in nested package will be run as well.</li>
+</ul>
+</div>
+}
