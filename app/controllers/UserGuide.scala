@@ -113,4 +113,7 @@ object UserGuide extends Controller {
     Ok(views.html.userGuide.customizingScalatest())
   }
 
+  def usingScalatestWithEclipse = Action {
+    Ok(views.html.userGuide.usingScalatestWithEclipse())
+  }
 }
