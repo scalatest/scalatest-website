@@ -7,23 +7,89 @@
 
 <p>
 For Eclipse users, ScalaTest offers a powerful plugin that provides seamless support for testing in the Scala IDE for Eclipse.
-This page will show you how to install and use the <em>ScalaTest Eclipse Plugin</em> in Scala IDE 2.0.
+Not only does this plugin give Scala programmers the level of test-framework/IDE integration that Java programmers have enjoyed with
+JUnit, it goes quite a bit farther:
+
+<ol>
+<li>You can right click on any test or collection of tests and run them.</li>
+<li>You can run just the tests you select in code, run tests you select
+in reported results, rerun all tests or just previously failed tests,
+or run tests in a selected class, file, or package.</li>
+<li>The results pane mirrors the structure or the specification (i.e.,
+if your BDD-style specification text is nested in the source, it will
+appear nested in the results pane).</li>
+<li>You can hop from results to test, scope, class, or line of failed code.</li>
+<li>You can unfold the top of that stack that is automatically folded
+so only the offending line of code is shown.</li>
+<li>And, because ScalaTest is a platform that can support different
+styles of testing, the plugin can be extended to grant full IDE
+support for non-ScalaTest-native styles, such as a ScalaCheck
+Properties classes, Specs2 Specifications, or custom styles.</li>
+</ol>
+
+<p>
+You can use the plugin with any release of ScalaTest, but you'll enjoy
+the most seamless IDE integration if you use ScalaTest 2.0.M2 (a very
+carefully tested milestone release). You can plug it into either the
+latest stable release of the Scala IDE for Eclipse (version 2.0.2), or
+a nightly build of Eclipse 2.1.0.
 </p>
 
+<h2>Screenshot of ScalaTest Eclipse Plugin with ScalaTest 2.0.M2</h2>
 
-<h2>Prerequisites</h2>
+<p>
+<a href="http://www.scalatest.org/assets/images/eclipseScreenshot.png"><img src="@routes.Assets.at("images/eclipseScreenshot.png")" width="100%"
+             alt="Screenshot using ScalaTest 2.0.M2" border="0"/></a>
+</p>
 
-<ul>
-<li>Eclipse 3.7.2 (Indigo) with Scala IDE for Scala 2.9 installed (update site: <a href="http://download.scala-ide.org/releases-29/stable/site">http://download.scala-ide.org/releases-29/stable/site</a>).</li>
+<h2>Installing the ScalaTest Eclipse Plugin</h2>
+<p>
+So, how do you get the plugin? Select <code>Help -&gt; Install New Software</code> in
+Eclipse, and enter as your update site one of the "Scala IDE Ecosystem
+update site" URLs on this page:
+</p>
 
-<li>Check the <a href="http://scala-ide.org/docs/user/gettingstarted.html">getting started page</a> for instructions on how to install Scala IDE.</li>
+<p>
+<a href="http://scala-ide.org/download/ecosystem.html">http://scala-ide.org/download/ecosystem.html</a>
+</p>
 
-<li>Basic knowledge of the Eclipse user interface is required (in this guide).</li>
+<p>
+Select ScalaTest for Scala IDE (and the others if you don't have them
+already), and click Next then Finish.
+</p>
 
-<li>Basic knowledge of the Scala language is required (in this guide).</li>
+<p>
+Information on the features of the integration (and some screenshots
+(and the source code)) is here:
+</p>
 
-<li>Basic knowledge of the ScalaTest is required (in this guide).</li>
-</ul>
+<p>
+<a href="https://github.com/scalatest/scalatest-eclipse-plugin">https://github.com/scalatest/scalatest-eclipse-plugin</a>
+</p>
+
+<p>
+A video demo of the plugin that I gave back at ScalaDays is here:
+</p>
+
+<p>
+<a href="http://skillsmatter.com/podcast/scala/scalatest-scalamock-subcut">http://skillsmatter.com/podcast/scala/scalatest-scalamock-subcut</a>
+</p>
+
+<p>
+Info on ScalaTest 2.0.M2 is here:
+</p>
+
+<p>
+<a href="http://www.scalatest.org/download#20m2">http://www.scalatest.org/download#20m2</a>
+</p>
+
+<p>
+With the release notes for ScalaTest 2.0.M2 here:
+</p>
+
+<p>
+<a href="http://www.scalatest.org/release_notes/2.0.M2">http://www.scalatest.org/release_notes/2.0.M2</a>
+</p>
 
 <h2>Using ScalaTest in a Scala project</h2>
 
@@ -43,19 +109,6 @@ You can use any ScalaTest 1.x release or the latest 2.0.M2 (recommended).  Using
 <p>
 When using ScalaTest 1.x, the GUI Runner provided by ScalaTest will be used instead of the built-in test result view.
 <p>
-
-<h2>Running using ScalaTest 2.0.M2</h2>
-
-<p>
-<a href="http://www.scalatest.org/assets/images/eclipseScreenshot.png"><img src="@routes.Assets.at("images/eclipseScreenshot.png")" width="100%"
-             alt="Screenshot using ScalaTest 2.0.M2" border="0"/></a>
-</p>
-
-<h2>Running using ScalaTest 1.x</h2>
-<p>
-<a href="http://www.scalatest.org/assets/images/eclipseScreenshot18.png"><img src="@routes.Assets.at("images/eclipseScreenshot18.png")" width="100%"
-             alt="Screenshot using ScalaTest 18" border="0"/></a>
-</p>
 
 <h2>Running a Selected Suite</h2>
 
