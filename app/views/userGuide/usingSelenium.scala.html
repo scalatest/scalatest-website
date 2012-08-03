@@ -183,7 +183,8 @@ reloadPage()
 </pre></p><h4> Cookies! </h4><p>To create a new cookie, you'll say:</p><p><pre class="stHighlighted">
 add cookie (<span class="stQuotedString">&quot;cookie_name&quot;</span>, <span class="stQuotedString">&quot;cookie_value&quot;</span>)
 </pre></p><p>to read a cookie value, you do:</p><p><pre class="stHighlighted">
-cookie(<span class="stQuotedString">&quot;cookie_name&quot;</span>).value should be (<span class="stQuotedString">&quot;cookie_value&quot;</span>) <span class="stLineComment">// If value is undefined, throws TFE right then and there. Never returns null.</span>
+<span class="stLineComment">// If value is undefined, throws TFE right then and there. Never returns null.</span>
+cookie(<span class="stQuotedString">&quot;cookie_name&quot;</span>).value should be (<span class="stQuotedString">&quot;cookie_value&quot;</span>)
 </pre></p><p>In addition to the common use of name-value cookie, you can pass these extra fields when creating the cookie, available ways are:</p><p>
 <pre class="stHighlighted">
 cookie(name: <span class="stType">String</span>, value: <span class="stType">String</span>)
