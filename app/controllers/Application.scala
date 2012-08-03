@@ -4,10 +4,11 @@ import play.api._
 import play.api.mvc._
 
 object Application extends Controller {
-  
+
   val latestScaladoc = "/scaladoc/1.8"
   val latestVersion = "1.8"
-  val latestMilestoneVersion = "2.0.M2"
+  val milestoneVersion = "2.0.M3"
+  val milestoneScaladoc = "http://www.artima.com/docs-scalatest-2.0.M3"
   val scaladocsLocation = "http://doc.scalatest.org"
   val releasesLocation = "http://www.artima.com/downloadScalaTest"
 

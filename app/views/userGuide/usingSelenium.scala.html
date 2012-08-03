@@ -1,0 +1,252 @@
+@userGuidePage("Using assertions") {
+<div style="text-align: left">
+
+<h1>Using assertions</h1>
+
+<p>ScalaTest includes a domain specific language (DSL) for writing browser-based tests using <a href="http://seleniumhq.org" target="_blank">Selenium</a>.</p><p>To use ScalaTest's Selenium DSL, mix trait <code>WebBrowser</code> into your test class. This trait provides the DSL in its
+entirety except for one missing piece: an implicit <code>org.openqa.selenium.WebDriver</code>. One way to provide the missing
+implicit driver is to declare one as a member of your test class, like this:</p><p><pre class="stHighlighted">
+<span class="stReserved">class</span> <span class="stType">BlogSpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> <span class="stReserved">with</span> <span class="stType">ShouldMatchers</span> <span class="stReserved">with</span> <span class="stType">WebBrowser</span> {
+<br />  <span class="stReserved">implicit</span> <span class="stReserved">val</span> webDriver: <span class="stType">WebDriver</span> = <span class="stReserved">new</span> <span class="stType">HtmlUnitDriver</span>
+<br />  <span class="stQuotedString">&quot;The blog app home page&quot;</span> should <span class="stQuotedString">&quot;have the correct title&quot;</span> in {
+    go to (host + <span class="stQuotedString">&quot;index.html&quot;</span>)
+    title should be (<span class="stQuotedString">&quot;Awesome Blog&quot;</span>)
+  }
+}
+</pre></p><p>For convenience, however, ScalaTest provides a <code>WebBrowser</code> subtrait containing an implicit <code>WebDriver</code> for each
+driver provided by Selenium.
+Thus a simpler way to use the <code>HtmlUnit</code> driver, for example, is to extend
+ScalaTest's <a href="HtmlUnit.html"><code>HtmlUnit</code></a> trait, like this:</p><p><pre class="stHighlighted">
+<span class="stReserved">class</span> <span class="stType">BlogSpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> <span class="stReserved">with</span> <span class="stType">ShouldMatchers</span> <span class="stReserved">with</span> <span class="stType">HtmlUnit</span> {
+<br />  <span class="stQuotedString">&quot;The blog app home page&quot;</span> should <span class="stQuotedString">&quot;have the correct title&quot;</span> in {
+    go to (host + <span class="stQuotedString">&quot;index.html&quot;</span>)
+    title should be (<span class="stQuotedString">&quot;Awesome Blog&quot;</span>)
+  }
+}
+</pre></p><p>The web driver traits provided by ScalaTest are:</p><p><table style="border-collapse: collapse; border: 1px solid black">
+<tr><th style="background-color: #CCCCCC; border-width: 1px; padding: 3px; text-align: center; border: 1px solid black"><strong>Driver</strong></th><th style="background-color: #CCCCCC; border-width: 1px; padding: 3px; text-align: center; border: 1px solid black"><strong><code>WebBrowser</code> subtrait</strong></th></tr>
+<tr>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+Google Chrome
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+<a href="Chrome.html"><code>Chrome</code></a>
+</td>
+</tr>
+<tr>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+Mozilla Firefox
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+<a href="Firefox.html"><code>Firefox</code></a>
+</td>
+</tr>
+<tr>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+HtmlUnit
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+<a href="HtmlUnit.html"><code>HtmlUnit</code></a>
+</td>
+</tr>
+<tr>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+Microsoft Internet Explorer
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+<a href="InternetExplorer.html"><code>InternetExplorer</code></a>
+</td>
+</tr>
+<tr>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+Apple Safari
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+<a href="Safari.html"><code>Safari</code></a>
+</td>
+</tr>
+</table></p><h4> Navigation </h4><p>You can ask the browser to retrieve a page (go to a URL) like this:</p><p><pre class="stHighlighted">
+go to <span class="stQuotedString">&quot;http://www.artima.com&quot;</span>
+</pre></p><p>Note: If you are using the <em>page object pattern</em>, you can also go to a page using the <code>Page</code> instance, as
+illustrated in the section on <a href="pageObjects">page objects</a> below.</p><p>Once you have retrieved a page, you can fill in and submit forms, query for the values of page elements, and make assertions.
+In the following example, selenium will go to <code>http://www.google.com</code>, fill in the text box with
+<code>Cheese!</code>, press the submit button, and wait for result returned from an AJAX call:</p><p><pre class="stHighlighted">
+go to <span class="stQuotedString">&quot;http://www.google.com&quot;</span>
+click on <span class="stQuotedString">&quot;q&quot;</span>
+textField(<span class="stQuotedString">&quot;q&quot;</span>).value = <span class="stQuotedString">&quot;Cheese!&quot;</span>
+submit()
+<span class="stLineComment">// Google's search is rendered dynamically with JavaScript.</span>
+eventually { title should be (<span class="stQuotedString">&quot;Cheese! - Google Search&quot;</span>) }
+</pre></p><p>In the above example, the <code>"q"</code> used in &ldquo;<code>click on "q"</code>&rdquo; and  &ldquo;<code>textField("q")</code>&rdquo;
+can be either the id or name of an element. ScalaTest's Selenium DSL will try to lookup by id first. If it cannot find
+any element with an id equal to <code>&quot;q&quot;</code>, it will then try lookup by name <code>&quot;q&quot;</code>.</p><p>Alternatively, you can be more specific:</p><p><pre class="stHighlighted">
+click on id(<span class="stQuotedString">&quot;q&quot;</span>)   <span class="stLineComment">// to lookup by id &quot;q&quot; </span>
+click on name(<span class="stQuotedString">&quot;q&quot;</span>) <span class="stLineComment">// to lookup by name &quot;q&quot; </span>
+</pre></p><p>In addition to <code>id</code> and <code>name</code>, you can use the following approaches to lookup elements, just as you can do with
+Selenium's <code>org.openqa.selenium.By</code> class:</p><ul><li><code>xpath</code></li><li><code>className</code></li><li><code>cssSelector</code></li><li><code>linkText</code></li><li><code>partialLinkText</code></li><li><code>tagName</code></li></ul><p>For example, you can select by link text with:</p><p><pre class="stHighlighted">
+click on linkText(<span class="stQuotedString">&quot;click here!&quot;</span>)
+</pre></p><p>If an element is not found via any form of lookup, evaluation will complete abruptly with a <code>TestFailedException</code>.</p><h4> Getting and setting input element values </h4><p>ScalaTest's Selenium DSL provides a clear, simple syntax for accessing and updating the values of input elements such as
+text fields, radio buttons, checkboxes, and selection lists. If a requested element is not found, or if it is found but is
+not of the requested type, an exception will immediately result causing the test to fail.</p><h5> Text fields and text areas </h5><p>You can change a text field's value by assigning it via the <code>=</code> operator, like this:</p><p><pre class="stHighlighted">
+textField(<span class="stQuotedString">&quot;q&quot;</span>).value = <span class="stQuotedString">&quot;Cheese!&quot;</span>
+</pre></p><p>And you can access a text field's value by simply invoking <code>value</code> on it:</p><p><pre class="stHighlighted">
+textField(<span class="stQuotedString">&quot;q&quot;</span>).value should be (<span class="stQuotedString">&quot;Cheese!&quot;</span>)
+</pre></p><p>If the text field is empty, <code>value</code> will return an empty string (<code>""</code>).</p><p>You can use the same syntax with text areas by replacing <code>textField</code> with <code>textArea</code>, as in:</p><p><pre class="stHighlighted">
+textArea(<span class="stQuotedString">&quot;body&quot;</span>).value = <span class="stQuotedString">&quot;I saw something cool today!&quot;</span>
+textArea(<span class="stQuotedString">&quot;body&quot;</span>).value should be (<span class="stQuotedString">&quot;I saw something cool today!&quot;</span>)
+</pre></p><h5> Radio buttons </h5><p>Radio buttons work together in groups. For example, you could have a group of radio buttons, like this:</p><p><pre>
+&lt;input type="radio" name="group1" value="Option 1"&gt; Option 1&lt;input&gt;
+&lt;input type="radio" name="group1" value="Option 2"&gt; Option 2&lt;input&gt;
+&lt;input type="radio" name="group1" value="Option 3"&gt; Option 3&lt;input&gt;
+</pre></p><p>You can select an option in either of two ways:</p><p><pre class="stHighlighted">
+radioButton(<span class="stQuotedString">&quot;group1&quot;</span>).value = <span class="stQuotedString">&quot;Option 2&quot;</span>
+radioButton(<span class="stQuotedString">&quot;group1&quot;</span>).selection = <span class="stType">Some</span>(<span class="stQuotedString">&quot;Option 2&quot;</span>)
+</pre></p><p>Likewise, you can read the currently selected value of a group of radio buttons in two ways:</p><p><pre class="stHighlighted">
+radioButton(<span class="stQuotedString">&quot;group1&quot;</span>).value should be (<span class="stQuotedString">&quot;Option 2&quot;</span>)
+radioButton(<span class="stQuotedString">&quot;group1&quot;</span>).selection should be (<span class="stType">Some</span>(<span class="stQuotedString">&quot;Option 2&quot;</span>))
+</pre></p><p>If the radio button has no selection at all, <code>selection</code> will return <code>None</code> whereas <code>value</code>
+will throw a <code>TestFailedException</code>. By using <code>value</code>, you are indicating you expect a selection, and if there
+isn't a selection that should result in a failed test.</p><h5> Checkboxes </h5><p>A checkbox in one of two states: selected or cleared. Here's how you select a checkbox:</p><p><pre class="stHighlighted">
+checkbox(<span class="stQuotedString">&quot;cbx1&quot;</span>).select()
+</pre></p><p>And here's how you'd clear one:</p><p><pre class="stHighlighted">
+checkbox(<span class="stQuotedString">&quot;cbx1&quot;</span>).clear()
+</pre></p><p>You can access the current state of a checkbox with <code>isSelected</code>:</p><p><pre class="stHighlighted">
+checkbox(<span class="stQuotedString">&quot;cbx1&quot;</span>).isSelected should be (<span class="stReserved">true</span>)
+</pre></p><h5> Single-selection dropdown lists </h5><p>Given the following single-selection dropdown list:</p><p><pre>
+&lt;select id="select1"&gt;
+ &lt;option value="option1"&gt;Option 1&lt;/option&gt;
+ &lt;option value="option2"&gt;Option 2&lt;/option&gt;
+ &lt;option value="option3"&gt;Option 3&lt;/option&gt;
+&lt;/select&gt;
+</pre></p><p>You could select <code>Option 2</code> in either of two ways:</p><p><pre class="stHighlighted">
+singleSel(<span class="stQuotedString">&quot;select1&quot;</span>).value = <span class="stQuotedString">&quot;option2&quot;</span>
+singleSel(<span class="stQuotedString">&quot;select1&quot;</span>).selection = <span class="stType">Some</span>(<span class="stQuotedString">&quot;option2&quot;</span>)
+</pre></p><p>To clear the selection, either invoke <code>clear</code> or set <code>selection</code> to <code>None</code>:</p><p><pre class="stHighlighted">
+singleSel.clear()
+singleSel(<span class="stQuotedString">&quot;select1&quot;</span>).selection = <span class="stType">None</span>
+</pre></p><p>You can read the currently selected value of a single-selection list in the same manner as radio buttons:</p><p><pre class="stHighlighted">
+singleSel(<span class="stQuotedString">&quot;select1&quot;</span>).value should be (<span class="stQuotedString">&quot;option2&quot;</span>)
+singleSel(<span class="stQuotedString">&quot;select1&quot;</span>).selection should be (<span class="stType">Some</span>(<span class="stQuotedString">&quot;option2&quot;</span>))
+</pre></p><p>If the single-selection list has no selection at all, <code>selection</code> will return <code>None</code> whereas <code>value</code>
+will throw a <code>TestFailedException</code>. By using <code>value</code>, you are indicating you expect a selection, and if there
+isn't a selection that should result in a failed test.</p><h5> Multiple-selection lists </h5><p>Given the following multiple-selection list:</p><p><pre>
+&lt;select name="select2" multiple="multiple"&gt;
+ &lt;option value="option4"&gt;Option 4&lt;/option&gt;
+ &lt;option value="option5"&gt;Option 5&lt;/option&gt;
+ &lt;option value="option6"&gt;Option 6&lt;/option&gt;
+&lt;/select&gt;
+</pre></p><p>You could select <code>Option 5</code> and <code>Option 6</code> like this:</p><p><pre class="stHighlighted">
+multiSel(<span class="stQuotedString">&quot;select2&quot;</span>).values = <span class="stType">Seq</span>(<span class="stQuotedString">&quot;option5&quot;</span>, <span class="stQuotedString">&quot;option6&quot;</span>)
+</pre></p><p>The previous command would essentially clear all selections first, then select <code>Option 5</code> and <code>Option 6</code>.
+If instead you want to <em>not</em> clear any existing selection, just additionally select <code>Option 5</code> and <code>Option 6</code>,
+you can use the <code>+=</code> operator, like this.</p><p><pre class="stHighlighted">
+multiSel(<span class="stQuotedString">&quot;select2&quot;</span>).values += <span class="stQuotedString">&quot;option5&quot;</span>
+multiSel(<span class="stQuotedString">&quot;select2&quot;</span>).values += <span class="stQuotedString">&quot;option6&quot;</span>
+</pre></p><p>To clear a specific option, pass its name to <code>clear</code>:</p><p><pre class="stHighlighted">
+selectList(<span class="stQuotedString">&quot;select2&quot;</span>).clear(<span class="stQuotedString">&quot;option5&quot;</span>)
+</pre></p><p>To clear all selections, call <code>clearAll</code>:</p><p><pre class="stHighlighted">
+selectList(<span class="stQuotedString">&quot;select2&quot;</span>).clearAll()
+</pre></p><p>You can access the current selections with <code>values</code>, which returns an <code>IndexedSeq[String]</code>:</p><p><pre class="stHighlighted">
+multiSel(<span class="stQuotedString">&quot;select2&quot;</span>).values should have size <span class="stLiteral">2</span>
+multiSel(<span class="stQuotedString">&quot;select2&quot;</span>).values(<span class="stLiteral">0</span>) should be (<span class="stQuotedString">&quot;option5&quot;</span>)
+multiSel(<span class="stQuotedString">&quot;select2&quot;</span>).values(<span class="stLiteral">1</span>) should be (<span class="stQuotedString">&quot;option6&quot;</span>)
+</pre></p><h5> Clicking and submitting </h5><p>You can click on any element with &ldquo;<code>click on</code>&rdquo; as shown previously:</p><p><pre class="stHighlighted">
+click on <span class="stQuotedString">&quot;aButton&quot;</span>
+click on name(<span class="stQuotedString">&quot;aTextField&quot;</span>)
+</pre></p><p>If the requested element is not found, <code>click on</code> will throw an exception, failing the test.</p><p>Clicking on a input element will give it the,focus. If current focus is in on an input element within a form, you can submit the form by
+calling <code>submit</code>:</p><p><pre class="stHighlighted">
+submit()
+</pre></p><h4> Switching </h4><p>You can switch to a popup alert using the following code:</p><p><pre class="stHighlighted">
+switch to alert
+</pre></p><p>to switch to a frame, you could:</p><p><pre class="stHighlighted">
+switch to frame(<span class="stLiteral">0</span>) <span class="stLineComment">// switch by index</span>
+switch to frame(<span class="stQuotedString">&quot;name&quot;</span>) <span class="stLineComment">// switch by name</span>
+</pre></p><p>If you have reference to a window handle (can be obtained from calling windowHandle/windowHandles), you can switch to a particular
+window by:</p><p><pre class="stHighlighted">
+switch to window(windowHandle)
+</pre></p><p>Similar to what you got in Selenium, you can also switch to active element and default content:</p><p><pre class="stHighlighted">
+switch to activeElement
+switch to defaultContent
+</pre></p><h4> Navigation history </h4><p>In real web browser, you can press the 'Back' button to go back to previous page.  To emulate that action in your test, you can call <code>goBack</code>:</p><p><pre class="stHighlighted">
+goBack()
+</pre></p><p>To emulate the 'Forward' button, you can call:</p><p><pre class="stHighlighted">
+goForward()
+</pre></p><p>And to refresh or reload the current page, you can call:</p><p><pre class="stHighlighted">
+reloadPage()
+</pre></p><h4> Cookies! </h4><p>To create a new cookie, you'll say:</p><p><pre class="stHighlighted">
+add cookie (<span class="stQuotedString">&quot;cookie_name&quot;</span>, <span class="stQuotedString">&quot;cookie_value&quot;</span>)
+</pre></p><p>to read a cookie value, you do:</p><p><pre class="stHighlighted">
+cookie(<span class="stQuotedString">&quot;cookie_name&quot;</span>).value should be (<span class="stQuotedString">&quot;cookie_value&quot;</span>) <span class="stLineComment">// If value is undefined, throws TFE right then and there. Never returns null.</span>
+</pre></p><p>In addition to the common use of name-value cookie, you can pass these extra fields when creating the cookie, available ways are:</p><p><pre class="stHighlighted">
+cookie(name: <span class="stType">String</span>, value: <span class="stType">String</span>)
+cookie(name: <span class="stType">String</span>, value: <span class="stType">String</span>, path: <span class="stType">String</span>)
+cookie(name: <span class="stType">String</span>, value: <span class="stType">String</span>, path: <span class="stType">String</span>, expiry: <span class="stType">Date</span>)
+cookie(name: <span class="stType">String</span>, value: <span class="stType">String</span>, domain: <span class="stType">String</span>, path: <span class="stType">String</span>, expiry: <span class="stType">Date</span>)
+cookie(name: <span class="stType">String</span>, value: <span class="stType">String</span>, domain: <span class="stType">String</span>, path: <span class="stType">String</span>, expiry: <span class="stType">Date</span>, secure: <span class="stType">Boolean</span>)
+</pre></p><p>and to read those extra fields:</p><p><pre class="stHighlighted">
+cookie(<span class="stQuotedString">&quot;cookie_name&quot;</span>).value   <span class="stLineComment">// Read cookie's value</span>
+cookie(<span class="stQuotedString">&quot;cookie_name&quot;</span>).path    <span class="stLineComment">// Read cookie's path</span>
+cookie(<span class="stQuotedString">&quot;cookie_name&quot;</span>).expiry  <span class="stLineComment">// Read cookie's expiry</span>
+cookie(<span class="stQuotedString">&quot;cookie_name&quot;</span>).domain  <span class="stLineComment">// Read cookie's domain</span>
+cookie(<span class="stQuotedString">&quot;cookie_name&quot;</span>).isSecure  <span class="stLineComment">// Read cookie's isSecure flag</span>
+</pre></p><p>In order to delete a cookie, you could use the following code:</p><p><pre class="stHighlighted">
+delete cookie <span class="stQuotedString">&quot;cookie_name&quot;</span>
+</pre></p><p>or to delete all cookies in the same domain:-</p><p><pre class="stHighlighted">
+delete all cookies
+</pre></p><h4> Implicit wait </h4><p>To set the implicit wait, you can call implicitlyWait method:</p><p><pre class="stHighlighted">
+implicitlyWait(<span class="stType">Span</span>(<span class="stLiteral">10</span>, <span class="stType">Seconds</span>))
+</pre></p><h4> Page source and current URL </h4><p>It is possible to get the html source of currently loaded page, using:</p><p><pre class="stHighlighted">
+pageSource
+</pre></p><p>and if needed, get the current URL of currently loaded page:</p><p><pre class="stHighlighted">
+currentUrl
+</pre></p><h4> Screen capture </h4><p>You can capture screen using the following code:</p><p><pre class="stHighlighted">
+<span class="stReserved">val</span> file = capture
+</pre></p><p>By default, the captured image file will be saved in temporary folder (returned by java.io.tmpdir property), with random file name
+ends with .png extension.  You can specify a fixed file name:</p><p><pre class="stHighlighted">
+capture to <span class="stQuotedString">&quot;MyScreenShot.png&quot;</span>
+</pre></p><p>or</p><p><pre class="stHighlighted">
+capture to <span class="stQuotedString">&quot;MyScreenShot&quot;</span>
+</pre></p><p>Both will result in a same file name <code>MyScreenShot.png</code>.</p><p>You can also change the target folder screenshot file is written to, by saying:</p><p><pre class="stHighlighted">
+capture set <span class="stQuotedString">&quot;/home/your_name/screenshots&quot;</span>
+</pre></p><h4> Using the page object pattern </h4><p>If you use the page object pattern, mixing trait <code>Page</code> into your page classes will allow you to use the <code>go to</code>
+syntax with your page objects. Here's an example:</p><p><pre class="stHighlighted">
+<span class="stReserved">class</span> <span class="stType">HomePage</span> <span class="stReserved">extends</span> <span class="stType">Page</span> {
+  <span class="stReserved">val</span> url = <span class="stQuotedString">&quot;localhost:9000/index.html&quot;</span>
+}
+<br /><span class="stReserved">val</span> homePage = <span class="stReserved">new</span> <span class="stType">HomePage</span>
+go to homePage
+</pre></p><h4> Executing JavaScript </h4><p>To execute arbitrary JavaScript, for example, to test some JavaScript functions on your page, pass it to <code>executeScript</code>:</p><p><pre class="stHighlighted">
+go to (host + <span class="stQuotedString">&quot;index.html&quot;</span>)
+<span class="stReserved">val</span> result1 = executeScript(<span class="stQuotedString">&quot;return document.title;&quot;</span>)
+result1 should be (<span class="stQuotedString">&quot;Test Title&quot;</span>)
+<span class="stReserved">val</span> result2 = executeScript(<span class="stQuotedString">&quot;return 'Hello ' + arguments[0]&quot;</span>, <span class="stQuotedString">&quot;ScalaTest&quot;</span>)
+result2 should be (<span class="stQuotedString">&quot;Hello ScalaTest&quot;</span>)
+</pre></p><p>To execute an asynchronous bit of JavaScript, pass it to <code>executeAsyncScript</code>. You can set the script timeout with <code>setScriptTimeout</code>:</p><p><pre class="stHighlighted">
+<span class="stReserved">val</span> script = <span class="stQuotedString">&quot;&quot;&quot;</span>
+  <span class="stQuotedString">var callback = arguments[arguments.length - 1];</span>
+  <span class="stQuotedString">window.setTimeout(function() {callback('Hello ScalaTest')}, 500);</span>
+<span class="stQuotedString">&quot;&quot;&quot;</span>
+setScriptTimeout(<span class="stLiteral">1</span> second)
+<span class="stReserved">val</span> result = executeAsyncScript(script)
+result should be (<span class="stQuotedString">&quot;Hello ScalaTest&quot;</span>)
+</pre></p><h4> Querying for elements </h4><p>You can query for arbitrary elements via <code>find</code> and <code>findAll</code>. The <code>find</code> method returns the first matching element, wrapped in a <code>Some</code>,
+or <code>None</code> if no element is found. The <code>findAll</code> method returns an <code>IndexedSeq</code> of all matching elements. If no elements match the query, <code>findAll</code>
+returns an empty <code>IndexedSeq</code>. These methods allow you to perform rich queries using <code>for</code> expressions. Here are some examples:</p><p><pre class="stHighlighted">
+<span class="stReserved">val</span> ele: <span class="stType">Option[Element]</span> = find(<span class="stQuotedString">&quot;q&quot;</span>)
+<br /><span class="stReserved">val</span> eles: <span class="stType">IndexedSeq[Element]</span> = findAll(className(<span class="stQuotedString">&quot;small&quot;</span>))
+<span class="stReserved">for</span> (e &lt;- eles; <span class="stReserved">if</span> e.tagName != <span class="stQuotedString">&quot;input&quot;</span>)
+  e should be (<span class="stQuotedString">'displayed</span>)
+<span class="stReserved">val</span> textFields = eles filter { tf.isInstanceOf[<span class="stType">TextField</span>] }
+</pre></p><h4> Cleaning up </h4><p>To close the current browser window, and exit the driver if the current window was the only one remaining, use <code>close</code>:</p><p><pre class="stHighlighted">
+close()
+</pre></p><p>To close all windows, and exit the driver, use <code>quit</code>:</p><p><pre class="stHighlighted">
+quit()
+</pre>
+</p>
+
+<p>
+Next, learn about <a href="tagging_your_tests">tagging your tests</a>.
+</p>
+
+</div>
+}

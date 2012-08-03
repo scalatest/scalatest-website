@@ -9,8 +9,8 @@ object ReleaseNotes extends Controller {
     Ok(views.html.releaseNotes.releaseNotesIndex())
   }
 
-  def v20m2 = Action {
-    Ok(views.html.releaseNotes.v20m2())
+  def v20 = Action {
+    Ok(views.html.releaseNotes.v20())
   }
 
   def v18 = Action {

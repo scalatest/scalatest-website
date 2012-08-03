@@ -85,6 +85,10 @@ object UserGuide extends Controller {
     Ok(views.html.userGuide.usingTheRunner())
   }
 
+  def usingSelenium = Action {
+    Ok(views.html.userGuide.usingSelenium())
+  }
+
   def invokingExecute = Action {
     Ok(views.html.userGuide.invokingExecute())
   }
