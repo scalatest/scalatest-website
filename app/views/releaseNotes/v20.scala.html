@@ -22,7 +22,6 @@ For a higher level view, here are some highlights of 2.0.M3:
 
 <ul>
 <li>Added the <a href="@milestoneScaladoc/#org.scalatest.selenium.WebBrowser">ScalaTest Selenium DSL</a>.</li>
-<li>Added unformatted mode to stdout, stderr, and file reporters for helping debug problematic parallel test runs.</li>
 <li>Added the ability to dynamically tag tests, which facilitates features such as test name
 wildcards and rerunning previously failed tests; Dynamic tagging enables selection of tests
 even in nested suites that can't be instantiated directly.</li>
@@ -38,6 +37,7 @@ Deprecated old-style test method names in <a href="@milestoneScaladoc/#org.scala
 <code>`test: ...`</code> style.</li>
 <li>DSL-ified <a href="@milestoneScaladoc/#org.scalatest.Suite"><code>Suite</code></a>'s <code>execute</code> method, including treating a given test name as a wildcard.</li>
 <li>Reworked much of ScalaTest's extensive Scaladoc documentation to make code examples simpler, clearer, ensuring only the best, recommended style is shown. Added "Recommended Usage" <a href="@milestoneScaladoc/#org.scalatest.FlatSpec">callout boxes</a>, <a href="http://www.artima.com/docs-scalatest-2.0.M3/#org.scalatest.FlatSpec@@sharedFixtures">tables</a>, and text to ensure it is easy to understand the intended purpose of each of the various traits and features.</li>
+<li>Added <a href="@milestoneScaladoc/#org.scalatest.tools.Runner$@@configuringReporters">unformatted mode</a> to stdout, stderr, and file reporters for helping debug problematic parallel test runs.</li>
 </ul>
 
 <a name="detailedList"></a>
@@ -54,7 +54,8 @@ The ScalaTest 2.0.M3 release includes the following enhancements, bug fixes, bre
 </p>
 
 <ul>
-<li>Added the <a href="@milestoneScaladoc/#org.scalatest.selenium.package"><code>org.scalatest.selenium</code></a> package, which provides a DSL for testing web applications with Selenium.</li>
+<li>Added the <a href="@milestoneScaladoc/#org.scalatest.selenium.package"><code>org.scalatest.selenium</code></a> package, which provides the <a href="@milestoneScaladoc/#org.scalatest.selenium.WebBrowser">ScalaTest Selenium DSL</a>.</li> for testing web applications with Selenium.</li>
+<li>Added <a href="@milestoneScaladoc/#org.scalatest.tools.Runner$@@configuringReporters">unformatted mode</a> to stdout, stderr, and file reporters for helping debug problematic parallel test runs.</li>
 <li>Added case class <a href="@milestoneScaladoc/#org.scalatest.Args"><code>Args</code></a>, to hold the arguments passed
 into <a href="@milestoneScaladoc/#org.scalatest.Suite"><code>Suite</code></a>'s <code>run</code>, <code>runNestedSuites</code>, <code>runTests</code>, and <code>runTest</code> methods. The purpose of <code>Args</code> is to simplify the signatures of these four "run" lifecycle methods, making the signatures easier to remember and the methods more pleasant to override.</li>
 <li>Added <a href="@milestoneScaladoc/#org.scalatest.tools.Runner$@@specifyingChosenStyles"><code>chosenStyles</code></a> to <a href="http://www.artima.com/docs-scalatest-2.0.M3/#org.scalatest.Args"><code>Args</code></a>, to hold the (possibly empty) set of styles chosen for the project. Previously this was passed around via the config map.</a>
@@ -62,11 +63,11 @@ into <a href="@milestoneScaladoc/#org.scalatest.Suite"><code>Suite</code></a>'s 
 that takes an optional test name string and a <a href="@milestoneScaladoc/#org.scalatest.Args"><code>Args</code></a>. Deprecated the old (and now overloaded) <code>run</code> method that takes seven args
 and added a final implementation of it to <a href="@milestoneScaladoc/#org.scalatest.AbstractSuite"><code>AbstractSuite</code></a> that calls the new, two-arg form of <code>run</code>.</li>
 <li>Changed <code>runNestedSuites</code> method so instead of taking six parameters it takes a single
-<a href="@milestoneScaladoc/#org.scalatest.Args"><code>Args</code></a> parameter. This will be a breaking change to any subtrait or subclass that overrode or invoked this method. See the <a href="breakingChangesIn20">breaking changes section</a> for info on how to fix it.</li>
+<a href="@milestoneScaladoc/#org.scalatest.Args"><code>Args</code></a> parameter. This will be a breaking change to any subtrait or subclass that overrode or invoked this method. See the <a href="#breakingChangesIn20">breaking changes section</a> for info on how to fix it.</li>
 <li>Changed <code>runTests</code> method so instead of taking an optional test name string plus six parameters it takes the optional test name string and 
-a single <a href="@milestoneScaladoc/#org.scalatest.Args"><code>Args</code></a> parameter. This will be a breaking change to any subtrait or subclass that overrode or invoked this method. See the <a href="breakingChangesIn20">breaking changes section</a> for info on how to fix it.</li>
+a single <a href="@milestoneScaladoc/#org.scalatest.Args"><code>Args</code></a> parameter. This will be a breaking change to any subtrait or subclass that overrode or invoked this method. See the <a href="#breakingChangesIn20">breaking changes section</a> for info on how to fix it.</li>
 <li>Changed <code>runTest</code> method so instead of taking a test name string and six parameters it takes the test name string and a single
-<a href="@milestoneScaladoc/#org.scalatest.Args"><code>Args</code></a> parameter. This will be a breaking change to any subtrait or subclass that overrode or invoked this method. See the <a href="breakingChangesIn20">breaking changes section</a> for info on how to fix it.</li>
+<a href="@milestoneScaladoc/#org.scalatest.Args"><code>Args</code></a> parameter. This will be a breaking change to any subtrait or subclass that overrode or invoked this method. See the <a href="#breakingChangesIn20">breaking changes section</a> for info on how to fix it.</li>
 <li>Narrowed the result types of <code>newInstance</code> in <a href="@milestoneScaladoc/#org.scalatest.OneInstancePerTest"><code>OneInstancePerTest</code></a> and <a href="http://www.artima.com/docs-scalatest-2.0.M3/#org.scalatest.ParallelTestExecution"><code>ParallelTestExecution</code></a> to include the trait type. <em>I.e.</em>, previously the result type of <code>newInstance</code> was just <a href="http://www.artima.com/docs-scalatest-2.0.M3/#org.scalatest.Suite"><code>Suite</code></a>. Now in <code>OneInstancePerTest</code> the result type is <code>Suite with OneInstancePerTest</code>, and in <a href="http://www.artima.com/docs-scalatest-2.0.M3/#org.scalatest.ParallelTestExecution"><code>ParallelTestExecution</code></a> is <code>Suite with ParallelTestExecution</code>.</li>
 <li>Added several overloaded <code>assume</code> methods to trait <a href="@milestoneScaladoc/#org.scalatest.Assertions"><code>Assertions</code></a>. For symmetry, each <code>assume</code> method corresponds to
 an overloaded <code>assert</code> method with an identical signature. The <code>assume</code> methods behave similarly to the corresponding <code>assert</code>
@@ -165,7 +166,7 @@ implicit conversion was added when the inheritance relationship between <code>St
 </ul>
 
 <p>
-<a name="breakingChanges20"></a>
+<a name="breakingChangesIn20"></a>
 <em>Breaking changes</em>
 </p>
 

@@ -1,7 +1,10 @@
+@import controllers.Application.milestoneScaladoc
+@import controllers.Application.milestoneVersion
+
 @userGuidePage("Using assertions") {
 <div style="text-align: left">
 
-<h1>Using assertions</h1>
+<h1>Using Selenium</h1>
 
 <p>ScalaTest includes a domain specific language (DSL) for writing browser-based tests using <a href="http://seleniumhq.org" target="_blank">Selenium</a>.</p><p>To use ScalaTest's Selenium DSL, mix trait <code>WebBrowser</code> into your test class. This trait provides the DSL in its
 entirety except for one missing piece: an implicit <code>org.openqa.selenium.WebDriver</code>. One way to provide the missing
@@ -16,7 +19,7 @@ implicit driver is to declare one as a member of your test class, like this:</p>
 </pre></p><p>For convenience, however, ScalaTest provides a <code>WebBrowser</code> subtrait containing an implicit <code>WebDriver</code> for each
 driver provided by Selenium.
 Thus a simpler way to use the <code>HtmlUnit</code> driver, for example, is to extend
-ScalaTest's <a href="HtmlUnit.html"><code>HtmlUnit</code></a> trait, like this:</p><p><pre class="stHighlighted">
+ScalaTest's <a href="@milestoneScaladoc/#org.scalatest.selenium.HtmlUnit"><code>HtmlUnit</code></a> trait, like this:</p><p><pre class="stHighlighted">
 <span class="stReserved">class</span> <span class="stType">BlogSpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> <span class="stReserved">with</span> <span class="stType">ShouldMatchers</span> <span class="stReserved">with</span> <span class="stType">HtmlUnit</span> {
 <br />  <span class="stQuotedString">&quot;The blog app home page&quot;</span> should <span class="stQuotedString">&quot;have the correct title&quot;</span> in {
     go to (host + <span class="stQuotedString">&quot;index.html&quot;</span>)
@@ -30,7 +33,7 @@ ScalaTest's <a href="HtmlUnit.html"><code>HtmlUnit</code></a> trait, like this:<
 Google Chrome
 </td>
 <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
-<a href="Chrome.html"><code>Chrome</code></a>
+<a href="@milestoneScaladoc/#org.scalatest.selenium.Chrome"><code>Chrome</code></a>
 </td>
 </tr>
 <tr>
@@ -38,7 +41,7 @@ Google Chrome
 Mozilla Firefox
 </td>
 <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
-<a href="Firefox.html"><code>Firefox</code></a>
+<a href="@milestoneScaladoc/#org.scalatest.selenium.Firefox"><code>Firefox</code></a>
 </td>
 </tr>
 <tr>
@@ -46,7 +49,7 @@ Mozilla Firefox
 HtmlUnit
 </td>
 <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
-<a href="HtmlUnit.html"><code>HtmlUnit</code></a>
+<a href="@milestoneScaladoc/#org.scalatest.selenium.HtmlUnit"><code>HtmlUnit</code></a>
 </td>
 </tr>
 <tr>
@@ -54,7 +57,7 @@ HtmlUnit
 Microsoft Internet Explorer
 </td>
 <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
-<a href="InternetExplorer.html"><code>InternetExplorer</code></a>
+<a href="@milestoneScaladoc/#org.scalatest.selenium.InternetExplorer"><code>InternetExplorer</code></a>
 </td>
 </tr>
 <tr>
@@ -62,13 +65,13 @@ Microsoft Internet Explorer
 Apple Safari
 </td>
 <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
-<a href="Safari.html"><code>Safari</code></a>
+<a href="@milestoneScaladoc/#org.scalatest.selenium.Safari"><code>Safari</code></a>
 </td>
 </tr>
 </table></p><h4> Navigation </h4><p>You can ask the browser to retrieve a page (go to a URL) like this:</p><p><pre class="stHighlighted">
 go to <span class="stQuotedString">&quot;http://www.artima.com&quot;</span>
 </pre></p><p>Note: If you are using the <em>page object pattern</em>, you can also go to a page using the <code>Page</code> instance, as
-illustrated in the section on <a href="pageObjects">page objects</a> below.</p><p>Once you have retrieved a page, you can fill in and submit forms, query for the values of page elements, and make assertions.
+illustrated in the section on <a href="#pageObjects">page objects</a> below.</p><p>Once you have retrieved a page, you can fill in and submit forms, query for the values of page elements, and make assertions.
 In the following example, selenium will go to <code>http://www.google.com</code>, fill in the text box with
 <code>Cheese!</code>, press the submit button, and wait for result returned from an AJAX call:</p><p><pre class="stHighlighted">
 go to <span class="stQuotedString">&quot;http://www.google.com&quot;</span>
@@ -208,7 +211,7 @@ capture to <span class="stQuotedString">&quot;MyScreenShot.png&quot;</span>
 capture to <span class="stQuotedString">&quot;MyScreenShot&quot;</span>
 </pre></p><p>Both will result in a same file name <code>MyScreenShot.png</code>.</p><p>You can also change the target folder screenshot file is written to, by saying:</p><p><pre class="stHighlighted">
 capture set <span class="stQuotedString">&quot;/home/your_name/screenshots&quot;</span>
-</pre></p><h4> Using the page object pattern </h4><p>If you use the page object pattern, mixing trait <code>Page</code> into your page classes will allow you to use the <code>go to</code>
+</pre></p><a name="pageObjects"></a><h4> Using the page object pattern </h4><p>If you use the page object pattern, mixing trait <code>Page</code> into your page classes will allow you to use the <code>go to</code>
 syntax with your page objects. Here's an example:</p><p><pre class="stHighlighted">
 <span class="stReserved">class</span> <span class="stType">HomePage</span> <span class="stReserved">extends</span> <span class="stType">Page</span> {
   <span class="stReserved">val</span> url = <span class="stQuotedString">&quot;localhost:9000/index.html&quot;</span>
@@ -245,8 +248,9 @@ quit()
 </p>
 
 <p>
-Next, learn about <a href="tagging_your_tests">tagging your tests</a>.
+Next, learn about <a href="/user_guide/other_goodies">other goodies</a> ScalaTest has that can help you address specific problems.
 </p>
+
 
 </div>
 }
