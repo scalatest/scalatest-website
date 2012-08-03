@@ -8,10 +8,13 @@
 
 <p>ScalaTest includes a domain specific language (DSL) for writing browser-based tests using <a href="http://seleniumhq.org" target="_blank">Selenium</a>.</p><p>To use ScalaTest's Selenium DSL, mix trait <code>WebBrowser</code> into your test class. This trait provides the DSL in its
 entirety except for one missing piece: an implicit <code>org.openqa.selenium.WebDriver</code>. One way to provide the missing
-implicit driver is to declare one as a member of your test class, like this:</p><p><pre class="stHighlighted">
+implicit driver is to declare one as a member of your test class, like this:</p><p>
+<pre class="stHighlighted">
 <span class="stReserved">class</span> <span class="stType">BlogSpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> <span class="stReserved">with</span> <span class="stType">ShouldMatchers</span> <span class="stReserved">with</span> <span class="stType">WebBrowser</span> {
-<br />  <span class="stReserved">implicit</span> <span class="stReserved">val</span> webDriver: <span class="stType">WebDriver</span> = <span class="stReserved">new</span> <span class="stType">HtmlUnitDriver</span>
-<br />  <span class="stQuotedString">&quot;The blog app home page&quot;</span> should <span class="stQuotedString">&quot;have the correct title&quot;</span> in {
+
+  <span class="stReserved">implicit</span> <span class="stReserved">val</span> webDriver: <span class="stType">WebDriver</span> = <span class="stReserved">new</span> <span class="stType">HtmlUnitDriver</span>
+
+  <span class="stQuotedString">&quot;The blog app home page&quot;</span> should <span class="stQuotedString">&quot;have the correct title&quot;</span> in {
     go to (host + <span class="stQuotedString">&quot;index.html&quot;</span>)
     title should be (<span class="stQuotedString">&quot;Awesome Blog&quot;</span>)
   }
@@ -21,7 +24,8 @@ driver provided by Selenium.
 Thus a simpler way to use the <code>HtmlUnit</code> driver, for example, is to extend
 ScalaTest's <a href="@milestoneScaladoc/#org.scalatest.selenium.HtmlUnit"><code>HtmlUnit</code></a> trait, like this:</p><p><pre class="stHighlighted">
 <span class="stReserved">class</span> <span class="stType">BlogSpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> <span class="stReserved">with</span> <span class="stType">ShouldMatchers</span> <span class="stReserved">with</span> <span class="stType">HtmlUnit</span> {
-<br />  <span class="stQuotedString">&quot;The blog app home page&quot;</span> should <span class="stQuotedString">&quot;have the correct title&quot;</span> in {
+
+  <span class="stQuotedString">&quot;The blog app home page&quot;</span> should <span class="stQuotedString">&quot;have the correct title&quot;</span> in {
     go to (host + <span class="stQuotedString">&quot;index.html&quot;</span>)
     title should be (<span class="stQuotedString">&quot;Awesome Blog&quot;</span>)
   }
@@ -180,19 +184,23 @@ reloadPage()
 add cookie (<span class="stQuotedString">&quot;cookie_name&quot;</span>, <span class="stQuotedString">&quot;cookie_value&quot;</span>)
 </pre></p><p>to read a cookie value, you do:</p><p><pre class="stHighlighted">
 cookie(<span class="stQuotedString">&quot;cookie_name&quot;</span>).value should be (<span class="stQuotedString">&quot;cookie_value&quot;</span>) <span class="stLineComment">// If value is undefined, throws TFE right then and there. Never returns null.</span>
-</pre></p><p>In addition to the common use of name-value cookie, you can pass these extra fields when creating the cookie, available ways are:</p><p><pre class="stHighlighted">
+</pre></p><p>In addition to the common use of name-value cookie, you can pass these extra fields when creating the cookie, available ways are:</p><p>
+<pre class="stHighlighted">
 cookie(name: <span class="stType">String</span>, value: <span class="stType">String</span>)
 cookie(name: <span class="stType">String</span>, value: <span class="stType">String</span>, path: <span class="stType">String</span>)
 cookie(name: <span class="stType">String</span>, value: <span class="stType">String</span>, path: <span class="stType">String</span>, expiry: <span class="stType">Date</span>)
 cookie(name: <span class="stType">String</span>, value: <span class="stType">String</span>, domain: <span class="stType">String</span>, path: <span class="stType">String</span>, expiry: <span class="stType">Date</span>)
 cookie(name: <span class="stType">String</span>, value: <span class="stType">String</span>, domain: <span class="stType">String</span>, path: <span class="stType">String</span>, expiry: <span class="stType">Date</span>, secure: <span class="stType">Boolean</span>)
-</pre></p><p>and to read those extra fields:</p><p><pre class="stHighlighted">
+</pre>
+</p><p>and to read those extra fields:</p><p>
+<pre class="stHighlighted">
 cookie(<span class="stQuotedString">&quot;cookie_name&quot;</span>).value   <span class="stLineComment">// Read cookie's value</span>
 cookie(<span class="stQuotedString">&quot;cookie_name&quot;</span>).path    <span class="stLineComment">// Read cookie's path</span>
 cookie(<span class="stQuotedString">&quot;cookie_name&quot;</span>).expiry  <span class="stLineComment">// Read cookie's expiry</span>
 cookie(<span class="stQuotedString">&quot;cookie_name&quot;</span>).domain  <span class="stLineComment">// Read cookie's domain</span>
 cookie(<span class="stQuotedString">&quot;cookie_name&quot;</span>).isSecure  <span class="stLineComment">// Read cookie's isSecure flag</span>
-</pre></p><p>In order to delete a cookie, you could use the following code:</p><p><pre class="stHighlighted">
+</pre>
+</p><p>In order to delete a cookie, you could use the following code:</p><p><pre class="stHighlighted">
 delete cookie <span class="stQuotedString">&quot;cookie_name&quot;</span>
 </pre></p><p>or to delete all cookies in the same domain:-</p><p><pre class="stHighlighted">
 delete all cookies
