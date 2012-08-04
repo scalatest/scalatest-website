@@ -6,7 +6,7 @@
 
 <h1>Using Selenium</h1>
 
-<p>ScalaTest includes a domain specific language (DSL) for writing browser-based tests using <a href="http://seleniumhq.org" target="_blank">Selenium</a>.</p><p>To use ScalaTest's Selenium DSL, mix trait <code>WebBrowser</code> into your test class. This trait provides the DSL in its
+<p>ScalaTest @milestoneVersion includes a domain specific language (DSL) for writing browser-based tests using <a href="http://seleniumhq.org" target="_blank">Selenium</a>.</p><p>To use ScalaTest's Selenium DSL, mix trait <a href="@milestoneScaladoc/#org.scalatest.selenium.WebBrowser"><code>WebBrowser</code></a> into your test class. This trait provides the DSL in its
 entirety except for one missing piece: an implicit <code>org.openqa.selenium.WebDriver</code>. One way to provide the missing
 implicit driver is to declare one as a member of your test class, like this:</p><p>
 <pre class="stHighlighted">
@@ -102,15 +102,15 @@ textField(<span class="stQuotedString">&quot;q&quot;</span>).value should be (<s
 textArea(<span class="stQuotedString">&quot;body&quot;</span>).value = <span class="stQuotedString">&quot;I saw something cool today!&quot;</span>
 textArea(<span class="stQuotedString">&quot;body&quot;</span>).value should be (<span class="stQuotedString">&quot;I saw something cool today!&quot;</span>)
 </pre></p><h5> Radio buttons </h5><p>Radio buttons work together in groups. For example, you could have a group of radio buttons, like this:</p><p><pre>
-&lt;input type="radio" name="group1" value="Option 1"&gt; Option 1&lt;input&gt;
-&lt;input type="radio" name="group1" value="Option 2"&gt; Option 2&lt;input&gt;
-&lt;input type="radio" name="group1" value="Option 3"&gt; Option 3&lt;input&gt;
+&lt;input type="radio" name="group1" value="Option 1"&gt; Option 1&lt;/input&gt;
+&lt;input type="radio" name="group1" value="Option 2"&gt; Option 2&lt;/input&gt;
+&lt;input type="radio" name="group1" value="Option 3"&gt; Option 3&lt;/input&gt;
 </pre></p><p>You can select an option in either of two ways:</p><p><pre class="stHighlighted">
-radioButton(<span class="stQuotedString">&quot;group1&quot;</span>).value = <span class="stQuotedString">&quot;Option 2&quot;</span>
-radioButton(<span class="stQuotedString">&quot;group1&quot;</span>).selection = <span class="stType">Some</span>(<span class="stQuotedString">&quot;Option 2&quot;</span>)
+radioButtonGroup(<span class="stQuotedString">&quot;group1&quot;</span>).value = <span class="stQuotedString">&quot;Option 2&quot;</span>
+radioButtonGroup(<span class="stQuotedString">&quot;group1&quot;</span>).selection = <span class="stType">Some</span>(<span class="stQuotedString">&quot;Option 2&quot;</span>)
 </pre></p><p>Likewise, you can read the currently selected value of a group of radio buttons in two ways:</p><p><pre class="stHighlighted">
-radioButton(<span class="stQuotedString">&quot;group1&quot;</span>).value should be (<span class="stQuotedString">&quot;Option 2&quot;</span>)
-radioButton(<span class="stQuotedString">&quot;group1&quot;</span>).selection should be (<span class="stType">Some</span>(<span class="stQuotedString">&quot;Option 2&quot;</span>))
+radioButtonGroup(<span class="stQuotedString">&quot;group1&quot;</span>).value should be (<span class="stQuotedString">&quot;Option 2&quot;</span>)
+radioButtonGroup(<span class="stQuotedString">&quot;group1&quot;</span>).selection should be (<span class="stType">Some</span>(<span class="stQuotedString">&quot;Option 2&quot;</span>))
 </pre></p><p>If the radio button has no selection at all, <code>selection</code> will return <code>None</code> whereas <code>value</code>
 will throw a <code>TestFailedException</code>. By using <code>value</code>, you are indicating you expect a selection, and if there
 isn't a selection that should result in a failed test.</p><h5> Checkboxes </h5><p>A checkbox in one of two states: selected or cleared. Here's how you select a checkbox:</p><p><pre class="stHighlighted">
