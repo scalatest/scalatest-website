@@ -1076,6 +1076,26 @@ then passes the resulting <code>Int</code> to <code>beOdd</code>. Thus, you coul
 <span class="stQuotedString">"4"</span> should not (beOddAsInt)
 </pre>
 
+<p>
+You can also define a method that produces a matcher given a passed parameter, using matcher
+composition. For example, here's you could create a <code>Matcher[File]</code> from a
+a <code>Matcher[String]</code>:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">import</span> java.io.File
+
+<span class="stReserved">def</span> endWithExtension(ext: <span class="stType">String</span>) = endWith(ext) compose { (f: <span class="stType">File</span>) =&gt; f.getPath }
+</pre>
+
+<p>
+Every time you call the above <code>endWithExtension</code> method, you'll get a new <code>Matcher[File]</code>. Here's an example:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">new</span> <span class="stType">File</span>(<span class="stQuotedString">"output.txt"</span>) should endWithExtension("txt")
+</pre>
+
 <a name="checkingForExpectedExceptions"></a>
 <h2>Checking for expected exceptions</h2>
 

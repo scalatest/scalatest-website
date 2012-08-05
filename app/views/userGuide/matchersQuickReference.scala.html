@@ -469,6 +469,20 @@ num should beWithinTolerance
 <tr>
 <td class="quickref">
 <pre>
+<span class="stReserved">import</span> java.io.File
+
+<span class="stReserved">def</span> endWithExtension(ext: <span class="stType">String</span>) =
+  endWith(ext) compose { (f: <span class="stType">File</span>) =&gt; f.getPath }
+
+<span class="stReserved">new</span> <span class="stType">File</span>(<span class="stQuotedString">"output.txt"</span>) should endWithExtension("txt")
+</pre>
+</td>
+<td class="quickref">You can also use matcher composition to create a new matcher given a parameter</td>
+</tr>
+
+<tr>
+<td class="quickref">
+<pre>
 <span class="stReserved">val</span> beOdd =
   <span class="stType">Matcher</span> { (left: <span class="stType">Int</span>) =>
     <span class="stType">MatchResult</span>(
