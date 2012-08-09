@@ -9,7 +9,7 @@
 ScalaTest supports different styles of testing, each designed to address a particular set of needs.
 Although this flexibility can help your productivity by enabling you to use styles that best fit your team's experience
 and culture, if you are unfamiliar with the options, making a choice can be daunting.
-To help you find your best-fit styles, this page will describe the design goals and tradeoffs of each option.
+To help you find your best-fit styles, this page will describe the intended use cases for each option.
 </p>
 
 <p>
@@ -18,13 +18,13 @@ This allows the testing styles to fit the team while maintaining uniformity in t
 We recommend you select one main style for unit testing, and another for integration or acceptance testing.
 Using a different style for unit and integration testing can help developers "switch gears" between 
 low-level unit testing to high-level integration testing. You may also want to select particular styles to be used in special situations, such as using
-<code>PropSpec</code> for test matrixes. 
+<a href="@milestoneScaladoc/#org.scalatest.PropSpec@@testMatrix"><code>PropSpec</code> for test matrixes</a>. 
 </p>
 
 <p>
 In short, ScalaTest's flexibility is not intended to enable individual developers to use different testing styles on the same project. 
 Rather, it is intended to enable project leaders to select a best-fit style or styles for the team.
-If you have trouble enforcing chosen styles, you can specify the chosen styles in your build.
+If you have trouble enforcing chosen styles, you can <a href="@milestoneScaladoc/#org.scalatest.tools.Runner$@@specifyingChosenStyles">specify the chosen styles</a> in your build.
 </p>
 
 <h2>If you don't enjoy shopping</h2>
