@@ -1,397 +1,60 @@
-@import controllers.Application.latestScaladoc
+@import controllers.Application.milestoneScaladoc
 
 @userGuidePage("Selecting a style") {
 <div style="text-align: left">
 
-<h1>Selecting a style</h1>
+<h1>Selecting testing styles</h1>
 
 <p>
-ScalaTest supports multiple <em>style traits</em>, approaches to sharing fixtures, and ways to express assertions.
-Each is focused on solving a particular set of problems.
-Although having multiple options can help you more easily address different kinds of problems as they arise, it can be
-daunting to make choices when you are unfamiliar with the strengths and weaknesses of each option.
-To help you decide which choice best fits your needs, this
-page will describe the design goals and tradeoffs of each of ScalaTest's style traits, shared fixture approaches, and assertion options.
+ScalaTest supports different styles of testing, each designed to address a particular set of needs.
+Although this flexibility can help your productivity by enabling you to use styles that best fit your team's experience
+and culture, if you are unfamiliar with the options, making a choice can be daunting.
+To help you find your best-fit styles, this page will describe the design goals and tradeoffs of each option.
+</p>
+
+<p>
+We do recommend you choose a set of testing styles for each project, then encourage everyone working on the project use the chosen styles. 
+This allows the testing styles to fit the team while maintaining uniformity in the project code base.
+We recommend you select one main style for unit testing, and another for integration or acceptance testing.
+Using a different style for unit and integration testing can help developers "switch gears" between 
+low-level unit testing to high-level integration testing. You may also want to select particular styles to be used in special situations, such as using
+<code>PropSpec</code> for test matrixes. 
+</p>
+
+<p>
+In short, ScalaTest's flexibility is not intended to enable individual developers to use different testing styles on the same project. 
+Rather, it is intended to enable project leaders to select a best-fit style or styles for the team.
+If you have trouble enforcing chosen styles, you can specify the chosen styles in your build.
 </p>
 
 <h2>If you don't enjoy shopping</h2>
 
 <p>
-If you would rather be told which approach to take rather than pick one yourself, the recommended style to use is:
+If you would rather be told which approach to take rather than pick one yourself, we recommend you use
+<a href="@milestoneScaladoc/#org.scalatest.FunSpec"><code>FunSpec</code></a> for unit testing and
+<a href="@milestoneScaladoc/#org.scalatest.FeatureSpec"><code>FeatureSpec</code></a> for integration or acceptance testing.
 </p>
 
-<ul>
-<li><a href="@latestScaladoc/#org.scalatest.FunSpec"><code>FunSpec</code></a> as your style trait,</li>
-<li><a href="@latestScaladoc/#org.scalatest.matchers.ShouldMatchers"><code>ShouldMatchers</code></a> for your assertions,</li>
-<li><a href="@latestScaladoc/#org.scalatest.BeforeAndAfter"><code>BeforeAndAfter</code></a> to share fixtures between tests.</li>
-</ul>
+<a name="sStyleTraitUseCases"></a>
+<h2>Style trait use cases</h2>
 
 <p>
-Here's an example:
-</p>
-
-<pre class="stHighlighted">
-<span class="stReserved">import</span> org.scalatest.FunSpec
-<span class="stReserved">import</span> org.scalatest.BeforeAndAfter
-<span class="stReserved">import</span> org.scalatest.matchers.ShouldMatchers
-<br /><span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">FunSpec</span> <span class="stReserved">with</span> <span class="stType">ShouldMatchers</span> <span class="stReserved">with</span> <span class="stType">BeforeAndAfter</span> {
-<br />  <span class="stReserved">val</span> builder = <span class="stReserved">new</span> <span class="stType">StringBuilder</span>
-<br />  before {
-    builder.append(<span class="stQuotedString">&quot;ScalaTest is &quot;</span>)
-  }
-<br />  after {
-    builder.clear()
-  }
-<br />  describe(<span class="stQuotedString">&quot;Testing&quot;</span>) {
-<br />    it(<span class="stQuotedString">&quot;should be easy&quot;</span>) {
-      builder.append(<span class="stQuotedString">&quot;easy!&quot;</span>)
-      builder.toString should be (<span class="stQuotedString">&quot;ScalaTest is easy!&quot;</span>)
-    }
-<br />    it(<span class="stQuotedString">&quot;should be fun&quot;</span>) {
-      builder.append(<span class="stQuotedString">&quot;fun!&quot;</span>)
-      builder.toString should be (<span class="stQuotedString">&quot;ScalaTest is fun!&quot;</span>)
-    }
-  }
-}
-</pre>
-
-<p>
-Using <a href="@latestScaladoc/#org.scalatest.FunSpec"><code>FunSpec</code></a> will give you the benefits of behavior-driven development (BDD), unlimited
-nesting of <code>describe</code> clauses, the ability to <a href="@latestScaladoc/#org.scalatest.FunSpec@@SharedTests">share</a> and programatically register tests,
-and a recommended structure for your specification text, guided by the <code>describe</code> and <code>it</code> clauses and demonstrated by the <a href="@latestScaladoc/#org.scalatest.FunSpec">Scaladoc examples</a>.
-Using <a href="@latestScaladoc/#org.scalatest.matchers.ShouldMatchers"><code>ShouldMatchers</code></a> will give you the greater expressiveness and clarity of matcher statements and their failure messages compared
-to <a href="@latestScaladoc/#org.scalatest.Assertions"><code>Assertions</code></a>. 
-Although not appropriate for every situation, <a href="@latestScaladoc/#org.scalatest.BeforeAndAfter"><code>BeforeAndAfter</code></a> is a good default because it requires zero boilerplate, the code is easy to remember how to write, and the result 
-should be obvious and understandable to most any reader.
-</p>
-
-<a name="selectingAStyleTrait"></a>
-<h2>Selecting a style trait</h2>
-
-<p>
-If you would rather make your own choices, the following sections will explain the advantages and disadvantages of different options. But first, a table
-that gives you a quick overview:
+If you would rather make your own choices, this table gives a quick overview of the advantages and disadvantages of each style trait. For more
+information and examples, click on the links:
 </p>
 
 <p>
 <table style="border-collapse: collapse; border: 1px solid black">
 <tr><th style="background-color: #CCCCCC; border-width: 1px; padding: 3px; text-align: center; border: 1px solid black">Style Trait</th><th style="background-color: #CCCCCC; border-width: 1px; padding: 3px; text-align: center; border: 1px solid black">Intended Use Case</th></tr>
-<tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center"><a href="@latestScaladoc/#org.scalatest.Suite"><code>Suite</code></a></td><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">This base trait of <code>Suite</code> family can be useful as a style trait in large projects where class file generation is a concern, because <code>Suite</code> represents tests as methods not functions, saving one class file per test.</td></tr>
-<tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center"><a href="@latestScaladoc/#org.scalatest.FunSuite"><code>FunSuite</code></a></td><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">For teams coming from xUnit, <code>FunSuite</code> feels comfortable and familiar while still giving some of the benefits of BDD: <code>FunSuite</code> makes it easy to write descriptive test names, natural to write focused tests, and generates specification-like output that can facilitate communication among stakeholders.</td></tr>
-<tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center"><a href="@latestScaladoc/#org.scalatest.FlatSpec"><code>FlatSpec</code></a></td><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">A good first step for teams wishing to move from xUnit to BDD, <code>FlatSpec</code>'s structure is flat like xUnit, so it is simple and familiar, but the test names must be written in a specification style: "X should Y," "A must B," <em>etc</em>.</td></tr>
-<tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center"><a href="@latestScaladoc/#org.scalatest.FunSpec"><code>FunSpec</code></a></td><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">For teams coming from Ruby's RSpec tool, <code>FunSpec</code> will feel very familiar; More generally, for any team that prefers BDD, <code>FunSpec</code>'s nesting and gentle guide to structuring text (with <code>describe</code> and <code>it</code>) provides an excellent general-purpose choice for writing specification-style tests. <code> </td></tr>
-<tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center"><a href="@latestScaladoc/#org.scalatest.WordSpec"><code>WordSpec</code></a></td><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">For teams coming from specs or specs2, <code>WordSpec</code> will feel familiar, and is often the most natural way to port specsN tests to ScalaTest. <code>WordSpec</code> is very prescriptive in how text must be written, so a good fit for teams who want a high degree of discipline enforced upon their specification text.</td></tr>
-<tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center"><a href="@latestScaladoc/#org.scalatest.FreeSpec"><code>FreeSpec</code></a></td><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">Because it gives absolute freedom (and no guidance) on how specification text should be written, <code>FreeSpec</code> is a good choice for teams experienced with BDD and able to agree on how to structure the specification text.</td></tr>
-<tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center"><a href="@latestScaladoc/#org.scalatest.PropSpec"><code>PropSpec</code></a></td><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">Perfect for teams that want to write tests exclusively in terms of property checks; also a good choice for writing the occasional test matrix when a different style trait is chosen as the main unit testing style.</td></tr>
-<tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center"><a href="@latestScaladoc/#org.scalatest.fixture.package"><code>fixture._</code></a></td><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">The style trait variants in package <code>org.scalatest.fixture</code> are useful if you want or need to get rid of <code>var</code>s in your test classes, such as if you are writing multi-threaded tests. (These are intended to be used in special situations, with a sister trait in <code>org.scalatest</code> used for general needs.)</td></tr>
-<tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center"><a href="@routes.Application.scaladocs("1.8.RC1")#org.scalatest.path.package"><code>path._</code></a></td><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">The style traits in package <code>org.scalatest.path</code> (new in ScalaTest 1.8), <code>path.FunSpec</code> and <code>path.FreeSpec</code> provide a great way to test mutable objects. (These are intended to be used in special situations, with a sister trait in <code>org.scalatest</code> used for general needs.)</td></tr>
+<tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center"><a href="@milestoneScaladoc/#org.scalatest.Suite"><code>Suite</code></a></td><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">This base trait of <code>Suite</code> family can be useful as a style trait in large projects where class file generation is a concern, because <code>Suite</code> represents tests as methods not functions, saving one class file per test.</td></tr>
+<tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center"><a href="@milestoneScaladoc/#org.scalatest.FunSuite"><code>FunSuite</code></a></td><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">For teams coming from xUnit, <code>FunSuite</code> feels comfortable and familiar while still giving some of the benefits of BDD: <code>FunSuite</code> makes it easy to write descriptive test names, natural to write focused tests, and generates specification-like output that can facilitate communication among stakeholders.</td></tr>
+<tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center"><a href="@milestoneScaladoc/#org.scalatest.FlatSpec"><code>FlatSpec</code></a></td><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">A good first step for teams wishing to move from xUnit to BDD, <code>FlatSpec</code>'s structure is flat like xUnit, so it is simple and familiar, but the test names must be written in a specification style: "X should Y," "A must B," <em>etc</em>.</td></tr>
+<tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center"><a href="@milestoneScaladoc/#org.scalatest.FunSpec"><code>FunSpec</code></a></td><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">For teams coming from Ruby's RSpec tool, <code>FunSpec</code> will feel very familiar; More generally, for any team that prefers BDD, <code>FunSpec</code>'s nesting and gentle guide to structuring text (with <code>describe</code> and <code>it</code>) provides an excellent general-purpose choice for writing specification-style tests. <code> </td></tr>
+<tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center"><a href="@milestoneScaladoc/#org.scalatest.WordSpec"><code>WordSpec</code></a></td><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">For teams coming from specs or specs2, <code>WordSpec</code> will feel familiar, and is often the most natural way to port specsN tests to ScalaTest. <code>WordSpec</code> is very prescriptive in how text must be written, so a good fit for teams who want a high degree of discipline enforced upon their specification text.</td></tr>
+<tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center"><a href="@milestoneScaladoc/#org.scalatest.FreeSpec"><code>FreeSpec</code></a></td><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">Because it gives absolute freedom (and no guidance) on how specification text should be written, <code>FreeSpec</code> is a good choice for teams experienced with BDD and able to agree on how to structure the specification text.</td></tr>
+<tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center"><a href="@milestoneScaladoc/#org.scalatest.PropSpec"><code>PropSpec</code></a></td><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">Perfect for teams that want to write tests exclusively in terms of property checks; also a good choice for writing the occasional test matrix when a different style trait is chosen as the main unit testing style.</td></tr>
+<tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center"><a href="@milestoneScaladoc/#org.scalatest.FeatureSpec"><code>FeatureSpec</code></a></td><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left"> Trait <code>FeatureSpec</code> is primarily intended for acceptance testing, including facilitating the process of programmers working alongside non-programmers to define the acceptance requirements.</td></tr>
 </table>
-</p>
-
-<em>Test-driven development (TDD)</em>
-
-<p>
-The TDD traits, <code>Suite</code> and <code>FunSuite</code>, provide options for people who prefer xUnit style testing.
-</p>
-
-<p>
-<a href="@latestScaladoc/#org.scalatest.FunSuite"><code><strong>FunSuite</strong></code></a>: Recommended for <a href="/getting_started_with_fun_suite">getting started</a> with ScalaTest quickly, in conjunction
-with <a href="@latestScaladoc/#org.scalatest.BeforeAndAfter"><code>BeforeAndAfter</code></a> and
-<a href="@latestScaladoc/#org.scalatest.Assertions"><code>Assertions</code></a>, because this combination is easiest to learn for people
-familiar with xUnit frameworks such as JUnit. Because tests are functions, you can <a href="@latestScaladoc/#org.scalatest.FunSuite@@SharedTests">share tests</a> or
-programmatically register them, but at the cost of one generated class file per test. <code>FunSuite</code> brings into scope no implicit conversions except the
-one it inherits from <code>Assertions</code>, the implicit conversion that puts <code>===</code> on everything, so the likelyhood for implicit conversion
-conflicts is minimized.
-</p>
-
-<p>
-<a href="@latestScaladoc/#org.scalatest.Suite"><code><strong>Suite</strong></code></a>: The base trait of ScalaTest's family of style traits, <code>Suite</code> carries
-no state internally (it uses reflection to discover and invoke test methods), so it is very lightweight in memory. Because its tests are methods, not functions, you can't 
-share or otherwise programmatically generate tests, but this saves you one class file per test compared to <code>FunSuite</code>. For larger projects where
-class file generation is a concern, <code>Suite</code> may be a good option.
-</p>
-
-<em>Behavior-driven development (BDD)</em>
-
-<p>
-The BDD traits, <code>FunSpec</code>, <code>WordSpec</code>, <code>FlatSpec</code>, and <code>FreeSpec</code>, provide options for people who prefer to think
-of tests as specifications. Compared to the TDD traits, the BDD traits gives you the added benefits of behavior-driven development: the tests, and
-their generated artifacts, read like a specification of your software. This allows
-the tests to not only ensure your software meets requirements, but also to allow stakeholders to communicate about those requirements
-via the generated artifacts.
-</p>
-
-<p>
-<a href="@latestScaladoc/#org.scalatest.FunSpec"><code><strong>FunSpec</strong></code></a>: 
-Provides <code>describe</code> clauses offering unlimited nesting that can help you organize and minimize duplication in your
-specification text.
-Because tests are functions, you can <a href="@latestScaladoc/#org.scalatest.Spec@@SharedTests">share tests</a> or
-programmatically register them, but at the cost of one generated class file per test. <code>FunSpec</code> brings into scope no implicit conversions except the
-one it inherits from <code>Assertions</code>, the implicit conversion that puts <code>===</code> on everything, so the likelyhood for implicit conversion
-conflicts is minimized. Lastly, the syntax will be familiar to users of <a href="http://rspec.info">RSpec</a>, making it easier for such users to get started.
-Compiling a <code>FunSpec</code> will generate one extra class file per test and one per nested scope.
-</p>
-
-<p>
-<a href="@latestScaladoc/#org.scalatest.WordSpec"><code><strong>WordSpec</strong></code></a>: Providing implicit conversions that enable you to write
-specification text by placing pre-selected words after strings, <code>WordSpec</code> removes the tiny bit of boilerplate in required by
-<code>FunSpec</code>&#8212;the <code>describe</code> and <code>it</code> tokens, and the parentheses around the text&#8212;at the cost of a slightly higher
-risk for implicit conversion conflicts. <code>WordSpec</code> also differs from <code>FunSpec</code> in that it enforces, rather than just suggests, a 
-structure for your specification text by chosing the words (<code>should</code>, <code>can</code>, <code>must</code>, <code>when</code>, and <code>that</code>) that can
-follow the strings. This may help some users (such as users new to BDD) by showing them how to compose the sentences, but for other users it may feel
-constraining to always need to fit every sentence of specification text into the same structure. <code>WordSpec</code> also only allows three levels of
-nesting, whereas <code>FunSpec</code> provides unlimited nesting. Some users may find the nesting limit helps them compose their text, but others may find it constraining.
-(Note: If you like the lack of boilerplate that <code>WordSpec</code>'s implicit conversions on strings provides, but want unlimited nesting and unconstrained structure, look at
-<a href="#freeSpecPara"><code>FreeSpec</code></a>). Lastly, if you are porting legacy <a href="http://code.google.com/p/specs/">specs1</a> tests to ScalaTest, 
-<code>WordSpec</code> can make porting easier given its DSL is similar in structure to that of the <code>Specification</code> class in specs1.
-Compiling a <code>WordSpec</code> will generate one extra class file per test and one per nested scope.
-</p>
-
-<p>
-<a href="@latestScaladoc/#org.scalatest.FlatSpec"><code><strong>FlatSpec</strong></code></a>: Provides implicit conversions that enable you to write
-specification text by placing pre-selected words after strings, like <code>WordSpec</code>, but unlike <code>WordSpec</code>, does not allow nesting.
-The main tradeoffs are: <code>WordSpec</code>'s nesting makes it easier to eliminate duplication in specification text, but can make it harder to read
-the specification text in the source code because you must hop from a test's nearest nested clause
-to each enclosing nested clause, and stitch the text together in your mind. By contrast, <code>FlatSpec</code>'s lack of
-nesting makes it harder to eliminate duplication in specification text, but easier to read it in the source code: other than the "subject" clause, which
-can be replaced by <code>it</code>, the text remains together right next to the test code.
-Like <code>WordSpec</code>, <code>FlatSpec</code> differs from <code>FunSpec</code> in that it provides a prescription for how to structure
-your specification text by chosing the words (<code>should</code>, <code>can</code>, and <code>must</code>) that can
-follow the subject strings. This may help some users (such as users new to BDD) by showing them how to compose the sentences, but for other users it may feel
-constraining to always need to fit every sentence of specification text into the same structure. Fundamentally, <code>FlatSpec</code> differs from its BDD siblings,
-<code>FunSpec</code>, <code>WordSpec</code>, and <code>FlatSpec</code>, in that it is the only one among these traits that disallows nesting.
-Compiling a <code>FlatSpec</code> will generate one extra class file per test.
-</p>
-
-<p>
-<a name="freeSpecPara" href="@latestScaladoc/#org.scalatest.FreeSpec"><code><strong>FreeSpec</strong></code></a>: Like <code>WordSpec</code> and <code>FlatSpec</code>, <code>FreeSpec</code>
-defines implicit conversions on strings. These implicit conversions remove the tiny bit of boilerplate required by <code>FunSpec</code> (the <code>describe</code>
-and <code>it</code> clauses, and the parentheses around the text),
-at the cost of a slightly higher risk of implicit conversion conflicts compared to <code>FunSpec</code>.
-<code>FreeSpec</code> differs from its siblings primarily in that it allows unlimited
-nesting and total freedom in how you structure your specification text.
-Although experienced BDD-ers may feel liberated by <code>FreeSpec</code>'s unstructured approach, beginners may feel less sure how to proceed than
-with a more prescriptive style trait like <code>FunSpec</code> or <code>WordSpec</code>.
-One other use case for <code>FreeSpec</code>, since its text fragments are not connected by any English words, is to facilitate writing specification
-text in a (human) language other than English. Compiling a <code>FreeSpec</code> will generate one extra class file per test and one per nested scope.
-</p>
-
-<em>Acceptance and property-based testing</em>
-
-<p>
-Although the traits described in this section could also be categorized as BDD traits, the following traits are geared more towards
-specific applications of BDD: <code>FeatureSpec</code> is designed for acceptance testing; <code>PropSpec</code> for property-based testing.
-</p>
-
-<p>
-<a href="@latestScaladoc/#org.scalatest.FeatureSpec"><code><strong>FeatureSpec</strong></code></a>: 
-Although also usable for unit testing, <code>FeatureSpec</code>'s main intended use is for acceptance testing. It is similar to 
-<code>FunSpec</code> in its structure, but different in that it only allows one level of nesting (one <code>feature</code> clause that can
-contain a series of <code>scenario</code> clauses), and that the words "feature" and "scenario" show up in the report text whereas
-<code>FunSpec</code>'s "describe" and "it" do not.
-Because tests are functions, you can <a href="@latestScaladoc/#org.scalatest.FeatureSpec@@SharedTests">share tests</a> or
-programmatically register them, but at the cost of one generated class file per test. <code>FeatureSpec</code> brings into scope no implicit conversions except the
-one it inherits from <code>Assertions</code>, the implicit conversion that puts <code>===</code> on everything, so the likelyhood for implicit conversion
-conflicts is minimized.
-Compiling a <code>FeatureSpec</code> will generate one extra class file per feature and one per scenario.
-</p>
-
-<p>
-<a href="@latestScaladoc/#org.scalatest.PropSpec"><code><strong>PropSpec</strong></code></a>:
-A style trait identical in structure to <code>FunSuite</code> (the only difference being the word <code>property</code> is used
-instead of <code>test</code>), <code>PropSpec</code> is designed to make it more natural to write
-suites comprised exclusively of <a href="@latestScaladoc/#org.scalatest.prop.PropertyChecks">property checks</a>, whether
-<a href="@latestScaladoc/#org.scalatest.prop.TableDrivenPropertyChecks">table-driven</a>, <a href="@latestScaladoc/#org.scalatest.prop.GeneratorDrivenPropertyChecks">generator-driven</a>, <a href="@latestScaladoc/#org.scalatest.prop.Checkers">ScalaCheck-style</a>, or some combination of these.
-Property checks can be sprinkled into any style of test, but some users prefer to write property-based tests exclusively.
-Using a <code>PropSpec</code> in such situations makes it more obvious to readers of the code that the suite is comprised
-solely of property checks.
-</p>
-
-<a name="fixtureTraits"></a>
-<em>The style traits in <code>org.scalatest.fixture</code></em>
-
-
-<p>
-The <code>org.scalatest.fixture</code> package provides style traits that support the same styles as their corresponding sister traits in <code>org.scalatest</code>, with
-one and only one difference: each test takes a fixture parameter. These traits facilitate a functional style of writing tests,
-helping you factor out fixture code common to different tests without introducing mutable state into your test class. The main purpose of these traits is to make it easier
-to write thread-safe test classes in situations where you want to write tests that make use of multiple threads.
-</p>
-<!--
-<p>
-By default, ScalaTest's <code>Runner</code> will run tests and suites sequentially. This is the least surprising behavior, and for small test suites may be 
-faster than running in parallel, because the overhead of distribution is avoided. Once a test suite reaches a certain size, though, it will likely run faster
-in parallel. If you select parallel execution (for example, by adding a <code>-c</code> on the <code>Runner</code> command line), ScalaTest will by default only
-run suites in parallel, not tests. In practice, test suites most often are written to be independent of each other, whereas test classes are not. Often tests in
-the same test class have fixture code in common, and the fixture data is factored out into instance variables shared by multiple tests, usually including
-some shared mutable state. To run tests in parallel, your test class needs to be thread-safe. All of ScalaTest's style traits are designed to be thread-safe, but
-the test code <em>you</em> write would also need to be thread safe. This is a big burden on users, so that's why parallel suite, not test, execution is ScalaTest's
-default when you request parallel execution.
-</p>
-
-<p>
-Sometimes, however, you may have a test class with several tests that take a long time to run, and you want to run those tests in parallel to speed up your
-test runs. In this case you can mix <code>ParallelTestExecution</code> into your test class to get this behavior just in that test class, but you'll also need to ensure
-that test class is thread safe.
-Were you to use the traditional imperative approach to sharing fixtures, you would need to synchronize access to the shared mutable state. An 
-easier, less error-prone, approach to thread safety is to write your test class in a functional style, and that is what the traits in the
-<code>org.scalatest.fixture</code> package are designed to facilitate. By passing shared data into each test as a parameter, you can avoid the need
-to synchronize access to shared mutable objects stored in instance variables.
-</p>
--->
-<p>
-If you need to write multi-threaded tests, you'll need to ensure the test class that contains them is thread safe.
-Were you to use the traditional imperative approach to sharing fixtures, you would need to synchronize access to the shared mutable state. An 
-easier, less error-prone, approach to thread safety is to write your test class in a functional style, and that is what the traits in the
-<code>org.scalatest.fixture</code> package are designed to facilitate. By passing shared data into each test as a parameter, you can avoid the need
-to synchronize access to shared mutable objects stored in instance variables.
-Note that if you mix <code>ParallelTestExecution</code> to run tests in parallel, each test will be run in its own instance of the test class,
-which will usually eliminate the need to make the test class thread safe. Thus the primary reason you'll need to write a thread-safe test class is
-if it contains one or more tests that themselves make use of multiple threads.
-</p>
-
-<p>
-Although designed primarily to facilitate multi-threaded tests, the <code>org.scalatest.fixture</code> traits can also be used by users who prefer to
-write code in a functional style. The only downsides are 1) they require a tiny bit of extra boilerplate compared to their <code>org.scalatest</code> sisters, 
-the "<code>fixture =&gt;</code>" required at the beginning of each test body, and 2) the <code>withFixture(OneArgTest)</code> methods only stack if the
-<code>FixtureParam</code> type matches. Thus you usually won't be able to enjoy the benefits of <a href="@latestScaladoc/#org.scalatest.Spec@@composingFixtures">stackable fixture traits</a> when using the <code>org.scalatest.fixture</code>
-style traits. (You can call <code>withFixture(NoArgTest)</code> from <code>withFixture(OneArgTest)</code>, and benefit from stackable traits that way, but if you
-your goal is to write multi-threaded tests, you'll need to make sure the traits being stacked are thread safe.)
-</p>
-
-<h2>Selecting an approach to shared fixtures</h2>
-
-<p>
-ScalaTest supports multiple ways to factor out duplicate "fixture" code appearing in multiple tests. Each approach is designed
-to address a different set of problems. This section will explain the differences to help you decide which
-approach is best for your situation.
-</p>
-
-<p>
-<a href="@latestScaladoc/#org.scalatest.BeforeAndAfter"><code><strong>BeforeAndAfter</strong></code></a>: Recommended for <a href="/getting_started_with_fun_suite">getting started</a> with
-ScalaTest quickly, <code>BeforeAndAfter</code> is a
-simple, clear way to factor out shared fixture code that should be familiar to anyone who has used an xUnit framework
-such as JUnit. It's <code>before</code> and <code>after</code> constructs are boilerplate-free, but 
-do <em>not</em> enable
-<a href="@latestScaladoc/#org.scalatest.Spec@@composingFixtures">stackable fixture traits</a> nor give
-you easy access to run configuration data. For situations in which you don't need these features, <code>BeforeAndAfter</code> 
-is a good, readable choice.
-</p>
-
-</p>
-<a href="@latestScaladoc/#org.scalatest.BeforeAndAfter"><code><strong>BeforeAndAfterEach</strong></code></a>: The
-closest analog to JUnit's <code>setup</code> and <code>tearDown</code> methods, <code>BeforeAndAfterEach</code>'s main
-use case is to enable stackable fixture traits. In larger projects, fixture setup and cleanup code often needs to be
-reused in different combinations in multiple test classes. By organizing fixtures into traits that extend
-<code>BeforeAndAfterEach</code>, with <code>beforeEach</code> and <code>afterEach</code> methods that invoke
-<code>super</code> implementations, you can mix together just the fixture traits you need in each class.
-<code>BeforeAndAfterEach</code> also includes overloaded variants of <code>beforeEach</code> and <code>afterEach</code>
-into which a config map is passed, so you can use run configuration data in your fixture code. The main downside
-of <code>BeforeAndAfterEach</code> compared to <code>BeforeAndAfter</code> is that it has some boilerplate: you must
-say <code>override def</code>.
-</p>
-
-<p>
-<a href="/user_guide/sharing_fixtures#withFixtureNoArgTest"><code><strong>withFixture(NoArgTest)</strong></code></a>: Of all the ways you can factor out shared fixtures, overriding
-<code>withFixture</code> is the most flexible. 
-The <code>NoArgTest</code> passed to <code>withFixture</code> contains an <code>apply</code> method that executes the
-body of the test.  <code>withFixture</code> is responsible for invoking the test function, and the default implementation
-of <code>withFixture</code> in trait <code>Suite</code> does only that: it invokes the test function and nothing more.
-You, however, can override <code>withFixture</code> to
-do something at the beginning and/or end of each test, or anything else you might need to do with the test function. 
-</p>
-
-<p>
-One important difference between <code>withFixture</code> and traits <code>BeforeAndAfter</code> and
-<code>BeforeAndAfterEach</code> is that
-<code>withFixture</code>'s code is part of the test. The test has already started when <code>withFixture</code>
-is passed the test function, and has not yet completed when the test function returns. 
-By contrast, the code you register with <code>BeforeAndAfter</code>'s <code>before</code> method is called <em>before</em>
-the test starts, the code you register with <code>after</code> is called <em>after</em> the test has completed.
-You can, therefore, use <code>withFixture</code> to accomplish many things not possible with the before and after
-approaches. For example, you an change the outcome of a test using <code>withFixture</code>.
-</p>
-
-<p>
-Because <code>NoArgTest</code>, in addition to providing the test function, also provides the test's name and a config map, you can use these in your fixture
-code. And because you can look up a test's tags with its name via the <code>tags</code> method on <code>Suite</code>, you can use tags as well.
-You could, for example, override <code>withFixture</code> to look up the tags for each test via the name passed in <code>NoArgTest</code>, and for
-tests tagged "<code>TwoOutOfThreeAintBad</code>," say, run the test function three times and report the test as succeeded
-if the test function succeeds at least two times. Or you could override <code>withFixture</code> to establish a time limit for all tests: 
-if a test passes, but takes longer than the time limit, your <code>withFixture</code> method can change that success to a failure.
-Although <code>withFixture</code> will not be familiar to new ScalaTest users, because it does not appear in other frameworks, and requires a
-bit of boilerplate&#8212;the <code>override def</code> and, if you
-have "after" code to run, a <code>try-finally</code>&#8212;it gives you the utmost in power compared to the other alternatives.
-</p>
-
-<p>
-<a href="/user_guide/sharing_fixtures#withFixtureOneArgTest"><strong><code>withFixture(OneArgTest)</code></strong></a>: A variant of <code>withFixture</code> that passes
-a fixture parameter into tests, <code>withFixture(OneArgTest)</code> helps you write tests in a functional style. One important use case is if you want to write multi-threaded
-tests.
-See the earlier section, <a href="#fixtureTraits">the style traits in <code>org.scalatest.fixture</code></a>, for more information.
-</p>
-
-<p>
-<a href="@latestScaladoc/#org.scalatest.OneInstancePerTest"><strong><code>OneInstancePerTest</code></strong></a>: By running each test in its own instance of the
-test class, <code>OneInstancePerTest</code> helps you isolate tests from each other's side effects.
-One benefit of this approach is that it eliminates "before" boilerplate: because each test gets its own copy
-of the instance variables, there's no need for a <code>before</code> clause or <code>beforeEach</code> method. On the other hand,
-<code>OneInstancePerTest</code> does not provide a way to run code <em>after</em>
-each test. To do so you'd need to use one of the other approaches such as overriding <code>withFixture</code>, in which case it makes less
-sense to mix in <code>OneInstancePerTest</code> in the first place. 
-</p>
-
-<p>
-The approach to test isolation taken by <code>OneInstancePerTest</code> is similar to the way JUnit isolates tests, but with one important difference. If
-instantiating a test class has a side effect, such as a debug message being
-printed from the constructor via <code>println</code>, in JUnit you would observe that side effect once per test. Thus if a JUnit test class contains ten tests, you
-would see the debug statement printed out ten times. But with <code>OneInstancePerTest</code>, you would see it <em>eleven</em> times. That's because the first
-instance of a suite that mixes in <code>OneInstancePerTest</code> does not execute any tests.
-Instead, it creates one instance per test&#8212;ten instances in this case&#8212;and executes just one test in each instance.
-In situations where an extra instantiation side effect would be problematic, therfore, you should not use <code>OneInstancePerTest</code>.
-</p>
-
-<p>
-One use case for the <code>OneInstancePerTest</code> trait is to eliminate boilerplate when you need only to run code before, but not after, tests.
-Another is to serve as a superclass of traits like <code>ParallelTestExecution</code>, which parallelizes tests by creating one 
-instance for running each test, then executing those suites in parallel.
-</p>
-
-<p>
-<strong>Just use Scala</strong>:
-Another approach to factoring out shared code is to just use Scala to define <em>create-fixture</em> methods, 
-instantiate <em>fixture traits</em>, or create <em>loan-pattern</em> methods that you use directly
-in the test bodies. Although these approaches are relatively
-concise, they do require more boilerplate than the approaches described previously, because you must call
-the methods or instantiate the traits inside each test. Thus, the best use case for these approaches is
-when <a href="@latestScaladoc/#org.scalatest.Spec@@differentFixtures">different tests in the same test class require different fixtures</a>. In that case, you'll need to indicate
-which test requires what fixtures anyway, and calling a create fixture method or instantiating a fixture trait,
-for example, is a good way to do that. One other benefit of this approach is that there is absolutely no
-magic going on behind the scenes. It is just Scala, so should be straightforward to understand even by
-readers completely unfamiliar with ScalaTest.
-</p>
-
-<h2>Selecting an approach to assertions</h2>
-
-<p>
-<a href="@latestScaladoc/#org.scalatest.Assertions"><code>Assertions</code></a>: Recommended for getting started with ScalaTest quickly, ScalaTest's <code>Assertions</code>
-trait provides a very easy to learn, easy to use DSL for assertions. The main tradeoff is that the error messages are not as descriptive as those of matchers.
-</p>
-
-<p>
-<a href="@latestScaladoc/#org.scalatest.matchers.ShouldMatchers"><code>ShouldMatchers</code></a>: ScalaTest's matchers allow you to make assertions
-that give a more descriptive error message when they fail compared to the <code>Assertions</code> DSL.
-Both matchers and <code>Assertions</code> code is clear and easy to read, but matchers reads more like English statements whereas assertions reads more like code.
-Because there are more of them, matchers will take longer to learn than <code>Assertions</code>, though not much longer. And whereas <code>Assertions</code> are easy
-to remember, you may have to look in the documentation
-(such as the <a href="/user_guide/matchers_quick_reference">quick reference</a>) from time to time to remember how to write matcher expressions you use rarely.
-</p>
-
-<p>
-
-<a href="@latestScaladoc/#org.scalatest.matchers.MustMatchers"><code>MustMatchers</code></a>: ScalaTest allows you to use <code>must</code> instead of
-<code>should</code> in your matcher expressions by mixing in <code>MustMatchers</code> instead of <code>ShouldMatchers</code>. These behave the same way, so 
-the choice is primarily a matter of personal preference. If you don't have a preference, the recommended style is to use <code>ShouldMatchers</code>.
 </p>
 
 </div>
