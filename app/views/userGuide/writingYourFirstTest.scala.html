@@ -1,4 +1,6 @@
 @import controllers.Application.latestScaladoc
+@import controllers.Application.milestoneVersion
+@import controllers.Application.baseScalaVersion
 
 @userGuidePage("Writing your first test") {
 <div style="text-align: left">
@@ -39,8 +41,8 @@ After the sentence you put the word <code>in</code> followed by the body of the 
 </p>
 
 <pre class="stHighlighted">
-<span class="stReserved">import</span> org.scalatest.FlatSpec
-<span class="stReserved">import</span> scala.collection.mutable.Stack
+<span class="stReserved">import</span> collection.mutable.Stack
+<span class="stReserved">import</span> org.scalatest._
 <br /><span class="stReserved">class</span> <span class="stType">StackSpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> {
 <br />  <span class="stQuotedString">&quot;A Stack&quot;</span> should <span class="stQuotedString">&quot;pop values in last-in-first-out order&quot;</span> in {
     <span class="stReserved">val</span> stack = <span class="stReserved">new</span> <span class="stType">Stack[Int]</span>
@@ -59,19 +61,19 @@ After the sentence you put the word <code>in</code> followed by the body of the 
 </pre>
 
 <p>
-3. Place this in a file called <code>StackSpec.scala</code> and compile it with:
+3. Place this in a file called <code>StackSpec.scala</code> and compile it using <a href="https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest_@{baseScalaVersion}/@{milestoneVersion}/scalatest_@{baseScalaVersion}-@{milestoneVersion}.jar">this Jar file</a>:
 </p>
 
 <pre class="stExamples">
-$ scalac -cp scalatest-1.7.2.jar StackSpec.scala
+$ scalac -cp scalatest_@{baseScalaVersion}-@{milestoneVersion}.jar StackSpec.scala
 </pre>
 
 <p>
-4. You can run it from the command line by invoking ScalaTest's <a href="using_the_runner">Runner application</a>:
+4. You can run it from the command line by invoking ScalaTest's <a href="using_the_runner">simple Runner</a>:
 </p>
 
 <pre class="stExamples">
-$ scala -cp scalatest.jar org.scalatest.tools.Runner -p . -o -s StackSpec
+$ scala -cp scalatest_@{baseScalaVersion}-@{milestoneVersion}.jar org.scalatest.run StackSpec
 <span class="stCyan">Run starting. Expected test count is: 2</span>
 <span class="stGreen">StackSpec:
 A Stack 
@@ -89,7 +91,7 @@ Tests: succeeded 2, failed 0, ignored 0, pending 0</span>
 </p>
 
 <pre class="stExamples">
-$ scala -cp scalatest-1.7.2.jar
+$ scala -cp scalatest_@{baseScalaVersion}-@{milestoneVersion}.jar
 
 scala&gt; import org.scalatest._
 import org.scalatest._

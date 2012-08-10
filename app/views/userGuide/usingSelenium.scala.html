@@ -150,9 +150,9 @@ you can use the <code>+=</code> operator, like this.</p><p><pre class="stHighlig
 multiSel(<span class="stQuotedString">&quot;select2&quot;</span>).values += <span class="stQuotedString">&quot;option5&quot;</span>
 multiSel(<span class="stQuotedString">&quot;select2&quot;</span>).values += <span class="stQuotedString">&quot;option6&quot;</span>
 </pre></p><p>To clear a specific option, pass its name to <code>clear</code>:</p><p><pre class="stHighlighted">
-selectList(<span class="stQuotedString">&quot;select2&quot;</span>).clear(<span class="stQuotedString">&quot;option5&quot;</span>)
+multiSel(<span class="stQuotedString">&quot;select2&quot;</span>).clear(<span class="stQuotedString">&quot;option5&quot;</span>)
 </pre></p><p>To clear all selections, call <code>clearAll</code>:</p><p><pre class="stHighlighted">
-selectList(<span class="stQuotedString">&quot;select2&quot;</span>).clearAll()
+multiSel(<span class="stQuotedString">&quot;select2&quot;</span>).clearAll()
 </pre></p><p>You can access the current selections with <code>values</code>, which returns an <code>IndexedSeq[String]</code>:</p><p><pre class="stHighlighted">
 multiSel(<span class="stQuotedString">&quot;select2&quot;</span>).values should have size <span class="stLiteral">2</span>
 multiSel(<span class="stQuotedString">&quot;select2&quot;</span>).values(<span class="stLiteral">0</span>) should be (<span class="stQuotedString">&quot;option5&quot;</span>)

@@ -11,6 +11,7 @@ object Application extends Controller {
   val milestoneScaladoc = "http://www.artima.com/docs-scalatest-2.0.M3"
   val scaladocsLocation = "http://doc.scalatest.org"
   val releasesLocation = "http://www.artima.com/downloadScalaTest"
+  val baseScalaVersion = "2.9.0"
 
   def index = Action {
     Ok(views.html.index())
