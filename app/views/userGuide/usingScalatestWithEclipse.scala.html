@@ -31,9 +31,10 @@ Properties classes, Specs2 Specifications, or custom styles.</li>
 <p>
 You can use the plugin with any release of ScalaTest, but you'll enjoy
 the most seamless IDE integration if you use ScalaTest @{milestoneVersion} (a very
-carefully tested milestone release). You can plug it into either the
-latest stable release of the Scala IDE for Eclipse (version 2.0.2), or
-a nightly build of Eclipse 2.1.0.
+carefully tested milestone release).
+You can plug it into either the latest stable release of the Scala IDE for Eclipse (version 2.0.2), or milestone 2 of Scala IDE 2.1.
+For a nightly build, you'll need to build it by hand by following the steps given in
+<a href="https://github.com/scalatest/scalatest-eclipse-plugin">https://github.com/scalatest/scalatest-eclipse-plugin</a>
 </p>
 
 <h2>Screenshot of ScalaTest Eclipse Plugin with ScalaTest @{milestoneVersion}</h2>
@@ -44,6 +45,26 @@ a nightly build of Eclipse 2.1.0.
 </p>
 
 <h2>Installing the ScalaTest Eclipse Plugin</h2>
+
+<p>
+You can install the plugin together with Scala IDE using latest update sites listed at <a href="http://scala-ide.org/">http://scala-ide.org/</a>.  For Scala
+IDE 2.0.2, tick 'ScalaTest for Scala IDE' as shown in the figure below:
+</p>
+
+<p>
+<a href="http://www.scalatest.org/assets/images/installScreenshot1.png"><img src="@routes.Assets.at("images/installScreenshot1.png")" width="100%"
+             alt="Screenshot using ScalaTest @{milestoneVersion}" border="0"/></a>
+</p>
+
+<p>
+For Scala IDE 2.1 Milestone 2, the 'ScalaTest for Scala IDE' is parked under 'Scala IDE plugins (incubation)':
+</p>
+
+<p>
+<a href="http://www.scalatest.org/assets/images/installScreenshot2.png"><img src="@routes.Assets.at("images/installScreenshot2.png")" width="100%"
+             alt="Screenshot using ScalaTest @{milestoneVersion}" border="0"/></a>
+</p>
+
 <p>
 So, how do you get the plugin? Select <code>Help -&gt; Install New Software</code> in
 Eclipse, and enter as your update site one of the "Scala IDE Ecosystem
@@ -95,11 +116,11 @@ With the release notes for ScalaTest @{milestoneVersion} here:
 <h2>Using ScalaTest in a Scala project</h2>
 
 <p>
-To use ScalaTest in your Scala project, you must include ScalaTest in Build path of your project.
+To use ScalaTest in your Scala project, you must download ScalaTest and include it in build path of your project.
 </p>
 
 <p>
-You can use any ScalaTest 1.x release or the latest 2.0.M2 (recommended).  Using ScalaTest 2.0 enables the following:
+You can use any ScalaTest 1.x release or the latest @{milestoneVersion} (recommended).  Using ScalaTest 2.0 enables the following:
 </p>
 
 <ul>
