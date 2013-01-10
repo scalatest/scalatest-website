@@ -5,13 +5,13 @@ import play.api.mvc._
 
 object Application extends Controller {
 
-  val latestScaladoc = "http://doc.scalatest.org/1.8"
-  val latestVersion = "1.8"
-  val milestoneVersion = "2.0.M5"
-  val milestoneScaladoc = "http://www.artima.com/docs-scalatest-2.0.M5"
+  val latestScaladoc = "http://doc.scalatest.org/1.9.1"
+  val latestVersion = "1.9.1"
+  val milestoneVersion = "2.0.M5b"
+  val milestoneScaladoc = "http://www.artima.com/docs-scalatest-2.0.M5b"
   val scaladocsLocation = "http://doc.scalatest.org"
   val releasesLocation = "http://www.artima.com/downloadScalaTest"
-  val baseScalaVersion = "2.9.0"
+  val baseScalaVersion = "2.10.0"
 
   def index = Action {
     Ok(views.html.index())

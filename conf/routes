@@ -19,6 +19,7 @@ GET     /getting_started_with_junit_3_in_scala           controllers.Application
 GET     /getting_started_with_testng_in_scala            controllers.Application.gettingStartedWithTestngInScala
 
 GET     /release_notes/2.0                               controllers.ReleaseNotes.v20
+GET     /release_notes/1.9.1                             controllers.ReleaseNotes.v191
 GET     /release_notes/1.8                               controllers.ReleaseNotes.v18
 GET     /release_notes/1.7-1.7.2                         controllers.ReleaseNotes.v17
 GET     /release_notes/1.5-1.6.1                         controllers.ReleaseNotes.v15_16
