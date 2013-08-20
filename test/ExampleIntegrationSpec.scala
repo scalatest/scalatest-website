@@ -12,10 +12,25 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ */   
 package test
 
 import org.scalatest._
-import selenium.HtmlUnit
 
-abstract class IntegrationSpec extends WordSpec with Matchers with OptionValues with HtmlUnit
+import play.api.test._
+import play.api.test.Helpers._
+
+class ExampleIntegrationSpec extends IntegrationSpec {
+  
+  "Application" should {
+    
+    "work from within a browser" in {
+      running(TestServer(3333), HTMLUNIT) { browser =>
+
+        browser.goTo("http://localhost:3333/")
+
+        browser.pageSource should include ("ScalaTest")
+      }
+    }
+  }
+}
