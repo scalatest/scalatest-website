@@ -1,0 +1,205 @@
+@userGuidePage("Sharing tests") {
+<div style="text-align: left">
+
+<h1>Sharing tests</h1>
+
+<p>Sometimes you may want to run the same test code on different fixture objects. In other words, you may want to write tests that are &quot;shared&quot;
+by different fixture objects.  To accomplish this in a <code>FlatSpec</code>, you first place shared tests in <em>behavior functions</em>.
+These behavior functions will be invoked during the construction phase of any <code>FlatSpec</code> that uses them, so that the tests they
+contain will be registered as tests in that <code>FlatSpec</code>.  For example, given this stack class:</p><p><pre class="stHighlighted">
+<span class="stReserved">import</span> scala.collection.mutable.ListBuffer
+<br /><span class="stReserved">class</span> <span class="stType">Stack[T]</span> {
+<br />  <span class="stReserved">val</span> MAX = <span class="stLiteral">10</span>
+  <span class="stReserved">private</span> <span class="stReserved">val</span> buf = <span class="stReserved">new</span> <span class="stType">ListBuffer[T]</span>
+<br />  <span class="stReserved">def</span> push(o: T) {
+    <span class="stReserved">if</span> (!full)
+      buf.prepend(o)
+    <span class="stReserved">else</span>
+      <span class="stReserved">throw</span> <span class="stReserved">new</span> <span class="stType">IllegalStateException</span>(<span class="stQuotedString">&quot;can't push onto a full stack&quot;</span>)
+  }
+<br />  <span class="stReserved">def</span> pop(): T = {
+    <span class="stReserved">if</span> (!empty)
+      buf.remove(<span class="stLiteral">0</span>)
+    <span class="stReserved">else</span>
+      <span class="stReserved">throw</span> <span class="stReserved">new</span> <span class="stType">IllegalStateException</span>(<span class="stQuotedString">&quot;can't pop an empty stack&quot;</span>)
+  }
+<br />  <span class="stReserved">def</span> peek: T = {
+    <span class="stReserved">if</span> (!empty)
+      buf(<span class="stLiteral">0</span>)
+    <span class="stReserved">else</span>
+      <span class="stReserved">throw</span> <span class="stReserved">new</span> <span class="stType">IllegalStateException</span>(<span class="stQuotedString">&quot;can't pop an empty stack&quot;</span>)
+  }
+<br />  <span class="stReserved">def</span> full: <span class="stType">Boolean</span> = buf.size == MAX
+  <span class="stReserved">def</span> empty: <span class="stType">Boolean</span> = buf.size == <span class="stLiteral">0</span>
+  <span class="stReserved">def</span> size = buf.size
+<br />  <span class="stReserved">override</span> <span class="stReserved">def</span> toString = buf.mkString(<span class="stQuotedString">&quot;Stack(&quot;</span>, <span class="stQuotedString">&quot;, &quot;</span>, <span class="stQuotedString">&quot;)&quot;</span>)
+}
+</pre></p><p>You may want to test the <code>Stack</code> class in different states: empty, full, with one item, with one item less than capacity,
+<em>etc</em>. You may find you have several tests that make sense any time the stack is non-empty. Thus you'd ideally want to run
+those same tests for three stack fixture objects: a full stack, a stack with a one item, and a stack with one item less than
+capacity. With shared tests, you can factor these tests out into a behavior function, into which you pass the
+stack fixture to use when running the tests. So in your <code>FlatSpec</code> for stack, you'd invoke the
+behavior function three times, passing in each of the three stack fixtures so that the shared tests are run for all three fixtures. You
+can define a behavior function that encapsulates these shared tests inside the <code>FlatSpec</code> that uses them. If they are shared
+between different <code>FlatSpec</code>s, however, you could also define them in a separate trait that is mixed into each <code>FlatSpec</code>
+that uses them.</p><p><a name="StackBehaviors">For</a> example, here the <code>nonEmptyStack</code> behavior function (in this case, a behavior <em>method</em>) is
+defined in a trait along with another method containing shared tests for non-full stacks:</p><p><pre class="stHighlighted">
+<span class="stReserved">trait</span> <span class="stType">StackBehaviors</span> { <span class="stReserved">this</span>: <span class="stType">FlatSpec</span> =&gt;
+<br />  <span class="stReserved">def</span> nonEmptyStack(newStack: =&gt; <span class="stType">Stack[Int]</span>, lastItemAdded: <span class="stType">Int</span>) {
+<br />    it should <span class="stQuotedString">&quot;be non-empty&quot;</span> in {
+      assert(!newStack.empty)
+    }
+<br />    it should <span class="stQuotedString">&quot;return the top item on peek&quot;</span> in {
+      assert(newStack.peek === lastItemAdded)
+    }
+<br />    it should <span class="stQuotedString">&quot;not remove the top item on peek&quot;</span> in {
+      <span class="stReserved">val</span> stack = newStack
+      <span class="stReserved">val</span> size = stack.size
+      assert(stack.peek === lastItemAdded)
+      assert(stack.size === size)
+    }
+<br />    it should <span class="stQuotedString">&quot;remove the top item on pop&quot;</span> in {
+      <span class="stReserved">val</span> stack = newStack
+      <span class="stReserved">val</span> size = stack.size
+      assert(stack.pop === lastItemAdded)
+      assert(stack.size === size - <span class="stLiteral">1</span>)
+    }
+  }
+<br />  <span class="stReserved">def</span> nonFullStack(newStack: =&gt; <span class="stType">Stack[Int]</span>) {
+<br />    it should <span class="stQuotedString">&quot;not be full&quot;</span> in {
+      assert(!newStack.full)
+    }
+<br />    it should <span class="stQuotedString">&quot;add to the top on push&quot;</span> in {
+      <span class="stReserved">val</span> stack = newStack
+      <span class="stReserved">val</span> size = stack.size
+      stack.push(<span class="stLiteral">7</span>)
+      assert(stack.size === size + <span class="stLiteral">1</span>)
+      assert(stack.peek === <span class="stLiteral">7</span>)
+    }
+  }
+}
+</pre></p><p>Given these behavior functions, you could invoke them directly, but <code>FlatSpec</code> offers a DSL for the purpose,
+which looks like this:</p><p><pre class="stHighlighted">
+it should behave like nonEmptyStack(stackWithOneItem, lastValuePushed)
+it should behave like nonFullStack(stackWithOneItem)
+</pre></p><p>If you prefer to use an imperative style to change fixtures, for example by mixing in <code>BeforeAndAfterEach</code> and
+reassigning a <code>stack</code> <code>var</code> in <code>beforeEach</code>, you could write your behavior functions
+in the context of that <code>var</code>, which means you wouldn't need to pass in the stack fixture because it would be
+in scope already inside the behavior function. In that case, your code would look like this:</p><p><pre class="stHighlighted">
+it should behave like nonEmptyStack <span class="stLineComment">// assuming lastValuePushed is also in scope inside nonEmptyStack</span>
+it should behave like nonFullStack
+</pre></p><p>The recommended style, however, is the functional, pass-all-the-needed-values-in style. Here's an example:</p><p><pre class="stHighlighted">
+<span class="stReserved">class</span> <span class="stType">SharedTestExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> <span class="stReserved">with</span> <span class="stType">StackBehaviors</span> {
+<br />  <span class="stLineComment">// Stack fixture creation methods</span>
+  <span class="stReserved">def</span> emptyStack = <span class="stReserved">new</span> <span class="stType">Stack[Int]</span>
+<br />  <span class="stReserved">def</span> fullStack = {
+    <span class="stReserved">val</span> stack = <span class="stReserved">new</span> <span class="stType">Stack[Int]</span>
+    <span class="stReserved">for</span> (i &lt;- <span class="stLiteral">0</span> until stack.MAX)
+      stack.push(i)
+    stack
+  }
+<br />  <span class="stReserved">def</span> stackWithOneItem = {
+    <span class="stReserved">val</span> stack = <span class="stReserved">new</span> <span class="stType">Stack[Int]</span>
+    stack.push(<span class="stLiteral">9</span>)
+    stack
+  }
+<br />  <span class="stReserved">def</span> stackWithOneItemLessThanCapacity = {
+    <span class="stReserved">val</span> stack = <span class="stReserved">new</span> <span class="stType">Stack[Int]</span>
+    <span class="stReserved">for</span> (i &lt;- <span class="stLiteral">1</span> to <span class="stLiteral">9</span>)
+      stack.push(i)
+    stack
+  }
+<br />  <span class="stReserved">val</span> lastValuePushed = <span class="stLiteral">9</span>
+<br />  <span class="stQuotedString">&quot;A Stack (when empty)&quot;</span> should <span class="stQuotedString">&quot;be empty&quot;</span> in {
+    assert(emptyStack.empty)
+  }
+<br />  it should <span class="stQuotedString">&quot;complain on peek&quot;</span> in {
+    intercept[<span class="stType">IllegalStateException</span>] {
+      emptyStack.peek
+    }
+  }
+<br />  it should <span class="stQuotedString">&quot;complain on pop&quot;</span> in {
+    intercept[<span class="stType">IllegalStateException</span>] {
+      emptyStack.pop
+    }
+  }
+<br />  <span class="stQuotedString">&quot;A Stack (with one item)&quot;</span> should behave like nonEmptyStack(stackWithOneItem, lastValuePushed)
+<br />  it should behave like nonFullStack(stackWithOneItem)
+<br />  <span class="stQuotedString">&quot;A Stack (with one item less than capacity)&quot;</span> should
+<br />    behave like nonEmptyStack(stackWithOneItemLessThanCapacity, lastValuePushed)
+<br />  it should behave like nonFullStack(stackWithOneItemLessThanCapacity)
+<br />  <span class="stQuotedString">&quot;A Stack (full)&quot;</span> should <span class="stQuotedString">&quot;be full&quot;</span> in {
+    assert(fullStack.full)
+  }
+<br />  it should behave like nonEmptyStack(fullStack, lastValuePushed)
+<br />  it should <span class="stQuotedString">&quot;complain on a push&quot;</span> in {
+    intercept[<span class="stType">IllegalStateException</span>] {
+      fullStack.push(<span class="stLiteral">10</span>)
+    }
+  }
+}
+</pre></p><p>If you load these classes into the Scala interpreter (with scalatest's JAR file on the class path), and execute it,
+you'll see:</p><p><pre class="stREPL">
+<span class="stGreen">scala&gt; (new SharedTestExampleSpec).execute()
+A Stack (when empty)
+- should be empty
+- should complain on peek
+- should complain on pop
+A Stack (with one item)
+- should be non-empty
+- should return the top item on peek
+- should not remove the top item on peek
+- should remove the top item on pop
+- should not be full
+- should add to the top on push
+A Stack (with one item less than capacity)
+- should be non-empty
+- should return the top item on peek
+- should not remove the top item on peek
+- should remove the top item on pop
+- should not be full
+- should add to the top on push
+A Stack (full)
+- should be full
+- should be non-empty
+- should return the top item on peek
+- should not remove the top item on peek
+- should remove the top item on pop
+- should complain on a push</span>
+</pre></p><p>One thing to keep in mind when using shared tests is that in ScalaTest, each test in a suite must have a unique name.
+If you register the same tests repeatedly in the same suite, one problem you may encounter is an exception at runtime
+complaining that multiple tests are being registered with the same test name. A good way to solve this problem in a <code>FlatSpec</code> is to make sure
+each invocation of a behavior function is in the context of a different subject,
+which will prepend a string to each test name.
+For example, the following code in a <code>FlatSpec</code> would register a test with the name <code>"A Stack (when empty) should be empty"</code>:</p><p><pre class="stHighlighted">
+behavior of <span class="stQuotedString">&quot;A Stack (when empty)&quot;</span>
+<br />it should <span class="stQuotedString">&quot;be empty&quot;</span> in {
+  assert(emptyStack.empty)
+}
+<span class="stLineComment">// ...</span>
+</pre></p><p>Or, using the shorthand notation:</p><p><pre class="stHighlighted">
+<span class="stQuotedString">&quot;A Stack (when empty)&quot;</span> should <span class="stQuotedString">&quot;be empty&quot;</span> in {
+  assert(emptyStack.empty)
+}
+<span class="stLineComment">// ...</span>
+</pre></p><p>If the <code>"should be empty"</code> test was factored out into a behavior function, it could be called repeatedly so long
+as each invocation of the behavior function is in the context of a different subject.</p>
+
+<h1>Shared tests in other style traits</h1>
+
+<p>
+Shared tests are supported in all style traits in which tests are represented as functions, because they require
+registering the same test function multiple times, each time parameterized with different fixture objects. In trait <code>Suite</code> tests
+are methods, thus shared tests aren't supported. The Scaladoc of each style trait that supports them includes an example of shared tests. 
+</p>
+
+<p>
+A related technique is <a href="/user_guide/property_based_testing">property-based testing</a>. Whereas in shared tests you evaluate the
+same test function on different data, in property-based testing you evaluate the same property function on different data.
+</p>
+
+<p>
+Next, learn about <a href="/user_guide/using_matchers">using matchers</a>.
+</p>
+</div>
+}

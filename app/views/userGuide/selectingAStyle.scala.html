@@ -1,0 +1,62 @@
+@import controllers.Application.milestoneScaladoc
+
+@userGuidePage("Selecting a style") {
+<div style="text-align: left">
+
+<h1>Selecting testing styles</h1>
+
+<p>
+ScalaTest supports different styles of testing, each designed to address a particular set of needs.
+Although this flexibility can help your productivity by enabling you to use styles that best fit your team's experience
+and culture, if you are unfamiliar with the options, making a choice can be daunting.
+To help you find your best-fit styles, this page will describe the intended use cases for each option.
+</p>
+
+<p>
+We do recommend you choose a set of testing styles for each project, then encourage everyone working on the project use the chosen styles. 
+This allows the testing styles to fit the team while maintaining uniformity in the project code base.
+We recommend you select one main style for unit testing, and another for integration or acceptance testing.
+Using a different style for unit and integration testing can help developers "switch gears" between 
+low-level unit testing to high-level integration testing. You may also want to select particular styles to be used in special situations, such as using
+<a href="@milestoneScaladoc/#org.scalatest.PropSpec@@testMatrix"><code>PropSpec</code> for test matrixes</a>. 
+</p>
+
+<p>
+In short, ScalaTest's flexibility is not intended to enable individual developers to use different testing styles on the same project. 
+Rather, it is intended to enable project leaders to select a best-fit style or styles for the team.
+If you have trouble enforcing chosen styles, you can <a href="@milestoneScaladoc/#org.scalatest.tools.Runner$@@specifyingChosenStyles">specify the chosen styles</a> in your build.
+</p>
+
+<h2>If you don't enjoy shopping</h2>
+
+<p>
+If you would rather be told which approach to take rather than pick one yourself, we recommend you use
+<a href="@milestoneScaladoc/#org.scalatest.FunSpec"><code>FunSpec</code></a> for unit testing and
+<a href="@milestoneScaladoc/#org.scalatest.FeatureSpec"><code>FeatureSpec</code></a> for integration or acceptance testing.
+</p>
+
+<a name="sStyleTraitUseCases"></a>
+<h2>Style trait use cases</h2>
+
+<p>
+If you would rather make your own choices, this table gives a quick overview of the advantages and disadvantages of each style trait. For more
+information and examples, click on the links:
+</p>
+
+<p>
+<table style="border-collapse: collapse; border: 1px solid black">
+<tr><th style="background-color: #CCCCCC; border-width: 1px; padding: 3px; text-align: center; border: 1px solid black">Style Trait</th><th style="background-color: #CCCCCC; border-width: 1px; padding: 3px; text-align: center; border: 1px solid black">Intended Use Case</th></tr>
+<tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center"><a href="@milestoneScaladoc/#org.scalatest.Suite"><code>Suite</code></a></td><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">This base trait of <code>Suite</code> family can be useful as a style trait in large projects where class file generation is a concern, because <code>Suite</code> represents tests as methods not functions, saving one class file per test.</td></tr>
+<tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center"><a href="@milestoneScaladoc/#org.scalatest.FunSuite"><code>FunSuite</code></a></td><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">For teams coming from xUnit, <code>FunSuite</code> feels comfortable and familiar while still giving some of the benefits of BDD: <code>FunSuite</code> makes it easy to write descriptive test names, natural to write focused tests, and generates specification-like output that can facilitate communication among stakeholders.</td></tr>
+<tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center"><a href="@milestoneScaladoc/#org.scalatest.FlatSpec"><code>FlatSpec</code></a></td><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">A good first step for teams wishing to move from xUnit to BDD, <code>FlatSpec</code>'s structure is flat like xUnit, so it is simple and familiar, but the test names must be written in a specification style: "X should Y," "A must B," <em>etc</em>.</td></tr>
+<tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center"><a href="@milestoneScaladoc/#org.scalatest.FunSpec"><code>FunSpec</code></a></td><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">For teams coming from Ruby's RSpec tool, <code>FunSpec</code> will feel very familiar; More generally, for any team that prefers BDD, <code>FunSpec</code>'s nesting and gentle guide to structuring text (with <code>describe</code> and <code>it</code>) provides an excellent general-purpose choice for writing specification-style tests. <code> </td></tr>
+<tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center"><a href="@milestoneScaladoc/#org.scalatest.WordSpec"><code>WordSpec</code></a></td><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">For teams coming from specs or specs2, <code>WordSpec</code> will feel familiar, and is often the most natural way to port specsN tests to ScalaTest. <code>WordSpec</code> is very prescriptive in how text must be written, so a good fit for teams who want a high degree of discipline enforced upon their specification text.</td></tr>
+<tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center"><a href="@milestoneScaladoc/#org.scalatest.FreeSpec"><code>FreeSpec</code></a></td><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">Because it gives absolute freedom (and no guidance) on how specification text should be written, <code>FreeSpec</code> is a good choice for teams experienced with BDD and able to agree on how to structure the specification text.</td></tr>
+<tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center"><a href="@milestoneScaladoc/#org.scalatest.PropSpec"><code>PropSpec</code></a></td><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">Perfect for teams that want to write tests exclusively in terms of property checks; also a good choice for writing the occasional test matrix when a different style trait is chosen as the main unit testing style.</td></tr>
+<tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center"><a href="@milestoneScaladoc/#org.scalatest.FeatureSpec"><code>FeatureSpec</code></a></td><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left"> Trait <code>FeatureSpec</code> is primarily intended for acceptance testing, including facilitating the process of programmers working alongside non-programmers to define the acceptance requirements.</td></tr>
+</table>
+</p>
+
+</div>
+}
+

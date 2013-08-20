@@ -1,0 +1,38 @@
+@import controllers.Application.latestScaladoc
+@releaseNotesPage("ScalaTest Release Notes") {
+<div style="text-align: left">
+
+<h1>ScalaTest Release Notes</h1>
+
+<a name="release191"></a>
+
+<p>
+ScalaTest 1.9.1 is source (but not necessarily binary) compatible with previous releases. To upgrade from 1.8, you should only
+need to do a clean build.
+</p>
+
+<p>
+This release was created to accomdate changes forced by Scala 2.10 and sbt 0.12. As a result, from the user's perspective
+it differs from 1.8 by only one bug fix and two deprecations: 
+</p>
+
+<p>
+<em>Bug fixes</em>
+</p>
+
+<ul>
+<li>Added missing abstract and override modifiers for <code>patienceConfig</code> in <code>org.scalatest.concurrent.IntegrationPatience</code> to enable it
+to be mixed in as intended.</li>
+</ul>
+
+<p>
+<em>Deprecations</em>
+</p>
+
+<ul>
+<li>Added <code>expectResult</code> to <a href="@latestScaladoc/#org.scalatest.Assertions"><code>Assertions</code></a>, and deprecated <code>expect</code>. <code>expect</code> will be used for a different purpose in a future version of ScalaTest.</li>
+<li>Renamed <code>Matchers</code> in package <code>org.scalatest.matchers</code> to </code>ClassicMatchers</code> and deprecated <code>Matchers</code>.
+</ul>
+
+</div>
+}

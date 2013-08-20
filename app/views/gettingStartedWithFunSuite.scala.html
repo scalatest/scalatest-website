@@ -1,0 +1,191 @@
+@import controllers.Application.latestScaladoc
+@import controllers.Application.latestVersion
+
+@widePage("Getting Started with FunSuite") {
+<div style="text-align: left">
+
+<h1>Getting started with <code>FunSuite</code></h1>
+
+<p>
+By learning to use <a href="@latestScaladoc/#org.scalatest.FunSuite"><code>FunSuite</code></a>, simple <a href="/user_guide/using_assertions">assertions</a>, and the <a href="@latestScaladoc/#org.scalatest.BeforeAndAfter"><code>BeforeAndAfter</code></a> trait, you can become
+productive in the TDD style of ScalaTest very quickly. You can then learn and use more
+of ScalaTest over time.
+</p>
+
+<p>
+In a <code>FunSuite</code>, tests are function values. (The &ldquo;<code>Fun</code>&rdquo; in <code>FunSuite</code> stands for function.) You denote tests with <code>test</code>
+and provide the name of the test as a string enclosed in parentheses, followed by the code of the test in curly braces.
+Here's an example:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">import</span> org.scalatest.FunSuite
+<span class="stReserved">import</span> scala.collection.mutable.Stack
+ 
+<span class="stReserved">class</span> <span class="stType">ExampleSuite</span> <span class="stReserved">extends</span> <span class="stType">FunSuite</span> {
+ 
+  test(<span class="stQuotedString">"pop is invoked on a non-empty stack"</span>) {
+ 
+    <span class="stReserved">val</span> stack = <span class="stReserved">new</span> <span class="stType">Stack[Int]</span>
+    stack.push(<span class="stLiteral">1</span>)
+    stack.push(<span class="stLiteral">2</span>)
+    <span class="stReserved">val</span> oldSize = stack.size
+    <span class="stReserved">val</span> result = stack.pop()
+    assert(result === <span class="stLiteral">2</span>)
+    assert(stack.size === oldSize - <span class="stLiteral">1</span>)
+  }
+ 
+  test(<span class="stQuotedString">"pop is invoked on an empty stack"</span>) {
+ 
+    <span class="stReserved">val</span> emptyStack = <span class="stReserved">new</span> <span class="stType">Stack[Int]</span>
+    intercept[<span class="stType">NoSuchElementException</span>] {
+      emptyStack.pop()
+    }
+    assert(emptyStack.isEmpty)
+  }
+}
+</pre>
+
+<p>
+You can compile this <code>FunSuite</code> like this:
+</p>
+
+<pre class="scala">
+$ scalac -cp scalatest-@{latestVersion}.jar ExampleSuite.scala
+</pre>
+
+<p>
+Here's how you run it:
+</p>
+
+<pre class="scala">
+$ scala -cp scalatest-@{latestVersion}.jar org.scalatest.run ExampleSuite
+<span class="cyanincolor">Run starting. Expected test count is: 2</span>
+<span class="greenincolor">ExampleSuite:
+- pop is invoked on a non-empty stack
+- pop is invoked on an empty stack</span>
+<span class="cyanincolor">Run completed in 73 milliseconds.
+Total number of tests run: 2
+Suites: completed 1, aborted 0
+Tests: succeeded 2, failed 0, ignored 0, pending 0</span>
+<span class="greenincolor">All tests passed.</span>
+</pre>
+
+<h2>Using assertions</h2>
+
+<p>
+To get started quickly with ScalaTest, learn to use <code>assert</code> with the <code>===</code> operator
+and <code>intercept</code>. Later if you prefer you can switch to <a href="/user_guide/using_matchers">ScalaTest's matchers</a>.
+</p>
+
+<p>
+ScalaTest lets you use Scala's assertion syntax, but defines a triple equals operator (<code>===</code>) to give you better error messages. The following
+code would give you an error indicating only that an assertion failed:
+</p>
+
+<pre class="stHighlighted">
+assert(<span class="stLiteral">1</span> == <span class="stLiteral">2</span>)
+</pre>
+
+<p>
+Using triple equals instead would give you the more informative error message, <code>"1 did not equal 2"</code>:
+</p>
+
+<pre class="stHighlighted">
+assert(<span class="stLiteral">1</span> === <span class="stLiteral">2</span>)
+</pre>
+
+<p>
+To test whether a bit of code produces an expected exception, use <code>intercept</code>. Place the expected exception type in 
+square brackets after <code>intercept</code>, and the bit of code in curly braces, like this:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">val</span> s = <span class="stQuotedString">"hi"</span>
+intercept[<span class="stType">IndexOutOfBoundsException</span>] {
+  s.charAt(-<span class="stLiteral">1</span>)
+}
+</pre>
+
+<p>
+If the bit of code between the curly braces throws the expected exception, <code>intercept</code> will return it. In the previous example that return value was ignored. 
+If you want to inspect the thrown exception, you can do so like this:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">val</span> s = <span class="stQuotedString">"hi"</span>
+val thrown = intercept[<span class="stType">IndexOutOfBoundsException</span>] {
+  s.charAt(-<span class="stLiteral">1</span>)
+}
+assert(thrown.getMessage === <span class="stLiteral">"String index out of range: -1"</span>)
+</pre>
+
+<p>
+If the bit of code between the curly braces throws the wrong exception, or does not throw any exception, you'll get a test failure describing
+the problem.
+</p>
+
+<h2>Factoring out duplicate code</h2>
+
+<p>
+If you want to factor out duplicate code from tests, mix in <a href="@latestScaladoc/#org.scalatest.BeforeAndAfter"><code>BeforeAndAfter</code></a>, surround the code you
+want to run before each test by <code>before { ... }</code>, and after each test by <code>after { ... }</code>. Here's an example that just uses <code>before</code>:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">import</span> org.scalatest.FunSuite
+<span class="stReserved">import</span> org.scalatest.BeforeAndAfter
+<span class="stReserved">import</span> scala.collection.mutable.Stack
+ 
+<span class="stReserved">class</span> <span class="stType">ExampleSuite</span> <span class="stReserved">extends</span> <span class="stType">FunSuite</span> <span class="stReserved">with</span> <span class="stType">BeforeAndAfter</span> {
+ 
+  <span class="stReserved">var</span> stack: <span class="stType">Stack[Int]</span> = _
+
+  before {
+    stack = <span class="stReserved">new</span> <span class="stType">Stack[Int]</span>
+  }
+
+  test(<span class="stQuotedString">"pop is invoked on a non-empty stack"</span>) {
+ 
+    stack.push(<span class="stLiteral">1</span>)
+    stack.push(<span class="stLiteral">2</span>)
+    <span class="stReserved">val</span> oldSize = stack.size
+    <span class="stReserved">val</span> result = stack.pop()
+    assert(result === <span class="stLiteral">2</span>)
+    assert(stack.size === oldSize - <span class="stLiteral">1</span>)
+  }
+ 
+  test(<span class="stQuotedString">"pop is invoked on an empty stack"</span>) {
+ 
+    intercept[<span class="stType">NoSuchElementException</span>] {
+      stack.pop()
+    }
+    assert(stack.isEmpty)
+  }
+}
+</pre>
+
+<p>
+You compile and run it the same way:
+</p>
+
+<pre class="scala">
+$ scalac -cp scalatest-@{latestVersion}.jar ExampleSuite.scala
+$ scala -cp scalatest-@{latestVersion}.jar org.scalatest.run ExampleSuite
+<span class="cyanincolor">Run starting. Expected test count is: 2</span>
+<span class="greenincolor">ExampleSuite:
+- pop is invoked on a non-empty stack
+- pop is invoked on an empty stack</span>
+<span class="cyanincolor">Run completed in 73 milliseconds.
+Total number of tests run: 2
+Suites: completed 1, aborted 0
+Tests: succeeded 2, failed 0, ignored 0, pending 0</span>
+<span class="greenincolor">All tests passed.</span>
+</pre>
+
+<p>
+Armed with this knowledge, you can already write real TDD-style tests with ScalaTest. To go further, check out the <a href="/user_guide">user guide</a>.
+</p>
+
+</div>
+}

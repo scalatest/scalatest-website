@@ -1,0 +1,165 @@
+@releaseNotesPage("ScalaTest Release Notes") {
+<div style="text-align: left">
+
+<h1>ScalaTest Release Notes</h1>
+
+<a name="release161"></a>
+<h2>Changes in 1.6.1 (for Scala 2.9.x)</h2>
+
+<p>
+1.6.1 includes all the enhancements listed in the ScalaTest 1.5 release notes, plus a few other enhancements relative to 1.5:
+</p>
+
+<ul>
+<li>Reworked some of the Scaladoc documentation, particularly the documentation on how to use shared fixtures to make clearer the intent
+and tradeoffs of each way of doing shared fixtures</li>
+<li>Added the <code>BeforeAndAfter</code> trait and deprecated <code>BeforeAndAfterEachFunctions</code> and <code>BeforeAndAfterAllFunctions</code>.
+The <code>BeforeAndAfterEach/AllFunctions</code> traits were added in ScalaTest 1.3. They were deprecated for two reasons. One is that the trait names were too long. The other was that <code>BeforeAndAfterEachFunctions</code> has a <code>beforeEach</code> method that takes one parameter, and so does <code>BeforeAndAfterEach</code>. If these two traits were mixed together there was an (extremely unlikely) chance you could accidentally invoke the wrong <code>beforeEach</code>. <code>BeforeAndAfter</code> replaces <code>BeforeAndAfterEachFunctions</code>, with <code>before</code> replacing <code>beforeEach</code>. If you used <code>BeforeAndAfterEachFunctions</code>, you can get rid of the deprecation warning by changing your code to use <code>BeforeAndAfter</code> instead. If you used <code>BeforeAndAfterAllFunctions</code>, you can get rid of the deprecation warning by changing your code to use <code>BeforeAndAfterAll</code> instead.
+</li>
+<li>Deprecated the <code>MultipleFixtureXXX</code> traits in the <code>fixture</code> package.
+The <code>MultipleFixtureXXX</code> traits were deprecated because because using explicit conversions to implement multiple fixtures yields more readable code than using implicit conversions. You can continue to use the implicit conversion approach if you wish, of course. To get rid of the deprecation warning, change "<code>MultipleFixtureXXX</code>" to "<code>FixtureXXX with ConfigMapFixture</code>".
+</li>
+</ul>
+
+<a name="release151"></a>
+<h2>Changes in 1.5.1 (for Scala 2.8.1)</h2>
+
+<p>
+Version 1.5.1 has the same features as version 1.6.1, but ScalaTest works on Scala 2.8.1+ whereas ScalaTest 1.6.1 works on Scala 2.9.0+.
+See the release notes for ScalaTest 1.6.1 for information on the enhancements this release contains on top of ScalaTest 1.5.
+</p>
+
+<a name="release15"></a>
+<h2>Changes in 1.5 (for Scala 2.8.1)</h2>
+
+<ul>
+<li>Changed the method signature of <code>whenExecuting</code> in <code>EasyMockSugar</code> so that it takes a single var arg of mock objects instead of one mock object followed by a second var arg of optional mock objects. The original goal was to make it a compiler error to not pass no mock objects. But a user who had a list of mock objects (say, named <code>mocks</code>) wanted to say <code>whenExecuting(mocks: _*)</code>, and could not. I decided it was better to make that situation easy and just allow the error of passing no mocks to when executing to become a runtime error. Since this method will most likely be called inside test code, that error would simply result in a test failure. This change breaks binary compatibility, but not source code, unless someone was using named parameters in an invocation of <code>whenExecuting</code>, which is unlikely). So a simple recompile should suffice.</li>
+
+<li>Added <code>failedCodeFileName</code> and <code>failedCodeLineNumber</code> methods to the <code>StackDepth</code> trait. These are implemented already, so should be source (and even binary) compatible, unless you have a method of that name already in a custom exception you made that extends <code>StackDepth</code>. Likely no one does.</li>
+
+<li>Added <code>failureOf</code> method in a <code>FailureOf</code> trait. This method executes a passed block of code. If no exception is thrown it returns a <code>None</code>. Else if it is one of the exceptions that normally causes a test to fail in ScalaTest (all but some <code>Error</code> types), it returns that exception wrapped in a <code>Some</code>.</li>
+
+<li>Added <code>TableFor1</code> through <code>TableFor22</code>, which host tables of data on which property checks can be performed. Added a <code>TableDrivenPropertyChecks</code> trait that provides convenient factory methods for creating tables and checking properties against them. Fleshed out a <code>PropertyCheckFailedException</code> hierarchy, adding <code>PropertyCheckFailedException</code> ,<code>TableDrivenPropertyCheckFailedException</code>, and <code>GeneratorDrivenPropertyCheckFailedException</code> (deprecated <code>PropertyTestFailedException</code> in favor of the name <code>GeneratorDrivenPropertyCheckFailedException</code>).</li>
+
+<li>Enhanced the standard out/error reporters, and the reporters used with sbt, so they show truncated stacktraces if available even if the exception contains or is a "cause" exception. Previously if a cause existed, full stack traces were always displayed.</li>
+
+<li>Fixed tiny little display bug which caused "duplicate test name" to show up twice in the error message when duplicate tests were discovered in a <code>FunSuite</code> or <code>FixtureFunSuite</code>.</li>
+
+<li>Made <code>Iterable</code> and <code>Collection</code> into <code>Traversable</code> in ScalaTest matchers. This was the final step in bringing matchers up to date with Scala 2.8. In the process, some classes that implement the matchers DSL were renamed. This will be a breaking change only if someone did something that used those explicit names, which is highly unlikely. For example, the name of implicit conversion <code>convertIterableMatcherToArrayMatcher</code> was changed to <code>convertTraversableMatcherToArrayMatcher</code>. Most people would be using that implicitly, so the name change won't break code. Anyone who just used the ScalaTest matchers DSL, and did not attempt to explicitly use its internals, will only need to recompile. In the process, ScalaTest's matchers became more general. Where before they were only working with <code>Iterables</code>, they now they work with <code>Traversables</code>.</li>
+
+<li>Dropped the <code>Suite</code> self type from <code>Checkers</code>, and made a <code>Checkers</code> companion object that mixes in the <code>Checkers</code> trait: the self-less trait pattern.</li>
+
+<li>Overrode <code>compose</code> on many types that extend function, narrowing the result type to the ScalaTest type.  For example, overrode <code>compose[U]</code> on <code>Matcher[T]</code>, which extends <code>(T => MatchResult)</code>, and narrowed the result type to <code>Matcher[U]</code>. This way when you compose a <code>Matcher</code> and a function, you get a <code>Matcher</code> back. Also did this on <code>BeMatcher</code>, <code>BePropertyMatcher</code>, and <code>HavePropertyMatcher</code>.</li>
+
+<li>Made <code>Informer</code> extend <code>(String => Unit)</code>, the function type it always felt it was at heart.</li>
+
+<li>Added a companion object for <code>Matcher</code> with a factory method that allows you to create a <code>Matcher[T]</code> from a passed function of type <code>(T => MatchResult)</code>.</li>
+
+<li>Added a companion object for <code>BeMatcher</code> with a factory method that allows you to create a <code>BeMatcher[T]</code> from a passed function of type <code>(T => MatchResult)</code>.</li>
+
+<li>Added a companion object for <code>BePropertyMatcher</code> with a factory method that allows you to create a <code>BePropertyMatcher[T]</code> from a passed function of type <code>(T => MatchResult)</code>.</li>
+
+<li>Added a <code>toNoArgTest</code> method to <code>OneArgTest</code>, to make it easier to delegate to an inherited implementation of the form of <code>withFixture</code> that takes a <code>NoArgTest</code>.</li>
+
+<li>Created a <code>Suites</code> class that takes a variable length arg of suites to nest. Made <code>SuperSuite</code> extend this, and deprecated <code>SuperSuite</code>. <code>Suites</code> is a much clearer name, and I'd like to use "<code>SuperSuite</code>" and "<code>SuperSpec</code>" as the suggested name of a trait or class that mixes in your favorite things.</li>
+
+<li>Created a <code>Specs</code> class that performs the same function as <code>Suites</code>, but sounds more BDDish.</li>
+
+<li>Removed <code>org.scalatest.BeforeAndAfter</code> trait, which had been deprecated since 1.0.</li>
+
+<li>Removed <code>groups</code> method from <code>Suite</code>, which had been deprecated since 1.0.</li>
+
+<li>Removed <code>org.scalatest.Group</code> class, which had been deprecated since 1.0.</li>
+
+<li>Removed <code>org.scalatest.Report</code> class, which had been deprecated since 1.0.</li>
+
+<li>Removed <code>org.scalatest.SpecReport</code> class, which had been deprecated since 1.0.</li>
+
+<li>Removed the <code>failedTestCodeStackDepth</code> and <code>failedTestCodeFileNameAndLineNumberString</code> methods from <code>StackDepth</code> and its descendants. These had both been deprecated since 1.0.</li>
+
+<li>Removed trait <code>Rerunnable</code>, which had been deprecated since 1.0.</li>
+
+<li>Removed ScalaTestTask, which had been deprecated since 1.0.</li>
+
+<li>Started requiring <code>TagAnnotation</code> for tagging methods of <code>Suite</code>. As of 1.5 any annotations that aren't themselves annotated with <code>org.scalatest.TagAnnotation</code> will not be interpretted as tags. Interpretting arbitrary annotations as tags had been deprecated since 1.0.</li>
+
+<li>Stop running nested suites in <code>runNestedSuites</code> and tests in <code>runTests</code> after the stopper returns true. The current test or nested suite running when the stop flag is set to true will continue, but will be the last, when running sequentially.  When running tests in parallel, more than one may be currently running, which means more than one may continue to completion before the flag is again checked, after which it will stop. A <code>Stopper</code> is a polite request to stop, so some implementations of <code>Suite</code> may not stop right away once a stop is requested, but prior to this release, most traits in ScalaTest kept right on going after a stop was requested.</li>
+
+<li>Fixed bug whereby passing in a non-existing test name to run on <code>FunSuite</code> and <code>FixtureFunSuite</code> would result in a failed test rather than an <code>IllegalArgumentException</code>.</li>
+
+<li>Insert line breaks where they should be in the GUI reporter's message display. This made <code>PropertyCheckFailedExceptions</code> read more nicely in the GUI Reporter.</li>
+
+<li>Enhanced <code>StackDepthException</code> by adding a new constructor. Moved the formerly primary constructor, which took an <code>Option[String]</code> message, <code>Option[Throwable]</code> cause, and <code>Int</code> <code>failedCodeStackDepth</code>, to be an auxiliary constructor. The new primary constructor takes functions that produce a message and the stack depth. This allows the calculation of these to be delayed. One reason is to avoid doing the processing to find the stack depth an build the string if it is never used, which can happen, for example, during a shrink phase of a failed property check. It also enables the message to include the failed code file name and line number. Also added one other auxiliary constructor, and modified <code>TestFailedException</code>, <code>NotAllowedException</code>, <code>DuplicateTestNameException</code>, <code>TestRegistrationClosedException</code>,  but left the previous primary constructor as an auxiliary contructor in each case, so existing code will not break. (New exceptions <code>PropertyTestFailedException</code>, <code>TableDrivenPropertyTestFailedException</code>, and <code>GeneratorDrivenPropertyTestFailedException</code> also take the same functions.)</li>
+
+<li>Changed the test names in <code>FeatureSpec</code> and <code>FixtureFeatureSpec</code> so they include <code>"Scenario:"</code>. Given this <code>FeatureSpec</code>:
+
+<pre>
+class MySpec extends FeatureSpec {
+  feature("Remote control mute button") {
+    scenario("Mute button pressed when TV not muted") {}
+    scenario("Mute button pressed when TV is muted") {}
+  }
+}
+</pre>
+
+<p>
+The test names prior to 1.5 would have been:
+</p>
+
+<pre>
+Feature: Remote control mute button Mute button pressed when TV is muted
+Feature: Remote control mute button Mute button pressed when TV not muted
+</pre>
+
+<p>
+And in 1.5 they are:
+</p>
+
+<pre>
+Feature: Remote control mute button Scenario: Mute button pressed when TV is muted
+Feature: Remote control mute button Scenario: Mute button pressed when TV not muted
+</pre>
+
+<p>
+This is a breaking change if anyone has written code that depends on those test name strings. It is unlikely anyone has done that, but if so, the fix is to insert <code>"Scenario: "</code> between the feature part and the scenario part of the test name.
+</p></li>
+
+<li>Removed four overloaded execute methods on <code>Suite</code> and replaced them with one execute method that takes parameters with default argument values. This will not break source code unless you invoked the overloaded form of execute that takes a config map only. I figure it is unlikely anyone has done that, because config maps are used rarely and execute is likely most often called from an interpreter command not source code. If this does strike you, however, my apologies. The fix is to change this:
+
+<pre>
+mySuite.execute(myConfigMap)
+</pre>
+
+<p>
+to this:
+</p>
+
+<pre>
+mySuite.execute(configMap = myConfigMap)
+</pre>
+
+<p>
+At the call site.
+</p>
+
+<p>
+In addition to <code>testName</code> and <code>configMap</code>, which you could pass to execute prior to 1.5, in 1.5 you can also configure the run with parameters <code>color</code>, <code>durations</code>, <code>shortstacks</code>, <code>fullstacks</code>, and <code>stats</code>. See the Scaladoc documenation for execute for details on these parameters.
+</p></li>
+
+<li>Enhanced TDD-style traits so that they send formatted events. Previously only BDD-style traits sent formatted events. This change affects the output of <code>Suite</code>, <code>FunSuite</code>, <code>JUnit3Suite</code>, <code>JUnitSuite</code>, and <code>TestNGSuite</code>.</li>
+
+<li>Enhanced style traits that allow nesting so that the output shows up nested as well. Previously all style traits flattened their output to at most one level of indentation. This change affects the output of <code>Spec</code> and <code>WordSpec</code>.</li>
+
+<li>Previously you could choose between short and full stack traces in reporters that printed strings (such as the standard out reporter). Added an option in 1.5 to show no stack trace for stack depth exceptions, and made this the default. Added a <code>'S'</code> configuration option for reporters that selects short stack traces. This option can be specified to <code>Runner</code>, the ant task, and sbt via the <code>ScalaTestFramework</code> implementation.</li>
+
+<li>Added two new style traits, <code>PropSpec</code> and <code>FreeSpec</code>, including sister traits in the fixture package: <code>FixturePropSpec</code>, <code>FixtureFreeSpec</code>, <code>MultipleFixturePropSpec</code>, and <code>MultipleFixtureFreeSpec</code>.</li>
+
+<li>Severed the inheritance relationship between function types and several of the traits passed to <code>Suite.run</code>. This was done to allow tools vendors to implement these types in Java. This could be a breaking change if a user used any of these types as a function. That is very unlikely, but just in case, also added implicit conversions from each type to the corresponding function type. This affected traits <code>Reporter</code>, <code>Stopper</code>, and <code>Distributor</code>.</li>
+
+<li>Added the <code>org.scalatest.Shell</code> and an <code>org.scalatest</code> package object that implements "the ScalaTest shell," its DSL for the Scala interpreter.</li>
+
+<li>Enhanced sbt integration so that <code>SuiteStarting/Completed/Aborted</code> events are fired. This makes the output when running with sbt consistent with the output when running via the <code>Runner</code> with the standard out reporter. (Mainly, you get the simple name of the suite class at the top, terminated by a colon.)</li>
+</ul>
+
+</div>
+}

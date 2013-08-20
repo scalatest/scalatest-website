@@ -1,0 +1,136 @@
+@releaseNotesPage("ScalaTest Release Notes") {
+<div style="text-align: left">
+
+<h1>ScalaTest Release Notes</h1>
+
+<a name="release172"></a>
+<h2>Changes in 1.7.2 (for Scala 2.9.0+ and Scala 2.8.1+)</h2>
+
+<p>
+ScalaTest 1.7.2 is identical to 1.7.1 except for two changes: the argument "sequential" is ignored to facilitate Play 2.0 integration and
+a bug in the ScalaTest Framework has been fixed. The bug that was fixed was that when running with sbt, ScalaTest would keep a thread going
+after the tests were completed. This thread is now not created in the first place.
+</p>
+
+<a name="release171"></a>
+<h2>Changes in 1.7.1 (for Scala 2.9.0+ and Scala 2.8.1+)</h2>
+
+<p>
+ScalaTest 1.7.1 is identical to 1.7 except for one change: the Guice dependency in the pom.xml file has been made optional. This minor
+pom file error in 1.7 unfortunately caused a much more serious deployment problem: the wrong jar files were deployed to scala-tools.org (mirrored
+on Maven Central) under artifact IDs
+scalatest_2.8.2, scalatest_2.9.0-1, and scalatest_2.9.1. The jar files for 1.7.RC2 were incorrectly deployed instead. We redeployed
+correct 1.7 jar files over the top as soon as we discovered the problem, but because the incorrect jars escaped and were in the repository for a while
+we released 1.7.1 one day later so people can be sure they are getting good jar files from the Maven repositories.
+</p>
+
+<p>
+To see the changes in 1.7.1 from the previous releases (1.6.1 and 1.5.1), therefore, look at the <a href="#release17">release notes for 1.7</a>.
+</p>
+
+<a name="release17"></a>
+<h2>Changes in 1.7 (for Scala 2.9.0+ and Scala 2.8.1+)</h2>
+
+<p>
+ScalaTest 1.7 is source (but not necessarily binary) compatible with previous releases. To upgrade from 1.5.1 or 1.6.1, you should only
+need to do a clean build.
+</p>
+
+<p>
+This release includes the following enhancements, bug fixes, dependency changes, and deprecations: 
+</p>
+
+<p>
+<em>Enhancements:</em>
+</p>
+
+<ul>
+<li>Added trait <code>Inside</code>, which lets you make assertions about values 
+extracted from an object via a pattern match</li>
+<li>Added traits <code>OptionValues</code>, <code>EitherValues</code>, and <code>PartialFunctionValues</code>, 
+which allow you to make one-liner assertions about values that 
+<em>should</em> exist in <code>Option</code>s, <code>Either</code>s, and <code>PartialFunction</code>s</li>
+<li>Added extra methods on <code>MockitoSugar</code> for new mock methods added to <code>Mockito</code></li>
+<li>Added <code>WrapWith</code> annotation to enable ScalaTest to run non-<code>Suite</code>s, 
+similar to JUnit's <code>RunWith</code> annotation</li>
+<li>Added trait <code>NonImplicitAssertions</code>, which turns off the lone implicit 
+conversion you get by default in a ScalaTest suite</li>
+<li>Made <code>Event</code> and <code>Ordinal</code> serializable, as well as internal 
+implementations of <code>Rerunner</code>, to make it easier to run tests in a 
+different VM across a network</li>
+<li>OSGI-enabled ScalaTest's jar file</li>
+<li>Added companion objects for <code>EasyMockSugar</code> and <code>MockitoSugar</code>, selfless traits</li>
+<li>Improved Scaladoc examples for shared tests, removing dependency on 
+test order in the <code>SharedBehaviors</code> traits</li>
+</ul>
+
+<p>
+<em>Bug fixes</em>
+</p>
+
+<ul>
+<li>Made <code>OneInstancePerTest</code> report tests tagged as ignored as Ignored 
+rather than running them. To fix this, had to change the semantics of 
+run slightly, but in a way that is unlikely to break any user code. 
+Now if you pass the name of a test marked as ignored to <code>Suite.run</code>, the 
+test will be reported as ignored. Previously it would be run even 
+though it was marked as ignored. So now ignore always means ignore 
+(and that is arguably an improvement because it is more consistent). 
+The upshot is that if you want to run a test marked as ignored, you 
+need to take the ignore annotation off, then run it.</li>
+<li>Added a hack to fire a test failed event for a test named <code>"!!! Suite 
+Aborted !!!"</code> in the case of a <code>SuiteAborted</code> event when running with 
+sbt. Will eventually help enhance sbt's <code>Framework</code> to do this the right 
+way, but for now, at least sbt won't think that nothing went wrong.</li>
+<li>Fixed bug in <code>GeneratorDrivenPropertyChecks</code>. Previously if you 
+supplied generator, name string tuples to <code>forAll</code>, and the property 
+check failed, the names you supplied wouldn't show up in the error 
+message. Instead the error message would just show generic names 
+<code>arg0</code>, <code>arg1,</code> <em>etc.</em> Now it shows the supplied names.</li>
+</ul>
+
+<p>
+<em>Dependency Changes</em>
+</p>
+
+<ul>
+<li>Upgraded EasyMock from 3.0 to 3.1</li>
+<li>Upgraded Added a dependency that TestNG needed on Guice 3.0</li>
+<li>Upgraded JUnit from 4.4 to 4.10</li>
+<li>Upgraded TestNG from 5.7 to 6.3.1. This was the tricky one, because 
+some binary incompatible things happened in TestNG between 5.7 and 
+6.3.1. We used reflection internally to deal with it dynamically, so 
+you should be able to still use older versions of TestNG without 
+getting <code>ClassNotFoundErrors</code></li>
+</ul>
+
+<p>
+<em>Deprecations</em>
+</p>
+
+<ul>
+<li>Deprecated -t in favor of -b in <code>Runner</code>, for running TestNG test 
+suites (-t will still work during deprecation cycle, but you'll get a 
+deprecation warning.) 
+<li>Deprecated <code>Rerunner</code> with a note asking if anyone is using it. If we 
+don't hear back that anyone is using it, there's a good chance we'll 
+remove it in 2.0  (<code>Rerunner</code> will still work during deprecation cycle, 
+but you'll get a deprecation warning.) 
+<li>Deprecated <code>org.scalatest.fixture.FixtureX</code> in favor of 
+<code>org.scalatest.fixture.X</code>. So <code>fixture.FixtureWordSpec</code> became 
+<code>fixture.WordSpec</code>, <code>fixture.FixtureFunSuite</code> became <code>fixture.FunSuite</code>, 
+<em>etc.</em> (The old names will still work during deprecation cycle, but 
+you'll get a deprecation warning until you change the names.) 
+<li>Deprecated <code>that</code> in favor of <code>which</code> in <code>WordSpec</code> and 
+<code>fixture.WordSpec</code> (<code>that</code> will still work during the deprecation cycle, 
+but you'll get a deprecation warning until you change uses to <code>which</code>. 
+We plan to reuse <code>that</code> for a different purpose in the future.) 
+<li>Deprecated <code>org.scalatest.Spec</code> in favor of <code>org.scalatest.FunSpec</code>, and 
+<code>org.scalatest.fixture.FixtureSpec</code> in favor of 
+<code>org.scalatest.fixture.FunSpec</code>. (The old names will still work during 
+the deprecation cycle, but you'll get a deprecation warning. We plan 
+to reuse <code>Spec</code> for a different purpose in the future.) 
+</ul>
+
+</div>
+}

@@ -1,0 +1,257 @@
+@widePage("Getting started with TestNG in Scala") {
+<div style="text-align: left">
+
+<h1>Getting started with TestNG in Scala</h1>
+
+<p>
+If you want to write TestNG tests in Scala that you run with TestNG, you can
+enjoy more concise code by using ScalaTest's assertions and/or matchers.
+To use assertions, mix <code>org.scalatest.Assertions</code> into your test class:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">import</span> org.scalatest.Assertions
+<span class="stReserved">import</span> scala.collection.mutable.ListBuffer
+<span class="stReserved">import</span> org.testng.Assert._
+<span class="stReserved">import</span> org.testng.annotations.Test
+<span class="stReserved">import</span> org.testng.annotations.Configuration
+
+<span class="stReserved">class</span> <span class="stType">ExampleSuite</span> <span class="stReserved">extends</span> <span class="stType">Assertions</span> {
+
+  <span class="stReserved">var</span> sb: <span class="stType">StringBuilder</span> = _
+  <span class="stReserved">var</span> lb: <span class="stType">ListBuffer[String]</span> = _
+
+  @@<span class="stType">Configuration</span> { <span class="stReserved">val</span> beforeTestMethod = <span class="stReserved">true</span> }
+  <span class="stReserved">def</span> initialize() {
+    sb = <span class="stReserved">new</span> <span class="stType">StringBuilder</span>(<span class="stQuotedString">"ScalaTest is "</span>)
+    lb = <span class="stReserved">new</span> <span class="stType">ListBuffer[String]</span>
+  }
+
+  @@<span class="stType">Test</span> <span class="stReserved">def</span> verifyEasy() { <span class="linecomment">// Uses TestNG-style assertions</span>
+    sb.append(<span class="stQuotedString">"easy!"</span>)
+    assertEquals(<span class="stQuotedString">"ScalaTest is easy!"</span>, sb.toString)
+    assertTrue(lb.isEmpty)
+    lb += <span class="stQuotedString">"sweet"</span>
+    <span class="stReserved">try</span> {
+      <span class="stQuotedString">"verbose"</span>.charAt(-<span class="stLiteral">1</span>)
+      fail()
+    }
+    <span class="stReserved">catch</span> {
+      <span class="stReserved">case</span> e: <span class="stType">StringIndexOutOfBoundsException</span> =&gt; <span class="linecomment">// Expected</span>
+    }
+  }
+
+  @@<span class="stType">Test</span> <span class="stReserved">def</span> verifyFun() { <span class="linecomment">// Uses ScalaTest assertions</span>
+    sb.append(<span class="stQuotedString">"fun!"</span>)
+    assert(sb.toString === <span class="stQuotedString">"ScalaTest is fun!"</span>)
+    assert(lb.isEmpty)
+    lb += <span class="stQuotedString">"sweeter"</span>
+    intercept[<span class="stType">StringIndexOutOfBoundsException</span>] {
+      <span class="stQuotedString">"concise"</span>.charAt(-<span class="stLiteral">1</span>)
+    }
+  }
+}
+</pre>
+
+<p>
+You can see the difference in conciseness between the TestNG assertions used by <code>verifyEasy</code> and the ScalaTest assertions
+used by <code>verifyFun</code>.  If you compile this class with the Scala compiler, TestNG will happily run the resulting class
+file. Here's how you compile it:
+</p>
+
+<pre class="scala">
+scalac -cp scalatest-1.5.jar:testng.jar ExampleSuite.scala
+</pre>
+
+<p>
+Here's one way to run it using TestNG:
+</p>
+
+<pre class="scala">
+$ scala -cp .:scalatest-1.5.jar:testng.jar org.testng.TestNG -testclass ExampleSuite
+[Parser] Running:
+  Command line suite
+
+
+===============================================
+Command line suite
+Total tests run: 2, Failures: 0, Skips: 0
+===============================================
+</pre>
+
+<p>
+If you wish to give yourself the option of running with either TestNG or ScalaTest, mix in <code>org.scalatest.testng.TestNGSuite</code>. Trait
+<code>TestNGSuite</code> already mixes in <code>Assertions</code>:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">import</span> org.scalatest.testng.TestNGSuite
+<span class="stReserved">import</span> scala.collection.mutable.ListBuffer
+<span class="stReserved">import</span> org.testng.Assert._
+<span class="stReserved">import</span> org.testng.annotations.Test
+<span class="stReserved">import</span> org.testng.annotations.Configuration
+
+<span class="stReserved">class</span> <span class="stType">ExampleSuite</span> <span class="stReserved">extends</span> <span class="stType">TestNGSuite</span> {
+
+  <span class="stReserved">var</span> sb: <span class="stType">StringBuilder</span> = _
+  <span class="stReserved">var</span> lb: <span class="stType">ListBuffer[String]</span> = _
+
+  @@<span class="stType">Configuration</span> { <span class="stReserved">val</span> beforeTestMethod = <span class="stReserved">true</span> }
+  <span class="stReserved">def</span> initialize() {
+    sb = <span class="stReserved">new</span> <span class="stType">StringBuilder</span>(<span class="stQuotedString">"ScalaTest is "</span>)
+    lb = <span class="stReserved">new</span> <span class="stType">ListBuffer[String]</span>
+  }
+
+  @@<span class="stType">Test</span> <span class="stReserved">def</span> verifyEasy() { <span class="linecomment">// Uses TestNG-style assertions</span>
+    sb.append(<span class="stQuotedString">"easy!"</span>)
+    assertEquals(<span class="stQuotedString">"ScalaTest is easy!"</span>, sb.toString)
+    assertTrue(lb.isEmpty)
+    lb += <span class="stQuotedString">"sweet"</span>
+    <span class="stReserved">try</span> {
+      <span class="stQuotedString">"verbose"</span>.charAt(-<span class="stLiteral">1</span>)
+      fail()
+    }
+    <span class="stReserved">catch</span> {
+      <span class="stReserved">case</span> e: <span class="stType">StringIndexOutOfBoundsException</span> =&gt; <span class="linecomment">// Expected</span>
+    }
+  }
+
+  @@<span class="stType">Test</span> <span class="stReserved">def</span> verifyFun() { <span class="linecomment">// Uses ScalaTest assertions</span>
+    sb.append(<span class="stQuotedString">"fun!"</span>)
+    assert(sb.toString === <span class="stQuotedString">"ScalaTest is fun!"</span>)
+    assert(lb.isEmpty)
+    lb += <span class="stQuotedString">"sweeter"</span>
+    intercept[<span class="stType">StringIndexOutOfBoundsException</span>] {
+      <span class="stQuotedString">"concise"</span>.charAt(-<span class="stLiteral">1</span>)
+    }
+  }
+}
+</pre>
+
+<p>
+Because <code>ExampleSuite</code> is still a valid TestNG test class, it can still be run with TestNG:
+</p>
+
+<pre class="scala">
+$ scala -cp .:scalatest-1.5.jar:testng.jar org.testng.TestNG -testclass ExampleSuite
+[Parser] Running:
+  Command line suite
+
+
+===============================================
+Command line suite
+Total tests run: 2, Failures: 0, Skips: 0
+===============================================
+</pre>
+
+<p>
+But because it is also a ScalaTest <code>Suite</code>, you can now also run it with ScalaTest:
+</p>
+
+<pre class="scala">
+$ scala -cp scalatest-1.5.jar:testng.jar org.scalatest.run ExampleSuite
+<span class="cyanincolor">Run starting. Expected test count is: 2</span>
+<span class="greenincolor">ExampleSuite:</span>
+[Parser] Running:
+  Command line suite
+
+<span class="greenincolor">- verifyEasy
+- verifyFun</span>
+
+===============================================
+Command line suite
+Total tests run: 2, Failures: 0, Skips: 0
+===============================================
+
+<span class="cyanincolor">Run completed in 315 milliseconds.
+Total number of tests run: 2
+Suites: completed 2, aborted 0
+Tests: succeeded 2, failed 0, ignored 0, pending 0</span>
+<span class="greenincolor">All tests passed.</span>
+</pre>
+
+<p>
+One final variation you may wish to try is to use ScalaTest's matchers DSL. Simply mix
+in <code>ShouldMatchers</code> (or <code>MustMatchers</code> if you prefer "must" to "should").
+Here's an example:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">import</span> org.scalatest.testng.TestNGSuite
+<span class="stReserved">import</span> org.scalatest.matchers.ShouldMatchers
+<span class="stReserved">import</span> scala.collection.mutable.ListBuffer
+<span class="stReserved">import</span> org.testng.Assert._
+<span class="stReserved">import</span> org.testng.annotations.Test
+<span class="stReserved">import</span> org.testng.annotations.Configuration
+
+<span class="stReserved">class</span> <span class="stType">ExampleSuite</span> <span class="stReserved">extends</span> <span class="stType">TestNGSuite</span> <span class="stReserved">with</span> <span class="stType">ShouldMatchers</span> {
+
+  <span class="stReserved">var</span> sb: <span class="stType">StringBuilder</span> = _
+  <span class="stReserved">var</span> lb: <span class="stType">ListBuffer[String]</span> = _
+
+  @@<span class="stType">Configuration</span> { <span class="stReserved">val</span> beforeTestMethod = <span class="stReserved">true</span> }
+  <span class="stReserved">def</span> initialize() {
+    sb = <span class="stReserved">new</span> <span class="stType">StringBuilder</span>(<span class="stQuotedString">"ScalaTest is "</span>)
+    lb = <span class="stReserved">new</span> <span class="stType">ListBuffer[String]</span>
+  }
+
+  @@<span class="stType">Test</span> <span class="stReserved">def</span> verifyEasy() { <span class="linecomment">// Uses ScalaTest assertions</span>
+    sb.append(<span class="stQuotedString">"easy!"</span>)
+    assert(sb.toString === <span class="stQuotedString">"ScalaTest is easy!"</span>)
+    assert(lb.isEmpty)
+    lb += <span class="stQuotedString">"sweet"</span>
+    intercept[<span class="stType">StringIndexOutOfBoundsException</span>] {
+      <span class="stQuotedString">"concise"</span>.charAt(-<span class="stLiteral">1</span>)
+    }
+  }
+
+  @@<span class="stType">Test</span> <span class="stReserved">def</span> verifyFun() { <span class="linecomment">// Uses ScalaTest matchers</span>
+    sb.append(<span class="stQuotedString">"fun!"</span>)
+    sb.toString should be (<span class="stQuotedString">"ScalaTest is fun!"</span>)
+    lb should be (<span class="stQuotedString">'empty</span>)
+    lb += <span class="stQuotedString">"sweet"</span>
+    evaluating { <span class="stQuotedString">"concise"</span>.charAt(-<span class="stLiteral">1</span>) } should produce [<span class="stType">StringIndexOutOfBoundsException</span>]
+  }
+}
+</pre>
+
+<p>
+As before, you can run this class with either JUnit or ScalaTest:
+</p>
+
+<pre class="scala">
+$ scala -cp .:scalatest-1.5.jar:testng.jar org.testng.TestNG -testclass ExampleSuite
+[Parser] Running:
+  Command line suite
+
+
+===============================================
+Command line suite
+Total tests run: 2, Failures: 0, Skips: 0
+===============================================
+
+$ scala -cp scalatest-1.5.jar:testng.jar org.scalatest.run ExampleSuite
+<span class="cyanincolor">Run starting. Expected test count is: 2</span>
+<span class="greenincolor">ExampleSuite:</span>
+[Parser] Running:
+  Command line suite
+
+<span class="greenincolor">
+- verifyEasy
+- verifyFun</span>
+
+===============================================
+Command line suite
+Total tests run: 2, Failures: 0, Skips: 0
+===============================================
+
+<span class="cyanincolor">Run completed in 315 milliseconds.
+Total number of tests run: 2
+Suites: completed 2, aborted 0
+Tests: succeeded 2, failed 0, ignored 0, pending 0</span>
+<span class="greenincolor">All tests passed.</span>
+</pre>
+
+</div>
+
+}
