@@ -12,9 +12,32 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ */   
 package test
 
 import org.scalatest._
 
-abstract class UnitSpec extends WordSpec with Matchers with OptionValues
+import play.api.test._
+import play.api.test.Helpers._
+
+class ExampleUnitSpec extends UnitSpec {
+  
+  "Application" should {
+    
+    "send 404 on a bad request" in {
+      running(FakeApplication()) {
+        route(FakeRequest(GET, "/boum")) shouldBe None
+      }
+    }
+    
+    "render the index page" in {
+      running(FakeApplication()) {
+        val home = route(FakeRequest(GET, "/")).get
+        
+        status(home) shouldBe OK
+        contentType(home).value shouldBe "text/html"
+        contentAsString(home) should include ("ScalaTest")
+      }
+    }
+  }
+}
