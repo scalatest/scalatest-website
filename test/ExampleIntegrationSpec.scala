@@ -25,11 +25,9 @@ class ExampleIntegrationSpec extends IntegrationSpec {
   "Application" should {
     
     "work from within a browser" in {
-      running(TestServer(3333), HTMLUNIT) { browser =>
-
-        browser.goTo("http://localhost:3333/")
-
-        browser.pageSource should include ("ScalaTest")
+      running(TestServer(3333)) {
+        go to "http://localhost:3333/"
+        pageSource should include ("ScalaTest")
       }
     }
   }
