@@ -9,6 +9,7 @@ object ApplicationBuild extends Build {
 
     val appDependencies = Seq(
       // Add your project dependencies here,
+      "org.scalatest" % "scalatest_2.10" % "2.0.RC1-SNAP4" % "test"
     )
 
     val main = play.Project(appName, appVersion, appDependencies).settings(
