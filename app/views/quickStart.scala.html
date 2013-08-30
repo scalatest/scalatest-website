@@ -14,6 +14,12 @@
  * limitations under the License.
  *@
 
+@import controllers.Application.latestScaladoc
+@import controllers.Application.milestoneVersion
+@import controllers.Application.latestVersion
+@import controllers.Application.milestoneJar
+@import controllers.Application.majorMinorScalaVersion
+
 @nonHomePage("Quick Start") {
 
 <div style="text-align: left">
@@ -21,31 +27,133 @@
 <h1>ScalaTest quick start</h1>
 
 <p>
-ScalaTest supports three main styles of testing out of the box. If you don't have a preference, <a href="getting_started_with_fun_suite">start with <code>FunSuite</code></a>:
+<em>Note: We recommend that people starting out with ScalaTest use the latest 2.0 milestone version, @{milestoneVersion}. 2.0 is feature
+complete and will released as RC1 as soon as the Scaladoc documentation is finished. As there are some breaking changes upgrading from
+@{latestVersion} to 2.0, you're better off starting out with @{milestoneVersion}.</em>
 </p>
 
 <p>
-<ul>
-<li>For test-driven development (TDD) <a href="@routes.Application.gettingStartedWithFunSuite")">start with <code>FunSuite</code></a></li>
-</ul>
+To get started with ScalaTest, copy this <a href="@latestScaladoc/#org.scalatest.FunSpec"><code>FlatSpec</code></a>, into a file
+named <code>ExampleSpec.scala</code>:
 </p>
+
+<pre class="stHighlighted">
+<span class="stReserved">import</span> org.scalatest._
+
+<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> {
+
+  <span class="stQuotedString">"A Stack"</span> should <span class="stQuotedString">"pop values in last-in-first-out order"</span> in {
+    <span class="stReserved">val</span> stack = <span class="stReserved">new</span> <span class="stType">Stack[Int]</span>
+    stack.push(<span class="stLiteral">1</span>)
+    stack.push(<span class="stLiteral">2</span>)
+    stack.pop() should be (<span class="stLiteral">2</span>)
+    stack.pop() should be (<span class="stLiteral">1</span>)
+  }
+
+  it should <span class="stQuotedString">"throw NoSuchElementException if an empty stack is popped"</span> in {
+    <span class="stReserved">val</span> emptyStack = <span class="stReserved">new</span> <span class="stType">Stack[Int]</span>
+    a [<span class="stType">NoSuchElementException</span>] should be thrownBy {
+      emptyStack.pop()
+    } 
+  }
+}
+</pre>
+
 <p>
-<ul>
-<li>For behavior-driven development (BDD), <a href="getting_started_with_fun_spec">start with <code>FunSpec</code></a></li>
-</ul>
-</p>
-<p>
-<ul>
-<li>For functional, integration, or acceptance testing, <a href="getting_started_with_feature_spec">start with <code>FeatureSpec</code></a></li>
-</ul>
+In a <code>FlatSpec</code>, you combine tests with text that specifies the behavior being tested.
+Each test name specifies a bit of behavior about a <em>subject</em> under test.
+You start by identifying the subject with a string name (here, <code>"A Stack"</code>), write <code>should</code>, 
+then write another string that describes the behavior expected of the subject.
+The code of the test appears in curly braces after an <code>in</code> following the text.
 </p>
 
 <p>
-ScalaTest also supports writing <a href="writing_junit_and_testng_tests_in_scala">JUnit and TestNG</a> tests in Scala.
+You can compile this <code>FlatSpec</code> like this (using <a href="@{milestoneJar}">this Jar file</a>):
+</p>
+
+<pre class="scala">
+$ scalac -cp scalatest_@{majorMinorScalaVersion}-@{milestoneVersion}.jar ExampleSpec.scala
+</pre>
+
+<p>
+Here's how you run it:
+</p>
+
+<pre class="scala">
+$ scala -cp scalatest_@{majorMinorScalaVersion}-@{milestoneVersion}.jar org.scalatest.run ExampleSpec
+<span class="cyanincolor">Run starting. Expected test count is: 2</span>
+<span class="greenincolor">ExampleSpec:
+A Stack
+- should pop values in last-in-first-out order
+- should throw NoSuchElementException if an empty stack is popped</span>
+<span class="cyanincolor">Run completed in 76 milliseconds.
+Total number of tests run: 2
+Suites: completed 1, aborted 0
+Tests: succeeded 2, failed 0, ignored 0, pending 0</span>
+<span class="greenincolor">All tests passed.</span>
+</pre>
+
+<p>
+To get going on a project, first select a style for unit testing. If you don't have a preference,
+we recommend starting with <code>FlatSpec</code> for unit testing. Why? Because <code>FlatSpec</code> has a flat structure, similar
+to the XUnit-style tests familiar to most users, but encourages descriptive test names written in a specification style.
 </p>
 
 <p>
-(For a quick guide to ScalaTest's style traits, see the <a href="user_guide/selecting_a_style#styleTraitUseCases">Style trait use cases</a> table in the user guide.)
+(For a quick guide to ScalaTest's style traits, see the <a href="user_guide/selecting_a_style#styleTraitUseCases">Style trait
+use cases</a> table in the user guide.)
+</p>
+
+<p>
+Once you've selected your unit testing style, create a base class (not a trait) for your unit tests. You should mix into this class
+all the traits you think you'll use a lot. You can use any name, but we recommend the name <code>UnitSpec</code>.
+Here's an example:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">package</span> com.mycompany.myproject
+
+<span class="stReserved">class</span> <span class="stType">UnitSpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> <span class="stReserved">with</span> <span class="stType">OptionValues</span> <span class="stReserved">with</span> <span class="stType">Inside</span>
+</pre>
+
+<p>
+You can now write unit tests for your project using your custom base class:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">package</span> com.mycompany.myproject
+
+<span class="stReserved">import</span> org.scalatest._
+
+<span class="stReserved">class</span> <span class="stType">MySpec</span> <span class="stReserved">extends</span> <span class="stType">UnitSpec</span> {
+  // Your tests here
+}
+</pre>
+
+<p>
+To include ScalaTest in your sbt project, simply add this line:
+</p>
+
+<pre class="stHighlighted">
+libraryDependencies += <span class="stQuotedString">"org.scalatest"</span> % <span class="stQuotedString">"scalatest_@{majorMinorScalaVersion}"</span> % <span class="stQuotedString">"@{milestoneVersion}"</span> % <span class="stQuotedString">"test"</span>
+</pre>
+
+<p>
+To include ScalaTest in your Maven project, use:
+</p>
+
+<pre class="stHighlighted">
+&lt;dependency&gt;
+  &lt;groupId&gt;scalatest&lt;/groupId&gt;
+  &lt;artifactId&gt;scalatest_2.10&lt;/artifactId&gt;
+  &lt;version&gt;@{milestoneVersion}&lt;/version&gt;
+  &lt;scope&gt;test&lt;/scope&gt;
+&lt;/dependency&gt;
+</pre>
+
+
+<p>
+You are off and running! For more information, consult the <a href="/user_guide">user guide</a>.
 </p>
 
 <p>
