@@ -27,6 +27,10 @@
 </p>
 
 <p>
+<em><a href="#192rc1">Click here for info on the latest ScalaTest 1.9.2 release candidate: ScalaTest 1.9.2-RC1</a>.</em>
+</p>
+
+<p>
 <strong>ScalaTest 1.9.1</strong> (for 2.10.0+ and 2.9.0+) is available the
 <a href="https://oss.sonatype.org/content/groups/public/org/scalatest/">Sonatype OSS</a> Maven repository (which is mirrored on the
 central Maven repository as well):
@@ -590,7 +594,7 @@ If you don't have it already, you'll also need Scala. You can use any 2.10 relea
 
 <p>
 For a list of the changes in this release, see the <a href="/release_notes/2.0">release notes</a>. For detailed
-documentation, see the <a href="http://www.artima.com/docs-scalatest-2.0.M6/#org.scalatest.FlatSpec")">ScalaTest 2.0.M6 Scaladoc</a>.
+documentation, see the <a href="http://www.artima.com/docs-scalatest-2.0.M6/#org.scalatest.FlatSpec">ScalaTest 2.0.M6 Scaladoc</a>.
 </p>
 
 <p>
@@ -598,6 +602,77 @@ documentation, see the <a href="http://www.artima.com/docs-scalatest-2.0.M6/#org
 the sbt 0.13 release, which includes a new Framework API supported in ScalaTest 2.0. ScalaTest 2.0.M6 is essentially feature
 complete, but not documentation complete. We will release 2.0.RC1 once we complete the documentation.</em>
 </p>
+
+<hr />
+
+<a name="192rc1"></a>
+
+<p>
+<strong>ScalaTest 1.9.2-RC1</strong> (for 2.10.0+ and 2.9.0+) is available the
+<a href="https://oss.sonatype.org/content/groups/public/org/scalatest/">Sonatype OSS</a> Maven repository (which is mirrored on the
+central Maven repository as well):
+</p>
+
+<ul>
+<li>group id: org.scalatest</li>
+<li>artifact id: scalatest_2.10 (for Scala 2.10.0+) or scalatest_2.9.0 (for Scala 2.9.0+)</li>
+<li>version: 1.9.2-RC1</li>
+</ul>
+
+<p>
+Or via sbt (version 0.10 or higher) with, (for Scala 2.10.0+):
+</p>
+
+<pre class="stGrayback">
+libraryDependencies += "org.scalatest" % "scalatest_2.10" % "1.9.2-RC1" % "test"
+</pre>
+
+<p>
+And via sbt (for Scala 2.9.0+):
+</p>
+
+<pre class="stGrayback">
+libraryDependencies += "org.scalatest" %% "scalatest" % "1.9.2-RC1" % "test"
+</pre>
+
+<p>
+Alternatively you can just download Jar files for the library and Scaladoc documentation by hand from Sonatype. The artifacts tagged with 2.10
+can be used with any 2.10.x release, and 2.9.0 can be used with any 2.9.x release.
+Jar files are valid zip files, so to access the Scaladoc documentation just unzip the Jar file. The Scaladoc Jars do not contain a top-level directory,
+however, so you should unzip them in an empty directory.
+</p>
+
+<p>
+For Scala 2.10.x:
+</p>
+
+<ul>
+<li><a href="https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest_2.10/1.9.2-RC1/scalatest_2.10-1.9.2-RC1.jar">Download ScalaTest 1.9.2-RC1 Jar</a></li>
+<li><a href="https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest_2.10/1.9.2-RC1/scalatest_2.10-1.9.2-RC1-scaladoc.jar">Download ScalaTest 1.9.2-RC1 Scaladoc documentation</a></li>
+</ul>
+
+<p>
+For Scala 2.9.x:
+</p>
+
+<ul>
+<li><a href="https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest_2.9.0/1.9.2-RC1/scalatest_2.9.0-1.9.2-RC1.jar">Download ScalaTest 1.9.2-RC1 Jar</a></li>
+<li><a href="https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest_2.9.0/1.9.2-RC1/scalatest_2.9.0-1.9.2-RC1-scaladoc.jar">Download ScalaTest 1.9.2-RC1 Scaladoc documentation Jar</a></li>
+</ul>
+
+<p>
+If you don't have it already, you'll also need Scala. You can use any 2.9 release or any 2.10 release, which you can get from here:
+</p>
+
+<ul>
+<li><a href="http://www.scala-lang.org/downloads">Download latest Scala release</a></li>
+</ul>
+
+<p>
+For a list of the changes in this release, see the <a href="/release_notes/1.9.2">release notes</a>. For detailed
+documentation, see the <a href="/scaladoc/1.9.2/#org.scalatest.package">ScalaTest 1.9.1 Scaladoc</a>.
+</p>
+
 </div>
 }
 
