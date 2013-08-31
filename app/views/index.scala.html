@@ -15,6 +15,8 @@
  *@
 
 @import controllers.Application.milestoneVersion
+@import controllers.Application.milestoneJar
+@import controllers.Application.majorMinorScalaVersion
 
 @homePage("Home") {
     
@@ -22,19 +24,21 @@
 <span class="reserved">import</span> collection.mutable.Stack
 <span class="reserved">import</span> org.scalatest._
 
-<span class="reserved">class</span> <span class="type">StackSpec</span> <span class="reserved">extends</span> <span class="type">FlatSpec</span> <span class="reserved">with</span> <span class="type">ShouldMatchers</span> {
+<span class="reserved">class</span> <span class="type">ExampleSpec</span> <span class="reserved">extends</span> <span class="type">FlatSpec</span> <span class="reserved">with</span> <span class="type">Matchers</span> {
 
   <span class="quotedString">"A Stack"</span> should <span class="quotedString">"pop values in last-in-first-out order"</span> in {
     <span class="reserved">val</span> stack = <span class="reserved">new</span> <span class="type">Stack[Int]</span>
     stack.push(<span class="literal">1</span>)
     stack.push(<span class="literal">2</span>)
-    stack.pop() should equal (<span class="literal">2</span>)
-    stack.pop() should equal (<span class="literal">1</span>)
+    stack.pop() should be (<span class="literal">2</span>)
+    stack.pop() should be (<span class="literal">1</span>)
   }
 
   it should <span class="quotedString">"throw NoSuchElementException if an empty stack is popped"</span> in {
-    <span class="reserved">val</span> emptyStack = <span class="reserved">new</span> <span class="type">Stack[String]</span>
-    evaluating { emptyStack.pop() } should produce [<span class="type">NoSuchElementException</span>]
+    <span class="reserved">val</span> emptyStack = <span class="reserved">new</span> <span class="type">Stack[Int]</span>
+    a [<span class="type">NoSuchElementException</span>] should be thrownBy {
+      emptyStack.pop()
+    } 
   }
 }
 </pre>
@@ -67,17 +71,19 @@ you run it, you get an informal specification of the software being tested:
 </div>
 
 <pre class="scala">
-$ scala -cp scalatest_2.9.0-@{milestoneVersion}.jar org.scalatest.run StackSpec
-<span class="type">Run starting. Expected test count is: 2</span>
-<span class="literal">StackSpec:
-A Stack 
+$ scala -cp scalatest_@{majorMinorScalaVersion}-@{milestoneVersion}.jar org.scalatest.run ExampleSpec
+<span class="cyanincolor">Discovery starting.
+Discovery completed in 21 milliseconds.
+Run starting. Expected test count is: 2</span>
+<span class="greenincolor">ExampleSpec:
+A Stack
 - should pop values in last-in-first-out order
 - should throw NoSuchElementException if an empty stack is popped</span>
-<span class="type">Run completed in 96 milliseconds.
+<span class="cyanincolor">Run completed in 76 milliseconds.
 Total number of tests run: 2
 Suites: completed 1, aborted 0
-Tests: succeeded 2, failed 0, ignored 0, pending 0, canceled 0</span>
-<span class="literal">All tests passed.</span>
+Tests: succeeded 2, failed 0, canceled 0, ignored 0, pending 0</span>
+<span class="greenincolor">All tests passed.</span>
 </pre>
 
 <div style="text-align: left">
