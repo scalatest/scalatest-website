@@ -1,0 +1,54 @@
+@*
+ * Copyright 2010-2013 Artima, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *@
+
+@import controllers.Application.latestScaladoc
+@releaseNotesPage("ScalaTest Release Notes") {
+<div style="text-align: left">
+
+<h1>ScalaTest Release Notes</h1>
+
+<a name="release192"></a>
+
+<p>
+ScalaTest 1.9.2-RC1 is a stepping-stone to help pave the way to upgrade from ScalaTest 1.9.1 to ScalaTest 2.0. Other than a few deprecations that
+were coming in 2.0 anyway, 1.9.2 removes the dependency on the deprecated Scala actors library, and refactors the ScalaTest style traits into classes.
+</p>
+
+<p>
+<em>Enhancements</em>
+</p>
+
+<ul>
+<li>Removed the dependency on the old Scala actors library</li>
+<li>Refactored style traits into a style class/style trait pair. The style trait for class X is now named XLike, i.e., FunSuite is now a class and FunSuiteLike the trait.</li>
+</ul>
+
+<p>
+<em>Deprecations and removals</em>
+</p>
+
+<ul>
+<li>Deprecated <code>expectResult</code> in favor of <code>assertResult</code> in <code>org.scalatest.Assertions</code>.
+<li>Deprecated <code>MustMatchersForJUnit</code> in favor of <code>ShouldMatchersForJUnit</code> in package <code>org.scalatest.junit</code>.
+<li>Deprecated <code>Specs</code> in favor of <code>Suites</code> in package <code>org.scalatest</code>.
+<li>Added <code>shouldEqual</code> to <code>org.scalatest.matchers.ShouldMatchers</code>.
+<li>Deprecated <code>"be === <value>"</code> matcher syntax in favor of <code>shouldEqual</code>.
+<li>Deprecated <code>MustMatchers</code> in favor of <code>ShouldMatchers</code> in package <code>org.scalatest.matchers</code>.
+<li>Removed long-deprecated <code>Spec</code> (renamed <code>FunSpec</code>), and the long-deprecated <code>MultipleFixture*</code> traits in <code>org.scalatest.fixture</code>.
+</ul>
+
+</div>
+}
