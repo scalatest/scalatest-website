@@ -17,20 +17,380 @@
 @import controllers.Application.milestoneScaladoc
 @import controllers.Application.milestoneVersion
 
-@releaseNotesPage("ScalaTest 2.0.M5b Release Notes") {
+@releaseNotesPage("ScalaTest 2.0.M6 Release Notes") {
 <div style="text-align: left">
 
-<h1>ScalaTest 2.0.M5b Release Notes</h1>
+<h1>ScalaTest 2.0.M6 Release Notes</h1>
 
 <p>
 ScalaTest 2.0 is a major release focused on easing one of the main pain points for Scala
 users: tools support. The ScalaTest 2.0 effort has involved not only enhancements
 to ScalaTest, but also to tools themselves, such as IntelliJ IDEA, the Scala IDE for Eclipse,
-and sbt. We still have a bit more work to do prior to releasing ScalaTest 2.0 final, but
-2.0.M5b is a very stable, fully tested and documented milestone release that already includes
-the changes in the <a href="#detailedList">detailed list</a> below.
-For a higher level view, here are some highlights of 2.0.M5b:
+and sbt. ScalaTest 2.0.M6 includes all the features destined for ScalaTest 2.0. 
+The <a href="#detailedList">detailed list</a> below lists all changes and enhancements in ScalaTest 2.0
+compared to ScalaTest 1.9.2. For a higher level view, here are some highlights of 2.0.M6 over the
+previous 2.0 milestone release, 2.0.M5b:
 </p>
+
+<p>
+<em>2.0.M6 Highlights:</em>
+</p>
+
+<h1>ScalaUtils</h1>
+
+<p>
+The first big change is ScalaTest 2.0.M6 includes a package named <a href="@{milestoneScaladoc}/index.html#org.scalautils.package"><code>org.scalautils</code></a>. This package is focused on aspects of equality, normalization, and tolerance that may make sense to use in your production code as well as your tests. The <code>org.scalautils</code> package is included in the ScalaTest jar, but is also available separately in a ScalaUtils jar. The idea is you can add a dependency on ScalaUtils in your production classpath, so you can use it in your production code without having ScalaTest on the classpath. I think people should never include ScalaTest in production code, because when it doesn't like something it tends to throw a <code>TestFailedException</code>. ScalaUtils will always be released alongside ScalaTest, with version numbers that match exactly. So when ScalaTest 2.1 is released, for example, ScalaUtils 2.1 will also be released.
+</p>
+
+<h1>Equality</h1>
+
+<p>
+ScalaUtils 2.0.M6 allows you to customize what equality means for a type <code>T</code> by defining an <a href="@{milestoneScaladoc}/index.html#org.scalautils.Equality"><code>Equality[T]</code></a> typeclass. This can be used with the <code>===</code> operator in production code and assertions and the "<code>should</code> <code>equal</code>" and the new-in-2.0.M6 "<code>should</code> <code>===</code>" matcher syntax in tests.
+</p>
+
+<p>
+ScalaUtils defines a <a href="@{milestoneScaladoc}/index.html#org.scalautils.DefaultEquality"><code>DefaultEquality</code></a> that will be used by default for any type <code>T</code> for which an implicit <code>Equality[T]</code> is not otherwise available. The default equality will first call the <code>deep</code> method on an array on either the left or right side (or both sides), then use <code>==</code> to determine equality. This default is compatible with ScalaTest's existing <code>===</code> operator and <code>equal</code> and <code>be</code> matchers, so existing test code will continue to work as before.
+</p>
+
+<h1>Equality constraints</h1>
+
+<p>
+ScalaUtils 2.0.M6 also provides a way to get a compile-time type error if two types being compared with <code>===</code> don't adhere to a tunable <a href="@{milestoneScaladoc}/index.html#org.scalautils.EqualityConstraint">EqualityConstraint</a>. By default you can compare any type with any type (which means all existing uses of ScalaTest's <code>===</code> continue to compile and work as before). But you can use traits such as <a href="@{milestoneScaladoc}/index.html#org.scalautils.TypeCheckedTripleEquals"><code>TypeCheckedTripleEquals</code></a>, <a href="@{milestoneScaladoc}/index.html#org.scalautils.ConversionCheckedTripleEquals"><code>ConversionCheckedTripleEquals</code></a>, <a href="@{milestoneScaladoc}/index.html#org.scalautils.TraversableEqualityConstraints"><code>TraversableEqualityConstraints</code></a> to get a compile error when comparing, for example, an <code>Option[String]</code> with a <code>String</code> for equality. (<code>Equality</code> and <code>EqualityConstraint</code> are inspired in part by the <code>Equal</code> typeclass in <a href="https://github.com/scalaz/scalaz">scalaz</a>.)
+</p>
+
+<h1>Tolerance</h1>
+
+<p>
+ScalaUtils 2.0.M6 also includes a <a href="@{milestoneScaladoc}/index.html#org.scalautils.Tolerance">Tolerance</a> trait that facilitates checking tolerances of numeric types with a <code>+-</code> symbolic operator. The <code>plusOrMinus</code> operator used with matchers previously in ScalaTest has been deprecated in 2.0 in favor of the <code>+-</code> symbol, which is also now more broadly usable. In addition to:
+</p>
+
+<pre>
+result should be (2.0 +- 0.1)
+</pre>
+
+<p>
+You can now also use the syntax with the <code>equal</code> matcher:
+</p>
+
+<pre>
+result should equal (2.0 +- 0.1)
+</pre>
+
+<p>
+Or just with plain-old <code>===</code>, in an assertion in tests or just as part of a Boolean expression in production code: 
+</p>
+
+<pre>
+// In tests:
+assert(result === (3.0 +- 0.2))
+
+// In production code:
+if (result === (2.0 +- 0.1)) "close enough" else "sorry"
+</pre>
+
+<h1>Normalization</h1>
+
+ScalaUtils 2.0.M6 also contains a <a href="@{milestoneScaladoc}/index.html#org.scalautils.Normalization"><code>Normalization</code></a> trait that allows you to define strategies for normalizing types. The <a href="@{milestoneScaladoc}/index.html#org.scalautils.NormalizingEquality"><code>NormalizingEquality</code></a>  trait allows you to define an <code>Equality[T]</code> in terms of a normalization of that type <code>T</code> by first normalizing the left and, if also a <code>T</code>, the right hand side, then using a specified "after-normalization <code>Equality</code>" to compare the normalized values.
+
+<h1>Explicitly</h1>
+
+<p>
+ScalaUtils 2.0.M6 also includes an <a href="@{milestoneScaladoc}/index.html#org.scalautils.Explicitly"><code>Explicitly</code></a> DSL for defining an implicit <code>Equality</code> parameter <em>explicitly</em>. If you want to customize equality for a type in general, you would usually want to place an implicit <code>Equality[T]</code> for that type in scope (or in <code>T</code>'s companion object). That implicit equality definition will then be picked up and used when that type is compared for equality with the <code>equal</code> matcher in tests and with <code>===</code> in both tests and production code. If you just want to use a custom equality for a single comparison, however, you may prefer to pass it explicitly. For example, if you have an implicit <code>Equality[String]</code> in scope, you can force a comparison to use the default equality with this syntax:
+</p>
+
+<pre>
+// In production code:
+if ((result === "hello")(decided by defaultEquality)) true else false
+
+// In tests:
+result should equal ("hello") (decided by defaultEquality)
+</pre>
+
+<p>
+The explicitly DSL also provides support for specifying a one-off equality that is based on a normalization. For example, ScalaUtils has a <a href="@{milestoneScaladoc}/index.html#org.scalautils.StringNormalizations"><code>StringNormalizations</code></a> trait that provides <code>trimmed</code> and <code>lowerCased</code> methods that return <code>Normalization[String]</code>s that normalize by trimming and lower-casing, respectively. If you bring those into scope by mixing in or importing the members of <code>StringNormalizations</code>, you could use the explicitly DSL like this:
+</p>
+
+<pre>
+// In production code:
+if ((result === "hello")(after being lowerCased)) true else false
+
+// In tests:
+result should equal ("hello") (after being lowerCased and trimmed)
+</pre>
+
+<h1>Inspectors</h1>
+
+<p>
+ScalaTest 2.0.M6 includes an <a href="@{milestoneScaladoc}/index.html#org.scalatest.Inspectors"><code>Inspectors</code></a> trait that allows you to make assertions about (to <em>inspect</em>) collections, including deeply nested collections:
+
+<ul>
+<li><code>forAll</code> - succeeds if the assertion holds true for every element</li>
+<li><code>forAtLeast</code> - succeeds if the assertion holds true for at least the specified number of elements</li>
+<li><code>forAtMost</code> - succeeds if the assertion holds true for at most the specified number of elements</li>
+<li><code>forBetween</code> - succeeds if the assertion holds true for between the specified minimum and maximum number of elements, inclusive</li>
+<li><code>forEvery</code> - same as <code>forAll</code>, but lists all failing elements if it fails (whereas <code>forAll</code> just reports the first failing element)</li>
+<li><code>forExactly</code> - succeeds if the assertion holds true for exactly the specified number of elements</li>
+</ul>
+
+<p>
+We worked hard to craft error messages that will help you understand what went wrong when an inspection against a nested collection fails. For example, given this nested collection:
+</p>
+
+<pre>
+val xss =
+  List(
+    List(1, 2, 3),
+    List(1, 2, 3),
+    List(1, 2, 3)
+   )
+</pre>
+
+<p>
+And this inspection:
+</p>
+
+<pre>
+forAll (xss) { xs =>
+  forAll (xs) { y => y should be < 2 }
+}
+</pre>
+
+<p>
+Your error message will be:
+</p>
+
+<pre>
+TestFailedException: forAll failed, because:
+  at index 0, forAll failed, because:
+    at index 1, 2 was not less than 2 (&lt;console&gt;:20)
+  in List(1, 2, 3) (&lt;console&gt;:20)
+in List(List(1, 2, 3), List(1, 2, 3), List(1, 2, 3))
+     at ...
+</pre>
+
+<h1>Inspector shorthands</h1>
+
+<p>
+If you are using <a href="@{milestoneScaladoc}/index.html#org.scalatest.Matchers"><code>Matchers</code></a>, you can use <a href="@{milestoneScaladoc}/index.html#org.scalatest.Matchers@@inspectorShorthands">"inspector shorthands"</a> for inspecting top-level (<em>i.e.</em>, non-nested) collections:
+</p>
+
+<ul>
+<li><code>all</code> - succeeds if the assertion holds true for every element</li>
+<li><code>atLeast</code> - succeeds if the assertion holds true for at least the specified number of elements</li>
+<li><code>atMost</code> - succeeds if the assertion holds true for at most the specified number of elements</li>
+<li><code>between</code> - succeeds if the assertion holds true for between the specified minimum and maximum number of elements, inclusive</li>
+<li><code>every</code> - same as <code>forAll</code>, but lists all failing elements if it fails (whereas <code>forAll</code> just reports the first failing element)</li>
+<li><code>exactly</code> - succeeds if the assertion holds true for exactly the specified number of elements</li>
+</ul>
+
+<p>
+Here are some examples:
+</p>
+
+<pre>
+all (xs) should be > 0
+atMost (2, xs) should be >= 4
+atLeast (3, xs) should be < 5
+between (2, 3, xs) should (be > 1 and be < 5)
+exactly (2, xs) should be <= 2
+every (xs) should be < 10
+</pre>
+
+<h1>org.scalatest.Matchers</h1>
+
+<p>
+Speaking of matchers, in ScalaTest 2.0.M6 <a href="@{milestoneScaladoc}/index.html#org.scalatest.matchers.ShouldMatchers"><code>ShouldMatchers</code></a> and <a href="@{milestoneScaladoc}/index.html#org.scalatest.matchers.MustMatchers"><code>MustMatchers</code></a>, both members of package <code>org.scalatest.matchers</code> have been deprecated in favor of <a href="@{milestoneScaladoc}/index.html#org.scalatest.Matchers"><code>Matchers</code></a>, which resides in package <code>org.scalatest</code>. For folks using <code>ShouldMatchers</code>, getting rid of the deprecation warning should be as simple as replacing <code>org.scalatest.matchers.ShouldMatchers</code> with <code>org.scalatest.Matchers</code>. For folks using <code>MustMatchers</code>, however, it will unfortnately be slightly more trouble, because the new <code>Matchers</code> trait only supports <code>should</code> not <code>must</code>. So you will need to search and replace your uses of <code>must</code> with <code>should</code>. <code>MustMatchers</code> and <code>must</code> will continue to work for a good long deprecation period, but eventually it will be removed to make way for <code>must</code> possibly coming back later to serve a different purpose. Apologies for this rather large deprecation.
+</p>
+
+<h1>Contain matchers</h1>
+
+<p>
+The <code>contain</code> matcher syntax has been greatly enhanced in 2.0.M6, in part inspired by similar syntax in <a href="http://etorreborre.github.io/specs2/">specs2</a>. In addition to simple assertions about containership, like:
+</p>
+
+<pre>
+xs should contain ("hi")
+</pre>
+
+<p>
+You can also make assertions such as:
+</p>
+
+<pre>
+xs should contain oneOf (1, 2, 3)
+xs should contain noneOf (1, 2, 3)
+xs should contain atLeastOneOf (1, 2, 3)
+xs should contain allOf (1, 2, 3)
+xs should contain only (1, 2, 3)
+xs should contain inOrderOnly (1, 2, 3)
+xs should contain inOrder (1, 2, 3)
+xs should contain theSameElementsAs List(1, 2, 3)
+xs should contain theSameElementsInOrderAs List(1, 2, 3)
+</pre>
+
+<p>
+In the new <code>contain</code> syntax, "containership" is determined by <code>Equality</code>, so you can customize how containership is determined for a type <code>T</code> by via an implicit <code>Equality[T]</code> or the explicitly DSL. Here's an example: 
+</p>
+
+<pre>
+(result should contain oneOf ("hi", "he", "ho")) (after being trimmed)
+</pre>
+
+<h1>Implicit conversions => implicit parameters</h1>
+
+<p>
+We are currently in the middle of a major refactor of how matchers are implemented. Since ScalaTest 1.0 matchers have been implemented primarily with implicit conversions, and as of 2.0.M6 we have started migrating to implicit parameters instead. This will make it simpler to enable the syntax on your own types, because you will be able to enable syntax by defining the typeclass "enabler" for that syntax for your own type.
+</p>
+
+<p>
+For example, the <code>contain</code> <code>(&lt;value&gt;)</code> syntax is enabled for type <code>T</code> by an implicit <a href="@{milestoneScaladoc}/index.html#org.scalatest.enablers.Containing"><code>Containing[T]</code></a>. ScalaTest 2.0.M6-SNAP21 provides implementations for <code>GenTraversable</code>, <code>java.util.Collection</code>, <code>java.util.Map</code>, <code>Array</code>, <code>Option</code>, and <code>String</code> in the <a href="@{milestoneScaladoc}/index.html#org.scalatest.enablers.Containing$"><code>Containing</code> companion object</a>. These enable the <code>contain</code> syntax to be used on more types than in previous versions of ScalaTest, such as strings and options:
+</p>
+
+<pre>
+Some("hi") should contain ("hi")
+"hello" should contain ('e')
+</pre>
+
+<p>
+Despite the major reorganization of matchers implementation, existing matchers user code should continue to work fine in all but <a href="@{milestoneScaladoc}/index.html#org.scalatest.Matchers@@matchersMigration">very rare cases</a>.
+</p>
+
+<h1>Outcomes</h1>
+
+<p>
+One breaking change in 2.0.M6 is that the <code>withFixture</code> life-cycle methods, and the test functions passed to them, now return an <a href="@{milestoneScaladoc}/index.html#org.scalatest.Outcome"><code>Outcome</code></a>. Because they previously returned <code>Unit</code>, this will likely require users to insert an = before the open curly brace, or in some cases, <code>:Outcome =</code>. That will most often be all that's required, but if you were catching exceptions in a <code>withFixture</code> implementation, you will likely need to change your catch clauses to a corresponding pattern match on <code>Outcome</code> types.
+</p>
+
+<h1>And more...</h1>
+
+<p>
+There's still more in 2.0.M6, but this post is probably long enough already. Here's a list  of links to Scaladoc for new features you may find useful:
+</p>
+
+<ul>
+<li><a href="@{milestoneScaladoc}/index.html#org.scalatest.Checkpoints"><code>Checkpoints</code></a> - accumulate and report multiple assertions in a single test</li>
+<li><a href="@{milestoneScaladoc}/index.html#org.scalatest.Informing"><code>Informing</code></a> - trait that contains the <code>info</code> method, which was previously provided via an implicit that has been removed in 2.0.M6</li>
+<li><a href="@{milestoneScaladoc}/index.html#org.scalatest.Documenting"><code>Documenting</code></a> - trait that contains the <code>markup</code> method, which was previously provided via an implicit that has been removed in 2.0.M6</li>
+<li><a href="@{milestoneScaladoc}/index.html#org.scalatest.Sequential"><code>Sequential</code></a> - combinator for nested suites that you want executed completely sequentially</li>
+<li><a href="@{milestoneScaladoc}/index.html#org.scalatest.Stepwise"><code>Stepwise</code></a> - combinator for nested suites that you want executed one after another, but with parallel execution still enabled for the individual nested suites</li>
+<li><a href="@{milestoneScaladoc}/index.html#org.scalatest.TryValues"><code>TryValues</code></a> - for making assertions when you expect a <code>Try</code> to be a <code>Success</code> (2.10 only)</li>
+<li><a href="@{milestoneScaladoc}/index.html#org.scalatest.concurrent.ScalaFutures"><code>ScalaFutures</code></a> - write tests using Scala futures (2.10 only)</li>
+<li><a href="@{milestoneScaladoc}/index.html#org.scalatest.tags.package">org.scalatest.tags</a> - new tags <code>CPU</code>, <code>Disk</code>, <code>Network</code>, and <code>Slow</code></li>
+<li><a href="@{milestoneScaladoc}/index.html#org.scalatest.FlatSpecLike"><code>FlatSpecLike</code></a>, <a href="@{milestoneScaladoc}/index.html#org.scalatest.FunSpecLike"><code>FunSpecLike</code></a>, <em>etc.</em> - all style traits have been refactored into the original name as a class and the trait with the name with <code>Like</code> appended for speedy compiles</li>
+<li><a href="@{milestoneScaladoc}/index.html#org.scalatest.tools.Framework"><code>Framework</code></a> - an implementation of the new Framework API, which will make testing with sbt much more awesome in sbt 0.13
+</ul>
+
+
+<p>
+Dropped support of 2.9 because the contravariant type class trick doesn't work in 2.9 and that
+was required to keep all existing code compiling. If you're on 2.9, please continue with 1.9.2
+until the day comes when you upgrade to 2.10.
+</p>
+
+<p>New:</p>
+
+<ul>
+<li>Added Equality and Normalization type class support, and subsequently org.scalautils package.</li>
+<li>Added Equivalence support.</li>
+<li>Added support of LoneElement</li>
+<li>Added support of Tolerance. Moved Tolerance to scalautils. Added it to should equal, shouldEqual, and should ===.</li>
+<li>Added a ScopePending event.</li>
+<li>Added support of contain matchers.</li>
+<li>Added support of Inspectors and Inspectors shorthands.</li>
+<li>Added support of shouldEqual, which Tolerence.</li>
+<li>Added BeforeAndAfterEachTestData.</li>
+<li>Added BeforeAndAfterAllConfigMap</li>
+<li>Brand new Matchers with type classes approach, reduced default implicits in scope and enable customization.</li>
+<li>Added TestDataFixture</li>
+<li>Added AMatcher and AnMatcher support.</li>
+<li>Added decidedBy syntax support, Exlicitly DSL.</li>
+<li>Added Normalization.</li>
+<li>Enhanced GUI reporter to support MarkupProvided, ScopeOpened, ScopeClosed and show multiple indented lines nicely.</li>
+<li>Added 'they' to FunSpec and FlatSpec.</li>
+<li>Added a toString to style classes that makes them look prettier in the interpreter.</li>
+<li>Added Stepwise and Sequential shorthands for Suites with Stepwise/SequentialNestedSuiteExecution.</li>
+<li>Added TryValues.</li>
+<li>Added MatcherFactor1 through 9.</li>
+<li>Added NoArg.</li>
+<li>Added result type Outcome to withFixture and the test functions NoArgTest and OneArgTest.</li>
+<li>Added implementation for sbt new framework (for sbt 0.13.0).</li>
+<li>Added DiscoveryStarting and DiscoveryCompleted events.</li>
+<li>Changed length/size syntax to use Length and Size typeclasses.</li>
+<li>Added non-blocking whenCompleted to Status.</li>
+<li>Enhanced GUI reporter to show discovery status.</li>
+<li>Added Informing and Documenting traits.</li>
+<li>Added support of shouldBe syntax.</li>
+<li>Added support of shouldNot syntax.</li>
+<li>Added Checkpoints.</li>
+<li>Added support of withGroups syntax to fullyMatch, startWith and endWith, include and Inspectors shorthand.</li>
+<li>Added should be definedAt syntax.</li>
+<li>Added a ScalaFutures trait and spec for 2.10 futures.</li>
+<li>Added reminders support.</li>
+<li>Added 'be sorted' syntax.</li>
+<li>Added Entry to use when testing Java maps.</li>
+<li>Added exception matchers, which supports thrownBy syntax for a, an and the.</li>
+<li>Added support of noException matcher.</li>
+<li>Added support of 'should have message' syntax for exception.</li>
+<li>Support discovery with just -z or -t.</li>
+<li>Added support of instanceof matchers.</li>
+<li>Added exist matcher support.</li>
+<li>Added readable matcher support.</li>
+<li>Added writable matcher support.</li>
+<li>Enhanced -s to take a glob.</li>
+<li>Added SlowPoke detector.</li>
+<li>Added cancelAfter to Timeouts.</li>
+<li>Added -w and -m support to SBT integration.</li>
+<li>Added AlertProvided and UpdateProvided event, which could be fired using alert() and update().</li>
+<li>Added Catcher.</li>
+<li>Added support of <code>defined</code> matcher.</li>
+<li>Added support of running previously failed and/or canceled tests in Runner.</li>
+<li>Added payload to <code>TestCanceledException</code>.</li>
+<li>Added <code>rerunner</code> to <code>TestCanceled</code>.</li>
+<li>Added the missing Test Canceled Reports to View menu in GUI reporter, and make Rerun to work with canceled tests.</li>
+<li>Added structural type support for Length, Size, Definition, Emptiness, Readability and Writability</li>
+<li>Added <code>Prettifier</code> and <code>PrettyMethods</code> to org.scalautils.</li>
+<li>Added support of <code>Retries</code>.</li>
+<li>Added <code>suiteId</code> to <code>NameInfo</code></li>
+<li>Added <code>OutcomeOf</code>.</li>
+</ul>
+
+<p>Deprecated:</p>
+
+<ul>
+<li>Deprecated the before/afterEach(TestData) methods in BeforeAndAfterEach.</li>
+<li>Deprecated <code>FailureOf</code> in favor of <code>OutcomeOf</code>.</li>
+<li>Deprecated <code>org.scalatest.matchers.ShouldMatchers</code> in favor of <code>org.scalatest.Matchers</code>.
+</ul>
+
+<p>Fixes:</p>
+
+<ul>
+<li>Fixed osgi.bnd issue.</li>
+<li>Fixed argument parsing bug when parsing 2 -h argument (rev. 5257).</li>
+<li>Fixed a bug in Matchers where BeWord gave bad error message if left hand side is null.</li>
+<li>Fixed a bug in JUnitXmlReporter when xmlifies failure messages.</li>
+<li>Fixed a stack depth problem when WordSpec and fixture.WordSpec's scope is used with afterWord.</li>
+<li>Fixed HTMLReporter's race condition for suites that mixed in ParallelTestExecution by ensuring SuiteCompleted is fired after the suite is actually completed from SuiteRunner.</li>
+</ul>
+
+<p>Adjustments:</p>
+
+<ul>
+<li>Enhanced have length and have size error messages to include the actual length or size.</li>
+<li>Bumped up the Selenium version.</li>
+<li>Refactored Matchers' parts out into MatcherWords and words package, and moved members of verbs package to words. These were
+"implementation" classes anyway, so likely no one referred to them in user code, but just in case, left deprecated type aliases
+in <code>verbs</code>.</li>
+<li>Changed JUnitXmlReporter to output files based on suiteId, instead of fully qualified name of the class.</li>
+<li>Changed the behavior of BeforeAndAfterAll such that it only calls beforeAll and afterAll in the outer instance of a OneInstancePerTest or ParallelTestExecution.</li>
+<li>Changed BeforeAndAfterAll and BeforeAndAfterAllConfigMap to take expectedTestCount into consideration whether to invoke beforeAll and afterAll.</li>
+<li>Enhanced Suite.diffStrings to display brackets only when there is difference in the passed strings.</li>
+<li>Use Ordering instead of Ordered for be </>/<=/>=.</li>
+<li>Removed 'WrappedArray' in error messages.</li>
+<li>Changed withPayloads to infer and return the same type as the passed in function, and changed payload: Any parameter to => Any to be lazy.</li>
+<li>Adding naming for ScalaTest threads, main thread as ScalaTest-main, run thread as  ScalaTest-run, dispatcher thread as ScalaTest-dispatcher, and  thread-pool threads for parallel execution to ScalaTest-N.</li>
+<li>Lazy args</li>
+</ul>
 
 <p>
 <em>2.0.M5b Highlights:</em>

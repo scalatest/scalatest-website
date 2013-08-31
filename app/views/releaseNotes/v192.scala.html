@@ -46,7 +46,9 @@ were coming in 2.0 anyway, 1.9.2 removes the dependency on the deprecated Scala 
 <li>Deprecated <code>Specs</code> in favor of <code>Suites</code> in package <code>org.scalatest</code>.
 <li>Added <code>shouldEqual</code> to <code>org.scalatest.matchers.ShouldMatchers</code>.
 <li>Deprecated <code>"be === <value>"</code> matcher syntax in favor of <code>shouldEqual</code>.
-<li>Deprecated <code>MustMatchers</code> in favor of <code>ShouldMatchers</code> in package <code>org.scalatest.matchers</code>.
+<li>Deprecated <code>MustMatchers</code> in favor of <code>ShouldMatchers</code> in package <code>org.scalatest.matchers</code>. This will be a good, long
+deprecation cycle, during which <code>MustMatchers</code> will continue to work as before. But eventually <code>MustMatchers</code> will be removed from 
+ScalaTest, after which <code>must</code> will later return to serve a different purpose.
 <li>Removed long-deprecated <code>Spec</code> (renamed <code>FunSpec</code>), and the long-deprecated <code>MultipleFixture*</code> traits in <code>org.scalatest.fixture</code>.
 </ul>
 
