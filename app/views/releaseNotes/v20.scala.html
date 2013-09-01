@@ -370,16 +370,146 @@ val oddNumber = AnMatcher[Int]("odd number") { _ % 2 == 1 }
 3 should be an oddNumber
 List(1, 2, 3) should (contain an oddNumber)
 
-// (I just discovered that the parentheses-free syntax shown below
-// is not supported in 2.0.M6. We will add it for 2.0 final):
+// (Sorry, I just discovered that the parentheses-free syntax shown below
+// is not supported in 2.0.M6. We will add it for 2.0 final. - bv)
 // List(1, 2, 3) should contain an oddNumber
 </pre>
 
-<h1>Improved matcher composition and performance</h1>
+<h1>Improved matcher performance and composition</h1>
 
 <p>
-Killing two birds with one stone, <a href="@{milestoneScaladoc}/index.html#org.scalatest.matchers.MatchResult"><code>MatchResult</code></a> has undergone a backwards-compatible refactor
-in 2.0.M6 that will both improve runtime performance and enable better <a href="@{milestoneScaladoc}/index.html#org.scalatest.matchers.Matcher"><code>Matcher</code></a> composition.
+In 2.0.M5, <a href="@{milestoneScaladoc}/index.html#org.scalatest.matchers.MatchResult"><code>MatchResult</code></a> has undergone a
+backwards-compatible refactor that will both improve runtime performance, enable better
+<a href="@{milestoneScaladoc}/index.html#org.scalatest.matchers.Matcher"><code>Matcher</code></a> composition, and
+eventually (though not yet in 2.0) allow objects involved in assertion failures to be inspected in IDEs.
+</p>
+
+<p>
+Profiling of ScalaTest 1.x tests that used Matchers indicated that a significant amount of time was spent constructing error message
+strings for <code>MatchResult</code>s, even though the vast majority of those strings ultimately where never used in a failure message.
+This was especially noticeable when testing with very large collections, because calling <code>toString</code> on very large collections
+creates very large strings, which in turn creates even larger error message strings.
+</p>
+
+<p>
+ScalaTest's error messages were created by combining localized "raw" strings with arguments.
+For example, for <code>22 should be &lt; 20</code>, the raw string would be <code>"{0} was not less than {1}"</code> and
+the arguments <code>Array(22, 21)</code>. 
+To eliminate the unnecessary string creations <code>MatchResult</code> now carries an <code>args</code> field containing
+those arguments along with the raw strings. The actual final strings, such as <code>22 was not less than 21</code>, are computed
+from the raw strings and args only if and when they are needed.
+</p>
+
+<p>
+ScalaTest Matchers, being <code>Function1</code>s, were always composable via the standard methods in Scala for function composition: <code>compose</code>
+and <code>andThen</code>. For example, in ScalaTest 1.x you could transform a matcher for one type into a matcher for another with <code>compose</code>.
+Here's an example:
+</p>
+
+<pre>
+scala&gt; import org.scalatest._
+import org.scalatest._
+
+scala&gt; import Matchers._
+import Matchers._
+
+scala&gt; import java.io.File
+import java.io.File
+
+scala&gt; def endWithExtension(ext: String) = endWith(ext) compose { (f: File) =&gt; f.getPath }
+endWithExtension: (ext: String)org.scalatest.matchers.Matcher[java.io.File]
+
+scala&gt; new File("output.txt") should endWithExtension("txt")
+</pre>
+
+<p>
+In addition, by composing twice, you could in ScalaTest 1.x modify the type of both sides of a match statement
+with the same function, like this:
+</p>
+
+<pre>
+scala&gt; val f = be &gt; (_: Int)
+f: Int =&gt; org.scalatest.matchers.Matcher[Int] = &lt;function1&gt;
+
+scala&gt;   val g = (_: String).toInt
+g: String =&gt; Int = &lt;function1&gt;
+
+scala&gt; val beAsIntsGreaterThan = (f compose g) andThen (_ compose g)
+beAsIntsGreaterThan: String =&gt; org.scalatest.matchers.Matcher[String] = &lt;function1&gt;
+
+scala&gt; "8" should beAsIntsGreaterThan ("7")
+</pre>
+
+<p>
+What you could <em>not</em> do in ScalaTest 1.x is modify
+the error messages when you performed matcher composition. For example, the error message for the <code>beAsIntsGreaterThan</code>
+gives no hint that the <code>Int</code>s being compared were parsed from <code>String</code>s:
+</p>
+
+<pre>
+scala&gt; "7" should beAsIntsGreaterThan ("8")
+org.scalatest.exceptions.TestFailedException: 7 was not greater than 8
+</pre>
+<p>
+This inability to modify error messages when composing matchers was first brought to my attention in
+an offhand tweet by Nat Pryce several years ago. Although no other user ever complained about it, I eventually
+realized this could be made possible by making <code>MatchResult</code>s compute their error messages lazily,
+since the original arguments would still be available, waiting patiently to have their <code>toString</code> called.
+I placed the functionality in a trait named <a href="@{milestoneScaladoc}/index.html#org.scalatest.matchers.MatcherProducers"><code>MatcherProducers</code></a>.
+Since we needed implicit conversions anyway, I also added a shorthand for composing twice:
+</p>
+
+<pre>
+scala&gt; import matchers._
+import matchers._
+
+scala&gt; import MatcherProducers._
+import MatcherProducers._
+
+scala&gt; val beAsIntsGreaterThan = f composeTwice g // means: (f compose g) andThen (_ compose g)
+beAsIntsGreaterThan: String =&gt; org.scalatest.matchers.Matcher[String] = &lt;function1&gt;
+
+scala&gt; "8" should beAsIntsGreaterThan ("7")
+</pre>
+
+<p>
+Of course, the error messages are still the original ones:
+</p>
+
+<pre>
+scala&gt; "7" should beAsIntsGreaterThan ("8")
+org.scalatest.exceptions.TestFailedException: 7 was not greater than 8
+</pre>
+
+<p>
+To modify the error messages, you can use <code>mapResult</code> from <code>MatcherProducers</code>. Here's an example:
+</p>
+
+<pre>
+scala&gt; val beAsIntsGreaterThan = f composeTwice g mapResult { mr =&gt;
+     |   mr.copy(
+     |     failureMessageArgs = mr.failureMessageArgs.map((LazyArg(_) { _.toString + ".toInt"})),
+     |     negatedFailureMessageArgs = mr.negatedFailureMessageArgs.map((LazyArg(_) { _.toString + ".toInt"})),
+     |     midSentenceFailureMessageArgs =
+     |       mr.midSentenceFailureMessageArgs.map((LazyArg(_) { _.toString + ".toInt"})),
+     |     midSentenceNegatedFailureMessageArgs = 
+     |       mr.midSentenceNegatedFailureMessageArgs.map((LazyArg(_) { _.toString + ".toInt"}))
+     |   )
+     |  }
+beAsIntsGreaterThan: String =&gt; org.scalatest.matchers.Matcher[String] = &lt;function1&gt;
+</pre>
+
+<p>
+Now the error message is clearer:
+</p>
+
+<pre>
+scala&gt; "7" should beAsIntsGreaterThan ("8")
+org.scalatest.exceptions.TestFailedException: 7.toInt was not greater than 8.toInt
+</pre>
+
+<p>
+Voila!
 </p>
 
 <p>
