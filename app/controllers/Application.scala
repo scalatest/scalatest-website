@@ -20,11 +20,11 @@ import play.api.mvc._
 
 object Application extends Controller {
 
-  val latestScaladoc = "http://doc.scalatest.org/1.9.1"
-  val latestVersion = "1.9.1"
-  val milestoneVersion = "2.0.M6"
-  val milestoneJar = "https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest_2.10/2.0.M6/scalatest_2.10-2.0.M6.jar"
-  val milestoneScaladoc = "http://www.artima.com/docs-scalatest-2.0.M6"
+  val latestScaladoc = "http://doc.scalatest.org/1.9.2"
+  val latestVersion = "1.9.2"
+  val milestoneVersion = "2.0.M7"
+  val milestoneJar = "https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest_2.10/2.0.M7/scalatest_2.10-2.0.M7.jar"
+  val milestoneScaladoc = "http://www.artima.com/docs-scalatest-2.0.M7"
   val scaladocsLocation = "http://doc.scalatest.org"
   val releasesLocation = "http://www.artima.com/downloadScalaTest"
   val baseScalaVersion = "2.10.0"
