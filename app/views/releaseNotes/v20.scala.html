@@ -42,7 +42,12 @@ ScalaTest 2.0.M7 mostly contains Scaladoc documentation, but also contains one n
 <a href="@{milestoneScaladoc}/index.html#org.scalautils.Every"><code>Every</code></a>, an ordered data structure that can have one-to-many elements,
 but never be empty. An <code>Or</code> can be either <a href="@{milestoneScaladoc}/index.html#org.scalautils.Good"><code>Good</code></a> or
 <a href="@{milestoneScaladoc}/index.html#org.scalautils.Bad"><code>Bad</code></a>. If the <code>Bad</code> type is an <code>Every</code>, you can
-use various means to accumulate errors during data validations.
+use various means to accumulate errors during data validations. I (Bill Venners) will attempt to get a blog post introducing <code>Or</code> out within the next few days.
+In the meantime, your best bet if you want to know more is to scan the tests in
+<a href="https://github.com/scalatest/scalatest/blob/master/src/test/scala/org/scalautils/OrSpec.scala"><code>OrSpec</code></a>,
+<a href="https://github.com/scalatest/scalatest/blob/master/src/test/scala/org/scalautils/EverySpec.scala"><code>EverySpec</code></a>, and
+<a href="https://github.com/scalatest/scalatest/blob/master/src/test/scala/org/scalautils/ValidationsSpec.scala"><code>ValidationsSpec</code></a>.
+And feel free to ask questions on scalatest-users. Here is the list of changes in 2.0.M7 compared to 2.0.M6:
 </p>
 
 <ul>
