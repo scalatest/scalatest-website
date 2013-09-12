@@ -48,15 +48,14 @@ use various means to accumulate errors during data validations.
 <ul>
 <li>Changed <a href="@{milestoneScaladoc}/index.html#org.scalatest.exceptions.TestPendingException"><code>TestPendingException</code></a> from a case class back
 into a class.</li>
-<li>Use an actual <code>Composifier</code> class in the implicit conversion provided by <a href="@{milestoneScaladoc}/index.html#org.scalatest.MatcherProducers"><code>MatcherProducers</code></a></li>
+<li>Use an actual <code>Composifier</code> class in the implicit conversion provided by <a href="@{milestoneScaladoc}/index.html#org.scalatest.matchers.MatcherProducers"><code>MatcherProducers</code></a>.</li>
 <li>Removed <code>AMatcher</code> and <code>AnMatcher</code> in the <code>org.scalatest.matchers</code> package. Although included in 2.0.M6, these turned out to
 be inconsistent with the rest of the matcher enhancements, thus incomplete. We will bring them back 2.0 once they are fully finished.</li>
 <li>Changed the name of  <code>TypeConstraint</code> to
-<a href="@{milestoneScaladoc}/index.html#org.scalatest.exceptions.TestPendingException"><code>Constraint</code></a> in the <code>org.scalautils</code> package.</li>
+<a href="@{milestoneScaladoc}/index.html#org.scalautils.Constraint"><code>Constraint</code></a> in the <code>org.scalautils</code> package.</li>
 <li>Removed the undocumented  <code>legacyEqual</code> matcher syntax from <a href="@{milestoneScaladoc}/index.html#org.scalatest.Matchers"><code>Matchers</code></a>.</li>
 <li>Obey the <code>sbt.log.noformat</code> in both the old and new sbt Framework API implementation.</li>
 <li>Gave the remaining matchers that lacked them pretty <code>toString</code> implementations.</li>
-
 </ul>
 
 <p>
