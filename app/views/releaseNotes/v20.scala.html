@@ -921,6 +921,8 @@ done so already, you'll need to mix in <a href="@milestoneScaladoc/#org.scalates
 <li>Removed the deprecated implicit conversion in the <code>Stopper</code> companion object that converted a <code>Stopper</code> to function type <code>() =&gt; Boolean</code>. This
 implicit conversion was added when the inheritance relationship between <code>Stopper</code> and <code>Function0[Boolean]</code> was severed to make it possible for <code>Stopper</code> to be implemented in Java. (Severing this relationship was originally a request by the IntelliJ IDEA folks, who wanted to write integration code in Java to smooth over binary incompatibilities between different Scala versions.)</li>
 <li>Added a <code>default</code> method in the <code>Stopper</code> companion object that returned a stopper that always returns false when applied.</li>
+<li>Removed the implicit conversion from <code>Reporter</code> to <code>Event =&gt; Unit</code> function type in the <code>Reporter</code> companion
+objecgt, which had been deprecated since ScalaTest 1.5.</li>
 </ul>
 
 <p>
@@ -949,7 +951,7 @@ may be able to use one of the convenience classes and objects:
 <a href="@milestoneScaladoc/#org.scalatest.SucceededStatus$"><code>SucceededStatus</code></a>,
 <a href="@milestoneScaladoc/#org.scalatest.StatefulStatus"><code>StatefulStatus</code></a>, and
 <a href="@milestoneScaladoc/#org.scalatest.CompositeStatus"><code>CompositeStatus</code></a>.</li>
-<li>Made major enhancements to the event model, primarily to support tools integration, but also to support a few new features unrelated to tools integration. These enhancements form a braeaking change becuase it is not possible to deprecate extractors in Scala, so pattern matches on the old-style events will likely break. This is the main breakage in ScalaTest 2.0, but it only effects users who created customer <code>Reporter</code>s, which was very rare, probably less than 1% of users.</li>
+<li>Made major enhancements to the event model, primarily to support tools integration, but also to support a few new features unrelated to tools integration. These enhancements form a braeaking change becuase it is not possible to deprecate extractors in Scala, so pattern matches on the old-style events will likely break. This is the main breakage in ScalaTest 2.0, but it only effects users who created custom <code>Reporter</code>s, which was very rare, probably less than 1% of users.</li>
 <li>
 Because implicit conversions from structural types that enabled "have length/size" to be used on any object with an appropriate structure (such as
 a <code>getSize</code> method were removed from ScalaTest's matchers in 2.0.M5, any code relying on this feature will no longer compile. 
