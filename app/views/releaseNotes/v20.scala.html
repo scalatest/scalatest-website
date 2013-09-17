@@ -17,20 +17,58 @@
 @import controllers.Application.milestoneScaladoc
 @import controllers.Application.milestoneVersion
 
-@releaseNotesPage("ScalaTest 2.0.M6 Release Notes") {
+@releaseNotesPage("ScalaTest 2.0.M8 Release Notes") {
 <div style="text-align: left">
 
-<h1>ScalaTest 2.0.M7 Release Notes</h1>
+<h1>ScalaTest/ScalaUtils 2.0.M8 Release Notes</h1>
 
 <p>
-ScalaTest 2.0 is a major release focused on easing one of the main pain points for Scala
+ScalaTest/ScalaUtils 2.0 is a major release focused on easing one of the main pain points for Scala
 users: tools support. The ScalaTest 2.0 effort has involved not only enhancements
 to ScalaTest, but also to tools themselves, such as IntelliJ IDEA, the Scala IDE for Eclipse,
-and sbt. ScalaTest 2.0.M7 includes all the features destined for ScalaTest 2.0. 
+and sbt. ScalaTest 2.0.M8 includes all the features destined for ScalaTest 2.0. 
 The <a href="#detailedList">detailed list</a> below lists all changes and enhancements in ScalaTest 2.0
-compared to ScalaTest 1.9.2. For a higher level view, here are some highlights of 2.0.M7 and 2.0.M6 over the
-previous 2.0 milestone release, 2.0.M5b:
+compared to ScalaTest 1.9.2. For a higher level view, here are some highlights of 2.0.M8 over
+the previous 2.0 milestone releases, 2.0.M7:
 </p>
+
+<p>
+<em>2.0.M8 Highlights:</em>
+</p>
+
+<p>
+ScalaTest/ScalaUtils 2.0.M8 mostly contains Scaladoc documentation, but also contains some adjustments to <code>Or</code> in in ScalaUtils,
+the addition of a <code>OneArgTest</code> factory method, and one important bug fix.
+Here is the list of changes in 2.0.M8 compared to 2.0.M7:
+</p>
+
+<ul>
+<li>Changed <a href="@{milestoneScaladoc}/index.html#org.scalatest.BeforeAndAfterAll"><code>BeforeAndAfterAll</code></a> so that it no longer blocks waiting for
+nested suites to complete before executing <code>afterAll</code>. This approach was taken originally to ensure that <code>afterAll</code> ran on the
+same thread as <code>beforeAll</code>, and worked fine with ScalaTest prior to adding support for the new sbt Framework API. With the new Framework API,
+ScalaTest by default will allow sbt to run nested suites on its thread pool rather than making a separate thread pool when parallel execution is enabled
+in an sbt build. This caused a deadlock when nested suites were used with an sbt build with <code>BeforeAndAfterAll</code>, so in 2.0.M8, we have removed
+the guarantee that <code>afterAll</code> will execute on the same thread as <code>beforeAll</code>. This removes the potential for deadlock, but means
+that users will need to synchronize access to any shared data in <code>beforeAll</code> and <code>afterAll</code>.</li>
+<li>Added a <a href="@{milestoneScaladoc}/index.html#org.scalatest.fixture/Suite$OneArgTest$"><code>OneArgTest</code></a> factory method to support the use
+case of needing to do further fixture set and teardown work with a <code>FixtureParam</code>.</li>
+<li>Added an <code>orElse</code> method to <a href="@{milestoneScaladoc}/index.html#org.scalautils.Or"><code>Or</code></a> that takes a by-name.</li>
+<li>Made <code>getOrElse</code> method of <a href="@{milestoneScaladoc}/index.html#org.scalautils.Or"><code>Or</code></a> take a by-name.</li>
+<li>Added <code>asOr</code> method to <a href="@{milestoneScaladoc}/index.html#org.scalautils.Or"><code>Or</code></a> and
+<code>asEvery</code> method to <a href="@{milestoneScaladoc}/index.html#org.scalautils.Every"><code>Every</code></a> to provide an easy
+way to widen more specific sub-type types to the supertypes.</li>
+<li>Moved the <a href="@{milestoneScaladoc}/index.html#org.scalatest.concurrent.PatienceConfiguration$$Interval"><code>Interval</code></a>,
+<a href="@{milestoneScaladoc}/index.html#org.scalatest.concurrent.PatienceConfiguration$$Timeout"><code>Timeout</code></a>,
+and <a href="@{milestoneScaladoc}/index.html#org.scalatest.concurrent.PatienceConfiguration"><code>PatienceConfigParam</code></a> types out of
+trait <code>PatienceConfiguration</code> and put them instead in its companion object. This way their names won't be in scope in tests unless imported, and won't conflict
+with like-named classes, such as the <code>Interval</code> from Joda Time.</li>
+<li>Refactored <a href="@{milestoneScaladoc}/index.html#org.scalautils.Or"><code>Or</code></a> such that all methods that accumulate are actually
+on an <a href="@{milestoneScaladoc}/index.html#org.scalautils.Validations$$Accumulatable"><code>Accumulatable</code></a> class available through an implicit
+conversion defined in trait <a href="@{milestoneScaladoc}/index.html#org.scalautils.Validations"><code>Validations</code></a>, which ensures that
+the accumulated result type is the least upper bound of the two input accumulated types.</li>
+<li>Dropped the old <code>transform</code> method on <a href="@{milestoneScaladoc}/index.html#org.scalautils.Or"><code>Or</code></a> in favor of a
+new one similar in spirit to the <code>transform</code> method on <code>scala.util.Try</code>.</li>
+</ul>
 
 <p>
 <em>2.0.M7 Highlights:</em>
