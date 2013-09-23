@@ -30,9 +30,11 @@ implicit driver is to declare one as a member of your test class, like this:</p>
 
   <span class="stReserved">implicit</span> <span class="stReserved">val</span> webDriver: <span class="stType">WebDriver</span> = <span class="stReserved">new</span> <span class="stType">HtmlUnitDriver</span>
 
+  <span class="stReserved">val</span> host = <span class="stQuotedString">"http://localhost:9000/"</span>
+
   <span class="stQuotedString">&quot;The blog app home page&quot;</span> should <span class="stQuotedString">&quot;have the correct title&quot;</span> in {
     go to (host + <span class="stQuotedString">&quot;index.html&quot;</span>)
-    title should be (<span class="stQuotedString">&quot;Awesome Blog&quot;</span>)
+    pageTitle should be (<span class="stQuotedString">&quot;Awesome Blog&quot;</span>)
   }
 }
 </pre></p><p>For convenience, however, ScalaTest provides a <code>WebBrowser</code> subtrait containing an implicit <code>WebDriver</code> for each
@@ -41,9 +43,11 @@ Thus a simpler way to use the <code>HtmlUnit</code> driver, for example, is to e
 ScalaTest's <a href="@milestoneScaladoc/#org.scalatest.selenium.HtmlUnit"><code>HtmlUnit</code></a> trait, like this:</p><p><pre class="stHighlighted">
 <span class="stReserved">class</span> <span class="stType">BlogSpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> <span class="stReserved">with</span> <span class="stType">ShouldMatchers</span> <span class="stReserved">with</span> <span class="stType">HtmlUnit</span> {
 
+  <span class="stReserved">val</span> host = <span class="stQuotedString">"http://localhost:9000/"</span>
+
   <span class="stQuotedString">&quot;The blog app home page&quot;</span> should <span class="stQuotedString">&quot;have the correct title&quot;</span> in {
     go to (host + <span class="stQuotedString">&quot;index.html&quot;</span>)
-    title should be (<span class="stQuotedString">&quot;Awesome Blog&quot;</span>)
+    pageTitle should be (<span class="stQuotedString">&quot;Awesome Blog&quot;</span>)
   }
 }
 </pre></p><p>The web driver traits provided by ScalaTest are:</p><p><table style="border-collapse: collapse; border: 1px solid black">
