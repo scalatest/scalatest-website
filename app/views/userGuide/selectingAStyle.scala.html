@@ -83,6 +83,7 @@ information and examples, click on the links:
 </pre>
 </td>
 </tr>
+
 <tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
 <h2>FlatSpec</h2>
 <p class="stStyleDesc">
@@ -130,6 +131,7 @@ general-purpose choice for writing specification-style tests.
 </pre>
 </td>
 </tr>
+
 <tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
 <h2>WordSpec</h2>
 <p class="stStyleDesc">
@@ -154,8 +156,8 @@ For teams coming from specs or specs2, <a href="@milestoneScaladoc/#org.scalates
 </pre>
 </td>
 </tr>
-<tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
 
+<tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
 <h2>FreeSpec</h2>
 <p class="stStyleDesc">
 Because it gives absolute freedom (and no guidance) on how specification text should be written, <a href="@milestoneScaladoc/#org.scalatest.FreeSpec"><code>FreeSpec</code></a> is a good choice for teams experienced with BDD and able to agree on how to structure the specification text.
@@ -177,13 +179,39 @@ Because it gives absolute freedom (and no guidance) on how specification text sh
   }
 }
 </pre>
-
 </td>
 </tr>
+
 <tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+<h2>Spec</h2>
+<p class="stStyleDesc">
+<a href="@milestoneScaladoc/#org.scalatest.Spec"><code>Spec</code></a> allows you to define tests as methods, which saves one function literal per test
+compared to style classes that represent tests as functions. Fewer function literals translates into faster compile times and fewer generated class files, which
+can help minimize build times. As a result, using <code>Spec</code> can be a good choice in large projects where build times are a concern as well as when
+generating large numbers of tests programatically via static code generators. 
+</p>
+<pre class="stStyleExamples">
+<span class="stReserved">import</span> org.scalatest.Spec
+<br /><span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">Spec</span> {
+<br />  <span class="stReserved">object</span> <span class="literalIdentifier">&#96;A Set&#96;</span> {
+    <span class="stReserved">object</span> <span class="literalIdentifier">&#96;when empty&#96;</span> {
+      <span class="stReserved">def</span> <span class="literalIdentifier">&#96;should have size 0&#96;</span> {
+        assert(Set.empty.size == <span class="stLiteral">0</span>)
+      }
+<br />      <span class="stReserved">def</span> <span class="literalIdentifier">&#96;should produce NoSuchElementException when head is invoked&#96;</span> {
+        intercept[<span class="stType">NoSuchElementException</span>] {
+          Set.empty.head
+        }
+      }
+    }
+  }
+}
+</pre>
+</td>
+</tr>
 
+<tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
 <h2>PropSpec</h2>
-
 <p class="stStyleDesc">
 <a href="@milestoneScaladoc/#org.scalatest.PropSpec">PropSpec</a> is perfect for teams that want to write tests exclusively in terms of property checks; also a good
 choice for writing the occasional test matrix when a different style trait is chosen as the main unit testing style.
@@ -214,6 +242,7 @@ choice for writing the occasional test matrix when a different style trait is ch
 </pre>
 </td>
 </tr>
+
 <tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
 <h2>FeatureSpec</h2>
 <p class="stStyleDesc">
