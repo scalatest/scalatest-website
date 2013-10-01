@@ -17,20 +17,37 @@
 @import controllers.Application.milestoneScaladoc
 @import controllers.Application.milestoneVersion
 
-@releaseNotesPage("ScalaTest 2.0.M8 Release Notes") {
+@releaseNotesPage("ScalaTest 2.0.RC1 Release Notes") {
 <div style="text-align: left">
 
-<h1>ScalaTest/ScalaUtils 2.0.M8 Release Notes</h1>
+<h1>ScalaTest/ScalaUtils 2.0.RC1 Release Notes</h1>
 
 <p>
 ScalaTest/ScalaUtils 2.0 is a major release focused on easing one of the main pain points for Scala
 users: tools support. The ScalaTest 2.0 effort has involved not only enhancements
 to ScalaTest, but also to tools themselves, such as IntelliJ IDEA, the Scala IDE for Eclipse,
-and sbt. ScalaTest 2.0.M8 includes all the features destined for ScalaTest 2.0. 
+and sbt. ScalaTest 2.0.RC1 is a release candidate for ScalaTest 2.0. If no major problems are found during
+the trial phase, this version will be relabeled and released as ScalaTest 2.0.
 The <a href="#detailedList">detailed list</a> below lists all changes and enhancements in ScalaTest 2.0
-compared to ScalaTest 1.9.2. For a higher level view, here are some highlights of 2.0.M8 over
-the previous 2.0 milestone releases, 2.0.M7:
+compared to ScalaTest 1.9.2. For a higher level view, here are some highlights of 2.0.RC1 over
+the previous 2.0 milestone releases:
 </p>
+
+<p>
+<em>2.0.RC1 Highlights:</em>
+</p>
+
+<ul>
+<li>Added simple <code>assert</code> macros, made <code>TripleEquals</code> (whose <code>===</code> and <code>!==</code> operators
+    return <code>Boolean</code>) and deprecated the <code>Legacy</code> variants whose <code>===</code> and <code>!==</code>
+    operator return <code>Option[String]</code></li>
+<li>Require at least two arguments in <code>contain</code> <code>oneOf</code>, <code>allOf</code>, <code>noneOf</code>,
+    <code>atLeastOneOf</code>, <code>atMostOneOf</code>, <code>inOrderOnly</code>, and <code>inOrder</code></li>
+<li>Added an implicit language.postfixOps to <code>SpanSugar</code></li>
+<li>Added <code>scala-reflect</code> library to ScalaTest pom, now that we're using assert macros</li>
+<li>Added a <code>trap</code> method to <code>Assertions</code> to make it easier to work with assertions and matcher expressions
+    in the Scala interpreter</li>
+</ul>
 
 <p>
 <em>2.0.M8 Highlights:</em>
