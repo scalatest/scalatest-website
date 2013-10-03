@@ -60,6 +60,7 @@ Several people have helped with ScalaTest, including:
 <li>Ksenia Sautina</li>
 <li>Darlene Wallach</li>
 <li>Sean Griffin</li>
+<li>Mark Harrah</li>
 </ul>
 
 <p>
@@ -92,7 +93,7 @@ The followings are needed for building ScalaTest:
 </p>
 
 <ul>
-  <li><a href="javascript:void(window.open('http://www.oracle.com/technetwork/java/javasebusiness/downloads/java-archive-downloads-javase6-419409.html', '_blank'))">JDK 6</a> (JDK 7 won't work currently)</li>
+  <li>JDK 6 or 7</li>
   <li><a href="javascript:void(window.open('http://www.scala-sbt.org/0.13.0/docs/Getting-Started/Setup.html', '_blank'))">SBT 0.13.0</a></li>
 </ul>
 
@@ -101,7 +102,7 @@ and use the following options in your SBT launch file:
 </p>
 
 <p>
-<code>SBT_OPTS="-server -Xms512M -Xmx2048M -Dfile.encoding=UTF8 -Xss1M -XX:MaxPermSize=512M -XX:+UseConcMarkSweepGC -XX:+CMSIncrementalMode -XX:+DoEscapeAnalysis -XX:ReservedCodeCacheSize=64m"</code>
+<code>SBT_OPTS="-server -Xms512M -Xmx2048M -Xss1M -XX:+CMSClassUnloadingEnabled -XX:+UseConcMarkSweepGC -XX:+CMSIncrementalMode -XX:NewRatio=8 -XX:MaxPermSize=512M"</code>
 </p>
 
 <h3>Building and Running Tests</h3>
