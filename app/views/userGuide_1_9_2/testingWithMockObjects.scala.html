@@ -1,0 +1,740 @@
+@*
+ * Copyright 2010-2013 Artima, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *@
+
+@import controllers.Application.latestScaladoc
+
+@userGuidePage("Testing with mock objects") {
+<div style="text-align: left">
+
+<h1>Testing with mock objects</h1>
+
+<p>
+You can use any Java mocking framework with ScalaTest, or ScalaMock, a Scala mocking alternative. ScalaTest provides
+just enough syntax sugar for the three most popular Java mocking frameworks&#8212;JMock, EasyMock, and Mockito&#8212;to remove
+boilerplate and clarify the client code. But other
+than this minor syntax sugar, the libraries are used from Scala as they are in Java. This enables people familiar with
+a particular framework to get going quickly and enhances readability for combined Java/Scala projects using a common
+mocking framework. ScalaMock, the native Scala mocking framework, has been designed to integrate easily into ScalaTest suites.
+</p>
+
+<p>
+Here are links to the mocking frameworks described on this page:
+</p>
+
+<ul>
+<li><a href="#scalamock">ScalaMock</a></li>
+<li><a href="#easyMock">EasyMock</a></li>
+<li><a href="#jMock">JMock</a></li>
+<li><a href="#mockito">Mockito</a></li>
+</ul>
+
+<a name="scalamock"></a>
+<h1>Using ScalaMock</h1>
+
+<p>
+<a href="http://www.scalamock.org">ScalaMock</a> is a native, open-source Scala mocking
+    framework written by Paul Butcher that allows you to mock objects and functions.
+ScalaMock supports three different mocking styles:
+</p>
+
+<!--
+    Here's how the example used in the previous sections would look in ScalaMock:
+<pre class="stHighlighted">
+<span class="stReserved">val</span> mockCollaborator = mock[<span class="stType">Collaborator</span>]
+
+mockCollaborator expects 'documentAdded withArgs (<span class="stQuotedString">"Document"</span>)
+mockCollaborator expects 'documentChanged withArgs (<span class="stQuotedString">"Document"</span>) repeated <span class="stLiteral">3</span> times
+
+classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+</pre>
+-->
+<ul>
+<li>Function mocks</li>
+<li>Proxy (dynamic) mocks</li>
+<li>Generated (type-safe) mocks</li>
+</ul>
+
+<p>To use ScalaMock, mix <code>org.scalamock.scalatest.MockFactory</code> into your <code>Suite</code> class,
+as in:
+
+<pre class="stHighlighted">
+<span class="stReserved">import</span> org.scalatest.FlatSpec
+<span class="stReserved">import</span> org.scalamock.scalatest.MockFactory
+
+class <span class="stType">ExampleSpec</span> <span class="stReserved">extends<span> <span class="stType">FlatSpec</span> <span class="stReserved">with <span class="stType">MockFactory</span> <span class="stReserved">with ...
+</pre>
+
+<h2>Function mocks</h2>
+
+<p>Function mocks are created with <code>mockFunction</code>. The following, for example, creates a mock
+function taking a single <code>Int</code> argument and returning a <code>String</code>:</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">val</span> m = mockFunction[<span class="stType">Int</span>, <span class="stType">String</span>]
+</pre>
+
+<p>You can then set expectations set on the mock function. For example, here's how you'd state that you
+expect your mock to be called once with the argument <code>42</code>, and that when called like that
+it should return the string <code>&quot;Forty two&quot;</code>:</p>
+
+<pre class="stHighlighted">
+m expects (<span class="stLiteral">42</span>) returning <span class="stQuotedString">&quot;Forty two&quot;</span> once
+</pre>
+
+<h2>Proxy mocks</h2>
+
+<p>Proxy mocks can only be used to mock Scala traits and Java interfaces. (To mock classes, singleton/companion
+objects <em>etc</em>., please use <a href="#generatedMocks">generated mocks</a>.)
+To use proxy mocks, mix <code>org.scalamock.ProxyMockFactory</code> into your test suite.
+Proxy mocks are created with <code>mock</code>. The following, for example, creates a mock that implements
+all the <code>Turtle</code> trait (interface):</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">val</span> m = mock[<span class="stType">Turtle</span>]
+</pre>
+
+<p>You can then set expectations on each of the methods within those traits. Here's an example:</p>
+
+<pre class="stHighlighted">
+m expects 'setPosition withArgs (<span class="stLiteral">10.0</span>, <span class="stLiteral">10.0</span>)
+m expects 'forward withArgs (<span class="stLiteral">5.0</span>)
+m expects 'getPosition returning (<span class="stLiteral">15.0</span>, <span class="stLiteral">10.0</span>)
+</pre>
+
+<p>By default, an expectation accepts any arguments and a single call. The following two statements are equivalent:</p>
+
+<pre class="stHighlighted">
+m expects 'forward withArgs (*) once
+m expects 'forward
+</pre>
+
+<p>As a convenience, proxy mocks also support the <code>stubs</code> method. The following two statements are equivalent:</p>
+
+<pre class="stHighlighted">
+m expects 'forward anyNumberOfTimes
+m stubs 'forward
+</pre>
+
+<a name="generatedMocks"></a>
+<h2>Generated mocks</h2>
+
+<p>Generated mocks rely on the ScalaMock compiler plugin.
+Classes that are going to be mocked need to be declared with the <code>org.scalamock.annotation.mock</code>
+annotation. To mock a class together with its companion object, use
+<code>org.scalamock.annotation.mockWithCompanion</code>. To mock a standalone singleton object, use
+<code>org.scalamock.annotation.mockObject</code>.</p>
+
+<p>In addition to <code>MockFactory</code>, your test class also needs to mix in <code>GeneratedMockFactory</code>.</p>
+
+<p>Then, to create a regular mock object, use <code>mock</code>:</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">val</span> m = mock[<span class="stType">Turtle</span>]
+
+m.expects.forward(<span class="stLiteral">10.0</span>) twice
+</pre>
+
+<p>To mock a singleton or companion object, use <code>mockObject</code>:</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">val</span> m = mockObject(<span class="stType">Turtle</span>)
+
+m.expects.createTurtle
+</pre>
+
+<p>And to mock a constructor invocation, use <code>newInstance</code>:</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">val</span> m = mock[<span class="stType">Turtle</span>]
+
+m.expects.newInstance('blue)
+m.expects.forward(<span class="stLiteral">10.0</span>)
+</pre>
+
+<h2>Expectations</h2>
+
+<p>You can specify expectations about the arguments with which a function or method is called and
+how many times it will be called. In addition, you can instruct a mock to return a particular value or throw
+an exception when that expectation is met.</p>
+
+<h3>Arguments</h3>
+
+<p>To specify expected arguments for a functional mock, use <code>expects</code>. To specify expected
+arguments for a proxy mock, use <code>withArgs</code> or <code>withArguments</code>.</p>
+
+<p>If no expected arguments are given, mocks accept any arguments.</p>
+
+<p>To specify arguments that should simply be tested for equality, provide the expected arguments
+as a tuple:</p>
+
+<pre class="stHighlighted">
+m expects (<span class="stQuotedString">&quot;this&quot;</span>, <span class="stQuotedString">&quot;that&quot;</span>)
+</pre>
+
+<p>ScalaMock currently supports two types of generalized matching: <i>wildcards</i> and <i>epsilon
+matching</i>.</p>
+
+<h3>Wildcards</h3>
+
+<p>Wildcard values are specified with an <code>*</code> (asterisk). For example:</p>
+
+<pre class="stHighlighted">
+m expects (<span class="stQuotedString">&quot;this&quot;</span>, *)
+</pre>
+
+<p>will match any of the following:</p>
+
+<pre class="stHighlighted">
+m(<span class="stQuotedString">&quot;this&quot;</span>, <span class="stLiteral">42</span>)
+m(<span class="stQuotedString">&quot;this&quot;</span>, <span class="stLiteral">1.0</span>)
+m(<span class="stQuotedString">&quot;this&quot;</span>, <span class="stLiteral">null</span>)
+</pre>
+
+<h3>Epsilon matching</h3>
+
+<p>Epsilon matching is useful when dealing with floating point values. An epsilon match is
+specified with the <code>~</code> (tilde) operator:</p>
+
+<pre class="stHighlighted">
+m expects (~<span class="stLiteral">42.0</span>)
+</pre>
+
+<p>will match:</p>
+
+<pre class="stHighlighted">
+m(<span class="stLiteral">42.0</span>)
+m(<span class="stLiteral">42.0001</span>)
+m(<span class="stLiteral">41.9999</span>)
+</pre>
+
+<p>but will not match:</p>
+
+<pre class="stHighlighted">
+m(<span class="stLiteral">43.0</span>)
+m(<span class="stLiteral">42.1</span>)
+</pre>
+
+<h3>Repeated parameters</h3>
+
+<p>If you're using generated mocks, you need do nothing special to set expectations on methods
+that take repeated parameters. If you're using proxy mocks you will need to use
+the <code>**</code> operator. For example, given:</p>
+
+<pre class="stHighlighted">
+def takesRepeatedParameter(x: <span class="stType">Int</span>, ys: <span class="stType">String</span>*)
+</pre>
+
+<p>you can set an expectation with:</p>
+
+<pre class="stHighlighted">
+m expects 'takesRepeatedParameter withArgs(<span class="stLiteral">42</span>, **(&quot;red&quot;, &quot;green&quot;, &quot;blue&quot;))
+</pre>
+
+<h3>Predicate matching</h3>
+
+<p>More complicated argument matching can be implemented by using <code>where</code> to pass a predicate:</p>
+
+<pre class="stHighlighted">
+m = mockFunction[<span class="stType">Double</span>, <span class="stType">Double</span>, <span class="stType">Unit</span>]
+m expects { where _ &lt; _ }
+</pre>
+
+<pre class="stHighlighted">
+m = mock[<span class="stType">Turtle</span>]
+m expects 'setPosition where { (x: <span class="stType">Double</span>, y: <span class="stType">Double</span>) =&gt; x &lt; y }
+</pre>
+
+<h3>Return value</h3>
+
+<p>You can instruct a mock to return a specific value with <code>returns</code> or <code>returning</code>:</p>
+
+<pre class="stHighlighted">
+m1 returns <span class="stLiteral">42</span>
+m2 expects (<span class="stQuotedString">&quot;this&quot;</span>, <span class="stQuotedString">&quot;that&quot;</span>) returning <span class="stQuotedString">&quot;the other&quot;</span>
+</pre>
+
+<p>If no return value is specified, functional mocks return <code>null.asInstanceOf[R]</code>, where <code>R</code> is the
+return type (which equates to <code>0</code> for <code>Int</code>, <code>0.0</code> for <code>Double</code> <em>etc</em>.).</p>
+
+<p>If no return value is specified, proxy mocks return <code>null</code>. This works correctly for most return
+types, but not for methods returning primitive types (<code>Int</code>, <code>Double</code> <em>etc</em>.), where returning
+<code>null</code> leads to a <code>NullPointerException</code>. So you will need to explicitly specify a return value
+for such methods. (This restriction may be lifted in the future.)</p>
+
+<p>You can return a computed value (or throw a computed exception) with <code>onCall</code>, for example:</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">val</span> mockIncrement = mockFunction[<span class="stType">Int</span>, <span class="stType">Int</span>]
+m expects (*) onCall { x: <span class="stType">Int</span> =&gt; x + <span class="stLiteral">1</span> }
+</pre>
+
+<h3>Exceptions</h3>
+
+<p>Instead of a return value, a mock can be instructed to throw:</p>
+
+<pre class="stHighlighted">
+m expects (<span class="stQuotedString">&quot;this&quot;</span>, <span class="stQuotedString">&quot;that&quot;</span>) throws new RuntimeException(<span class="stQuotedString">&quot;what's that?&quot;</span>)
+</pre>
+
+<h3>Call count</h3>
+
+<p>By default, mocks expect one or more calls (<em>i.e.</em>, only fail if the function or method is never
+called). An exact number of calls or a range can be set with <code>repeat</code>:</p>
+
+<pre class="stHighlighted">
+m1 returns <span class="stLiteral">42</span> repeat <span class="stLiteral">3</span> to <span class="stLiteral">7</span>
+m2 expects (<span class="stLiteral">3</span>) repeat <span class="stLiteral">10</span>
+</pre>
+
+<p>There are various aliases for common expectations and styles:</p>
+
+<pre class="stHighlighted">
+m1 expects (<span class="stQuotedString">&quot;this&quot;</span>, <span class="stQuotedString">&quot;that&quot;</span>) once
+m2 returns <span class="stQuotedString">&quot;foo&quot;</span> noMoreThanTwice
+m3 expects (<span class="stLiteral">42</span>) repeated <span class="stLiteral">3</span> times
+</pre>
+
+<p>For a full list, see <code>org.scalamock.Expectation</code>.</p>
+
+<h2>Ordering</h2>
+
+<p>By default, expectations can be satisfied in any order. For example:</p>
+
+<pre class="stHighlighted">
+m expects (<span class="stLiteral">1</span>)
+m expects (<span class="stLiteral">2</span>)
+m(<span class="stLiteral">2</span>)
+m(<span class="stLiteral">1</span>)
+</pre>
+
+<p>A specific sequence can be enforced with <code>inSequence</code>:</p>
+
+<pre class="stHighlighted">
+inSequence {
+  m expects (<span class="stLiteral">1</span>)
+  m expects (<span class="stLiteral">2</span>)
+}
+m(<span class="stLiteral">2</span>) // throws ExpectationException
+m(<span class="stLiteral">1</span>)
+</pre>
+
+<p>Multiple sequences can be specified. As long as the calls within each sequence happen in the
+correct order, calls within different sequences can be interleaved. For example:</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">val</span> m1 = mock[<span class="stType">Turtle</span>]
+<span class="stReserved">val</span> m2 = mock[<span class="stType">Turtle</span>]
+
+inSequence {
+  m1.expects.setPosition(<span class="stLiteral">0.0</span>, <span class="stLiteral">0.0</span>)
+  m1.expects.penDown
+  m1.expects.forward(<span class="stLiteral">10.0</span>)
+  m1.expects.penUp
+}
+inSequence {
+  m2.expects.setPosition(<span class="stLiteral">1.0</span>, <span class="stLiteral">1.0</span>)
+  m2.expects.turn(<span class="stLiteral">90.0</span>)
+  m2.expects.forward(<span class="stLiteral">1.0</span>)
+  m2.expects.getPosition returning (<span class="stLiteral">2.0</span>, <span class="stLiteral">1.0</span>)
+}
+
+m2.setPosition(<span class="stLiteral">1.0</span>, <span class="stLiteral">1.0</span>)
+m1.setPosition(<span class="stLiteral"> 0.0</span>, <span class="stLiteral">0.0</span>)
+m1.penDown
+m2.turn(<span class="stLiteral">90.0</span>)
+m1.forward(<span class="stLiteral">10.0</span>)
+m2.forward(<span class="stLiteral">1.0</span>)
+m1.penUp
+expect((<span class="stLiteral">2.0</span>, <span class="stLiteral">1.0</span>)) { m2.getPosition }
+</pre>
+
+<p>To specify that there is no constraint on ordering, use <code>inAnyOrder</code> (there is an implicit
+<code>inAnyOrder</code> at the top level). Calls to <code>inSequence</code> and <code>inAnyOrder</code> can be arbitrarily
+nested. For example:</p>
+
+<pre class="stHighlighted">
+m.expects.a
+inSequence {
+  m.expects.b
+  inAnyOrder {
+    m.expects.c
+    inSequence {
+      m.expects.d
+      m.expects.e
+    }
+    m.expects.f
+  }
+  m.expects.g
+}
+</pre>
+
+<h2>Debugging</h2>
+
+<p>If faced with a difficult to debug failing expectation, consider mixing
+one or both of the <code>org.scalamock.VerboseErrors</code> or <code>org.scalamock.CallLogging</code> traits
+into your test suite:</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends<span> <span class="stType">FlatSpec</span> <span class="stReserved">with</span> <span class="stType">MockFactory</span> <span class="stReserved">with</span>
+    <span class="stType">VerboseErrors</span> <span class="stReserved">with</span> <span class="stType">CallLogging</span> ...
+</pre>
+
+<a name="easyMock"></a>
+<h1>Using EasyMock</h1>
+
+<p>
+ScalaTest's <a href="@latestScaladoc/#org.scalatest.mock.EasyMockSugar"><code>EasyMockSugar</code></a> trait provides some basic syntax sugar for <a href="http://easymock.org/" target="_blank">EasyMock</a>.
+</p>
+
+<p>
+Using the EasyMock API directly, you create a mock with:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">val</span> mockCollaborator = createMock(classOf[<span class="stType">Collaborator</span>])
+</pre>
+
+<p>
+With this trait, you can shorten that to:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">val</span> mockCollaborator = mock[<span class="stType">Collaborator</span>]
+</pre>
+
+<p>
+After creating mocks, you set expectations on them, using syntax like this:
+</p>
+
+<pre class="stHighlighted">
+mockCollaborator.documentAdded(<span class="stQuotedString">"Document"</span>)
+mockCollaborator.documentChanged(<span class="stQuotedString">"Document"</span>)
+expectLastCall().times(<span class="stLiteral">3</span>)
+</pre>
+
+<p>
+If you wish to highlight which statements are setting expectations on the mock (versus
+which ones are actually using the mock), you can place them in an <code>expecting</code>
+clause, provided by this trait, like this:
+</p>
+
+<pre class="stHighlighted">
+expecting {
+  mockCollaborator.documentAdded(<span class="stQuotedString">"Document"</span>)
+  mockCollaborator.documentChanged(<span class="stQuotedString">"Document"</span>)
+  lastCall.times(<span class="stLiteral">3</span>)
+}
+</pre>
+
+<p>
+Using an <code>expecting</code> clause is optional, because it does nothing but visually indicate
+which statements are setting expectations on mocks. (Note: this trait also provides the <code>lastCall</code>
+method, which just calls <code>expectLastCall</code>.)
+</p>
+
+<p>
+Once you've set expectations on the mock objects, you must invoke <code>replay</code> on
+the mocks to indicate you are done setting expectations, and will start using the mock.
+After using the mock, you must invoke <code>verify</code> to check to make sure the mock
+was used in accordance with the expectations you set on it. Here's how that looks when you
+use the EasyMock API directly:
+</p>
+
+<pre class="stHighlighted">
+replay(mockCollaborator)
+classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+verify(mockCollaborator)
+</pre>
+
+<p>
+This trait enables you to use the following, more declarative syntax instead:
+</p>
+
+<pre class="stHighlighted">
+whenExecuting(mockCollaborator) {
+  classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+  classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+  classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+  classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+}
+</pre>
+
+<p>
+The <code>whenExecuting</code> method will pass the <code>mockCollaborator</code> to
+<code>replay</code>, execute the passed function (your code that uses the mock), and
+call <code>verify</code>, passing in the <code>mockCollaborator</code>. If you want to
+use multiple mocks, you can pass multiple mocks to <code>whenExecuting</code>.
+</p>
+
+<p>
+To summarize, here's what a typical test using <code>EasyMockSugar</code> looks like:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">val</span> mockCollaborator = mock[<span class="stType">Collaborator</span>]
+<br />expecting {
+  mockCollaborator.documentAdded(<span class="stQuotedString">"Document"</span>)
+  mockCollaborator.documentChanged(<span class="stQuotedString">"Document"</span>)
+  lastCall.times(<span class="stLiteral">3</span>)
+}
+<br />whenExecuting(mockCollaborator) {
+  classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+  classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+  classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+  classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+}
+</pre>
+
+<p>
+An alternative approach is to place your mock objects in a <code>MockObjects</code> holder object referenced
+from an implicit <code>val</code>, then use the overloaded variant of <code>whenExecuting</code> that
+takes an implicit <code>MockObjects</code> parameter. Here's how that would look:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">implicit</span> <span class="stReserved">val</span> mocks = <span class="stType">MockObjects</span>(mock[<span class="stType">Collaborator</span>])
+<br />expecting {
+  mockCollaborator.documentAdded(<span class="stQuotedString">"Document"</span>)
+  mockCollaborator.documentChanged(<span class="stQuotedString">"Document"</span>)
+  lastCall.times(<span class="stLiteral">3</span>)
+}
+<br />whenExecuting {
+  classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+  classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+  classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+  classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+}
+</pre>
+
+<a name="jMock"></a>
+<h1>Using JMock</h1>
+
+<p>
+ScalaTest's <a href="@latestScaladoc/#org.scalatest.mock.JMockCycle"><code>JMockCycle</code></a> class, which wraps and manages the lifecycle of a single <code>org.jmock.Mockery</code> context object,
+provides some basic syntax sugar for using <a href="http://www.jmock.org/" target="_blank">JMock</a> in Scala.
+</p>
+
+<p>
+Using the JMock API directly, you first need a <code>Mockery</code> context object:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">val</span> context = <span class="stReserved">new</span> <span class="stType">Mockery</span>
+</pre>
+
+<p>
+<code>JMockCycle</code> uses jMock's <code>ClassImposterizer</code> to support mocking of classes, so the following line
+would also be needed if you wanted that functionality as well:
+</p>
+
+<pre class="stHighlighted">
+context.setImposteriser(ClassImposteriser.INSTANCE)
+</pre>
+
+<p>
+When using this class, you would instead create an instance of this class (which will create and
+wrap a <code>Mockery</code> object) and import its members, like this:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">val</span> cycle = <span class="stReserved">new</span> <span class="stType">JMockCycle</span>
+<span class="stReserved">import</span> cycle._
+</pre>
+
+<p>
+Using the JMock API directly, you would create a mock object like this:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">val</span> mockCollaborator = context.mock(classOf[<span class="stType">Collaborator</span>])
+</pre>
+
+<p>
+Having imported the members of an instance of this class, you can shorten that to:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">val</span> mockCollaborator = mock[<span class="stType">Collaborator</span>]
+</pre>
+
+<p>
+After creating mocks, you set expectations on them, using syntax like this:
+</p>
+
+<pre class="stHighlighted">
+context.checking(
+  <span class="stReserved">new</span> <span class="stType">Expectations</span>() {
+    oneOf (mockCollaborator).documentAdded(<span class="stQuotedString">"Document"</span>)
+    exactly(<span class="stLiteral">3</span>).of (mockCollaborator).documentChanged(<span class="stQuotedString">"Document"</span>)
+   }
+ )
+</pre>
+
+<p>
+Having imported the members of an instance of this class, you can shorten this step to:
+</p>
+
+<pre class="stHighlighted">
+expecting { e => <span class="stReserved">import</span> e._
+  oneOf (mockCollaborator).documentAdded(<span class="stQuotedString">"Document"</span>)
+  exactly(<span class="stLiteral">3</span>).of (mockCollaborator).documentChanged(<span class="stQuotedString">"Document"</span>)
+}
+</pre>
+
+<p>
+The <code>expecting</code> method will create a new <code>Expectations</code> object, pass it into
+the function you provide, which sets the expectations. After the function returns, the <code>expecting</code>
+method will pass the <code>Expectations</code> object to the <code>checking</code>
+method of its internal <code>Mockery</code> context.
+</p>
+
+<p>
+The <code>expecting</code> method passes an instance of class
+<code>org.scalatest.mock.JMockExpectations</code> to the function you pass into
+<code>expectations</code>. <code>JMockExpectations</code> extends <code>org.jmock.Expectations</code> and
+adds several overloaded <code>withArg</code> methods. These <code>withArg</code> methods simply
+invoke corresponding <code>with</code> methods on themselves. Because <code>with</code> is
+a keyword in Scala, to invoke these directly you must surround them in back ticks, like this:
+</p>
+
+<pre class="stHighlighted">
+oneOf (mockCollaborator).documentAdded(`<span class="stReserved">with</span>`(<span class="stQuotedString">"Document"</span>))
+</pre>
+
+<p>
+By importing the members of the passed <code>JMockExpectations</code> object, you can
+instead call <code>withArg</code> with no back ticks needed:
+</p>
+
+<pre class="stHighlighted">
+oneOf (mockCollaborator).documentAdded(withArg(<span class="stQuotedString">"Document"</span>))
+</pre>
+
+<p>
+Once you've set expectations on the mock objects, when using the JMock API directly, you use the mock, then invoke
+<code>assertIsSatisfied</code> on the <code>Mockery</code> context to make sure the mock
+was used in accordance with the expectations you set on it. Here's how that looks:
+</p>
+
+<pre class="stHighlighted">
+classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+context.assertIsSatisfied()
+</pre>
+
+<p>
+This class enables you to use the following, more declarative syntax instead:
+</p>
+
+<pre class="stHighlighted">
+whenExecuting {
+  classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+  classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+  classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+  classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+}
+</pre>
+
+<p>
+The <code>whenExecuting</code> method will execute the passed function, then
+invoke <code>assertIsSatisfied</code> on its internal <code>Mockery</code>
+context object.
+</p>
+
+<p>
+To summarize, here's what a typical test using <code>JMockCycle</code> looks like:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">val</span> cycle = <span class="stReserved">new</span> <span class="stType">JMockCycle</span>
+<span class="stReserved">import</span> cycle._
+<br /><span class="stReserved">val</span> mockCollaborator = mock[<span class="stType">Collaborator</span>]
+<br />expecting { e => <span class="stReserved">import</span> e._
+  oneOf (mockCollaborator).documentAdded(<span class="stQuotedString">"Document"</span>)
+  exactly(<span class="stLiteral">3</span>).of (mockCollaborator).documentChanged(<span class="stQuotedString">"Document"</span>)
+}
+<br />whenExecuting {
+  classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+  classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+  classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+  classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+}
+</pre>
+
+<p>
+ScalaTest also provides a <a href="@latestScaladoc/#org.scalatest.mock.JMockCycleFixture"><code>JMockCycleFixture</code></a> trait, which
+will pass a new <code>JMockCycle</code> into each test that needs one.
+</p>
+
+<a name="mockito"></a>
+<h1>Using Mockito</h1>
+
+<p>
+ScalaTest's <a href="@latestScaladoc/#org.scalatest.mock.MockitoSugar"><code>MockitoSugar</code></a> trait provides some basic syntax sugar for <a href="http://mockito.org/" target="_blank">Mockito</a>.
+</p>
+
+<p>
+Using the Mockito API directly, you create a mock with:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">val</span> mockCollaborator = mock(classOf[<span class="stType">Collaborator</span>])
+</pre>
+
+<p>
+Using this trait, you can shorten that to:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">val</span> mockCollaborator = mock[<span class="stType">Collaborator</span>]
+</pre>
+
+<p>
+Here is how the example used in the previous EasyMock and JMock sections would look with Mockito and <code>MockitoSugar</code>:
+</p>
+
+<pre class="stHighlighted">
+<span class="stLineComment">// First, create the mock object</span>
+<span class="stReserved">val</span> mockCollaborator = mock[<span class="stType">Collaborator</span>]
+
+<span class="stLineComment">// Create the class under test and pass the mock to it</span>
+classUnderTest = <span class="stReserved">new</span> <span class="stType">ClassUnderTest</span>
+classUnderTest.addListener(mock)
+
+<span class="stLineComment">// Use the class under test</span>
+classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+
+<span class="stLineComment">// Then verify the class under test used the mock object as expected</span>
+verify(mockCollaborator).documentAdded(<span class="stQuotedString">"Document"</span>)
+verify(mockCollaborator, times(<span class="stLiteral">3</span>)).documentChanged(<span class="stQuotedString">"Document"</span>)
+</pre>
+
+<p>
+Next, learn about the BDD style and <a href="/user_guide/tests_as_specifications">tests as specifications</a>.
+</p>
+</div>
+}

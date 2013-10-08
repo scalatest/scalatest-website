@@ -1,0 +1,1219 @@
+@*
+ * Copyright 2010-2013 Artima, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *@
+
+@import controllers.Application.latestScaladoc
+
+@userGuidePage("Using matchers") {
+<div style="text-align: left">
+
+<h1>Using matchers</h1>
+
+<p>
+(See also <a href="/user_guide/matchers_quick_reference">Matchers quick reference</a>.)
+</p>
+
+<p>
+ScalaTest provides a domain specific language (DSL) for expressing assertions in tests
+using the word <code>should</code> or <code>must</code>. If you prefer the word <code>should</code>, you mix in <a href="@latestScaladoc/#org.scalatest.matchers.ShouldMatchers"><code>ShouldMatchers</code></a>, like this:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">import</span> org.scalatest.FlatSpec
+<span class="stReserved">import</span> org.scalatest.matchers.ShouldMatchers
+
+<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> <span class="stReserved">with</span> <span class="stType">ShouldMatchers</span> &#123; ...
+</pre>
+
+If you prefer <code>must</code>, you mix in <a href="@latestScaladoc/#org.scalatest.matchers.MustMatchers"><code>MustMatchers</code></a>: 
+
+<pre class="stHighlighted">
+<span class="stReserved">import</span> org.scalatest.FlatSpec
+<span class="stReserved">import</span> org.scalatest.matchers.MustMatchers
+
+<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> <span class="stReserved">with</span> <span class="stType">MustMatchers</span> &#123; ...
+</pre>
+
+<p>
+You can alternatively import the members of either trait, a technique particularly useful when you want to try out matcher expressions in the 
+Scala interpeter. Here's an example where the members of <code>ShouldMatchers</code> are imported:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">import</span> org.scalatest.FlatSpec
+<span class="stReserved">import</span> org.scalatest.matchers.ShouldMatchers._
+
+<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> &#123; // Can use should matchers here ...
+</pre>
+
+<p>
+Here is a table of contents for this page:
+</p>
+
+<ul>
+<li><a href="#checkingEquality">Checking equality</a></li>
+<li><a href="#checkingSizeAndLength">Checking size and length</a></li>
+<li><a href="#checkingStrings">Checking strings</a></li>
+<li><a href="#greaterAndLessThan">Greater and less than</a></li>
+<li><a href="#checkingEqualityWithBeTripleEquals">Checking equality with <code>be</code> <code>=</code><code>=</code><code>=</code></a></li>
+<li><a href="#checkingBooleanPropertiesWithBe">Checking <code>Boolean</code> properties with <code>be</code></a></li>
+<li><a href="#creatingCustomBeMatchers">Creating custom <code>BeMatchers</code></a></li>
+<li><a href="#checkingObjectIdentity">Checking object identity</a></li>
+<li><a href="#checkingNumbersAgainstARange">Checking numbers against a range</a></li>
+<li><a href="#traversables">Traversables, iterables, sets, sequences, and maps</a></li>
+<li><a href="#javaCollectionsAndMaps">Java collections and maps</a></li>
+<li><a href="#beAsAnEqualityComparison">Be as an equality comparison</a></li>
+<li><a href="#beingNegative">Being negative</a></li>
+<li><a href="#logicalExpressions">Logical expressions with <code>and</code> and <code>or</code></a></li>
+<li><a href="#workingWithOptions">Working with <code>Option</code>s</a></li>
+<li><a href="#checkingArbitraryProperties">Checking arbitrary properties with <code>have</code></a></li>
+<li><a href="#usingCustomMatchers">Using custom matchers</a></li>
+<li><a href="#otherWays">Other ways to create matchers</a></li>
+<li><a href="#checkingForExpectedExceptions">Checking for expected exceptions</a></li>
+<li><a href="#thosePeskyParens">Those pesky parens</a></li>
+</ul>
+
+<a name="checkingEquality"></a>
+<h2>Checking equality</h2>
+
+<p>
+If you mix <code>ShouldMatchers</code>  into
+a suite class (or import its members), you can write an equality assertion in that suite like this:
+</p>
+
+<pre class="stHighlighted">
+result should equal (<span class="stLiteral">3</span>)
+</pre>
+
+<p>
+Here <code>result</code> is a variable, and can be of any type. If the object is an
+<code>Int</code> with the value 3, execution will continue (<em>i.e.</em>, the expression will result
+in the unit value, <code>()</code>). Otherwise, a <code>TestFailedException</code>
+will be thrown with a detail message that explains the problem, such as <code>"7 did not equal 3"</code>.
+This <code>TestFailedException</code> will cause the test to fail.
+</p>
+
+<p>
+The <code>left should equal (right)</code> syntax works by calling <code>==</code>  on the <code>left</code>
+value, passing in the <code>right</code> value, on every type except arrays. If both <code>left</code> and right are arrays, <code>deep</code>
+will be invoked on both <code>left</code> and <code>right</code> before comparing them with <em>==</em>. Thus, even though this expression
+will yield false, because <code>Array</code>'s <code>equals</code> method compares object identity:
+</p>
+
+<pre class="stHighlighted">
+<span class="stType">Array</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>) == <span class="stType">Array</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>) <span class="stLineComment">// yields false</span>
+</pre>
+
+<p>
+The following expression will <em>not</em> result in a <code>TestFailedException</code>, because ScalaTest compares
+the two arrays structurally, taking into consideration the equality of the array's contents:
+</p>
+
+<pre class="stHighlighted">
+<span class="stType">Array</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>) should equal (<span class="stType">Array</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>)) <span class="stLineComment">// succeeds (i.e., does not throw TestFailedException)</span>
+</pre>
+
+<p>
+If you ever do want to verify that two arrays are actually the same object (have the same identity), you can use the
+<code>be theSameInstanceAs</code> syntax, described below.
+</p>
+
+<a name="checkingSizeAndLength"></a>
+<h2>Checking size and length</h2>
+
+<p>
+You can check the size or length of just about any type of object for which it
+would make sense. Here's how checking for length looks:
+</p>
+<pre class="stHighlighted">
+result should have length (<span class="stLiteral">3</span>)
+</pre>
+
+<p>
+Size is similar:
+</p>
+
+<pre class="stHighlighted">
+result should have size (<span class="stLiteral">10</span>)
+</pre>
+
+<p>
+The <code>length</code> syntax can be used with any object that has a field or method named <code>length</code>
+or a method named <code>getLength</code>.   Similarly, the <code>size</code> syntax can be used with any
+object that has a field or method named <code>size</code> or a method named <code>getSize</code>.
+The type of a <code>length</code> or <code>size</code> field, or return type of a method, must be either <code>Int</code>
+or <code>Long</code>. Any such method must take no parameters. (The Scala compiler will ensure at compile time that
+the object on which <code>should</code> is being invoked has the appropriate structure.)
+</p>
+
+<a name="checkingStrings"></a>
+<h2>Checking strings</h2>
+
+<p>
+You can check for whether a string starts with, ends with, or includes a substring like this:
+</p>
+
+<pre class="stHighlighted">
+string should startWith (<span class="stQuotedString">"Hello"</span>)
+string should endWith (<span class="stQuotedString">"world"</span>)
+string should include (<span class="stQuotedString">"seven"</span>)
+</pre>
+
+<p>
+You can check for whether a string starts with, ends with, or includes a regular expression, like this:
+</p>
+
+<pre class="stHighlighted">
+string should startWith regex (<span class="stQuotedString">"Hel*o"</span>)
+string should endWith regex (<span class="stQuotedString">"wo.ld"</span>)
+string should include regex (<span class="stQuotedString">"wo.ld"</span>)
+</pre>
+
+<p>
+And you can check whether a string fully matches a regular expression, like this:
+</p>
+
+<pre class="stHighlighted">
+string should fullyMatch regex (<span class="stQuotedString">&#34;&#34;&#34;(-)?(\d+)(\.\d*)?&#34;&#34;&#34;</span>)
+</pre>
+
+<p>
+The regular expression passed following the <code>regex</code> token can be either a <code>String</code>
+or a <code>scala.util.matching.Regex</code>.
+</p>
+
+<a name="greaterAndLessThan"></a>
+<h2>Greater and less than</h2>
+
+<p>
+You can check whether any type that is, or can be implicitly converted to,
+an <code>Ordered[T]</code> is greater than, less than, greater than or equal, or less
+than or equal to a value of type <code>T</code>. The syntax is:
+</p>
+
+<pre class="stHighlighted">
+one should be < (<span class="stLiteral">7</span>)
+one should be > (<span class="stLiteral">0</span>)
+one should be <= (<span class="stLiteral">7</span>)
+one should be >= (<span class="stLiteral">0</span>)
+</pre>
+
+<a name="checkingEqualityWithBeTripleEquals"></a>
+<h2>Checking equality with <code>be</code> <code>=</code><code>=</code><code>=</code></h2>
+
+<p>
+An alternate way to check for equality of two objects is to use <code>be</code> with
+<code>===</code>. Here's an example:
+</p>
+
+<pre class="stHighlighted">
+result should be === (<span class="stLiteral">3</span>)
+</pre>
+
+<p>
+Here <code>result</code> is a variable, and can be of any type. If the object is an
+<code>Int</code> with the value 3, execution will continue (<em>i.e.</em>, the expression will result
+in the unit value, <code>()</code>). Otherwise, a <code>TestFailedException</code>
+will be thrown with a detail message that explains the problem, such as <code>"7 was not equal to 3"</code>.
+This <code>TestFailedException</code> will cause the test to fail.
+</p>
+
+<p>
+The <code>left should be === (right)</code> syntax works by calling <code>==</code>  on the <code>left</code>
+value, passing in the <code>right</code> value, on every type except arrays. If both <code>left</code> and right are arrays, <code>deep</code>
+will be invoked on both <code>left</code> and <code>right</code> before comparing them with <em>==</em>. Thus, even though this expression
+will yield false, because <code>Array</code>'s <code>equals</code> method compares object identity:
+</p>
+
+<pre class="stHighlighted">
+<span class="stType">Array</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>) == <span class="stType">Array</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>) <span class="stLineComment">// yields false</span>
+</pre>
+
+<p>
+The following expression will <em>not</em> result in a <code>TestFailedException</code>, because ScalaTest compares
+the two arrays structurally, taking into consideration the equality of the array's contents:
+</p>
+
+<pre class="stHighlighted">
+<span class="stType">Array</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>) should be === (<span class="stType">Array</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>)) <span class="stLineComment">// succeeds (i.e., does not throw TestFailedException)</span>
+</pre>
+
+<p>
+If you ever do want to verify that two arrays are actually the same object (have the same identity), you can use the
+<code>be theSameInstanceAs</code> syntax, described below.
+</p>
+
+<a name="checkingBooleanPropertiesWithBe"></a>
+<h2>Checking <code>Boolean</code> properties with <code>be</code></h2>
+
+<p>
+If an object has a method that takes no parameters and returns boolean, you can check
+it by placing a <code>Symbol</code> (after <code>be</code>) that specifies the name
+of the method (excluding an optional prefix of "<code>is</code>"). A symbol literal
+in Scala begins with a tick mark and ends at the first non-identifier character. Thus,
+<code>'empty</code> results in a <code>Symbol</code> object at runtime, as does
+<code>'defined</code> and <code>'file</code>. Here's an example:
+</p>
+
+<pre class="stHighlighted">
+emptySet should be (<span class="stQuotedString">'empty</span>)
+</pre>
+
+Given this code, ScalaTest will use reflection to look on the object referenced from
+<code>emptySet</code> for a method that takes no parameters and results in <code>Boolean</code>,
+with either the name <code>empty</code> or <code>isEmpty</code>. If found, it will invoke
+that method. If the method returns <code>true</code>, execution will continue. But if it returns
+<code>false</code>, a <code>TestFailedException</code> will be thrown that will contain a detail message, such as:
+
+<pre class="stHighlighted">
+<span class="stType">Set</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>) was not empty
+</pre>
+
+<p>
+This <code>be</code> syntax can be used with any type.  If the object does
+not have an appropriately named predicate method, you'll get a <code>TestFailedException</code>
+at runtime with a detail message that explains the problem.
+(For the details on how a field or method is selected during this
+process, see the documentation for <a href="@latestScaladoc/#org.scalatest.matchers.Matchers$BeWord"><code>BeWord</code></a>.)
+</p>
+
+<p>
+If you think it reads better, you can optionally put <code>a</code> or <code>an</code> after
+<code>be</code>. For example, <code>java.io.File</code> has two predicate methods,
+<code>isFile</code> and <code>isDirectory</code>. Thus with a <code>File</code> object
+named <code>temp</code>, you could write:
+</p>
+
+<pre class="stHighlighted">
+temp should be a (<span class="stQuotedString">'file</span>)
+</pre>
+
+<p>
+Or, given <code>java.awt.event.KeyEvent</code> has a method <code>isActionKey</code> that takes
+no arguments and returns <code>Boolean</code>, you could assert that a <code>KeyEvent</code> is
+an action key with:
+</p>
+
+<pre class="stHighlighted">
+keyEvent should be an (<span class="stQuotedString">'actionKey</span>)
+</pre>
+
+<p>
+If you prefer to check <code>Boolean</code> properties in a type-safe manner, you can use a <code>BePropertyMatcher</code>.
+This would allow you to write expressions such as:
+</p>
+
+<pre class="stHighlighted">
+emptySet should be (empty)
+temp should be a (file)
+keyEvent should be an (actionKey)
+</pre>
+
+<p>
+These expressions would fail to compile if <code>should</code> is used on an inappropriate type, as determined
+by the type parameter of the <code>BePropertyMatcher</code> being used. (For example, <code>file</code> in this example
+would likely be of type <code>BePropertyMatcher[java.io.File]</code>. If used with an appropriate type, such an expression will compile
+and at run time the <code>Boolean</code> property method or field will be accessed directly; <em>i.e.</em>, no reflection will be used.
+See the documentation for <a href="@latestScaladoc/#org.scalatest.matchers.BePropertyMatcher"><code>BePropertyMatcher</code></a> for more information.
+</p>
+
+<a name="creatingCustomBeMatchers"></a>
+<h2>Creating custom <code>BeMatchers</code></h2>
+
+If you want to create a new way of using <code>be</code>, which doesn't map to an actual property on the
+type you care about, you can create a <code>BeMatcher</code>. You could use this, for example, to create <code>BeMatcher[Int]</code>
+called <code>odd</code>, which would match any odd <code>Int</code>, and <code>even</code>, which would match
+any even <code>Int</code>. 
+Given this pair of <code>BeMatcher</code>s, you could check whether an <code>Int</code> was odd or even with expressions like:
+</p>
+
+<pre class="stHighlighted">
+num should be (odd)
+num should not be (even)
+</pre>
+
+For more information, see the documentation for <a href="@latestScaladoc/#org.scalatest.matchers.BeMatcher"><code>BeMatcher</code></a>.
+
+<a name="checkingObjectIdentity"></a>
+<h2>Checking object identity</h2>
+
+<p>
+If you need to check that two references refer to the exact same object, you can write:
+</p>
+
+<pre class="stHighlighted">
+ref1 should be theSameInstanceAs (ref2)
+</pre>
+
+<a name="checkingNumbersAgainstARange"></a>
+<h2>Checking numbers against a range</h2>
+
+<p>
+To check whether a floating point number has a value that exactly matches another, you
+can use <code>should equal</code>:
+</p>
+
+<pre class="stHighlighted">
+sevenDotOh should equal (<span class="stLiteral">7.0</span>)
+</pre>
+
+<p>
+Often, however, you may want to check whether a floating point number is within a
+range. You can do that using <code>be</code> and <code>plusOrMinus</code>, like this:
+</p>
+
+<pre class="stHighlighted">
+sevenDotOh should be (<span class="stLiteral">6.9</span> plusOrMinus <span class="stLiteral">0.2</span>)
+</pre>
+
+<p>
+This expression will cause a <code>TestFailedException</code> to be thrown if the floating point
+value, <code>sevenDotOh</code> is outside the range <code>6.7</code> to <code>7.1</code>.
+You can also use <code>plusOrMinus</code> with integral types, for example:
+</p>
+
+<pre class="stHighlighted">
+seven should be (<span class="stLiteral">6</span> plusOrMinus <span class="stLiteral">2</span>)
+</pre>
+
+<a name="traversables"></a>
+<h2>Traversables, iterables, sets, sequences, and maps</h2>
+
+<p>
+You can use some of the syntax shown previously with <code>Iterable</code> and its
+subtypes. For example, you can check whether an <code>Iterable</code> is <code>empty</code>,
+like this:
+</p>
+
+<pre class="stHighlighted">
+iterable should be (<span class="stQuotedString">'empty</span>)
+</pre>
+
+<p>
+You can check the length of an <code>Seq</code> (<code>Array</code>, <code>List</code>, etc.),
+like this:
+</p>
+
+<pre class="stHighlighted">
+array should have length (<span class="stLiteral">3</span>)
+list should have length (<span class="stLiteral">9</span>)
+</pre>
+
+<p>
+You can check the size of any <code>Traversable</code>, like this:
+</p>
+
+<pre class="stHighlighted">
+map should have size (<span class="stLiteral">20</span>)
+set should have size (<span class="stLiteral">90</span>)
+</pre>
+
+<p>
+In addition, you can check whether an <code>Iterable</code> contains a particular
+element, like this:
+</p>
+
+<pre class="stHighlighted">
+iterable should contain (<span class="stQuotedString">"five"</span>)
+</pre>
+
+<p>
+You can also check whether a <code>Map</code> contains a particular key, or value, like this:
+</p>
+
+<pre class="stHighlighted">
+map should contain key (<span class="stLiteral">1</span>)
+map should contain value (<span class="stQuotedString">"Howdy"</span>)
+</pre>
+
+<a name="javaCollectionsAndMaps"></a>
+<h2>Java collections and maps</h2>
+
+<p>
+You can use similar syntax on Java collections (<code>java.util.Collection</code>) and maps (<code>java.util.Map</code>).
+For example, you can check whether a Java <code>Collection</code> or <code>Map</code> is <code>empty</code>,
+like this:
+</p>
+
+<pre class="stHighlighted">
+javaCollection should be (<span class="stQuotedString">'empty</span>)
+javaMap should be (<span class="stQuotedString">'empty</span>)
+</pre>
+
+<p>
+Even though Java's <code>List</code> type doesn't actually have a <code>length</code> or <code>getLength</code> method,
+you can nevertheless check the length of a Java <code>List</code> (<code>java.util.List</code>) like this:
+</p>
+
+<pre class="stHighlighted">
+javaList should have length (<span class="stLiteral">9</span>)
+</pre>
+
+<p>
+You can check the size of any Java <code>Collection</code> or <code>Map</code>, like this:
+</p>
+
+<pre class="stHighlighted">
+javaMap should have size (<span class="stLiteral">20</span>)
+javaSet should have size (<span class="stLiteral">90</span>)
+</pre>
+
+<p>
+In addition, you can check whether a Java <code>Collection</code> contains a particular
+element, like this:
+</p>
+
+<pre class="stHighlighted">
+javaCollection should contain (<span class="stQuotedString">"five"</span>)
+</pre>
+
+<p>
+One difference to note between the syntax supported on Java collections and that of Scala
+iterables is that you can't use <code>contain (...)</code> syntax with a Java <code>Map</code>.
+Java differs from Scala in that its <code>Map</code> is not a subtype of its <code>Collection</code> type.
+If you want to check that a Java <code>Map</code> contains a specific key/value pair, the best approach is
+to invoke <code>entrySet</code> on the Java <code>Map</code> and check that entry set for the appropriate
+element (a <code>java.util.Map.Entry</code>) using <code>contain (...)</code>.
+</p>
+
+<p>
+Despite this difference, the other (more commonly used) map matcher syntax works just fine on Java <code>Map</code>s.
+You can, for example, check whether a Java <code>Map</code> contains a particular key, or value, like this:
+</p>
+
+<pre class="stHighlighted">
+javaMap should contain key (<span class="stLiteral">1</span>)
+javaMap should contain value (<span class="stQuotedString">"Howdy"</span>)
+</pre>
+
+<a name="beAsAnEqualityComparison"></a>
+<h2>Be as an equality comparison</h2>
+
+<p>
+All uses of <code>be</code> other than those shown previously perform an equality comparison. In other words, they work
+the same as <code>equals</code>. This redundance between <code>be</code> and <code>equals</code> exists because it enables syntax
+that sometimes sounds more natural. For example, instead of writing: 
+</p>
+
+<pre class="stHighlighted">
+result should equal (<span class="stReserved">null</span>)
+</pre>
+
+<p>
+You can write:
+</p>
+
+<pre class="stHighlighted">
+result should be (<span class="stReserved">null</span>)
+</pre>
+
+<p>
+(Hopefully you won't write that too much given <code>null</code> is error prone, and <code>Option</code>
+is usually a better, well, option.) 
+Here are some other examples of <code>be</code> used for equality comparison:
+</p>
+
+<pre class="stHighlighted">
+sum should be (<span class="stLiteral">7.0</span>)
+boring should be (<span class="stReserved">false</span>)
+fun should be (<span class="stReserved">true</span>)
+list should be (<span class="stType">Nil</span>)
+option should be (<span class="stType">None</span>)
+option should be (<span class="stType">Some</span>(<span class="stLiteral">1</span>))
+</pre>
+
+<p>
+As with <code>equal</code>, using <code>be</code> on two arrays results in <code>deep</code> being called on both arrays prior to
+calling <code>equal</code>. As a result,
+the following expression would <em>not</em> throw a <code>TestFailedException</code>:
+</p>
+
+<pre class="stHighlighted">
+<span class="stType">Array</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>) should be (<span class="stType">Array</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>)) <span class="stLineComment">// succeeds (i.e., does not throw TestFailedException)</span>
+</pre>
+
+<p>
+Because <code>be</code> is used in several ways in ScalaTest matcher syntax, just as it is used in many ways in English, one
+potential point of confusion in the event of a failure is determining whether <code>be</code> was being used as an equality comparison or
+in some other way, such as a property assertion. To make it more obvious when <code>be</code> is being used for equality, the failure
+messages generated for those equality checks will include the word <code>equal</code> in them. For example, if this expression fails with a
+<code>TestFailedException</code>:
+</p>
+
+<pre class="stHighlighted">
+option should be (<span class="stType">Some</span>(<span class="stLiteral">1</span>))
+</pre>
+
+<p>
+The detail message in that <code>TestFailedException</code> will include the words <code>"equal to"</code> to signify <code>be</code>
+was in this case being used for equality comparison:
+</p>
+
+<pre class="stHighlighted">
+<span class="stType">Some</span>(<span class="stLiteral">2</span>) was not equal to <span class="stType">Some</span>(<span class="stLiteral">1</span>)
+</pre>
+
+<a name="beingNegative"></a>
+<h2>Being negative</h2>
+
+<p>
+If you wish to check the opposite of some condition, you can simply insert <code>not</code> in the expression.
+Here are a few examples:
+</p>
+
+<pre class="stHighlighted">
+result should not be (<span class="stReserved">null</span>)
+sum should not be <= (<span class="stLiteral">10</span>)
+mylist should not equal (yourList)
+string should not startWith (<span class="stQuotedString">"Hello"</span>)
+</pre>
+
+<a name="logicalExpressions"></a>
+<h2>Logical expressions with <code>and</code> and <code>or</code></h2>
+
+<p>
+You can also combine matcher expressions with <code>and</code> and/or <code>or</code>, however,
+you must place parentheses or curly braces around the <code>and</code> or <code>or</code> expression. For example, 
+this <code>and</code>-expression would not compile, because the parentheses are missing:
+</p>
+
+<pre class="stHighlighted">
+map should contain key (<span class="stQuotedString">"two"</span>) and not contain value (<span class="stLiteral">7</span>) <span class="stLineComment">// ERROR, parentheses missing!</span>
+</pre>
+
+<p>
+Instead, you need to write:
+</p>
+
+<pre class="stHighlighted">
+map should (contain key (<span class="stQuotedString">"two"</span>) and not contain value (<span class="stLiteral">7</span>))
+</pre>
+
+<p>
+Here are some more examples:
+</p>
+
+<pre class="stHighlighted">
+number should (be > (<span class="stLiteral">0</span>) and be <= (<span class="stLiteral">10</span>))
+option should (equal (<span class="stType">Some</span>(<span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>))) or be (<span class="stType">None</span>))
+string should (
+  equal (<span class="stQuotedString">"fee"</span>) or
+  equal (<span class="stQuotedString">"fie"</span>) or
+  equal (<span class="stQuotedString">"foe"</span>) or
+  equal (<span class="stQuotedString">"fum"</span>)
+)
+</pre>
+
+<p>
+Two differences exist between expressions composed of these <code>and</code> and <code>or</code> operators and the expressions you can write
+on regular <code>Boolean</code>s using its <code>&&</code> and <code>||</code> operators. First, expressions with <code>and</code>
+and <code>or</code> do not short-circuit. The following contrived expression, for example, would print <code>"hello, world!"</code>:
+</p>
+
+<pre class="stHighlighted">
+<span class="stQuotedString">"yellow"</span> should (equal (<span class="stQuotedString">"blue"</span>) and equal { println(<span class="stQuotedString">"hello, world!"</span>); <span class="stQuotedString">"green"</span> })
+</pre>
+
+<p>
+In other words, the entire <code>and</code> or <code>or</code> expression is always evaluated, so you'll see any side effects
+of the right-hand side even if evaluating
+only the left-hand side is enough to determine the ultimate result of the larger expression. Failure messages produced by these
+expressions will "short-circuit," however,
+mentioning only the left-hand side if that's enough to determine the result of the entire expression. This "short-circuiting" behavior
+of failure messages is intended
+to make it easier and quicker for you to ascertain which part of the expression caused the failure. The failure message for the previous
+expression, for example, would be:
+</p>
+
+<pre class="stHighlighted">
+<span class="stQuotedString">"yellow"</span> did not equal <span class="stQuotedString">"blue"</span>
+</pre>
+
+<p>
+Most likely this lack of short-circuiting would rarely be noticeable, because evaluating the right hand side will usually not
+involve a side effect. One situation where it might show up, however, is if you attempt to <code>and</code> a <code>null</code> check on a variable with an expression
+that uses the variable, like this:
+</p>
+
+<pre class="stHighlighted">
+map should (not be (<span class="stReserved">null</span>) and contain key (<span class="stQuotedString">"ouch"</span>))
+</pre>
+
+<p>
+If <code>map</code> is <code>null</code>, the test will indeed fail, but with a <code>NullPointerException</code>, not a
+<code>TestFailedException</code>. Here, the <code>NullPointerException</code> is the visible right-hand side effect. To get a
+<code>TestFailedException</code>, you would need to check each assertion separately:
+</p>
+
+<pre class="stHighlighted">
+map should not be (<span class="stReserved">null</span>)
+map should contain key (<span class="stQuotedString">"ouch"</span>)
+</pre>
+
+<p>
+If <code>map</code> is <code>null</code> in this case, the <code>null</code> check in the first expression will fail with
+a <code>TestFailedException</code>, and the second expression will never be executed.
+</p>
+
+<p>
+The other difference with <code>Boolean</code> operators is that although <code>&&</code> has a higher precedence than <code>||</code>,
+<code>and</code> and <code>or</code>
+have the same precedence. Thus although the <code>Boolean</code> expression <code>(a || b && c)</code> will evaluate the <code>&&</code> expression
+before the <code>||</code> expression, like <code>(a || (b && c))</code>, the following expression:
+</p>
+
+<pre class="stHighlighted">
+traversable should (contain (<span class="stLiteral">7</span>) or contain (<span class="stLiteral">8</span>) and have size (<span class="stLiteral">9</span>))
+</pre>
+
+<p>
+Will evaluate left to right, as:
+</p>
+
+<pre class="stHighlighted">
+traversable should ((contain (<span class="stLiteral">7</span>) or contain (<span class="stLiteral">8</span>)) and have size (<span class="stLiteral">9</span>))
+</pre>
+
+<p>
+If you really want the <code>and</code> part to be evaluated first, you'll need to put in parentheses, like this:
+</p>
+
+<pre class="stHighlighted">
+traversable should (contain (<span class="stLiteral">7</span>) or (contain (<span class="stLiteral">8</span>) and have size (<span class="stLiteral">9</span>)))
+</pre>
+
+<a name="workingWithOptions"></a>
+<h2>Working with <code>Option</code>s</h2>
+
+<p>
+ScalaTest matchers has no special support for <code>Option</code>s, but you can 
+work with them quite easily using syntax shown previously. For example, if you wish to check
+whether an option is <code>None</code>, you can write any of:
+</p>
+
+<pre class="stHighlighted">
+option should equal (<span class="stType">None</span>)
+option should be (<span class="stType">None</span>)
+option should not be (<span class="stQuotedString">'defined</span>)
+option should be (<span class="stQuotedString">'empty</span>)
+</pre>
+
+<p>
+If you wish to check an option is defined, and holds a specific value, you can write either of:
+</p>
+
+<pre class="stHighlighted">
+option should equal (<span class="stType">Some</span>(<span class="stQuotedString">"hi"</span>))
+option should be (<span class="stType">Some</span>(<span class="stQuotedString">"hi"</span>))
+</pre>
+
+<p>
+If you only wish to check that an option is defined, but don't care what it's value is, you can write:
+</p>
+
+<pre class="stHighlighted">
+option should be (<span class="stQuotedString">'defined</span>)
+</pre>
+
+<p>
+If you mix in (or import the members of) <a href="@latestScaladoc/#org.scalatest.OptionValues"><code>OptionValues</code></a>,
+you can write one statement that indicates you believe an option should be defined and then say something else about its value. Here's an example:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">import</span> org.scalatest.OptionValues._
+option.value should be &lt; (<span class="stLiteral">7</span>)
+</pre>
+
+<a name="checkingArbitraryProperties"></a>
+<h2>Checking arbitrary properties with <code>have</code></h2>
+
+<p>
+Using <code>have</code>, you can check properties of any type, where a <em>property</em> is an attribute of any
+object that can be retrieved either by a public field, method, or JavaBean-style <code>get</code>
+or <code>is</code> method, like this:
+</p>
+
+<pre class="stHighlighted">
+book should have (
+  <span class="stQuotedString">'title</span> (<span class="stQuotedString">"Programming in Scala"</span>),
+  <span class="stQuotedString">'author</span> (<span class="stType">List</span>(<span class="stQuotedString">"Odersky"</span>, <span class="stQuotedString">"Spoon"</span>, <span class="stQuotedString">"Venners"</span>)),
+  <span class="stQuotedString">'pubYear</span> (<span class="stLiteral">2008</span>)
+)
+</pre>
+
+<p>
+This expression will use reflection to ensure the <code>title</code>, <code>author</code>, and <code>pubYear</code> properties of object <code>book</code>
+are equal to the specified values. For example, it will ensure that <code>book</code> has either a public Java field or method
+named <code>title</code>, or a public method named <code>getTitle</code>, that when invoked (or accessed in the field case) results
+in a the string <code>"Programming in Scala"</code>. If all specified properties exist and have their expected values, respectively,
+execution will continue. If one or more of the properties either does not exist, or exists but results in an unexpected value,
+a <code>TestFailedException</code> will be thrown that explains the problem. (For the details on how a field or method is selected during this
+process, see the documentation for <a href="@latestScaladoc/#org.scalatest.matchers.Matchers$HavePropertyMatcherGenerator"><code>HavePropertyMatcherGenerator</code></a>.)
+</p>
+
+<p>
+When you use this syntax, you must place one or more property values in parentheses after <code>have</code>, seperated by commas, where a <em>property
+value</em> is a symbol indicating the name of the property followed by the expected value in parentheses. The only exceptions to this rule is the syntax
+for checking size and length shown previously, which does not require parentheses. If you forget and put parentheses in, however, everything will
+still work as you'd expect. Thus instead of writing:
+</p>
+
+<pre class="stHighlighted">
+array should have length (<span class="stLiteral">3</span>)
+set should have size (<span class="stLiteral">90</span>)
+</pre>
+
+<p>
+You can alternatively, write:
+</p>
+
+<pre class="stHighlighted">
+array should have (length (<span class="stLiteral">3</span>))
+set should have (size (<span class="stLiteral">90</span>))
+</pre>
+
+<p>
+If a property has a value different from the specified expected value, a <code>TestFailedError</code> will be thrown
+with a detail message that explains the problem. For example, if you assert the following on
+a <code>book</code> whose title is <code>Moby Dick</code>:
+</p>
+
+<pre class="stHighlighted">
+book should have (<span class="stQuotedString">'title</span> (<span class="stQuotedString">"A Tale of Two Cities"</span>))
+</pre>
+
+<p>
+You'll get a <code>TestFailedException</code> with this detail message:
+</p>
+
+<pre>
+The title property had value "Moby Dick", instead of its expected value "A Tale of Two Cities",
+on object Book("Moby Dick", "Melville", 1851)
+</pre>
+
+<p>
+If you prefer to check properties in a type-safe manner, you can use a <code>HavePropertyMatcher</code>.
+This would allow you to write expressions such as:
+</p>
+
+<pre class="stHighlighted">
+book should have (
+  title (<span class="stQuotedString">"Programming in Scala"</span>),
+  author (<span class="stType">List</span>(<span class="stQuotedString">"Odersky"</span>, <span class="stQuotedString">"Spoon"</span>, <span class="stQuotedString">"Venners"</span>)),
+  pubYear (<span class="stLiteral">2008</span>)
+)
+</pre>
+
+<p>
+These expressions would fail to compile if <code>should</code> is used on an inappropriate type, as determined
+by the type parameter of the <code>HavePropertyMatcher</code> being used. (For example, <code>title</code> in this example
+might be of type <code>HavePropertyMatcher[org.publiclibrary.Book]</code>. If used with an appropriate type, such an expression will compile
+and at run time the property method or field will be accessed directly; <em>i.e.</em>, no reflection will be used.
+See the documentation for <a href="@latestScaladoc/#org.scalatest.matchers.HavePropertyMatcher"><code>HavePropertyMatcher</code></a> for more information.
+</p>
+
+<a name="usingCustomMatchers"></a>
+<h2>Using custom matchers</h2>
+
+<p>
+If none of the built-in matcher syntax (or options shown so far for extending the syntax) satisfy a particular need you have, you can create
+custom <code>Matcher</code>s that allow
+you to place your own syntax directly after <code>should</code>. For example, class <code>java.io.File</code> has a method <code>exists</code>, which
+indicates whether a file of a certain path and name exists. Because the <code>exists</code> method takes no parameters and returns <code>Boolean</code>,
+you can call it using <code>be</code> with a symbol or <code>BePropertyMatcher</code>, yielding assertions like:
+</p>
+
+<pre class="stHighlighted">
+file should be (<span class="stQuotedString">'exists</span>)  <span class="stLineComment">// using a symbol</span>
+file should be (inExistance)   <span class="stLineComment">// using a BePropertyMatcher</span>
+</pre>
+
+<p>
+Although these expressions will achieve your goal of throwing a <code>TestFailedException</code> if the file does not exist, they don't produce
+the most readable code because the English is either incorrect or awkward. In this case, you might want to create a
+custom <code>Matcher[java.io.File]</code>
+named <code>exist</code>, which you could then use to write expressions like:
+</p>
+
+<pre class="stHighlighted">
+<span class="stLineComment">// using a plain-old Matcher</span>
+file should exist
+file should not (exist)
+file should (exist and have (<span class="stQuotedString">'name</span> (<span class="stQuotedString">"temp.txt"</span>)))
+</pre>
+
+<p>
+Note that when you use custom <code>Matcher</code>s, you will need to put parentheses around the custom matcher in more cases than with
+the built-in syntax. For example you will often need the parentheses after <code>not</code>, as shown above. (There's no penalty for
+always surrounding custom matchers with parentheses, and if you ever leave them off when they are needed, you'll get a compiler error.)
+</p>
+
+<p>
+One good way to organize custom matchers is to place them inside one or more
+traits that you can then mix into the suites or specs that need them. Here's an example:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">trait</span> <span class="stType">CustomMatchers</span> {
+<br />  <span class="stReserved">class</span> <span class="stType">FileExistsMatcher</span> <span class="stReserved">extends</span> <span class="stType">Matcher[java.io.File]</span> {
+<br />    <span class="stReserved">def</span> apply(left: <span class="stType">java.io.File</span>) = {
+<br />      <span class="stReserved">val</span> fileOrDir = <span class="stReserved">if</span> (left.isFile) <span class="stQuotedString">"file"</span> <span class="stReserved">else</span> <span class="stQuotedString">"directory"</span>
+<br />      <span class="stReserved">val</span> failureMessageSuffix = 
+        fileOrDir + <span class="stQuotedString">" named "</span> + left.getName + <span class="stQuotedString">" did not exist"</span>
+<br />      <span class="stReserved">val</span> negatedFailureMessageSuffix = 
+        fileOrDir + <span class="stQuotedString">" named "</span> + left.getName + <span class="stQuotedString">" existed"</span>
+<br />      <span class="stType">MatchResult</span>(
+        left.exists,
+        <span class="stQuotedString">"The "</span> + failureMessageSuffix,
+        <span class="stQuotedString">"The "</span> + negatedFailureMessageSuffix,
+        <span class="stQuotedString">"the "</span> + failureMessageSuffix,
+        <span class="stQuotedString">"the "</span> + negatedFailureMessageSuffix
+      )
+    }
+  }
+<br />  <span class="stReserved">val</span> exist = <span class="stReserved">new</span> <span class="stType">FileExistsMatcher</span>
+}
+<br /><span class="stLineComment">// Make them easy to import with:</span>
+<span class="stLineComment">// import CustomMatchers._</span>
+<span class="stReserved">object</span> <span class="stType">CustomMatchers</span> <span class="stReserved">extends</span> <span class="stType">CustomMatchers</span>
+</pre>
+
+<p>
+Note: the <code>CustomMatchers</code> companion object exists to make it easy to bring the
+matchers defined in this trait into scope via importing, instead of mixing in the trait. The ability
+to import them is useful, for example, when you want to use the matchers defined in a trait in the Scala interpreter console.
+</p>
+
+<p>
+This trait contains one matcher class, <code>FileExistsMatcher</code>, and a <code>val</code> named <code>exist</code> that refers to
+an instance of <code>FileExistsMatcher</code>. Because the class extends <code>Matcher[java.io.File]</code>,
+the compiler will only allow it be used to match against instances of <code>java.io.File</code>. A matcher must declare an
+<code>apply</code> method that takes the type decared in <code>Matcher</code>'s type parameter, in this case <code>java.io.File</code>.
+The apply method will return a <code>MatchResult</code> whose <code>matches</code> field will indicate whether the match succeeded.
+The <code>failureMessage</code> field will provide a programmer-friendly error message indicating, in the event of a match failure, what caused
+the match to fail. 
+</p>
+
+<p>
+The <code>FileExistsMatcher</code> matcher in this example determines success by calling <code>exists</code> on the passed <code>java.io.File</code>. It
+does this in the first argument passed to the <code>MatchResult</code> factory method:
+</p>
+
+<pre class="stHighlighted">
+left.exists,
+</pre>
+
+<p>
+In other words, if the file exists, this matcher matches.
+The next argument to <code>MatchResult</code>'s factory method produces the failure message string:
+</p>
+
+<pre class="stHighlighted">
+<span class="stQuotedString">"The "</span> + failureMessageSuffix,
+</pre>
+
+<p>
+If the passed <code>java.io.File</code> is a file (not a directory) and has the name <code>temp.txt</code>, for example, the failure
+message would be:
+</p>
+
+<pre>
+The file named temp.txt did not exist
+</pre>
+
+<p>
+For more information on the fields in a <code>MatchResult</code>, including the subsequent three fields that follow the failure message,
+please see the documentation for <a href="@latestScaladoc/#org.scalatest.matchers.MatchResult"><code>MatchResult</code></a>.
+</p>
+
+<p>
+Given the <code>CustomMatchers</code> trait as defined above, you can use the <code>exist</code> syntax in any suite or spec in
+which you mix in the trait:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">Spec</span> <span class="stReserved">with</span> <span class="stType">ShouldMatchers</span> <span class="stReserved">with</span> <span class="stType">CustomMatchers</span> {
+<br />  describe(<span class="stQuotedString">"A temp file"</span>) {
+<br />    it(<span class="stQuotedString">"should be created and deleted"</span>) {
+<br />      <span class="stReserved">val</span> tempFile = java.io.File.createTempFile(<span class="stQuotedString">"delete"</span>, <span class="stQuotedString">"me"</span>)
+<br />      <span class="stReserved">try</span> {
+        <span class="stLineComment">// At this point the temp file should exist</span>
+        tempFile should exist
+      }
+      <span class="stReserved">finally</span> {
+        tempFile.delete()
+      }
+<br />      <span class="stLineComment">// At this point it should not exist</span>
+      tempFile should not (exist)
+    }
+  }
+}
+</pre>
+ 
+<p>
+Note that when you use custom <code>Matcher</code>s, you will need to put parentheses around the custom matcher when if follows <code>not</code>,
+as shown in the last assertion above: <code>tempFile should not (exist)</code>.
+</p>
+
+<a name="otherWays"></a><h2>Other ways to create matchers</h2>
+
+<p>
+There are other ways to create new matchers besides defining one as shown above. For example, you would normally check to ensure
+an option is defined like this:
+</p>
+
+<pre class="stHighlighted">
+<span class="stType">Some</span>(<span class="stQuotedString">"hi"</span>) should be (<span class="stQuotedString">'defined</span>)
+</pre>
+
+<p>
+If you wanted to get rid of the tick mark, you could simply define <code>defined</code> like this:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">val</span> defined = <span class="stQuotedString">'defined</span>
+</pre>
+
+<p>
+Now you can check that an option is defined without the tick mark:
+</p>
+
+<pre class="stHighlighted">
+<span class="stType">Some</span>(<span class="stQuotedString">"hi"</span>) should be (defined)
+</pre>
+
+<p>
+Perhaps after using that for a while, you realize you're tired of typing the parentheses. You could
+get rid of them with another one-liner:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">val</span> beDefined = be (defined)
+</pre>
+
+<p>
+Now you can check that an option is defined without the tick mark or the parentheses:
+</p>
+
+<pre class="stHighlighted">
+<span class="stType">Some</span>(<span class="stQuotedString">"hi"</span>) should beDefined
+</pre>
+
+<p>
+You can also use ScalaTest matchers' logical operators to combine existing matchers into new ones, like this:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">val</span> beWithinTolerance = be >= <span class="stLiteral">0</span> and be <= <span class="stLiteral">10</span>
+</pre>
+
+<p>
+Now you could check that a number is within the tolerance (in this case, between 0 and 10, inclusive), like this:
+</p>
+
+<pre class="stHighlighted">
+num should beWithinTolerance
+</pre>
+
+<p>
+When defining a full blown matcher, one shorthand is to use one of the factory methods in <code>Matcher</code>'s companion
+object. For example, instead of writing this:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">val</span> beOdd =
+  <span class="stReserved">new</span> <span class="stType">Matcher[Int]</span> {
+    <span class="stReserved">def</span> apply(left: <span class="stType">Int</span>) =
+      <span class="stType">MatchResult</span>(
+        left % <span class="stLiteral">2</span> == <span class="stLiteral">1</span>,
+        left + <span class="stQuotedString">" was not odd"</span>,
+        left + <span class="stQuotedString">" was odd"</span>
+      )
+  }
+</pre>
+
+<p>
+You could alternately write this:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">val</span> beOdd =
+  <span class="stType">Matcher</span> { (left: <span class="stType">Int</span>) =>
+    <span class="stType">MatchResult</span>(
+      left % <span class="stLiteral">2</span> == <span class="stLiteral">1</span>,
+      left + <span class="stQuotedString">" was not odd"</span>,
+      left + <span class="stQuotedString">" was odd"</span>
+    )
+  }
+</pre>
+
+<p>
+Either way you define the <code>beOdd</code> matcher, you could use it like this:
+</p>
+
+<pre class="stHighlighted">
+<span class="stLiteral">3</span> should beOdd
+<span class="stLiteral">4</span> should not (beOdd)
+</pre>
+
+<p>
+You can also compose matchers. If for some odd reason, you wanted a <code>Matcher[String]</code> that 
+checked whether a string, when converted to an <code>Int</code>,
+was odd, you could make one by composing <code>beOdd</code> with
+a function that converts a string to an <code>Int</code>, like this:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">val</span> beOddAsInt = beOdd compose { (s: <span class="stType">String</span>) => s.toInt }
+</pre>
+
+<p>
+Now you have a <code>Matcher[String]</code> whose <code>apply</code> method first
+invokes the converter function to convert the passed string to an <code>Int</code>,
+then passes the resulting <code>Int</code> to <code>beOdd</code>. Thus, you could use
+<code>beOddAsInt</code> like this:
+</p>
+
+<pre class="stHighlighted">
+<span class="stQuotedString">"3"</span> should beOddAsInt
+<span class="stQuotedString">"4"</span> should not (beOddAsInt)
+</pre>
+
+<p>
+You can also define a method that produces a matcher using matcher
+composition and a passed parameter. For example, here's how you could create a <code>Matcher[File]</code> from a
+<code>Matcher[String]</code>:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">import</span> java.io.File
+
+<span class="stReserved">def</span> endWithExtension(ext: <span class="stType">String</span>) = endWith(ext) compose { (f: <span class="stType">File</span>) =&gt; f.getPath }
+</pre>
+
+<p>
+Every time you call the above <code>endWithExtension</code> method, you'll get a new <code>Matcher[File]</code>. Here's an example:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">new</span> <span class="stType">File</span>(<span class="stQuotedString">"output.txt"</span>) should endWithExtension("txt")
+</pre>
+
+<a name="checkingForExpectedExceptions"></a>
+<h2>Checking for expected exceptions</h2>
+
+<p>
+Sometimes you need to test whether a method throws an expected exception under certain circumstances, such
+as when invalid arguments are passed to the method. With <code>ShouldMatchers</code> mixed in, you can
+check for an expected exception like this:
+</p>
+
+<pre class="stHighlighted">
+evaluating { s.charAt(-<span class="stLiteral">1</span>) } should produce [<span class="stType">IndexOutOfBoundsException</span>]
+</pre>
+
+<p>
+If <code>charAt</code> throws an instance of <code>StringIndexOutOfBoundsException</code>,
+this expression will result in that exception. But if <code>charAt</code> completes normally, or throws a different
+exception, this expression will complete abruptly with a <code>TestFailedException</code>.
+This expression returns the caught exception so that you can inspect it further if you wish, for
+example, to ensure that data contained inside the exception has the expected values. Here's an
+example:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">val</span> thrown = evaluating { s.charAt(-<span class="stLiteral">1</span>) } should produce [<span class="stType">IndexOutOfBoundsException</span>]
+thrown.getMessage should equal (<span class="stQuotedString">"String index out of range: -1"</span>)
+</pre>
+
+<a name="thosePeskyParens"></a>
+<h2>Those pesky parens</h2>
+
+<p>
+Perhaps the most tricky part of writing assertions using ScalaTest matchers is remembering
+when you need or don't need parentheses, but bearing in mind a few simple rules <!-- PRESERVE -->should help.
+It is also reassuring to know that if you ever leave off a set of parentheses when they are
+required, your code will not compile. Thus the compiler will help you remember when you need the parens.
+That said, the rules are:
+</p>
+
+<p>
+1. Although you don't always need them, it is recommended style to always put parentheses
+around right-hand values, such as the <code>7</code> in <code>num should equal (7)</code>:
+</p>
+
+<pre>
+result should equal <span class="stRed">(</span>4<span class="stRed">)</span>
+array should have length <span class="stRed">(</span>3<span class="stRed">)</span>
+book should have (
+  'title <span class="stRed">(</span>"Programming in Scala"<span class="stRed">)</span>,
+  'author <span class="stRed">(</span>List("Odersky", "Spoon", "Venners")<span class="stRed">)</span>,
+  'pubYear <span class="stRed">(</span>2008<span class="stRed">)</span>
+)
+option should be <span class="stRed">(</span>'defined<span class="stRed">)</span>
+catMap should (contain key <span class="stRed">(</span>9<span class="stRed">)</span> and contain value <span class="stRed">(</span>"lives"<span class="stRed">)</span>)</span>
+keyEvent should be an <span class="stRed">(</span>'actionKey<span class="stRed">)</span>
+javaSet should have size <span class="stRed">(</span>90<span class="stRed">)</span>
+</pre>
+
+<p>
+2. Except for <code>length</code> and <code>size</code>, you must always put parentheses around
+the list of one or more property values following a <code>have</code>:
+</p>
+
+<pre>
+file should (exist and have <span class="stRed">(</span>'name ("temp.txt")<span class="stRed">)</span>)
+book should have <span class="stRed">(</span>
+  title ("Programming in Scala"),
+  author (List("Odersky", "Spoon", "Venners")),
+  pubYear (2008)
+<span class="stRed">)</span>
+javaList should have length (9) // parens optional for length and size
+</pre>
+
+<p>
+3. You must always put parentheses around <code>and</code> and <code>or</code> expressions, as in:
+</p>
+
+<pre>
+catMap should <span class="stRed">(</span>contain key (9) and contain value ("lives")<span class="stRed">)</span>
+number should <span class="stRed">(</span>equal (2) or equal (4) or equal (8)<span class="stRed">)</span>
+</pre>
+
+<p>
+4. Although you don't always need them, it is recommended style to always put parentheses
+around custom <code>Matcher</code>s when they appear directly after <code>not</code>:
+</p>
+
+<pre>
+file should exist
+file should not <span class="stRed">(</span>exist<span class="stRed">)</span>
+file should (exist and have ('name ("temp.txt")))
+file should (not <span class="stRed">(</span>exist<span class="stRed">)</span> and have ('name ("temp.txt"))
+file should (have ('name ("temp.txt") or exist)
+file should (have ('name ("temp.txt") or not <span class="stRed">(</span>exist<span class="stRed">)</span>)
+</pre>
+
+<p>
+That's it. With a bit of practice it <!-- PRESERVE -->should become natural to you, and the compiler will always be there to tell you if you
+forget a set of needed parentheses.
+</p>
+
+<p>
+Next, learn about <a href="/user_guide/testing_with_mock_objects">testing with mock objects</a>.
+</p>
+</div>
+}
