@@ -17,6 +17,7 @@ package controllers
 
 import play.api._
 import play.api.mvc._
+import examples.StyleTraitExamples
 
 object Application extends Controller {
 
@@ -101,5 +102,12 @@ object Application extends Controller {
   // so I'll put them on Artima for now)
   def releases(zipFile: String) = Action {
     Redirect(releasesLocation + "/" + zipFile)
+  }
+
+  def atAGlance(styleName: String) = Action {
+    StyleTraitExamples.examples.get(styleName) match {
+      case Some(examples) => Ok(views.html.atAGlance(examples))
+      case None => NotFound("Style trait " + styleName + " not found.")
+    }
   }
 }

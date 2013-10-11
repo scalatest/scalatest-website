@@ -2,70 +2,71 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-GET     /                                                controllers.Application.index
-GET     /quick_start                                     controllers.Application.quickStart
-GET     /download                                        controllers.Application.download
-GET     /user_guide                                      controllers.UserGuide.userGuideIndex
-GET     /scaladoc                                        controllers.Application.scaladoc
-GET     /community                                       controllers.Application.community
-GET     /about                                           controllers.Application.about
-GET     /release_notes                                   controllers.ReleaseNotes.releaseNotesIndex
-GET     /getting_started_with_fun_suite                  controllers.Application.gettingStartedWithFunSuite
-GET     /getting_started_with_fun_spec                   controllers.Application.gettingStartedWithFunSpec
-GET     /getting_started_with_feature_spec               controllers.Application.gettingStartedWithFeatureSpec
-GET     /writing_junit_and_testng_tests_in_scala         controllers.Application.writingJunitAndTestngTestsInScala
-GET     /getting_started_with_junit_4_in_scala           controllers.Application.gettingStartedWithJunit4InScala
-GET     /getting_started_with_junit_3_in_scala           controllers.Application.gettingStartedWithJunit3InScala
-GET     /getting_started_with_testng_in_scala            controllers.Application.gettingStartedWithTestngInScala
+GET        /                                                      controllers.Application.index
+GET        /quick_start                                           controllers.Application.quickStart
+GET        /download                                              controllers.Application.download
+GET        /user_guide                                            controllers.UserGuide.userGuideIndex
+GET        /scaladoc                                              controllers.Application.scaladoc
+GET        /community                                             controllers.Application.community
+GET        /about                                                 controllers.Application.about
+GET        /release_notes                                         controllers.ReleaseNotes.releaseNotesIndex
+GET        /getting_started_with_fun_suite                        controllers.Application.gettingStartedWithFunSuite
+GET        /getting_started_with_fun_spec                         controllers.Application.gettingStartedWithFunSpec
+GET        /getting_started_with_feature_spec                     controllers.Application.gettingStartedWithFeatureSpec
+GET        /writing_junit_and_testng_tests_in_scala               controllers.Application.writingJunitAndTestngTestsInScala
+GET        /getting_started_with_junit_4_in_scala                 controllers.Application.gettingStartedWithJunit4InScala
+GET        /getting_started_with_junit_3_in_scala                 controllers.Application.gettingStartedWithJunit3InScala
+GET        /getting_started_with_testng_in_scala                  controllers.Application.gettingStartedWithTestngInScala
+GET        /atAGlance/:style                                      controllers.Application.atAGlance(style)
 
-GET     /release_notes/2.0                               controllers.ReleaseNotes.v20
-GET     /release_notes/1.9.1                             controllers.ReleaseNotes.v191
-GET     /release_notes/1.9.2                             controllers.ReleaseNotes.v192
-GET     /release_notes/1.8                               controllers.ReleaseNotes.v18
-GET     /release_notes/1.7-1.7.2                         controllers.ReleaseNotes.v17
-GET     /release_notes/1.5-1.6.1                         controllers.ReleaseNotes.v15_16
-GET     /release_notes/1.3-1.4.1                         controllers.ReleaseNotes.v13_14
-GET     /release_notes/1.1-1.2                           controllers.ReleaseNotes.v11_12
-GET     /release_notes/1.0                               controllers.ReleaseNotes.v10
-GET     /release_notes/0.9.1-0.9.4                       controllers.ReleaseNotes.v091_094
+GET        /release_notes/2.0                                     controllers.ReleaseNotes.v20
+GET        /release_notes/1.9.1                                   controllers.ReleaseNotes.v191
+GET        /release_notes/1.9.2                                   controllers.ReleaseNotes.v192
+GET        /release_notes/1.8                                     controllers.ReleaseNotes.v18
+GET        /release_notes/1.7-1.7.2                               controllers.ReleaseNotes.v17
+GET        /release_notes/1.5-1.6.1                               controllers.ReleaseNotes.v15_16
+GET        /release_notes/1.3-1.4.1                               controllers.ReleaseNotes.v13_14
+GET        /release_notes/1.1-1.2                                 controllers.ReleaseNotes.v11_12
+GET        /release_notes/1.0                                     controllers.ReleaseNotes.v10
+GET        /release_notes/0.9.1-0.9.4                             controllers.ReleaseNotes.v091_094
 
-GET     /user_guide/using_assertions                     controllers.UserGuide.usingAssertions
-GET     /user_guide/writing_your_first_test              controllers.UserGuide.writingYourFirstTest
-GET     /user_guide/tagging_your_tests                   controllers.UserGuide.taggingYourTests
-GET     /user_guide/running_your_tests                   controllers.UserGuide.runningYourTests
-GET     /user_guide/sharing_fixtures                     controllers.UserGuide.sharingFixtures  
-GET     /user_guide/sharing_tests                        controllers.UserGuide.sharingTests  
-GET     /user_guide/using_matchers                       controllers.UserGuide.usingMatchers  
-GET     /user_guide/testing_with_mock_objects            controllers.UserGuide.testingWithMockObjects  
-GET     /user_guide/tests_as_specifications              controllers.UserGuide.testsAsSpecifications  
-GET     /user_guide/property_based_testing               controllers.UserGuide.propertyBasedTesting  
-GET     /user_guide/other_goodies                        controllers.UserGuide.otherGoodies  
-GET     /user_guide/philosophy_and_design                controllers.UserGuide.philosophyAndDesign  
-GET     /user_guide/design_and_philosophy                controllers.UserGuide.designAndPhilosophy
-GET     /user_guide/selecting_a_style                    controllers.UserGuide.selectingAStyle
-GET     /user_guide/using_junit_runner                   controllers.UserGuide.usingJunitRunner
-GET     /user_guide/table_driven_property_checks         controllers.UserGuide.tableDrivenPropertyChecks
-GET     /user_guide/generator_driven_property_checks     controllers.UserGuide.generatorDrivenPropertyChecks
-GET     /user_guide/writing_scalacheck_style_properties  controllers.UserGuide.writingScalacheckStyleProperties
-GET     /user_guide/using_the_runner                     controllers.UserGuide.usingTheRunner
-GET     /user_guide/invoking_execute                     controllers.UserGuide.invokingExecute
-GET     /user_guide/using_the_scalatest_shell            controllers.UserGuide.usingTheScalatestShell
-GET     /user_guide/using_scalatest_with_sbt             controllers.UserGuide.usingScalatestWithSbt
-GET     /user_guide/using_the_scalatest_ant_task         controllers.UserGuide.usingTheScalatestAntTask
-GET     /user_guide/matchers_quick_reference             controllers.UserGuide.matchersQuickReference
-GET     /user_guide/using_the_scalatest_maven_plugin     controllers.UserGuide.usingTheScalatestMavenPlugin
-GET     /user_guide/customizing_scalatest                controllers.UserGuide.customizingScalatest
-GET     /user_guide/using_scalatest_with_eclipse         controllers.UserGuide.usingScalatestWithEclipse
-GET     /user_guide/using_selenium                       controllers.UserGuide.usingSelenium
+GET        /user_guide/using_assertions                           controllers.UserGuide.usingAssertions
+GET        /user_guide/writing_your_first_test                    controllers.UserGuide.writingYourFirstTest
+GET        /user_guide/tagging_your_tests                         controllers.UserGuide.taggingYourTests
+GET        /user_guide/running_your_tests                         controllers.UserGuide.runningYourTests
+GET        /user_guide/sharing_fixtures                           controllers.UserGuide.sharingFixtures
+GET        /user_guide/sharing_tests                              controllers.UserGuide.sharingTests
+GET        /user_guide/using_matchers                             controllers.UserGuide.usingMatchers
+GET        /user_guide/testing_with_mock_objects                  controllers.UserGuide.testingWithMockObjects
+GET        /user_guide/tests_as_specifications                    controllers.UserGuide.testsAsSpecifications
+GET        /user_guide/property_based_testing                     controllers.UserGuide.propertyBasedTesting
+GET        /user_guide/other_goodies                              controllers.UserGuide.otherGoodies
+GET        /user_guide/philosophy_and_design                      controllers.UserGuide.philosophyAndDesign
+GET        /user_guide/design_and_philosophy                      controllers.UserGuide.designAndPhilosophy
+GET        /user_guide/selecting_a_style                          controllers.UserGuide.selectingAStyle
+GET        /user_guide/using_junit_runner                         controllers.UserGuide.usingJunitRunner
+GET        /user_guide/table_driven_property_checks               controllers.UserGuide.tableDrivenPropertyChecks
+GET        /user_guide/generator_driven_property_checks           controllers.UserGuide.generatorDrivenPropertyChecks
+GET        /user_guide/writing_scalacheck_style_properties        controllers.UserGuide.writingScalacheckStyleProperties
+GET        /user_guide/using_the_runner                           controllers.UserGuide.usingTheRunner
+GET        /user_guide/invoking_execute                           controllers.UserGuide.invokingExecute
+GET        /user_guide/using_the_scalatest_shell                  controllers.UserGuide.usingTheScalatestShell
+GET        /user_guide/using_scalatest_with_sbt                   controllers.UserGuide.usingScalatestWithSbt
+GET        /user_guide/using_the_scalatest_ant_task               controllers.UserGuide.usingTheScalatestAntTask
+GET        /user_guide/matchers_quick_reference                   controllers.UserGuide.matchersQuickReference
+GET        /user_guide/using_the_scalatest_maven_plugin           controllers.UserGuide.usingTheScalatestMavenPlugin
+GET        /user_guide/customizing_scalatest                      controllers.UserGuide.customizingScalatest
+GET        /user_guide/using_scalatest_with_eclipse               controllers.UserGuide.usingScalatestWithEclipse
+GET        /user_guide/using_selenium                             controllers.UserGuide.usingSelenium
 
-GET     /scaladoc/:release/           controllers.Application.scaladocs(release)
-GET     /scaladoc-:release/           controllers.Application.scaladocs(release)
-GET     /scaladoc/:release/index.html controllers.Application.scaladocs(release)
-GET     /scaladoc/:release/*file      controllers.Application.scaladocsFile(release, file)
+GET        /scaladoc/:release/                                    controllers.Application.scaladocs(release)
+GET        /scaladoc-:release/                                    controllers.Application.scaladocs(release)
+GET        /scaladoc/:release/index.html                          controllers.Application.scaladocs(release)
+GET        /scaladoc/:release/*file                               controllers.Application.scaladocsFile(release, file)
 
-GET     /releases/:zipFile    controllers.Application.releases(zipFile)
+GET        /releases/:zipFile                                     controllers.Application.releases(zipFile)
 
 # Map static resources from the /public folder to the /assets and
 # /scaladoc URL paths
-GET     /assets/*file     controllers.Assets.at(path="/public", file)
+GET        /assets/*file                                          controllers.Assets.at(path="/public", file)
 
