@@ -1,0 +1,279 @@
+@*
+ * Copyright 2010-2013 Artima, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *@
+
+@import controllers.Application.latestScaladoc
+
+@userGuidePage("Philosophy and design") {
+<div style="text-align: left">
+
+<h1>The Philosophy and design of ScalaTest</h1>
+
+<p>
+by Bill Venners, creator of ScalaTest
+</p>
+
+<a name="thePhilosophy"></a>
+<h2>The philosophy</h2>
+
+<p>
+My main goal for creating ScalaTest was the same goal I had for promoting Scala in the first place: to help
+programmers become more productive. Increased productivity means releasing new features
+more quickly, with better accuracy and quality. Better accuracy means
+building the right features. Better quality means fewer defects.
+</p>
+
+<p>
+Although writing tests can slow you down in the short term compared to just writing the production code, the time spent writing tests
+can pay back in increased quality and reduced time in the debugger. Over the long term tests can provide a safety
+net that enables you to make changes to existing code with greater speed and confidence, though during major refactors, fixing the many broken tests can add a significant
+extra cost. You can consider this cost another investment in testing, weighing the up-front cost of fixing the broken tests against the potential for returns in increased
+velocity and quality over time.
+</p>
+
+<p>
+Accuracy, building the <em>right</em> features, requires fluid communication between developers and other stakeholders such as management, testers, and customers.
+Tests can potentially facilitate such communication because tests represent a highly accurate view of the state of the system.
+</p>
+
+<p>
+My goal with ScalaTest is to improve the return on investment of testing. I've tried to minimize the cost of testing by making test code concise, plainly obvious,
+quickly understandable. A guiding design principle of ScalaTest is that different people on a team should be able look at each others test code and
+know immediately what's going on. I've also tried to bring that clarity out of the code and into the artifacts generated as tests run. My goal with
+the generated artifacts is to facilitate communication between all stakeholders&#8212;developers certainly, but also management, testers, and customers.
+</p>
+
+<p>
+Lastly, ScalaTest is not a one-size-fits-all testing framework, it is a <em>platform</em> that can host different styles of testing.
+Why? Because different people with different problems need different tools to solve them. Even the same people need different tools
+in different situations. ScalaTest is designed to make it easy for you to customize your testing tool to meet your
+current needs, and for the built-in traits at least, make it easy for anyone who comes along later to read and understand
+your code.
+</p>
+
+<a name="theDesign"></a>
+<h2>The design</h2>
+
+<p>
+ScalaTest is the &ldquo;scalable test framework.&rdquo; Like the Scala language on which it is built, ScalaTest is designed to grow with the demands of its
+users.
+</p>
+
+<p>
+Scala is a scalable language in two ways. First, Scala can be molded through library and DSL design to fit widely different tasks. Second, Scala
+scales both down to small tasks and up to large ones. It feels as natural to use for small tasks like scripting as it does for large tasks like major software projects built
+by large teams. ScalaTest is scalable in similar ways. First, it can be easily molded by overriding its <em>lifecycle methods</em> to address
+special testing needs when they arise. Second, it is designed facilitate both small tasks in the Scala interpreter (see <a href="@latestScaladoc/#org.scalatest.Assertions$"><code>Assertions</code></a>, <a href="@latestScaladoc/#org.scalatest.matchers.ShouldMatchers$"><code>ShouldMatchers</code></a>,
+and the ScalaTest <a href="@latestScaladoc/#org.scalatest.Shell"><code>Shell</code></a>) and to scale up to testing 
+very large software projects built by large teams.
+</p>
+
+<p>
+The design of ScalaTest can be summed up in one sentence:
+</p>
+
+<blockquote>
+<strong>ScalaTest allows you to ask a suite of tests to run itself.</strong>
+</blockquote>
+
+<p>
+The terms <em>suite</em> and <em>test</em> are defined abstractly in ScalaTest to
+enable a wide variety of implementations. A <em>test</em> in ScalaTest is anything with a name that
+can start and either succeed or fail. A <em>suite</em> is a collection of zero to many tests.  ScalaTest's core trait
+<a href="@latestScaladoc/#org.scalatest.Suite"><code>Suite</code></a>, which represents the concept of a suite of zero to many tests, declares
+a <code>run</code> method. To ask a <code>Suite</code> of tests to run itself, you invoke its <code>run</code>
+method.
+</p>
+
+<p>
+The <code>run</code> method is one of many <em>lifecycle methods</em> in trait <code>Suite</code>. These lifecycle methods, shown in the table below, define a
+default way to run a suite of tests and serve as extension points for customization. 
+</p>
+
+<table style="border-collapse: collapse; border: 1px solid black">
+<tr>
+<th class="quickref">Lifcycle method</th>
+<th class="quickref">Responsibility</th>
+</tr>
+
+<tr>
+<td class="quickref"><code>run</code></td>
+<td class="quickref">Runs a suite of tests</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>runNestedSuites</code></td>
+<td class="quickref">Runs suites nested inside this one</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>runTests</code></td>
+<td class="quickref">Runs tests belonging to this suite</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>nestedSuites</code></td>
+<td class="quickref">Returns a list of this suite's nested suites</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>testNames</code></td>
+<td class="quickref">Returns a list of names of this suite's tests</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>tags</code></td>
+<td class="quickref">Returns a data structure defining how tests have been tagged</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>runTest</code></td>
+<td class="quickref">Runs one named test</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>withFixture</code></td>
+<td class="quickref">Runs the passed test function</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>suiteName</code></td>
+<td class="quickref">Returns a user-friendly name for this suite</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>expectedTestCount</code></td>
+<td class="quickref">Returns the number of tests expected to run when this suite's <code>run</code> method is invoked</td>
+</tr>
+
+</table>
+
+<p>
+Trait <code>Suite</code> is a &ldquo;functional object&rdquo; in that it contains no mutable state. What's more, it contains no
+immutable state either: trait <code>Suite</code> is pure behavior. Its <code>run</code> method does two things, invokes <code>runNestedSuites</code>
+and <code>runTests</code>. The <code>runNestedSuites</code> method invokes <code>nestedSuites</code>, then invokes <code>run</code> on each element
+in the returned list. The <code>runTests</code> method invokes <code>testNames</code> and
+<code>tags</code>, to get a list of test names and their tags. The <code>testNames</code> method uses reflection to discover
+methods starting with <code>"test"</code>, and <code>tags</code> uses reflection to find any tag annotations on the test methods.
+Given this data, <code>runTests</code> filters the tests by their tags, and for each test to run passes the test name to <code>runTest</code>. 
+The <code>runTest</code> method wraps the named test method in a function that invokes the method via reflection and passes the function to <code>withFixture</code>,
+which simply invokes the function.
+</p>
+
+<a name="scaling"></a>
+<h2>Scaling to different testing needs</h2>
+
+<p>
+How does this design enable ScalaTest to address widely different testing needs? You need look no further than ScalaTest itself
+for examples. First, ScalaTest facilitates several different styles of testing through its <em>style traits</em> such as
+<a href="@latestScaladoc/#org.scalatest.FunSuite"><code>FunSuite</code></a>,
+<a href="@latestScaladoc/#org.scalatest.FunSpec"><code>FunSpec</code></a>, and
+<a href="@latestScaladoc/#org.scalatest.FeatureSpec"><code>FeatureSpec</code></a>. One way to think of these style traits is as examples of ScalaTest using
+its own extension points to customize itself. All three override the same five lifecycle methods: <code>run</code>, <code>runTests</code>, <code>testNames</code>,
+<code>tags</code>, and <code>runTest</code>. They inherit the remaining lifecycle methods as is from their supertrait <code>Suite</code>.
+</p>
+
+<p>
+ScalaTest also provides many <em>stackable</em> traits that can be mixed into a style trait, such as
+<a href="@latestScaladoc/#org.scalatest.BeforeAndAfterEach"><code>BeforeAndAfterEach</code></a>,
+<a href="@latestScaladoc/#org.scalatest.OneInstancePerTest"><code>OneInstancePerTest</code></a>, and
+<a href="@latestScaladoc/#org.scalatest.ParallelTestExecution"><code>ParallelTestExecution</code></a>.
+Trait <code>BeforeAndAfterEach</code> declares methods <code>beforeEach</code> and <code>afterEach</code>, then 
+overrides just one lifecycle method, <code>runTest</code>, so that it invokes <code>beforeEach</code> before,
+and <code>afterEach</code> after, invoking <code>super.runTest</code>. Both <code>OneInstancePerTest</code> and
+<code>ParallelTestExecution</code> override <code>runTests</code>. <code>OneInstancePerTest</code>'s implementation of
+<code>runTests</code> ensures each test is run in its own instance of the suite class, and <code>ParallelTestExecution</code>'s
+implementation ensures tests are run in parallel.
+</p>
+
+<p>
+There is no
+magic happening behind the scenes. In Scala you could implement something that looks and behaves like a while loop as a curried function that takes a by-name.
+Similarly you could implement any of ScalaTest's style or stackable traits yourself outside of ScalaTest. As a result, when you do have a special
+testing need, you will be able to easily accommodate it by overriding one or more of ScalaTest's lifecycle methods in a trait, and mixing that into your test
+classes. Need to run each test in their own class loader? Need to treat a directory full of files as one suite of tests per file? Need to define
+a particular order of test or suite execution? Any of these would be easy to implement by overriding lifecycle methods. And because it is
+so easy to customize, ScalaTest will grow with you as your project scales up and your needs change.
+</p>
+
+<a name="teamProductivity"></a>
+<h2>Enabling team productivity</h2>
+
+<p>
+Another design focus of ScalaTest is to facilitate the productivity of teams. Teams in the real world are made up of
+many different kinds of people. These people are often very busy, sometimes tired or under stress. Many are
+not fans of testing, and even those who think testing is a good idea may not have much
+time to invest in becoming an expert in a test framework.
+</p>
+
+<p>
+One way in which ScalaTest is designed for teams is that it is easy to get started with because it offers styles
+<em>familiar</em> to many users. Users of <a href="@latestScaladoc/#org.scalatest.junit.JUnitSuite">JUnit</a> or <a href="@latestScaladoc/#org.scalatest.testng.TestNGSuite">TestNG</a>, for example, can
+continue using those tools with a few productivity enhancements from ScalaTest sprinkled in. Or if they use
+<a href="/getting_started_with_fun_suite"><code>FunSuite</code> with <code>Assertions</code></a>, they'll find an even nicer DSL for testing that still makes sense
+given their xUnit background. Users of RSpec will find <a href="@latestScaladoc/#org.scalatest.FunSpec"><code>FunSpec</code></a> familiar and easy to get into. Users of Cucumber
+will find <a href="@latestScaladoc/#org.scalatest.FeatureSpec"><code>FeatureSpec</code></a> familiar. In short, one of ScalaTest's design goals is that anyone
+who has used a test framework in the past should be able to get going with ScalaTest quickly with minimum effort.
+</p>
+
+<p>
+Another way ScalaTest is designed for teams is that it is very thoroughly documented in its user guide
+and Scaladoc, both of which include many examples. The goal is that you should never need to look through
+ScalaTest source code to figure out what is going on.
+</p>
+
+<p>
+Another major design focus of ScalaTest is to use the flexibility of the Scala language to make testing code clear.
+Because some people working in a team will inevitably be casual, non-expert users of the test framework, 
+ScalaTest's design is focused on making client code &ldquo;guessable.&rdquo;
+The goal is to make client code so plainly obvious that even someone completely unfamiliar
+with ScalaTest could understand client code written by others without looking anything up in ScalaTest documentation.
+</p>
+
+<p>
+In addition to trying to make ScalaTest's syntax as clear and meaningful as possible, the design is also focused on making ScalaTest's
+behavior as simple as possible. Keeping the test framework simple helps make your test code easier to reason about.
+The less you need to worry about what ScalaTest is doing behind the scenes, the more you can focus on what your own code is doing.
+</p>
+
+<p>
+Lastly, in addition to trying to make code easy to read and understand, ScalaTest is designed to make the code as easy as possible
+to write. To write ScalaTest code, you will need to look at the documentation for examples, but 
+the library is designed to be easy to remember so that you don't have to look again each time you want to write something.
+Besides obviousness of code, one other way in which ScalaTest tries to achieve this is through consistency. Once you learn how
+<a href="@latestScaladoc/#org.scalatest.BeforeAndAfter"><code>BeforeAndAfter</code></a> works, for example, you can use that knowledge when using different style traits, because it
+is consistent. It works the same everywhere. This &ldquo;rememberability&rdquo; is important for teams, because some people on a team will
+inevitably have many other duties besides writing ScalaTest code, so they will have a tendency to forget what they learned.
+</p>
+
+<a name="teamProductivity"></a>
+<h2>Summary</h2>
+
+<p>
+The upshot is that ScalaTest is designed to facilitate productivity of teams by being:
+<ul>
+<li>easy to get into</li>
+<li>easy to read, even by casual users</li>
+<li>easy to remember how to write</li>
+<li>easy to customize to address special needs</li>
+</ul>
+</p>
+
+<p>
+Next, find out about <a href="/user_guide/selecting_a_style">Selecting a style</a>.
+</p>
+
+</div>
+}

@@ -1,0 +1,49 @@
+@*
+ * Copyright 2010-2013 Artima, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *@
+
+@import controllers.Application.latestScaladoc
+
+@userGuidePage("User Guide") {
+
+<div style="text-align: left">
+
+<p>
+This user guide will help you get rolling quickly with ScalaTest. First a brief orientation:
+</p>
+
+<ul>
+<li>The central concept in ScalaTest is the <em>suite</em>, a collection of zero to many tests.</li>
+<li>A <em>test</em> can be anything with a name that can start and either succeed or fail.</li>
+<li>The design of ScalaTest is embodied in trait <code>Suite</code>, which represents a suite of tests.</li>
+<li>Trait <code>Suite</code> declares <code>run</code> and nine other &#8220;lifecycle&#8221; methods that define a default way to write and run tests.</li>
+<li>The lifecycle methods can be overridden to define custom ways of writing and running tests.</li>
+<li>ScalaTest offers several <em>style traits</em> that override lifecycle methods to support different styles of testing, such
+as TDD, BDD, and acceptance testing.</li>
+</ul>
+
+<p>
+This user guide shows how to write tests primarily using <code>FlatSpec</code>, a style trait for behavior-driven development (BDD). 
+ScalaTest is very consistent, so the concepts you learn about <code>FlatSpec</code> will apply if you later decide to use a different
+style trait. For information about other styles, this user guide will point you to the <a href="@latestScaladoc/#org.scalatest.package">Scaladoc documentation</a>.
+ScalaTest has extensive Scaladoc documention that includes tutorials with many examples that can help you get moving quickly
+using any style.
+</p>
+
+<p>
+Now, get started by <a href="@routes.UserGuide.writingYourFirstTest.url">writing your first test</a>.
+</p>
+
+}
