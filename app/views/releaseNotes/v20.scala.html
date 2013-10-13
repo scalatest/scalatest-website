@@ -29,9 +29,34 @@ to ScalaTest, but also to tools themselves, such as IntelliJ IDEA, the Scala IDE
 and sbt. ScalaTest 2.0.RC1 is a release candidate for ScalaTest 2.0. If no major problems are found during
 the trial phase, this version will be relabeled and released as ScalaTest 2.0.
 The <a href="#detailedList">detailed list</a> below lists all changes and enhancements in ScalaTest 2.0
-compared to ScalaTest 1.9.2. For a higher level view, here are some highlights of 2.0.RC1 over
-the previous 2.0 milestone releases:
+compared to ScalaTest 1.9.2. For a higher level view, here are some highlights of 2.0.RC2 over
+the previous 2.0 milestone releases and RC1:
 </p>
+
+<p>
+<em>2.0.RC2 Highlights:</em>
+</p>
+
+<ul>
+<li>Fixed a race condition in <a href="@{milestoneScaladoc}/index.html#org.scalatest.concurrent.AsyncAssertions$Waiter"><code>Waiter</code></a> (contributed by Nick Wade)</li>
+<li>Fixed a bug in the new Framework API implementation in which <code>TestWildcardSelector</code>s weren't being handled, which will be needed for
+sbt 0.13.1.</li>
+<li>Completed Scaladoc for 2.0 final release</li>
+<li>Changed the name of the public field from <code>left</code> to <code>leftSide</code> in
+<a href="@{milestoneScaladoc}/index.html#org.scalautils.TripleEqualsSupport$Equalizer"><code>Equalizer</code></a> and
+<a href="@{milestoneScaladoc}/index.html#org.scalautils.TripleEqualsSupport$CheckingEqualizer"><code>CheckingEqualizer</code></a> so that it
+    doesn't conflict with a <code>left</code> method added by an implicit conversion in scalaz.</li>
+<li>Added pretty <code>toString</code>s to the <a href="@{milestoneScaladoc}/index.html#org.scalautils.Equality"><code>Equality</code></a>'s
+produced by <a href="@{milestoneScaladoc}/index.html#org.scalautils.TolerantNumerics"><code>TolerantNumerics</code></a></li>
+<li>Added three missing lifecycle methods to <a href="@{milestoneScaladoc}/index.html#org.scalatest.SuiteMixin"><code>SuiteMixin</code></a>, to
+enable the stackable trait pattern for those methods</li>
+<li>Implemented and documented the <code>scan</code> methods on <a href="@{milestoneScaladoc}/index.html#org.scalautils.Every"><code>Every</code></a>.</li>
+<li>Enhanced <code>assume</code> to use similar macros as <code>assert</code> for better error messages
+in <a href="@{milestoneScaladoc}/index.html#org.scalatest.Assertions"><code>Assertions</code></a></li>
+<li>Changed the formatting behavior of the <code>assert</code> and <code>assume</code> methods of
+<a href="@{milestoneScaladoc}/index.html#org.scalatest.Assertions"><code>Assertions</code></a> when a string "clue" message
+is provided to match that of <a href="@{milestoneScaladoc}/index.html#org.scalatest.AppendedClues"><code>AppendedClues</code></a></li>
+</ul>
 
 <p>
 <em>2.0.RC1 Highlights:</em>
