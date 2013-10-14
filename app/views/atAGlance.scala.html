@@ -24,6 +24,10 @@
 <h1>ScalaTest At A Glance</h1>
 
 <p>
+For <code>Matchers</code> syntax, please see <a href="@routes.UserGuide.matchersQuickReference.url">Matchers Quick Reference</a> instead.
+</p>
+
+<p>
 Show examples in:
 </p>
 
@@ -74,23 +78,23 @@ Show examples in:
 </tr>
 
 <tr>
-<td class="quickref" colspan="1">Ignore A Test</td>
-<td class="quickref" colspan="3"><code>@Html(selectedStyle.ignoreTest)</code></td>
+<td class="quickref" colspan="2">Ignore A Test</td>
+<td class="quickref" colspan="2"><code>@Html(selectedStyle.ignoreTest)</code></td>
 </tr>
 
 <tr>
-<td class="quickref" colspan="1">A Pending Test</td>
-<td class="quickref" colspan="3"><code>@Html(selectedStyle.pendingTest)</code></td>
+<td class="quickref" colspan="2">A Pending Test</td>
+<td class="quickref" colspan="2"><code>@Html(selectedStyle.pendingTest)</code></td>
 </tr>
 
 <tr>
-<td class="quickref" colspan="1">Tag a Test</td>
-<td class="quickref" colspan="3"><pre>@Html(selectedStyle.taggingTest)</pre></td>
+<td class="quickref" colspan="2">Tag a Test</td>
+<td class="quickref" colspan="2"><pre>@Html(selectedStyle.taggingTest)</pre></td>
 </tr>
 
 <tr>
-<td class="quickref" colspan="1">Provide information.</td>
-<td class="quickref" colspan="3"><code>info("This is secret info!")</code></td>
+<td class="quickref" colspan="2">Provide information.</td>
+<td class="quickref" colspan="2"><code>info(<span class="stLiteral">"This is secret info!"</span>)</code></td>
 </tr>
 
 <tr>
@@ -371,6 +375,210 @@ withScreenshot {
 <tr>
 <td class="quickref" colspan="2">Close all windows and exit the driver</td>
 <td class="quickref" colspan="2"><code>quit()</code></td>
+</tr>
+
+<tr>
+<th class="quickref" colspan="4">Concurrent Support</th>
+</tr>
+
+<tr>
+<td class="quickref" colspan="2">Use <code>eventually</code> with implicit <code>PatienceConfig</code></td>
+<td class="quickref" colspan="2">
+<pre>
+<span class="stReserved">import</span> org.scalatest.concurrent.<span class="stType">Eventually</span>._
+eventually { ... }
+</pre>
+</td>
+</tr>
+
+<tr>
+<td class="quickref" colspan="2">Define custom implicit <code>PatienceConfig</code></td>
+<td class="quickref" colspan="2">
+<pre>
+<span class="stReserved">import</span> org.scalatest.concurrent.<span class="stType">PatienceConfig</span>
+<span class="stReserved">import</span> org.scalatest.time._
+<span class="stReserved">implicit</span> <span class="stReserved">val</span> patienceConfig =
+<span class="stType">PatienceConfig</span>(timeout = scaled(<span class="stType">Span</span>(<span class="stLiteral">2</span>, <span class="stType">Seconds</span>)), interval = scaled(Span(<span class="stLiteral">5</span>, <span class="stType">Millis</span>)))
+</pre>
+</td>
+</tr>
+
+<tr>
+<td class="quickref" colspan="2">Use <code>eventually</code> with explicit <code>timeout</code></td>
+<td class="quickref" colspan="2">
+<pre>
+<span class="stReserved">import</span> org.scalatest.concurrent.<span class="stType">Eventually</span>._
+<span class="stReserved">import</span> org.scalatest.time._
+eventually (timeout(<span class="stType">Span</span>(<span class="stLiteral">5</span>, <span class="stType">Seconds</span>))) { ... }
+</pre>
+</td>
+</tr>
+
+<tr>
+<td class="quickref" colspan="2">Use <code>eventually</code> with explicit <code>timeout</code> and <code>interval</code></td>
+<td class="quickref" colspan="2">
+<pre>
+<span class="stReserved">import</span> org.scalatest.concurrent.<span class="stType">Eventually</span>._
+<span class="stReserved">import</span> org.scalatest.time._
+eventually (timeout(<span class="stType">Span</span>(<span class="stLiteral">5</span>, <span class="stType">Seconds</span>)), interval(<span class="stType">Span</span>(<span class="stLiteral">5</span>, <span class="stType">Millis</span>))) { ... }
+</pre>
+</td>
+</tr>
+
+<tr>
+<td class="quickref" colspan="2">Use <code>SpanSugar</code> to specify time</td>
+<td class="quickref" colspan="2">
+<pre>
+<span class="stReserved">import</span> org.scalatest.concurrent.<span class="stType">Eventually</span>._
+<span class="stReserved">import</span> org.scalatest.time.SpanSugar._
+eventually (timeout(<span class="stLiteral">5</span> seconds), interval(<span class="stLiteral">5</span> millis)) { ... }
+</pre>
+</td>
+</tr>
+
+<tr>
+<th class="quickref" colspan="4">Inspectors</th>
+</tr>
+
+<tr>
+<td class="quickref" colspan="2">Use <code>forAll</code> to check that every element passes the assertion block</td>
+<td class="quickref" colspan="2">
+<pre>
+<span class="stReserved">import</span> org.scalatest._
+<span class="stReserved">import</span> <span class="stType">Matchers</span>._
+<span class="stReserved">import</span> <span class="stType">Inspectors</span>._
+forAll(<span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>)) { _ should be > <span class="stLiteral">0</span> }
+</pre>
+</td>
+</tr>
+
+<tr>
+<td class="quickref" colspan="2">Use <code>forAtLeast</code> to check that at least the specified number of elements pass the assertion block</td>
+<td class="quickref" colspan="2">
+<pre>
+<span class="stReserved">import</span> org.scalatest._
+<span class="stReserved">import</span> <span class="stType">Matchers</span>._
+<span class="stReserved">import</span> <span class="stType">Inspectors</span>._
+forAtLeast(<span class="stLiteral">1</span>, <span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>)) { _ should be > <span class="stLiteral">2</span> }
+</pre>
+</td>
+</tr>
+
+<tr>
+<td class="quickref" colspan="2">Use <code>forAtMost</code> to check that at most the specified number of elements pass the assertion block</td>
+<td class="quickref" colspan="2">
+<pre>
+<span class="stReserved">import</span> org.scalatest._
+<span class="stReserved">import</span> <span class="stType">Matchers</span>._
+<span class="stReserved">import</span> <span class="stType">Inspectors</span>._
+forAtMost(<span class="stLiteral">2</span>, <span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>)) { _ should be > <span class="stLiteral">1</span> }
+</pre>
+</td>
+</tr>
+
+<tr>
+<td class="quickref" colspan="2">Use <code>forBetween</code> to check that the specified minimum and maximum number of elements (inclusive) pass the assertion block</td>
+<td class="quickref" colspan="2">
+<pre>
+<span class="stReserved">import</span> org.scalatest._
+<span class="stReserved">import</span> <span class="stType">Matchers</span>._
+<span class="stReserved">import</span> <span class="stType">Inspectors</span>._
+forBetween(<span class="stLiteral">2</span>, <span class="stLiteral">4</span>, <span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>, <span class="stLiteral">4</span>, <span class="stLiteral">5</span>)) { _ should be > <span class="stLiteral">2</span> }
+</pre>
+</td>
+</tr>
+
+<tr>
+<td class="quickref" colspan="2">Use <code>forEvery</code> to check that every element passes the assertion block, it'll list all failing elements if it fails (whereas <code>forAll</code> just reports the first failing element)</td>
+<td class="quickref" colspan="2">
+<pre>
+<span class="stReserved">import</span> org.scalatest._
+<span class="stReserved">import</span> <span class="stType">Matchers</span>._
+<span class="stReserved">import</span> <span class="stType">Inspectors</span>._
+forEvery(<span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>)) { _ should be > <span class="stLiteral">0</span> }
+</pre>
+</td>
+</tr>
+
+<tr>
+<td class="quickref" colspan="2">Use <code>forExactly</code> to check that the exact specified number of elements pass the assertion block</td>
+<td class="quickref" colspan="2">
+<pre>
+<span class="stReserved">import</span> org.scalatest._
+<span class="stReserved">import</span> <span class="stType">Matchers</span>._
+<span class="stReserved">import</span> <span class="stType">Inspectors</span>._
+forExactly(<span class="stLiteral">2</span>, <span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>)) { _ should be > <span class="stLiteral">1</span> }
+</pre>
+</td>
+</tr>
+
+<tr>
+<th class="quickref" colspan="4">Other Goodies</th>
+</tr>
+
+<tr>
+<td class="quickref" colspan="2">Inside</td>
+<td class="quickref" colspan="2">
+<pre>
+<span class="stReserved">import</span> org.scalatest._
+<span class="stReserved">import</span> <span class="stType">Matchers</span>._
+<span class="stReserved">import</span> <span class="stType">Inside</span>._
+inside (rec) { case <span class="stType">Record</span>(name, address, age) =>
+  inside (name) { case <span class="stType">Name</span>(first, middle, last) =>
+    first should be (<span class="stLiteral">"Sally"</span>)
+  }
+}
+</pre>
+</td>
+</tr>
+
+<tr>
+<td class="quickref" colspan="2">OptionValues</td>
+<td class="quickref" colspan="2">
+<pre>
+<span class="stReserved">import</span> org.scalatest._
+<span class="stReserved">import</span> <span class="stType">Matchers</span>._
+<span class="stReserved">import</span> <span class="stType">OptionValues</span>._
+anOption.value should be > <span class="stLiteral">9</span>
+</pre>
+</td>
+</tr>
+
+<tr>
+<td class="quickref" colspan="2">EitherValues</td>
+<td class="quickref" colspan="2">
+<pre>
+<span class="stReserved">import</span> org.scalatest._
+<span class="stReserved">import</span> <span class="stType">Matchers</span>._
+<span class="stReserved">import</span> <span class="stType">EitherValues</span>._
+either1.right.value should be > <span class="stLiteral">9</span>
+either2.left.value should be (<span class="stLiteral">"Muchas problemas"</span>)
+</pre>
+</td>
+</tr>
+
+<tr>
+<td class="quickref" colspan="2">PartialFunctionValues</td>
+<td class="quickref" colspan="2">
+<pre>
+<span class="stReserved">import</span> org.scalatest._
+<span class="stReserved">import</span> <span class="stType">Matchers</span>._
+<span class="stReserved">import</span> <span class="stType">PartialFunctionValues</span>._
+val map = <span class="stType">Map</span>(<span class="stLiteral">"one"</span> -> <span class="stLiteral">1</span>, <span class="stLiteral">"two"</span> -> <span class="stLiteral">2</span>, <span class="stLiteral">"three"</span> -> <span class="stLiteral">3</span>)
+map.valueAt(<span class="stLiteral">"two"</span>) should equal (<span class="stLiteral">2</span>)
+</pre>
+</td>
+</tr>
+
+<tr>
+<td class="quickref" colspan="2">PrivateMethodTester</td>
+<td class="quickref" colspan="2">
+<pre>
+<span class="stReserved">import</span> org.scalatest.<span class="stType">PrivateMethodTester</span>._
+<span class="stReserved">val</span> decorateToStringValue = <span class="stType">PrivateMethod</span>[<span class="stType">String</span>](<span class="stQuotedString">'decorateToStringValue</span>)
+targetObject invokePrivate decorateToStringValue(<span class="stLiteral">1</span>)
+</pre>
+</td>
 </tr>
 
 </table>
