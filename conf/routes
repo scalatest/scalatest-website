@@ -17,7 +17,7 @@ GET        /writing_junit_and_testng_tests_in_scala               controllers.Ap
 GET        /getting_started_with_junit_4_in_scala                 controllers.Application.gettingStartedWithJunit4InScala
 GET        /getting_started_with_junit_3_in_scala                 controllers.Application.gettingStartedWithJunit3InScala
 GET        /getting_started_with_testng_in_scala                  controllers.Application.gettingStartedWithTestngInScala
-GET        /atAGlance/:style                                      controllers.Application.atAGlance(style)
+GET        /at_a_glance/:style                                    controllers.Application.atAGlance(style)
 
 GET        /release_notes/2.0                                     controllers.ReleaseNotes.v20
 GET        /release_notes/1.9.1                                   controllers.ReleaseNotes.v191
