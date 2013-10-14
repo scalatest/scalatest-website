@@ -19,6 +19,7 @@ package examples
 trait StyleTraitExamples {
   val name: String
   def exampleUsage: String
+  def play2Example: String
   def doNotDiscover: String
   def ignoreTest: String
   def pendingTest: String

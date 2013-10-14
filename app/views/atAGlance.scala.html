@@ -16,7 +16,7 @@
 
 @(selectedStyle: examples.StyleTraitExamples)
 
-@nonHomePage("At A Glance") {
+@widePage("At A Glance") {
 
 <div style="text-align: left">
 
@@ -33,52 +33,72 @@ Show examples in:
 <table style="border-collapse: collapse; border: 1px solid black">
 
 <tr>
-<th class="quickref" colspan="3">Style</th>
+<th class="quickref" colspan="4">Style</th>
 </tr>
 
 <tr>
-<td class="quickref" colspan="3"><pre>@Html(selectedStyle.exampleUsage)</pre></td>
+<td class="quickref" colspan="4"><pre>@Html(selectedStyle.exampleUsage)</pre></td>
 </tr>
 
 <tr>
-<th class="quickref" colspan="3">Do Not Discover</th>
+<th class="quickref" colspan="4">Build Integration</th>
 </tr>
 
 <tr>
+<td class="quickref">SBT/Play2</td>
+<td class="quickref">build.sbt/Build.scala</td>
+<td colspan="2">"org.scalatest" % "scalatest_2.10" % "2.0.RC2" % "test"</td>
+</tr>
+
+<tr>
+<td class="quickref">Play2 Example</td>
+<td class="quickref" colspan="3">
+<pre>
+@Html(selectedStyle.play2Example)
+</pre>
+</td>
+</tr>
+
+<tr>
+<th class="quickref" colspan="4">Do Not Discover</th>
+</tr>
+
+<tr>
+<td class="quickref" colspan="2">Instruct ScalaTest Runner or SBT to not discover this suite</td>
 <td class="quickref" colspan="2"><pre>@Html(selectedStyle.doNotDiscover)</pre></td>
-<td class="quickref">Instruct ScalaTest Runner or SBT to not discover this suite</td>
 </tr>
 
 <tr>
-<th class="quickref" colspan="3">Test</th>
+<th class="quickref" colspan="4">Test</th>
 </tr>
 
 <tr>
+<td class="quickref" colspan="2">Ignore A Test</td>
 <td class="quickref" colspan="2"><code>@selectedStyle.ignoreTest</code></td>
-<td class="quickref">Ignore A Test</td>
 </tr>
 
 <tr>
+<td class="quickref" colspan="2">A Pending Test</td>
 <td class="quickref" colspan="2"><code>@selectedStyle.pendingTest</code></td>
-<td class="quickref">A Pending Test</td>
 </tr>
 
 <tr>
+<td class="quickref" colspan="2">Tag a Test</td>
 <td class="quickref" colspan="2"><pre><code>@selectedStyle.taggingTest</code></pre></td>
-<td class="quickref">Tag a Test</td>
 </tr>
 
 <tr>
+<td class="quickref" colspan="2">Provide information.</td>
 <td class="quickref" colspan="2"><code>info("This is secret info!")</code></td>
-<td class="quickref">Provide information.</td>
 </tr>
 
 <tr>
-<th class="quickref" colspan="3">Fixture</th>
+<th class="quickref" colspan="4">Fixture</th>
 </tr>
 
 <tr>
-<td class="quickref">
+<td class="quickref" colspan="2"><code>withFixture</code> using <code>NoArgTest</code> for style traits in <code>org.scalatest</code> package</td>
+<td class="quickref" colspan="2">
 <pre>
 override protected def withFixture(test: NoArgTest) = {
   setup()
@@ -86,11 +106,11 @@ override protected def withFixture(test: NoArgTest) = {
 }
 </pre>
 </td>
-<td class="quickref" colspan="2"><code>withFixture</code> using <code>NoArgTest</code> for style traits in <code>org.scalatest</code> package</td>
 </tr>
 
 <tr>
-<td class="quickref">
+<td class="quickref" colspan="2"><code>withFixture</code> using <code>OneArgTest</code> for style traits in <code>org.scalatest.fixture</code> package</td>
+<td class="quickref" colspan="2">
 <pre>
 type FixtureParam = String
 override protected def withFixture(test: OneArgTest) = {
@@ -99,84 +119,84 @@ override protected def withFixture(test: OneArgTest) = {
 }
 </pre>
 </td>
-<td class="quickref" colspan="2"><code>withFixture</code> using <code>OneArgTest</code> for style traits in <code>org.scalatest.fixture</code> package</td>
 </tr>
 
 <tr>
-<th class="quickref" colspan="3">Selenium DSL</th>
+<th class="quickref" colspan="4">Selenium DSL</th>
 </tr>
 
 <tr>
+<td class="quickref" colspan="2">Go to ScalaTest website</td>
 <td class="quickref" colspan="2"><code>go to "http://www.scalatest.org"</code></td>
-<td class="quickref">Go to ScalaTest website</td>
 </tr>
 
 <tr>
+<td class="quickref" colspan="2">Check page title</td>
 <td class="quickref" colspan="2"><code>pageTitle should be ("ScalaTest")</code></td>
-<td class="quickref">Check page title</td>
 </tr>
 
 <tr>
+<td class="quickref" colspan="2">Click on element which has attribute id or name = "q"</td>
 <td class="quickref" colspan="2"><code>click on "q"</code></td>
-<td class="quickref">Click on element which has attribute id or name = "q"</td>
 </tr>
 
 <tr>
+<td class="quickref" colspan="2">Click on element which has attribute id = "q"</td>
 <td class="quickref" colspan="2"><code>click on id("q")</code></td>
-<td class="quickref">Click on element which has attribute id = "q"</td>
 </tr>
 
 <tr>
+<td class="quickref" colspan="2">Click on element which has attribute name = "q"</td>
 <td class="quickref" colspan="2"><code>click on name("name")</code></td>
-<td class="quickref">Click on element which has attribute name = "q"</td>
 </tr>
 
 <tr>
+<td class="quickref" colspan="2">Click on element which is a <code>input</code> tag</td>
 <td class="quickref" colspan="2"><code>click on tagName("input")</code></td>
-<td class="quickref">Click on element which is a <code>input</code> tag</td>
 </tr>
 
 <tr>
+<td class="quickref" colspan="2">Click on element which has CSS class <code>quickref</code> tag</td>
 <td class="quickref" colspan="2"><code>click on className("quickref")</code></td>
-<td class="quickref">Click on element which has CSS class <code>quickref</code> tag</td>
 </tr>
 
 <tr>
+<td class="quickref" colspan="2">Check a element's tag name, selected by using CSS selector</td>
 <td class="quickref" colspan="2"><code>cssSelector("a[id='aLink']").element.tagName should be ("a")</code></td>
-<td class="quickref">Check a element's tag name, selected by using CSS selector</td>
 </tr>
 
 <tr>
+<td class="quickref" colspan="2">Check a element's tag name, selected by using the link text</td>
 <td class="quickref" colspan="2"><code>linkText("Click Me!").element.tagName should be ("a")</code></td>
-<td class="quickref">Check a element's tag name, selected by using the link text</td>
 </tr>
 
 <tr>
+<td class="quickref" colspan="2">Check a element's tag name, selected by using the partial link text</td>
 <td class="quickref" colspan="2"><code>partialLinkText("Click").element.tagName should be ("a")</code></td>
-<td class="quickref">Check a element's tag name, selected by using the partial link text</td>
 </tr>
 
 <tr>
+<td class="quickref" colspan="2">Enter "Cheese!" into currently selected text element</td>
 <td class="quickref" colspan="2"><code>enter("Cheese!")</code></td>
-<td class="quickref">Enter "Cheese!" into currently selected text element</td>
 </tr>
 
 <tr>
+<td class="quickref" colspan="2">Submit form</td>
 <td class="quickref" colspan="2"><code>submit()</code></td>
-<td class="quickref">Submit form</td>
 </tr>
 
 <tr>
+<td class="quickref" colspan="2">Set text field (which has attribute id or name = "q") to "Cheese!"</td>
 <td class="quickref" colspan="2"><code>textField("q").value = "Cheese!"</code></td>
-<td class="quickref">Set text field (which has attribute id or name = "q") to "Cheese!"</td>
 </tr>
 
 <tr>
+<td class="quickref" colspan="2">Read and check a text field (which has attribute id or name = "q") value</td>
 <td class="quickref" colspan="2"><code>textField("q").value should be ("Cheese!")</code></td>
-<td class="quickref">Read and check a text field (which has attribute id or name = "q") value</td>
 </tr>
 
 <tr>
+<td class="quickref" colspan="2">Set radio button group (which has group name = "group1") to choose "Option 2"</td>
 <td class="quickref" colspan="2">
 <pre>
 radioButtonGroup("group1").value = "Option 2"
@@ -184,10 +204,10 @@ radioButtonGroup("group1").value = "Option 2"
 radioButtonGroup("group1").selection = Some("Option 2")
 </pre>
 </td>
-<td class="quickref">Set radio button group (which has group name = "group1") to choose "Option 2"</td>
 </tr>
 
 <tr>
+<td class="quickref" colspan="2">Read and check radio button group (which has group name = "group1") chosen value</td>
 <td class="quickref" colspan="2">
 <pre>
 radioButtonGroup("group1").value should be ("Option 2")
@@ -195,35 +215,35 @@ radioButtonGroup("group1").value should be ("Option 2")
 radioButtonGroup("group1").selection should be (Some("Option 2"))
 </pre>
 </td>
-<td class="quickref">Read and check radio button group (which has group name = "group1") chosen value</td>
 </tr>
 
 <tr>
+<td class="quickref" colspan="2">Click on a radio button (which has attribute id or name = "opt1")</td>
 <td class="quickref" colspan="2"><code>click on radioButton("opt1")</code></td>
-<td class="quickref">Click on a radio button (which has attribute id or name = "opt1")</td>
 </tr>
 
 <tr>
+<td class="quickref" colspan="2">Check if a radio button (which has attribute id or name = "opt1") is selected</td>
 <td class="quickref" colspan="2"><code>radioButton("opt1").isSelected should be (true)</code></td>
-<td class="quickref">Check if a radio button (which has attribute id or name = "opt1") is selected</td>
 </tr>
 
 <tr>
+<td class="quickref" colspan="2">Select a check box (which has attribute id or name = "cbx1")</td>
 <td class="quickref" colspan="2"><code>checkbox("cbx1").select()</code></td>
-<td class="quickref">Select a check box (which has attribute id or name = "cbx1")</td>
 </tr>
 
 <tr>
+<td class="quickref" colspan="2">Clear a check box (which has attribute id or name = "cbx1")</td>
 <td class="quickref" colspan="2"><code>checkbox("cbx1").clear()</code></td>
-<td class="quickref">Clear a check box (which has attribute id or name = "cbx1")</td>
 </tr>
 
 <tr>
+<td class="quickref" colspan="2">Check if a check box (which has attribute id or name = "cbx1") is selected</td>
 <td class="quickref" colspan="2"><code>checkbox("cbx1").isSelected should be (true)</code></td>
-<td class="quickref">Check if a check box (which has attribute id or name = "cbx1") is selected</td>
 </tr>
 
 <tr>
+<td class="quickref" colspan="2">Set a single-selection dropdown list (which has attribute id or name = "select1") to choose "option2"</td>
 <td class="quickref" colspan="2">
 <pre>
 singleSel("select1").value = "option2"
@@ -231,10 +251,10 @@ singleSel("select1").value = "option2"
 singleSel("select1").selection = Some("option2")
 </pre>
 </td>
-<td class="quickref">Set a single-selection dropdown list (which has attribute id or name = "select1") to choose "option2"</td>
 </tr>
 
 <tr>
+<td class="quickref" colspan="2">Clear the selection of a single-selection dropdown list (which has attribute id or name = "select1")</td>
 <td class="quickref" colspan="2">
 <pre>
 singleSel.clear()
@@ -242,10 +262,10 @@ singleSel.clear()
 singleSel("select1").selection = None
 </pre>
 </td>
-<td class="quickref">Clear the selection of a single-selection dropdown list (which has attribute id or name = "select1")</td>
 </tr>
 
 <tr>
+<td class="quickref" colspan="2">Read and check currently selected value of a single-selection dropdown list (which has attribute id or name = "select1")</td>
 <td class="quickref" colspan="2">
 <pre>
 singleSel("select1").value should be ("option2")
@@ -253,30 +273,30 @@ singleSel("select1").value should be ("option2")
 singleSel("select1").selection should be (Some("option2"))
 </pre>
 </td>
-<td class="quickref">Read and check currently selected value of a single-selection dropdown list (which has attribute id or name = "select1")</td>
 </tr>
 
 <tr>
+<td class="quickref" colspan="2">Set the selection of a multi-selection list (which has attribute id or name = "select2")</td>
 <td class="quickref" colspan="2"><code>multiSel("select2").values = Seq("option5", "option6")</code></td>
-<td class="quickref">Set the selection of a multi-selection list (which has attribute id or name = "select2")</td>
 </tr>
 
 <tr>
+<td class="quickref" colspan="2">Select "option3" in addition to current selection of a multi-selection list (which has attribute id or name = "select2")</td>
 <td class="quickref" colspan="2"><code>multiSel("select2").values += "option3"</code></td>
-<td class="quickref">Select "option3" in addition to current selection of a multi-selection list (which has attribute id or name = "select2")</td>
 </tr>
 
 <tr>
+<td class="quickref" colspan="2">Clear "option5" from current selection of a multi-selection list (which has attribute id or name = "select2")</td>
 <td class="quickref" colspan="2"><code>multiSel("select2").clear("option5")</code></td>
-<td class="quickref">Clear "option5" from current selection of a multi-selection list (which has attribute id or name = "select2")</td>
 </tr>
 
 <tr>
+<td class="quickref" colspan="2">Clear all selection of a multi-selection list (which has attribute id or name = "select2")</td>
 <td class="quickref" colspan="2"><code>multiSel("select2").clearAll()</code></td>
-<td class="quickref">Clear all selection of a multi-selection list (which has attribute id or name = "select2")</td>
 </tr>
 
 <tr>
+<td class="quickref" colspan="2">Read and check currently selected values of a multi-selection list (which has attribute id or name = "select2")</td>
 <td class="quickref" colspan="2">
 <pre>
 multiSel("select2").values should have size 2
@@ -284,55 +304,55 @@ multiSel("select2").values(0) should be ("option5")
 multiSel("select2").values(1) should be ("option6")
 </pre>
 </td>
-<td class="quickref">Read and check currently selected values of a multi-selection list (which has attribute id or name = "select2")</td>
 </tr>
 
 <tr>
+<td class="quickref" colspan="2">Go back to previous page in history</td>
 <td class="quickref" colspan="2"><code>goBack()</code></td>
-<td class="quickref">Go back to previous page in history</td>
 </tr>
 
 <tr>
+<td class="quickref" colspan="2">Go forward to next page in history</td>
 <td class="quickref" colspan="2"><code>goForward()</code></td>
-<td class="quickref">Go forward to next page in history</td>
 </tr>
 
 <tr>
+<td class="quickref" colspan="2">Reload the current page</td>
 <td class="quickref" colspan="2"><code>reloadPage()</code></td>
-<td class="quickref">Reload the current page</td>
 </tr>
 
 <tr>
+<td class="quickref" colspan="2">Add new cookie with name = "name1" and value = "value1"</td>
 <td class="quickref" colspan="2"><code>add cookie ("name1", "value1")</code></td>
-<td class="quickref">Add new cookie with name = "name1" and value = "value1"</td>
 </tr>
 
 <tr>
+<td class="quickref" colspan="2">Read and check a cookie's value</td>
 <td class="quickref" colspan="2"><code>cookie("name1").value should be ("value1")</code></td>
-<td class="quickref">Read and check a cookie's value</td>
 </tr>
 
 <tr>
+<td class="quickref" colspan="2">Delete cookie "name1"</td>
 <td class="quickref" colspan="2"><code>delete cookie "name1"</code></td>
-<td class="quickref">Delete cookie "name1"</td>
 </tr>
 
 <tr>
+<td class="quickref" colspan="2">Delete all cookies under the same domain.</td>
 <td class="quickref" colspan="2"><code>delete all cookies</code></td>
-<td class="quickref">Delete all cookies under the same domain.</td>
 </tr>
 
 <tr>
+<td class="quickref" colspan="2">Capture the screen and save as "MyScreenShot.png"</td>
 <td class="quickref" colspan="2"><code>capture to "MyScreenShot"</code></td>
-<td class="quickref">Capture the screen and save as "MyScreenShot.png"</td>
 </tr>
 
 <tr>
+<td class="quickref" colspan="2">Set the directory to save captured pictures.</td>
 <td class="quickref" colspan="2"><code>setCaptureDir("/home/your_name/screenshots")</code></td>
-<td class="quickref">Set the directory to save captured pictures.</td>
 </tr>
 
 <tr>
+<td class="quickref" colspan="2">Auto capture screen when something goes wrong (e.g. test failed)</td>
 <td class="quickref" colspan="2">
 <pre>
 withScreenshot {
@@ -340,17 +360,16 @@ withScreenshot {
 }
 </pre>
 </td>
-<td class="quickref">Auto capture screen when something goes wrong (e.g. test failed)</td>
 </tr>
 
 <tr>
+<td class="quickref" colspan="2">Close current browser window</td>
 <td class="quickref" colspan="2"><code>close()</code></td>
-<td class="quickref">Close current browser window</td>
 </tr>
 
 <tr>
+<td class="quickref" colspan="2">Close all windows and exit the driver</td>
 <td class="quickref" colspan="2"><code>quit()</code></td>
-<td class="quickref">Close all windows and exit the driver</td>
 </tr>
 
 </table>

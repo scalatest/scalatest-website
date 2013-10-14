@@ -20,13 +20,32 @@ object FunSuiteExamples extends StyleTraitExamples {
   val name: String = "FunSuite"
 
   val exampleUsage: String =
-    """import org.scalatest.FunSuite
+    """<span class="stReserved">import</span> org.scalatest.FunSuite
       |<span class="stReserved">class</span> SetSuite <span class="stReserved">extends</span> FunSuite {
       |  test("An empty Set should have size 0") { assert(Set.empty.size === 0) }
       |  test("Invoking head on an empty Set should produce NoSuchElementException") {
       |    intercept[NoSuchElementException] { Set.empty.head }
       |  }
       |} """.stripMargin
+
+  val play2Example: String =
+    """<span class="stReserved">import</span> org.scalatest._
+      |<span class="stReserved">import</span> play.api.test._
+      |<span class="stReserved">import</span> play.api.test.Helpers._
+      |
+      |<span class="stReserved">class</span> ExampleSpec <span class="stReserved">extends</span> FunSuite <span class="stReserved">with</span> Matchers {
+      |  test("Application should send 404 on a bad request")  {
+      |    running(FakeApplication()) { route(FakeRequest(GET, "/boum")) shouldBe None }
+      |  }
+      |  test("Application should send render the index page") {
+      |    running(FakeApplication()) {
+      |      val home = route(FakeRequest(GET, "/")).get
+      |      status(home) shouldBe OK
+      |      contentType(home) shouldBe Some("text/html")
+      |      contentAsString(home) should include ("ScalaTest")
+      |    }
+      |  }
+      |}""".stripMargin
 
   val doNotDiscover: String =
     """<span class="stReserved">import</span> org.scalatest._

@@ -32,6 +32,29 @@ object SpecExamples extends StyleTraitExamples {
       |  }
       |} """.stripMargin
 
+  val play2Example: String =
+    """<span class="stReserved">import</span> org.scalatest._
+      |<span class="stReserved">import</span> play.api.test._
+      |<span class="stReserved">import</span> play.api.test.Helpers._
+      |
+      |<span class="stReserved">class</span> ExampleSpec <span class="stReserved">extends</span> Spec <span class="stReserved">with</span> Matchers {
+      |  <span class="stReserved">object</span> `Application should` {
+      |    <span class="stReserved">def</span> `send 404 on a bad request` {
+      |      running(FakeApplication()) {
+      |        route(FakeRequest(GET, "/boum")) shouldBe None
+      |      }
+      |    }
+      |    <span class="stReserved">def</span> `render the index page` {
+      |      running(FakeApplication()) {
+      |        <span class="stReserved">val</span> home = route(FakeRequest(GET, "/")).get
+      |        status(home) shouldBe OK
+      |        contentType(home) shouldBe Some("text/html")
+      |        contentAsString(home) should include ("ScalaTest")
+      |      }
+      |    }
+      |  }
+      |}""".stripMargin
+
   val doNotDiscover: String =
     """<span class="stReserved">import</span> org.scalatest._
       |@DoNotDiscover
