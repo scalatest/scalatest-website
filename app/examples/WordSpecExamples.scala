@@ -20,16 +20,16 @@ object WordSpecExamples extends StyleTraitExamples {
   val name: String = "WordSpec"
 
   val exampleUsage: String =
-    """<span class="stReserved">import</span> org.scalatest.WordSpec
-      |<span class="stReserved">class</span> SetSpec <span class="stReserved">extends</span> WordSpec {
-      |  "A Set" when {
-      |    "empty" should {
-      |      "have size 0" in {
-      |        assert(Set.empty.size === 0)
+    """<span class="stReserved">import</span> org.scalatest.<span class="stType">WordSpec</span>
+      |<span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">WordSpec</span> {
+      |  <span class="stLiteral">"A Set"</span> when {
+      |    <span class="stLiteral">"empty"</span> should {
+      |      <span class="stLiteral">"have size 0"</span> in {
+      |        assert(<span class="stType">Set</span>.empty.size === <span class="stLiteral">0</span>)
       |      }
-      |      "produce NoSuchElementException when head is invoked" in {
-      |        intercept[NoSuchElementException] {
-      |          Set.empty.head
+      |      <span class="stLiteral">"produce NoSuchElementException when head is invoked"</span> in {
+      |        intercept[<span class="stType">NoSuchElementException</span>] {
+      |          <span class="stType">Set</span>.empty.head
       |        }
       |      }
       |    }
@@ -39,18 +39,18 @@ object WordSpecExamples extends StyleTraitExamples {
   val play2Example: String =
     """<span class="stReserved">import</span> org.scalatest._
       |<span class="stReserved">import</span> play.api.test._
-      |<span class="stReserved">import</span> play.api.test.Helpers._
+      |<span class="stReserved">import</span> play.api.test.<span class="stType">Helpers</span>._
       |
-      |<span class="stReserved">class</span> ExampleSpec <span class="stReserved">extends</span> WordSpec <span class="stReserved">with</span> Matchers {
-      |  "Application" should {
-      |    "send 404 on a bad request" in running(FakeApplication()) {
-      |      route(FakeRequest(GET, "/boum")) shouldBe None
+      |<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">WordSpec</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> {
+      |  <span class="stLiteral">"Application"</span> should {
+      |    <span class="stLiteral">"send 404 on a bad request"</span> in running(<span class="stType">FakeApplication</span>()) {
+      |      route(<span class="stType">FakeRequest</span>(GET, <span class="stLiteral">"/boum"</span>)) shouldBe <span class="stType">None</span>
       |    }
-      |    "render the index page" in running(FakeApplication()) {
-      |      val home = route(FakeRequest(GET, "/")).get
+      |    <span class="stLiteral">"render the index page"</span> in running(<span class="stType">FakeApplication</span>()) {
+      |      <span class="stReserverd">val</span> home = route(<span class="stType">FakeRequest</span>(GET, <span class="stLiteral">"/"</span>)).get
       |      status(home) shouldBe OK
-      |      contentType(home) shouldBe Some("text/html")
-      |      contentAsString(home) should include ("ScalaTest")
+      |      contentType(home) shouldBe <span class="stType">Some</span>(<span class="stLiteral">"text/html"</span>)
+      |      contentAsString(home) should include (<span class="stLiteral">"ScalaTest"</span>)
       |    }
       |  }
       |}""".stripMargin
@@ -58,17 +58,17 @@ object WordSpecExamples extends StyleTraitExamples {
   val doNotDiscover: String =
     """<span class="stReserved">import</span> org.scalatest._
       |@DoNotDiscover
-      |<span class="stReserved">class</span> SetSpec <span class="stReserved">extends</span> WordSpec { ... }
+      |<span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">WordSpec</span> { ... }
     """.stripMargin
 
   val ignoreTest: String =
-    "\"have size 0\" ignore { ... }"
+    "<span class=\"stLiteral\">\"have size 0\"</span> ignore { ... }"
 
   val pendingTest: String =
-    "\"have size 0\" in (pending)"
+    "<span class=\"stLiteral\">\"have size 0\"</span> in (pending)"
 
   val taggingTest: String =
-    """object SlowTest extends Tag("com.mycompany.tags.SlowTest")
-      |"have size 0" taggedAs(SlowTest) in { ... }
+    """<span class="stReserved">object</span> <span class="stType">SlowTest</span> <span class="stReserved">extends</span> <span class="stType">Tag</span>(<span class="stLiteral">"com.mycompany.tags.SlowTest"</span>)
+      |<span class="stLiteral">"have size 0"</span> taggedAs(<span class="stType">SlowTest</span>) in { ... }
       |""".stripMargin
 }

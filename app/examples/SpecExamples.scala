@@ -20,13 +20,13 @@ object SpecExamples extends StyleTraitExamples {
   val name: String = "Spec"
 
   val exampleUsage: String =
-    """<span class="stReserved">import</span> org.scalatest.Spec
-      |<span class="stReserved">class</span> SetSpec <span class="stReserved">extends</span> Spec {
+    """<span class="stReserved">import</span> org.scalatest.<span class="stType">Spec</span>
+      |<span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">Spec</span> {
       |  <span class="stReserved">object</span> `A Set` {
       |    <span class="stReserved">object</span> `when empty` {
-      |      <span class="stReserved">def</span> `should have size 0` { assert(Set.empty.size === 0) }
+      |      <span class="stReserved">def</span> `should have size 0` { assert(<span class="stType">Set</span>.empty.size === <span class="stLiteral">0</span>) }
       |      <span class="stReserved">def</span> `should produce NoSuchElementException when head is invoked` {
-      |        intercept[NoSuchElementException] { Set.empty.head }
+      |        intercept[<span class="stType">NoSuchElementException</span>] { <span class="stType">Set</span>.empty.head }
       |      }
       |    }
       |  }
@@ -35,21 +35,21 @@ object SpecExamples extends StyleTraitExamples {
   val play2Example: String =
     """<span class="stReserved">import</span> org.scalatest._
       |<span class="stReserved">import</span> play.api.test._
-      |<span class="stReserved">import</span> play.api.test.Helpers._
+      |<span class="stReserved">import</span> play.api.test.<span class="stType">Helpers</span>._
       |
-      |<span class="stReserved">class</span> ExampleSpec <span class="stReserved">extends</span> Spec <span class="stReserved">with</span> Matchers {
+      |<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">Spec</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> {
       |  <span class="stReserved">object</span> `Application should` {
       |    <span class="stReserved">def</span> `send 404 on a bad request` {
-      |      running(FakeApplication()) {
-      |        route(FakeRequest(GET, "/boum")) shouldBe None
+      |      running(<span class="stType">FakeApplication</span>()) {
+      |        route(<span class="stType">FakeRequest</span>(GET, <span class="stLiteral">"/boum"</span>)) shouldBe <span class="stType">None</span>
       |      }
       |    }
       |    <span class="stReserved">def</span> `render the index page` {
-      |      running(FakeApplication()) {
-      |        <span class="stReserved">val</span> home = route(FakeRequest(GET, "/")).get
+      |      running(<span class="stType">FakeApplication</span>()) {
+      |        <span class="stReserved">val</span> home = route(<span class="stType">FakeRequest</span>(GET, <span class="stLiteral">"/"</span>)).get
       |        status(home) shouldBe OK
-      |        contentType(home) shouldBe Some("text/html")
-      |        contentAsString(home) should include ("ScalaTest")
+      |        contentType(home) shouldBe <span class="stType">Some</span>(<span class="stLiteral">"text/html"</span>)
+      |        contentAsString(home) should include (<span class="stLiteral">"ScalaTest"</span>)
       |      }
       |    }
       |  }
@@ -58,17 +58,17 @@ object SpecExamples extends StyleTraitExamples {
   val doNotDiscover: String =
     """<span class="stReserved">import</span> org.scalatest._
       |@DoNotDiscover
-      |<span class="stReserved">class</span> SetSpec <span class="stReserved">extends</span> Spec { ... }
+      |<span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">Spec</span> { ... }
     """.stripMargin
 
   val ignoreTest: String =
-    "@Ignore def `should have size 0` { ... }"
+    "@Ignore <span class=\"stReserved\">def</span> `should have size 0` { ... }"
 
   val pendingTest: String =
-    "def `should have size 0` { pending }"
+    "<span class=\"stReserved\">def</span> `should have size 0` { pending }"
 
   val taggingTest: String =
     """// SlowTest is a Java annotation
-      |@SlowTest def `should have size 0` { ... }
+      |@SlowTest <span class="stReserved">def</span> `should have size 0` { ... }
       |""".stripMargin
 }

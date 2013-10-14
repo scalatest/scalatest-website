@@ -20,29 +20,29 @@ object FunSuiteExamples extends StyleTraitExamples {
   val name: String = "FunSuite"
 
   val exampleUsage: String =
-    """<span class="stReserved">import</span> org.scalatest.FunSuite
-      |<span class="stReserved">class</span> SetSuite <span class="stReserved">extends</span> FunSuite {
-      |  test("An empty Set should have size 0") { assert(Set.empty.size === 0) }
-      |  test("Invoking head on an empty Set should produce NoSuchElementException") {
-      |    intercept[NoSuchElementException] { Set.empty.head }
+    """<span class="stReserved">import</span> org.scalatest.<span class="stType">FunSuite</span>
+      |<span class="stReserved">class</span> <span class="stType">SetSuite</span> <span class="stReserved">extends</span> <span class="stType">FunSuite</span> {
+      |  test(<span class="stLiteral">"An empty Set should have size 0"</span>) { assert(<span class="stType">Set</span>.empty.size === <span class="stLiteral">0</span>) }
+      |  test(<span class="stLiteral">"Invoking head on an empty Set should produce NoSuchElementException"</span>) {
+      |    intercept[<span class="stType">NoSuchElementException</span>] { <span class="stType">Set</span>.empty.head }
       |  }
       |} """.stripMargin
 
   val play2Example: String =
     """<span class="stReserved">import</span> org.scalatest._
       |<span class="stReserved">import</span> play.api.test._
-      |<span class="stReserved">import</span> play.api.test.Helpers._
+      |<span class="stReserved">import</span> play.api.test.<span class="stType">Helpers</span>._
       |
-      |<span class="stReserved">class</span> ExampleSpec <span class="stReserved">extends</span> FunSuite <span class="stReserved">with</span> Matchers {
-      |  test("Application should send 404 on a bad request")  {
-      |    running(FakeApplication()) { route(FakeRequest(GET, "/boum")) shouldBe None }
+      |<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">FunSuite</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> {
+      |  test(<span class="stLiteral">"Application should send 404 on a bad request"</span>)  {
+      |    running(<span class="stType">FakeApplication</span>()) { route(<span class="stType">FakeRequest</span>(GET, "/boum")) shouldBe <span class="stType">None</span> }
       |  }
-      |  test("Application should send render the index page") {
-      |    running(FakeApplication()) {
-      |      val home = route(FakeRequest(GET, "/")).get
+      |  test(<span class="stLiteral">"Application should send render the index page"</span>) {
+      |    running(<span class="stType">FakeApplication</span>()) {
+      |      <span class="stReserved">val</span> home = route(<span class="stType">FakeRequest</span>(GET, <span class="stLiteral">"/"</span>)).get
       |      status(home) shouldBe OK
-      |      contentType(home) shouldBe Some("text/html")
-      |      contentAsString(home) should include ("ScalaTest")
+      |      contentType(home) shouldBe <span class="stType">Some</span>(<span class="stLiteral">"text/html"</span>)
+      |      contentAsString(home) should include (<span class="stLiteral">"ScalaTest"</span>)
       |    }
       |  }
       |}""".stripMargin
@@ -50,17 +50,17 @@ object FunSuiteExamples extends StyleTraitExamples {
   val doNotDiscover: String =
     """<span class="stReserved">import</span> org.scalatest._
       |@DoNotDiscover
-      |<span class="stReserved">class</span> SetSuite <span class="stReserved">extends</span> FunSuite { ... }
+      |<span class="stReserved">class</span> <span class="stType">SetSuite</span> <span class="stReserved">extends</span> <span class="stType">FunSuite</span> { ... }
     """.stripMargin
 
   val ignoreTest: String =
-    "ignore(\"An empty Set should have size 0\") { ... }"
+    "ignore(<span class=\"stLiteral\">\"An empty Set should have size 0\"</span>) { ... }"
 
   val pendingTest: String =
-    "test(\"An empty Set should have size 0\") (pending)"
+    "test(<span class=\"stLiteral\">\"An empty Set should have size 0\"</span>) (pending)"
 
   val taggingTest: String =
-    """object SlowTest extends Tag("com.mycompany.tags.SlowTest")
-      |test("An empty Set should have size 0", SlowTest) { ... }
+    """<span class="stReserved">object</span> <span class="stType">SlowTest</span> <span class="stReserved">extends</span> <span class="stType">Tag</span>(<span class="stLiteral">"com.mycompany.tags.SlowTest"</span>)
+      |test(<span class="stLiteral">"An empty Set should have size 0"</span>, <span class="stType">SlowTest</span>) { ... }
       |""".stripMargin
 }

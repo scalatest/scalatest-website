@@ -21,36 +21,36 @@ object FeatureSpecExamples extends StyleTraitExamples {
 
   val exampleUsage: String =
     """<span class="stReserved">import</span> org.scalatest._
-      |<span class="stReserved">class</span> TVSet {
+      |<span class="stReserved">class</span> <span class="stType">TVSet</span> {
       |  <span class="stReserved">private</span> <span class="stReserved">var</span> on: Boolean = false
       |  <span class="stReserved">def</span> isOn: Boolean = on
       |  <span class="stReserved">def</span> pressPowerButton() { on = !on }
       |}
       |
-      |<span class="stReserved">class</span> TVSetSpec <span class="stReserved">extends</span> FeatureSpec <span class="stReserved">with</span> GivenWhenThen {
-      |  info("As a TV set owner")
-      |  info("I want to be able to turn the TV on and off")
-      |  info("So I can watch TV when I want")
-      |  info("And save energy when I'm not watching TV")
+      |<span class="stReserved">class</span> <span class="stType">TVSetSpec</span> <span class="stReserved">extends</span> <span class="stType">FeatureSpec</span> <span class="stReserved">with</span> <span class="stType">GivenWhenThen</span> {
+      |  info(<span class="stLiteral">"As a TV set owner"</span>)
+      |  info(<span class="stLiteral">"I want to be able to turn the TV on and off"</span>)
+      |  info(<span class="stLiteral">"So I can watch TV when I want"</span>)
+      |  info(<span class="stLiteral">"And save energy when I'm not watching TV"</span>)
       |
-      |  feature("TV power button") {
-      |    scenario("User presses power button when TV is off") {
-      |      Given("a TV set that is switched off")
-      |      <span class="stReserved">val</span> tv = <span class="stReserved">new</span> TVSet
+      |  feature(<span class="stLiteral">"TV power button"</span>) {
+      |    scenario(<span class="stLiteral">"User presses power button when TV is off"</span>) {
+      |      Given(<span class="stLiteral">"a TV set that is switched off"</span>)
+      |      <span class="stReserved">val</span> tv = <span class="stReserved">new</span> <span class="stType">TVSet</span>
       |      assert(!tv.isOn)
-      |      When("the power button is pressed")
+      |      When(<span class="stLiteral">"the power button is pressed"</span>)
       |      tv.pressPowerButton()
-      |      Then("the TV should switch on")
+      |      Then(<span class="stLiteral">"the TV should switch on"</span>)
       |      assert(tv.isOn)
       |    }
-      |    scenario("User presses power button when TV is on") {
-      |      Given("a TV set that is switched on")
-      |      <span class="stReserved">val</span> tv = <span class="stReserved">new</span> TVSet
+      |    scenario(<span class="stLiteral">"User presses power button when TV is on"</span>) {
+      |      Given(<span class="stLiteral">"a TV set that is switched on"</span>)
+      |      <span class="stReserved">val</span> tv = <span class="stReserved">new</span> <span class="stType">TVSet</span>
       |      tv.pressPowerButton()
       |      assert(tv.isOn)
-      |      When("the power button is pressed")
+      |      When(<span class="stLiteral">"the power button is pressed"</span>)
       |      tv.pressPowerButton()
-      |      Then("the TV should switch off")
+      |      Then(<span class="stLiteral">"the TV should switch off"</span>)
       |      assert(!tv.isOn)
       |    }
       |  }
@@ -59,21 +59,21 @@ object FeatureSpecExamples extends StyleTraitExamples {
   val play2Example: String =
     """<span class="stReserved">import</span> org.scalatest._
       |<span class="stReserved">import</span> play.api.test._
-      |<span class="stReserved">import</span> play.api.test.Helpers._
+      |<span class="stReserved">import</span> play.api.test.<span class="stType">Helpers</span>._
       |
-      |<span class="stReserved">class</span> ExampleSpec <span class="stReserved">extends</span> FeatureSpec <span class="stReserved">with</span> Matchers {
-      |  feature("Application") {
-      |    scenario("Application should send 404 on a bad request") {
-      |      running(FakeApplication()) {
-      |        route(FakeRequest(GET, "/boum")) shouldBe None
+      |<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">FeatureSpec</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> {
+      |  feature(<span class="stLiteral">"Application"</span>) {
+      |    scenario(<span class="stLiteral">"Application should send 404 on a bad request"</span>) {
+      |      running(<span class="stType">FakeApplication</span>()) {
+      |        route(<span class="stType">FakeRequest</span>(GET, <span class="stLiteral">"/boum"</span>)) shouldBe None
       |      }
       |    }
-      |    scenario("Application should render the index page") {
-      |      running(FakeApplication()) {
-      |        <span class="stReserved">val</span> home = route(FakeRequest(GET, "/")).get
+      |    scenario(<span class="stLiteral">"Application should render the index page"</span>) {
+      |      running(<span class="stType">FakeApplication</span>()) {
+      |        <span class="stReserved">val</span> home = route(<span class="stType">FakeRequest</span>(GET, <span class="stLiteral">"/"</span>)).get
       |        status(home) shouldBe OK
-      |        contentType(home) shouldBe Some("text/html")
-      |        contentAsString(home) should include ("ScalaTest")
+      |        contentType(home) shouldBe <span class="stType">Some</span>(<span class="stLiteral">"text/html"</span>)
+      |        contentAsString(home) should include (<span class="stLiteral">"ScalaTest"</span>)
       |      }
       |    }
       |  }
@@ -82,18 +82,17 @@ object FeatureSpecExamples extends StyleTraitExamples {
   val doNotDiscover: String =
     """<span class="stReserved">import</span> org.scalatest._
       |@DoNotDiscover
-      |<span class="stReserved">class</span> TVSetSpec <span class="stReserved">extends</span> FeatureSpec <span class="stReserved">with</span> GivenWhenThen { ... }
+      |<span class="stReserved">class</span> <span class="stType">TVSetSpec</span> <span class="stReserved">extends</span> <span class="stType">FeatureSpec</span> <span class="stReserved">with</span> <span class="stType">GivenWhenThen</span> { ... }
     """.stripMargin
 
   val ignoreTest: String =
-    "ignore(\"User presses power button when TV is off\") { ... }"
+    "ignore(<span class=\"stLiteral\">\"User presses power button when TV is off\"</span>) { ... }"
 
   val pendingTest: String =
-    "scenario(\"User presses power button when TV is off\") (pending)"
+    "scenario(<span class=\"stLiteral\">\"User presses power button when TV is off\"</span>) (pending)"
 
   val taggingTest: String =
-    """object SlowTest extends Tag("com.mycompany.tags.SlowTest")
-      |scenario("User presses power button when TV is off", SlowTest) { ... }
+    """<span class="stReserved">object</span> <span class="stType">SlowTest</span> <span class="stReserved">extends</span> <span class="stType">Tag</span>(<span class="stLiteral">"com.mycompany.tags.SlowTest"</span>)
+      |scenario(<span class="stLiteral">"User presses power button when TV is off"</span>, <span class="stType">SlowTest</span>) { ... }
       |""".stripMargin
-
 }
