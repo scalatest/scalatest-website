@@ -20,32 +20,51 @@ object FreeSpecExamples extends StyleTraitExamples {
   val name: String = "FreeSpec"
 
   val exampleUsage: String =
-    """<span class="stReserved">import</span> org.scalatest.FreeSpec
-      |<span class="stReserved">class</span> SetSpec <span class="stReserved">extends</span> FreeSpec {
-      |  "A Set" - {
-      |    "when empty" - {
-      |      "should have size 0" in { assert(Set.empty.size === 0) }
-      |      "should produce NoSuchElementException when head is invoked" in {
-      |        intercept[NoSuchElementException] { Set.empty.head }
+    """<span class="stReserved">import</span> org.scalatest.<span class="stType">FreeSpec</span>
+      |<span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">FreeSpec</span> {
+      |  <span class="stLiteral">"A Set"</span> - {
+      |    <span class="stLiteral">"when empty"</span> - {
+      |      <span class="stLiteral">"should have size 0"</span> in { assert(<span class="stType">Set</span>.empty.size === <span class="stLiteral">0</span>) }
+      |      <span class="stLiteral">"should produce NoSuchElementException when head is invoked"</span> in {
+      |        intercept[<span class="stType">NoSuchElementException</span>] { <span class="stType">Set</span>.empty.head }
       |      }
       |    }
       |  }
       |} """.stripMargin
 
+  val play2Example: String =
+    """<span class="stReserved">import</span> org.scalatest._
+      |<span class="stReserved">import</span> play.api.test._
+      |<span class="stReserved">import</span> play.api.test.<span class="stType">Helpers</span>._
+      |
+      |<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">FreeSpec</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> {
+      |  <span class="stLiteral">"Application should"</span> - {
+      |    <span class="stLiteral">"send 404 on a bad request"</span> in running(<span class="stType">FakeApplication</span>()) {
+      |      route(<span class="stType">FakeRequest</span>(GET, <span class="stLiteral">"/boum"</span>)) shouldBe <span class="stType">None</span>
+      |    }
+      |    <span class="stLiteral">"render the index page"</span> in running(<span class="stType">FakeApplication</span>()) {
+      |      <span class="stReserved">val</span> home = route(<span class="stType">FakeRequest</span>(GET, <span class="stLiteral">"/"</span>)).get
+      |      status(home) shouldBe OK
+      |      contentType(home) shouldBe <span class="stType">Some</span>(<span class="stLiteral">"text/html"</span>)
+      |      contentAsString(home) should include (<span class="stLiteral">"ScalaTest"</span>)
+      |    }
+      |  }
+      |}""".stripMargin
+
   val doNotDiscover: String =
     """<span class="stReserved">import</span> org.scalatest._
       |@DoNotDiscover
-      |<span class="stReserved">class</span> SetSpec <span class="stReserved">extends</span> FreeSpec { ... }
+      |<span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">FreeSpec</span> { ... }
     """.stripMargin
 
   val ignoreTest: String =
-    "\"should have size 0\" ignore { ... }"
+    "<span class=\"stLiteral\">\"should have size 0\"</span> ignore { ... }"
 
   val pendingTest: String =
-    "\"should have size 0\" in (pending)"
+    "<span class=\"stLiteral\">\"should have size 0\"</span> in (pending)"
 
   val taggingTest: String =
-    """object SlowTest extends Tag("com.mycompany.tags.SlowTest")
-      |"should have size 0" taggedAs(SlowTest) in { ... }
+    """<span class="stReserved">object</span> <span class="stType">SlowTest</span> <span class="stReserved">extends</span> <span class="stType">Tag</span>(<span class="stLiteral">"com.mycompany.tags.SlowTest"</span>)
+      |<span class="stLiteral">"should have size 0"</span> taggedAs(<span class="stType">SlowTest</span>) in { ... }
       |""".stripMargin
 }
