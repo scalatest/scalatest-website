@@ -24,6 +24,9 @@ trait StyleTraitExamples {
   def ignoreTest: String
   def pendingTest: String
   def taggingTest: String
+  def infoTest: String
+  def fixtureNoArgTest: String
+  def fixtureOneArgTest: String
 }
 
 object StyleTraitExamples {

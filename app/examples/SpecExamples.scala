@@ -20,7 +20,7 @@ object SpecExamples extends StyleTraitExamples {
   val name: String = "Spec"
 
   val exampleUsage: String =
-    """<span class="stReserved">import</span> org.scalatest.<span class="stType">Spec</span>
+    """<span class="stImport">import org.scalatest.Spec</span>
       |<span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">Spec</span> {
       |  <span class="stReserved">object</span> `A Set` {
       |    <span class="stReserved">object</span> `when empty` {
@@ -33,9 +33,9 @@ object SpecExamples extends StyleTraitExamples {
       |} """.stripMargin
 
   val play2Example: String =
-    """<span class="stReserved">import</span> org.scalatest._
-      |<span class="stReserved">import</span> play.api.test._
-      |<span class="stReserved">import</span> play.api.test.<span class="stType">Helpers</span>._
+    """<span class="stImport">import org.scalatest._</span>
+      |<span class="stImport">import play.api.test._</span>
+      |<span class="stImport">import play.api.test.Helpers._</span>
       |
       |<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">Spec</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> {
       |  <span class="stReserved">object</span> `Application should` {
@@ -56,19 +56,59 @@ object SpecExamples extends StyleTraitExamples {
       |}""".stripMargin
 
   val doNotDiscover: String =
-    """<span class="stReserved">import</span> org.scalatest._
+    """<span class="stImport">import org.scalatest._</span>
       |@DoNotDiscover
-      |<span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">Spec</span> { ... }
+      |<span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">Spec</span> { <span class="stBlockComment">/*code omitted*/</span> }
     """.stripMargin
 
   val ignoreTest: String =
-    "@Ignore <span class=\"stReserved\">def</span> `should have size 0` { ... }"
+    """<span class="stImport">import org.scalatest._</span>
+      |<span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">Spec</span> {
+      |  @Ignore <span class="stReserved">def</span> `should have size 0` { <span class="stBlockComment">/*code omitted*/</span> }
+      |}""".stripMargin
 
   val pendingTest: String =
-    "<span class=\"stReserved\">def</span> `should have size 0` { pending }"
+    """<span class="stImport">import org.scalatest._</span>
+      |<span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">Spec</span> {
+      |  <span class="stReserved">def</span> `should have size 0` { pending }
+      |}""".stripMargin
 
   val taggingTest: String =
-    """// SlowTest is a Java annotation
-      |@SlowTest <span class="stReserved">def</span> `should have size 0` { ... }
-      |""".stripMargin
+    """<span class="stImport">import org.scalatest._
+      |import tags.Retryable</span>
+      |<span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">Spec</span> {
+      |  @Retryable <span class="stReserved">def</span> `should have size 0` { <span class="stBlockComment">/*code omitted*/</span> }
+      |}""".stripMargin
+
+  val infoTest: String =
+    """<span class="stImport">import org.scalatest._</span>
+      |<span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">Spec</span> {
+      |  <span class="stReserved">def</span> `should have size 0` {
+      |    info(<span class="stLiteral">"Some information."</span>)
+      |    <span class="stBlockComment">/*code omitted*/</span>
+      |  }
+      |}""".stripMargin
+
+  val fixtureNoArgTest: String =
+    """<span class="stImport">import org.scalatest._</span>
+      |<span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">Spec</span> {
+      |  <span class="stReserved">def</span> setup() { <span class="stBlockComment">/*code omitted*/</span> }
+      |  <span class="stReserved">def</span> cleanup() { <span class="stBlockComment">/*code omitted*/</span> }
+      |  <span class="stReserved">override</span> <span class="stReserved">protected</span> <span class="stReserved">def</span> withFixture(test: <span class="stType">NoArgTest</span>) = {
+      |    setup()
+      |    <span class="stReserved">try</span> test() <span class="stReserved">finally</span> cleanup()
+      |  }
+      |}""".stripMargin
+
+  val fixtureOneArgTest: String =
+    """<span class="stImport">import org.scalatest._</span>
+      |<span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">fixture.Spec</span> {
+      |  <span class="stReserved">def</span> setup() { <span class="stBlockComment">/*code omitted*/</span> }
+      |  <span class="stReserved">def</span> cleanup() { <span class="stBlockComment">/*code omitted*/</span> }
+      |  <span class="stReserved">type</span> FixtureParam = <span class="stType">String</span>
+      |  <span class="stReserved">override</span> <span class="stReserved">protected</span> <span class="stReserved">def</span> withFixture(test: <span class="stType">OneArgTest</span>) = {
+      |    setup()
+      |    <span class="stReserved">try</span> test(<span class="stLiteral">"this is a fixture param"</span>) <span class="stReserved">finally</span> cleanup()
+      |  }
+      |}""".stripMargin
 }

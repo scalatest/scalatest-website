@@ -20,9 +20,9 @@ object PropSpecExamples extends StyleTraitExamples {
   val name: String = "PropSpec"
 
   val exampleUsage: String =
-    """<span class="stReserved">import</span> org.scalatest._
-      |<span class="stReserved">import</span> prop._
-      |<span class="stReserved">import</span> scala.collection.immutable._
+    """<span class="stImport">import org.scalatest._</span>
+      |<span class="stImport">import prop._</span>
+      |<span class="stImport">import scala.collection.immutable._</span>
       |<span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">PropSpec</span> <span class="stReserved">with</span> <span class="stType">TableDrivenPropertyChecks</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> {
       |  <span class="stReserved">val</span> examples =
       |    <span class="stType">Table</span>("set",
@@ -40,9 +40,9 @@ object PropSpecExamples extends StyleTraitExamples {
       |} """.stripMargin
 
   val play2Example: String =
-    """<span class="stReserved">import</span> org.scalatest._
-      |<span class="stReserved">import</span> play.api.test._
-      |<span class="stReserved">import</span> play.api.test.<span class="stType">Helpers</span>._
+    """<span class="stImport">import org.scalatest._</span>
+      |<span class="stImport">import play.api.test._</span>
+      |<span class="stImport">import play.api.test.Helpers._</span>
       |
       |<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">PropSpec</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> {
       |  property(<span class="stLiteral">"Application should send 404 on a bad request"</span>) {
@@ -61,19 +61,75 @@ object PropSpecExamples extends StyleTraitExamples {
       |}""".stripMargin
 
   val doNotDiscover: String =
-    """<span class="stReserved">import</span> org.scalatest._
+    """<span class="stImport">import org.scalatest._
+      |import prop._</span>
       |@DoNotDiscover
-      |<span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">PropSpec</span> <span class="stReserved">with</span> <span class="stType">TableDrivenPropertyChecks</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> { ... }
+      |<span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">PropSpec</span> <span class="stReserved">with</span>
+      |  <span class="stType">TableDrivenPropertyChecks</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> { <span class="stBlockComment">/*code omitted*/</span> }
     """.stripMargin
 
   val ignoreTest: String =
-    "ignore(<span class=\"stLiteral\">\"an empty Set should have size 0\"</span>) { ... }"
+    """<span class="stImport">import org.scalatest._
+      |import prop._</span>
+      |<span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">PropSpec</span> <span class="stReserved">with</span>
+      |  <span class="stType">TableDrivenPropertyChecks</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> {
+      |  ignore(<span class="stLiteral">"an empty Set should have size 0"</span>) { <span class="stBlockComment">/*code omitted*/</span> }
+      |}""".stripMargin
 
   val pendingTest: String =
-    "property(<span class=\"stLiteral\">\"an empty Set should have size 0\"</span>) (pending)"
+    """<span class="stImport">import org.scalatest._
+      |import prop._</span>
+      |<span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">PropSpec</span> <span class="stReserved">with</span>
+      |  <span class="stType">TableDrivenPropertyChecks</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> {
+      |  property(<span class="stLiteral">"an empty Set should have size 0"</span>) (pending)
+      |}""".stripMargin
 
   val taggingTest: String =
-    """<span class="stReserved">object</span> <span class="stType">SlowTest</span> <span class="stReserved">extends</span> <span class="stType">Tag</span>(<span class="stLiteral">"com.mycompany.tags.SlowTest"</span>)
-      |property(<span class="stLiteral">"an empty Set should have size 0"</span>, <span class="stType">SlowTest</span>) { ... }
-      |""".stripMargin
+    """<span class="stImport">import org.scalatest._
+      |import prop._</span>
+      |<span class="stReserved">object</span> <span class="stType">SlowTest</span> <span class="stReserved">extends</span> <span class="stType">Tag</span>(<span class="stLiteral">"com.mycompany.tags.SlowTest"</span>)
+      |<span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">PropSpec</span> <span class="stReserved">with</span>
+      |  <span class="stType">TableDrivenPropertyChecks</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> {
+      |  property(<span class="stLiteral">"an empty Set should have size 0"</span>, <span class="stType">SlowTest</span>) {
+      |    <span class="stBlockComment">/*code omitted*/</span>
+      |  }
+      |}""".stripMargin
+
+  val infoTest: String =
+    """<span class="stImport">import org.scalatest._
+      |import prop._</span>
+      |<span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">PropSpec</span> <span class="stReserved">with</span>
+      |  <span class="stType">TableDrivenPropertyChecks</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> {
+      |  property(<span class="stLiteral">"an empty Set should have size 0"</span>) {
+      |    info(<span class="stLiteral">"Some information."</span>)
+      |    <span class="stBlockComment">/*code omitted*/</span>
+      |  }
+      |}""".stripMargin
+
+  val fixtureNoArgTest: String =
+    """<span class="stImport">import org.scalatest._
+      |import prop._</span>
+      |<span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">PropSpec</span> <span class="stReserved">with</span>
+      |  <span class="stType">TableDrivenPropertyChecks</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> {
+      |  <span class="stReserved">def</span> setup() { <span class="stBlockComment">/*code omitted*/</span> }
+      |  <span class="stReserved">def</span> cleanup() { <span class="stBlockComment">/*code omitted*/</span> }
+      |  <span class="stReserved">override</span> <span class="stReserved">protected</span> <span class="stReserved">def</span> withFixture(test: <span class="stType">NoArgTest</span>) = {
+      |    setup()
+      |    <span class="stReserved">try</span> test() <span class="stReserved">finally</span> cleanup()
+      |  }
+      |}""".stripMargin
+
+  val fixtureOneArgTest: String =
+    """<span class="stImport">import org.scalatest._
+      |import prop._</span>
+      |<span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">fixture.PropSpec</span> <span class="stReserved">with</span>
+      |  <span class="stType">TableDrivenPropertyChecks</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> {
+      |  <span class="stReserved">def</span> setup() { <span class="stBlockComment">/*code omitted*/</span> }
+      |  <span class="stReserved">def</span> cleanup() { <span class="stBlockComment">/*code omitted*/</span> }
+      |  <span class="stReserved">type</span> FixtureParam = <span class="stType">String</span>
+      |  <span class="stReserved">override</span> <span class="stReserved">protected</span> <span class="stReserved">def</span> withFixture(test: <span class="stType">OneArgTest</span>) = {
+      |    setup()
+      |    <span class="stReserved">try</span> test(<span class="stLiteral">"this is a fixture param"</span>) <span class="stReserved">finally</span> cleanup()
+      |  }
+      |}""".stripMargin
 }
