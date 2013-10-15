@@ -20,7 +20,7 @@ object FreeSpecExamples extends StyleTraitExamples {
   val name: String = "FreeSpec"
 
   val exampleUsage: String =
-    """<span class="stReserved">import</span> org.scalatest.<span class="stType">FreeSpec</span>
+    """<span class="stImport">import org.scalatest.FreeSpec</span>
       |<span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">FreeSpec</span> {
       |  <span class="stLiteral">"A Set"</span> - {
       |    <span class="stLiteral">"when empty"</span> - {
@@ -33,9 +33,9 @@ object FreeSpecExamples extends StyleTraitExamples {
       |} """.stripMargin
 
   val play2Example: String =
-    """<span class="stReserved">import</span> org.scalatest._
-      |<span class="stReserved">import</span> play.api.test._
-      |<span class="stReserved">import</span> play.api.test.<span class="stType">Helpers</span>._
+    """<span class="stImport">import org.scalatest._</span>
+      |<span class="stImport">import play.api.test._</span>
+      |<span class="stImport">import play.api.test.Helpers._</span>
       |
       |<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">FreeSpec</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> {
       |  <span class="stLiteral">"Application should"</span> - {
@@ -52,7 +52,7 @@ object FreeSpecExamples extends StyleTraitExamples {
       |}""".stripMargin
 
   val doNotDiscover: String =
-    """<span class="stReserved">import</span> org.scalatest._
+    """<span class="stImport">import org.scalatest._</span>
       |@DoNotDiscover
       |<span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">FreeSpec</span> { ... }
     """.stripMargin

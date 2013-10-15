@@ -413,8 +413,8 @@ import org.scalatest.time.SpanSugar._</span>
 <tr>
 <td class="ataglance" colspan="2">
 <pre class="tight">
-<span class="stReserved">import</span> org.scalatest.concurrent.<span class="stType">Eventually</span>._
-<span class="stReserved">import</span> org.scalatest.time._
+<span class="stImport">import org.scalatest.concurrent.Eventually._
+import org.scalatest.time._</span>
 eventually (timeout(<span class="stType">Span</span>(<span class="stLiteral">5</span>, <span class="stType">Seconds</span>))) { ... }
 </pre>
 </td>
@@ -439,9 +439,9 @@ eventually (timeout(<span class="stLiteral">5</span> seconds), interval(<span cl
 <tr>
 <td class="ataglance" colspan="2">
 <pre class="tight">
-<span class="stReserved">import</span> org.scalatest._
-<span class="stReserved">import</span> <span class="stType">Matchers</span>._
-<span class="stReserved">import</span> <span class="stType">Inspectors</span>._
+<span class="stImport">import org.scalatest._
+import Matchers._
+import Inspectors._</span>
 forAll(<span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>)) { _ should be > <span class="stLiteral">0</span> }
 </pre>
 </td>
@@ -451,9 +451,9 @@ forAll(<span class="stType">List</span>(<span class="stLiteral">1</span>, <span 
 <tr>
 <td class="ataglance" colspan="2">
 <pre class="tight">
-<span class="stReserved">import</span> org.scalatest._
-<span class="stReserved">import</span> <span class="stType">Matchers</span>._
-<span class="stReserved">import</span> <span class="stType">Inspectors</span>._
+<span class="stImport">import org.scalatest._
+import Matchers._
+import Inspectors._</span>
 forAtLeast(<span class="stLiteral">1</span>, <span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>)) { _ should be &gt; <span class="stLiteral">2</span> }
 </pre>
 </td>
@@ -463,9 +463,9 @@ forAtLeast(<span class="stLiteral">1</span>, <span class="stType">List</span>(<s
 <tr>
 <td class="ataglance" colspan="2">
 <pre class="tight">
-<span class="stReserved">import</span> org.scalatest._
-<span class="stReserved">import</span> <span class="stType">Matchers</span>._
-<span class="stReserved">import</span> <span class="stType">Inspectors</span>._
+<span class="stImport">import org.scalatest._
+import Matchers._
+import Inspectors._</span>
 forAtMost(<span class="stLiteral">2</span>, <span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>)) { _ should be > <span class="stLiteral">1</span> }
 </pre>
 </td>
@@ -475,9 +475,9 @@ forAtMost(<span class="stLiteral">2</span>, <span class="stType">List</span>(<sp
 <tr>
 <td class="ataglance" colspan="2">
 <pre>
-<span class="stReserved">import</span> org.scalatest._
-<span class="stReserved">import</span> <span class="stType">Matchers</span>._
-<span class="stReserved">import</span> <span class="stType">Inspectors</span>._
+<span class="stImport">import org.scalatest._
+import Matchers._
+import Inspectors._</span>
 forBetween(<span class="stLiteral">2</span>, <span class="stLiteral">4</span>, <span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>, <span class="stLiteral">4</span>, <span class="stLiteral">5</span>)) { _ should be > <span class="stLiteral">2</span> }
 </pre>
 </td>
@@ -487,9 +487,9 @@ forBetween(<span class="stLiteral">2</span>, <span class="stLiteral">4</span>, <
 <tr>
 <td class="ataglance" colspan="2">
 <pre>
-<span class="stReserved">import</span> org.scalatest._
-<span class="stReserved">import</span> <span class="stType">Matchers</span>._
-<span class="stReserved">import</span> <span class="stType">Inspectors</span>._
+<span class="stImport">import org.scalatest._
+import Matchers._
+import Inspectors._</span>
 forEvery(<span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>)) { _ should be > <span class="stLiteral">0</span> }
 </pre>
 </td>
@@ -499,9 +499,9 @@ forEvery(<span class="stType">List</span>(<span class="stLiteral">1</span>, <spa
 <tr>
 <td class="ataglance" colspan="2">
 <pre>
-<span class="stReserved">import</span> org.scalatest._
-<span class="stReserved">import</span> <span class="stType">Matchers</span>._
-<span class="stReserved">import</span> <span class="stType">Inspectors</span>._
+<span class="stImport">import org.scalatest._
+import Matchers._
+import Inspectors._</span>
 forExactly(<span class="stLiteral">2</span>, <span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>)) { _ should be > <span class="stLiteral">1</span> }
 </pre>
 </td>
@@ -515,9 +515,9 @@ forExactly(<span class="stLiteral">2</span>, <span class="stType">List</span>(<s
 <tr>
 <td class="ataglance" colspan="2">
 <pre>
-<span class="stReserved">import</span> org.scalatest._
-<span class="stReserved">import</span> <span class="stType">Matchers</span>._
-<span class="stReserved">import</span> <span class="stType">Inside</span>._
+<span class="stImport">import org.scalatest._
+import Matchers._
+import Inside._</span>
 inside (rec) { case <span class="stType">Record</span>(name, address, age) =>
   inside (name) { case <span class="stType">Name</span>(first, middle, last) =>
     first should be (<span class="stLiteral">"Sally"</span>)
@@ -531,9 +531,9 @@ inside (rec) { case <span class="stType">Record</span>(name, address, age) =>
 <tr>
 <td class="ataglance" colspan="2">
 <pre>
-<span class="stReserved">import</span> org.scalatest._
-<span class="stReserved">import</span> <span class="stType">Matchers</span>._
-<span class="stReserved">import</span> <span class="stType">OptionValues</span>._
+<span class="stImport">import org.scalatest._
+import Matchers._
+import OptionValues._</span>
 anOption.value should be > <span class="stLiteral">9</span>
 </pre>
 </td>
@@ -543,9 +543,9 @@ anOption.value should be > <span class="stLiteral">9</span>
 <tr>
 <td class="ataglance" colspan="2">
 <pre>
-<span class="stReserved">import</span> org.scalatest._
-<span class="stReserved">import</span> <span class="stType">Matchers</span>._
-<span class="stReserved">import</span> <span class="stType">EitherValues</span>._
+<span class="stImport">import org.scalatest._
+import Matchers._
+import EitherValues._</span>
 either1.right.value should be > <span class="stLiteral">9</span>
 either2.left.value should be (<span class="stLiteral">"Muchas problemas"</span>)
 </pre>
@@ -556,9 +556,9 @@ either2.left.value should be (<span class="stLiteral">"Muchas problemas"</span>)
 <tr>
 <td class="ataglance" colspan="2">
 <pre>
-<span class="stReserved">import</span> org.scalatest._
-<span class="stReserved">import</span> <span class="stType">Matchers</span>._
-<span class="stReserved">import</span> <span class="stType">PartialFunctionValues</span>._
+<span class="stImport">import org.scalatest._
+import Matchers._
+import PartialFunctionValues._</span>
 val map = <span class="stType">Map</span>(<span class="stLiteral">"one"</span> -> <span class="stLiteral">1</span>, <span class="stLiteral">"two"</span> -> <span class="stLiteral">2</span>, <span class="stLiteral">"three"</span> -> <span class="stLiteral">3</span>)
 map.valueAt(<span class="stLiteral">"two"</span>) should equal (<span class="stLiteral">2</span>)
 </pre>
@@ -569,7 +569,7 @@ map.valueAt(<span class="stLiteral">"two"</span>) should equal (<span class="stL
 <tr>
 <td class="ataglance" colspan="2">
 <pre>
-<span class="stReserved">import</span> org.scalatest.<span class="stType">PrivateMethodTester</span>._
+<span class="stImport">import org.scalatest.PrivateMethodTester._</span>
 <span class="stReserved">val</span> decorateToStringValue = <span class="stType">PrivateMethod</span>[<span class="stType">String</span>](<span class="stQuotedString">'decorateToStringValue</span>)
 targetObject invokePrivate decorateToStringValue(<span class="stLiteral">1</span>)
 </pre>

@@ -20,7 +20,7 @@ object FlatSpecExamples extends StyleTraitExamples {
   val name: String = "FlatSpec"
 
   val exampleUsage: String =
-    """<span class="stReserved">import</span> org.scalatest.<span class="stType">FlatSpec</span>
+    """<span class="stImport">import org.scalatest.FlatSpec</span>
       |<span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> {
       |  behavior of <span class="stLiteral">"An empty Set"</span>
       |  it should <span class="stLiteral">"have size 0"</span> in { assert(<span class="stType">Set</span>.empty.size === <span class="stLiteral">0</span>) }
@@ -30,9 +30,9 @@ object FlatSpecExamples extends StyleTraitExamples {
       |}""".stripMargin
 
   val play2Example: String =
-    """<span class="stReserved">import</span> org.scalatest._
-      |<span class="stReserved">import</span> play.api.test._
-      |<span class="stReserved">import</span> play.api.test.<span class="stType">Helpers</span>._
+    """<span class="stImport">import org.scalatest._</span>
+      |<span class="stImport">import play.api.test._</span>
+      |<span class="stImport">import play.api.test.Helpers._</span>
       |
       |<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> {
       |  behavior of <span class="stLiteral">"Application"</span>
@@ -48,7 +48,7 @@ object FlatSpecExamples extends StyleTraitExamples {
       |}""".stripMargin
 
   val doNotDiscover: String =
-    """<span class="stReserved">import</span> org.scalatest._
+    """<span class="stImport">import org.scalatest._</span>
       |@DoNotDiscover
       |<span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> { ... }
     """.stripMargin

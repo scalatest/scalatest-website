@@ -20,7 +20,7 @@ object WordSpecExamples extends StyleTraitExamples {
   val name: String = "WordSpec"
 
   val exampleUsage: String =
-    """<span class="stReserved">import</span> org.scalatest.<span class="stType">WordSpec</span>
+    """<span class="stImport">import org.scalatest.WordSpec</span>
       |<span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">WordSpec</span> {
       |  <span class="stLiteral">"A Set"</span> when {
       |    <span class="stLiteral">"empty"</span> should {
@@ -37,9 +37,9 @@ object WordSpecExamples extends StyleTraitExamples {
       |}""".stripMargin
 
   val play2Example: String =
-    """<span class="stReserved">import</span> org.scalatest._
-      |<span class="stReserved">import</span> play.api.test._
-      |<span class="stReserved">import</span> play.api.test.<span class="stType">Helpers</span>._
+    """<span class="stImport">import org.scalatest._</span>
+      |<span class="stImport">import play.api.test._</span>
+      |<span class="stImport">import play.api.test.Helpers._</span>
       |
       |<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">WordSpec</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> {
       |  <span class="stLiteral">"Application"</span> should {
@@ -56,7 +56,7 @@ object WordSpecExamples extends StyleTraitExamples {
       |}""".stripMargin
 
   val doNotDiscover: String =
-    """<span class="stReserved">import</span> org.scalatest._
+    """<span class="stImport">import org.scalatest._</span>
       |@DoNotDiscover
       |<span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">WordSpec</span> { ... }
     """.stripMargin
