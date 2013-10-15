@@ -706,6 +706,10 @@ pre.stStyleExamples {
   color: #00008b;
 }
 
+.stImport {
+  color: #B0B0B0;
+}
+
 .stBlockComment, .stLineComment {
   color: gray;
   font-style: italic;
@@ -745,4 +749,27 @@ th.quickref {
   border: 1px solid #999999;
   text-align: left;
 }
+
+td.ataglance {
+  border-width: 1px;
+  padding: 6px;
+  border: 1px solid #999999;
+  text-align: left
+}
+
+th.ataglance {
+  background-color: #CCCCCC;
+  border-width: 1px;
+  padding: 6px;
+  border: 1px solid #999999;
+  text-align: left;
+}
+
+pre.tight {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
 

@@ -16,6 +16,7 @@
 
 @(selectedStyle: examples.StyleTraitExamples)
 @import controllers.Application.milestoneVersion
+@import controllers.Application.milestoneScaladoc
 
 @fullPage("At A Glance") {
 
@@ -38,26 +39,26 @@ Show examples in:
 <table style="border-collapse: collapse; border: 1px solid black">
 
 <tr>
-<th class="quickref" colspan="4">Style</th>
+<th class="ataglance" colspan="4">Style</th>
 </tr>
 
 <tr>
-<td class="quickref" colspan="4"><pre>@Html(selectedStyle.exampleUsage)</pre></td>
+<td class="ataglance" colspan="4"><pre>@Html(selectedStyle.exampleUsage)</pre></td>
 </tr>
 
 <tr>
-<th class="quickref" colspan="4">Build Integration</th>
+<th class="ataglance" colspan="4">Build Integration</th>
 </tr>
 
 <tr>
-<td class="quickref">SBT/Play2</td>
-<td class="quickref">build.sbt/Build.scala</td>
+<td class="ataglance">SBT/Play2</td>
+<td class="ataglance">build.sbt/Build.scala</td>
 <td colspan="2"><span class="stLiteral">"org.scalatest"</span> % <span class="stLiteral">"scalatest_2.10"</span> % <span class="stLiteral">"@milestoneVersion"</span> % <span class="stLiteral">"test"</span></td>
 </tr>
 
 <tr>
-<td class="quickref">Play2 Example</td>
-<td class="quickref" colspan="3">
+<td class="ataglance">Play2 Example</td>
+<td class="ataglance" colspan="3">
 <pre>
 @Html(selectedStyle.play2Example)
 </pre>
@@ -65,45 +66,45 @@ Show examples in:
 </tr>
 
 <tr>
-<th class="quickref" colspan="4">Do Not Discover</th>
+<th class="ataglance" colspan="4">Do Not Discover</th>
 </tr>
 
 <tr>
-<td class="quickref" colspan="2">Instruct ScalaTest Runner or SBT to not discover this suite</td>
-<td class="quickref" colspan="2"><pre>@Html(selectedStyle.doNotDiscover)</pre></td>
+<td class="ataglance" colspan="2">Instruct ScalaTest Runner or SBT to not discover this suite</td>
+<td class="ataglance" colspan="2"><pre>@Html(selectedStyle.doNotDiscover)</pre></td>
 </tr>
 
 <tr>
-<th class="quickref" colspan="4">Test</th>
+<th class="ataglance" colspan="4">Test</th>
 </tr>
 
 <tr>
-<td class="quickref" colspan="2">Ignore A Test</td>
-<td class="quickref" colspan="2"><code>@Html(selectedStyle.ignoreTest)</code></td>
+<td class="ataglance" colspan="2">Ignore A Test</td>
+<td class="ataglance" colspan="2"><code>@Html(selectedStyle.ignoreTest)</code></td>
 </tr>
 
 <tr>
-<td class="quickref" colspan="2">A Pending Test</td>
-<td class="quickref" colspan="2"><code>@Html(selectedStyle.pendingTest)</code></td>
+<td class="ataglance" colspan="2">A Pending Test</td>
+<td class="ataglance" colspan="2"><code>@Html(selectedStyle.pendingTest)</code></td>
 </tr>
 
 <tr>
-<td class="quickref" colspan="2">Tag a Test</td>
-<td class="quickref" colspan="2"><pre>@Html(selectedStyle.taggingTest)</pre></td>
+<td class="ataglance" colspan="2">Tag a Test</td>
+<td class="ataglance" colspan="2"><pre>@Html(selectedStyle.taggingTest)</pre></td>
 </tr>
 
 <tr>
-<td class="quickref" colspan="2">Provide information.</td>
-<td class="quickref" colspan="2"><code>info(<span class="stLiteral">"This is secret info!"</span>)</code></td>
+<td class="ataglance" colspan="2">Provide information.</td>
+<td class="ataglance" colspan="2"><code>info(<span class="stLiteral">"This is secret info!"</span>)</code></td>
 </tr>
 
 <tr>
-<th class="quickref" colspan="4">Fixture</th>
+<th class="ataglance" colspan="4">Fixture</th>
 </tr>
 
 <tr>
-<td class="quickref" colspan="2"><code>withFixture</code> using <code>NoArgTest</code> for style traits in <code>org.scalatest</code> package</td>
-<td class="quickref" colspan="2">
+<td class="ataglance" colspan="2"><code>withFixture</code> using <code>NoArgTest</code> for style traits in <code>org.scalatest</code> package</td>
+<td class="ataglance" colspan="2">
 <pre>
 <span class="stReserved">override</span> <span class="stReserved">protected</span> <span class="stReserved">def</span> withFixture(test: <span class="stType">NoArgTest</span>) = {
   setup()
@@ -114,8 +115,8 @@ Show examples in:
 </tr>
 
 <tr>
-<td class="quickref" colspan="2"><code>withFixture</code> using <code>OneArgTest</code> for style traits in <code>org.scalatest.fixture</code> package</td>
-<td class="quickref" colspan="2">
+<td class="ataglance" colspan="2"><code>withFixture</code> using <code>OneArgTest</code> for style traits in <code>org.scalatest.fixture</code> package</td>
+<td class="ataglance" colspan="2">
 <pre>
 <span class="stReserved">type</span> FixtureParam = <span class="stType">String</span>
 <span class="stReserved">override</span> <span class="stReserved">protected</span> <span class="stReserved">def</span> withFixture(test: <span class="stType">OneArgTest</span>) = {
@@ -127,82 +128,82 @@ Show examples in:
 </tr>
 
 <tr>
-<th class="quickref" colspan="4">Selenium DSL</th>
+<th class="ataglance" colspan="4">Selenium DSL</th>
 </tr>
 
 <tr>
-<td class="quickref" colspan="2">Go to ScalaTest website</td>
-<td class="quickref" colspan="2"><code>go to <span class="stLiteral">"http://www.scalatest.org"</span></code></td>
+<td class="ataglance" colspan="2">Go to ScalaTest website</td>
+<td class="ataglance" colspan="2"><code>go to <span class="stLiteral">"http://www.scalatest.org"</span></code></td>
 </tr>
 
 <tr>
-<td class="quickref" colspan="2">Check page title</td>
-<td class="quickref" colspan="2"><code>pageTitle should be (<span class="stLiteral">"ScalaTest"</span>)</code></td>
+<td class="ataglance" colspan="2">Check page title</td>
+<td class="ataglance" colspan="2"><code>pageTitle should be (<span class="stLiteral">"ScalaTest"</span>)</code></td>
 </tr>
 
 <tr>
-<td class="quickref" colspan="2">Click on element which has attribute id or name = "q"</td>
-<td class="quickref" colspan="2"><code>click on <span class="stLiteral">"q"</span></code></td>
+<td class="ataglance" colspan="2">Click on element which has attribute id or name = "q"</td>
+<td class="ataglance" colspan="2"><code>click on <span class="stLiteral">"q"</span></code></td>
 </tr>
 
 <tr>
-<td class="quickref" colspan="2">Click on element which has attribute id = "q"</td>
-<td class="quickref" colspan="2"><code>click on id(<span class="stLiteral">"q"</span>)</code></td>
+<td class="ataglance" colspan="2">Click on element which has attribute id = "q"</td>
+<td class="ataglance" colspan="2"><code>click on id(<span class="stLiteral">"q"</span>)</code></td>
 </tr>
 
 <tr>
-<td class="quickref" colspan="2">Click on element which has attribute name = "q"</td>
-<td class="quickref" colspan="2"><code>click on name(<span class="stLiteral">"name"</span>)</code></td>
+<td class="ataglance" colspan="2">Click on element which has attribute name = "q"</td>
+<td class="ataglance" colspan="2"><code>click on name(<span class="stLiteral">"name"</span>)</code></td>
 </tr>
 
 <tr>
-<td class="quickref" colspan="2">Click on element which is a <code>input</code> tag</td>
-<td class="quickref" colspan="2"><code>click on tagName(<span class="stLiteral">"input"</span>)</code></td>
+<td class="ataglance" colspan="2">Click on element which is a <code>input</code> tag</td>
+<td class="ataglance" colspan="2"><code>click on tagName(<span class="stLiteral">"input"</span>)</code></td>
 </tr>
 
 <tr>
-<td class="quickref" colspan="2">Click on element which has CSS class <code>quickref</code> tag</td>
-<td class="quickref" colspan="2"><code>click on className(<span class="stLiteral">"quickref"</span>)</code></td>
+<td class="ataglance" colspan="2">Click on element which has CSS class <code>quickref</code> tag</td>
+<td class="ataglance" colspan="2"><code>click on className(<span class="stLiteral">"ataglance"</span>)</code></td>
 </tr>
 
 <tr>
-<td class="quickref" colspan="2">Check a element's tag name, selected by using CSS selector</td>
-<td class="quickref" colspan="2"><code>cssSelector(<span class="stLiteral">"a[id='aLink']"</span>).element.tagName should be (<span class="stLiteral">"a"</span>)</code></td>
+<td class="ataglance" colspan="2">Check a element's tag name, selected by using CSS selector</td>
+<td class="ataglance" colspan="2"><code>cssSelector(<span class="stLiteral">"a[id='aLink']"</span>).element.tagName should be (<span class="stLiteral">"a"</span>)</code></td>
 </tr>
 
 <tr>
-<td class="quickref" colspan="2">Check a element's tag name, selected by using the link text</td>
-<td class="quickref" colspan="2"><code>linkText(<span class="stLiteral">"Click Me!"</span>).element.tagName should be (<span class="stLiteral">"a"</span>)</code></td>
+<td class="ataglance" colspan="2">Check a element's tag name, selected by using the link text</td>
+<td class="ataglance" colspan="2"><code>linkText(<span class="stLiteral">"Click Me!"</span>).element.tagName should be (<span class="stLiteral">"a"</span>)</code></td>
 </tr>
 
 <tr>
-<td class="quickref" colspan="2">Check a element's tag name, selected by using the partial link text</td>
-<td class="quickref" colspan="2"><code>partialLinkText(<span class="stLiteral">"Click"</span>).element.tagName should be (<span class="stLiteral">"a"</span>)</code></td>
+<td class="ataglance" colspan="2">Check a element's tag name, selected by using the partial link text</td>
+<td class="ataglance" colspan="2"><code>partialLinkText(<span class="stLiteral">"Click"</span>).element.tagName should be (<span class="stLiteral">"a"</span>)</code></td>
 </tr>
 
 <tr>
-<td class="quickref" colspan="2">Enter "Cheese!" into currently selected text element</td>
-<td class="quickref" colspan="2"><code>enter(<span class="stLiteral">"Cheese!"</span>)</code></td>
+<td class="ataglance" colspan="2">Enter "Cheese!" into currently selected text element</td>
+<td class="ataglance" colspan="2"><code>enter(<span class="stLiteral">"Cheese!"</span>)</code></td>
 </tr>
 
 <tr>
-<td class="quickref" colspan="2">Submit form</td>
-<td class="quickref" colspan="2"><code>submit()</code></td>
+<td class="ataglance" colspan="2">Submit form</td>
+<td class="ataglance" colspan="2"><code>submit()</code></td>
 </tr>
 
 <tr>
-<td class="quickref" colspan="2">Set text field (which has attribute id or name = "q") to "Cheese!"</td>
-<td class="quickref" colspan="2"><code>textField(<span class="stLiteral">"q"</span>).value = "<span class="stLiteral">Cheese!"</span></code></td>
+<td class="ataglance" colspan="2">Set text field (which has attribute id or name = "q") to "Cheese!"</td>
+<td class="ataglance" colspan="2"><code>textField(<span class="stLiteral">"q"</span>).value = "<span class="stLiteral">Cheese!"</span></code></td>
 </tr>
 
 <tr>
-<td class="quickref" colspan="2">Read and check a text field (which has attribute id or name = "q") value</td>
-<td class="quickref" colspan="2"><code>textField(<span class="stLiteral">"q"</span>).value should be (<span class="stLiteral">"Cheese!"</span>)</code></td>
+<td class="ataglance" colspan="2">Read and check a text field (which has attribute id or name = "q") value</td>
+<td class="ataglance" colspan="2"><code>textField(<span class="stLiteral">"q"</span>).value should be (<span class="stLiteral">"Cheese!"</span>)</code></td>
 </tr>
 
 <tr>
-<td class="quickref" colspan="2">Set radio button group (which has group name = "group1") to choose "Option 2"</td>
-<td class="quickref" colspan="2">
+<td class="ataglance" colspan="2">Set radio button group (which has group name = "group1") to choose "Option 2"</td>
+<td class="ataglance" colspan="2">
 <pre>
 radioButtonGroup(<span class="stLiteral">"group1"</span>).value = <span class="stLiteral">"Option 2"</span>
 // or
@@ -212,8 +213,8 @@ radioButtonGroup(<span class="stLiteral">"group1"</span>).selection = <span clas
 </tr>
 
 <tr>
-<td class="quickref" colspan="2">Read and check radio button group (which has group name = "group1") chosen value</td>
-<td class="quickref" colspan="2">
+<td class="ataglance" colspan="2">Read and check radio button group (which has group name = "group1") chosen value</td>
+<td class="ataglance" colspan="2">
 <pre>
 radioButtonGroup(<span class="stLiteral">"group1"</span>).value should be (<span class="stLiteral">"Option 2"</span>)
 // or
@@ -223,33 +224,33 @@ radioButtonGroup(<span class="stLiteral">"group1"</span>).selection should be (<
 </tr>
 
 <tr>
-<td class="quickref" colspan="2">Click on a radio button (which has attribute id or name = "opt1")</td>
-<td class="quickref" colspan="2"><code>click on radioButton(<span class="stLiteral">"opt1"</span>)</code></td>
+<td class="ataglance" colspan="2">Click on a radio button (which has attribute id or name = "opt1")</td>
+<td class="ataglance" colspan="2"><code>click on radioButton(<span class="stLiteral">"opt1"</span>)</code></td>
 </tr>
 
 <tr>
-<td class="quickref" colspan="2">Check if a radio button (which has attribute id or name = "opt1") is selected</td>
-<td class="quickref" colspan="2"><code>radioButton(<span class="stLiteral">"opt1"</span>).isSelected should be (<span class="stLiteral">true</span>)</code></td>
+<td class="ataglance" colspan="2">Check if a radio button (which has attribute id or name = "opt1") is selected</td>
+<td class="ataglance" colspan="2"><code>radioButton(<span class="stLiteral">"opt1"</span>).isSelected should be (<span class="stLiteral">true</span>)</code></td>
 </tr>
 
 <tr>
-<td class="quickref" colspan="2">Select a check box (which has attribute id or name = "cbx1")</td>
-<td class="quickref" colspan="2"><code>checkbox(<span class="stLiteral">"cbx1"</span>).select()</code></td>
+<td class="ataglance" colspan="2">Select a check box (which has attribute id or name = "cbx1")</td>
+<td class="ataglance" colspan="2"><code>checkbox(<span class="stLiteral">"cbx1"</span>).select()</code></td>
 </tr>
 
 <tr>
-<td class="quickref" colspan="2">Clear a check box (which has attribute id or name = "cbx1")</td>
-<td class="quickref" colspan="2"><code>checkbox(<span class="stLiteral">"cbx1"</span>).clear()</code></td>
+<td class="ataglance" colspan="2">Clear a check box (which has attribute id or name = "cbx1")</td>
+<td class="ataglance" colspan="2"><code>checkbox(<span class="stLiteral">"cbx1"</span>).clear()</code></td>
 </tr>
 
 <tr>
-<td class="quickref" colspan="2">Check if a check box (which has attribute id or name = "cbx1") is selected</td>
-<td class="quickref" colspan="2"><code>checkbox(<span class="stLiteral">"cbx1"</span>).isSelected should be (<span class="stLiteral">true</span>)</code></td>
+<td class="ataglance" colspan="2">Check if a check box (which has attribute id or name = "cbx1") is selected</td>
+<td class="ataglance" colspan="2"><code>checkbox(<span class="stLiteral">"cbx1"</span>).isSelected should be (<span class="stLiteral">true</span>)</code></td>
 </tr>
 
 <tr>
-<td class="quickref" colspan="2">Set a single-selection dropdown list (which has attribute id or name = "select1") to choose "option2"</td>
-<td class="quickref" colspan="2">
+<td class="ataglance" colspan="2">Set a single-selection dropdown list (which has attribute id or name = "select1") to choose "option2"</td>
+<td class="ataglance" colspan="2">
 <pre>
 singleSel(<span class="stLiteral">"select1"</span>).value = <span class="stLiteral">"option2"</span>
 // or
@@ -259,8 +260,8 @@ singleSel(<span class="stLiteral">"select1"</span>).selection = <span class="stT
 </tr>
 
 <tr>
-<td class="quickref" colspan="2">Clear the selection of a single-selection dropdown list (which has attribute id or name = "select1")</td>
-<td class="quickref" colspan="2">
+<td class="ataglance" colspan="2">Clear the selection of a single-selection dropdown list (which has attribute id or name = "select1")</td>
+<td class="ataglance" colspan="2">
 <pre>
 singleSel(<span class="stLiteral">"select1"</span>).clear()
 // or
@@ -270,8 +271,8 @@ singleSel(<span class="stLiteral">"select1"</span>).selection = <span class="stT
 </tr>
 
 <tr>
-<td class="quickref" colspan="2">Read and check currently selected value of a single-selection dropdown list (which has attribute id or name = "select1")</td>
-<td class="quickref" colspan="2">
+<td class="ataglance" colspan="2">Read and check currently selected value of a single-selection dropdown list (which has attribute id or name = "select1")</td>
+<td class="ataglance" colspan="2">
 <pre>
 singleSel(<span class="stLiteral">"select1"</span>).value should be (<span class="stLiteral">"option2"</span>)
 // or
@@ -281,28 +282,28 @@ singleSel(<span class="stLiteral">"select1"</span>).selection should be (<span c
 </tr>
 
 <tr>
-<td class="quickref" colspan="2">Set the selection of a multi-selection list (which has attribute id or name = "select2")</td>
-<td class="quickref" colspan="2"><code>multiSel(<span class="stLiteral">"select2"</span>).values = <span class="stType">Seq</span>(<span class="stLiteral">"option5"</span>, <span class="stLiteral">"option6"</span>)</code></td>
+<td class="ataglance" colspan="2">Set the selection of a multi-selection list (which has attribute id or name = "select2")</td>
+<td class="ataglance" colspan="2"><code>multiSel(<span class="stLiteral">"select2"</span>).values = <span class="stType">Seq</span>(<span class="stLiteral">"option5"</span>, <span class="stLiteral">"option6"</span>)</code></td>
 </tr>
 
 <tr>
-<td class="quickref" colspan="2">Select "option3" in addition to current selection of a multi-selection list (which has attribute id or name = "select2")</td>
-<td class="quickref" colspan="2"><code>multiSel(<span class="stLiteral">"select2"</span>).values += <span class="stLiteral">"option3"</span></code></td>
+<td class="ataglance" colspan="2">Select "option3" in addition to current selection of a multi-selection list (which has attribute id or name = "select2")</td>
+<td class="ataglance" colspan="2"><code>multiSel(<span class="stLiteral">"select2"</span>).values += <span class="stLiteral">"option3"</span></code></td>
 </tr>
 
 <tr>
-<td class="quickref" colspan="2">Clear "option5" from current selection of a multi-selection list (which has attribute id or name = "select2")</td>
-<td class="quickref" colspan="2"><code>multiSel(<span class="stLiteral">"select2"</span>).clear(<span class="stLiteral">"option5"</span>)</code></td>
+<td class="ataglance" colspan="2">Clear "option5" from current selection of a multi-selection list (which has attribute id or name = "select2")</td>
+<td class="ataglance" colspan="2"><code>multiSel(<span class="stLiteral">"select2"</span>).clear(<span class="stLiteral">"option5"</span>)</code></td>
 </tr>
 
 <tr>
-<td class="quickref" colspan="2">Clear all selection of a multi-selection list (which has attribute id or name = "select2")</td>
-<td class="quickref" colspan="2"><code>multiSel(<span class="stLiteral">"select2"</span>).clearAll()</code></td>
+<td class="ataglance" colspan="2">Clear all selection of a multi-selection list (which has attribute id or name = "select2")</td>
+<td class="ataglance" colspan="2"><code>multiSel(<span class="stLiteral">"select2"</span>).clearAll()</code></td>
 </tr>
 
 <tr>
-<td class="quickref" colspan="2">Read and check currently selected values of a multi-selection list (which has attribute id or name = "select2")</td>
-<td class="quickref" colspan="2">
+<td class="ataglance" colspan="2">Read and check currently selected values of a multi-selection list (which has attribute id or name = "select2")</td>
+<td class="ataglance" colspan="2">
 <pre>
 multiSel(<span class="stLiteral">"select2"</span>).values should have size <span class="stLiteral">2</span>
 multiSel(<span class="stLiteral">"select2"</span>).values(<span class="stLiteral">0</span>) should be (<span class="stLiteral">"option5"</span>)
@@ -312,53 +313,53 @@ multiSel(<span class="stLiteral">"select2"</span>).values(<span class="stLiteral
 </tr>
 
 <tr>
-<td class="quickref" colspan="2">Go back to previous page in history</td>
-<td class="quickref" colspan="2"><code>goBack()</code></td>
+<td class="ataglance" colspan="2">Go back to previous page in history</td>
+<td class="ataglance" colspan="2"><code>goBack()</code></td>
 </tr>
 
 <tr>
-<td class="quickref" colspan="2">Go forward to next page in history</td>
-<td class="quickref" colspan="2"><code>goForward()</code></td>
+<td class="ataglance" colspan="2">Go forward to next page in history</td>
+<td class="ataglance" colspan="2"><code>goForward()</code></td>
 </tr>
 
 <tr>
-<td class="quickref" colspan="2">Reload the current page</td>
-<td class="quickref" colspan="2"><code>reloadPage()</code></td>
+<td class="ataglance" colspan="2">Reload the current page</td>
+<td class="ataglance" colspan="2"><code>reloadPage()</code></td>
 </tr>
 
 <tr>
-<td class="quickref" colspan="2">Add new cookie with name = "name1" and value = "value1"</td>
-<td class="quickref" colspan="2"><code>add cookie (<span class="stLiteral">"name1"</span>, <span class="stLiteral">"value1"</span>)</code></td>
+<td class="ataglance" colspan="2">Add new cookie with name = "name1" and value = "value1"</td>
+<td class="ataglance" colspan="2"><code>add cookie (<span class="stLiteral">"name1"</span>, <span class="stLiteral">"value1"</span>)</code></td>
 </tr>
 
 <tr>
-<td class="quickref" colspan="2">Read and check a cookie's value</td>
-<td class="quickref" colspan="2"><code>cookie(<span class="stLiteral">"name1"</span>).value should be (<span class="stLiteral">"value1"</span>)</code></td>
+<td class="ataglance" colspan="2">Read and check a cookie's value</td>
+<td class="ataglance" colspan="2"><code>cookie(<span class="stLiteral">"name1"</span>).value should be (<span class="stLiteral">"value1"</span>)</code></td>
 </tr>
 
 <tr>
-<td class="quickref" colspan="2">Delete cookie "name1"</td>
-<td class="quickref" colspan="2"><code>delete cookie <span class="stLiteral">"name1"</span></code></td>
+<td class="ataglance" colspan="2">Delete cookie "name1"</td>
+<td class="ataglance" colspan="2"><code>delete cookie <span class="stLiteral">"name1"</span></code></td>
 </tr>
 
 <tr>
-<td class="quickref" colspan="2">Delete all cookies under the same domain.</td>
-<td class="quickref" colspan="2"><code>delete all cookies</code></td>
+<td class="ataglance" colspan="2">Delete all cookies under the same domain.</td>
+<td class="ataglance" colspan="2"><code>delete all cookies</code></td>
 </tr>
 
 <tr>
-<td class="quickref" colspan="2">Capture the screen and save as "MyScreenShot.png"</td>
-<td class="quickref" colspan="2"><code>capture to <span class="stLiteral">"MyScreenShot"</span></code></td>
+<td class="ataglance" colspan="2">Capture the screen and save as "MyScreenShot.png"</td>
+<td class="ataglance" colspan="2"><code>capture to <span class="stLiteral">"MyScreenShot"</span></code></td>
 </tr>
 
 <tr>
-<td class="quickref" colspan="2">Set the directory to save captured pictures.</td>
-<td class="quickref" colspan="2"><code>setCaptureDir(<span class="stLiteral">"/home/your_name/screenshots"</span>)</code></td>
+<td class="ataglance" colspan="2">Set the directory to save captured pictures.</td>
+<td class="ataglance" colspan="2"><code>setCaptureDir(<span class="stLiteral">"/home/your_name/screenshots"</span>)</code></td>
 </tr>
 
 <tr>
-<td class="quickref" colspan="2">Auto capture screen when something goes wrong (e.g. test failed)</td>
-<td class="quickref" colspan="2">
+<td class="ataglance" colspan="2">Auto capture screen when something goes wrong (e.g. test failed)</td>
+<td class="ataglance" colspan="2">
 <pre>
 withScreenshot {
   assert(<span class="stLiteral">"Gold"</span> == <span class="stLiteral">"Silver"</span>, <span class="stLiteral">"Expected gold, but got silver"</span>)
@@ -368,45 +369,51 @@ withScreenshot {
 </tr>
 
 <tr>
-<td class="quickref" colspan="2">Close current browser window</td>
-<td class="quickref" colspan="2"><code>close()</code></td>
+<td class="ataglance" colspan="2">Close current browser window</td>
+<td class="ataglance" colspan="2"><code>close()</code></td>
 </tr>
 
 <tr>
-<td class="quickref" colspan="2">Close all windows and exit the driver</td>
-<td class="quickref" colspan="2"><code>quit()</code></td>
+<td class="ataglance" colspan="2">Close all windows and exit the driver</td>
+<td class="ataglance" colspan="2"><code>quit()</code></td>
 </tr>
 
 <tr>
-<th class="quickref" colspan="4">Concurrent Support</th>
+<th class="ataglance" colspan="4">Concurrent Support</th>
 </tr>
 
 <tr>
-<td class="quickref" colspan="2">Use <code>eventually</code> with implicit <code>PatienceConfig</code></td>
-<td class="quickref" colspan="2">
-<pre>
-<span class="stReserved">import</span> org.scalatest.concurrent.<span class="stType">Eventually</span>._
-eventually { ... }
+<td class="ataglance" colspan="2">
+<pre class="tight">
+<span class="stImport">import org.scalatest._
+import concurrent.Eventually._
+import Matchers._</span>
+val it = <span class="stType">Vector</span>(<span class="stLiteral">"sad"</span>, <span class="stLiteral">"happy"</span>).iterator
+eventually { it.next shouldBe <span class="stLiteral">"happy"</span> }
 </pre>
+</td>
+<td class="ataglance" colspan="2">
+<a href="@{milestoneScaladoc}/index.html#org.scalatest.concurrent.Eventually"><code>eventually</code></a> retries the past block until it no longer throws an exception, using
+a timeout and interval taken from an implicit <a href="@{milestoneScaladoc}/index.html#org.scalatest.concurrent.AbstractPatienceConfiguration$PatienceConfig"><code>PatienceConfig</code></a>
 </td>
 </tr>
 
 <tr>
-<td class="quickref" colspan="2">Define custom implicit <code>PatienceConfig</code></td>
-<td class="quickref" colspan="2">
-<pre>
-<span class="stReserved">import</span> org.scalatest.concurrent.<span class="stType">PatienceConfig</span>
-<span class="stReserved">import</span> org.scalatest.time._
+<td class="ataglance" colspan="2">Define custom implicit <code>PatienceConfig</code></td>
+<td class="ataglance" colspan="2">
+<pre class="tight">
+<span class="stImport">import org.scalatest.concurrent.PatienceConfig
+import org.scalatest.time.SpanSugar._</span>
 <span class="stReserved">implicit</span> <span class="stReserved">val</span> patienceConfig =
-<span class="stType">PatienceConfig</span>(timeout = scaled(<span class="stType">Span</span>(<span class="stLiteral">2</span>, <span class="stType">Seconds</span>)), interval = scaled(Span(<span class="stLiteral">5</span>, <span class="stType">Millis</span>)))
+  <span class="stType">PatienceConfig</span>(timeout = scaled(<span class="stLiteral">2</span> seconds)), interval = scaled(<span class="stLiteral">5</span> millis)))
 </pre>
 </td>
 </tr>
 
 <tr>
-<td class="quickref" colspan="2">Use <code>eventually</code> with explicit <code>timeout</code></td>
-<td class="quickref" colspan="2">
-<pre>
+<td class="ataglance" colspan="2">Use <code>eventually</code> with explicit <code>timeout</code></td>
+<td class="ataglance" colspan="2">
+<pre class="tight">
 <span class="stReserved">import</span> org.scalatest.concurrent.<span class="stType">Eventually</span>._
 <span class="stReserved">import</span> org.scalatest.time._
 eventually (timeout(<span class="stType">Span</span>(<span class="stLiteral">5</span>, <span class="stType">Seconds</span>))) { ... }
@@ -415,35 +422,24 @@ eventually (timeout(<span class="stType">Span</span>(<span class="stLiteral">5</
 </tr>
 
 <tr>
-<td class="quickref" colspan="2">Use <code>eventually</code> with explicit <code>timeout</code> and <code>interval</code></td>
-<td class="quickref" colspan="2">
-<pre>
-<span class="stReserved">import</span> org.scalatest.concurrent.<span class="stType">Eventually</span>._
-<span class="stReserved">import</span> org.scalatest.time._
-eventually (timeout(<span class="stType">Span</span>(<span class="stLiteral">5</span>, <span class="stType">Seconds</span>)), interval(<span class="stType">Span</span>(<span class="stLiteral">5</span>, <span class="stType">Millis</span>))) { ... }
-</pre>
-</td>
-</tr>
-
-<tr>
-<td class="quickref" colspan="2">Use <code>SpanSugar</code> to specify time</td>
-<td class="quickref" colspan="2">
-<pre>
-<span class="stReserved">import</span> org.scalatest.concurrent.<span class="stType">Eventually</span>._
-<span class="stReserved">import</span> org.scalatest.time.SpanSugar._
+<td class="ataglance" colspan="2">Use <code>eventually</code> with explicit <code>timeout</code> and <code>interval</code></td>
+<td class="ataglance" colspan="2">
+<pre class="tight">
+<span class="stImport">import org.scalatest.concurrent.Eventually._
+import org.scalatest.time.SpanSugar._</span>
 eventually (timeout(<span class="stLiteral">5</span> seconds), interval(<span class="stLiteral">5</span> millis)) { ... }
 </pre>
 </td>
 </tr>
 
 <tr>
-<th class="quickref" colspan="4">Inspectors</th>
+<th class="ataglance" colspan="4">Inspectors</th>
 </tr>
 
 <tr>
-<td class="quickref" colspan="2">Use <code>forAll</code> to check that every element passes the assertion block</td>
-<td class="quickref" colspan="2">
-<pre>
+<td class="ataglance" colspan="2">Use <code>forAll</code> to check that every element passes the assertion block</td>
+<td class="ataglance" colspan="2">
+<pre class="tight">
 <span class="stReserved">import</span> org.scalatest._
 <span class="stReserved">import</span> <span class="stType">Matchers</span>._
 <span class="stReserved">import</span> <span class="stType">Inspectors</span>._
@@ -453,21 +449,21 @@ forAll(<span class="stType">List</span>(<span class="stLiteral">1</span>, <span 
 </tr>
 
 <tr>
-<td class="quickref" colspan="2">Use <code>forAtLeast</code> to check that at least the specified number of elements pass the assertion block</td>
-<td class="quickref" colspan="2">
-<pre>
+<td class="ataglance" colspan="2">Use <code>forAtLeast</code> to check that at least the specified number of elements pass the assertion block</td>
+<td class="ataglance" colspan="2">
+<pre class="tight">
 <span class="stReserved">import</span> org.scalatest._
 <span class="stReserved">import</span> <span class="stType">Matchers</span>._
 <span class="stReserved">import</span> <span class="stType">Inspectors</span>._
-forAtLeast(<span class="stLiteral">1</span>, <span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>)) { _ should be > <span class="stLiteral">2</span> }
+forAtLeast(<span class="stLiteral">1</span>, <span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>)) { _ should be &gt; <span class="stLiteral">2</span> }
 </pre>
 </td>
 </tr>
 
 <tr>
-<td class="quickref" colspan="2">Use <code>forAtMost</code> to check that at most the specified number of elements pass the assertion block</td>
-<td class="quickref" colspan="2">
-<pre>
+<td class="ataglance" colspan="2">Use <code>forAtMost</code> to check that at most the specified number of elements pass the assertion block</td>
+<td class="ataglance" colspan="2">
+<pre class="tight">
 <span class="stReserved">import</span> org.scalatest._
 <span class="stReserved">import</span> <span class="stType">Matchers</span>._
 <span class="stReserved">import</span> <span class="stType">Inspectors</span>._
@@ -477,8 +473,8 @@ forAtMost(<span class="stLiteral">2</span>, <span class="stType">List</span>(<sp
 </tr>
 
 <tr>
-<td class="quickref" colspan="2">Use <code>forBetween</code> to check that the specified minimum and maximum number of elements (inclusive) pass the assertion block</td>
-<td class="quickref" colspan="2">
+<td class="ataglance" colspan="2">Use <code>forBetween</code> to check that the specified minimum and maximum number of elements (inclusive) pass the assertion block</td>
+<td class="ataglance" colspan="2">
 <pre>
 <span class="stReserved">import</span> org.scalatest._
 <span class="stReserved">import</span> <span class="stType">Matchers</span>._
@@ -489,8 +485,8 @@ forBetween(<span class="stLiteral">2</span>, <span class="stLiteral">4</span>, <
 </tr>
 
 <tr>
-<td class="quickref" colspan="2">Use <code>forEvery</code> to check that every element passes the assertion block, it'll list all failing elements if it fails (whereas <code>forAll</code> just reports the first failing element)</td>
-<td class="quickref" colspan="2">
+<td class="ataglance" colspan="2">Use <code>forEvery</code> to check that every element passes the assertion block, it'll list all failing elements if it fails (whereas <code>forAll</code> just reports the first failing element)</td>
+<td class="ataglance" colspan="2">
 <pre>
 <span class="stReserved">import</span> org.scalatest._
 <span class="stReserved">import</span> <span class="stType">Matchers</span>._
@@ -501,8 +497,8 @@ forEvery(<span class="stType">List</span>(<span class="stLiteral">1</span>, <spa
 </tr>
 
 <tr>
-<td class="quickref" colspan="2">Use <code>forExactly</code> to check that the exact specified number of elements pass the assertion block</td>
-<td class="quickref" colspan="2">
+<td class="ataglance" colspan="2">Use <code>forExactly</code> to check that the exact specified number of elements pass the assertion block</td>
+<td class="ataglance" colspan="2">
 <pre>
 <span class="stReserved">import</span> org.scalatest._
 <span class="stReserved">import</span> <span class="stType">Matchers</span>._
@@ -513,12 +509,12 @@ forExactly(<span class="stLiteral">2</span>, <span class="stType">List</span>(<s
 </tr>
 
 <tr>
-<th class="quickref" colspan="4">Other Goodies</th>
+<th class="ataglance" colspan="4">Other Goodies</th>
 </tr>
 
 <tr>
-<td class="quickref" colspan="2">Inside</td>
-<td class="quickref" colspan="2">
+<td class="ataglance" colspan="2">Inside</td>
+<td class="ataglance" colspan="2">
 <pre>
 <span class="stReserved">import</span> org.scalatest._
 <span class="stReserved">import</span> <span class="stType">Matchers</span>._
@@ -533,8 +529,8 @@ inside (rec) { case <span class="stType">Record</span>(name, address, age) =>
 </tr>
 
 <tr>
-<td class="quickref" colspan="2">OptionValues</td>
-<td class="quickref" colspan="2">
+<td class="ataglance" colspan="2">OptionValues</td>
+<td class="ataglance" colspan="2">
 <pre>
 <span class="stReserved">import</span> org.scalatest._
 <span class="stReserved">import</span> <span class="stType">Matchers</span>._
@@ -545,8 +541,8 @@ anOption.value should be > <span class="stLiteral">9</span>
 </tr>
 
 <tr>
-<td class="quickref" colspan="2">EitherValues</td>
-<td class="quickref" colspan="2">
+<td class="ataglance" colspan="2">EitherValues</td>
+<td class="ataglance" colspan="2">
 <pre>
 <span class="stReserved">import</span> org.scalatest._
 <span class="stReserved">import</span> <span class="stType">Matchers</span>._
@@ -558,8 +554,8 @@ either2.left.value should be (<span class="stLiteral">"Muchas problemas"</span>)
 </tr>
 
 <tr>
-<td class="quickref" colspan="2">PartialFunctionValues</td>
-<td class="quickref" colspan="2">
+<td class="ataglance" colspan="2">PartialFunctionValues</td>
+<td class="ataglance" colspan="2">
 <pre>
 <span class="stReserved">import</span> org.scalatest._
 <span class="stReserved">import</span> <span class="stType">Matchers</span>._
@@ -571,8 +567,8 @@ map.valueAt(<span class="stLiteral">"two"</span>) should equal (<span class="stL
 </tr>
 
 <tr>
-<td class="quickref" colspan="2">PrivateMethodTester</td>
-<td class="quickref" colspan="2">
+<td class="ataglance" colspan="2">PrivateMethodTester</td>
+<td class="ataglance" colspan="2">
 <pre>
 <span class="stReserved">import</span> org.scalatest.<span class="stType">PrivateMethodTester</span>._
 <span class="stReserved">val</span> decorateToStringValue = <span class="stType">PrivateMethod</span>[<span class="stType">String</span>](<span class="stQuotedString">'decorateToStringValue</span>)
