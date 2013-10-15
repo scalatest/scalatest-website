@@ -82,17 +82,59 @@ object FeatureSpecExamples extends StyleTraitExamples {
   val doNotDiscover: String =
     """<span class="stImport">import org.scalatest._</span>
       |@DoNotDiscover
-      |<span class="stReserved">class</span> <span class="stType">TVSetSpec</span> <span class="stReserved">extends</span> <span class="stType">FeatureSpec</span> <span class="stReserved">with</span> <span class="stType">GivenWhenThen</span> { ... }
+      |<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">FeatureSpec</span> <span class="stReserved"> { <span class="stBlockComment">/*code omitted*/</span> }
     """.stripMargin
 
   val ignoreTest: String =
-    "ignore(<span class=\"stLiteral\">\"User presses power button when TV is off\"</span>) { ... }"
+    """<span class="stImport">import org.scalatest._</span>
+      |<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">FeatureSpec</span> <span class="stReserved"> {
+      |  ignore(<span class="stLiteral">"User presses power button when TV is off"</span>) { <span class="stBlockComment">/*code omitted*/</span> }
+      |}""".stripMargin
 
   val pendingTest: String =
-    "scenario(<span class=\"stLiteral\">\"User presses power button when TV is off\"</span>) (pending)"
+    """<span class="stImport">import org.scalatest._</span>
+      |<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">FeatureSpec</span> <span class="stReserved"> {
+      |  scenario(<span class="stLiteral">"User presses power button when TV is off"</span>) (pending)
+      |}""".stripMargin
 
   val taggingTest: String =
-    """<span class="stReserved">object</span> <span class="stType">SlowTest</span> <span class="stReserved">extends</span> <span class="stType">Tag</span>(<span class="stLiteral">"com.mycompany.tags.SlowTest"</span>)
-      |scenario(<span class="stLiteral">"User presses power button when TV is off"</span>, <span class="stType">SlowTest</span>) { ... }
-      |""".stripMargin
+    """<span class="stImport">import org.scalatest._</span>
+      |<span class="stReserved">object</span> <span class="stType">SlowTest</span> <span class="stReserved">extends</span> <span class="stType">Tag</span>(<span class="stLiteral">"com.mycompany.tags.SlowTest"</span>)
+      |<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">FeatureSpec</span> <span class="stReserved"> {
+      |  scenario(<span class="stLiteral">"User presses power button when TV is off"</span>, <span class="stType">SlowTest</span>) {
+      |    <span class="stBlockComment">/*code omitted*/</span>
+      |  }
+      |}""".stripMargin
+
+  val infoTest: String =
+    """<span class="stImport">import org.scalatest._</span>
+      |<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">FeatureSpec</span> <span class="stReserved"> {
+      |  scenario(<span class="stLiteral">"User presses power button when TV is off"</span>) {
+      |    info(<span class="stLiteral">"Some information."</span>)
+      |    <span class="stBlockComment">/*code omitted*/</span>
+      |  }
+      |}""".stripMargin
+
+  val fixtureNoArgTest: String =
+    """<span class="stImport">import org.scalatest._</span>
+      |<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">FeatureSpec</span> <span class="stReserved"> {
+      |  <span class="stReserved">def</span> setup() { <span class="stBlockComment">/*code omitted*/</span> }
+      |  <span class="stReserved">def</span> cleanup() { <span class="stBlockComment">/*code omitted*/</span> }
+      |  <span class="stReserved">override</span> <span class="stReserved">protected</span> <span class="stReserved">def</span> withFixture(test: <span class="stType">NoArgTest</span>) = {
+      |    setup()
+      |    <span class="stReserved">try</span> test() <span class="stReserved">finally</span> cleanup()
+      |  }
+      |}""".stripMargin
+
+  val fixtureOneArgTest: String =
+    """<span class="stImport">import org.scalatest._</span>
+      |<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">fixture.FeatureSpec</span> <span class="stReserved"> {
+      |  <span class="stReserved">def</span> setup() { <span class="stBlockComment">/*code omitted*/</span> }
+      |  <span class="stReserved">def</span> cleanup() { <span class="stBlockComment">/*code omitted*/</span> }
+      |  <span class="stReserved">type</span> FixtureParam = <span class="stType">String</span>
+      |  <span class="stReserved">override</span> <span class="stReserved">protected</span> <span class="stReserved">def</span> withFixture(test: <span class="stType">OneArgTest</span>) = {
+      |    setup()
+      |    <span class="stReserved">try</span> test(<span class="stLiteral">"this is a fixture param"</span>) <span class="stReserved">finally</span> cleanup()
+      |  }
+      |}""".stripMargin
 }

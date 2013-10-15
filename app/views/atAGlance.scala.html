@@ -79,12 +79,12 @@ Show examples in:
 </tr>
 
 <tr>
-<td class="ataglance" colspan="2"><code>@Html(selectedStyle.ignoreTest)</code></td>
+<td class="ataglance" colspan="2"><pre>@Html(selectedStyle.ignoreTest)</pre></td>
 <td class="ataglance" colspan="2">Ignore A Test</td>
 </tr>
 
 <tr>
-<td class="ataglance" colspan="2"><code>@Html(selectedStyle.pendingTest)</code></td>
+<td class="ataglance" colspan="2"><pre>@Html(selectedStyle.pendingTest)</pre></td>
 <td class="ataglance" colspan="2">A Pending Test</td>
 </tr>
 
@@ -94,7 +94,7 @@ Show examples in:
 </tr>
 
 <tr>
-<td class="ataglance" colspan="2"><code>info(<span class="stLiteral">"This is secret info!"</span>)</code></td>
+<td class="ataglance" colspan="2"><pre>@Html(selectedStyle.infoTest)</pre></td>
 <td class="ataglance" colspan="2">Provide information.</td>
 </tr>
 
@@ -103,27 +103,12 @@ Show examples in:
 </tr>
 
 <tr>
-<td class="ataglance" colspan="2">
-<pre>
-<span class="stReserved">override</span> <span class="stReserved">protected</span> <span class="stReserved">def</span> withFixture(test: <span class="stType">NoArgTest</span>) = {
-  setup()
-  <span class="stReserved">try</span> test() <span class="stReserved">finally</span> cleanup()
-}
-</pre>
-</td>
+<td class="ataglance" colspan="2"><pre>@Html(selectedStyle.fixtureNoArgTest)</pre></td>
 <td class="ataglance" colspan="2"><code>withFixture</code> using <code>NoArgTest</code> for style traits in <code>org.scalatest</code> package</td>
 </tr>
 
 <tr>
-<td class="ataglance" colspan="2">
-<pre>
-<span class="stReserved">type</span> FixtureParam = <span class="stType">String</span>
-<span class="stReserved">override</span> <span class="stReserved">protected</span> <span class="stReserved">def</span> withFixture(test: <span class="stType">OneArgTest</span>) = {
-    setup()
-    <span class="stReserved">try</span> test(<span class="stLiteral">"this is a fixture param"</span>) <span class="stReserved">finally</span> cleanup()
-}
-</pre>
-</td>
+<td class="ataglance" colspan="2"><pre>@Html(selectedStyle.fixtureOneArgTest)</pre></td>
 <td class="ataglance" colspan="2"><code>withFixture</code> using <code>OneArgTest</code> for style traits in <code>org.scalatest.fixture</code> package</td>
 </tr>
 
