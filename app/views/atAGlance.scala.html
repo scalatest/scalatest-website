@@ -384,7 +384,8 @@ eventually { it.next shouldBe <span class="stLiteral">"happy"</span> }
 </td>
 <td class="ataglance" colspan="2">
 <a href="@{milestoneScaladoc}/index.html#org.scalatest.concurrent.Eventually"><code>eventually</code></a> retries the past block until it no longer throws an exception, using
-a timeout and interval taken from an implicit <a href="@{milestoneScaladoc}/index.html#org.scalatest.concurrent.AbstractPatienceConfiguration$PatienceConfig"><code>PatienceConfig</code></a>
+a timeout and interval taken from an implicit <a href="@{milestoneScaladoc}/index.html#org.scalatest.concurrent.AbstractPatienceConfiguration$PatienceConfig"><code>PatienceConfig</code></a>.
+The default <a href="@{milestoneScaladoc}/index.html#org.scalatest.concurrent.AbstractPatienceConfiguration$PatienceConfig"><code>PatienceConfig</code></a> is 150 milliseconds timeout and 15 milliseconds interval. If you import IntegrationPatience, you'll get 15 seconds timeout and 150 milliseconds interval. If you want something else, you can define your own implicit <a href="@{milestoneScaladoc}/index.html#org.scalatest.concurrent.AbstractPatienceConfiguration$PatienceConfig"><code>PatienceConfig</code></a> like the next example.
 </td>
 </tr>
 
