@@ -82,25 +82,25 @@ object FeatureSpecExamples extends StyleTraitExamples {
   val doNotDiscover: String =
     """<span class="stImport">import org.scalatest._</span>
       |@DoNotDiscover
-      |<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">FeatureSpec</span> <span class="stReserved"> { <span class="stBlockComment">/*code omitted*/</span> }
+      |<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">FeatureSpec</span> { <span class="stBlockComment">/*code omitted*/</span> }
     """.stripMargin
 
   val ignoreTest: String =
     """<span class="stImport">import org.scalatest._</span>
-      |<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">FeatureSpec</span> <span class="stReserved"> {
+      |<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">FeatureSpec</span> {
       |  ignore(<span class="stLiteral">"User presses power button when TV is off"</span>) { <span class="stBlockComment">/*code omitted*/</span> }
       |}""".stripMargin
 
   val pendingTest: String =
     """<span class="stImport">import org.scalatest._</span>
-      |<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">FeatureSpec</span> <span class="stReserved"> {
+      |<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">FeatureSpec</span> {
       |  scenario(<span class="stLiteral">"User presses power button when TV is off"</span>) (pending)
       |}""".stripMargin
 
   val taggingTest: String =
     """<span class="stImport">import org.scalatest._</span>
       |<span class="stReserved">object</span> <span class="stType">SlowTest</span> <span class="stReserved">extends</span> <span class="stType">Tag</span>(<span class="stLiteral">"com.mycompany.tags.SlowTest"</span>)
-      |<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">FeatureSpec</span> <span class="stReserved"> {
+      |<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">FeatureSpec</span> {
       |  scenario(<span class="stLiteral">"User presses power button when TV is off"</span>, <span class="stType">SlowTest</span>) {
       |    <span class="stBlockComment">/*code omitted*/</span>
       |  }
@@ -108,7 +108,7 @@ object FeatureSpecExamples extends StyleTraitExamples {
 
   val infoTest: String =
     """<span class="stImport">import org.scalatest._</span>
-      |<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">FeatureSpec</span> <span class="stReserved"> {
+      |<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">FeatureSpec</span> {
       |  scenario(<span class="stLiteral">"User presses power button when TV is off"</span>) {
       |    info(<span class="stLiteral">"Some information."</span>)
       |    <span class="stBlockComment">/*code omitted*/</span>
@@ -117,7 +117,7 @@ object FeatureSpecExamples extends StyleTraitExamples {
 
   val fixtureNoArgTest: String =
     """<span class="stImport">import org.scalatest._</span>
-      |<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">FeatureSpec</span> <span class="stReserved"> {
+      |<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">FeatureSpec</span> {
       |  <span class="stReserved">def</span> setup() { <span class="stBlockComment">/*code omitted*/</span> }
       |  <span class="stReserved">def</span> cleanup() { <span class="stBlockComment">/*code omitted*/</span> }
       |  <span class="stReserved">override</span> <span class="stReserved">protected</span> <span class="stReserved">def</span> withFixture(test: <span class="stType">NoArgTest</span>) = {
@@ -128,13 +128,27 @@ object FeatureSpecExamples extends StyleTraitExamples {
 
   val fixtureOneArgTest: String =
     """<span class="stImport">import org.scalatest._</span>
-      |<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">fixture.FeatureSpec</span> <span class="stReserved"> {
+      |<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">fixture.FeatureSpec</span> {
       |  <span class="stReserved">def</span> setup() { <span class="stBlockComment">/*code omitted*/</span> }
       |  <span class="stReserved">def</span> cleanup() { <span class="stBlockComment">/*code omitted*/</span> }
       |  <span class="stReserved">type</span> FixtureParam = <span class="stType">String</span>
       |  <span class="stReserved">override</span> <span class="stReserved">protected</span> <span class="stReserved">def</span> withFixture(test: <span class="stType">OneArgTest</span>) = {
       |    setup()
       |    <span class="stReserved">try</span> test(<span class="stLiteral">"this is a fixture param"</span>) <span class="stReserved">finally</span> cleanup()
+      |  }
+      |}""".stripMargin
+
+  val seleniumExample: String =
+    """<span class="stImport">import org.scalatest._
+      |import selenium._
+      |import org.openqa.selenium._
+      |import htmlunit._</span>
+      |<span class="stReserved">class</span> <span class="stType">BlogSpec</span> <span class="stReserved">extends</span> <span class="stType">FeatureSpec</span> <span class="stReserved">with</span> <span class="stType">WebBrowser</span> {
+      |  <span class="stReserved">implicit</span> <span class="stReserved">val</span> webDriver: <span class="stType">WebDriver</span> = <span class="stReserved">new</span> <span class="stType">HtmlUnitDriver</span>
+      |  <span class="stReserved">val</span> host = <span class="stLiteral">"http://localhost:9000/"</span>
+      |  scenario(<span class="stLiteral">"The blog app home page should have the correct title"</span>) {
+      |    go to (host + <span class="stLiteral">"index.html"</span>)
+      |    pageTitle should be (<span class="stLiteral">"Awesome Blog"</span>)
       |  }
       |}""".stripMargin
 }

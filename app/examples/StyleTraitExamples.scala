@@ -27,6 +27,7 @@ trait StyleTraitExamples {
   def infoTest: String
   def fixtureNoArgTest: String
   def fixtureOneArgTest: String
+  def seleniumExample: String
 }
 
 object StyleTraitExamples {
