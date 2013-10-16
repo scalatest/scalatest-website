@@ -102,12 +102,12 @@ Show examples in:
 
 <tr>
 <td class="ataglance" colspan="2"><pre class="stTight">@Html(selectedStyle.fixtureNoArgTest)</pre></td>
-<td class="ataglance" colspan="2"><code>withFixture</code> using <code>NoArgTest</code> for style traits in <code>org.scalatest</code> package</td>
+<td class="ataglance" colspan="2"><code>withFixture</code> using <a href="@{milestoneScaladoc}/index.html#org.scalatest.Suite$NoArgTest"><code>NoArgTest</code></a> for style traits in <a href="@{milestoneScaladoc}/index.html#org.scalatest.package"><code>org.scalatest</code></a> package</td>
 </tr>
 
 <tr>
 <td class="ataglance" colspan="2"><pre class="stTight">@Html(selectedStyle.fixtureOneArgTest)</pre></td>
-<td class="ataglance" colspan="2"><code>withFixture</code> using <code>OneArgTest</code> for style traits in <code>org.scalatest.fixture</code> package</td>
+<td class="ataglance" colspan="2"><code>withFixture</code> using <a href="@{milestoneScaladoc}/index.html#org.scalatest.fixture.Suite$OneArgTest"><code>OneArgTest</code></a> for style traits in <a href="@{milestoneScaladoc}/index.html#org.scalatest.fixture.package"><code>org.scalatest.fixture</code></a> package</td>
 </tr>
 
 <tr>
@@ -117,7 +117,7 @@ Show examples in:
 <tr>
 <td class="ataglance" colspan="2"><pre class="stTight">@Html(selectedStyle.seleniumExample)</pre></td>
 <td class="ataglance" colspan="2">
-<p>Example of using <code>WebBrowser</code> and <code>HtmlUnit</code> for selenium test.  You could use other DSL listed in this section.</p>
+<p>Example of using <a href="@{milestoneScaladoc}/index.html#org.scalatest.selenium.WebBrowser"><code>WebBrowser</code></a> and <a href="@{milestoneScaladoc}/index.html#org.scalatest.selenium.HtmlUnit"><code>HtmlUnit</code></a> for selenium test.  You could use other DSL listed in this section.</p>
 <p><strong>Note: You'll need to setup your project to use Selenium and HtmlUnit driver for the example to work correctly.</strong></p>
 </td>
 </tr>
@@ -153,7 +153,7 @@ Show examples in:
 </tr>
 
 <tr>
-<td class="ataglance" colspan="2"><code>click on className(<span class="stLiteral">"ataglance"</span>)</code></td>
+<td class="ataglance" colspan="2"><code>click on className(<span class="stLiteral">"quickref"</span>)</code></td>
 <td class="ataglance" colspan="2">Click on element which has CSS class <code>quickref</code> tag</td>
 </tr>
 
@@ -398,7 +398,7 @@ import org.scalatest.time.SpanSugar._</span>
   <span class="stType">PatienceConfig</span>(timeout = scaled(<span class="stLiteral">2</span> seconds), interval = scaled(<span class="stLiteral">5</span> millis))
 </pre>
 </td>
-<td class="ataglance" colspan="2">Define custom implicit <code>PatienceConfig</code></td>
+<td class="ataglance" colspan="2">Define custom implicit <a href="@{milestoneScaladoc}/index.html#org.scalatest.concurrent.AbstractPatienceConfiguration$PatienceConfig"><code>PatienceConfig</code></a></td>
 </tr>
 
 <tr>
@@ -409,7 +409,7 @@ import org.scalatest.time._</span>
 eventually (timeout(<span class="stType">Span</span>(<span class="stLiteral">5</span>, <span class="stType">Seconds</span>))) { <span class="stBlockComment">/*code omitted*/</span> }
 </pre>
 </td>
-<td class="ataglance" colspan="2">Use <code>eventually</code> with explicit <code>timeout</code></td>
+<td class="ataglance" colspan="2">Use <a href="@{milestoneScaladoc}/index.html#org.scalatest.concurrent.Eventually"><code>eventually</code></a> with explicit <code>timeout</code></td>
 </tr>
 
 <tr>
@@ -420,7 +420,7 @@ import org.scalatest.time.SpanSugar._</span>
 eventually (timeout(<span class="stLiteral">5</span> seconds), interval(<span class="stLiteral">5</span> millis)) { <span class="stBlockComment">/*code omitted*/</span> }
 </pre>
 </td>
-<td class="ataglance" colspan="2">Use <code>eventually</code> with explicit <code>timeout</code> and <code>interval</code></td>
+<td class="ataglance" colspan="2">Use <a href="@{milestoneScaladoc}/index.html#org.scalatest.concurrent.Eventually"><code>eventually</code></a> with explicit <code>timeout</code> and <code>interval</code></td>
 </tr>
 
 <tr>
@@ -523,7 +523,7 @@ inside (rec) { case <span class="stType">Record</span>(name, age) =>
 }
 </pre>
 </td>
-<td class="ataglance" colspan="2">Inside</td>
+<td class="ataglance" colspan="2"><a href="@{milestoneScaladoc}/index.html#org.scalatest.Inside"><code>Inside</code></a></td>
 </tr>
 
 <tr>
@@ -536,7 +536,7 @@ import OptionValues._</span>
 anOption.value should be > <span class="stLiteral">9</span>
 </pre>
 </td>
-<td class="ataglance" colspan="2">OptionValues</td>
+<td class="ataglance" colspan="2"><a href="@{milestoneScaladoc}/index.html#org.scalatest.OptionValues"><code>OptionValues</code></a></td>
 </tr>
 
 <tr>
@@ -551,7 +551,7 @@ either1.right.value should be > <span class="stLiteral">9</span>
 either2.left.value should be (<span class="stLiteral">"Muchas problemas"</span>)
 </pre>
 </td>
-<td class="ataglance" colspan="2">EitherValues</td>
+<td class="ataglance" colspan="2"><a href="@{milestoneScaladoc}/index.html#org.scalatest.EitherValues"><code>EitherValues</code></a></td>
 </tr>
 
 <tr>
@@ -564,7 +564,7 @@ val map = <span class="stType">Map</span>(<span class="stLiteral">"one"</span> -
 map.valueAt(<span class="stLiteral">"two"</span>) should equal (<span class="stLiteral">2</span>)
 </pre>
 </td>
-<td class="ataglance" colspan="2">PartialFunctionValues</td>
+<td class="ataglance" colspan="2"><a href="@{milestoneScaladoc}/index.html#org.scalatest.PartialFunctionValues"><code>PartialFunctionValues</code></a></td>
 </tr>
 
 <tr>
@@ -582,7 +582,7 @@ map.valueAt(<span class="stLiteral">"two"</span>) should equal (<span class="stL
 calculator invokePrivate calcMethod(<span class="stLiteral">1000.00</span>, <span class="stLiteral">8.88</span>)
 </pre>
 </td>
-<td class="ataglance" colspan="2">PrivateMethodTester</td>
+<td class="ataglance" colspan="2"><a href="@{milestoneScaladoc}/index.html#org.scalatest.PrivateMethodTester"><code>PrivateMethodTester</code></a></td>
 </tr>
 
 </table>
