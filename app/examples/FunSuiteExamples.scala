@@ -105,4 +105,15 @@ object FunSuiteExamples extends StyleTraitExamples {
       |    <span class="stReserved">try</span> test(<span class="stLiteral">"this is a fixture param"</span>) <span class="stReserved">finally</span> cleanup()
       |  }
       |}""".stripMargin
+
+  val seleniumExample: String =
+    """<span class="stImport">import org.scalatest._
+      |import selenium._</span>
+      |<span class="stReserved">class</span> <span class="stType">BlogSpec</span> <span class="stReserved">extends</span> <span class="stType">FunSuite</span> <span class="stReserved">with</span> <span class="stType">WebBrowser</span> <span class="stReserved">with</span> <span class="stType">HtmlUnit</span> {
+      |  <span class="stReserved">val</span> host = <span class="stLiteral">"http://localhost:9000/"</span>
+      |  test(<span class="stLiteral">"The blog app home page should have the correct title"</span>) {
+      |    go to (host + <span class="stLiteral">"index.html"</span>)
+      |    pageTitle should be (<span class="stLiteral">"Awesome Blog"</span>)
+      |  }
+      |}""".stripMargin
 }
