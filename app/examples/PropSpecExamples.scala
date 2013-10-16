@@ -136,12 +136,10 @@ object PropSpecExamples extends StyleTraitExamples {
   val seleniumExample: String =
     """<span class="stImport">import org.scalatest._
       |import prop._
-      |import selenium._
-      |import org.openqa.selenium._
-      |import htmlunit._</span>
+      |import selenium._</span>
       |<span class="stReserved">class</span> <span class="stType">BlogSpec</span> <span class="stReserved">extends</span> <span class="stType">PropSpec</span> <span class="stReserved">with</span>
-      |  <span class="stType">TableDrivenPropertyChecks</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> <span class="stReserved">with</span> <span class="stType">WebBrowser</span> {
-      |  <span class="stReserved">implicit</span> <span class="stReserved">val</span> webDriver: <span class="stType">WebDriver</span> = <span class="stReserved">new</span> <span class="stType">HtmlUnitDriver</span>
+      |  <span class="stType">TableDrivenPropertyChecks</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> <span class="stReserved">with</span>
+      |  <span class="stType">WebBrowser</span> <span class="stReserved">with</span> <span class="stType">HtmlUnit</span> {
       |  <span class="stReserved">val</span> host = <span class="stLiteral">"http://localhost:9000/"</span>
       |  property(<span class="stLiteral">"The blog app home page should have the correct title"</span>) {
       |    go to (host + <span class="stLiteral">"index.html"</span>)
