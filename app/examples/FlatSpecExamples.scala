@@ -64,7 +64,6 @@ object FlatSpecExamples extends StyleTraitExamples {
       |<span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> {
       |  <span class="stLiteral">"An empty Set" should "have size 0"</span> in (pending)
       |}""".stripMargin
-    ""
 
   val taggingTest: String =
     """<span class="stImport">import org.scalatest._</span>

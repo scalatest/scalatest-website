@@ -66,7 +66,6 @@ object FunSpecExamples extends StyleTraitExamples {
       |<span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">FunSpec</span> {
       |  ignore(<span class="stLiteral">"should have size 0"</span>) { <span class="stBlockComment">/*code omitted*/</span> }
       |}""".stripMargin
-    ""
 
   val pendingTest: String =
     """<span class="stImport">import org.scalatest._</span>
