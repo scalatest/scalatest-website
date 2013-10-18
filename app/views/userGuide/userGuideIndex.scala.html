@@ -26,12 +26,13 @@ This user guide will help you get rolling quickly with ScalaTest. First a brief 
 
 <ul>
 <li>The central concept in ScalaTest is the <em>suite</em>, a collection of zero to many tests.</li>
-<li>A <em>test</em> can be anything with a name that can start and either succeed or fail.</li>
-<li>The design of ScalaTest is embodied in trait <code>Suite</code>, which represents a suite of tests.</li>
-<li>Trait <code>Suite</code> declares <code>run</code> and nine other &#8220;lifecycle&#8221; methods that define a default way to write and run tests.</li>
-<li>The lifecycle methods can be overridden to define custom ways of writing and running tests.</li>
-<li>ScalaTest offers several <em>style traits</em> that override lifecycle methods to support different styles of testing, such
-as TDD, BDD, and acceptance testing.</li>
+<li>A <em>test</em> can be anything with a name that can start and either succeed, fail, be pending, or canceled.</li>
+<li>The central unit of composition in ScalaTest is <code>Suite</code>, which represents a suite of tests.</li>
+<li>Trait <code>Suite</code> declares <code>run</code> and other &#8220;lifecycle&#8221; methods that define a default way to write and run tests.</li>
+<li>These lifecycle methods can be overridden to customize how tests are written and run.</li>
+<li>ScalaTest offers <em>style traits</em> that extend <code>Suite</code> and override lifecycle methods to support different testing styles.</li>
+<li>It provides <em>mixin traits</em> that override lifecycle methods of the style traits to address particular testing needs.</li>
+<li>You define test classes by composing <code>Suite</code> traits and define test suites by composing <code>Suite</code> instances.</li>
 </ul>
 
 <p>
