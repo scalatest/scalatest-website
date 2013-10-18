@@ -110,4 +110,8 @@ object Application extends Controller {
       case None => NotFound("Style trait " + styleName + " not found.")
     }
   }
+
+  def bareAtAGlance() = Action {
+    Redirect(routes.Application.atAGlance("FlatSpec").url)
+  }
 }

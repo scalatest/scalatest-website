@@ -111,6 +111,808 @@ Show examples in:
 </tr>
 
 <tr>
+<th colspan="4" class="ataglance">Matchers - Equality and identity</th>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stReserved">val</span> result = <span class="stLiteral">5</span> - <span class="stReserved">2</span>
+result should equal (<span class="stLiteral">3</span>)</pre>
+</td>
+<td class="ataglance" colspan="2">Calls <em>left</em> <code>==</code> <em>right</em>, except for arrays</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stType">Array</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>) should equal (<span class="stType">Array</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>))</pre>
+</td>
+<td class="ataglance" colspan="2">Arrays are compared structurally, by calling <em>left</em><code>.deep</code> <code>==</code> <em>right</em><code>.deep</code></td></tr>
+<tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stReserved">val</span> result = <span class="stLiteral">"thick"</span>.substring(<span class="stLiteral">1</span>, <span class="stLiteral">3</span>)
+result should be (<span class="stLiteral">"hi"</span>)</pre>
+</td>
+<td class="ataglance" colspan="2">Calls <em>left</em> <code>==</code> <em>right</em>, except for arrays</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stType">Array</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>) should be (<span class="stType">Array</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>))</pre>
+</td>
+<td class="ataglance" colspan="2">Arrays are compared structurally, by calling <em>left</em><code>.deep</code> <code>==</code> <em>right</em><code>.deep</code></td></tr>
+<tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stReserved">val</span> result = <span class="stLiteral">21</span> / <span class="stLiteral">3</span>
+result should be === <span class="stLiteral">7</span></pre></td>
+<td class="ataglance" colspan="2">Calls <em>left</em> <code>==</code> <em>right</em>, except for arrays</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stType">Array</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>) should be === (<span class="stType">Array</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>))</pre>
+</td>
+<td class="ataglance" colspan="2">Arrays are compared structurally, by calling <em>left</em><code>.deep</code> <code>==</code> <em>right</em><code>.deep</code></td></tr>
+<tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stReserved">val</span> list = <span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>)
+<span class="stReserved">val</span> ref1 = list
+<span class="stReserved">val</span> ref2 = list
+ref1 should be theSameInstanceAs ref2</pre>
+</td>
+<td class="ataglance" colspan="2">Calls <em>left</em> <code>eq</code> <em>right</em></td>
+</tr>
+
+<tr>
+<th colspan="4" class="ataglance">Matchers - Expected exceptions</th>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stReserved">val</span> s = <span class="stLiteral">"hai"</span>
+evaluating {
+  s.charAt(-<span class="stLiteral">1</span>)
+} should produce [<span class="stType">IndexOutOfBoundsException</span>]</pre></td>
+<td class="ataglance" colspan="2">Checks that a particular exception type is thrown by a bit of code</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stReserved">val</span> s = <span class="stLiteral">"hai"</span>
+<span class="stReserved">val</span> caught = evaluating {
+  s.charAt(-<span class="stLiteral">1</span>)
+} should produce [<span class="stType">IndexOutOfBoundsException</span>]
+caught.getMessage should be (<span class="stQuotedString">"String index out of range: -1"</span>)
+</pre>
+</td>
+<td class="ataglance" colspan="2">Inspects the caught exception</td>
+</tr>
+
+<tr>
+<th colspan="4" class="ataglance">Matchers - Size and length</th>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stReserved">val</span> result = <span class="stLiteral">"hai"</span>
+result should have length <span class="stLiteral">3</span></pre>
+</td>
+<td class="ataglance" colspan="2">Works for any object with <code>length</code> field or method or <code>getLength</code> method; length can be <code>Int</code> or <code>Long</code></td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stReserved">val</span> result = <span class="stLiteral">"hai"</span>
+result should have size <span class="stLiteral">3</span></pre>
+</td>
+<td class="ataglance" colspan="2">Works for any object with <code>size</code> field or method or <code>getSize</code> method; size can be <code>Int</code> or <code>Long</code></td>
+</tr>
+
+<tr>
+<th colspan="4" class="ataglance">Matchers - Strings and regular expressions</th>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stReserved">val</span> string = <span class="stLiteral">"Hello World"</span>
+string should startWith (<span class="stQuotedString">"Hello"</span>)</pre></td>
+<td class="ataglance" colspan="2">Starts with substring</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stReserved">val</span> string = <span class="stLiteral">"hello world"</span>
+string should endWith (<span class="stQuotedString">"world"</span>)</pre></td>
+<td class="ataglance" colspan="2">Ends with substring</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stReserved">val</span> string = <span class="stLiteral">"six seven eight"</span>
+string should include (<span class="stQuotedString">"seven"</span>)</pre></td>
+<td class="ataglance" colspan="2">Includes substring</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stReserved">val</span> string = <span class="stLiteral">"Hello"</span>
+string should startWith regex <span class="stQuotedString">"Hel*o"</span></pre></td>
+<td class="ataglance" colspan="2">Starts with substring matching regular expression string</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stReserved">val</span> string = <span class="stLiteral">"Hello World"</span>
+string should startWith regex <span class="stQuotedString">"Hel*o"</span>.r</pre></td>
+<td class="ataglance" colspan="2">Starts with substring matching regular expression <code>Regex</code></td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stReserved">val</span> string = <span class="stLiteral">"hello world"</span>
+string should endWith regex <span class="stQuotedString">"wo.ld"</span></pre></td>
+<td class="ataglance" colspan="2">Ends with substring matching regular expression string</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stReserved">val</span> string = <span class="stLiteral">"hello world"</span>
+string should endWith regex <span class="stQuotedString">"wo.ld"</span>.r</pre></td>
+<td class="ataglance" colspan="2">Ends with substring matching regular expression <code>Regex</code></td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stReserved">val</span> string = <span class="stLiteral">"hello world"</span>
+string should include regex <span class="stQuotedString">"wo.ld"</span></pre></td>
+<td class="ataglance" colspan="2">Includes substring matching regular expression string</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stReserved">val</span> string = <span class="stLiteral">"hello world"</span>
+string should include regex <span class="stQuotedString">"wo.ld"</span>.r</pre></td>
+<td class="ataglance" colspan="2">Includes substring matching regular expression <code>Regex</code></td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stReserved">val</span> string = <span class="stLiteral">"3.142"</span>
+string should fullyMatch regex <span class="stQuotedString">&#34;&#34;&#34;(-)?(\d+)(\.\d*)?&#34;&#34;&#34;</span></pre></td>
+<td class="ataglance" colspan="2">Fully matches regular expression string</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stReserved">val</span> string = <span class="stLiteral">"3.142"</span>
+string should fullyMatch regex <span class="stQuotedString">&#34;&#34;&#34;(-)?(\d+)(\.\d*)?&#34;&#34;&#34;</span>.r</pre></td>
+<td class="ataglance" colspan="2">Fully matches regular expression <code>Regex</code></td>
+</tr>
+
+<tr>
+<th colspan="4" class="ataglance">Matchers - Order and ranges</th>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stReserved">val</span> one = <span class="stLiteral">1</span>
+one should be &lt; <span class="stLiteral">7</span></pre></td>
+<td class="ataglance" colspan="2">Works for any type implicitly convertible to <code>Ordered[T]</code></td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stReserved">val</span> one = <span class="stLiteral">1</span>
+one should be &gt; <span class="stLiteral">0</span></pre></td>
+<td class="ataglance" colspan="2">Works for any type implicitly convertible to <code>Ordered[T]</code></td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stReserved">val</span> one = <span class="stLiteral">1</span>
+one should be &lt;= <span class="stLiteral">7</span></pre></td>
+<td class="ataglance" colspan="2">Works for any type implicitly convertible to <code>Ordered[T]</code></td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stReserved">val</span> one = <span class="stLiteral">1</span>
+one should be &gt;= <span class="stLiteral">0</span></pre>
+</td>
+<td class="ataglance" colspan="2">Works for any type implicitly convertible to <code>Ordered[T]</code></td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stReserved">val</span> num = <span class="stLiteral">8</span>
+num should (be &gt;= <span class="stLiteral">1</span> and be &lt;= <span class="stLiteral">10</span>)</pre></td>
+<td class="ataglance" colspan="2">One way to ensure within a range or tolerance</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stReserved">val</span> seven = <span class="stLiteral">7</span>
+seven should be (<span class="stLiteral">6</span> plusOrMinus <span class="stLiteral">2</span>)</pre>
+</td>
+<td class="ataglance" colspan="2">Another way to ensure within a range or tolerance</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+7.0 should be (<span class="stLiteral">6.9</span> plusOrMinus <span class="stLiteral">0.2</span>)</pre>
+</td>
+<td class="ataglance" colspan="2"><code>plusOrMinus</code> works for both integral and floating point types</td>
+</tr>
+
+<tr>
+<th colspan="4" class="ataglance">Matchers - Checking boolean properties with <code>be</code></th>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+Set.empty[String] should be (<span class="stQuotedString">'empty</span>)</pre></td>
+<td class="ataglance" colspan="2">Accesses <code>empty</code> or <code>isEmpty</code> dynamically (For the details on how a field or method is dynamically selected, see the documentation for <a href="@milestoneScaladoc/#org.scalatest.matchers.Matchers$BeWord"><code>BeWord</code></a>.)</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._
+import java.io.File</span>
+<span class="stReserved">val</span> temp = new <span class="stType">File</span>(<span class="stLiteral">"aFile.txt"</span>)
+temp should be a (<span class="stQuotedString">'file</span>)</pre>
+</td>
+<td class="ataglance" colspan="2">Can insert an 'a'</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._
+import java.awt._
+import event.KeyEvent</span>
+<span class="stReserved">val</span> canvas = <span class="stReserved">new</span> Canvas
+<span class="stReserved">val</span> keyEvent = <span class="stReserved">new</span> <span class="stType">KeyEvent</span>(canvas, <span class="stLiteral">0</span>, <span class="stLiteral">0</span>, <span class="stLiteral">0</span>, <span class="stLiteral">0</span>, <span class="stLiteral">'0'</span>)
+keyEvent should be an (<span class="stQuotedString">'actionKey</span>)</pre></td>
+<td class="ataglance" colspan="2">Can insert an 'an'</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest._
+import Matchers._
+import matchers._
+import java.io.File</span>
+<span class="stReserved">class</span> <span class="stType">FileBePropertyMatcher</span> <span class="stReserved">extends</span> <span class="stType">BePropertyMatcher</span>[<span class="stType">java.io.File</span>] {
+  <span class="stReserved">def</span> apply(left: <span class="stType">File</span>) =
+    <span class="stType">BePropertyMatchResult</span>(left.isFile, <span class="stType">"file"</span>)
+}
+<span class="stReserved">val</span> file = <span class="stReserved">new</span> <span class="stType">FileBePropertyMatcher</span>
+<span class="stReserved">val</span> temp = new <span class="stType">File</span>(<span class="stLiteral">"aFile.txt"</span>)
+temp should be a file</pre>
+</td>
+<td class="ataglance" colspan="2">For static checking (and to get rid of the unslightly tick mark), use a <a href="@milestoneScaladoc/#org.scalatest.matchers.BePropertyMatcher"><code>BePropertyMatcher</code></a></td>
+</tr>
+
+<tr>
+<th colspan="4" class="ataglance">Matchers - Using arbitrary <code>be</code> matchers</th>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest._
+import Matchers._
+import matchers._</span>
+<span class="stReserved">class</span> <span class="stType">OddMatcher</span> <span class="stReserved">extends</span> <span class="stType">BeMatcher</span>[<span class="stType">Int</span>] {
+  <span class="stReserved">def</span> apply(left: <span class="stType">Int</span>) =
+    <span class="stType">MatchResult</span>(
+      left % 2 == 1,
+      left.toString + <span class="stLiteral">" was even"</span>,
+      left.toString + <span class="stLiteral">" was odd"</span>
+    )
+}
+<span class="stReserved">val</span> odd = <span class="stReserved">new</span> <span class="stType">OddMatcher</span>
+<span class="stLiteral">7</span> should be (odd)</pre>
+</td>
+<td class="ataglance" colspan="2">To place an arbitrary token after <code>be</code>, use a <a href="@milestoneScaladoc/#org.scalatest.matchers.BeMatcher"><code>BeMatcher</code></a>.
+</tr>
+
+<tr>
+<th colspan="4" class="ataglance">Checking arbitrary properties with <code>have</code></th>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stReserved">case</span> <span class="stReserved">class</span> <span class="stType">Book</span>(title: <span class="stType">String</span>, author: <span class="stType">String</span>, pubYear: <span class="stType">Int</span>)
+<span class="stLiteral">val</span> book = <span class="stType">Book</span>(<span class="stLiteral">"A Book"</span>, <span class="stLiteral">"Sally"</span>, <span class="stLiteral">2008</span>)
+book should have (
+  <span class="stQuotedString">'title</span> (<span class="stQuotedString">"A Book"</span>),
+  <span class="stQuotedString">'author</span> (<span class="stQuotedString">"Sally"</span>),
+  <span class="stQuotedString">'pubYear</span> (<span class="stLiteral">2008</span>)
+)
+</pre>
+</td>
+<td class="ataglance" colspan="2">Check arbitrary properties dynamically with <code>Symbols</code> (For the details on how a field or method is selected during this
+process, see <a href="@milestoneScaladoc/#org.scalatest.Matchers$HavePropertyMatcherGenerator"><code>HavePropertyMatcherGenerator</code></a>.)</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest._
+import Matchers._
+import matchers._</span>
+<span class="stReserved">case</span> <span class="stReserved">class</span> <span class="stType">Book</span>(title: <span class="stType">String</span>, author: <span class="stType">String</span>)
+<span class="stReserved">def</span> title(expectedValue: <span class="stType">String</span>) =
+  <span class="stReserved">new</span> <span class="stType">HavePropertyMatcher</span>[<span class="stType">Book</span>, <span class="stType">String</span>] {
+    <span class="stReserved">def</span> apply(book: <span class="stType">Book</span>) =
+      <span class="stType">HavePropertyMatchResult</span>(
+        book.title == expectedValue,
+        <span class="stLiteral">"title"</span>,
+        expectedValue,
+        book.title
+      )
+  }
+<span class="stReserved">def</span> author(expectedValue: <span class="stType">String</span>) =
+  <span class="stReserved">new</span> <span class="stType">HavePropertyMatcher</span>[<span class="stType">Book</span>, <span class="stType">String</span>] {
+    <span class="stReserved">def</span> apply(book: <span class="stType">Book</span>) =
+      <span class="stType">HavePropertyMatchResult</span>(
+        book.author == expectedValue,
+        <span class="stLiteral">"author"</span>,
+        expectedValue,
+        book.author
+      )
+  }
+<span class="stLiteral">val</span> book = <span class="stType">Book</span>(<span class="stLiteral">"A Book"</span>, <span class="stLiteral">"Sally"</span>)
+book should have (
+  <span class="stQuotedString">title</span> (<span class="stQuotedString">"A Book"</span>),
+  <span class="stQuotedString">author</span> (<span class="stQuotedString">"Sally"</span>)
+)
+</pre></td>
+<td class="ataglance" colspan="2">Check arbitrary properties statically with <a href="@milestoneScaladoc/#org.scalatest.matchers.HavePropertyMatcher"><code>HavePropertyMatchers</code></a></td>
+</tr>
+
+<tr>
+<th colspan="4" class="ataglance">Working with Scala and Java collections</th>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stType">List</span>.empty[<span class="stType">Int</span>] should be (<span class="stQuotedString">'empty</span>)</pre>
+</td>
+<td class="ataglance" colspan="2">Check whether a collection is empty</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stType">List</span>.empty[<span class="stType">Int</span>] should be (<span class="stType">Nil</span>)</pre></td>
+<td class="ataglance" colspan="2">Another way to check whether a list is empty</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stType">Map</span>.empty[<span class="stType">Int</span>, <span class="stType">String</span>] should be (<span class="stType">Map()</span>)</pre>
+</td>
+<td class="ataglance" colspan="2">Another way to check whether a map (or other collection type) is empty</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stType">Set</span>.empty[<span class="stType">Int</span>] should be (<span class="stType">Set.empty</span>)</pre>
+</td>
+<td class="ataglance" colspan="2">Another way to check whether a set (or other collection type) is empty</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stType">Set</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>) should have size (<span class="stLiteral">3</span>)</pre></td>
+<td class="ataglance" colspan="2">Check the size of a collection</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>) should have length (<span class="stLiteral">3</span>)</pre>
+</td>
+<td class="ataglance" colspan="2">Check the length of a <code>Seq</code></td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stType">Set</span>(<span class="stLiteral">"three"</span>, <span class="stLiteral">"five"</span>, <span class="stLiteral">"seven"</span>) should contain (<span class="stQuotedString">"five"</span>)</pre>
+</td>
+<td class="ataglance" colspan="2">Check whether a traversable contains an element</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stType">Map</span>(<span class="stLiteral">1</span> -> <span class="stLiteral">"one"</span>, <span class="stLiteral">2</span> -> <span class="stLiteral">"two"</span>, <span class="stLiteral">3</span> -> <span class="stLiteral">"three"</span>) should contain key (<span class="stLiteral">1</span>)</pre></td>
+<td class="ataglance" colspan="2">Check whether a map contains a particular key</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stType">Map</span>(<span class="stLiteral">1</span> -> <span class="stLiteral">"Hi"</span>, <span class="stLiteral">2</span> -> <span class="stLiteral">"Howdy"</span>, <span class="stLiteral">3</span> -> <span class="stLiteral">"Hei"</span>) should contain value (<span class="stQuotedString">"Howdy"</span>)</pre></td>
+<td class="ataglance" colspan="2">Check whether a map contains a particular value</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest._
+import Matchers._
+import PartialFunctionValues._</span>
+<span class="stType">Map</span>(<span class="stLiteral">"I"</span> -> <span class="stLiteral">1</span>, <span class="stLiteral">"II"</span> -> <span class="stLiteral">2</span>, <span class="stLiteral">"III"</span> -> <span class="stLiteral">3</span>).valueAt(<span class="stQuotedString">"II"</span>) should equal (<span class="stQuotedString">2</span>)</pre></td>
+<td class="ataglance" colspan="2">State both that a map is defined at a key as well as something about its value</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._
+import java.util._</span>
+<span class="stReserved">val</span> javaCol = <span class="stReserved">new</span> <span class="stType">ArrayList</span>[<span class="stType">Int</span>]
+javaCol should be (<span class="stQuotedString">'empty</span>)</pre></td>
+<td class="ataglance" colspan="2">Check the size of a <code>java.util.Collection</code></td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._
+import java.util._</span>
+<span class="stReserved">val</span> javaMap = <span class="stReserved">new</span> <span class="stType">java.util.HashMap</span>[<span class="stType">Int</span>, <span class="stType">String</span>]
+javaMap.put(<span class="stLiteral">1</span>, <span class="stLiteral">"one"</span>)
+javaMap.put(<span class="stLiteral">2</span>, <span class="stLiteral">"two"</span>)
+javaMap.put(<span class="stLiteral">3</span>, <span class="stLiteral">"three"</span>)
+javaMap should have size (<span class="stLiteral">3</span>)</pre></td>
+<td class="ataglance" colspan="2">Check the size of a <code>java.util.Map</code></td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._
+import java.util._</span>
+<span class="stReserved">val</span> javaList = <span class="stReserved">new</span> <span class="stType">ArrayList</span>[<span class="stType">Int</span>]
+javaList.add(<span class="stLiteral">1</span>)
+javaList.add(<span class="stLiteral">2</span>)
+javaList.add(<span class="stLiteral">3</span>)
+javaList should have length (<span class="stLiteral">3</span>)</pre>
+</td>
+<td class="ataglance" colspan="2">Check the length of a <code>java.util.List</code></td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._
+import java.util._</span>
+<span class="stReserved">val</span> javaCol = <span class="stReserved">new</span> <span class="stType">HashSet</span>[<span class="stType">String</span>]
+javaCol.add(<span class="stQuotedString">"three"</span>)
+javaCol.add(<span class="stQuotedString">"five"</span>)
+javaCol.add(<span class="stQuotedString">"seven"</span>)
+javaCol should contain (<span class="stQuotedString">"five"</span>)</pre>
+</td>
+<td class="ataglance" colspan="2">Check whether a <code>java.util.Collection</code> contains a particular element</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._
+import java.util._</span>
+<span class="stReserved">val</span> javaMap = <span class="stReserved">new</span> <span class="stType">HashMap</span>[<span class="stType">Int</span>, <span class="stType">String</span>]
+javaMap.put(<span class="stLiteral">1</span>, <span class="stQuotedString">"one"</span>)
+javaMap.put(<span class="stLiteral">2</span>, <span class="stQuotedString">"two"</span>)
+javaMap.put(<span class="stLiteral">3</span>, <span class="stQuotedString">"three"</span>)
+javaMap should contain key (<span class="stLiteral">1</span>)</pre>
+</td>
+<td class="ataglance" colspan="2">Check whether a <code>java.util.Map</code> contains a particular key</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._
+import java.util._</span>
+<span class="stReserved">val</span> javaMap = <span class="stReserved">new</span> <span class="stType">HashMap</span>[<span class="stType">Int</span>, <span class="stType">String</span>]
+javaMap.put(<span class="stLiteral">1</span>, <span class="stQuotedString">"Hi"</span>)
+javaMap.put(<span class="stLiteral">2</span>, <span class="stQuotedString">"Howdy"</span>)
+javaMap.put(<span class="stLiteral">3</span>, <span class="stQuotedString">"Hai"</span>)
+javaMap should contain value (<span class="stQuotedString">"Howdy"</span>)</pre>
+</td>
+<td class="ataglance" colspan="2">Check whether a <code>java.util.Map</code> contains a particular value</td>
+</tr>
+
+<tr>
+<th colspan="4" class="ataglance">Working with <code>Option</code> and <code>Either</code></th>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stReserved">val</span> option = <span class="stType">Some</span>(<span class="stLiteral">1</span>)
+option should be (<span class="stType">Some</span>(<span class="stLiteral">1</span>))</pre></td>
+<td class="ataglance" colspan="2">Check whether an option contains a certain value</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stReserved">val</span> option = <span class="stType">Some</span>(<span class="stLiteral">1</span>)
+option should be (<span class="stLiteral">'defined</span>)</pre>
+</td>
+<td class="ataglance" colspan="2">Check whether an option is defined</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stReserved">val</span> option = <span class="stType">None</span>
+option should be (<span class="stLiteral">'empty</span>)</pre>
+</td>
+<td class="ataglance" colspan="2">Check whether an option is empty</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stReserved">val</span> option = <span class="stType">None</span>
+option should be (<span class="stType">None</span>)</pre>
+</td>
+<td class="ataglance" colspan="2">Another way to check whether an option is empty</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._
+import org.scalatest.OptionValues._</span>
+<span class="stReserved">val</span> option = <span class="stType">Some</span>(<span class="stLiteral">3</span>)
+option.value should be &lt; <span class="stLiteral">7</span></pre>
+</td>
+<td class="ataglance" colspan="2">State both that an option is defined as well as something about its value</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stReserved">val</span> either = <span class="stType">Left</span>(<span class="stLiteral">1</span>)
+either should be (<span class="stType">Left</span>(<span class="stLiteral">1</span>))</pre>
+</td>
+<td class="ataglance" colspan="2">Check whether an either is <code>Left</code> with a certain value</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stReserved">val</span> either = <span class="stType">Left</span>(<span class="stLiteral">1</span>)
+either should be (<span class="stType">'left</span>)</pre>
+</td>
+<td class="ataglance" colspan="2">Check whether an either is left</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stReserved">val</span> either = <span class="stType">Right</span>(<span class="stLiteral">1</span>)
+either should be (<span class="stType">Right</span>(<span class="stLiteral">1</span>))</pre>
+</td>
+<td class="ataglance" colspan="2">Check whether an either is <code>Right</code> with a certain value</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stReserved">val</span> either = <span class="stType">Right</span>(<span class="stLiteral">1</span>)
+either should be (<span class="stLiteral">'right</span>)</pre>
+</td>
+<td class="ataglance" colspan="2">Check whether an either is right</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._
+import org.scalatest.EitherValues._</span>
+<span class="stReserved">val</span> either = <span class="stType">Right</span>(<span class="stLiteral">3</span>)
+either.right.value should be &lt; <span class="stLiteral">7</span></pre>
+</td>
+<td class="ataglance" colspan="2">State both how an either is defined as well as something about its value</td>
+</tr>
+
+<tr>
+<th colspan="4" class="ataglance">Matchers - Logical expressions with <code>and</code>, <code>or</code>, and <code>not</code></th>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stReserved">val</span> result = <span class="stLiteral">8</span>
+result should (be &gt; <span class="stLiteral">0</span> and be &lt; <span class="stLiteral">10</span>)</pre>
+</td>
+<td class="ataglance" colspan="2">You can <em>and</em> matcher expressions together with <code>and</code></td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stType">Map</span>(<span class="stLiteral">"hi"</span> -> <span class="stLiteral">"HI"</span>, <span class="stLiteral">"hei"</span> -> <span class="stLiteral">"HEI"</span>, <span class="stLiteral">"he"</span> -> <span class="stLiteral">"HE"</span>) should (contain key (<span class="stQuotedString">"hi"</span>) or contain key (<span class="stQuotedString">"ho"</span>))</pre>
+</td>
+<td class="ataglance" colspan="2">You can <em>or</em> matcher expressions together with <code>or</code></td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stReserved">val</span> result = <span class="stLiteral">"Hello Word"</span>
+result should not be (<span class="stReserved">null</span>)</pre>
+</td>
+<td class="ataglance" colspan="2">You can negate the meaning of a matcher expression with <code>not</code></td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stType">Map</span>(<span class="stLiteral">"one"</span> -> <span class="stLiteral">1</span>, <span class="stLiteral">"two"</span> -> <span class="stLiteral">2</span>, <span class="stLiteral">"three"</span> -> <span class="stLiteral">3</span>) should (contain key (<span class="stQuotedString">"two"</span>) and not contain value (<span class="stLiteral">7</span>))</pre>
+</td>
+<td class="ataglance" colspan="2">Another example of negation with <code>not</code></td>
+</tr>
+
+<tr>
+<th colspan="2" class="ataglance">Matchers - When you need a different matcher</th>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._
+import java.awt._
+import event.KeyEvent</span>
+<span class="stReserved">val</span> canvas = <span class="stReserved">new</span> Canvas
+<span class="stReserved">val</span> keyEvent = <span class="stReserved">new</span> <span class="stType">KeyEvent</span>(canvas, <span class="stLiteral">0</span>, <span class="stLiteral">0</span>, <span class="stLiteral">0</span>, <span class="stLiteral">0</span>, <span class="stLiteral">'0'</span>)
+keyEvent should be an (<span class="stQuotedString">'actionKey</span>)</pre></td>
+<td class="ataglance" colspan="2">You can check boolean properties dynamically with <code>be</code> and a <code>Symbol</code> (the tick mark syntax); For statically typed approach,
+use a <a href="@milestoneScaladoc/#org.scalatest.matchers.BePropertyMatcher"><code>BePropertyMatcher</code></a> or
+<a href="@milestoneScaladoc/#org.scalatest.matchers.BeMatcher"><code>BeMatcher</code></a>.</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stReserved">case</span> <span class="stReserved">class</span> <span class="stType">Book</span>(title: <span class="stType">String</span>, author: <span class="stType">String</span>)
+<span class="stReserved">val</span> book = <span class="stType">Book</span>(<span class="stLiteral">"A Tale of Two Cities"</span>, <span class="stLiteral">"Sally"</span>)
+book should have ('title(<span class="stQuotedString">"A Tale of Two Cities"</span>))</pre>
+</td>
+<td class="ataglance" colspan="2">You can check arbitrary properties dynamically with <code>have</code> and a <code>Symbol</code> (the tick mark syntax); For a statically type approach,
+use a <a href="@milestoneScaladoc/#org.scalatest.matchers.HavePropertyMatcher"><code>HavePropertyMatchers</code></a></td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stReserved">val</span> defined = <span class="stQuotedString">'defined</span>
+<span class="stType">Some</span>(<span class="stQuotedString">"hi"</span>) should be (defined)
+</pre></td>
+<td class="ataglance" colspan="2">One way to get rid of the tick mark for a dynamic property check</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stReserved">val</span> beDefined = be (<span class="stQuotedString">'defined</span>)
+<span class="stType">Some</span>(<span class="stQuotedString">"hi"</span>) should beDefined
+</pre>
+</td>
+<td class="ataglance" colspan="2">One way to get rid of the tick mark <em>and</em> a pair of parentheses</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stReserved">val</span> beWithinTolerance = be &gt;= <span class="stLiteral">0</span> and be <= <span class="stLiteral">10</span>
+<span class="stLiteral">8</span> should beWithinTolerance
+</pre>
+</td>
+<td class="ataglance" colspan="2">You can create new matchers by combining existing matchers with <code>and</code>, <code>or</code>, and <code>not</code></td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest._
+import Matchers._
+import matchers._</span>
+<span class="stReserved">val</span> beOdd = Matcher((i: <span class="stType">Int</span>) =&gt; <span class="stType">MatchResult</span>(i % <span class="stLiteral">2</span> != <span class="stLiteral">0</span>, i + <span class="stLiteral">" is not odd"</span>, i + <span class="stLiteral">" is odd"</span>))
+<span class="stReserved">val</span> beOddAsInt = beOdd compose { (s: <span class="stType">String</span>) =&gt; s.toInt }
+<span class="stQuotedString">"3"</span> should beOddAsInt</pre>
+</td>
+<td class="ataglance" colspan="2">You can compose a matcher with a function that transforms the input type</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stReserved">import</span> java.io.File
+<span class="stReserved">def</span> endWithExtension(ext: <span class="stType">String</span>) =
+  endWith(ext) compose { (f: <span class="stType">File</span>) =&gt; f.getPath }
+<span class="stReserved">new</span> <span class="stType">File</span>(<span class="stQuotedString">"output.txt"</span>) should endWithExtension("txt")</pre>
+</td>
+<td class="ataglance" colspan="2">You can also use matcher composition to create a new matcher given a parameter</td>
+</tr>
+
+<tr>
+<td class="quickref" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest._
+import Matchers._
+import matchers._</span>
+<span class="stReserved">val</span> beOdd =
+  <span class="stType">Matcher</span> { (left: <span class="stType">Int</span>) =>
+    <span class="stType">MatchResult</span>(
+      left % <span class="stLiteral">2</span> == <span class="stLiteral">1</span>,
+      left + <span class="stQuotedString">" was not odd"</span>,
+      left + <span class="stQuotedString">" was odd"</span>
+    )
+  }
+<span class="stLiteral">3</span> should beOdd
+</pre>
+</td>
+<td class="quickref" colspan="2">You can use a factory method to define a custom matcher (such factory methods
+also exist for <a href="@milestoneScaladoc/#org.scalatest.matchers.BeMatcher"><code>BeMatcher</code></a>, <a href="@milestoneScaladoc/#org.scalatest.matchers.BePropertyMatcher"><code>BePropertyMatcher</code></a>, and <a href="@milestoneScaladoc/#org.scalatest.matchers.HavePropertyMatcher"><code>HavePropertyMatcher</code></a>).</td>
+</tr>
+
+<tr>
+<td class="quickref" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest._
+import Matchers._
+import matchers._</span>
+<span class="stReserved">val</span> beOdd =
+  <span class="stReserved">new</span> <span class="stType">Matcher[Int]</span> {
+    <span class="stReserved">def</span> apply(left: <span class="stType">Int</span>) =
+      <span class="stType">MatchResult</span>(
+        left % <span class="stLiteral">2</span> == <span class="stLiteral">1</span>,
+        left + <span class="stQuotedString">" was not odd"</span>,
+        left + <span class="stQuotedString">" was odd"</span>
+      )
+    }
+<span class="stLiteral">3</span> should beOdd
+</pre>
+</td>
+<td class="quickref" colspan="2">Or you can write a full-blown matcher.</td>
+</tr>
+
+<tr>
 <th class="ataglance" colspan="4">Selenium DSL</th>
 </tr>
 
