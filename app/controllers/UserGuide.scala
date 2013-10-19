@@ -80,6 +80,10 @@ object UserGuide extends Controller {
     Ok(views.html.userGuide.selectingAStyle())
   }
 
+  def definingBaseClasses = Action {
+    Ok(views.html.userGuide.definingBaseClasses())
+  }
+
   def usingJunitRunner = Action {
     Ok(views.html.userGuide.usingJunitRunner())
   }

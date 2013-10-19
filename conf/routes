@@ -44,6 +44,7 @@ GET        /user_guide/other_goodies                              controllers.Us
 GET        /user_guide/philosophy_and_design                      controllers.UserGuide.philosophyAndDesign
 GET        /user_guide/design_and_philosophy                      controllers.UserGuide.designAndPhilosophy
 GET        /user_guide/selecting_a_style                          controllers.UserGuide.selectingAStyle
+GET        /user_guide/defining_base_classes                      controllers.UserGuide.definingBaseClasses
 GET        /user_guide/using_junit_runner                         controllers.UserGuide.usingJunitRunner
 GET        /user_guide/table_driven_property_checks               controllers.UserGuide.tableDrivenPropertyChecks
 GET        /user_guide/generator_driven_property_checks           controllers.UserGuide.generatorDrivenPropertyChecks
