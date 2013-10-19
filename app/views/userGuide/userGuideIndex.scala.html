@@ -15,6 +15,8 @@
  *@
 
 @import controllers.Application.latestScaladoc
+@import controllers.Application.majorMinorScalaVersion
+@import controllers.Application.milestoneVersion
 
 @userGuidePage("User Guide") {
 
@@ -37,15 +39,38 @@ This user guide will help you get rolling quickly with ScalaTest. First a brief 
 </ul>
 
 <p>
-This user guide shows how to write tests primarily using <code>FlatSpec</code>, a style trait for behavior-driven development (BDD). 
-ScalaTest is very consistent, so the concepts you learn about <code>FlatSpec</code> will apply if you later decide to use a different
-style trait. For information about other styles, this user guide will point you to the <a href="@latestScaladoc/#org.scalatest.package">Scaladoc documentation</a>.
-ScalaTest has extensive Scaladoc documention that includes tutorials with many examples that can help you get moving quickly
-using any style.
+To include ScalaTest in your sbt project, simply add this line:
+</p>
+
+<pre class="stHighlighted">
+libraryDependencies += <span class="stQuotedString">"org.scalatest"</span> % <span class="stQuotedString">"scalatest_@{majorMinorScalaVersion}"</span> % <span class="stQuotedString">"@{milestoneVersion}"</span> % <span class="stQuotedString">"test"</span>
+</pre>
+
+<p>
+To include ScalaTest in your Maven project, use:
+</p>
+
+<pre class="stHighlighted">
+&lt;dependency&gt;
+  &lt;groupId&gt;org.scalatest&lt;/groupId&gt;
+  &lt;artifactId&gt;scalatest_2.10&lt;/artifactId&gt;
+  &lt;version&gt;@{milestoneVersion}&lt;/version&gt;
+  &lt;scope&gt;test&lt;/scope&gt;
+&lt;/dependency&gt;
+</pre>
+
+<p>
+For other ways to include ScalaTest in your project, see <a href="@routes.UserGuide.runningYourTests.url">Running your tests</a>.
 </p>
 
 <p>
-Now, get started by <a href="@routes.UserGuide.writingYourFirstTest.url">writing your first test</a>.
+Using ScalaTest on your project is as easy as 1, 2, 3:
 </p>
+
+<ol>
+<li><a href="@routes.UserGuide.selectingAStyle.url">Select your testing styles</a>
+<li><a href="@routes.UserGuide.writingYourFirstTest.url">Define your base classes</a>
+<li><a href="@routes.UserGuide.writingYourFirstTest.url">Start writing tests</a>
+</ol>
 
 }

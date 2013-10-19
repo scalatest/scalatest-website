@@ -19,7 +19,7 @@
 @userGuidePage("Selecting a style") {
 <div style="text-align: left">
 
-<h1>Selecting testing styles</h1>
+<h1>Selecting testing styles for your project</h1>
 
 <p>
 ScalaTest supports different styles of testing, each designed to address a particular set of needs.
@@ -42,6 +42,11 @@ We usually write integration tests&mdash;tests that involve subsystems such as a
 In short, ScalaTest's flexibility is not intended to enable individual developers to use different testing styles on the same project. 
 Rather, it is intended to enable project leaders to select a best-fit style or styles for the team.
 If you have trouble enforcing chosen styles, you can <a href="@milestoneScaladoc/#org.scalatest.tools.Runner$@@specifyingChosenStyles">specify the chosen styles</a> in your build.
+</p>
+
+<p>
+The style you choose dictates only how the declarations of your tests will look. Everything else in ScalaTest&mdash;assertions, matchers,
+mixin traits, <em>etc.</em>&mdash;works consistently the same way no matter what style you chose.
 </p>
 
 <h2>If you don't enjoy shopping</h2>
