@@ -36,5 +36,5 @@ tiger shouldBe a [<span class="stType">Tiger</span>]</pre>
 appleList shouldBe a [<span class="stType">List</span>[_]] <span class="stLineComment">// recommended</span>
 appleList shouldBe a [<span class="stType">List</span>[<span class="stType">Apple</span>]] <span class="stLineComment">// discouraged</span></pre>
 </td>
-<td class="ataglance" colspan="2">Check if an object is the specified <code>Class</code> instance</td>
+<td class="ataglance" colspan="2">Because type parameters are erased on the JVM, we recommend you insert an underscore for any type parameters when using this syntax. Both of the examples given test only that the result is an instance of List[_], because at runtime the type parameter has been erased</td>
 </tr>
