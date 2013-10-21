@@ -177,22 +177,6 @@ result should be (<span class="stLiteral">"hi"</span>)</pre>
 <tr>
 <td class="ataglance" colspan="2">
 <pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stReserved">val</span> result = <span class="stLiteral">21</span> / <span class="stLiteral">3</span>
-result should be === <span class="stLiteral">7</span></pre></td>
-<td class="ataglance" colspan="2">Calls <em>left</em> <code>==</code> <em>right</em>, except for arrays</td>
-</tr>
-
-<tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stType">Array</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>) should be === (<span class="stType">Array</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>))</pre>
-</td>
-<td class="ataglance" colspan="2">Arrays are compared structurally, by calling <em>left</em><code>.deep</code> <code>==</code> <em>right</em><code>.deep</code></td></tr>
-<tr>
-
-<tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
 <span class="stReserved">val</span> list = <span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>)
 <span class="stReserved">val</span> ref1 = list
 <span class="stReserved">val</span> ref2 = list
@@ -391,7 +375,7 @@ num should (be &gt;= <span class="stLiteral">1</span> and be &lt;= <span class="
 <td class="ataglance" colspan="2">
 <pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
 <span class="stReserved">val</span> seven = <span class="stLiteral">7</span>
-seven should be (<span class="stLiteral">6</span> plusOrMinus <span class="stLiteral">2</span>)</pre>
+seven should be (<span class="stLiteral">6</span> +- <span class="stLiteral">2</span>)</pre>
 </td>
 <td class="ataglance" colspan="2">Another way to ensure within a range or tolerance</td>
 </tr>
@@ -399,9 +383,9 @@ seven should be (<span class="stLiteral">6</span> plusOrMinus <span class="stLit
 <tr>
 <td class="ataglance" colspan="2">
 <pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-7.0 should be (<span class="stLiteral">6.9</span> plusOrMinus <span class="stLiteral">0.2</span>)</pre>
+7.0 should be (<span class="stLiteral">6.9</span> +- <span class="stLiteral">0.2</span>)</pre>
 </td>
-<td class="ataglance" colspan="2"><code>plusOrMinus</code> works for both integral and floating point types</td>
+<td class="ataglance" colspan="2"><code>+-</code> works for both integral and floating point types</td>
 </tr>
 
 <tr>
@@ -411,8 +395,8 @@ seven should be (<span class="stLiteral">6</span> plusOrMinus <span class="stLit
 <tr>
 <td class="ataglance" colspan="2">
 <pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-Set.empty[String] should be (<span class="stQuotedString">'empty</span>)</pre></td>
-<td class="ataglance" colspan="2">Accesses <code>empty</code> or <code>isEmpty</code> dynamically (For the details on how a field or method is dynamically selected, see the documentation for <a href="@milestoneScaladoc/#org.scalatest.matchers.Matchers$BeWord"><code>BeWord</code></a>.)</td>
+<span class="stType">Set</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>) should be (<span class="stQuotedString">'traversableAgain</span>)</pre></td>
+<td class="ataglance" colspan="2">Accesses <code>traversableAgain</code> or <code>isTraversableAgain</code> dynamically (For the details on how a field or method is dynamically selected, see the documentation for <a href="@milestoneScaladoc/#org.scalatest.words.BeWord"><code>BeWord</code></a>.)</td>
 </tr>
 
 <tr>
@@ -538,7 +522,7 @@ book should have (
 <tr>
 <td class="ataglance" colspan="2">
 <pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stType">List</span>.empty[<span class="stType">Int</span>] should be (<span class="stQuotedString">'empty</span>)</pre>
+<span class="stType">List</span>.empty[<span class="stType">Int</span>] should be (empty)</pre>
 </td>
 <td class="ataglance" colspan="2">Check whether a collection is empty</td>
 </tr>
@@ -617,8 +601,8 @@ import PartialFunctionValues._</span>
 <pre class="stTight"><span class="stImport">import org.scalatest.Matchers._
 import java.util._</span>
 <span class="stReserved">val</span> javaCol = <span class="stReserved">new</span> <span class="stType">ArrayList</span>[<span class="stType">Int</span>]
-javaCol should be (<span class="stQuotedString">'empty</span>)</pre></td>
-<td class="ataglance" colspan="2">Check the size of a <code>java.util.Collection</code></td>
+javaCol should be (empty)</pre></td>
+<td class="ataglance" colspan="2">Check if a <code>java.util.Collection</code> is empty</td>
 </tr>
 
 <tr>
@@ -710,7 +694,7 @@ option should be (<span class="stLiteral">'defined</span>)</pre>
 <td class="ataglance" colspan="2">
 <pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
 <span class="stReserved">val</span> option = <span class="stType">None</span>
-option should be (<span class="stLiteral">'empty</span>)</pre>
+option should be (empty)</pre>
 </td>
 <td class="ataglance" colspan="2">Check whether an option is empty</td>
 </tr>
