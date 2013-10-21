@@ -99,23 +99,25 @@ div#Header {
   margin: 15px 0 10px 0;
 }
  
-div#Header div#Nav {
+div#Header div#Nav, #StyleTraitOptions {
   font-size: 10px;
   color: #999;
 }
  
 div#Header div#Nav a:link,
-div#Header div#Nav a:visited {
+div#Header div#Nav a:visited,
+#StyleTraitOptions a:link,
+#StyleTraitOptions a:visited {
   font-size: 11px;
   font-weight: bold;
   color: #000;
 }
  
-div#Header div#Nav a:hover {
+div#Header div#Nav a:hover, #StyleTraitOptions a:hover {
   color: #fff;
 }
  
-div#Header div#Nav a.current:hover {
+div#Header div#Nav a.current:hover, #StyleTraitOptions a.current:hover {
   color: #000;
 }
  
