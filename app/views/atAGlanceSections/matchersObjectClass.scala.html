@@ -1,0 +1,40 @@
+@*
+* Copyright 2010-2013 Artima, Inc.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*@
+
+@(selectedStyle: examples.StyleTraitExamples)
+<tr>
+<th class="ataglance" colspan="4"><a name="object_class"></a>Matchers - Object's class</th>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2"><pre class="stTight">import org.scalatest.Matchers._
+<span class="stReserved">class</span> <span class="stType">Tiger</span>
+<span class="stReserved">val</span> tiger = <span class="stReserved">new</span> <span class="stType">Tiger</span>
+tiger shouldBe a [<span class="stType">Tiger</span>]</pre>
+</td>
+<td class="ataglance" colspan="2">Check if an object is the specified <code>Class</code> instance</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2"><pre class="stTight">import org.scalatest.Matchers._
+<span class="stReserved">class</span> <span class="stType">Apple</span>
+<span class="stReserved">val</span> apple = <span class="stReserved">new</span> <span class="stType">Tiger</span>
+<span class="stReserved">val</span> appleList = <span class="stType">List</span>(apple)
+appleList shouldBe a [<span class="stType">List</span>[_]] <span class="stLineComment">// recommended</span>
+appleList shouldBe a [<span class="stType">List</span>[<span class="stType">Apple</span>]] <span class="stLineComment">// discouraged</span></pre>
+</td>
+<td class="ataglance" colspan="2">Check if an object is the specified <code>Class</code> instance</td>
+</tr>
