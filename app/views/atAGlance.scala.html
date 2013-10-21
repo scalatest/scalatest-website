@@ -762,7 +762,8 @@ result should (be &gt; <span class="stLiteral">0</span> and be &lt; <span class=
 <tr>
 <td class="ataglance" colspan="2">
 <pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stType">Map</span>(<span class="stLiteral">"hi"</span> -> <span class="stLiteral">"HI"</span>, <span class="stLiteral">"hei"</span> -> <span class="stLiteral">"HEI"</span>, <span class="stLiteral">"he"</span> -> <span class="stLiteral">"HE"</span>) should (contain key (<span class="stQuotedString">"hi"</span>) or contain key (<span class="stQuotedString">"ho"</span>))</pre>
+<span class="stReserved">val</span> map = <span class="stType">Map</span>(<span class="stLiteral">"hi"</span> -> <span class="stLiteral">"HI"</span>, <span class="stLiteral">"hei"</span> -> <span class="stLiteral">"HEI"</span>, <span class="stLiteral">"he"</span> -> <span class="stLiteral">"HE"</span>)
+map should (contain key (<span class="stQuotedString">"hi"</span>) or contain key (<span class="stQuotedString">"ho"</span>))</pre>
 </td>
 <td class="ataglance" colspan="2">You can <em>or</em> matcher expressions together with <code>or</code></td>
 </tr>
@@ -779,13 +780,15 @@ result should not be (<span class="stReserved">null</span>)</pre>
 <tr>
 <td class="ataglance" colspan="2">
 <pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stType">Map</span>(<span class="stLiteral">"one"</span> -> <span class="stLiteral">1</span>, <span class="stLiteral">"two"</span> -> <span class="stLiteral">2</span>, <span class="stLiteral">"three"</span> -> <span class="stLiteral">3</span>) should (contain key (<span class="stQuotedString">"two"</span>) and not contain value (<span class="stLiteral">7</span>))</pre>
+<span class="stType">
+<span class="stReserved">val</span> map = Map</span>(<span class="stLiteral">"one"</span> -> <span class="stLiteral">1</span>, <span class="stLiteral">"two"</span> -> <span class="stLiteral">2</span>, <span class="stLiteral">"three"</span> -> <span class="stLiteral">3</span>)
+map should (contain key (<span class="stQuotedString">"two"</span>) and not contain value (<span class="stLiteral">7</span>))</pre>
 </td>
 <td class="ataglance" colspan="2">Another example of negation with <code>not</code></td>
 </tr>
 
 <tr>
-<th colspan="2" class="ataglance">Matchers - When you need a different matcher</th>
+<th colspan="4" class="ataglance">Matchers - When you need a different matcher</th>
 </tr>
 
 <tr>
@@ -846,7 +849,14 @@ use a <a href="@milestoneScaladoc/#org.scalatest.matchers.HavePropertyMatcher"><
 <pre class="stTight"><span class="stImport">import org.scalatest._
 import Matchers._
 import matchers._</span>
-<span class="stReserved">val</span> beOdd = Matcher((i: <span class="stType">Int</span>) =&gt; <span class="stType">MatchResult</span>(i % <span class="stLiteral">2</span> != <span class="stLiteral">0</span>, i + <span class="stLiteral">" is not odd"</span>, i + <span class="stLiteral">" is odd"</span>))
+<span class="stReserved">val</span> beOdd =
+  <span class="stType">Matcher</span>((i: <span class="stType">Int</span>) =&gt;
+    <span class="stType">MatchResult</span>(
+      i % <span class="stLiteral">2</span> != <span class="stLiteral">0</span>,
+      i + <span class="stLiteral">" is not odd"</span>,
+      i + <span class="stLiteral">" is odd"</span>
+    )
+  )
 <span class="stReserved">val</span> beOddAsInt = beOdd compose { (s: <span class="stType">String</span>) =&gt; s.toInt }
 <span class="stQuotedString">"3"</span> should beOddAsInt</pre>
 </td>
