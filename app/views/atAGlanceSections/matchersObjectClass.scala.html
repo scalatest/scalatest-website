@@ -20,7 +20,7 @@
 </tr>
 
 <tr>
-<td class="ataglance" colspan="2"><pre class="stTight">import org.scalatest.Matchers._
+<td class="ataglance" colspan="2"><pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
 <span class="stReserved">class</span> <span class="stType">Tiger</span>
 <span class="stReserved">val</span> tiger = <span class="stReserved">new</span> <span class="stType">Tiger</span>
 tiger shouldBe a [<span class="stType">Tiger</span>]</pre>
@@ -29,9 +29,9 @@ tiger shouldBe a [<span class="stType">Tiger</span>]</pre>
 </tr>
 
 <tr>
-<td class="ataglance" colspan="2"><pre class="stTight">import org.scalatest.Matchers._
+<td class="ataglance" colspan="2"><pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
 <span class="stReserved">class</span> <span class="stType">Apple</span>
-<span class="stReserved">val</span> apple = <span class="stReserved">new</span> <span class="stType">Tiger</span>
+<span class="stReserved">val</span> apple = <span class="stReserved">new</span> <span class="stType">Apple</span>
 <span class="stReserved">val</span> appleList = <span class="stType">List</span>(apple)
 appleList shouldBe a [<span class="stType">List</span>[_]] <span class="stLineComment">// recommended</span>
 appleList shouldBe a [<span class="stType">List</span>[<span class="stType">Apple</span>]] <span class="stLineComment">// discouraged</span></pre>
