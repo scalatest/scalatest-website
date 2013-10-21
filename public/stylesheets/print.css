@@ -1,2 +1,2 @@
 /* print.css */
-#StyleTraitOptions { display:none } /* navigation must have id="nav" */
+#StyleTraitOptions, #quickSections { display:none } /* navigation must have id="nav" */

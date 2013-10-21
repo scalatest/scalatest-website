@@ -28,10 +28,44 @@
 
 <br />
 
+<div id="quickSections">
+<h2>Sections</h2>
+<ul>
+<li><a href="#style">Style</a></li>
+<li><a href="#build_integration">Build Integration</a></li>
+<li><a href="#do_not_discover">Do Not Discover</a></li>
+<li><a href="#test">Test</a></li>
+<li><a href="#fixture">Fixture</a></li>
+<li>Matchers
+  <ul>
+    <li><a href="#matchers_equality_identity">Equality and identity</a></li>
+    <li><a href="#matchers_expected_exceptions">Expected exceptions</a></li>
+    <li><a href="#matchers_size_length">Size and length</a></li>
+    <li><a href="#matchers_string_regex">Strings and regular expressions</a></li>
+    <li><a href="#matchers_order_ranges">Order and ranges</a></li>
+    <li><a href="#matchers_boolean_be">Checking boolean properties with <code>be</code></a></li>
+    <li><a href="#matchers_be_matchers">Using arbitrary <code>be</code> matchers</a></li>
+    <li><a href="#matchers_have_prop">Checking arbitrary properties with <code>have</code></a></li>
+    <li><a href="#matchers_col">Working with Scala and Java collections</a></li>
+    <li><a href="#matchers_option_either">Working with <code>Option</code> and <code>Either</code></a></li>
+    <li><a href="#matchers_and_or_not">Logical expressions with <code>and</code>, <code>or</code>, and <code>not</code></a></li>
+    <li><a href="#matchers_diff_matcher">When you need a different matcher</a></li>
+
+  </ul>
+</li>
+<li><a href="#selenium_dsl">Selenium DSL</a></li>
+<li><a href="#concurrent">Concurrent Support</a></li>
+<li><a href="#inspectors">Inspectors</a></li>
+<li><a href="#other_goodies">Other Goodies</a></li>
+</ul>
+</div>
+
+<br />
+
 <table style="border-collapse: collapse; border: 1px solid black; width: 100%">
 
 <tr>
-<th class="ataglance" colspan="4">Style</th>
+<th class="ataglance" colspan="4"><a name="style"></a>Style</th>
 </tr>
 
 <tr>
@@ -39,7 +73,7 @@
 </tr>
 
 <tr>
-<th class="ataglance" colspan="4">Build Integration</th>
+<th class="ataglance" colspan="4"><a name="build_integration"></a>Build Integration</th>
 </tr>
 
 <tr>
@@ -56,7 +90,7 @@
 </tr>
 
 <tr>
-<th class="ataglance" colspan="4">Do Not Discover</th>
+<th class="ataglance" colspan="4"><a name="do_not_discover"></a>Do Not Discover</th>
 </tr>
 
 <tr>
@@ -65,7 +99,7 @@
 </tr>
 
 <tr>
-<th class="ataglance" colspan="4">Test</th>
+<th class="ataglance" colspan="4"><a name="test"></a>Test</th>
 </tr>
 
 <tr>
@@ -89,7 +123,7 @@
 </tr>
 
 <tr>
-<th class="ataglance" colspan="4">Fixture</th>
+<th class="ataglance" colspan="4"><a name="fixture"></a>Fixture</th>
 </tr>
 
 <tr>
@@ -103,7 +137,7 @@
 </tr>
 
 <tr>
-<th colspan="4" class="ataglance"><a name="matchers"></a>Matchers - Equality and identity</th>
+<th colspan="4" class="ataglance"><a name="matchers_equality_identity"></a>Matchers - Equality and identity</th>
 </tr>
 
 <tr>
@@ -168,7 +202,7 @@ ref1 should be theSameInstanceAs ref2</pre>
 </tr>
 
 <tr>
-<th colspan="4" class="ataglance">Matchers - Expected exceptions</th>
+<th colspan="4" class="ataglance"><a name="matchers_expected_exceptions"></a>Matchers - Expected exceptions</th>
 </tr>
 
 <tr>
@@ -195,7 +229,7 @@ caught.getMessage should be (<span class="stQuotedString">"String index out of r
 </tr>
 
 <tr>
-<th colspan="4" class="ataglance">Matchers - Size and length</th>
+<th colspan="4" class="ataglance"><a name="matchers_size_length"></a>Matchers - Size and length</th>
 </tr>
 
 <tr>
@@ -217,7 +251,7 @@ result should have size <span class="stLiteral">3</span></pre>
 </tr>
 
 <tr>
-<th colspan="4" class="ataglance">Matchers - Strings and regular expressions</th>
+<th colspan="4" class="ataglance"><a name="matchers_string_regex"></a>Matchers - Strings and regular expressions</th>
 </tr>
 
 <tr>
@@ -309,7 +343,7 @@ string should fullyMatch regex <span class="stQuotedString">&#34;&#34;&#34;(-)?(
 </tr>
 
 <tr>
-<th colspan="4" class="ataglance">Matchers - Order and ranges</th>
+<th colspan="4" class="ataglance"><a name="matchers_order_ranges"></a>Matchers - Order and ranges</th>
 </tr>
 
 <tr>
@@ -371,7 +405,7 @@ seven should be (<span class="stLiteral">6</span> plusOrMinus <span class="stLit
 </tr>
 
 <tr>
-<th colspan="4" class="ataglance">Matchers - Checking boolean properties with <code>be</code></th>
+<th colspan="4" class="ataglance"><a name="matchers_boolean_be"></a>Matchers - Checking boolean properties with <code>be</code></th>
 </tr>
 
 <tr>
@@ -420,7 +454,7 @@ temp should be a file</pre>
 </tr>
 
 <tr>
-<th colspan="4" class="ataglance">Matchers - Using arbitrary <code>be</code> matchers</th>
+<th colspan="4" class="ataglance"><a name="matchers_be_matchers"></a>Matchers - Using arbitrary <code>be</code> matchers</th>
 </tr>
 
 <tr>
@@ -443,7 +477,7 @@ import matchers._</span>
 </tr>
 
 <tr>
-<th colspan="4" class="ataglance">Matchers - Checking arbitrary properties with <code>have</code></th>
+<th colspan="4" class="ataglance"><a name="matchers_have_prop"></a>Matchers - Checking arbitrary properties with <code>have</code></th>
 </tr>
 
 <tr>
@@ -498,7 +532,7 @@ book should have (
 </tr>
 
 <tr>
-<th colspan="4" class="ataglance">Matchers - Working with Scala and Java collections</th>
+<th colspan="4" class="ataglance"><a name="matchers_col"></a>Matchers - Working with Scala and Java collections</th>
 </tr>
 
 <tr>
@@ -652,7 +686,7 @@ javaMap should contain value (<span class="stQuotedString">"Howdy"</span>)</pre>
 </tr>
 
 <tr>
-<th colspan="4" class="ataglance">Matchers - Working with <code>Option</code> and <code>Either</code></th>
+<th colspan="4" class="ataglance"><a name="matchers_option_either"></a>Matchers - Working with <code>Option</code> and <code>Either</code></th>
 </tr>
 
 <tr>
@@ -747,7 +781,7 @@ either.right.value should be &lt; <span class="stLiteral">7</span></pre>
 </tr>
 
 <tr>
-<th colspan="4" class="ataglance">Matchers - Logical expressions with <code>and</code>, <code>or</code>, and <code>not</code></th>
+<th colspan="4" class="ataglance"><a name="matchers_and_or_not"></a>Matchers - Logical expressions with <code>and</code>, <code>or</code>, and <code>not</code></th>
 </tr>
 
 <tr>
@@ -788,7 +822,7 @@ map should (contain key (<span class="stQuotedString">"two"</span>) and not cont
 </tr>
 
 <tr>
-<th colspan="4" class="ataglance">Matchers - When you need a different matcher</th>
+<th colspan="4" class="ataglance"><a name="matchers_diff_matcher"></a>Matchers - When you need a different matcher</th>
 </tr>
 
 <tr>
@@ -915,7 +949,7 @@ import matchers._</span>
 </tr>
 
 <tr>
-<th class="ataglance" colspan="4">Selenium DSL</th>
+<th class="ataglance" colspan="4"><a name="selenium_dsl"></a>Selenium DSL</th>
 </tr>
 
 <tr>
@@ -1173,7 +1207,7 @@ withScreenshot {
 </tr>
 
 <tr>
-<th class="ataglance" colspan="4">Concurrent Support</th>
+<th class="ataglance" colspan="4"><a name="concurrent"></a>Concurrent Support</th>
 </tr>
 
 <tr>
@@ -1228,7 +1262,7 @@ eventually (timeout(<span class="stLiteral">5</span> seconds), interval(<span cl
 </tr>
 
 <tr>
-<th class="ataglance" colspan="4">Inspectors</th>
+<th class="ataglance" colspan="4"><a name="inspectors"></a>Inspectors</th>
 </tr>
 
 <tr>
@@ -1304,7 +1338,7 @@ forExactly(<span class="stLiteral">2</span>, <span class="stType">List</span>(<s
 </tr>
 
 <tr>
-<th class="ataglance" colspan="4">Other Goodies</th>
+<th class="ataglance" colspan="4"><a name="other_goodies"></a>Other Goodies</th>
 </tr>
 
 <tr>
