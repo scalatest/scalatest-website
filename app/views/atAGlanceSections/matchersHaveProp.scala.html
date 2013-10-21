@@ -1,0 +1,73 @@
+@*
+* Copyright 2010-2013 Artima, Inc.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*@
+
+@(selectedStyle: examples.StyleTraitExamples)
+@import controllers.Application.milestoneScaladoc
+
+<tr>
+<th colspan="4" class="ataglance"><a name="matchers_have_prop"></a>Matchers - Checking arbitrary properties with <code>have</code></th>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stReserved">case</span> <span class="stReserved">class</span> <span class="stType">Book</span>(title: <span class="stType">String</span>, author: <span class="stType">String</span>, pubYear: <span class="stType">Int</span>)
+<span class="stLiteral">val</span> book = <span class="stType">Book</span>(<span class="stLiteral">"A Book"</span>, <span class="stLiteral">"Sally"</span>, <span class="stLiteral">2008</span>)
+book should have (
+  <span class="stQuotedString">'title</span> (<span class="stQuotedString">"A Book"</span>),
+  <span class="stQuotedString">'author</span> (<span class="stQuotedString">"Sally"</span>),
+  <span class="stQuotedString">'pubYear</span> (<span class="stLiteral">2008</span>)
+)
+</pre>
+</td>
+<td class="ataglance" colspan="2">Check arbitrary properties dynamically with <code>Symbols</code> (For the details on how a field or method is selected during this
+process, see <a href="@milestoneScaladoc/#org.scalatest.Matchers$HavePropertyMatcherGenerator"><code>HavePropertyMatcherGenerator</code></a>.)</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest._
+import Matchers._
+import matchers._</span>
+<span class="stReserved">case</span> <span class="stReserved">class</span> <span class="stType">Book</span>(title: <span class="stType">String</span>, author: <span class="stType">String</span>)
+<span class="stReserved">def</span> title(expectedValue: <span class="stType">String</span>) =
+  <span class="stReserved">new</span> <span class="stType">HavePropertyMatcher</span>[<span class="stType">Book</span>, <span class="stType">String</span>] {
+    <span class="stReserved">def</span> apply(book: <span class="stType">Book</span>) =
+      <span class="stType">HavePropertyMatchResult</span>(
+        book.title == expectedValue,
+        <span class="stLiteral">"title"</span>,
+        expectedValue,
+        book.title
+      )
+  }
+<span class="stReserved">def</span> author(expectedValue: <span class="stType">String</span>) =
+  <span class="stReserved">new</span> <span class="stType">HavePropertyMatcher</span>[<span class="stType">Book</span>, <span class="stType">String</span>] {
+    <span class="stReserved">def</span> apply(book: <span class="stType">Book</span>) =
+      <span class="stType">HavePropertyMatchResult</span>(
+        book.author == expectedValue,
+        <span class="stLiteral">"author"</span>,
+        expectedValue,
+        book.author
+      )
+  }
+<span class="stLiteral">val</span> book = <span class="stType">Book</span>(<span class="stLiteral">"A Book"</span>, <span class="stLiteral">"Sally"</span>)
+book should have (
+  <span class="stQuotedString">title</span> (<span class="stQuotedString">"A Book"</span>),
+  <span class="stQuotedString">author</span> (<span class="stQuotedString">"Sally"</span>)
+)
+</pre></td>
+<td class="ataglance" colspan="2">Check arbitrary properties statically with <a href="@milestoneScaladoc/#org.scalatest.matchers.HavePropertyMatcher"><code>HavePropertyMatchers</code></a></td>
+</tr>

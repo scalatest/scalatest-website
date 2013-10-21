@@ -1,0 +1,38 @@
+@*
+* Copyright 2010-2013 Artima, Inc.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*@
+
+@(selectedStyle: examples.StyleTraitExamples)
+<tr>
+<th colspan="4" class="ataglance"><a name="matchers_size_length"></a>Matchers - Size and length</th>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stReserved">val</span> result = <span class="stLiteral">"hai"</span>
+result should have length <span class="stLiteral">3</span></pre>
+</td>
+<td class="ataglance" colspan="2">Works for any object with <code>length</code> field or method or <code>getLength</code> method; length can be <code>Int</code> or <code>Long</code></td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stReserved">val</span> result = <span class="stLiteral">"hai"</span>
+result should have size <span class="stLiteral">3</span></pre>
+</td>
+<td class="ataglance" colspan="2">Works for any object with <code>size</code> field or method or <code>getSize</code> method; size can be <code>Int</code> or <code>Long</code></td>
+</tr>
