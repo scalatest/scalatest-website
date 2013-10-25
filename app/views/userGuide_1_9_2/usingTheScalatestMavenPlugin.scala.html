@@ -26,7 +26,7 @@ and access all functionality of the ScalaTest <code>Runner</code>, including par
 
 <p>
 The ScalaTest Maven plugin is not yet released final. It will be released final in conjunction with the ScalaTest 2.0 release. You can access
-it in the meantime from the <a href="https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest-maven-plugin/1.0-M2/"><code>oss.sonatype.org</code> repository</a>:
+it in the meantime from the <a href="https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest-maven-plugin/1.0-M2/"><code>oss.sonatype.org</code> repository.  (Version 1.0-RC1 is now in the maven central repository.)</a>:
 </p>
 
 <ul>
@@ -53,8 +53,8 @@ Here's an example of how to do this in your pom.xml:
 &lt;!-- enable scalatest -- &gt;
 &lt;plugin&gt;
   &lt;groupId&gt;org.scalatest&lt;/groupId&gt;
-  &lt;artifactId&gt;maven-scalatest-plugin&lt;/artifactId&gt;
-  &lt;version&gt;1.0.M2&lt;/version&gt;
+  &lt;artifactId&gt;scalatest-maven-plugin&lt;/artifactId&gt;
+  &lt;version&gt;1.0-RC1&lt;/version&gt;
   &lt;configuration&gt;
     &lt;reportsDirectory&gt;${project.build.directory}/surefire-reports&lt;/reportsDirectory&gt;
     &lt;junitxml&gt;.&lt;/junitxml&gt;
