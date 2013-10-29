@@ -17,10 +17,10 @@
 @import controllers.Application.milestoneScaladoc
 @import controllers.Application.milestoneVersion
 
-@releaseNotesPage("ScalaTest 2.0.RC1 Release Notes") {
+@releaseNotesPage("ScalaTest 2.0.RC3 Release Notes") {
 <div style="text-align: left">
 
-<h1>ScalaTest/ScalaUtils 2.0.RC1 Release Notes</h1>
+<h1>ScalaTest/ScalaUtils 2.0.RC3 Release Notes</h1>
 
 <p>
 ScalaTest/ScalaUtils 2.0 is a major release focused on easing one of the main pain points for Scala
@@ -29,9 +29,20 @@ to ScalaTest, but also to tools themselves, such as IntelliJ IDEA, the Scala IDE
 and sbt. ScalaTest 2.0.RC1 is a release candidate for ScalaTest 2.0. If no major problems are found during
 the trial phase, this version will be relabeled and released as ScalaTest 2.0.
 The <a href="#detailedList">detailed list</a> below lists all changes and enhancements in ScalaTest 2.0
-compared to ScalaTest 1.9.2. For a higher level view, here are some highlights of 2.0.RC2 over
-the previous 2.0 milestone releases and RC1:
+compared to ScalaTest 1.9.2. For a higher level view, here are some highlights of 2.0.RC3 over
+the previous 2.0 milestone releases and release candidates:
 </p>
+
+<p>
+<em>2.0.RC3 Highlights:</em>
+</p>
+
+<ul>
+<li>Changed <code>update</code> method in style traits to <code>note</code>, <code>Updater</code> to <code>Notifier</code>,
+<code>Updating</code> to <code>Notifying</code>.</li>
+<li>Made minor formatting improvements to HTML reporter for <code>markup</code> text.</li>
+<li>Improved the error messages when an attempt is made to open a scope inside a test.</li>
+</ul>
 
 <p>
 <em>2.0.RC2 Highlights:</em>
