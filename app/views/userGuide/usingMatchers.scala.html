@@ -77,7 +77,9 @@ Here is a table of contents for this page:
 <li><a href="#checkingArbitraryProperties">Checking arbitrary properties with <code>have</code></a></li>
 <li><a href="#lengthSizeHavePropertyMatchers">Using <code>length</code> and <code>size</code> with <code>HavePropertyMatcher</code>s</a></li>
 <li><a href="#usingCustomMatchers">Using custom matchers</a></li>
-<li><a href="#otherWays">Other ways to create matchers</a></li>
+<li><a href="#creatingDynamicMatchers">Creating dynamic matchers</a></li>
+<li><a href="#creatingMatchersUsingLogicalOperators">Creating matchers using logical operators</a></li>
+<li><a href="#composingMatchers">Composing matchers</a></li>
 <li><a href="#checkingForExpectedExceptions">Checking for expected exceptions</a></li>
 <li><a href="#thosePeskyParens">Those pesky parens</a></li>
 </ul>
@@ -1132,32 +1134,286 @@ for a <code>length</code> field or <code>getLength</code> method. In ScalaTest 2
 <code>MatcherFactory1[Any, Length]</code>, so it is no longer a <code>HavePropertyMatcher</code>. The <code>(of [&lt;type&gt;])</code> syntax converts the
 the <code>MatcherFactory1[Any, Length]</code> to a <code>HavePropertyMatcher[&lt;type&gt;, Int]</code>.</p>
 
-<a name="usingCustomMatchers"> </a>
-<h2> Using custom matchers </h2>
+<a name="usingCustomMatchers"></a>
+<h2>Using custom matchers </h2>
 
-<p>If none of the built-in matcher syntax (or options shown so far for extending the syntax) satisfy a particular need you have, you can create
+<p>If none of the built-in matcher syntax (or options shown so far for extending the syntax) satisfies a particular need you have, you can create
 custom <code>Matcher</code>s that allow
-you to place your own syntax directly after <code>should</code>. For example, class <code>java.io.File</code> has a method <code>isHidden</code>, which
-indicates whether a file of a certain path and name is hidden. Because the <code>isHidden</code> method takes no parameters and returns <code>Boolean</code>,
-you can call it using <code>be</code> with a symbol or <code>BePropertyMatcher</code>, yielding assertions like:</p>
+you to place your own syntax directly after <code>should</code>. For example, although you can ensure that a <code>java.io.File</code> has a name
+that ends with a particular extension like this:</p>
 
 <p><pre class="stHighlighted">
-file should be (<span class="stQuotedString">'hidden</span>)  <span class="stLineComment">// using a symbol</span>
-file should be (hidden)   <span class="stLineComment">// using a BePropertyMatcher</span>
+file.getName should endWith (<span class="stQuotedString">&quot;.txt&quot;</span>)
 </pre></p>
 
-<p>If it doesn't make sense to have your custom syntax follow <code>be</code>, you might want to create a custom <code>Matcher</code>
-instead, so your syntax can follow <code>should</code> directly. For example, you might want to be able to check whether
-a <code>java.io.File</code>'s name ends with a particular extension, like this:</p>
+<p>You might prefer
+to create a custom <code>Matcher[java.io.File]</code>
+named <code>endWithExtension</code>, so you could write expressions like:</p>
 
 <p><pre class="stHighlighted">
-<span class="stLineComment">// using a plain-old Matcher</span>
 file should endWithExtension (<span class="stQuotedString">&quot;txt&quot;</span>)
+file should not endWithExtension <span class="stQuotedString">&quot;txt&quot;</span>
+file should (exist and endWithExtension (<span class="stQuotedString">&quot;txt&quot;</span>))
 </pre></p>
 
-<p>ScalaTest provides several mechanism to make it easy to create custom matchers, including ways to compose new matchers
-out of existing ones complete with new error messages.  For more information about how to create custom
-<code>Matcher</code>s, please see the documentation for the <a href="matchers/Matcher.html"><code>Matcher</code></a> trait.</p>
+<p>One good way to organize custom matchers is to place them inside one or more
+traits that you can then mix into the suites that need them. Here's an example:</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">import</span> org.scalatest._
+<span class="stReserved">import</span> matchers._
+<br /><span class="stReserved">trait</span> <span class="stType">CustomMatchers</span> {
+<br />  <span class="stReserved">class</span> <span class="stType">FileEndsWithExtensionMatcher</span>(expectedExtension: <span class="stType">String</span>) <span class="stReserved">extends</span> <span class="stType">Matcher[java.io.File]</span> {
+<br />    <span class="stReserved">def</span> apply(left: <span class="stType">java.io.File</span>) = {
+      <span class="stReserved">val</span> name = left.getName
+      <span class="stType">MatchResult</span>(
+        name.endsWith(expectedExtension),
+        s<span class="stQuotedString">&quot;&quot;&quot;File $name did not end with extension &quot;$expectedExtension&quot;&quot;&quot;&quot;</span>,
+        s<span class="stQuotedString">&quot;&quot;&quot;File $name ended with extension &quot;$expectedExtension&quot;&quot;&quot;&quot;</span>
+      )
+    }
+  }
+<br />  <span class="stReserved">def</span> endWithExtension(expectedExtension: <span class="stType">String</span>) = <span class="stReserved">new</span> <span class="stType">FileEndsWithExtensionMatcher</span>(expectedExtension)
+}
+<br /><span class="stLineComment">// Make them easy to import with:</span>
+<span class="stLineComment">// import CustomMatchers._</span>
+<span class="stReserved">object</span> <span class="stType">CustomMatchers</span> <span class="stReserved">extends</span> <span class="stType">CustomMatchers</span>
+</pre>
+
+<p>Note: the <code>CustomMatchers</code> companion object exists to make it easy to bring the
+matchers defined in this trait into scope via importing, instead of mixing in the trait. The ability
+to import them is useful, for example, when you want to use the matchers defined in a trait in the Scala interpreter console.</p>
+
+<p>This trait contains one matcher class, <code>FileEndsWithExtensionMatcher</code>, and a <code>def</code> named <code>endWithExtension</code> that returns a new
+instance of <code>FileEndsWithExtensionMatcher</code>. Because the class extends <code>Matcher[java.io.File]</code>,
+the compiler will only allow it be used to match against instances of <code>java.io.File</code>. A matcher must declare an
+<code>apply</code> method that takes the type decared in <code>Matcher</code>'s type parameter, in this case <code>java.io.File</code>.
+The apply method will return a <code>MatchResult</code> whose <code>matches</code> field will indicate whether the match succeeded.
+The <code>failureMessage</code> field will provide a programmer-friendly error message indicating, in the event of a match failure, what caused
+the match to fail.</p>
+
+<p>The <code>FileEndsWithExtensionMatcher</code> matcher in this example determines success by determining if the passed <code>java.io.File</code> ends with
+the desired extension. It does this in the first argument passed to the <code>MatchResult</code> factory method:</p>
+
+<p><pre class="stHighlighted">
+name.endsWith(expectedExtension)
+</pre></p>
+
+<p>In other words, if the file name has the expected extension, this matcher matches.
+The next argument to <code>MatchResult</code>'s factory method produces the failure message string:</p>
+
+<p><pre class="stHighlighted">
+s<span class="stQuotedString">&quot;&quot;&quot;File $name did not end with extension &quot;$expectedExtension&quot;&quot;&quot;&quot;</span>,
+</pre></p>
+
+<p>For example, consider this matcher expression:</p>
+
+<p><pre class="stHighlighted">
+<span class="stReserved">import</span> org.scalatest._
+<span class="stReserved">import</span> Matchers._
+<span class="stReserved">import</span> java.io.File
+<span class="stReserved">import</span> CustomMatchers._
+<br /><span class="stReserved">new</span> <span class="stType">File</span>(<span class="stQuotedString">&quot;essay.text&quot;</span>) should endWithExtension (<span class="stQuotedString">&quot;txt&quot;</span>)
+</pre></p>
+
+<p>Because the passed <code>java.io.File</code> has the name <code>essay.text</code>, but the expected extension is <code>"txt"</code>, the failure
+message would be:</p>
+
+<p><pre>
+File essay.text did not have extension "txt"
+</pre></p>
+
+<p>For more information on the fields in a <code>MatchResult</code>, including the subsequent field (or fields) that follow the failure message,
+please see the documentation for <a href="MatchResult.html"><code>MatchResult</code></a>.</p>
+
+<p><a name="otherways"> </a></p>
+
+<a name="creatingDynamicMatchers"></a>
+<h2> Creating dynamic matchers </h2>
+
+<p>There are other ways to create new matchers besides defining one as shown above. For example, you might check that a file is hidden like this:</p>
+
+<p><pre class="stHighlighted">
+<span class="stReserved">new</span> <span class="stType">File</span>(<span class="stQuotedString">&quot;secret.txt&quot;</span>) should be (<span class="stQuotedString">'hidden</span>)
+</pre></p>
+
+<p>If you wanted to get rid of the tick mark, you could simply define <code>hidden</code> like this:</p>
+
+<p><pre class="stHighlighted">
+<span class="stReserved">val</span> hidden = <span class="stQuotedString">'hidden</span>
+</pre></p>
+
+<p>Now you can check that an file is hidden without the tick mark:</p>
+
+<p><pre class="stHighlighted">
+<span class="stReserved">new</span> <span class="stType">File</span>(<span class="stQuotedString">&quot;secret.txt&quot;</span>) should be (hidden)
+</pre></p>
+
+<p>You could get rid of the parens with by using <code>shouldBe</code>:</p>
+
+<p><pre class="stHighlighted">
+<span class="stReserved">new</span> <span class="stType">File</span>(<span class="stQuotedString">&quot;secret.txt&quot;</span>) shouldBe hidden
+</pre></p>
+
+<a name="creatingMatchersUsingLogicalOperators"></a>
+<h2> Creating matchers using logical operators </h2>
+
+<p>You can also use ScalaTest matchers' logical operators to combine existing matchers into new ones, like this:</p>
+
+<p><pre class="stHighlighted">
+<span class="stReserved">val</span> beWithinTolerance = be &gt;= <span class="stLiteral">0</span> and be &lt;= <span class="stLiteral">10</span>
+</pre></p>
+
+<p>Now you could check that a number is within the tolerance (in this case, between 0 and 10, inclusive), like this:</p>
+
+<p><pre class="stHighlighted">
+num should beWithinTolerance
+</pre></p>
+
+<p>When defining a full blown matcher, one shorthand is to use one of the factory methods in <code>Matcher</code>'s companion
+object. For example, instead of writing this:</p>
+
+<p><pre class="stHighlighted">
+<span class="stReserved">val</span> beOdd =
+  <span class="stReserved">new</span> <span class="stType">Matcher[Int]</span> {
+    <span class="stReserved">def</span> apply(left: <span class="stType">Int</span>) =
+      <span class="stType">MatchResult</span>(
+        left % <span class="stLiteral">2</span> == <span class="stLiteral">1</span>,
+        left + <span class="stQuotedString">&quot; was not odd&quot;</span>,
+        left + <span class="stQuotedString">&quot; was odd&quot;</span>
+      )
+  }
+</pre></p>
+
+<p>You could alternately write this:</p>
+
+<p><pre class="stHighlighted">
+<span class="stReserved">val</span> beOdd =
+  <span class="stType">Matcher</span> { (left: <span class="stType">Int</span>) =&gt;
+    <span class="stType">MatchResult</span>(
+      left % <span class="stLiteral">2</span> == <span class="stLiteral">1</span>,
+      left + <span class="stQuotedString">&quot; was not odd&quot;</span>,
+      left + <span class="stQuotedString">&quot; was odd&quot;</span>
+    )
+  }
+</pre></p>
+
+<p>Either way you define the <code>beOdd</code> matcher, you could use it like this:</p>
+
+<p><pre class="stHighlighted">
+<span class="stLiteral">3</span> should beOdd
+<span class="stLiteral">4</span> should not (beOdd)
+</pre></p>
+
+<p><a name="composingMatchers"> </a></p>
+
+<a name="composingMatchers"></a>
+<h2> Composing matchers </h2>
+
+<p>You can also compose matchers. For example, the <code>endWithExtension</code> matcher from the example above
+can be more easily created by composing a function with the existing <code>endWith</code> matcher:</p>
+
+<pre class="stREPL">
+scala&gt; import org.scalatest._
+import org.scalatest._
+
+scala&gt; import Matchers._
+import Matchers._
+
+scala&gt; import java.io.File
+import java.io.File
+
+scala&gt; def endWithExtension(ext: String) = endWith(ext) compose { (f: File) =&gt; f.getPath }
+endWithExtension: (ext: String)org.scalatest.matchers.Matcher[java.io.File]
+</pre>
+
+<p>Now you have a <code>Matcher[File]</code> whose <code>apply</code> method first
+invokes the converter function to convert the passed <code>File</code> to a <code>String</code>,
+then passes the resulting <code>String</code> to <code>endWith</code>. Thus, you could use this version
+<code>endWithExtension</code> like the previous one:</p>
+
+<p><pre class="stREPL">
+scala&gt; new File(&quot;output.txt&quot;) should endWithExtension(&quot;txt&quot;)
+</pre></p>
+
+<p>In addition, by composing twice, you can modify the type of both sides of a match statement
+with the same function, like this:</p>
+
+<pre class="stREPL">
+scala&gt; val f = be &gt; (_: Int)
+f: Int =&gt; org.scalatest.matchers.Matcher[Int] = &lt;function1&gt;
+
+scala&gt; val g = (_: String).toInt
+g: String =&gt; Int = &lt;function1&gt;
+
+scala&gt; val beAsIntsGreaterThan = (f compose g) andThen (_ compose g)
+beAsIntsGreaterThan: String =&gt; org.scalatest.matchers.Matcher[String] = &lt;function1&gt;
+
+scala&gt; &quot;8&quot; should beAsIntsGreaterThan (&quot;7&quot;)
+</pre>
+
+<p>At thsi point, however, the error message for the <code>beAsIntsGreaterThan</code>
+gives no hint that the <code>Int</code>s being compared were parsed from <code>String</code>s:</p>
+
+<pre class="stREPL">
+scala&gt; &quot;7&quot; should beAsIntsGreaterThan (&quot;8&quot;)
+org.scalatest.exceptions.TestFailedException: 7 was not greater than 8
+</pre>
+
+<p>To modify error message, you can use trait <a href="MatcherProducers.html"><code>MatcherProducers</code></a>, which
+also provides a <code>composeTwice</code> method that performs the <code>compose</code> ...
+<code>andThen</code> ... <code>compose</code> operation:</p>
+
+<pre class="stREPL">
+scala&gt; import matchers._
+import matchers._
+
+scala&gt; import MatcherProducers._
+import MatcherProducers._
+
+scala&gt; val beAsIntsGreaterThan = f composeTwice g // means: (f compose g) andThen (_ compose g)
+beAsIntsGreaterThan: String =&gt; org.scalatest.matchers.Matcher[String] = &lt;function1&gt;
+
+scala&gt; &quot;8&quot; should beAsIntsGreaterThan (&quot;7&quot;)
+</pre>
+
+<p>Of course, the error messages is still the same:</p>
+
+<pre class="stREPL">
+scala&gt; &quot;7&quot; should beAsIntsGreaterThan (&quot;8&quot;)
+org.scalatest.exceptions.TestFailedException: 7 was not greater than 8
+</pre>
+
+<p>To modify the error messages, you can use <code>mapResult</code> from <code>MatcherProducers</code>. Here's an example:</p>
+
+<pre class="stREPL">
+scala&gt; val beAsIntsGreaterThan =
+  f composeTwice g mapResult { mr =&gt;
+    mr.copy(
+      failureMessageArgs =
+        mr.failureMessageArgs.map((LazyArg(_) { &quot;\&quot;&quot; + _.toString + &quot;\&quot;.toInt&quot;})),
+      negatedFailureMessageArgs =
+        mr.negatedFailureMessageArgs.map((LazyArg(_) { &quot;\&quot;&quot; + _.toString + &quot;\&quot;.toInt&quot;})),
+      midSentenceFailureMessageArgs =
+        mr.midSentenceFailureMessageArgs.map((LazyArg(_) { &quot;\&quot;&quot; + _.toString + &quot;\&quot;.toInt&quot;})),
+      midSentenceNegatedFailureMessageArgs =
+        mr.midSentenceNegatedFailureMessageArgs.map((LazyArg(_) { &quot;\&quot;&quot; + _.toString + &quot;\&quot;.toInt&quot;}))
+    )
+  }
+beAsIntsGreaterThan: String =&gt; org.scalatest.matchers.Matcher[String] = &lt;function1&gt;
+</pre>
+
+<p>The <code>mapResult</code> method takes a function that accepts a <code>MatchResult</code> and produces a new
+<code>MatchResult</code>, which can contain modified arguments and modified error messages. In this example,
+the error messages are being modified by wrapping the old arguments in <a href="LazyArg.html"><code>LazyArg</code></a>
+instances that lazily apply the given prettification functions to the <code>toString</code> result of the old args.
+Now the error message is clearer:</p>
+
+<pre class="stREPL">
+scala&gt; &quot;7&quot; should beAsIntsGreaterThan (&quot;8&quot;)
+org.scalatest.exceptions.TestFailedException: &quot;7&quot;.toInt was not greater than &quot;8&quot;.toInt
+</pre>
+
 
 <a name="expectedExceptions">
 <h2> Checking for expected exceptions </h2>
