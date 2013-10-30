@@ -1,0 +1,145 @@
+@*
+* Copyright 2010-2013 Artima, Inc.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*@
+
+@(selectedStyle: examples.StyleTraitExamples)
+@import controllers.Application.milestoneScaladoc
+
+<tr>
+<th colspan="4" class="ataglance"><a name="matchers_diff_matcher"></a>Matchers - When you need a different matcher</th>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._
+import java.awt._
+import event.KeyEvent</span>
+<span class="stReserved">val</span> canvas = <span class="stReserved">new</span> Canvas
+<span class="stReserved">val</span> keyEvent = <span class="stReserved">new</span> <span class="stType">KeyEvent</span>(canvas, <span class="stLiteral">0</span>, <span class="stLiteral">0</span>, <span class="stLiteral">0</span>, <span class="stLiteral">0</span>, <span class="stLiteral">'0'</span>)
+keyEvent should be an (<span class="stQuotedString">'actionKey</span>)</pre></td>
+<td class="ataglance" colspan="2">You can check boolean properties dynamically with <code>be</code> and a <code>Symbol</code> (the tick mark syntax); For statically typed approach,
+use a <a href="@milestoneScaladoc/#org.scalatest.matchers.BePropertyMatcher"><code>BePropertyMatcher</code></a> or
+<a href="@milestoneScaladoc/#org.scalatest.matchers.BeMatcher"><code>BeMatcher</code></a>.</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stReserved">case</span> <span class="stReserved">class</span> <span class="stType">Book</span>(title: <span class="stType">String</span>, author: <span class="stType">String</span>)
+<span class="stReserved">val</span> book = <span class="stType">Book</span>(<span class="stLiteral">"A Tale of Two Cities"</span>, <span class="stLiteral">"Sally"</span>)
+book should have ('title(<span class="stQuotedString">"A Tale of Two Cities"</span>))</pre>
+</td>
+<td class="ataglance" colspan="2">You can check arbitrary properties dynamically with <code>have</code> and a <code>Symbol</code> (the tick mark syntax); For a statically type approach,
+use a <a href="@milestoneScaladoc/#org.scalatest.matchers.HavePropertyMatcher"><code>HavePropertyMatchers</code></a></td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stReserved">val</span> defined = <span class="stQuotedString">'defined</span>
+<span class="stType">Some</span>(<span class="stQuotedString">"hi"</span>) should be (defined)</pre>
+</td>
+<td class="ataglance" colspan="2">One way to get rid of the tick mark for a dynamic property check</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stReserved">val</span> beDefined = be (<span class="stQuotedString">'defined</span>)
+<span class="stType">Some</span>(<span class="stQuotedString">"hi"</span>) should beDefined
+</pre>
+</td>
+<td class="ataglance" colspan="2">One way to get rid of the tick mark <em>and</em> a pair of parentheses</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stReserved">val</span> beWithinTolerance = be &gt;= <span class="stLiteral">0</span> and be <= <span class="stLiteral">10</span>
+<span class="stLiteral">8</span> should beWithinTolerance
+</pre>
+</td>
+<td class="ataglance" colspan="2">You can create new matchers by combining existing matchers with <code>and</code>, <code>or</code>, and <code>not</code></td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest._
+import Matchers._
+import matchers._</span>
+<span class="stReserved">val</span> beOdd =
+  <span class="stType">Matcher</span>((i: <span class="stType">Int</span>) =&gt;
+    <span class="stType">MatchResult</span>(
+      i % <span class="stLiteral">2</span> != <span class="stLiteral">0</span>,
+      i + <span class="stLiteral">" is not odd"</span>,
+      i + <span class="stLiteral">" is odd"</span>
+    )
+  )
+<span class="stReserved">val</span> beOddAsInt = beOdd compose { (s: <span class="stType">String</span>) =&gt; s.toInt }
+<span class="stQuotedString">"3"</span> should beOddAsInt</pre>
+</td>
+<td class="ataglance" colspan="2">You can compose a matcher with a function that transforms the input type</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stReserved">import</span> java.io.File
+<span class="stReserved">def</span> endWithExtension(ext: <span class="stType">String</span>) =
+  endWith(ext) compose { (f: <span class="stType">File</span>) =&gt; f.getPath }
+<span class="stReserved">new</span> <span class="stType">File</span>(<span class="stQuotedString">"output.txt"</span>) should endWithExtension("txt")</pre>
+</td>
+<td class="ataglance" colspan="2">You can also use matcher composition to create a new matcher given a parameter</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest._
+import Matchers._
+import matchers._</span>
+<span class="stReserved">val</span> beOdd =
+  <span class="stType">Matcher</span> { (left: <span class="stType">Int</span>) =>
+    <span class="stType">MatchResult</span>(
+      left % <span class="stLiteral">2</span> == <span class="stLiteral">1</span>,
+      left + <span class="stQuotedString">" was not odd"</span>,
+      left + <span class="stQuotedString">" was odd"</span>
+    )
+  }
+<span class="stLiteral">3</span> should beOdd
+</pre>
+</td>
+<td class="ataglance" colspan="2">You can use a factory method to define a custom matcher (such factory methods
+also exist for <a href="@milestoneScaladoc/#org.scalatest.matchers.BeMatcher"><code>BeMatcher</code></a>, <a href="@milestoneScaladoc/#org.scalatest.matchers.BePropertyMatcher"><code>BePropertyMatcher</code></a>, and <a href="@milestoneScaladoc/#org.scalatest.matchers.HavePropertyMatcher"><code>HavePropertyMatcher</code></a>).</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest._
+import Matchers._
+import matchers._</span>
+<span class="stReserved">val</span> beOdd =
+  <span class="stReserved">new</span> <span class="stType">Matcher[Int]</span> {
+    <span class="stReserved">def</span> apply(left: <span class="stType">Int</span>) =
+      <span class="stType">MatchResult</span>(
+        left % <span class="stLiteral">2</span> == <span class="stLiteral">1</span>,
+        left + <span class="stQuotedString">" was not odd"</span>,
+        left + <span class="stQuotedString">" was odd"</span>
+      )
+  }
+<span class="stLiteral">3</span> should beOdd
+</pre>
+</td>
+<td class="ataglance" colspan="2">Or you can write a full-blown matcher.</td>
+</tr>

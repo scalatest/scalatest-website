@@ -1,0 +1,111 @@
+@*
+* Copyright 2010-2013 Artima, Inc.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*@
+
+@(selectedStyle: examples.StyleTraitExamples)
+<tr>
+<th colspan="4" class="ataglance"><a name="matchers_option_either"></a>Matchers - Working with <code>Option</code> and <code>Either</code></th>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stReserved">val</span> option = <span class="stType">Some</span>(<span class="stLiteral">1</span>)
+option should be (<span class="stType">Some</span>(<span class="stLiteral">1</span>))</pre></td>
+<td class="ataglance" colspan="2">Check whether an option contains a certain value</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stReserved">val</span> option = <span class="stType">Some</span>(<span class="stLiteral">1</span>)
+option should be (<span class="stLiteral">'defined</span>)</pre>
+</td>
+<td class="ataglance" colspan="2">Check whether an option is defined</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stReserved">val</span> option = <span class="stType">None</span>
+option should be (empty)</pre>
+</td>
+<td class="ataglance" colspan="2">Check whether an option is empty</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stReserved">val</span> option = <span class="stType">None</span>
+option should be (<span class="stType">None</span>)</pre>
+</td>
+<td class="ataglance" colspan="2">Another way to check whether an option is empty</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._
+import org.scalatest.OptionValues._</span>
+<span class="stReserved">val</span> option = <span class="stType">Some</span>(<span class="stLiteral">3</span>)
+option.value should be &lt; <span class="stLiteral">7</span></pre>
+</td>
+<td class="ataglance" colspan="2">State both that an option is defined as well as something about its value</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stReserved">val</span> either = <span class="stType">Left</span>(<span class="stLiteral">1</span>)
+either should be (<span class="stType">Left</span>(<span class="stLiteral">1</span>))</pre>
+</td>
+<td class="ataglance" colspan="2">Check whether an either is <code>Left</code> with a certain value</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stReserved">val</span> either = <span class="stType">Left</span>(<span class="stLiteral">1</span>)
+either should be (<span class="stType">'left</span>)</pre>
+</td>
+<td class="ataglance" colspan="2">Check whether an either is left</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stReserved">val</span> either = <span class="stType">Right</span>(<span class="stLiteral">1</span>)
+either should be (<span class="stType">Right</span>(<span class="stLiteral">1</span>))</pre>
+</td>
+<td class="ataglance" colspan="2">Check whether an either is <code>Right</code> with a certain value</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stReserved">val</span> either = <span class="stType">Right</span>(<span class="stLiteral">1</span>)
+either should be (<span class="stLiteral">'right</span>)</pre>
+</td>
+<td class="ataglance" colspan="2">Check whether an either is right</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._
+import org.scalatest.EitherValues._</span>
+<span class="stReserved">val</span> either = <span class="stType">Right</span>(<span class="stLiteral">3</span>)
+either.right.value should be &lt; <span class="stLiteral">7</span></pre>
+</td>
+<td class="ataglance" colspan="2">State both how an either is defined as well as something about its value</td>
+</tr>
