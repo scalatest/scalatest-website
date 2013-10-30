@@ -614,8 +614,10 @@ cleanup code is performed even if <code>super.afterEach</code> throws an excepti
 that setup and cleanup code happens before and after the test in <code>BeforeAndAfterEach</code>, but at the beginning and
 end of the test in <code>withFixture</code>. Thus if a <code>withFixture</code> method completes abruptly with an exception, it is
 considered a failed test. By contrast, if any of the <code>beforeEach</code> or <code>afterEach</code> methods of <code>BeforeAndAfterEach</code>
-complete abruptly, it is considered an aborted suite, which will result in a <a href="@milestoneScaladoc/#org.scalatest.events.SuiteAborted"><code>SuiteAborted</code></a> event.</p>
+complete abruptly, it is considered an aborted suite, which will result in a
+<a href="@milestoneScaladoc/#org.scalatest.events.SuiteAborted"><code>SuiteAborted</code></a> event.</p>
 
+</div>
 }
 
 
