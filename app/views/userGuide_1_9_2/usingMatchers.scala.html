@@ -14,7 +14,7 @@
  * limitations under the License.
  *@
 
-@import controllers.Application.latestScaladoc
+@import controllers.Application.latestScaladocFor192
 
 @userGuidePage("Using matchers") {
 <div style="text-align: left">
@@ -22,12 +22,12 @@
 <h1>Using matchers</h1>
 
 <p>
-(See also <a href="/user_guide/matchers_quick_reference">Matchers quick reference</a>.)
+(See also <a href="@routes.UserGuide192.matchersQuickReference.url">Matchers quick reference</a>.)
 </p>
 
 <p>
 ScalaTest provides a domain specific language (DSL) for expressing assertions in tests
-using the word <code>should</code> or <code>must</code>. If you prefer the word <code>should</code>, you mix in <a href="@latestScaladoc/#org.scalatest.matchers.ShouldMatchers"><code>ShouldMatchers</code></a>, like this:
+using the word <code>should</code> or <code>must</code>. If you prefer the word <code>should</code>, you mix in <a href="@latestScaladocFor192/index.html#org.scalatest.matchers.ShouldMatchers"><code>ShouldMatchers</code></a>, like this:
 </p>
 
 <pre class="stHighlighted">
@@ -37,7 +37,7 @@ using the word <code>should</code> or <code>must</code>. If you prefer the word 
 <span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> <span class="stReserved">with</span> <span class="stType">ShouldMatchers</span> &#123; ...
 </pre>
 
-If you prefer <code>must</code>, you mix in <a href="@latestScaladoc/#org.scalatest.matchers.MustMatchers"><code>MustMatchers</code></a>: 
+If you prefer <code>must</code>, you mix in <a href="@latestScaladocFor192/index.html#org.scalatest.matchers.MustMatchers"><code>MustMatchers</code></a>:
 
 <pre class="stHighlighted">
 <span class="stReserved">import</span> org.scalatest.FlatSpec
@@ -286,7 +286,7 @@ This <code>be</code> syntax can be used with any type.  If the object does
 not have an appropriately named predicate method, you'll get a <code>TestFailedException</code>
 at runtime with a detail message that explains the problem.
 (For the details on how a field or method is selected during this
-process, see the documentation for <a href="@latestScaladoc/#org.scalatest.matchers.Matchers$BeWord"><code>BeWord</code></a>.)
+process, see the documentation for <a href="@latestScaladocFor192/index.html#org.scalatest.matchers.ClassicMatchers$BeWord"><code>BeWord</code></a>.)
 </p>
 
 <p>
@@ -326,7 +326,7 @@ These expressions would fail to compile if <code>should</code> is used on an ina
 by the type parameter of the <code>BePropertyMatcher</code> being used. (For example, <code>file</code> in this example
 would likely be of type <code>BePropertyMatcher[java.io.File]</code>. If used with an appropriate type, such an expression will compile
 and at run time the <code>Boolean</code> property method or field will be accessed directly; <em>i.e.</em>, no reflection will be used.
-See the documentation for <a href="@latestScaladoc/#org.scalatest.matchers.BePropertyMatcher"><code>BePropertyMatcher</code></a> for more information.
+See the documentation for <a href="@latestScaladocFor192/index.html#org.scalatest.matchers.BePropertyMatcher"><code>BePropertyMatcher</code></a> for more information.
 </p>
 
 <a name="creatingCustomBeMatchers"></a>
@@ -344,7 +344,7 @@ num should be (odd)
 num should not be (even)
 </pre>
 
-For more information, see the documentation for <a href="@latestScaladoc/#org.scalatest.matchers.BeMatcher"><code>BeMatcher</code></a>.
+For more information, see the documentation for <a href="@latestScaladocFor192/index.html#org.scalatest.matchers.BeMatcher"><code>BeMatcher</code></a>.
 
 <a name="checkingObjectIdentity"></a>
 <h2>Checking object identity</h2>
@@ -728,7 +728,7 @@ option should be (<span class="stQuotedString">'defined</span>)
 </pre>
 
 <p>
-If you mix in (or import the members of) <a href="@latestScaladoc/#org.scalatest.OptionValues"><code>OptionValues</code></a>,
+If you mix in (or import the members of) <a href="@latestScaladocFor192/index.html#org.scalatest.OptionValues"><code>OptionValues</code></a>,
 you can write one statement that indicates you believe an option should be defined and then say something else about its value. Here's an example:
 </p>
 
@@ -761,7 +761,7 @@ named <code>title</code>, or a public method named <code>getTitle</code>, that w
 in a the string <code>"Programming in Scala"</code>. If all specified properties exist and have their expected values, respectively,
 execution will continue. If one or more of the properties either does not exist, or exists but results in an unexpected value,
 a <code>TestFailedException</code> will be thrown that explains the problem. (For the details on how a field or method is selected during this
-process, see the documentation for <a href="@latestScaladoc/#org.scalatest.matchers.Matchers$HavePropertyMatcherGenerator"><code>HavePropertyMatcherGenerator</code></a>.)
+process, see the documentation for <a href="@latestScaladocFor192/index.html#org.scalatest.matchers.Matchers$HavePropertyMatcherGenerator"><code>HavePropertyMatcherGenerator</code></a>.)
 </p>
 
 <p>
@@ -822,7 +822,7 @@ These expressions would fail to compile if <code>should</code> is used on an ina
 by the type parameter of the <code>HavePropertyMatcher</code> being used. (For example, <code>title</code> in this example
 might be of type <code>HavePropertyMatcher[org.publiclibrary.Book]</code>. If used with an appropriate type, such an expression will compile
 and at run time the property method or field will be accessed directly; <em>i.e.</em>, no reflection will be used.
-See the documentation for <a href="@latestScaladoc/#org.scalatest.matchers.HavePropertyMatcher"><code>HavePropertyMatcher</code></a> for more information.
+See the documentation for <a href="@latestScaladocFor192/index.html#org.scalatest.matchers.HavePropertyMatcher"><code>HavePropertyMatcher</code></a> for more information.
 </p>
 
 <a name="usingCustomMatchers"></a>
@@ -936,7 +936,7 @@ The file named temp.txt did not exist
 
 <p>
 For more information on the fields in a <code>MatchResult</code>, including the subsequent three fields that follow the failure message,
-please see the documentation for <a href="@latestScaladoc/#org.scalatest.matchers.MatchResult"><code>MatchResult</code></a>.
+please see the documentation for <a href="@latestScaladocFor192/index.html#org.scalatest.matchers.MatchResult"><code>MatchResult</code></a>.
 </p>
 
 <p>
@@ -1213,7 +1213,7 @@ forget a set of needed parentheses.
 </p>
 
 <p>
-Next, learn about <a href="/user_guide/testing_with_mock_objects">testing with mock objects</a>.
+Next, learn about <a href="@routes.UserGuide192.testingWithMockObjects">testing with mock objects</a>.
 </p>
 </div>
 }

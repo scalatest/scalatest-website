@@ -14,7 +14,7 @@
  * limitations under the License.
  *@
 
-@import controllers.Application.latestScaladoc
+@import controllers.Application.latestScaladocFor192
 
 @userGuidePage("Table-driven property checks") {
 <div style="text-align: left">
@@ -22,16 +22,16 @@
 <h1>Table-driven property checks</h1>
 
 <p>
-To use table-driven property checks, you must mix in trait <a href="@latestScaladoc/#org.scalatest.prop.TableDrivenPropertyChecks"><code>TableDrivenPropertyChecks</code></a> (or import the
+To use table-driven property checks, you must mix in trait <a href="@latestScaladocFor192/index.html#org.scalatest.prop.TableDrivenPropertyChecks"><code>TableDrivenPropertyChecks</code></a> (or import the
 members of its companion object). If you are also using generator-driven property checks, you can mix in
-trait <a href="@latestScaladoc/#org.scalatest.prop.PropertyChecks"><code>PropertyChecks</code></a>,
-which extends both <code>TableDrivenPropertyChecks</code> and <a href="@latestScaladoc/#org.scalatest.prop.GeneratorDrivenPropertyChecks"><code>GeneratorDrivenPropertyChecks</code></a>.
+trait <a href="@latestScaladocFor192/index.html#org.scalatest.prop.PropertyChecks"><code>PropertyChecks</code></a>,
+which extends both <code>TableDrivenPropertyChecks</code> and <a href="@latestScaladocFor192/index.html#org.scalatest.prop.GeneratorDrivenPropertyChecks"><code>GeneratorDrivenPropertyChecks</code></a>.
 </p>
 
 <p>
 Trait <code>TableDrivenPropertyChecks</code> contains one <code>forAll</code> method for each <code>TableForN</code>
-class, <a href="@latestScaladoc/#org.scalatest.prop.TableFor1"><code>TableFor1</code></a>
-through <a href="@latestScaladoc/#org.scalatest.prop.TableFor22"><code>TableFor22</code></a>, which allow properties to be checked against the
+class, <a href="@latestScaladocFor192/index.html#org.scalatest.prop.TableFor1"><code>TableFor1</code></a>
+through <a href="@latestScaladocFor192/index.html#org.scalatest.prop.TableFor22"><code>TableFor22</code></a>, which allow properties to be checked against the
 rows of a table. It also contains a <code>wherever</code> method that can be used to indicate a property need only hold whenever some
 condition is true.
 </p>
@@ -119,9 +119,9 @@ example, if the tuples in the table supplied to <code>forAll</code> each contain
 <code>Int</code>, a <code>String</code>, and a <code>List[Char]</code>, then the function supplied
 to <code>forAll</code> must take 3 parameters, an <code>Int</code>, a <code>String</code>,
 and a <code>List[Char]</code>. The <code>forAll</code> method will pass each row of data to
-the function, and generate a <a href="@latestScaladoc/#org.scalatest.prop.TableDrivenPropertyCheckFailedException"><code>TableDrivenPropertyCheckFailedException</code></a> if the function
-completes abruptly for any row of data with any exception that would <a href="@latestScaladoc/#org.scalatest.Suite&#64;errorHandling">normally cause</a> a test to
-fail in ScalaTest other than <a href="@latestScaladoc/#org.scalatest.prop.DiscardedEvaluationException"><code>DiscardedEvaluationException</code></a>. An
+the function, and generate a <a href="@latestScaladocFor192/index.html#org.scalatest.exceptions.TableDrivenPropertyCheckFailedException"><code>TableDrivenPropertyCheckFailedException</code></a> if the function
+completes abruptly for any row of data with any exception that would <a href="@latestScaladocFor192/index.html#org.scalatest.Suite&#64;errorHandling">normally cause</a> a test to
+fail in ScalaTest other than <a href="@latestScaladocFor192/index.html#org.scalatest.exceptions.DiscardedEvaluationException"><code>DiscardedEvaluationException</code></a>. An
 <code>DiscardedEvaluationException</code>,
 which is thrown by the <code>whenever</code> method (also defined in this trait) to indicate
 a condition required by the property function is not met by a row
@@ -276,7 +276,7 @@ forAll (invalidCombos) { (n: <span class="stType">Int</span>, d: <span class="st
 </pre>
 
 <p>
-Next, learn about <a href="/user_guide/generator_driven_property_checks">generator-driven property checks</a>.
+Next, learn about <a href="@routes.UserGuide192.generatorDrivenPropertyChecks.url">generator-driven property checks</a>.
 </p>
 
 </div>

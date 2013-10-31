@@ -30,6 +30,7 @@ object Application extends Controller {
   val releasesLocation = "http://www.artima.com/downloadScalaTest"
   val baseScalaVersion = "2.10.0"
   val majorMinorScalaVersion = "2.10"
+  val latestScaladocFor192 = "http://doc.scalatest.org/1.9.2"
 
   def index = Action {
     Ok(views.html.index())

@@ -14,7 +14,7 @@
  * limitations under the License.
  *@
 
-@import controllers.Application.latestScaladoc
+@import controllers.Application.latestScaladocFor192
 
 @userGuidePage("Writing ScalaCheck-style properties") {
 <div style="text-align: left">
@@ -28,8 +28,8 @@ when tests are run. This page describes the ScalaCheck style.
 </p>
 
 <p>
-To write properties in the ScalaCheck style, mix in trait <a href="@latestScaladoc/#org.scalatest.prop.Checkers"><code>Checkers</code></a> or
-import the members of its <a href="@latestScaladoc/#org.scalatest.prop.Checkers$">companion object</a>. Trait <code>Checkers</code>
+To write properties in the ScalaCheck style, mix in trait <a href="@latestScaladocFor192/index.html#org.scalatest.prop.Checkers"><code>Checkers</code></a> or
+import the members of its <a href="@latestScaladocFor192/index.html#org.scalatest.prop.Checkers$">companion object</a>. Trait <code>Checkers</code>
 contains several <code>check</code> methods that perform ScalaCheck property checks. If ScalaCheck finds a test case for which a property doesn't
 hold, the problem will be reported as a ScalaTest test failure.
 </p>
@@ -221,16 +221,16 @@ in case you want to configure ScalaCheck that way.
 
 <p>
 For more information, see the documentation
-for supertrait <a href="@latestScaladoc/#org.scalatest.prop.Configuration"><code>Configuration</code></a>.
+for supertrait <a href="@latestScaladocFor192/index.html#org.scalatest.prop.Configuration"><code>Configuration</code></a>.
 </p>
 
 <a name="selectingAStyle"></a><h2>Selecting a property-based testing style</h2>
 
 <p>
 For the ScalaTest style, you mix in 
-trait <a href="@latestScaladoc/#org.scalatest.prop.GeneratorDrivenPropertyChecks"><code>GeneratorDrivenPropertyChecks</code></a> and
+trait <a href="@latestScaladocFor192/index.html#org.scalatest.prop.GeneratorDrivenPropertyChecks"><code>GeneratorDrivenPropertyChecks</code></a> and
 express properties with <code>whenever</code> clauses and matcher expressions. For the ScalaCheck style, you mix in trait
-<a href="@latestScaladoc/#org.scalatest.prop.Checkers"><code>Checkers</code></a> and
+<a href="@latestScaladocFor192/index.html#org.scalatest.prop.Checkers"><code>Checkers</code></a> and
 express properties as boolean expressions, using ScalaCheck's native operators such as <code>==&gt;</code>, <code>:|</code>, <code>|:</code>, and so on, as
 needed.  The purpose of the ScalaTest style is to make property-based
 testing more consistent with the other styles of testing that ScalaTest supports.
@@ -309,7 +309,7 @@ This form would also fail indicating the args were (0, 0), giving the line numbe
 </p>
 
 <p>
-Next, learn about <a href="/user_guide/philosophy_and_design">ScalaTest's philosophy and design</a>.
+Next, learn about <a href="@routes.UserGuide192.philosophyAndDesign.url">ScalaTest's philosophy and design</a>.
 </p>
 
 </div>

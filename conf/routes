@@ -6,6 +6,7 @@ GET        /                                                      controllers.Ap
 GET        /quick_start                                           controllers.Application.quickStart
 GET        /download                                              controllers.Application.download
 GET        /user_guide                                            controllers.UserGuide.userGuideIndex
+GET        /user_guide_1_9_2                                      controllers.UserGuide192.userGuideIndex
 GET        /scaladoc                                              controllers.Application.scaladoc
 GET        /community                                             controllers.Application.community
 GET        /about                                                 controllers.Application.about
@@ -60,6 +61,34 @@ GET        /user_guide/using_the_scalatest_maven_plugin           controllers.Us
 GET        /user_guide/customizing_scalatest                      controllers.UserGuide.customizingScalatest
 GET        /user_guide/using_scalatest_with_eclipse               controllers.UserGuide.usingScalatestWithEclipse
 GET        /user_guide/using_selenium                             controllers.UserGuide.usingSelenium
+
+GET        /user_guide_1_9_2/using_assertions                     controllers.UserGuide192.usingAssertions
+GET        /user_guide_1_9_2/writing_your_first_test              controllers.UserGuide192.writingYourFirstTest
+GET        /user_guide_1_9_2/tagging_your_tests                   controllers.UserGuide192.taggingYourTests
+GET        /user_guide_1_9_2/running_your_tests                   controllers.UserGuide192.runningYourTests
+GET        /user_guide_1_9_2/sharing_fixtures                     controllers.UserGuide192.sharingFixtures
+GET        /user_guide_1_9_2/sharing_tests                              controllers.UserGuide192.sharingTests
+GET        /user_guide_1_9_2/using_matchers                             controllers.UserGuide192.usingMatchers
+GET        /user_guide_1_9_2/testing_with_mock_objects                  controllers.UserGuide192.testingWithMockObjects
+GET        /user_guide_1_9_2/tests_as_specifications                    controllers.UserGuide192.testsAsSpecifications
+GET        /user_guide_1_9_2/property_based_testing                     controllers.UserGuide192.propertyBasedTesting
+GET        /user_guide_1_9_2/other_goodies                              controllers.UserGuide192.otherGoodies
+GET        /user_guide_1_9_2/philosophy_and_design                      controllers.UserGuide192.philosophyAndDesign
+GET        /user_guide_1_9_2/design_and_philosophy                      controllers.UserGuide192.designAndPhilosophy
+GET        /user_guide_1_9_2/selecting_a_style                          controllers.UserGuide192.selectingAStyle
+GET        /user_guide_1_9_2/using_junit_runner                         controllers.UserGuide192.usingJunitRunner
+GET        /user_guide_1_9_2/table_driven_property_checks               controllers.UserGuide192.tableDrivenPropertyChecks
+GET        /user_guide_1_9_2/generator_driven_property_checks           controllers.UserGuide192.generatorDrivenPropertyChecks
+GET        /user_guide_1_9_2/writing_scalacheck_style_properties        controllers.UserGuide192.writingScalacheckStyleProperties
+GET        /user_guide_1_9_2/using_the_runner                           controllers.UserGuide192.usingTheRunner
+GET        /user_guide_1_9_2/invoking_execute                           controllers.UserGuide192.invokingExecute
+GET        /user_guide_1_9_2/using_the_scalatest_shell                  controllers.UserGuide192.usingTheScalatestShell
+GET        /user_guide_1_9_2/using_scalatest_with_sbt                   controllers.UserGuide192.usingScalatestWithSbt
+GET        /user_guide_1_9_2/using_the_scalatest_ant_task               controllers.UserGuide192.usingTheScalatestAntTask
+GET        /user_guide_1_9_2/matchers_quick_reference                   controllers.UserGuide192.matchersQuickReference
+GET        /user_guide_1_9_2/using_the_scalatest_maven_plugin           controllers.UserGuide192.usingTheScalatestMavenPlugin
+#GET        /user_guide_1_9_2/customizing_scalatest                      controllers.UserGuide192.customizingScalatest
+GET        /user_guide_1_9_2/using_scalatest_with_eclipse               controllers.UserGuide192.usingScalatestWithEclipse
 
 GET        /scaladoc/:release/                                    controllers.Application.scaladocs(release)
 GET        /scaladoc-:release/                                    controllers.Application.scaladocs(release)
