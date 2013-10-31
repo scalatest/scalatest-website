@@ -21,9 +21,11 @@
 
 <h1>Using matchers</h1>
 
+<!--
 <p>
 (See also <a href="/user_guide/matchers_quick_reference">Matchers quick reference</a>.)
 </p>
+-->
 
 <p>
 ScalaTest provides a domain specific language (DSL) for expressing assertions in tests
@@ -623,7 +625,8 @@ has three 3's and the right hand side has only two:</p>
 
 <p><pre class="stREPL">
 List(1, 2, 2, 3, 3, 3) should contain theSameElementsAs Vector(3, 2, 3, 1, 2)
-org.scalatest.exceptions.TestFailedException: List(1, 2, 2, 3, 3, 3) did not contain the same elements as Vector(3, 2, 3, 1, 2)
+org.scalatest.exceptions.TestFailedException: List(1, 2, 2, 3, 3, 3) did not contain the same
+    elements as Vector(3, 2, 3, 1, 2)
         at ...
 </pre></p>
 
@@ -694,8 +697,9 @@ than allowing inconsistencies between sequences and iterators in the API, we cho
 scala&gt; <span class="stReserved">val</span> it = <span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>).iterator
 it: <span class="stType">Iterator[Int]</span> = non-empty iterator
 <br />scala&gt; it should contain (<span class="stLiteral">2</span>)
-&lt;console&gt;:<span class="stLiteral">15</span>: error: could not find <span class="stReserved">implicit</span> value <span class="stReserved">for</span> parameter typeClass1: <span class="stType">org.scalatest.enablers.Containing[Iterator[Int]]</span>
-           it should contain (<span class="stLiteral">2</span>)
+&lt;console&gt;:15: error: could not find implicit value for parameter
+    typeClass1: org.scalatest.enablers.Containing[Iterator[Int]]
+           it should contain (2)
               ^
 </pre>
 
