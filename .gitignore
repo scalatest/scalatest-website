@@ -11,3 +11,5 @@ bin
 .classpath
 .project
 .cache
+.idea/
+.idea_modules/
