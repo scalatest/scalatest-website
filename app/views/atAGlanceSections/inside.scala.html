@@ -1,0 +1,43 @@
+@*
+* Copyright 2010-2013 Artima, Inc.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*@
+
+@(selectedStyle: examples.StyleTraitExamples)
+@import controllers.Application.milestoneScaladoc
+
+<tr>
+<th class="ataglance" colspan="4"><a name="inside"></a>Inside</th>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2">
+<pre class="stTight"><span class="stImport">import org.scalatest._
+import Matchers._
+import Inside._</span>
+<span class="stReserved">case</span> <span class="stReserved">class</span> <span class="stType">Name</span>(first: <span class="stType">String</span>, middle: <span class="stType">String</span>, last: <span class="stType">String</span>)
+<span class="stReserved">case</span> <span class="stReserved">class</span> <span class="stType">Record</span>(name: <span class="stType">Name</span>, age: <span class="stType">Int</span>)
+<span class="stReserved">val</span> rec =
+  <span class="stType">Record</span>(
+    <span class="stType">Name</span>(<span class="stLiteral">"Sally"</span>, <span class="stLiteral">"Anna"</span>, <span class="stLiteral">"Jones"</span>),
+    <span class="stLiteral">38</span>
+  )
+inside (rec) { case <span class="stType">Record</span>(name, age) =>
+  inside (name) { case <span class="stType">Name</span>(first, middle, last) =>
+    first should be (<span class="stLiteral">"Sally"</span>)
+  }
+}</pre>
+</td>
+<td class="ataglance" colspan="2">Checking nested object graph using <a href="@{milestoneScaladoc}/index.html#org.scalatest.Inside"><code>Inside</code></a></td>
+</tr>

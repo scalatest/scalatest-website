@@ -14,7 +14,10 @@
  * limitations under the License.
  *@
 
+@import controllers.Application.latestScaladocFor192
+
 @userGuidePage("Using the Runner") {
+
 <div style="text-align: left">
 
 <h1>Using the Runner</h1>
@@ -251,7 +254,7 @@ except those mentioned in the tags to exclude (and in the <code>org.scalatest.Ig
 (In other words, the absence of a <code>-n</code> option is like a wildcard, indicating all tests be included.)
 If tags to include is specified, then only those tests whose tags are mentioned in the argument following <code>-n</code>
 and not mentioned in the tags to exclude, will be executed. For more information on test tags, see
-the <a href="../Suite.html">documentation for <code>Suite</code></a>. Here are some examples:
+the <a href="@latestScaladocFor192/index.html#org.scalatest.Suite">documentation for <code>Suite</code></a>. Here are some examples:
 </p>
 
 <p>
@@ -270,7 +273,7 @@ tests in parallel. If you include <code>-c</code> on the command line, <code>Run
 the <code>Suite</code>s you specify with <code>-s</code>. <code>Runner</code> will set up a thread pool to execute any <code>Suite</code>s
 passed to the <code>Distributor</code>'s <code>put</code> method in parallel. Trait <code>Suite</code>'s implementation of
 <code>runNestedSuites</code> will place any nested <code>Suite</code>s into this <code>Distributor</code>. Thus, if you have a <code>Suite</code>
-of tests that must be executed sequentially, you should override <code>runNestedSuites</code> as described in the <a href="../Distributor.html">documentation for <code>Distributor</code></a>.
+of tests that must be executed sequentially, you should override <code>runNestedSuites</code> as described in the <a href="@latestScaladocFor192/index.html#org.scalatest.Distributor">documentation for <code>Distributor</code></a>.
 </p>
 
 <p>

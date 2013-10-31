@@ -1,0 +1,29 @@
+@*
+* Copyright 2010-2013 Artima, Inc.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*@
+
+@(selectedStyle: examples.StyleTraitExamples)
+
+<tr>
+<th class="ataglance" colspan="4"><a name="matchers_iterators"></a>Matchers - Working with <code>iterators</code></th>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2"><pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stReserved">val</span> it = <span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>).iterator
+it.toStream should contain (<span class="stLiteral">2</span>)</pre>
+</td>
+<td class="ataglance" colspan="2">Use <code>toStream</code> to convert <code>Iterator</code> to <code>Stream</code> to work with <code>contain</code></td>
+</tr>

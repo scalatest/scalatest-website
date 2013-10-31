@@ -1,0 +1,82 @@
+@*
+* Copyright 2010-2013 Artima, Inc.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*@
+
+@(selectedStyle: examples.StyleTraitExamples)
+@import controllers.Application.milestoneScaladoc
+
+<tr>
+<th class="ataglance" colspan="4"><a name="matchers_aggregations"></a>Matchers - Working with <code>"aggregations"</code></th>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2"><pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>) should contain atLeastOneOf (<span class="stLiteral">2</span>, <span class="stLiteral">3</span>, <span class="stLiteral">4</span>)</pre>
+</td>
+<td class="ataglance" colspan="2">Check if a <code>List</code> (or any <code>GenTraversable</code>) contains at least one of the specified elements</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2"><pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stType">Array</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>) should contain atLeastOneOf (<span class="stLiteral">3</span>, <span class="stLiteral">4</span>, <span class="stLiteral">5</span>)</pre>
+</td>
+<td class="ataglance" colspan="2">Check if an <code>Array</code> contains at least one of the specified elements</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2"><pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stLiteral">"abc"</span> should contain atLeastOneOf (<span class="stLiteral">'c'</span>, <span class="stLiteral">'a'</span>, <span class="stLiteral">'t'</span>)</pre>
+</td>
+<td class="ataglance" colspan="2">Check if a <code>String</code> contains at least one of the specified characters</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2"><pre class="stTight"><span class="stImport">import org.scalatest.Matchers._
+import org.scalautils.Explicitly._
+import org.scalautils.StringNormalizations._</span>
+(<span class="stType">Vector</span>(<span class="stLiteral">" A"</span>, <span class="stLiteral">"B "</span>) should contain
+ atLeastOneOf (<span class="stLiteral">"a "</span>, <span class="stLiteral">"b"</span>, <span class="stLiteral">"c"</span>)) (after being lowerCased and trimmed)</pre>
+</td>
+<td class="ataglance" colspan="2">Specify to use <a href="@milestoneScaladoc/#org.scalautils.StringNormalizations"><code>StringNormalizations</code></a> explicitly before checking if a <code>Vector</code> contains at least one of the specified <code>String</code></td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2"><pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>, <span class="stLiteral">4</span>, <span class="stLiteral">5</span>) should contain atMostOneOf (5, 6, 7)</pre>
+</td>
+<td class="ataglance" colspan="2">Check if a <code>List</code> (or any <code>GenTraversable</code>) contains at most one of the specified elements</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2"><pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>, <span class="stLiteral">4</span>, <span class="stLiteral">5</span>) should contain allOf (<span class="stLiteral">2</span>, <span class="stLiteral">3</span>, <span class="stLiteral">5</span>)</pre>
+</td>
+<td class="ataglance" colspan="2">Check if a <code>List</code> (or any <code>GenTraversable</code>) contains all of the specified elements</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2"><pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>, <span class="stLiteral">2</span>, <span class="stLiteral">1</span>) should contain only (<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>)</pre>
+</td>
+<td class="ataglance" colspan="2">Check if a <code>List</code> (or any <code>GenTraversable</code>) contains only the specified elements</td>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="2"><pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stReserved">val</span> expected = <span class="stType">Vector</span>(<span class="stLiteral">3</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>, <span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>)
+<span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>, <span class="stLiteral">3</span>, <span class="stLiteral">3</span>) should contain theSameElementsAs expected</pre>
+</td>
+<td class="ataglance" colspan="2">Check if a <code>List</code> (or any <code>GenTraversable</code>) contains only the same elements as the specified <code>Vector</code> (or any <code>GenTraversable</code>)</td>
+</tr>

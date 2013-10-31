@@ -14,7 +14,7 @@
  * limitations under the License.
  *@
 
-@import controllers.Application.latestScaladoc
+@import controllers.Application.latestScaladocFor192
 
 @userGuidePage("Other goodies") {
 <div style="text-align: left">
@@ -42,7 +42,7 @@ Here are links to the <em>goodies</em> described on this page:
 <a name="inside"></a>
 <h2>Using <code>Inside</code></h2>
 
-<p>ScalaTest's <a href="@latestScaladoc/#org.scalatest.Inside"><code>Inside</code></a> trait contains an <code>inside</code> construct, which allows you to make statements about nested object graphs using pattern matching.</p><p>For example, given the following case classes:</p><p><pre class="stHighlighted">
+<p>ScalaTest's <a href="@latestScaladocFor192/index.html#org.scalatest.Inside"><code>Inside</code></a> trait contains an <code>inside</code> construct, which allows you to make statements about nested object graphs using pattern matching.</p><p>For example, given the following case classes:</p><p><pre class="stHighlighted">
 <span class="stReserved">case</span> <span class="stReserved">class</span> <span class="stType">Address</span>(street: <span class="stType">String</span>, city: <span class="stType">String</span>, state: <span class="stType">String</span>, zip: <span class="stType">String</span>)
 <span class="stReserved">case</span> <span class="stReserved">class</span> <span class="stType">Name</span>(first: <span class="stType">String</span>, middle: <span class="stType">String</span>, last: <span class="stType">String</span>)
 <span class="stReserved">case</span> <span class="stReserved">class</span> <span class="stType">Record</span>(name: <span class="stType">Name</span>, address: <span class="stType">Address</span>, age: <span class="stType">Int</span>)
@@ -77,7 +77,7 @@ inside Record(Name(Sally,Anna,Jones),Address(25 Main St,Los Angeles,CA,12345),38
 <a name="optionValues"></a>
 <h2>Using <code>OptionValues</code></h2>
 
-<p>ScalaTest's <a href="@latestScaladoc/#org.scalatest.OptionValues"><code>OptionValues</code></a> trait provides an implicit conversion that adds a <code>value</code> method
+<p>ScalaTest's <a href="@latestScaladocFor192/index.html#org.scalatest.OptionValues"><code>OptionValues</code></a> trait provides an implicit conversion that adds a <code>value</code> method
 to <code>Option</code>, which will return the value of the option if it is defined,
 or throw <code>TestFailedException</code> if not.</p><p>This construct allows you to express in one statement that an option should be defined
 and that its value should meet some expectation. Here's an example:</p><p><pre class="stHighlighted">
@@ -88,8 +88,8 @@ assert(opt.value &gt; <span class="stLiteral">9</span>)
 if the option wasn't defined, it would throw a <code>NoSuchElementException</code>:</p><p><pre class="stHighlighted">
 <span class="stReserved">val</span> opt: <span class="stType">Option[Int]</span> = <span class="stType">None</span>
 <br />opt.get should be &gt; <span class="stLiteral">9</span> <span class="stLineComment">// opt.get throws NoSuchElementException</span>
-</pre></p><p>The <code>NoSuchElementException</code> would cause the test to fail, but without providing a <a href="@latestScaladoc/#org.scalatest.StackDepth">stack depth</a> pointing
-to the failing line of test code. This stack depth, provided by <a href="@latestScaladoc/#org.scalatest.TestFailedException"><code>TestFailedException</code></a> (and a
+</pre></p><p>The <code>NoSuchElementException</code> would cause the test to fail, but without providing a <a href="@latestScaladocFor192/index.html#org.scalatest.exceptions.StackDepth">stack depth</a> pointing
+to the failing line of test code. This stack depth, provided by <a href="@latestScaladocFor192/index.html#org.scalatest.exceptions.TestFailedException"><code>TestFailedException</code></a> (and a
 few other ScalaTest exceptions), makes it quicker for
 users to navigate to the cause of the failure. Without <code>OptionValues</code>, to get
 a stack depth exception you would need to make two statements, like this:</p><p><pre class="stHighlighted">
@@ -105,7 +105,7 @@ opt.get should be &gt; <span class="stLiteral">9</span>
 <a name="eitherValues"></a>
 <h2>Using <code>EitherValues</code></h2>
 
-<p>ScalaTest's <a href="@latestScaladoc/#org.scalatest.EitherValues"><code>EitherValues</code></a> trait provides an implicit conversion that adds <code>left.value</code> and <code>right.value</code> methods
+<p>ScalaTest's <a href="@latestScaladocFor192/index.html#org.scalatest.EitherValues"><code>EitherValues</code></a> trait provides an implicit conversion that adds <code>left.value</code> and <code>right.value</code> methods
 to <code>Either</code>, which will return the selected value of the <code>Either</code> if defined,
 or throw <code>TestFailedException</code> if not.</p><p>This construct allows you to express in one statement that an <code>Either</code> should be <em>left</em> or <em>right</em>
 and that its value should meet some expectation. Here's are some examples:</p><p><pre class="stHighlighted">
@@ -119,8 +119,8 @@ if the <code>Either</code> wasn't defined as expected (<em>e.g.</em>, it was a <
 would throw a <code>NoSuchElementException</code>:</p><p><pre class="stHighlighted">
 <span class="stReserved">val</span> either: <span class="stType">Either[String, Int]</span> = <span class="stType">Left</span>(<span class="stQuotedString">&quot;Muchas problemas&quot;</span>)
 <br />either.right.get should be &gt; <span class="stLiteral">9</span> <span class="stLineComment">// either.right.get throws NoSuchElementException</span>
-</pre></p><p>The <code>NoSuchElementException</code> would cause the test to fail, but without providing a <a href="@latestScaladoc/#org.scalatest.StackDepth">stack depth</a> pointing
-to the failing line of test code. This stack depth, provided by <a href="@latestScaladoc/#org.scalatest.TestFailedException"><code>TestFailedException</code></a> (and a
+</pre></p><p>The <code>NoSuchElementException</code> would cause the test to fail, but without providing a <a href="@latestScaladocFor192/index.html#org.scalatest.exceptions.StackDepth">stack depth</a> pointing
+to the failing line of test code. This stack depth, provided by <a href="@latestScaladocFor192/index.html#org.scalatest.exceptions.TestFailedException"><code>TestFailedException</code></a> (and a
 few other ScalaTest exceptions), makes it quicker for
 users to navigate to the cause of the failure. Without <code>EitherValues</code>, to get
 a stack depth exception you would need to make two statements, like this:</p><p><pre class="stHighlighted">
@@ -136,7 +136,7 @@ either.right.get should be &gt; <span class="stLiteral">9</span>
 <a name="partialFunctionValues"></a>
 <h2>Using <code>PartialFunctionValues</code></h2>
 
-<p>ScalaTest's <a href="@latestScaladoc/#org.scalatest.PartialFunctionValues"><code>PartialFunctionValues</code></a> trait provides an implicit conversion that adds a <code>valueAt</code> method
+<p>ScalaTest's <a href="@latestScaladocFor192/index.html#org.scalatest.PartialFunctionValues"><code>PartialFunctionValues</code></a> trait provides an implicit conversion that adds a <code>valueAt</code> method
 to <code>PartialFunction</code>, which will return the value (result) of the function applied to the argument passed to <code>valueAt</code>,
 or throw <code>TestFailedException</code> if the partial function is not defined at the argument.</p><p>This construct allows you to express in one statement that a partial function should be defined for a particular input,
 and that its result value should meet some expectation. Here's an example:</p><p><pre class="stHighlighted">
@@ -145,12 +145,12 @@ pf.valueAt(<span class="stQuotedString">&quot;IV&quot;</span>) should equal (<sp
 assert(pf.valueAt(<span class="stQuotedString">&quot;IV&quot;</span>) === <span class="stLiteral">4</span>)
 </pre></p><p>Were you to simply invoke <code>apply</code> on the <code>PartialFunction</code>, passing in an input value,
 if the partial function wasn't defined at that input, it would throw some exception, but likely not one
-that provides a <a href="@latestScaladoc/#org.scalatest.StackDepth">stack depth</a>:</p><p><pre class="stHighlighted">
+that provides a <a href="@latestScaladocFor192/index.html#org.scalatest.exceptions.StackDepth">stack depth</a>:</p><p><pre class="stHighlighted">
 <span class="stLineComment">// Note: a Map[K, V] is a PartialFunction[K, V]</span>
 <span class="stReserved">val</span> pf: <span class="stType">PartialFunction[String, Int]</span> = <span class="stType">Map</span>(<span class="stQuotedString">&quot;I&quot;</span> -&gt; <span class="stLiteral">1</span>, <span class="stQuotedString">&quot;II&quot;</span> -&gt; <span class="stLiteral">2</span>, <span class="stQuotedString">&quot;III&quot;</span> -&gt; <span class="stLiteral">3</span>, <span class="stQuotedString">&quot;IV&quot;</span> -&gt; <span class="stLiteral">4</span>)
 <br />pf(<span class="stQuotedString">&quot;V&quot;</span>) should equal (<span class="stLiteral">5</span>) <span class="stLineComment">// pf(&quot;V&quot;) throws NoSuchElementException</span>
 </pre></p><p>The <code>NoSuchElementException</code> thrown in this situation would cause the test to fail, but without providing a stack depth pointing
-to the failing line of test code. This stack depth, provided by <a href="@latestScaladoc/#org.scalatest.TestFailedException"><code>TestFailedException</code></a> (and a
+to the failing line of test code. This stack depth, provided by <a href="@latestScaladocFor192/index.html#org.scalatest.exceptions.TestFailedException"><code>TestFailedException</code></a> (and a
 few other ScalaTest exceptions), makes it quicker for
 users to navigate to the cause of the failure. Without <code>PartialFunctionValues</code>, to get
 a stack depth exception you would need to make two statements, like this:</p><p><pre class="stHighlighted">
@@ -166,7 +166,7 @@ pf(<span class="stQuotedString">&quot;V&quot;</span>) should equal (<span class=
 <a name="privateMethodTester"></a>
 <h2>Using <code>PrivateMethodTester</code></h2>
 
-<p>ScalaTest's <a href="@latestScaladoc/#org.scalatest.PrivateMethodTester"><code>PrivateMethodTester</code></a> trait facilitates the testing of private methods.</p><p>To test a private method, mix in trait <code>PrivateMethodTester</code> and
+<p>ScalaTest's <a href="@latestScaladocFor192/index.html#org.scalatest.PrivateMethodTester"><code>PrivateMethodTester</code></a> trait facilitates the testing of private methods.</p><p>To test a private method, mix in trait <code>PrivateMethodTester</code> and
 create a <code>PrivateMethod</code> object, like this:</p><p><pre class="stHighlighted">
 <span class="stReserved">val</span> decorateToStringValue = <span class="stType">PrivateMethod[String]</span>(<span class="stQuotedString">'decorateToStringValue</span>)
 </pre></p><p>The type parameter on <code>PrivateMethod</code>, in this case <code>String</code>, is the result type of the private method
@@ -227,7 +227,7 @@ The <code>Specs1Runner</code> would need to have a public, no-arg constructor th
 </pre>
 
 <p>
-Next, learn about <a href="/user_guide/philosophy_and_design">ScalaTest's philosophy and design</a>.
+Next, learn about <a href="@routes.UserGuide192.philosophyAndDesign.url">ScalaTest's philosophy and design</a>.
 </p>
 
 </div>
