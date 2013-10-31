@@ -19,17 +19,15 @@
 @userGuidePage("Selecting a style") {
 <div style="text-align: left">
 
-<h1>Selecting testing styles</h1>
+<h1>Selecting testing styles for your project</h1>
 
 <p>
 ScalaTest supports different styles of testing, each designed to address a particular set of needs.
-Although this flexibility can help your productivity by enabling you to use styles that best fit your team's experience
-and culture, if you are unfamiliar with the options, making a choice can be daunting.
-To help you find your best-fit styles, this page will describe the intended use cases for each option.
+To help you find the best-fit styles for your project, this page will describe the intended use cases for each option.
 </p>
 
 <p>
-We do recommend you choose a set of testing styles for each project, then encourage everyone working on the project use the chosen styles. 
+We recommend you choose a set of testing styles for each project, then encourage everyone working on the project use the chosen styles. 
 This allows the testing styles to fit the team while maintaining uniformity in the project code base.
 We recommend you select one main style for unit testing and another for acceptance testing.
 Using a different style for unit and acceptance testing can help developers "switch gears" between 
@@ -42,6 +40,11 @@ We usually write integration tests&mdash;tests that involve subsystems such as a
 In short, ScalaTest's flexibility is not intended to enable individual developers to use different testing styles on the same project. 
 Rather, it is intended to enable project leaders to select a best-fit style or styles for the team.
 If you have trouble enforcing chosen styles, you can <a href="@milestoneScaladoc/#org.scalatest.tools.Runner$@@specifyingChosenStyles">specify the chosen styles</a> in your build.
+</p>
+
+<p>
+The style you choose dictates only how the declarations of your tests will look. Everything else in ScalaTest&mdash;assertions, matchers,
+mixin traits, <em>etc.</em>&mdash;works consistently the same way no matter what style you chose.
 </p>
 
 <h2>If you don't enjoy shopping</h2>
@@ -288,6 +291,10 @@ Trait <a href="@milestoneScaladoc/#org.scalatest.FeatureSpec"><code>FeatureSpec<
 </td>
 </tr>
 </table>
+</p>
+
+<p>
+Next, <a href="defining_base_classes">define a base class</a> for unit testing.
 </p>
 
 </div>

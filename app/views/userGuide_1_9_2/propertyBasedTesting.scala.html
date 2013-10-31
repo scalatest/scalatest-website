@@ -14,7 +14,7 @@
  * limitations under the License.
  *@
 
-@import controllers.Application.latestScaladoc
+@import controllers.Application.latestScaladocFor192
 
 @userGuidePage("Property-based testing") {
 <div style="text-align: left">
@@ -38,7 +38,7 @@ result that should hold no matter what valid list is passed.
 <p>
 In ScalaTest, properties are specified as functions and the data points used to check properties can be supplied by either tables
 or generators. Generator-driven property checks are performed via integration with <a href="http://code.google.com/p/scalacheck/">ScalaCheck</a>.
-To use this style of testing, mix in trait <a href="@latestScaladoc/#org.scalatest.prop.PropertyChecks">PropertyChecks</a>, or import the
+To use this style of testing, mix in trait <a href="@latestScaladocFor192/index.html#org.scalatest.prop.PropertyChecks">PropertyChecks</a>, or import the
 members of its companion object. As an example property-based testing using both table- and generator-driven properties,
 imagine you want to test this <code>Fraction</code> class:
 </p>
@@ -125,13 +125,13 @@ For more information check out the user guide pages for:
 </p>
 
 <ul>
-<li><a href="/user_guide/table_driven_property_checks">Table-driven property checks</a></li>
-<li><a href="/user_guide/generator_driven_property_checks">Generator-driven property checks</a></li>
-<li><a href="/user_guide/writing_scalacheck_style_properties">Writing ScalaCheck-style properties</a></li>
+<li><a href="@routes.UserGuide192.tableDrivenPropertyChecks.url">Table-driven property checks</a></li>
+<li><a href="@routes.UserGuide192.generatorDrivenPropertyChecks.url">Generator-driven property checks</a></li>
+<li><a href="@routes.UserGuide192.writingScalacheckStyleProperties.url">Writing ScalaCheck-style properties</a></li>
 </ul>
 
 <p>
-Next, learn about <a href="/user_guide/using_selenium">using ScalaTest's Selenium DSL</a>.
+Next, learn about <a href="@routes.UserGuide192.otherGoodies.url">other goodies</a> ScalaTest has that can help you address specific problems.
 </p>
 
 </div>

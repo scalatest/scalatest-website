@@ -14,6 +14,8 @@
  * limitations under the License.
  *@
 
+@import controllers.Application.milestoneScaladoc
+
 @userGuidePage("Using assertions") {
 <div style="text-align: left">
 
@@ -24,9 +26,9 @@ ScalaTest makes three assertions available by default in any style trait. You ca
 </p>
 
 <ul>
-<li><code>assert</code> with <code>===</code>, for general assertions;</li>
-<li><code>expect</code>, to differentiate expected from actual values;</li>
-<li><code>intercept</code>, to ensure a bit of code throws an expected exception.</li>
+<li><code>assert</code> for general assertions;</li>
+<li><code>assertResult</code> to differentiate expected from actual values;</li>
+<li><code>intercept</code> to ensure a bit of code throws an expected exception.</li>
 </ul>
 
 <p>
@@ -35,19 +37,30 @@ you can switch to the more expressive <a href="/user_guide/using_matchers">match
 </p>
 
 <p>
-In any Scala program, you can write assertions by invoking <code>assert</code> and passing in a <code>Boolean</code> expression,
-such as:
+ScalaTest's assertions are defined in trait <a href="@milestoneScaladoc/#org.scalatest.Assertions"><code>Assertions</code></a>, which is
+extended by <a href="@milestoneScaladoc/#org.scalatest.Suite"><code>Suite</code></a>, the supertrait to
+all style traits. Trait <code>Assertions</code> also provides:
 </p>
 
-<pre class="stHighlighted">
+<ul>
+<li><code>fail</code> to fail a test unconditionally;</li>
+<li><code>assume</code> to <em>cancel</em> a test;</li>
+<li><code>withClue</code> to add more information about a failure.</li>
+</ul>
+
+<p>
+All of these constructs are described below.
+</p>
+
+<h4>The <code>assert</code> macro</h4>
+
+<p>In any Scala program, you can write assertions by invoking <code>assert</code> and passing in a <code>Boolean</code> expression,
+such as:</p><p><pre class="stHighlighted">
 <span class="stReserved">val</span> left = <span class="stLiteral">2</span>
 <span class="stReserved">val</span> right = <span class="stLiteral">1</span>
 assert(left == right)
-</pre>
-
-<p>
-If the passed expression is <code>true</code>, <code>assert</code> will return normally. If <code>false</code>,
-<code>assert</code> will complete abruptly with an <code>AssertionError</code>. This behavior is provided by
+</pre></p><p>If the passed expression is <code>true</code>, <code>assert</code> will return normally. If <code>false</code>,
+Scala's <code>assert</code> will complete abruptly with an <code>AssertionError</code>. This behavior is provided by
 the <code>assert</code> method defined in object <code>Predef</code>, whose members are implicitly imported into every
 Scala source file.
 </p>
@@ -55,118 +68,122 @@ Scala source file.
 <p>
 ScalaTest defines another <code>assert</code> method that hides the
 one in <code>Predef</code>. It behaves the same, except that if <code>false</code> is passed it throws
-<code>TestFailedException</code> instead of <code>AssertionError</code>. The reason it throws <code>TestFailedException</code>
-is because <code>TestFailedException</code> carries information about exactly which item in the stack trace represents
+<a href="@milestoneScaladoc/#org.scalatest.exceptions.TestFailedException"><code>TestFailedException</code></a> instead of <code>AssertionError</code>.
+Why? Because unlike <code>AssertionError</code>, <code>TestFailedException</code> carries information about exactly
+which item in the stack trace represents
 the line of test code that failed, which can help users more quickly find an offending line of code in a failing test.
-<p>
-
-<p>
-If you pass the previous <code>Boolean</code> expression, <code>left == right</code> to <code>assert</code> in a ScalaTest test, a failure
-will be reported, but without reporting the left and right values. You can alternatively encode these values in a <code>String</code> passed as
-a second argument to <code>assert</code>, like this:
 </p>
 
-<pre class="stHighlighted">
+<p>
+If you pass the previous <code>Boolean</code> expression, <code>left == right</code> to <code>assert</code> in a ScalaTest test,
+a failure will be reported that includes reporting the left and right values. (This is possible because ScalaTest's <code>assert</code> is implemented as a macro.)
+</p>
+<p>For example, given the same code as above but using ScalaTest assertions:</p><p><pre class="stHighlighted">
+<span class="stReserved">import</span> org.scalatest.Assertions._
 <span class="stReserved">val</span> left = <span class="stLiteral">2</span>
 <span class="stReserved">val</span> right = <span class="stLiteral">1</span>
-assert(left == right, left + <span class="stQuotedString">" did not equal "</span> + right)
-</pre>
-
-<p>
-Using this form of <code>assert</code>, the failure report will include the left and right values, thereby
-helping you debug the problem. However, ScalaTest provides the <code>===</code> operator to make this easier.
-You use it like this:
-</p>
-
-<pre class="stHighlighted">
-<span class="stReserved">val</span> left = <span class="stLiteral">2</span>
-<span class="stReserved">val</span> right = <span class="stLiteral">1</span>
-assert(left === right)
-</pre>
-
-<p>
-Because you use <code>===</code> here instead of <code>==</code>, the failure report will include the left
-and right values. For example, the detail message in the thrown <code>TestFailedException</code> from the <code>assert</code>
-shown previously will include, "2 did not equal 1".
-From this message you will know that the operand on the left had the value 2, and the operand on the right had the value 1.
-</p>
-
-<h2>Expected results</h2>
-
-Although <code>===</code> provides a natural, readable extension to Scala's <code>assert</code> mechanism,
-as the operands become lengthy, the code becomes less readable. In addition, the <code>===</code> comparison
-doesn't distinguish between actual and expected values. The operands are just called <code>left</code> and <code>right</code>,
+assert(left == right)
+</pre></p><p>The detail message in the thrown <code>TestFailedException</code> from this <code>assert</code>
+will be: &quot;2 did not equal 1&quot;.</p><p>You can provide an alternate error message by providing a <code>String</code> as a second argument
+to <code>assert</code>, like this:</p><p><pre class="stHighlighted">
+<span class="stReserved">val</span> attempted = <span class="stLiteral">2</span>
+assert(attempted == <span class="stLiteral">1</span>, <span class="stQuotedString">&quot;Execution was attempted &quot;</span> + left + <span class="stQuotedString">&quot; times instead of 1 time&quot;</span>)
+</pre></p><p>Using this form of <code>assert</code>, the failure report will be more specific to your problem domain, thereby
+helping you debug the problem. This <code>Assertions</code> trait also mixes in the
+<a href="@milestoneScaladoc/#org.scalautils.TripleEquals"><code>TripleEquals</code></a>, which gives you a <code>===</code> operator
+that allows you to customize <a href="@milestoneScaladoc/#org.scalautils.Equality"><code>Equality</code></a> and perform equality checks with a numeric
+<a href="@milestoneScaladoc/#org.scalautils.Tolerance"><code>Tolerance</code></a>. You can also use <code>===</code> to enforce type constraints at compile time with
+sibling traits <a href="@milestoneScaladoc/#org.scalautils.TypeCheckedTripleEquals"><code>TypeCheckedTripleEquals</code></a> and
+<a href="@milestoneScaladoc/#org.scalautils.ConversionCheckedTripleEquals"><code>ConversionCheckedTripleEquals</code></a>.</p><h4> Expected results </h4><p>Although ScalaTest's <code>assert</code> macro provides a natural, readable extension to Scala's <code>assert</code> mechanism that
+provides good error messages, as the operands become lengthy, the code becomes less readable. In addition, the error messages
+generated for <code>==</code> and <code>===</code> comparisons
+don't distinguish between actual and expected values. The operands are just called <code>left</code> and <code>right</code>,
 because if one were named <code>expected</code> and the other <code>actual</code>, it would be difficult for people to
-remember which was which. To help with these limitations of <code>assert</code>, ScalaTest provides a method called <code>expect</code> that
-can be used as an alternative to <code>assert</code> with <code>===</code>. To use <code>expect</code>, you place
-the expected value in parentheses after <code>expect</code>, followed by curly braces containing code 
-that should result in the expected value. For example:
-
-<pre class="stHighlighted">
+remember which was which. To help with these limitations of assertions, <code>Assertions</code> includes a method called <code>assertResult</code> that
+can be used as an alternative to <code>assert</code>. To use <code>assertResult</code>, you place
+the expected value in parentheses after <code>assertResult</code>, followed by curly braces containing code
+that should result in the expected value. For example:</p><p><pre class="stHighlighted">
 <span class="stReserved">val</span> a = <span class="stLiteral">5</span>
 <span class="stReserved">val</span> b = <span class="stLiteral">2</span>
-expect(<span class="stLiteral">2</span>) {
+assertResult(<span class="stLiteral">2</span>) {
   a - b
 }
-</pre>
-
-<p>
-In this case, the expected value is <code>2</code>, and the code being tested is <code>a - b</code>. This expectation will fail, and
-the detail message in the <code>TestFailedException</code> will read, "Expected 2, but got 3."
-</p>
-
-<h2>Intercepted exceptions</h2>
-
-<p>
-Sometimes you need to test whether a method throws an expected exception under certain circumstances, such
-as when invalid arguments are passed to the method. You can do this in the JUnit 3 style, like this:
-</p>
-
-<pre class="stHighlighted">
-<span class="stReserved">val</span> s = <span class="stQuotedString">"hi"</span>
+</pre></p><p>In this case, the expected value is <code>2</code>, and the code being tested is <code>a - b</code>. This assertion will fail, and
+the detail message in the <code>TestFailedException</code> will read, &quot;Expected 2, but got 3.&quot;</p><h4> Forcing failures </h4><p>If you just need the test to fail, you can write:</p><p><pre class="stHighlighted">
+fail()
+</pre></p><p>Or, if you want the test to fail with a message, write:</p><p><pre class="stHighlighted">
+fail(<span class="stQuotedString">&quot;I've got a bad feeling about this&quot;</a>)
+</pre></p><h4> Intercepted exceptions </h4><p>Sometimes you need to test whether a method throws an expected exception under certain circumstances, such
+as when invalid arguments are passed to the method. You can do this in the JUnit 3 style, like this:</p><p><pre class="stHighlighted">
+<span class="stReserved">val</span> s = <span class="stQuotedString">&quot;hi&quot;</span>
 <span class="stReserved">try</span> {
   s.charAt(-<span class="stLiteral">1</span>)
   fail()
 }
 <span class="stReserved">catch</span> {
-  <span class="stReserved">case</span> _: <span class="stType">IndexOutOfBoundsException</span> => <span class="stLineComment">// Expected, so continue</span>
+  <span class="stReserved">case</span> _: <span class="stType">IndexOutOfBoundsException</span> =&gt; <span class="stLineComment">// Expected, so continue</span>
 }
-</pre>
-
-<p>
-If <code>charAt</code> throws <code>IndexOutOfBoundsException</code> as expected, control will transfer
+</pre></p><p>If <code>charAt</code> throws <code>IndexOutOfBoundsException</code> as expected, control will transfer
 to the catch case, which does nothing. If, however, <code>charAt</code> fails to throw an exception,
 the next statement, <code>fail()</code>, will be run. The <code>fail</code> method always completes abruptly with
-a <code>TestFailedException</code>, thereby signaling a failed test.
-</p>
-
-<p>
-To make this common use case easier to express and read, ScalaTest provides an <code>intercept</code>
-method. You use it like this:
-</p>
-
-<pre class="stHighlighted">
-<span class="stReserved">val</span> s = <span class="stQuotedString">"hi"</span>
+a <code>TestFailedException</code>, thereby signaling a failed test.</p><p>To make this common use case easier to express and read, ScalaTest provides an <code>intercept</code>
+method. You use it like this:</p><p><pre class="stHighlighted">
+<span class="stReserved">val</span> s = <span class="stQuotedString">&quot;hi&quot;</span>
 intercept[<span class="stType">IndexOutOfBoundsException</span>] {
   s.charAt(-<span class="stLiteral">1</span>)
 }
-</pre>
-
-<p>
-This code behaves much like the previous example. If <code>charAt</code> throws an instance of <code>IndexOutOfBoundsException</code>,
+</pre></p><p>This code behaves much like the previous example. If <code>charAt</code> throws an instance of <code>IndexOutOfBoundsException</code>,
 <code>intercept</code> will return that exception. But if <code>charAt</code> completes normally, or throws a different
 exception, <code>intercept</code> will complete abruptly with a <code>TestFailedException</code>. <code>intercept</code> returns the
 caught exception so that you can inspect it further if you wish, for example, to ensure that data contained inside
-the exception has the expected values. Here's an example:
-</p>
-
-<pre class="stHighlighted">
-<span class="stReserved">val</span> s = <span class="stQuotedString">"hi"</span>
-val thrown = intercept[<span class="stType">IndexOutOfBoundsException</span>] {
-  s.charAt(-<span class="stLiteral">1</span>)
+the exception has the expected values.</p><h4> Assumptions </h4><p>Trait <code>Assertions</code> also provides methods that allow you to <em>cancel</em> a test.
+You would cancel a test if a resource required by the test was unavailable. For example, if a test
+requires an external database to be online, and it isn't, the test could be canceled to indicate
+it was unable to run because of the missing database. Such a test <em>assumes</em> a database is
+available, and you can use the <code>assume</code> method to indicate this at the beginning of
+the test, like this:</p><p><pre class="stHighlighted">
+assume(database.isAvailable)
+</pre></p><p>For each overloaded <code>assert</code> method, trait <code>Assertions</code> provides an
+overloaded <code>assume</code> method with an identical signature and behavior, except the
+<code>assume</code> methods throw <a href="@milestoneScaladoc/#org.scalatest.exceptions.TestCanceledException"><code>TestCanceledException</code></a> whereas the
+<code>assert</code> methods throw <code>TestFailedException</code>. As with <code>assert</code>,
+<code>assume</code> hides a Scala method in <code>Predef</code> that performs a similar
+function, but throws <code>AssertionError</code>. And just as you can with <code>assert</code>,
+you can optionally provide a clue string, or use <code>===</code> to get a more detailed
+error message. Here are some examples:</p><p><pre class="stHighlighted">
+assume(database.isAvailable, <span class="stQuotedString">&quot;The database was down again&quot;</span>)
+assume(database.getAllUsers.count == <span class="stLiteral">9</span>)
+</pre></p><h4> Forcing cancelations </h4><p>For each overloaded <code>fail</code> method, there's a corresponding <code>cancel</code> method
+with an identical signature and behavior, except the <code>cancel</code> methods throw
+<code>TestCanceledException</code> whereas the <code>fail</code> methods throw
+<code>TestFailedException</code>. Thus if you just need to cancel a test, you can write:</p><p><pre class="stHighlighted">
+cancel()
+</pre></p><p>If you want to cancel the test with a message, just place the message in the parentheses:</p><p><pre class="stHighlighted">
+cancel(<span class="stQuotedString">&quot;Can't run the test because no internet connection was found&quot;</a>)
+</pre></p><h4> Getting a clue </h4><p>If you want more information that is provided by default by the methods if this trait,
+you can supply a &quot;clue&quot; string in one of several ways.
+The extra information (or &quot;clues&quot;) you provide will
+be included in the detail message of the thrown exception. Both
+<code>assert</code> and <code>assertResult</code> provide a way for a clue to be
+included directly, <code>intercept</code> does not.
+Here's an example of clues provided directly in <code>assert</code>:</p><p><pre class="stHighlighted">
+assert(<span class="stLiteral">1</span> + <span class="stLiteral">1</span> === <span class="stLiteral">3</span>, <span class="stQuotedString">&quot;this is a clue&quot;</span>)
+</pre></p><p>and in <code>assertResult</code>:</p><p><pre class="stHighlighted">
+assertResult(<span class="stLiteral">3</span>, <span class="stQuotedString">&quot;this is a clue&quot;</span>) { <span class="stLiteral">1</span> + <span class="stLiteral">1</span> }
+</pre></p><p>The exceptions thrown by the previous two statements will include the clue
+string, <code>"this is a clue"</code>, in the exception's detail message.
+To get the same clue in the detail message of an exception thrown
+by a failed <code>intercept</code> call requires using <code>withClue</code>:</p><p><pre class="stHighlighted">
+withClue(<span class="stQuotedString">&quot;this is a clue&quot;</span>) {
+  intercept[<span class="stType">IndexOutOfBoundsException</span>] {
+    <span class="stQuotedString">&quot;hi&quot;</span>.charAt(-<span class="stLiteral">1</span>)
+  }
 }
-assert(thrown.getMessage === <span class="stLiteral">"String index out of range: -1"</span>)
-</pre>
+</pre></p><p>The <code>withClue</code> method will only prepend the clue string to the detail
+message of exception types that mix in the <code>ModifiableMessage</code> trait.
+See the documentation for <a href="@milestoneScaladoc/#org.scalatest.exceptions.ModifiableMessage"><code>ModifiableMessage</code></a> for more information.
+If you wish to place a clue string after a block of code, see the documentation for
+<a href="@milestoneScaladoc/#org.scalatest.AppendedClues"><code>AppendedClues</code></a>.</p>
 
 <p>
 Next, learn about <a href="tagging_your_tests">tagging your tests</a>.
