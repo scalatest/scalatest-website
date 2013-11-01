@@ -15,12 +15,96 @@
  *@
 
 @import controllers.Application.milestoneScaladoc
+@import controllers.Application.latestScaladoc
 @import controllers.Application.milestoneVersion
 
 @releaseNotesPage("ScalaTest 2.0.RC3 Release Notes") {
 <div style="text-align: left">
 
-<h1>ScalaTest/ScalaUtils 2.0 Release Notes</h1>
+<h1>ScalaTest 2.0 Release Notes</h1>
+
+<p>
+ScalaTest 2.0 is a major upgrade to ScalaTest, the product of over two years of effort. Although it
+includes many enhancements, we kept a close eye on compatibility with existing ScalaTest 1.x code.
+</p>
+
+<h2>Highlights</h2>
+
+<h2>Breaking changes</h2>
+
+<p>
+ScalaTest 2.0 does include a few enhancements that will break existing code. To see the list, and learn
+how to migrate your code if affected, see the <a href="/user_guide/migrating_to_20">migration guide</a>.
+</p>
+
+<h2>New deprecations</h2>
+
+<ul>
+<li>Deprecated the <code>before</code>/<code>afterEach(TestData)</code> methods in <a href="@latestScaladoc/#org.scalatest.BeforeAndAfterEach"><code>BeforeAndAfterEach</code></a> in favor of <a href="@latestScaladoc/#org.scalatest.BeforeAndAfterEachTestData"><code>BeforeAndAfterEachTestData</code></a>.</li>
+<li>Deprecated <a href="@latestScaladoc/#org.scalatest.FailureOf"><code>FailureOf</code></a> in favor of <a href="@latestScaladoc/#org.scalatest.OutcomeOf"><code>OutcomeOf</code></a>.</li>
+<li>Deprecated <code>expect</code> and <code>expectResult</code> in <a href="@latestScaladoc/#org.scalatest.Assertions"><code>Assertions</code></a> in favor of <code>assertResult</code>.</li>
+<li>Deprecated the use of <a href="@latestScaladoc/#org.scalatest.Suite"><code>Suite</code></a> as a style trait in favor of newly added <a href="@latestScaladoc/#org.scalatest.Spec"><code>Spec</code></a>.</li>
+<li>
+Deprecated the <code>assert</code> and <code>assume</code> methods whose <code>===</code> and <code>!==</code>
+operator return <code>Option[String]</code> in favor of <code>assert</code> and <code>assume</code> macros that return <code>Boolean</code>.
+</li>
+<li>Deprecated the <code>plusOrMinus</code> operator used with <a href="@latestScaladoc/#org.scalatest.Matchers"><code>Matchers</code></a> in
+favor of the <code>+-</code> symbol.</li>
+
+<li>
+Deprecated <a href="@latestScaladoc/#org.scalatest.matchers.ShouldMatchers"><code>ShouldMatchers</code></a>
+and <a href="@latestScaladoc/#org.scalatest.matchers.MustMatchers"><code>MustMatchers</code></a>, both members of package
+<code>org.scalatest.matchers</code>, have been deprecated in favor of <a href="@latestScaladoc/#org.scalatest.Matchers"><code>Matchers</code></a>,
+which resides in package <code>org.scalatest</code>. (<code>MustMatchers</code> was actually already deprecated in ScalaTest 1.9.2.)  For folks using
+<code>ShouldMatchers</code>, getting rid of the deprecation warning should be as simple as replacing <code>org.scalatest.matchers.ShouldMatchers</code> with
+<code>org.scalatest.Matchers</code>. For folks using <code>MustMatchers</code>, however, it will unfortnately be slightly more trouble, because the new
+<code>Matchers</code> trait only supports <code>should</code> not <code>must</code>. So you will need to search and replace your uses of
+<code>must</code> with <code>should</code>. <code>MustMatchers</code> and <code>must</code> will continue to work for a good long deprecation period,
+but eventually it will be removed to make way for <code>must</code> possibly coming back later to serve a different purpose. Apologies for this rather large deprecation.
+</li>
+<li>
+Deprecated the <code>beforeAll</code> and <code>afterAll</code> methods of trait
+<a href="@latestScaladoc/#org.scalatest.BeforeAndAfterAll"><code>BeforeAndAfterAll</code></a> that take a config map
+in favor of newly added <a href="@latestScaladoc/#org.scalatest.BeforeAndAfterAllConfigMap"><code>BeforeAndAfterAllConfigMap</code></a>.
+</li>
+</li>
+<li>Deprecated <code>given</code>/<code>when</code>/<code>then</code>/<code>and</code> methods of trait
+<a href="@latestScaladoc/#org.scalatest.GivenWhenThen"><code>GivenWhenThen</code></a> in favor of capitalized forms,
+<code>Given</code>/<code>When</code>/<code>Then</code>/<code>And</code>, because <code>then</code> has been deprecated as an identifier in Scala 2.10.
+</li>
+
+<li>
+a <a href="@latestScaladoc/#org.scalatest.TestData"><code>TestData</code></a> (and the old forms that took only a config map were deprecated). This gives <code>beforeEach</code> and <code>afterEach</code> methods to 
+ the same information enjoyed by <code>withFixture</code> methods.
+</li>
+
+<li>Deprecated trait <a href="@latestScaladoc/#org.scalatest.AbstractSuite"><code>AbstractSuite</code></a>
+in favor of newly added trait <a href="@latestScaladoc/#org.scalatest.SuiteMixin"><code>SuiteMixin</code></a>, to serve as the new base class
+for stackable traits that can be mixed into <code>Suite</code>.</li>
+
+<li>
+Deprecated the <code>apply</code> method on <a href="@latestScaladoc/#org.scalatest.Distributor"><code>Distributor</code></a> in favor of a newly added
+overloaded <code>apply</code> method that takes a <a href="@latestScaladoc/#org.scalatest.Args"><code>Args</code></a>.
+During the deprecation period, the old form will call the new form with default args. The purpose of this change was to make more information available
+to <code>Distributor</code> implementations.</li>
+</ul>
+
+<h2>Expired deprecations</h2>
+
+<ul>
+<li>Removed <code>BeforeAndAfterEachFunctions</code> and <code>BeforeAndAfterAllFunctions</code>, which had been deprecated since ScalaTest 1.6.1. If you haven't
+done so already, you'll need to use <code>BeforeAndAfter</code> instead of <code>BeforeAndAfterEachFunctions</code>, and <code>BeforeAndAfterAll</code> instead
+of <code>BeforeAndAfterAllFunctions</code>.</li>
+<li>Removed <code>MultipleFixtureFeatureSpec</code>, <code>MultipleFixtureFlatSpec</code>, <code>MultipleFixtureFreeSpec</code>, <code>MultipleFixtureFunSuite</code>, <code>MultipleFixturePropSpec</code>, <code>MultipleFixtureSpec</code>, and <code>MultipleFixtureWordSpec</code>, which had been deprecated since ScalaTest 1.6.1. If you haven't
+done so already, you'll need to mix in <a href="@milestoneScaladoc/#org.scalatest.fixture.ConfigMapFixture"><code>ConfigMapFixture</code></a> to a <code>fixture.X</code> trait instead.</li>
+<li>Removed <code>org.scalatest.SuperSuite</code>, which had been deprecated in ScalaTest 1.5. Please use <a href="@milestoneScaladoc/#org.scalatest.Suites"><code>Suites</code> or <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.Specs"><code>Specs</code></a> instead.</li>
+<li>Removed the deprecated implicit conversion in the <code>Stopper</code> companion object that converted a <code>Stopper</code> to function type <code>() =&gt; Boolean</code>. This
+implicit conversion was added when the inheritance relationship between <code>Stopper</code> and <code>Function0[Boolean]</code> was severed to make it possible for <code>Stopper</code> to be implemented in Java. (Severing this relationship was originally a request by the IntelliJ IDEA folks, who wanted to write integration code in Java to smooth over binary incompatibilities between different Scala versions.)</li>
+<li>Added a <code>default</code> method in the <code>Stopper</code> companion object that returned a stopper that always returns false when applied.</li>
+<li>Removed the implicit conversion from <code>Reporter</code> to <code>Event =&gt; Unit</code> function type in the <code>Reporter</code> companion
+objecgt, which had been deprecated since ScalaTest 1.5.</li>
+<li>Removed the implicit conversion from <code>Rerunner</code> to <code>Function7</code>, which was deprecated in ScalaTest 1.5.</li>
+</ul>
 
 <p>
 ScalaTest/ScalaUtils 2.0 is a major release focused on easing one of the main pain points for Scala
@@ -32,6 +116,8 @@ The <a href="#detailedList">detailed list</a> below lists all changes and enhanc
 compared to ScalaTest 1.9.2. For a higher level view, here are some highlights of 2.0 over
 the previous 2.0 milestone releases and release candidates:
 </p>
+
+<h2>Detailed list of changes</h2>
 
 <p>
 <em>2.0.RC3 Highlights:</em>

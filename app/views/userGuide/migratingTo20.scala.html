@@ -28,7 +28,11 @@
 We have always worked very hard to maintain source compatibility from one release of ScalaTest to the next. Upgrading is usually a simply matter of bumping
 the ScalaTest version number in your build doing a full recompile, and over time cleaning up any deprecation warnings. With ScalaTest 2.0, however,
 we made some improvements for which it was not possible to deprecate, so some of your existing code may not compile. Neverthless, we expect the vast
-majority of existing ScalaTest user code to just recompile as is. To ensure the smoothest migration, first please eliminate any deprecation warnings
+majority of existing ScalaTest user code to just recompile as is.
+</p>
+
+<p>
+To ensure the smoothest migration, first please eliminate any deprecation warnings
 being emitted by your current version of ScalaTest on your existing code. (For best results, upgrade to 1.9.2 first and clear any deprecation warnings, though
 many of those reported will still be deprecated and working in 2.0.) Then just bump the ScalaTest version number to 2.0 and do a full build.
 If you encounter compilation errors, check the list below for help in resolving them.
@@ -39,13 +43,13 @@ These are the points of potential breakage in ScalaTest 2.0, which are described
 </p>
 
 <ol>
-<li><a href="#customReporters">Custom <code>Reporter</code>s</a>
-<li><a href="#withFixtureMethods"><code>withFixture</code> methods</a>
-<li><a href="#runMethodSignatures"><code>run</code> method signatures</a>
-<li><a href="#listToImmutableSeq"><code>List</code> to <code>immutable.IndexedSeq</code></a>
-<li><a href="#lengthSizeAndHavePropertyMatchers"><code>length</code>, <code>size</code> and  <code>HavePropertyMatcher</code>s</a>
-<li><a href="#styleClasses">Style <em>classes</em></a>
-<li><a href="#fragileBaseClassProblem">The fragile base class problem</a>
+<li><a href="#customReporters">Custom <code>Reporter</code>s</a> (rare, but requires some rewriting)
+<li><a href="#withFixtureMethods"><code>withFixture</code> methods</a> (common, but easy to fix)
+<li><a href="#runMethodSignatures"><code>run</code> method signatures</a> (rare and easy to fix)
+<li><a href="#listToImmutableSeq"><code>List</code> to <code>immutable.IndexedSeq</code></a> (extremely rare, easy to fix)
+<li><a href="#lengthSizeAndHavePropertyMatchers"><code>length</code>, <code>size</code> and  <code>HavePropertyMatcher</code>s</a> (extremely rare, easy to fix)
+<li><a href="#styleClasses">Style <em>classes</em></a> (rare, easy to fix)
+<li><a href="#fragileBaseClassProblem">The fragile base class problem</a> (occasional, usually easy to fix)
 </ol>
 
 <p>
@@ -240,7 +244,8 @@ described in the main <a href="@latestScaladoc/#org.scalatest.Matchers@@lengthSi
 <h2>Style <em>classes</em></h2>
 
 <p>
-In ScalaTest 1.9.2, we refactored each style trait into a style class/style trait pair. For example, in ScalaTest 1.9.1 and prior versions, <code>FlatSpec</code> was
+In ScalaTest 1.9.2, we refactored each style trait into a style class/style trait pair, to obtain speedier compiles. For example, in ScalaTest 1.9.1 and prior
+versions, <code>FlatSpec</code> was
 a trait. In 1.9.2 and 2.0, <code>FlatSpec</code> is a class; <code>FlatSpecLike</code> is the trait. Same for <code>FunSuite</code> (now a class) <code>FunSuiteLike</code>
 (now the trait), and so on. Usages that directly extend a style trait will continue
 to work fine (but should compile slightly faster). For example, this will continue to compile as before:
