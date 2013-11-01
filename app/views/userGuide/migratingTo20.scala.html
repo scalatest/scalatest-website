@@ -1,0 +1,260 @@
+@*
+ * Copyright 2010-2013 Artima, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *@
+
+@import controllers.Application.latestScaladoc
+@import controllers.Application.milestoneVersion
+@import controllers.Application.milestoneScaladoc
+@import controllers.Application.baseScalaVersion
+
+@userGuidePage("Writing your first test") {
+<div style="text-align: left">
+
+<h1>Migrating from ScalaTest 1.x to 2.0</h1>
+
+<p>
+We have always worked very hard to maintain source compatibility from one release of ScalaTest to the next. Upgrading is usually a simply matter of bumping
+the ScalaTest version number in your build doing a full recompile, and over time cleaning up any deprecation warnings. With ScalaTest 2.0, however,
+we made some improvements for which it was not possible to deprecate, so some of your existing code may not compile. Neverthless, we expect the vast
+majority of existing ScalaTest user code to just recompile as is. To ensure the smoothest migration, first zap any deprecation warnings
+being emitted by your current version of ScalaTest on your existing code. Then just bump the ScalaTest version number to 2.0 and do a full build.
+If you encounter compilation errors, check the list below for help in resolving them.
+</p>
+
+<p>
+The main points of potential breakage in ScalaTest 2.0 are:
+</p>
+
+<p>
+<strong>Custom <code>Reporter</code>s</strong>: We greatly enhanced ScalaTest's event model in 2.0 to improve tools integration and reporting. Because it is not possible in Scala to deprecate
+extractors, custom <a href="@latestScaladoc/#org.scalatest.Reporter"><code>Reporter</code></a>s written for ScalaTest 1.x may
+need to be migrated. This is the main potential breakage in ScalaTest 2.0. You still write custom <code>Reporters</code> in 2.0 the same way as in 1.x: you implement
+<code>apply</code> and handle events, usually by pattern matching on them. In 2.0, however, more events exist, and several of the pre-existing events now have more fields in them
+(all the old fields still exist and mean the same thing). So if an existing pattern match no longer compiles, look at the event (located in package
+<a href="@latestScaladoc/#org.scalatest.events.package"><code>org.scalatest.events</code></a>) and make necessary changes to your pattern to accomodate the
+new structure of the event. You may also want or need to handle events newly added in ScalaTest 2.0. For a nice list of all the 2.0 events, with links to the appropriate
+Scaladoc documentation, see the main documentation for <a href="@latestScaladoc/#org.scalatest.Reporter"><code>Reporter</code></a>.
+</p>
+
+<p>
+<strong><code>withFixture</code> methods</strong>: In 2.0, the <code>withFixture</code> methods declared in
+<a href="@latestScaladoc/#org.scalatest.Suite"><code>Suite</code></a> and <a href="@latestScaladoc/#org.scalatest.fixture.Suite"><code>fixture.Suite</code></a>, and the
+<a href="@latestScaladoc/#org.scalatest.Suite$NoArgTest"><code>NoArgTest</code></a> and <a href="@latestScaladoc/#org.scalatest.fixture.Suite$OneArgTest"><code>OneArgTest</code></a> functions passed to them, now
+return an <a href="@{latestScaladoc}/#org.scalatest.Outcome"><code>Outcome</code></a>. Because they previously
+returned <code>Unit</code>, this will require users to insert an <code>=</code> before the open curly brace of their <code>withFixture</code> implementations if they
+didn't already do so, and in some cases, <code>: Outcome =</code>.
+</p>
+
+<p>
+<em>I.e.</em>, change this:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">override</span> <span class="stReserved">def</span> withFixture(test: <span class="stType">NoArgTest</span>) {
+  <span class="stLineComment">// ...</span>
+}
+</pre>
+
+<p>
+To this (by adding the <code>=</code> sign):
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">override</span> <span class="stReserved">def</span> withFixture(test: <span class="stType">NoArgTest</span>) = {
+  <span class="stLineComment">// ...</span>
+}
+</pre>
+
+<p>
+That will most often be all that's required, but if you were catching exceptions in a
+<code>withFixture</code> implementation, you will likely also need to change your catch clauses to a corresponding pattern match
+on <code>Outcome</code> types.
+</p>
+
+<p>
+<em>I.e.</em>, change a catch clause like this one:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">override</span> <span class="stReserved">def</span> withFixture(test: <span class="stType">NoArgTest</span>) {
+  <span class="stReserved">try</span> <span class="stReserved">super</span>.withFixture(test)
+  <span class="stReserved">catch</span> {
+    <span class="stReserved">case</span> ex: <span class="stType">Throwable</span> =&gt;
+      <span class="stLineComment">// log ex (the exception) and a screenshot</span>
+      <span class="stReserved">throw</span> ex
+  }
+}
+</pre>
+
+<p>
+To a corresponding pattern match on <a href="@{latestScaladoc}/#org.scalatest.Outcome"><code>Outcome</code></a>:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">override</span> <span class="stReserved">def</span> withFixture(test: <span class="stType">NoArgTest</span>) = {
+  <span class="stReserved">val</span> outcome = <span class="stReserved">super</span>.withFixture(test)
+  outcome <span class="stReserved">match</span> {
+    <span class="stReserved">case</span> <span class="stType">Failed</span>(ex) =&gt;
+      <span class="stLineComment">// log ex (the exception) and a screenshot</span>
+  }
+  outcome
+}
+</pre>
+
+<p>
+<strong>life-cycle method signatures</strong>:
+</p>
+<li>Changed <code>runNestedSuites</code> method so instead of taking six parameters it takes a single
+<a href="@milestoneScaladoc/#org.scalatest.Args"><code>Args</code></a> parameter. This will be a breaking change to any subtrait or subclass that overrode or invoked this method. See the <a href="#breakingChangesIn20">breaking changes section</a> for info on how to fix it.</li>
+<li>Changed <code>runTests</code> method so instead of taking an optional test name string plus six parameters it takes the optional test name string and
+a single <a href="@milestoneScaladoc/#org.scalatest.Args"><code>Args</code></a> parameter. This will be a breaking change to any subtrait or subclass that overrode or invoked this method. See the <a href="#breakingChangesIn20">breaking changes section</a> for info on how to fix it.</li>
+<li>Changed <code>runTest</code> method so instead of taking a test name string and six parameters it takes the test name string and a single
+<a href="@milestoneScaladoc/#org.scalatest.Args"><code>Args</code></a> parameter. This will be a breaking change to any subtrait or subclass that overrode or invoked this method. See the <a href="#breakingChangesIn20">breaking changes section</a> for info on how to fix it.</li>
+
+
+<ul>
+<li>By defining a final implementation of <a href="@milestoneScaladoc/#org.scalatest.AbstractSuite"><code>AbstractSuite</code></a>'s
+<code>run</code> method that takes seven arguments, subclasses and subtraits that had previously overridden it will break. To fix this, you'll need
+to override the new form of <code>run</code> that takes two arguments instead. An easy way to fix this is to replace the last six arguments 
+in your overriden <code>run</code> method signature with <code>"args: Args"</code>, then add an <code>"import args._"</code> at the top of your method body.</li>
+<li>Changed the result type of <code>nestedSuites</code> from <code>List</code> to <code>immutable.IndexedSeq</code>. (Under the covers we currently return a <code>Vector</code>.) When ScalaTest 1.0 was initially released, <code>Vector</code> did not yet exist in the Scala library and <code>List</code> was considered by many to be the default <code>Seq</code> type to use. In practice, it was discovered that it is too easy to use <code>List</code> (and other <code>LinearSeq</code>'s) in a non-performant way. In 2.0 we wanted to take the opportunity to make the potentially breaking change of replacing <code>List</code> result types with <code>immutable.IndexedSeq</code>. This potentially breaking change is expected to affect very little, if any, user code, essentially only code that called <code>nestedSuites</code> then used <code>::</code> or <code>:::</code> operators on the result. To fix such a break, use <code>+:</code> instead of <code>::</code> and <code>++</code> instead of <code>:::</code>.</li>
+<li>By establishing a <a href="@milestoneScaladoc/#org.scalatest.AbstractSuite"><code>Status</code></a> return type to <code>run</code>, <code>runNestedSuites</code>, <code>runTests</code>, and <code>runTest</code>, code that previously overrode these methods will need to be modified to return a <code>Status</code>. Most implementations
+will be able to return the same <code>Status</code> returned when <code>super.run...</code> is invoked. If you need to return your own <code>Status</code> object, you
+may be able to use one of the convenience classes and objects: 
+<a href="@milestoneScaladoc/#org.scalatest.FailedStatus$"><code>FailedStatus</code></a>,
+<a href="@milestoneScaladoc/#org.scalatest.SucceededStatus$"><code>SucceededStatus</code></a>,
+<a href="@milestoneScaladoc/#org.scalatest.StatefulStatus"><code>StatefulStatus</code></a>, and
+<a href="@milestoneScaladoc/#org.scalatest.CompositeStatus"><code>CompositeStatus</code></a>.</li>
+<li>Made major enhancements to the event model, primarily to support tools integration, but also to support a few new features unrelated to tools integration. These enhancements form a braeaking change becuase it is not possible to deprecate extractors in Scala, so pattern matches on the old-style events will likely break. This is the main breakage in ScalaTest 2.0, but it only effects users who created custom <code>Reporter</code>s, which was very rare, probably less than 1% of users.</li>
+<li>
+Because implicit conversions from structural types that enabled "have length/size" to be used on any object with an appropriate structure (such as
+a <code>getSize</code> method were removed from ScalaTest's matchers in 2.0.M5, any code relying on this feature will no longer compile. 
+This should affect very little code, but if it hits you, you'll need to create a type class
+as described in the Scaladoc for <a href="@milestoneScaladoc/#org.scalatest.matchers.ClassicMatchers$Length"><code>Length</code></a> and <a href="@milestoneScaladoc/#org.scalatest.matchers.ClassicMatchers$Size"><code>Size</code></a>. The reason for this breaking change is that although the structural implicits were rarely used, the compiler
+had to look at each one each time it needed to apply any implicit conversion. Scala 2.10 required that we add another 22 implicit conversions to this group, which
+just made the tradeoff seem unworthy. Dropping this feature eliminated a total of 46 implicit conversions. The structural type implicit conversion approach also turned
+out to not work if an object matched more than one of the structures, because the compile would fail complaining about ambiguous implicit conversions. The type class
+approach requires a bit more work up front in the (usually rare) cases that you want to use the length/size syntax with a type not already supported by ScalaTest's
+matchers, but compiles should be slightly faster as a result of fewer implicits being in scope.
+</li>
+</ul>
+<p>
+<strong>Lifecycle method signatures</strong>: We modified the signature of /
+</p>
+
+<li>We modified the signatures and return types of some <code>Suite</code>'s lifecycle methods declared in Suite.</li>
+</ul>
+
+1. In ScalaTest, you define tests inside classes that extend a <em>style class</em> such as <a href="@latestScaladoc/#org.scalatest.FlatSpec"><code>FlatSpec</code></a>
+(though in practice you'd usually directly extend a <a href="defining_base_classes">base class defined for your project</a>, which extends a ScalaTest style class):
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">import</span> org.scalatest.FlatSpec
+<br /><span class="stReserved">class</span> <span class="stType">FirstSpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> {
+  // tests go here...
+}
+</pre>
+
+<p>
+2. Each test in a <code>FlatSpec</code> is composed of a sentence that specifies a bit of required behavior and a block of code that tests it.
+The sentence needs a subject, such as <code>"A Stack"</code>; a verb, either <code>should</code>, <code>must</code>, or <code>can</code>; and 
+the rest of the sentence. Here's an example:
+</p>
+
+<pre class="stHighlighted">
+<span class="stQuotedString">&quot;A Stack&quot;</span> should <span class="stQuotedString">&quot;pop values in last-in-first-out order&quot;</span>
+</pre>
+
+<p>
+If you have multiple tests about the same subject, you can use <code>it</code> to refer to the previous subject:
+</p>
+
+<pre class="stHighlighted">
+it should <span class="stQuotedString">&quot;throw NoSuchElementException if an empty stack is popped&quot;</span>
+</pre>
+
+<p>
+After the sentence you put the word <code>in</code> followed by the body of the test in curly braces. Here's a complete example:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">import</span> collection.mutable.Stack
+<span class="stReserved">import</span> org.scalatest._
+<br /><span class="stReserved">class</span> <span class="stType">StackSpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> {
+<br />  <span class="stQuotedString">&quot;A Stack&quot;</span> should <span class="stQuotedString">&quot;pop values in last-in-first-out order&quot;</span> in {
+    <span class="stReserved">val</span> stack = <span class="stReserved">new</span> <span class="stType">Stack[Int]</span>
+    stack.push(<span class="stLiteral">1</span>)
+    stack.push(<span class="stLiteral">2</span>)
+    assert(stack.pop() === <span class="stLiteral">2</span>)
+    assert(stack.pop() === <span class="stLiteral">1</span>)
+  }
+<br />  it should <span class="stQuotedString">&quot;throw NoSuchElementException if an empty stack is popped&quot;</span> in {
+    <span class="stReserved">val</span> emptyStack = <span class="stReserved">new</span> <span class="stType">Stack[String]</span>
+    intercept[<span class="stType">NoSuchElementException</span>] {
+      emptyStack.pop()
+    }
+  }
+}
+</pre>
+
+<p>
+3. Place this in a file called <code>StackSpec.scala</code> and compile it using <a href="https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest_@{baseScalaVersion}/@{milestoneVersion}/scalatest_@{baseScalaVersion}-@{milestoneVersion}.jar">this Jar file</a>:
+</p>
+
+<pre class="stExamples">
+$ scalac -cp scalatest_@{baseScalaVersion}-@{milestoneVersion}.jar StackSpec.scala
+</pre>
+
+<p>
+4. You can run it from the command line by invoking ScalaTest's <a href="using_the_runner">simple Runner</a>:
+</p>
+
+<pre class="stExamples">
+$ scala -cp scalatest_@{baseScalaVersion}-@{milestoneVersion}.jar org.scalatest.run StackSpec
+<span class="stCyan">Run starting. Expected test count is: 2</span>
+<span class="stGreen">StackSpec:
+A Stack 
+- should pop values in last-in-first-out order
+- should throw NoSuchElementException if an empty stack is popped</span>
+<span class="stCyan">Run completed in 96 milliseconds.
+Total number of tests run: 2
+Suites: completed 1, aborted 0
+Tests: succeeded 2, failed 0, ignored 0, pending 0</span>
+<span class="stGreen">All tests passed.</span>
+</pre>
+
+<p>
+5. Or you can run it from the Scala interpreter using the <a href="using_the_scalatest_shell">ScalaTest shell</a>: 
+</p>
+
+<pre class="stExamples">
+$ scala -cp scalatest_@{baseScalaVersion}-@{milestoneVersion}.jar
+
+scala&gt; import org.scalatest._
+import org.scalatest._
+
+scala&gt; run(new StackSpec)
+<span class="stGreen">StackSpec:
+A Stack 
+- should pop values in last-in-first-out order
+- should throw NoSuchElementException if an empty stack is popped</span>
+</pre>
+
+<p>
+Next, learn about <a href="using_assertions">using assertions</a>.
+</p>
+</div>
+}
