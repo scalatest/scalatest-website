@@ -29,16 +29,37 @@ We have always worked very hard to maintain source compatibility from one releas
 the ScalaTest version number in your build doing a full recompile, and over time cleaning up any deprecation warnings. With ScalaTest 2.0, however,
 we made some improvements for which it was not possible to deprecate, so some of your existing code may not compile. Neverthless, we expect the vast
 majority of existing ScalaTest user code to just recompile as is. To ensure the smoothest migration, first please eliminate any deprecation warnings
-being emitted by your current version of ScalaTest on your existing code. Then just bump the ScalaTest version number to 2.0 and do a full build.
+being emitted by your current version of ScalaTest on your existing code. (For best results, upgrade to 1.9.2 first and clear any deprecation warnings, though
+many of those reported will still be deprecated and working in 2.0.) Then just bump the ScalaTest version number to 2.0 and do a full build.
 If you encounter compilation errors, check the list below for help in resolving them.
 </p>
 
+<p>
+These are the points of potential breakage in ScalaTest 2.0, which are described below:
+</p>
+
+<ol>
+<li><a href="#customReporters">Custom <code>Reporter</code>s</a>
+<li><a href="#withFixtureMethods"><code>withFixture</code> methods</a>
+<li><a href="#runMethodSignatures"><code>run</code> method signatures</a>
+<li><a href="#listToImmutableSeq"><code>List</code> to <code>immutable.IndexedSeq</code></a>
+<li><a href="#lengthSizeAndHavePropertyMatchers"><code>length</code>, <code>size</code> and  <code>HavePropertyMatcher</code>s</a>
+<li><a href="#styleClasses">Style <em>classes</em></a>
+<li><a href="#fragileBaseClassProblem">The fragile base class problem</a>
+</ol>
+
+<p>
+If you have any confusion about how to migrate your ScalaTest 1.x code to ScalaTest 2.0, or encounter other problems, please post your specific issues
+to <a href="http://groups.google.com/group/scalatest-users"><code>scalatest-users</code></a> and we'll be happy to help.
+</p>
+
+<a name="customReporters"></a>
 <h2>Custom <code>Reporter</code>s</h2>
 
 <p>
 We greatly enhanced ScalaTest's event model in 2.0 to improve tools integration and reporting. Because it is not possible in Scala to deprecate
 extractors, custom <a href="@latestScaladoc/#org.scalatest.Reporter"><code>Reporter</code></a>s written for ScalaTest 1.x will usually
-need to be migrated. This is the main potential breakage in ScalaTest 2.0. You still write custom <code>Reporters</code> in 2.0 the same way as in 1.x: you implement
+need to be migrated. You still write custom <code>Reporters</code> in 2.0 the same way as in 1.x: you implement
 <code>apply</code> and handle events, usually by pattern matching on them. In 2.0, however, more events exist, and several of the pre-existing events now have more fields in them
 (though all the old fields still exist and mean the same thing). So if an existing pattern match no longer compiles, look at the event (located in package
 <a href="@latestScaladoc/#org.scalatest.events.package"><code>org.scalatest.events</code></a>) and make necessary changes to your pattern to accomodate the
@@ -46,6 +67,7 @@ new structure of the event. You may also want or need to handle events newly add
 Scaladoc documentation, see the main documentation for <a href="@latestScaladoc/#org.scalatest.Reporter"><code>Reporter</code></a>.
 </p>
 
+<a name="withFixtureMethods"></a>
 <h2><code>withFixture</code> methods</h2>
 
 <p>
@@ -62,7 +84,7 @@ didn't already do so, and in some cases, <code>: Outcome =</code>.
 </p>
 
 <pre class="stHighlighted">
-<span class="stReserved">override</span> <span class="stReserved">def</span> withFixture(test: <span class="stType">NoArgTest</span>) {
+<span class="stReserved">override</span> <span class="stReserved">def</span> withFixture(test: <span class="stType">NoArgTest</span>) { <span class="stLineComment">// before</span>
   setupDb()
   <span class="stReserved">try</span> <span class="stReserved">super</span>.withFixture(test)
   <span class="stReserved">finally</span> cleanupDb()
@@ -74,7 +96,7 @@ To this (by adding the <code>=</code> sign):
 </p>
 
 <pre class="stHighlighted">
-<span class="stReserved">override</span> <span class="stReserved">def</span> withFixture(test: <span class="stType">NoArgTest</span>) = {
+<span class="stReserved">override</span> <span class="stReserved">def</span> withFixture(test: <span class="stType">NoArgTest</span>) = { <span class="stLineComment">// after</span>
   setupDb()
   <span class="stReserved">try</span> <span class="stReserved">super</span>.withFixture(test)
   <span class="stReserved">finally</span> cleanupDb()
@@ -92,7 +114,7 @@ on <code>Outcome</code> types.
 </p>
 
 <pre class="stHighlighted">
-<span class="stReserved">override</span> <span class="stReserved">def</span> withFixture(test: <span class="stType">NoArgTest</span>) {
+<span class="stReserved">override</span> <span class="stReserved">def</span> withFixture(test: <span class="stType">NoArgTest</span>) { <span class="stLineComment">// before</span>
   <span class="stReserved">try</span> <span class="stReserved">super</span>.withFixture(test)
   <span class="stReserved">catch</span> {
     <span class="stReserved">case</span> ex: <span class="stType">Throwable</span> =&gt;
@@ -107,7 +129,7 @@ To a corresponding pattern match on <a href="@{latestScaladoc}/#org.scalatest.Ou
 </p>
 
 <pre class="stHighlighted">
-<span class="stReserved">override</span> <span class="stReserved">def</span> withFixture(test: <span class="stType">NoArgTest</span>) = {
+<span class="stReserved">override</span> <span class="stReserved">def</span> withFixture(test: <span class="stType">NoArgTest</span>) = { <span class="stLineComment">// after</span>
   <span class="stReserved">val</span> outcome = <span class="stReserved">super</span>.withFixture(test)
   outcome <span class="stReserved">match</span> {
     <span class="stReserved">case</span> <span class="stType">Failed</span>(ex) =&gt;
@@ -117,6 +139,7 @@ To a corresponding pattern match on <a href="@{latestScaladoc}/#org.scalatest.Ou
 }
 </pre>
 
+<a name="runMethodSignatures"></a>
 <h2><code>run</code> method signatures</h2>
 
 <p>
@@ -133,10 +156,10 @@ For example, you'd change an overridden method like this:
 </p>
 
 <pre class="stHighlighted">
-override def runTests(testName: Option[String], reporter: Reporter, stopper: Stopper, filter: Filter,
-    configMap: Map[java.lang.String, Any], distributor: Option[Distributor], tracker : Tracker) {
+<span class="stReserved">override</span> <span class="stReserved">def</span> runTests(testName: <span class="stType">Option</span>[<span class="stType">String</span>], reporter: <span class="stType">Reporter</span>, stopper: <span class="stType">Stopper</span>, filter: <span class="stType">Filter</span>,
+    configMap: <span class="stType">Map</span>[<span class="stType">String</span>, <span class="stType">Any</span>], distributor: <span class="stType">Option</span>[<span class="stType">Distributor</span>], tracker : <span class="stType">Tracker</span>) { <span class="stLineComment">// before</span>
 
-  // Your existing code
+  <span class="stLineComment">// Your existing code</span>
 }
 </pre>
 
@@ -145,11 +168,11 @@ To this:
 </p>
 
 <pre class="stHighlighted">
-override def runTests(testName: Option[String], args: Args): Status = {
+<span class="stReserved">override</span> <span class="stReserved">def</span> runTests(testName: <span class="stType">Option</span>[<span class="stType">String</span>], args: <span class="stType">Args</span>): <span class="stType">Status</span> = { <span class="stLineComment">// after</span>
 
-  import args._
+  <span class="stReserved">import</span> args._
 
-  // Your existing code
+  <span class="stLineComment">// Your existing code</span>
 }
 </pre>
 
@@ -178,16 +201,17 @@ any tests ran, just that no test failed and no suite aborted.)
 </p>
 
 <pre class="stHighlighted">
-abstract override def runTests(testName: Option[String], args: Args): Status = {
+<span class="stReserved">abstract</span> <span class="stReserved">override</span> <span class="stReserved">def</span> runTests(testName: <span class="stType">Option</span>[<span class="stType">String</span>], args: <span class="stType">Args</span>): <span class="stType">Status</span> = {
   if (driverSupported)
-    super.runTests(testName, args)
+    <span class="stReserved">super</span>.runTests(testName, args)
   else {
-    alert("Cancelling " + this.suiteName + " : " + browserType + " not installed")
-    SucceededStatus
+    alert(<span class="stQuotedString">"Cancelling "</span> + this.suiteName + <span class="stQuotedString">" : "</span> + browserType + <span class="stQuotedString">" not installed"</span>)
+    <span class="stType">SucceededStatus</span>
   }
 }
 </pre>
 
+<a name="listToImmutableSeq"></a>
 <h2><code>List</code> to <code>immutable.IndexedSeq</code></h2>
 
 <p>
@@ -201,6 +225,7 @@ to affect very little, if any, user code, essentially only code that called <cod
 on the result. To fix such a break, use <code>+:</code> instead of <code>::</code> and <code>++</code> instead of <code>:::</code>.
 </p>
 
+<a name="lengthSizeAndHavePropertyMatchers"></a>
 <h2><code>length</code>, <code>size</code> and  <code>HavePropertyMatcher</code>s</h2>
 
 <p>
@@ -211,6 +236,7 @@ your <code>length</code> or <code>size</code> invocation an <code>(of [&lt;type&
 described in the main <a href="@latestScaladoc/#org.scalatest.Matchers@@lengthSizeHavePropertyMatchers">Scaladoc documentation for <code>Matchers</code></a>.
 </p>
 
+<a name="styleClasses"></a>
 <h2>Style <em>classes</em></h2>
 
 <p>
@@ -221,7 +247,7 @@ to work fine (but should compile slightly faster). For example, this will contin
 </p>
 
 <pre class="stHighlighted">
-<span class="stReserved">class</span> <span class="stType">MySpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> {
+<span class="stReserved">class</span> <span class="stType">MySpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> { <span class="stLineComment">// OK as is</span>
   <span class="stLineComment">// ...</span>
 }
 </pre>
@@ -231,7 +257,7 @@ However, if you were mixing in a style trait after <code>with</code>, you'll nee
 </p>
 
 <pre class="stHighlighted">
-<span class="stReserved">class</span> <span class="stType">MySpec</span> <span class="stReserved">extends</span> <span class="stType">TestKit(<span class="stType">ActorSystem</span>(<span class="stQuotedString">"my actors"</span>) <span class="stReserved">with</span> <span class="stType">FlatSpec</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> {
+<span class="stReserved">class</span> <span class="stType">MySpec</span> <span class="stReserved">extends</span> <span class="stType">TestKit(<span class="stType">ActorSystem</span>(<span class="stQuotedString">"my actors"</span>) <span class="stReserved">with</span> <span class="stType">FlatSpec</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> { <span class="stLineComment">// before</span>
   <span class="stLineComment">// ...</span>
 }
 </pre>
@@ -241,22 +267,18 @@ To this (by adding &ldquo;<code>Like</code>&rdquo; to <code>FlatSpec</code>):
 </p>
 
 <pre class="stHighlighted">
-<span class="stReserved">class</span> <span class="stType">MySpec</span> <span class="stReserved">extends</span> <span class="stType">TestKit(<span class="stType">ActorSystem</span>(<span class="stQuotedString">"my actors"</span>) <span class="stReserved">with</span> <span class="stType">FlatSpecLike</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> {
+<span class="stReserved">class</span> <span class="stType">MySpec</span> <span class="stReserved">extends</span> <span class="stType">TestKit(<span class="stType">ActorSystem</span>(<span class="stQuotedString">"my actors"</span>) <span class="stReserved">with</span> <span class="stType">FlatSpecLike</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> { <span class="stLineComment">// after</span>
   <span class="stLineComment">// ...</span>
 }
 </pre>
 
+<a name="fragileBaseClassProblem"></a>
 <h2>The fragile base class problem</h2>
 
 <p>
 To our knowledge, the only other source of potential breakage in ScalaTest 2.0 is the fragile base class problem. We have added fields and methods to traits such as
 <code>Matchers</code> and <code>Suite</code> in 2.0 that may
 conflict with fields and methods in your existing classes and cause a compiler error. Such issues can usually be easily fixed locally with simple renames or refactors.
-</p>
-
-<p>
-If you have any confusion about how to migrate your ScalaTest 1.x code to ScalaTest 2.0, or encounter other problems, please post your specific issues
-to <code>scalatest-users</code> and we'll be happy to help.
 </p>
 
 </div>
