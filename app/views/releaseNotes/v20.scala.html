@@ -95,27 +95,21 @@ to <code>Distributor</code> implementations.</li>
 <li>Removed <code>BeforeAndAfterEachFunctions</code> and <code>BeforeAndAfterAllFunctions</code>, which had been deprecated since ScalaTest 1.6.1. If you haven't
 done so already, you'll need to use <code>BeforeAndAfter</code> instead of <code>BeforeAndAfterEachFunctions</code>, and <code>BeforeAndAfterAll</code> instead
 of <code>BeforeAndAfterAllFunctions</code>.</li>
-<li>Removed <code>MultipleFixtureFeatureSpec</code>, <code>MultipleFixtureFlatSpec</code>, <code>MultipleFixtureFreeSpec</code>, <code>MultipleFixtureFunSuite</code>, <code>MultipleFixturePropSpec</code>, <code>MultipleFixtureSpec</code>, and <code>MultipleFixtureWordSpec</code>, which had been deprecated since ScalaTest 1.6.1. If you haven't
-done so already, you'll need to mix in <a href="@milestoneScaladoc/#org.scalatest.fixture.ConfigMapFixture"><code>ConfigMapFixture</code></a> to a <code>fixture.X</code> trait instead.</li>
-<li>Removed <code>org.scalatest.SuperSuite</code>, which had been deprecated in ScalaTest 1.5. Please use <a href="@milestoneScaladoc/#org.scalatest.Suites"><code>Suites</code> or <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.Specs"><code>Specs</code></a> instead.</li>
-<li>Removed the deprecated implicit conversion in the <code>Stopper</code> companion object that converted a <code>Stopper</code> to function type <code>() =&gt; Boolean</code>. This
-implicit conversion was added when the inheritance relationship between <code>Stopper</code> and <code>Function0[Boolean]</code> was severed to make it possible for <code>Stopper</code> to be implemented in Java. (Severing this relationship was originally a request by the IntelliJ IDEA folks, who wanted to write integration code in Java to smooth over binary incompatibilities between different Scala versions.)</li>
-<li>Added a <code>default</code> method in the <code>Stopper</code> companion object that returned a stopper that always returns false when applied.</li>
+<li>Removed <code>MultipleFixtureFeatureSpec</code>, <code>MultipleFixtureFlatSpec</code>, <code>MultipleFixtureFreeSpec</code>,
+<code>MultipleFixtureFunSuite</code>, <code>MultipleFixturePropSpec</code>, <code>MultipleFixtureSpec</code>, and <code>MultipleFixtureWordSpec</code>, which had been
+deprecated since ScalaTest 1.6.1. If you haven't done so already, you'll need to mix in
+<a href="@latestScaladoc/#org.scalatest.ConfigMapFixture"><code>ConfigMapFixture</code></a> to a <code>fixture.X</code> trait instead.</li>
+<li>Removed <code>org.scalatest.SuperSuite</code>, which had been deprecated since ScalaTest 1.5. Please use
+<a href="@latestScaladoc/#org.scalatest.Suites"><code>Suites</code></a>  instead.</li>
+<li>Removed the deprecated implicit conversion in the <code>Stopper</code> companion object that converted a <code>Stopper</code> to function
+type <code>() =&gt; Boolean</code>. This
+implicit conversion was added when the inheritance relationship between <code>Stopper</code> and <code>Function0[Boolean]</code> was severed to make
+it possible for <code>Stopper</code> to be implemented in Java. (Severing this relationship was originally a request by the IntelliJ IDEA folks, who
+wanted to write integration code in Java to smooth over binary incompatibilities between different Scala versions.)</li>
 <li>Removed the implicit conversion from <code>Reporter</code> to <code>Event =&gt; Unit</code> function type in the <code>Reporter</code> companion
 objecgt, which had been deprecated since ScalaTest 1.5.</li>
-<li>Removed the implicit conversion from <code>Rerunner</code> to <code>Function7</code>, which was deprecated in ScalaTest 1.5.</li>
+<li>Removed the implicit conversion from <code>Rerunner</code> to <code>Function7</code>, which had been deprecated since ScalaTest 1.5.</li>
 </ul>
-
-<p>
-ScalaTest/ScalaUtils 2.0 is a major release focused on easing one of the main pain points for Scala
-users: tools support. The ScalaTest 2.0 effort has involved not only enhancements
-to ScalaTest, but also to tools themselves, such as IntelliJ IDEA, the Scala IDE for Eclipse,
-and sbt. ScalaTest 2.0.RC1 is a release candidate for ScalaTest 2.0. If no major problems are found during
-the trial phase, this version will be relabeled and released as ScalaTest 2.0.
-The <a href="#detailedList">detailed list</a> below lists all changes and enhancements in ScalaTest 2.0
-compared to ScalaTest 1.9.2. For a higher level view, here are some highlights of 2.0 over
-the previous 2.0 milestone releases and release candidates:
-</p>
 
 <h2>Detailed list of changes</h2>
 
