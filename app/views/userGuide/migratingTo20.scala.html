@@ -211,6 +211,41 @@ your <code>length</code> or <code>size</code> invocation an <code>(of [&lt;type&
 described in the main <a href="@latestScaladoc/#org.scalatest.Matchers@@lengthSizeHavePropertyMatchers">Scaladoc documentation for <code>Matchers</code></a>.
 </p>
 
+<h2>Style <em>classes</em></h2>
+
+<p>
+In ScalaTest 1.9.2, we refactored each style trait into a style class/style trait pair. For example, in ScalaTest 1.9.1 and prior versions, <code>FlatSpec</code> was
+a trait. In 1.9.2 and 2.0, <code>FlatSpec</code> is a class; <code>FlatSpecLike</code> is the trait. Same for <code>FunSuite</code> (now a class) <code>FunSuiteLike</code>
+(now the trait), and so on. Usages that directly extend a style trait will continue
+to work fine (but should compile slightly faster). For example, this will continue to compile as before:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">class</span> <span class="stType">MySpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> {
+  <span class="stLineComment">// ...</span>
+}
+</pre>
+
+<p>
+However, if you were mixing in a style trait after <code>with</code>, you'll need to add <code>Like</code>. For example, you'd need to change this:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">class</span> <span class="stType">MySpec</span> <span class="stReserved">extends</span> <span class="stType">TestKit(<span class="stType">ActorSystem</span>(<span class="stQuotedString">"my actors"</span>) <span class="stReserved">with</span> <span class="stType">FlatSpec</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> {
+  <span class="stLineComment">// ...</span>
+}
+</pre>
+
+<p>
+To this (by adding &ldquo;<code>Like</code>&rdquo; to <code>FlatSpec</code>):
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">class</span> <span class="stType">MySpec</span> <span class="stReserved">extends</span> <span class="stType">TestKit(<span class="stType">ActorSystem</span>(<span class="stQuotedString">"my actors"</span>) <span class="stReserved">with</span> <span class="stType">FlatSpecLike</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> {
+  <span class="stLineComment">// ...</span>
+}
+</pre>
+
 <h2>The fragile base class problem</h2>
 
 <p>
