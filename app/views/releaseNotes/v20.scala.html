@@ -24,7 +24,7 @@
 <h1>ScalaTest 2.0 Release Notes</h1>
 
 <p>
-ScalaTest 2.0 is a major upgrade to ScalaTest, the culmination of over two years of focused effort. Although it
+ScalaTest 2.0 is a major upgrade to ScalaTest, the culmination of over two years of effort. Although it
 includes many enhancements, we kept a close eye on compatibility with existing ScalaTest 1.x code.
 We also tried hard to preserve what people liked about ScalaTest 1.x: ScalaTest is simple, the code is clean
 and clear, it is fully documented, and it &ldquo;just works.&rdquo; 
@@ -72,9 +72,15 @@ method is executed after any parallel execution completes.</li>
 and <a href="@{latestScaladoc}/#org.scalatest.Stepwise"><code>Stepwise</code></a> (to pre-existing
 <a href="@{latestScaladoc}/#org.scalatest.Suites"><code>Suites</code></a>) combinators for suite composition.</li>
 <li>Added support for <code>they</code> (in addition to <code>it</code>) to <a href="@{latestScaladoc}/#org.scalatest.FunSpec"><code>FunSpec</code></a> and <a href="@{latestScaladoc}/#org.scalatest.FlatSpec"><code>FlatSpec</code></a>.</li>
+<li>Added ability to <a href="@latestScaladoc/#org.scalatest.Tag">tag</a> all tests in a suite class by annotating the class with a tag
+annotation. For example, can ignore all tests in a suite class with <a href="@latestScaladoc/#org.scalatest.Ignore"><code>@@Ignore</code></a>.</li>
+<li>Added the ability to dynamically tag tests, which facilitates features such as test name
+wildcards and rerunning previously failed tests; Dynamic tagging enables selection of tests
+even in nested suites that can't be instantiated directly.</li>
 <li>Added traits <a href="@latestScaladoc/#org.scalatest.Spec"><code>Spec</code></code></a> and
 <a href="@latestScaladoc/#org.scalatest.fixture.Spec"><code>fixture.Spec</code></code></a> to serve as the new style trait
 in which tests are methods, and deprecated the use of <a href="@latestScaladoc/#org.scalatest.Suite"><code>Suite</code></a> as a style trait.</li>
+<li>Added a <a href="@latestScaladoc/#org.scalatest.DoNotDiscover"><code>@@DoNotDiscover</code></a> annotation that prevents discovery of an otherwise discoverable <code>Suite</code> class.</li>
 <li>Added trait <a href="@latestScaladoc/#org.scalatest.SuiteMixin"><code>SuiteMixin</code></a> to serve as the new base class
 for stackable traits that can be mixed into <code>Suite</code>, and deprecated trait
 <a href="@latestScaladoc/#org.scalatest.AbstractSuite"><code>AbstractSuite</code></a>.</li>
@@ -146,15 +152,20 @@ modification of error messages during <a href="@{latestScaladoc}/#org.scalatest.
 </p>
 
 <ul>
+<li>For a table of all the available options, see the <a href="@{latestScaladoc}/#org.scalatest.tools.Runner$">main Scaladoc documentation for <code>Runner</code></a>.</li>
 <li>Added support for <a href="@{latestScaladoc}/#org.scalatest.tools.Runner$@@configuringReporters"><em>reminders</em></a>, a summary of failed and/or
 canceled tests that can be optionally printed out at the end of a run in string (stdout, stderr, file) reporters. This obviates the need to scroll backwards
 in search of details about failed and/or canceled tests in console output, and also ensures that such details won't have scrolled off the top and out of existence.</li>
 <li>Enabled discovery to be used if only <code>-z</code> <code>&lt;test name wildcard&gt;</code> or <code>-t</code> <code>&lt;test name&gt;</code> is specified. In
-such cases <a href="@{latestScaladoc}/#org.scalatest.tools.Runner$"><code>Runner</code></a> will execute any tests with matching names on any suite discovered
+such cases <code>Runner</code> will execute any tests with matching names on any suite discovered
 in the runpath.</li>
 <li>Enhanced <code>-s</code> to take a glob in addition to a complete, fully-qualified suite class name.</li>
 <li>Added a <em>slow poke detector</em> (TODO: Document slowpoke in Runner), which will emit <a href="@{latestScaladoc}/#org.scalatest.events.AlertProvided"><code>AlertProvided</code></a> events periodically listing
-    tests that have been running longer than a specified time limit.</li>
+    tests that have been running longer than a specified time limit. (-W)</li>
+<li>Added to <a href="@latestScaladoc/#org.scalatest.tools.Runner$"><code>Runner</code></a> a way to specify tests to run by full or partial ("wildcard") name (<code>-z</code>).</li>
+<li>Enabled on-the-fly sorting of events (with a timeout) during parallel runs (<code>-PS</code>).</li>
+<li>Added <a href="@latestScaladoc/#org.scalatest.tools.Runner$@@configuringReporters">unformatted mode</a> to stdout (<em>-oU</em>), stderr (<code>-eU</code>), and
+file reporters (<code>-fU</code>) for helping debug problematic parallel test runs.</li>
 </ul>
 
 <p>
