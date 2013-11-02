@@ -1,0 +1,969 @@
+@*
+ * Copyright 2010-2013 Artima, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *@
+
+@import controllers.Application.milestoneScaladoc
+@import controllers.Application.latestScaladoc
+@import controllers.Application.milestoneVersion
+
+@releaseNotesPage("ScalaTest 2.0.RC3 Release Notes") {
+<div style="text-align: left">
+
+<h1>ScalaTest 2.0 Detailed History</h1>
+
+<p>
+For historians, this page preserves the relevant sections of the individual release notes
+for major 2.0 milestones and release candidates. For a quicker to read and more understandable overview, see
+the <a href="/release_notes/2.0#highlights">Highlights section</a> of the 2.0 release notes.
+</p>
+
+<p>
+<em>2.0.RC3 Highlights:</em>
+</p>
+
+<ul>
+<li>Changed <code>update</code> method in style traits to <code>note</code>, <code>Updater</code> to <code>Notifier</code>,
+<code>Updating</code> to <code>Notifying</code>.</li>
+<li>Made minor formatting improvements to HTML reporter for <code>markup</code> text.</li>
+<li>Improved the error messages when an attempt is made to open a scope inside a test.</li>
+</ul>
+
+<p>
+<em>2.0.RC2 Highlights:</em>
+</p>
+
+<ul>
+<li>Fixed a race condition in <a href="@{milestoneScaladoc}/index.html#org.scalatest.concurrent.AsyncAssertions$Waiter"><code>Waiter</code></a> (contributed by Nick Wade)</li>
+<li>Fixed a bug in the new Framework API implementation in which <code>TestWildcardSelector</code>s weren't being handled, which will be needed for
+sbt 0.13.1.</li>
+<li>Completed Scaladoc for 2.0 final release</li>
+<li>Changed the name of the public field from <code>left</code> to <code>leftSide</code> in
+<a href="@{milestoneScaladoc}/index.html#org.scalautils.TripleEqualsSupport$Equalizer"><code>Equalizer</code></a> and
+<a href="@{milestoneScaladoc}/index.html#org.scalautils.TripleEqualsSupport$CheckingEqualizer"><code>CheckingEqualizer</code></a> so that it
+    doesn't conflict with a <code>left</code> method added by an implicit conversion in scalaz.</li>
+<li>Added pretty <code>toString</code>s to the <a href="@{milestoneScaladoc}/index.html#org.scalautils.Equality"><code>Equality</code></a>'s
+produced by <a href="@{milestoneScaladoc}/index.html#org.scalautils.TolerantNumerics"><code>TolerantNumerics</code></a></li>
+<li>Added three missing lifecycle methods to <a href="@{milestoneScaladoc}/index.html#org.scalatest.SuiteMixin"><code>SuiteMixin</code></a>, to
+enable the stackable trait pattern for those methods</li>
+<li>Implemented and documented the <code>scan</code> methods on <a href="@{milestoneScaladoc}/index.html#org.scalautils.Every"><code>Every</code></a>.</li>
+<li>Enhanced <code>assume</code> to use similar macros as <code>assert</code> for better error messages
+in <a href="@{milestoneScaladoc}/index.html#org.scalatest.Assertions"><code>Assertions</code></a></li>
+<li>Changed the formatting behavior of the <code>assert</code> and <code>assume</code> methods of
+<a href="@{milestoneScaladoc}/index.html#org.scalatest.Assertions"><code>Assertions</code></a> when a string "clue" message
+is provided to match that of <a href="@{milestoneScaladoc}/index.html#org.scalatest.AppendedClues"><code>AppendedClues</code></a></li>
+</ul>
+
+<p>
+<em>2.0.RC1 Highlights:</em>
+</p>
+
+<ul>
+<li>Added simple <code>assert</code> macros, made <code>TripleEquals</code> (whose <code>===</code> and <code>!==</code> operators
+    return <code>Boolean</code>) and deprecated the <code>Legacy</code> variants whose <code>===</code> and <code>!==</code>
+    operator return <code>Option[String]</code></li>
+<li>Require at least two arguments in <code>contain</code> <code>oneOf</code>, <code>allOf</code>, <code>noneOf</code>,
+    <code>atLeastOneOf</code>, <code>atMostOneOf</code>, <code>inOrderOnly</code>, and <code>inOrder</code></li>
+<li>Added an implicit language.postfixOps to <code>SpanSugar</code></li>
+<li>Added <code>scala-reflect</code> library to ScalaTest pom, now that we're using assert macros</li>
+<li>Added a <code>trap</code> method to <code>Assertions</code> to make it easier to work with assertions and matcher expressions
+    in the Scala interpreter</li>
+</ul>
+
+<p>
+<em>2.0.M8 Highlights:</em>
+</p>
+
+<p>
+ScalaTest/ScalaUtils 2.0.M8 mostly contains Scaladoc documentation, but also contains some adjustments to <code>Or</code> in in ScalaUtils,
+the addition of a <code>OneArgTest</code> factory method, and one important bug fix.
+Here is the list of changes in 2.0.M8 compared to 2.0.M7:
+</p>
+
+<ul>
+<li>Changed <a href="@{milestoneScaladoc}/index.html#org.scalatest.BeforeAndAfterAll"><code>BeforeAndAfterAll</code></a> so that it no longer blocks waiting for
+nested suites to complete before executing <code>afterAll</code>. This approach was taken originally to ensure that <code>afterAll</code> ran on the
+same thread as <code>beforeAll</code>, and worked fine with ScalaTest prior to adding support for the new sbt Framework API. With the new Framework API,
+ScalaTest by default will allow sbt to run nested suites on its thread pool rather than making a separate thread pool when parallel execution is enabled
+in an sbt build. This caused a deadlock when nested suites were used with an sbt build with <code>BeforeAndAfterAll</code>, so in 2.0.M8, we have removed
+the guarantee that <code>afterAll</code> will execute on the same thread as <code>beforeAll</code>. This removes the potential for deadlock, but means
+that users will need to synchronize access to any shared data in <code>beforeAll</code> and <code>afterAll</code>.</li>
+<li>Added a <a href="@{milestoneScaladoc}/index.html#org.scalatest.fixture/Suite$OneArgTest$"><code>OneArgTest</code></a> factory method to support the use
+case of needing to do further fixture set and teardown work with a <code>FixtureParam</code>.</li>
+<li>Added an <code>orElse</code> method to <a href="@{milestoneScaladoc}/index.html#org.scalautils.Or"><code>Or</code></a> that takes a by-name.</li>
+<li>Made <code>getOrElse</code> method of <a href="@{milestoneScaladoc}/index.html#org.scalautils.Or"><code>Or</code></a> take a by-name.</li>
+<li>Added <code>asOr</code> method to <a href="@{milestoneScaladoc}/index.html#org.scalautils.Or"><code>Or</code></a> and
+<code>asEvery</code> method to <a href="@{milestoneScaladoc}/index.html#org.scalautils.Every"><code>Every</code></a> to provide an easy
+way to widen more specific sub-type types to the supertypes.</li>
+<li>Moved the <a href="@{milestoneScaladoc}/index.html#org.scalatest.concurrent.PatienceConfiguration$$Interval"><code>Interval</code></a>,
+<a href="@{milestoneScaladoc}/index.html#org.scalatest.concurrent.PatienceConfiguration$$Timeout"><code>Timeout</code></a>,
+and <a href="@{milestoneScaladoc}/index.html#org.scalatest.concurrent.PatienceConfiguration"><code>PatienceConfigParam</code></a> types out of
+trait <code>PatienceConfiguration</code> and put them instead in its companion object. This way their names won't be in scope in tests unless imported, and won't conflict
+with like-named classes, such as the <code>Interval</code> from Joda Time.</li>
+<li>Refactored <a href="@{milestoneScaladoc}/index.html#org.scalautils.Or"><code>Or</code></a> such that all methods that accumulate are actually
+on an <a href="@{milestoneScaladoc}/index.html#org.scalautils.Validations$$Accumulatable"><code>Accumulatable</code></a> class available through an implicit
+conversion defined in trait <a href="@{milestoneScaladoc}/index.html#org.scalautils.Validations"><code>Validations</code></a>, which ensures that
+the accumulated result type is the least upper bound of the two input accumulated types.</li>
+<li>Dropped the old <code>transform</code> method on <a href="@{milestoneScaladoc}/index.html#org.scalautils.Or"><code>Or</code></a> in favor of a
+new one similar in spirit to the <code>transform</code> method on <code>scala.util.Try</code>.</li>
+</ul>
+
+<p>
+<em>2.0.M7 Highlights:</em>
+</p>
+
+<p>
+ScalaTest 2.0.M7 mostly contains Scaladoc documentation, but also contains one new feature in ScalaUtils:
+<a href="@{milestoneScaladoc}/index.html#org.scalautils.Or"><code>Or</code></a>, an "either with attitude," and
+<a href="@{milestoneScaladoc}/index.html#org.scalautils.Every"><code>Every</code></a>, an ordered data structure that can have one-to-many elements,
+but never be empty. An <code>Or</code> can be either <a href="@{milestoneScaladoc}/index.html#org.scalautils.Good"><code>Good</code></a> or
+<a href="@{milestoneScaladoc}/index.html#org.scalautils.Bad"><code>Bad</code></a>. If the <code>Bad</code> type is an <code>Every</code>, you can
+use various means to accumulate errors during data validations. I (Bill Venners) will attempt to get a blog post introducing <code>Or</code> out within the next few days.
+In the meantime, your best bet if you want to know more is to scan the tests in
+<a href="https://github.com/scalatest/scalatest/blob/master/src/test/scala/org/scalautils/OrSpec.scala"><code>OrSpec</code></a>,
+<a href="https://github.com/scalatest/scalatest/blob/master/src/test/scala/org/scalautils/EverySpec.scala"><code>EverySpec</code></a>, and
+<a href="https://github.com/scalatest/scalatest/blob/master/src/test/scala/org/scalautils/ValidationsSpec.scala"><code>ValidationsSpec</code></a>.
+And feel free to ask questions on scalatest-users. Here is the list of changes in 2.0.M7 compared to 2.0.M6:
+</p>
+
+<ul>
+<li>Changed <a href="@{milestoneScaladoc}/index.html#org.scalatest.exceptions.TestPendingException"><code>TestPendingException</code></a> from a case class back
+into a class.</li>
+<li>Use an actual <code>Composifier</code> class in the implicit conversion provided by <a href="@{milestoneScaladoc}/index.html#org.scalatest.matchers.MatcherProducers"><code>MatcherProducers</code></a>.</li>
+<li>Removed <code>AMatcher</code> and <code>AnMatcher</code> in the <code>org.scalatest.matchers</code> package. Although included in 2.0.M6, these turned out to
+be inconsistent with the rest of the matcher enhancements, thus incomplete. We will bring them back 2.0 once they are fully finished.</li>
+<li>Changed the name of  <code>TypeConstraint</code> to
+<a href="@{milestoneScaladoc}/index.html#org.scalautils.Constraint"><code>Constraint</code></a> in the <code>org.scalautils</code> package.</li>
+<li>Removed the undocumented  <code>legacyEqual</code> matcher syntax from <a href="@{milestoneScaladoc}/index.html#org.scalatest.Matchers"><code>Matchers</code></a>.</li>
+<li>Obey the <code>sbt.log.noformat</code> in both the old and new sbt Framework API implementation.</li>
+<li>Gave the remaining matchers that lacked them pretty <code>toString</code> implementations.</li>
+</ul>
+
+<p>
+<em>2.0.M6 Highlights:</em>
+</p>
+
+<h1>ScalaUtils</h1>
+
+<p>
+The first big change is ScalaTest 2.0.M6 includes a package named <a href="@{milestoneScaladoc}/index.html#org.scalautils.package"><code>org.scalautils</code></a>.
+This package is focused on aspects of equality, normalization, and tolerance that may make sense to use in your production code as well as your tests. The
+<code>org.scalautils</code> package is included in the ScalaTest jar, but is also available separately in a ScalaUtils jar. The idea is you can add a dependency
+on ScalaUtils in your production classpath, so you can use it in your production code without having ScalaTest on the classpath. You should never
+include ScalaTest in your production classpath, because when ScalaTest doesn't like something it tends to throw a <code>TestFailedException</code>. ScalaUtils will
+always be released alongside ScalaTest, with version numbers that match exactly. So when ScalaTest 2.1 is released, for example, ScalaUtils 2.1 will also be released.
+</p>
+
+<h1>Equality</h1>
+
+<p>
+ScalaUtils 2.0.M6 allows you to customize what equality means for a type <code>T</code> by defining an
+<a href="@{milestoneScaladoc}/index.html#org.scalautils.Equality"><code>Equality[T]</code></a> typeclass. This can be used with the <code>===</code> operator in
+production code and in tests, with assertions, the <code>should</code> <code>equal</code>, <code>shouldEqual</code>, and the new-in-2.0.M6
+<code>should</code> <code>===</code> matcher syntax.
+</p>
+
+<p>
+ScalaUtils defines a <a href="@{milestoneScaladoc}/index.html#org.scalautils.Equality$">default <code>Equality</code></a> that will be used by default for any
+type <code>T</code> for which a more specific implicit <code>Equality[T]</code> is not available. The default equality will first call the <code>deep</code> method
+on an array on either the left or right side (or both sides), then use <code>==</code> to determine equality. This default is compatible with ScalaTest's existing
+<code>===</code> operator and <code>equal</code> and <code>be</code> matchers, so existing test code will continue to work as before.
+</p>
+
+<h1>Equality constraints</h1>
+
+<p>
+ScalaUtils 2.0.M6 also provides a way to get a compile-time type error if two types being compared with <code>===</code> don't adhere to a tunable
+<a href="@{milestoneScaladoc}/index.html#org.scalautils.TypeConstraint">TypeConstraint</a>. By default you can compare any type with any type (which means
+all existing uses of ScalaTest's <code>===</code> continue to compile and work as before). But you can use traits such as
+<a href="@{milestoneScaladoc}/index.html#org.scalautils.TypeCheckedTripleEquals"><code>TypeCheckedTripleEquals</code></a>,
+<a href="@{milestoneScaladoc}/index.html#org.scalautils.ConversionCheckedTripleEquals"><code>ConversionCheckedTripleEquals</code></a>,
+and <a href="@{milestoneScaladoc}/index.html#org.scalautils.TraversableEqualityConstraints"><code>TraversableEqualityConstraints</code></a> to get a
+compile error when comparing, for example, an <code>Option[String]</code> with a <code>String</code> for equality. (<code>Equality</code> and
+<code>TypeConstraint</code> are inspired in part by the <code>Equal</code> typeclass in <a href="https://github.com/scalaz/scalaz">scalaz</a>.)
+</p>
+
+<h1>Tolerance</h1>
+
+<p>
+ScalaUtils 2.0.M6 also includes a <a href="@{milestoneScaladoc}/index.html#org.scalautils.Tolerance">Tolerance</a> trait that facilitates checking tolerances of numeric types with a <code>+-</code> symbolic operator. The <code>plusOrMinus</code> operator used with matchers previously in ScalaTest has been deprecated in 2.0 in favor of the <code>+-</code> symbol, which is also now more broadly usable. In addition to:
+</p>
+
+<pre>
+result should be (2.0 +- 0.1)
+</pre>
+
+<p>
+You can now also use the syntax with <code>should equal</code>, <code>shouldEqual</code>, and <code>shouldBe</code> syntax:
+</p>
+
+<pre>
+result should equal (2.0 +- 0.1)
+result shouldEqual 2.0 +- 0.1
+result shouldBe 2.0 +- 0.1
+result should === (2.0 +- 0.1)
+</pre>
+
+<p>
+Or just with plain-old <code>===</code>, in an assertion in tests or just as part of a Boolean expression in production code: 
+</p>
+
+<pre>
+// In tests:
+assert(result === (3.0 +- 0.2))
+
+// In production code:
+if (result === (2.0 +- 0.1)) "close enough" else "sorry"
+</pre>
+
+<h1>Normalization</h1>
+
+<p>
+ScalaUtils 2.0.M6 also contains a <a href="@{milestoneScaladoc}/index.html#org.scalautils.Normalization"><code>Normalization</code></a> trait that allows you to
+define strategies for normalizing types. The <a href="@{milestoneScaladoc}/index.html#org.scalautils.NormalizingEquality"><code>NormalizingEquality</code></a> trait
+allows you to define an <code>Equality[T]</code> in terms of a normalization of that type <code>T</code> by first normalizing the left and, if
+also a <code>T</code>, the right hand side, then using a specified "after-normalization <code>Equality</code>" to compare the normalized values.
+</p>
+
+<h1>Explicitly</h1>
+
+<p>
+ScalaUtils 2.0.M6 also includes an <a href="@{milestoneScaladoc}/index.html#org.scalautils.Explicitly"><code>Explicitly</code></a> DSL for defining an
+implicit <code>Equality</code> parameter <em>explicitly</em>. If you want to customize equality for a type in general, you would usually want to place an
+implicit <code>Equality[T]</code> for that type in scope (or in <code>T</code>'s companion object). That implicit equality definition will then be picked
+up and used when that type is compared for equality with the <code>equal</code> matcher in tests and with <code>===</code> in both tests and production code.
+If you just want to use a custom equality for a single comparison, however, you may prefer to pass it explicitly. For example, if you have an implicit
+<code>Equality[String]</code> in scope, you can force a comparison to use the default equality with this syntax:
+</p>
+
+<pre>
+// In production code:
+if ((result === "hello")(decided by defaultEquality)) true else false
+
+// In tests:
+result should equal ("hello") (decided by defaultEquality)
+</pre>
+
+<p>
+The explicitly DSL also provides support for specifying a one-off equality that is based on a normalization. For example, ScalaUtils has a
+<a href="@{milestoneScaladoc}/index.html#org.scalautils.StringNormalizations"><code>StringNormalizations</code></a> trait that provides <code>trimmed</code> and <code>lowerCased</code> methods that return <code>Normalization[String]</code>s that normalize by trimming and lower-casing, respectively. If you bring those into scope by mixing in or importing the members of <code>StringNormalizations</code>, you could use the explicitly DSL like this:
+</p>
+
+<pre>
+// In production code:
+if ((result === "hello")(after being lowerCased)) true else false
+
+// In tests:
+result should equal ("hello") (after being lowerCased and trimmed)
+</pre>
+
+<p>
+ScalaUtils 2.0.M6 also includes a few other items, such as <a href="@{milestoneScaladoc}/index.html#org.scalautils.Catcher"><code>Catcher</code></a>, an extractor factory;
+<a href="@{milestoneScaladoc}/index.html#org.scalautils.Prettifier"><code>Prettifier</code></a>
+and <a href="@{milestoneScaladoc}/index.html#org.scalautils.PrettyMethods"><code>PrettyMethods</code></a>, for defining alternate <code>toString</code> implementations;
+and <a href="@{milestoneScaladoc}/index.html#org.scalautils.TimesOnInt"><code>TimesOnInt</code></a>, a counting loop moved from <code>org.scalatest</code>.
+</p>
+
+<h1>Inspectors</h1>
+
+<p>
+Back in ScalaTest proper (<em>i.e.</em> not ScalaUtils), ScalaTest 2.0.M6 includes an
+<a href="@{milestoneScaladoc}/index.html#org.scalatest.Inspectors"><code>Inspectors</code></a> trait that allows you to make assertions about (to
+<em>inspect</em>) collections, including deeply nested collections:
+
+<ul>
+<li><code>forAll</code> - succeeds if the assertion holds true for every element</li>
+<li><code>forAtLeast</code> - succeeds if the assertion holds true for at least the specified number of elements</li>
+<li><code>forAtMost</code> - succeeds if the assertion holds true for at most the specified number of elements</li>
+<li><code>forBetween</code> - succeeds if the assertion holds true for between the specified minimum and maximum number of elements, inclusive</li>
+<li><code>forEvery</code> - same as <code>forAll</code>, but lists all failing elements if it fails (whereas <code>forAll</code> just reports the first failing element)</li>
+<li><code>forExactly</code> - succeeds if the assertion holds true for exactly the specified number of elements</li>
+</ul>
+
+<p>
+We worked hard to craft error messages that will help you understand what went wrong when an inspection against a nested collection fails. For example, given this nested collection:
+</p>
+
+<pre>
+val xss =
+  List(
+    List(1, 2, 3),
+    List(1, 2, 3),
+    List(1, 2, 3)
+   )
+</pre>
+
+<p>
+And this inspection:
+</p>
+
+<pre>
+forAll (xss) { xs =>
+  forAll (xs) { y => y should be < 2 }
+}
+</pre>
+
+<p>
+Your error message will be:
+</p>
+
+<pre>
+TestFailedException: forAll failed, because:
+  at index 0, forAll failed, because:
+    at index 1, 2 was not less than 2 (&lt;console&gt;:20)
+  in List(1, 2, 3) (&lt;console&gt;:20)
+in List(List(1, 2, 3), List(1, 2, 3), List(1, 2, 3))
+     at ...
+</pre>
+
+<h1>Inspector shorthands</h1>
+
+<p>
+If you are using <a href="@{milestoneScaladoc}/index.html#org.scalatest.Matchers"><code>Matchers</code></a>, you can use <a href="@{milestoneScaladoc}/index.html#org.scalatest.Matchers@@inspectorShorthands">"inspector shorthands"</a> for inspecting top-level (<em>i.e.</em>, non-nested) collections:
+</p>
+
+<ul>
+<li><code>all</code> - succeeds if the assertion holds true for every element</li>
+<li><code>atLeast</code> - succeeds if the assertion holds true for at least the specified number of elements</li>
+<li><code>atMost</code> - succeeds if the assertion holds true for at most the specified number of elements</li>
+<li><code>between</code> - succeeds if the assertion holds true for between the specified minimum and maximum number of elements, inclusive</li>
+<li><code>every</code> - same as <code>forAll</code>, but lists all failing elements if it fails (whereas <code>forAll</code> just reports the first failing element)</li>
+<li><code>exactly</code> - succeeds if the assertion holds true for exactly the specified number of elements</li>
+</ul>
+
+<p>
+Here are some examples:
+</p>
+
+<pre>
+all (xs) should be > 0
+atMost (2, xs) should be >= 4
+atLeast (3, xs) should be < 5
+between (2, 3, xs) should (be > 1 and be < 5)
+exactly (2, xs) should be <= 2
+every (xs) should be < 10
+</pre>
+
+<h1>org.scalatest.Matchers</h1>
+
+<p>
+Speaking of matchers, in ScalaTest 2.0.M6 <a href="@{milestoneScaladoc}/index.html#org.scalatest.matchers.ShouldMatchers"><code>ShouldMatchers</code></a> and <a href="@{milestoneScaladoc}/index.html#org.scalatest.matchers.MustMatchers"><code>MustMatchers</code></a>, both members of package <code>org.scalatest.matchers</code> have been deprecated in favor of <a href="@{milestoneScaladoc}/index.html#org.scalatest.Matchers"><code>Matchers</code></a>, which resides in package <code>org.scalatest</code>. (<code>MustMatchers</code> was
+actually already deprecated in ScalaTest 1.9.2.)  For folks using <code>ShouldMatchers</code>, getting rid of the deprecation warning should be as simple as replacing <code>org.scalatest.matchers.ShouldMatchers</code> with <code>org.scalatest.Matchers</code>. For folks using <code>MustMatchers</code>, however, it will unfortnately be slightly more trouble, because the new <code>Matchers</code> trait only supports <code>should</code> not <code>must</code>. So you will need to search and replace your uses of <code>must</code> with <code>should</code>. <code>MustMatchers</code> and <code>must</code> will continue to work for a good long deprecation period, but eventually it will be removed to make way for <code>must</code> possibly coming back later to serve a different purpose. Apologies for this rather large deprecation.
+</p>
+
+<h1>Contain matchers</h1>
+
+<p>
+The <code>contain</code> matcher syntax has been greatly enhanced in 2.0.M6, in part inspired by similar syntax in <a href="http://etorreborre.github.io/specs2/">specs2</a>. In addition to simple assertions about containership, like:
+</p>
+
+<pre>
+xs should contain ("hi")
+</pre>
+
+<p>
+You can also make assertions such as:
+</p>
+
+<pre>
+xs should contain oneOf (1, 2, 3)
+xs should contain noneOf (1, 2, 3)
+xs should contain atLeastOneOf (1, 2, 3)
+xs should contain allOf (1, 2, 3)
+xs should contain only (1, 2, 3)
+xs should contain inOrderOnly (1, 2, 3)
+xs should contain inOrder (1, 2, 3)
+xs should contain theSameElementsAs List(1, 2, 3)
+xs should contain theSameElementsInOrderAs List(1, 2, 3)
+</pre>
+
+<p>
+In the new <code>contain</code> syntax, "containership" is determined by <code>Equality</code>, so you can customize how containership is determined for a
+type <code>T</code> by via an implicit <code>Equality[T]</code> or the explicitly DSL. Here's an example: 
+</p>
+
+<pre>
+(result should contain oneOf ("hi", "he", "ho")) (after being trimmed)
+</pre>
+
+<h1>Implicit conversions => implicit parameters</h1>
+
+<p>
+ScalaTest 2.0.M6 includes a major refactor of how matchers are implemented. Since ScalaTest 1.0 matchers have been implemented primarily with implicit conversions,
+and as of 2.0.M6 they are mostly implemented with implicit parameters instead. This will make it simpler to enable the syntax on your own types, because you will be
+able to enable syntax by defining the typeclass "enablers" for that syntax for your own types.
+</p>
+
+<p>
+For example, the <code>contain</code> <code>(&lt;value&gt;)</code> syntax is enabled for type <code>T</code> by an implicit
+<a href="@{milestoneScaladoc}/index.html#org.scalatest.enablers.Containing"><code>Containing[T]</code></a>. ScalaTest 2.0.M6 provides implementations for
+<code>GenTraversable</code>, <code>java.util.Collection</code>, <code>java.util.Map</code>, <code>Array</code>, <code>Option</code>, and <code>String</code> in
+the <a href="@{milestoneScaladoc}/index.html#org.scalatest.enablers.Containing$"><code>Containing</code> companion object</a>. These enable the <code>contain</code> syntax
+to be used on more types than in previous versions of ScalaTest, such as strings and options:
+</p>
+
+<pre>
+Some("hi") should contain ("hi")
+"hello" should contain ('e')
+</pre>
+
+<p>
+You can enable the <code>contain (&lt;value&gt;)</code> syntax for one of your own types, <code>U</code>, simply by providing an implicit <code>Containing[U]</code>
+for that type. The enabling implicit parameter traits are gathered in the <a href="@{milestoneScaladoc}/index.html#org.scalatest.enablers.package"><code>org.scalatest.enablers</code></a> package.
+</p>
+
+<p>
+ScalaTest 2.0 matchers enable syntax based on the left-hand type, <em>i.e.</em>, the type on which <code>should</code> is invoked. As a result, many expressions
+that resulted in a matcher in ScalaTest 1.x result instead in a <em>matcher factory</em> in ScalaTest 2.0. The factory can produce a matcher given an implicit
+enabler. For example, in ScalaTest 1.x, the expression <code>have length 3</code> produced a <code>Matcher[Any]</code> that threw an exception if the left-hand
+object did not have a <code>length</code> or <code>getLength</code> method. In ScalaTest 2.0, it returns a
+<code>MatcherFactory1[Any, Length]</code>:
+</p>
+
+<pre>
+scala&gt; have length 3
+res7: org.scalatest.matchers.MatcherFactory1[Any,org.scalatest.enablers.Length] = have length 3
+</pre>
+
+<p>
+This matcher factory can produce a matcher for <code>Any</code> type <code>T</code> given an implicit <code>Length[T]</code>. If no <code>Length[T]</code> is
+available for the left-hand type, you'll get a compiler error:
+</p>
+
+<pre>
+scala&gt; 2.0 should have length 3
+&lt;console&gt;:21: error: could not find implicit value for parameter len: org.scalatest.enablers.Length[Double]
+              2.0 should have length 3
+                              ^
+</pre>
+
+<p>
+Because the <code>Length</code> companion object provides an implicit <code>Length[String]</code>, the compiler will be happy when the type
+to the left of <code>should</code> is a <code>String</code>:
+</p>
+
+<pre>
+scala&gt; "2.0" should have length 3
+</pre>
+
+<p>
+Despite the major reorganization of matchers implementation, existing matchers user code should continue to work fine in all but <a href="@{milestoneScaladoc}/index.html#org.scalatest.Matchers@@matchersMigration">very rare cases</a>.
+</p>
+
+<h1>Other new matcher syntax</h1>
+
+<p>
+ScalaTest 2.0.M6 also includes other new matcher syntax, for the most part enabled with implicit parameters, including:
+</p>
+
+<pre>
+option shouldBe defined
+partialFunction should be definedAt 8
+file should exist
+otherFile shouldNot exist
+file shouldBe readable
+file shouldBe writable
+"abbccxxx" should startWith regex ("a(b*)(c*)" withGroups ("bb", "cc"))
+result1 shouldBe a [String]
+tummy should not be empty
+list shouldBe sorted
+val ex = the [ArithmeticException] thrownBy { 1 / 0 }
+ex should have message "/ by zero"
+noException should be thrownBy { "hi" }
+an [ArithmeticException] should be thrownBy { 1 / 0 }
+the [StringIndexOutOfBoundsException] thrownBy {
+  "hi".charAt(-1)
+} should have message "String index out of range: -1"
+javaMap should contain oneOf (Entry(2, 3), Entry(3, 4))
+</pre>
+
+<p>
+The last example illustrates that you can now use <code>contain</code> syntax on Java Maps using <code>java.util.Entry</code>
+instances. ScalaTest provides an implementation, <a href="@{milestoneScaladoc}/index.html#org.scalatest.Entry"><code>org.scalatest.Entry</code></a>, to make this more convenient.
+</p>
+
+<h1>Lone elements and <code>Try</code> values</h1>
+
+<p>
+ScalaTest 2.0.M6 also includes a <code>LoneElement</code> trait, that adds a <code>loneElement</code> method to types with a
+&ldquo;<a href="@{milestoneScaladoc}/index.html#org.scalatest.enablers.Collecting"><code>Collecting</code></a>&rdquo; nature
+classes. The <code>loneElement</code> method will throw <code>TestFailedException</code> if the collection on which it 
+is invoked contains other than a single element. You can use it like this:
+</p>
+
+<pre>
+set.loneElement should be &lt;= 10
+</pre>
+
+<p>
+ScalaTest 2.0.M6 also includes a <a href="@{milestoneScaladoc}/index.html#org.scalatest.TryValues"><code>TryValues</code></a> trait, that offers syntax that allows you to state that you expect
+a <code>Try</code> to be a success or a failure, and something else about the contained value. Here are some examples:
+</p>
+
+<pre>
+try1.success.value shouldEqual 3
+try2.failure.exception shouldBe an [ArithmeticException]
+</pre>
+
+<!--
+<h1><code>AMatcher</code> and <code>AnMatcher</code></h1>
+
+<p>
+ScalaTest 2.0.M6 also provides two new kinds of matchers, <a href="@{milestoneScaladoc}/index.html#org.scalatest.matchers.AMatcher"><code>AMatcher</code></a>
+and <a href="@{milestoneScaladoc}/index.html#org.scalatest.matchers.AnMatcher"><code>AnMatcher</code></a>.
+These can only be used after <code>a</code> or </code>an</code> following 
+either <code>be</code> or </code>contain</code>. This facilitates syntax such as:
+</p>
+
+<pre>
+val oddNumber = AnMatcher[Int]("odd number") { _ % 2 == 1 }
+
+3 should be an oddNumber
+List(1, 2, 3) should (contain an oddNumber)
+
+// (Sorry, I just discovered that the parentheses-free syntax shown below
+// is not supported in 2.0.M6. We will add it for 2.0 final. - bv)
+// List(1, 2, 3) should contain an oddNumber
+</pre>
+-->
+
+<h1>Improved matcher performance and composition</h1>
+
+<p>
+In 2.0.M5, <a href="@{milestoneScaladoc}/index.html#org.scalatest.matchers.MatchResult"><code>MatchResult</code></a> has undergone a
+backwards-compatible refactor that will both improve runtime performance, enable better
+<a href="@{milestoneScaladoc}/index.html#org.scalatest.matchers.Matcher"><code>Matcher</code></a> composition, and
+eventually (though not yet in 2.0) allow objects involved in assertion failures to be inspected in IDEs.
+</p>
+
+<p>
+Profiling of ScalaTest 1.x tests that used Matchers indicated that a significant amount of time was spent constructing error message
+strings for <code>MatchResult</code>s, even though the vast majority of those strings ultimately where never used in a failure message.
+This was especially noticeable when testing with very large collections, because calling <code>toString</code> on very large collections
+creates very large strings, which in turn creates even larger error message strings.
+</p>
+
+<p>
+ScalaTest's error messages were created by combining localized "raw" strings with arguments.
+For example, for <code>22 should be &lt; 20</code>, the raw string would be <code>"{0} was not less than {1}"</code> and
+the arguments <code>Array(22, 21)</code>. 
+To eliminate the unnecessary string creations <code>MatchResult</code> now carries an <code>args</code> field containing
+those arguments along with the raw strings. The actual final strings, such as <code>22 was not less than 21</code>, are computed
+from the raw strings and args only if and when they are needed.
+</p>
+
+<p>
+ScalaTest Matchers, being <code>Function1</code>s, were always composable via the standard methods in Scala for function composition: <code>compose</code>
+and <code>andThen</code>. For example, in ScalaTest 1.x you could transform a matcher for one type into a matcher for another with <code>compose</code>.
+Here's an example:
+</p>
+
+<pre>
+scala&gt; import org.scalatest._
+import org.scalatest._
+
+scala&gt; import Matchers._
+import Matchers._
+
+scala&gt; import java.io.File
+import java.io.File
+
+scala&gt; def endWithExtension(ext: String) = endWith(ext) compose { (f: File) =&gt; f.getPath }
+endWithExtension: (ext: String)org.scalatest.matchers.Matcher[java.io.File]
+
+scala&gt; new File("output.txt") should endWithExtension("txt")
+</pre>
+
+<p>
+In addition, by composing twice, you could in ScalaTest 1.x modify the type of both sides of a match statement
+with the same function, like this:
+</p>
+
+<pre>
+scala&gt; val f = be &gt; (_: Int)
+f: Int =&gt; org.scalatest.matchers.Matcher[Int] = &lt;function1&gt;
+
+scala&gt;   val g = (_: String).toInt
+g: String =&gt; Int = &lt;function1&gt;
+
+scala&gt; val beAsIntsGreaterThan = (f compose g) andThen (_ compose g)
+beAsIntsGreaterThan: String =&gt; org.scalatest.matchers.Matcher[String] = &lt;function1&gt;
+
+scala&gt; "8" should beAsIntsGreaterThan ("7")
+</pre>
+
+<p>
+What you could <em>not</em> do in ScalaTest 1.x is modify
+the error messages when you performed matcher composition. For example, the error message for the <code>beAsIntsGreaterThan</code>
+gives no hint that the <code>Int</code>s being compared were parsed from <code>String</code>s:
+</p>
+
+<pre>
+scala&gt; "7" should beAsIntsGreaterThan ("8")
+org.scalatest.exceptions.TestFailedException: 7 was not greater than 8
+</pre>
+<p>
+This inability to modify error messages when composing matchers was first brought to my attention in
+an offhand tweet by Nat Pryce several years ago. Although no other user ever complained about it, I ultimatedly decided
+to address it once <code>MatchResult</code>s were computing their error messages lazily,
+since the original arguments would still be available, waiting patiently to have their <code>toString</code> called.
+I placed the functionality in a trait named <a href="@{milestoneScaladoc}/index.html#org.scalatest.matchers.MatcherProducers"><code>MatcherProducers</code></a>.
+Since we needed implicit conversions anyway, I also added a shorthand for composing twice:
+</p>
+
+<pre>
+scala&gt; import matchers._
+import matchers._
+
+scala&gt; import MatcherProducers._
+import MatcherProducers._
+
+scala&gt; val beAsIntsGreaterThan = f composeTwice g // means: (f compose g) andThen (_ compose g)
+beAsIntsGreaterThan: String =&gt; org.scalatest.matchers.Matcher[String] = &lt;function1&gt;
+
+scala&gt; "8" should beAsIntsGreaterThan ("7")
+</pre>
+
+<p>
+Of course, the error messages are still the original ones:
+</p>
+
+<pre>
+scala&gt; "7" should beAsIntsGreaterThan ("8")
+org.scalatest.exceptions.TestFailedException: 7 was not greater than 8
+</pre>
+
+<p>
+To modify the error messages, you can use <code>mapResult</code> from <code>MatcherProducers</code>. Here's an example:
+</p>
+
+<pre>
+scala&gt; val beAsIntsGreaterThan = f composeTwice g mapResult { mr =&gt;
+     |   mr.copy(
+     |     failureMessageArgs = mr.failureMessageArgs.map((LazyArg(_) { _.toString + ".toInt"})),
+     |     negatedFailureMessageArgs = mr.negatedFailureMessageArgs.map((LazyArg(_) { _.toString + ".toInt"})),
+     |     midSentenceFailureMessageArgs =
+     |       mr.midSentenceFailureMessageArgs.map((LazyArg(_) { _.toString + ".toInt"})),
+     |     midSentenceNegatedFailureMessageArgs = 
+     |       mr.midSentenceNegatedFailureMessageArgs.map((LazyArg(_) { _.toString + ".toInt"}))
+     |   )
+     |  }
+beAsIntsGreaterThan: String =&gt; org.scalatest.matchers.Matcher[String] = &lt;function1&gt;
+</pre>
+
+<p>
+Now the error message is clearer:
+</p>
+
+<pre>
+scala&gt; "7" should beAsIntsGreaterThan ("8")
+org.scalatest.exceptions.TestFailedException: 7.toInt was not greater than 8.toInt
+</pre>
+
+<p>
+Voila!
+</p>
+
+<h1><code>Outcome</code>s and <code>OutcomeOf</code></h1>
+
+<p>
+One breaking change in 2.0.M6 is that the <code>withFixture</code> life-cycle methods, and the test functions passed to them, now
+return an <a href="@{milestoneScaladoc}/index.html#org.scalatest.Outcome"><code>Outcome</code></a>. Because they previously
+returned <code>Unit</code>, this will likely require users to insert an <code>=</code> before the open curly brace, or in some cases,
+<code>:Outcome =</code>. That will most often be all that's required, but if you were catching exceptions in a
+<code>withFixture</code> implementation, you will likely need to change your catch clauses to a corresponding pattern match
+on <code>Outcome</code> types.
+</p>
+
+<p>
+Also added <a href="@{milestoneScaladoc}/index.html#org.scalatest.OutcomeOf"><code>OutcomeOf</code></a>, deprecating <a href="@{milestoneScaladoc}/index.html#org.scalatest.FailureOf"><code>FailureOf</code></a>, to transform
+the outcome of evaluating an expression to
+an <code>Outcome</code>. For example, thrown <a href="@{milestoneScaladoc}/index.html#org.scalatest.exceptions.TestFailedException"><code>TestFailedException</code></a>s are transformed into a
+<a href="@{milestoneScaladoc}/index.html#org.scalatest.Failed"><code>Failed</code></a>
+outcome; thrown <a href="@{milestoneScaladoc}/index.html#org.scalatest.exceptions.TestPendingException"><code>TestPendingException</code></a>s are transformed into a <a href="@{milestoneScaladoc}/index.html#org.scalatest.Pending"><code>Pending</code></a> outcome;
+the lack of a thrown exception is transformed into a <a href="@{milestoneScaladoc}/index.html#org.scalatest.Succeeded"><code>Succeeded</code></a> outcome.
+</p>
+
+<h1>Other enhancements in 2.0.M6</h1>
+
+<p>
+Note: We had to drop support of 2.9 recently because implicit lookup of contravariant type classes did not behave well, and this was
+required to keep all existing ScalaTest matcher code compiling. If you're on Scala 2.9, please continue with ScalaTest 1.9.2
+or ScalaTest 2.0.M5b until the day comes when you can upgrade to Scala 2.10 and ScalaTest 2.0.M6.
+</p>
+
+<ul>
+<li>Added <a href="@{milestoneScaladoc}/index.html#org.scalatest.Checkpoints"><code>Checkpoints</code></a>, which allows you to accumulate and report multiple assertions in a single test</li>
+<li> Added <a href="@{milestoneScaladoc}/index.html#org.scalatest.Informing"><code>Informing</code></a>, a trait that contains the <code>info</code> method, which was previously provided via an implicit that has been removed in 2.0.M6</li>
+<li>Added <a href="@{milestoneScaladoc}/index.html#org.scalatest.Documenting"><code>Documenting</code></a>, a trait that contains the <code>markup</code> method, which was previously provided via an implicit that has been removed in 2.0.M6</li>
+<li>Added <a href="@{milestoneScaladoc}/index.html#org.scalatest.Sequential"><code>Sequential</code></a>, a combinator for nested suites that you want executed completely sequentially</li>
+<li>Added <a href="@{milestoneScaladoc}/index.html#org.scalatest.Stepwise"><code>Stepwise</code></a>, a combinator for nested suites that you want executed one after another, but with parallel execution still enabled for the individual nested suites</li>
+<li>Added <a href="@{milestoneScaladoc}/index.html#org.scalatest.TryValues"><code>TryValues</code></a> for making assertions when you expect a <code>Try</code> to be a <code>Success</code></li>
+<li>Added <a href="@{milestoneScaladoc}/index.html#org.scalatest.concurrent.ScalaFutures"><code>ScalaFutures</code></a> to help write tests involving Scala futures</li>
+<li>In <a href="@{milestoneScaladoc}/index.html#org.scalatest.tags.package"><code>org.scalatest.tags</code></a>, added new tags <code>CPU</code>, <code>Disk</code>, <code>Network</code>, and <code>Slow</code></li>
+<li>Refactored all style traits into the original name as a class and the trait with name with <code>Like</code> appended, for speedier compiles. For example: <a href="@{milestoneScaladoc}/index.html#org.scalatest.FlatSpecLike"><code>FlatSpecLike</code></a>, <a href="http://www.artima.com/docs-scalatest-2.0.M6-SNAP21/index.html#org.scalatest.FunSpecLike"><code>FunSpecLike</code></a>, <em>etc.</em> (Done in ScalaTest 1.9.2 also.)</li>
+<li>Enhanced both sbt and ScalaTest with the new Framework API. sbt included this enhancement in 0.13. As of 2.0.M6, ScalaTest's implementation is
+    in <a href="@{milestoneScaladoc}/index.html#org.scalatest.tools.Framework"><code>org.scalatest.tools.Framework</code></a>.
+<li>Added support for pending scopes and a <a href="@{milestoneScaladoc}/index.html#org.scalatest.events.ScopePending"><code>ScopePending</code></a> event.</li>
+<li>Added trait <a href="@{milestoneScaladoc}/index.html#org.scalatest.BeforeAndAfterEachTestData"><code>BeforeAndAfterEachTestData</code></a> and deprecated the <code>beforeEach</code> and <code>afterEach</code>
+    methods of trait <a href="@{milestoneScaladoc}/index.html#org.scalatest.BeforeAndAfterEach"><code>BeforeAndAfterEach</code></a> take take a config map.</li>
+<li>Added <a href="@{milestoneScaladoc}/index.html#org.scalatest.BeforeAndAfterAllConfigMap">BeforeAndAfterAllConfigMap</a> and deprecated the <code>beforeAll</code> and <code>afterAll</code> methods
+    of trait <a href="@{milestoneScaladoc}/index.html#org.scalatest.BeforeAndAfterAll"><code>BeforeAndAfterAll</code></a> that take a config map.</li>
+<li>Added <a href="@{milestoneScaladoc}/index.html#org.scalatest.fixture.TestDataFixture">TestDataFixture</a> for easy access to test data, such as test name and tags, inside tests.</li>
+<li>Enhanced GUI reporter to support new events and show multiple indented lines nicely.</li>
+<li>Added support for <code>they</code> (in addition to <code>it</code>) to <a href="@{milestoneScaladoc}/index.html#org.scalatest.FunSpec"><code>FunSpec</code></a> and <a href="@{milestoneScaladoc}/index.html#org.scalatest.FlatSpec"><code>FlatSpec</code></a>.</li>
+<li>Added a <code>toString</code> to style classes that makes them look prettier in the interpreter.</li>
+<li>Added MatcherFactor1 through 9.</li>
+<li>Added <a href="@{milestoneScaladoc}/index.html#org.scalatest.fixture.NoArg">NoArg</a> to support a rare use case (motivated by Akka's TestKit).</li>
+<li>Added <a href="@{milestoneScaladoc}/index.html#org.scalatest.events.DiscoveryStarting"><code>DiscoveryStarting</code></a> and <a href="@{milestoneScaladoc}/index.html#org.scalatest.events.DiscoveryCompleted"><code>DiscoveryCompleted</code></a> events.</li>
+<li>Added a non-blocking <code>whenCompleted</code> method to <code>Status</code>, enabling callbacks to be registered with a <code>Status</code>.</li>
+<li>Enhanced the GUI reporter to show a spinning icon during discovery.</li>
+<li>Added support for "reminders," a summary of failed and/or canceled tests that can be optionally printed out at the end of a run in string
+    (stdout, stderr, file) reporters.</li>
+<li>Enabled discovery to be used if only <code>-z</code> <code>&lt;test name wildcard&gt;</code> or <code>-t</code> <code>&lt;test name&gt;</code></li>
+<li>Enhanced <code>-s</code> to take a glob in addition to a complete, fully-qualified suite class name.</li>
+<li>Added the ability send "alert" and "update" messages immediately from tests (rather than being recorded and sent with the test completion event like "info" and
+    "markup" text). Added <code>AlertProvided</code>, <code>Alerting</code>, and <code>Alerter</code> (containing the <code>alert</code> method you can call
+    from tests) and <code>UpdateProvided</code>, <code>Updating</code>, and <code>Updater</code> (containing the <code>update</code> method you can call
+    from tests.</li>
+<li>Added a "slow poke" detector, which will emit <a href="@{milestoneScaladoc}/index.html#org.scalatest.events.AlertProvided"><code>AlertProvided</code></a> events periodically listing
+    tests that have been running longer than a specified time limit.</li>
+<li>Added a <code>cancelAfter</code> method to <a href="@{milestoneScaladoc}/index.html#org.scalatest.concurrent.Timeouts"><code>Timeouts</code></a>.</li>
+<li>Added <a href="@{milestoneScaladoc}/index.html#org.scalautils.Catcher"><code>Catcher</code></a>.</li>
+<li>Added the ability to run previously failed and/or canceled tests in <a href="@{milestoneScaladoc}/index.html#org.scalatest.tools.Runner"><code>Runner</code></a>.</li>
+<li>Added a payload to <a href="@{milestoneScaladoc}/index.html#org.scalatest.exceptions.TestCanceledException"><code>TestCanceledException</code></a>.</li>
+<li>Added a <code>rerunner</code> to <a href="@{milestoneScaladoc}/index.html#org.scalatest.events.TestCanceled"><code>TestCanceled</code></a>.</li>
+<li>Added test-canceled reports to the view menu in the GUI reporter, and made rerun work with canceled tests.</li>
+<li>Added structural type support for <code>Length</code>, <code>Size</code>, <code>Definition</code>, <code>Emptiness</code>, <code>Readability</code>,
+    and <code>Writability</code> enablers</li>
+<li>Added <a href="@{milestoneScaladoc}/index.html#org.scalautils.Prettifier"><code>Prettifier</code></a> and <a href="@{milestoneScaladoc}/index.html#org.scalautils.PrettyMethods"><code>PrettyMethods</code></a> to <code>org.scalautils</code>.</li>
+<li>Added support of <code>Retries</code>.</li>
+<li>Added <code>suiteId</code> to <a href="@{milestoneScaladoc}/index.html#org.scalatest.events.NameInfo"><code>NameInfo</code></a></li>
+<li>Enhanced <code>have length</code> and <code>have size</code> error messages to include the actual length or size.</li>
+<li>Refactored helper classes from <code>Matchers</code> into the <code>org.scalatest.words</code> package, and moved members
+    of <code>verbs</code> package to <code>words</code>. These were "implementation" classes anyway, so likely no one referred to them in user code,
+    but just in case, left deprecated type aliases in <code>verbs</code>.</li>
+<li>Changed <code>JUnitXmlReporter</code> to output files based on <code>suiteId</code>, instead of the fully qualified name of the class.</li>
+<li>Changed the behavior of <a href="@{milestoneScaladoc}/index.html#org.scalatest.BeforeAndAfterAll"><code>BeforeAndAfterAll</code></a> such that it only calls <code>beforeAll</code> and <code>afterAll</code> in the outer
+    instance of a <a href="@{milestoneScaladoc}/index.html#org.scalatest.OneInstancePerTest"><code>OneInstancePerTest</code></a> or <a href="@{milestoneScaladoc}/index.html#org.scalatest.ParallelTestExecution"><code>ParallelTestExecution</code></a>.</li>
+<li>Changed <a href="@{milestoneScaladoc}/index.html#org.scalatest.BeforeAndAfterAll"><code>BeforeAndAfterAll</code></a> and <a href="@{milestoneScaladoc}/index.html#org.scalatest.BeforeAndAfterAllConfigMap"><code>BeforeAndAfterAllConfigMap</code></a> to
+    take <code>expectedTestCount</code> into consideration whether to invoke <code>beforeAll</code> and <code>afterAll</code>.</li>
+<li>Enhanced <code>Suite.diffStrings</code> to display brackets only when there is difference in the passed strings.</li>
+<li>Use <code>Ordering</code> instead of <code>Ordered</code> for <code>be &lt;/&gt;/&lt;=/&gt;=</code>.</li>
+<li>Removed <code>"WrappedArray"</code> in error messages.</li>
+<li>Changed <code>withPayloads</code> to infer and return the same type as the passed in function; changed <code>payload: Any</code> parameter
+    to <code>=&gt; Any</code> to be lazy.</li>
+<li>To make thread dumps more clear, gave useful names to ScalaTest threads: The main thread is now ScalaTest-main. The run thread is ScalaTest-run.
+    The dispatcher thread is ScalaTest-dispatcher. Thread-pool threads for parallel execution are ScalaTest-N. And main or thread-pool threads running
+    test suites are renamed to ScalaTest-running-&lt;name of suite&gt;, then changed back again once the suite has completed.</li>
+</ul>
+
+<em>Bug fixes in 2.0.M6</em>
+
+<ul>
+<li>Fixed an osgi.bnd issue.</li>
+<li>Fixed argument parsing bug when parsing two <code>-h</code> arguments.</li>
+<li>Fixed a bug in <code>JUnitXmlReporter</code> when it xmlified failure messages.</li>
+<li>Fixed a stack depth problem when <a href="@{milestoneScaladoc}/index.html#org.scalatest.WordSpec"><code>WordSpec</code></a> and <a href="@{milestoneScaladoc}/index.html#org.scalatest.fixture.WordSpec"><code>fixture.WordSpec</code></a>'s scope
+    is used with after word.</li>
+<li>Fixed <code>HTMLReporter</code>'s race condition for suites that mixed in <a href="@{milestoneScaladoc}/index.html#org.scalatest.ParallelTestExecution"><code>ParallelTestExecution</code></a> by ensuring <a href="@{milestoneScaladoc}/index.html#org.scalatest.events.SuiteCompleted"><code>SuiteCompleted</code></a> is fired
+    after the suite is actually completed.</li>
+</ul>
+
+<p>
+<em>2.0.M5b Highlights:</em>
+</p>
+
+<ul>
+<li>
+Added an HTML reporter that gives a one-page view of the results of one test run. The HTML report includes a summary with a pie chart at the top left 
+and a table of suites below that. Each row of the table gives the summary of one suite. By default the table is sorted to show failing suites, if any,
+at the top. You can resort the table by clicking on the column names, and view the detailed report of a suite by clicking on the suite name in the
+table. The detailed report will appear in the right half of the page. You can click on a link at the bottom of the suite report to open it in its
+own tab for printing. Here's an <a href="http://www.artima.com/html-scalatest-2.0.M5">example HTML report</a> generated from ScalaTest's run of itself.
+You can request an HTML report via the <code>-h</code> command of <a href="@milestoneScaladoc/#org.scalatest.tools.Runner$"><code>Runner</code></a>.
+</li>
+<li>
+Added a <a href="@milestoneScaladoc/#org.scalatest.Status"><code>Status</code></a> return type to the four &ldquo;run methods&rdquo; of trait
+<code>Suite</code>: <code>run</code>, <code>runNestedSuites</code>,
+<code>runTests</code>, and <code>runTest</code>. The <code>Status</code> can be queried to determine whether all the tests and/or nested suites started by
+the &ldquo;run method&rdquo; have completed and, if completed, whether any failure occurred. Created four subclasses of this trait for convenience: objects
+<a href="@milestoneScaladoc/#org.scalatest.FailedStatus$"><code>FailedStatus</code></a>
+and <a href="@milestoneScaladoc/#org.scalatest.SucceededStatus$"><code>SucceededStatus</code></a>, useful when the &ldquo;run&rdquo; has already completed (such as when it
+was run on the same thread), 
+class <a href="@milestoneScaladoc/#org.scalatest.StatefulStatus"><code>StatefulStatus</code></a>, useful when a &ldquo;run&rdquo; has not yet completed (such
+as when multiple threads are involved), and
+<a href="@milestoneScaladoc/#org.scalatest.CompositeStatus"><code>CompositeStatus</code></a>, useful for composing multiple <code>Status</code> objects into
+one <code>Status</code>. <code>Status</code> was added primarily to enable <a href="@milestoneScaladoc/#org.scalatest.BeforeAndAfterAll"><code>BeforeAndAfterAll</code></a> to wait until any parallel events started by invoking
+<code>run</code> complete before executing the &ldquo;after all&rdquo; code. This will break any subclass that overrode one of the four <code>run</code> methods,
+but those are also already broken because of the change to the method's arguments. To fix it, you'll need to declare <code>Status</code> as the return type
+of your overloaded method, and return a <code>Status</code>.
+</li>
+<li>
+Enhanced <a href="@milestoneScaladoc/#org.scalatest.BeforeAndAfterAll"><code>BeforeAndAfterAll</code></a> so that it uses the <code>Status</code> object returned
+by <code>run</code> to wait until any parallel execution
+of tests and nested suites has completed before executing the &ldquo;after all&rdquo; code.
+</li>
+<li>
+Dropped implicit conversions from structural types that enabled "have length/size" to be used on any object with an appropriate structure (such as
+a <code>getSize</code> method). In its place created <a href="@milestoneScaladoc/#org.scalatest.matchers.ClassicMatchers$Length"><code>Length</code></a> and <a href="@milestoneScaladoc/#org.scalatest.matchers.ClassicMatchers$Size"><code>Size</code></a> type class traits. This will be a breaking change for
+anyone who was relying on those structural implicits. This should affect very little code, but if it hits you, you'll need to create a type class
+as described in the Scaladoc for <a href="@milestoneScaladoc/#org.scalatest.matchers.ClassicMatchers$Length"><code>Length</code></a> and <a href="@milestoneScaladoc/#org.scalatest.matchers.ClassicMatchers$Size"><code>Size</code></a>.
+</li>
+<li>Deprecated given/when/then/and methods of trait <a href="@milestoneScaladoc/#org.scalatest.GivenWhenThen"><code>GivenWhenThen</code></a>
+in favor of capitalized forms, Given/When/Then/And, because <code>then</code> has been deprecated as an identifier in Scala 2.10.
+</li>
+<li>Bumped matcher collection types from <code>Traversable</code> to <code>GenTraversable</code>, <code>Seq</code> to <code>GenSeq</code>, <em>etc.</em>,
+ to make it easier to test with parallel collections. </li>
+<li>Added traits <a href="@milestoneScaladoc/#org.scalatest.Spec"><code>Spec</code></code></a> and
+<a href="@milestoneScaladoc/#org.scalatest.fixture.Spec"><code>fixture.Spec</code></code></a> to serve as the new style trait
+in which tests are methods.</li>
+<li>Deprecated trait <a href="@milestoneScaladoc/#org.scalatest.Suite"><code>Suite</code></a> as a style trait.</li>
+<li>Added trait <a href="@milestoneScaladoc/#org.scalatest.SuiteMixin"><code>SuiteMixin</code></a> to serve as the new base class
+for stackable traits that can be mixed into <code>Suite</code>, and deprecated trait
+<a href="@milestoneScaladoc/#org.scalatest.AbstractSuite"><code>AbstractSuite</code></a>.</li>
+<li>Added the <a href="@milestoneScaladoc/#org.scalatest.selenium.WebBrowser">ScalaTest Selenium DSL</a>.</li>
+<li>Added trait <a href="@milestoneScaladoc/#org.scalatest.TimesOnInt"><code>TimesOnInt</code></a>, which allows you to repeatedly
+execute a block of code an integer number of times via syntax such as, <code>3 times println</code>.</li>
+<li>Added the ability to dynamically tag tests, which facilitates features such as test name
+wildcards and rerunning previously failed tests; Dynamic tagging enables selection of tests
+even in nested suites that can't be instantiated directly.</li>
+<li>Added to <a href="@milestoneScaladoc/#org.scalatest.tools.Runner$"><code>Runner</code></a> a way to specify tests to run by full or partial ("wildcard") name.</li>
+<li>Enabled on-the-fly sorting of events (with a timeout) during parallel runs.</li>
+<li>Added the ability to cancel tests if a needed resource is not available.</li>
+<li>Added ability to <a href="@milestoneScaladoc/#org.scalatest.Tag">tag</a> all tests in a suite class by annotating the class with a tag
+annotation. For example, can ignore all tests in a suite class with <a href="@milestoneScaladoc/#org.scalatest.Ignore"><code>@@Ignore</code></a>.</li>
+<li>Added a <a href="@milestoneScaladoc/#org.scalatest.DoNotDiscover"><code>@@DoNotDiscover</code></a> annotation that prevents discovery of an otherwise discoverable <code>Suite</code> class.</li>
+<li>Simplified <a href="@milestoneScaladoc/#org.scalatest.Suite"><code>Suite</code></a>'s <code>run</code> method signatures, to make them more pleasant to override.</li>
+<li>Enabled pretty output for test methods defined in backticks;
+Deprecated old-style test method names in <a href="@milestoneScaladoc/#org.scalatest.Suite"><code>Suite</code></a> in favor of
+<code>`test: ...`</code> style.</li>
+<li>DSL-ified <a href="@milestoneScaladoc/#org.scalatest.Suite"><code>Suite</code></a>'s <code>execute</code> method, including treating a given test name as a wildcard.</li>
+<li>Reworked much of ScalaTest's extensive Scaladoc documentation to make code examples simpler, clearer, ensuring only the best, recommended style is shown. Added "Recommended Usage" <a href="@milestoneScaladoc/#org.scalatest.FlatSpec">callout boxes</a>, <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.FlatSpec@@sharedFixtures">tables</a>, and text to ensure it is easy to understand the intended purpose of each of the various traits and features.</li>
+<li>Added <a href="@milestoneScaladoc/#org.scalatest.tools.Runner$@@configuringReporters">unformatted mode</a> to stdout, stderr, and file reporters for helping debug problematic parallel test runs.</li>
+<li>Added <a href="@milestoneScaladoc/#org.scalatest.TestData"><code>TestData</code></a> trait that offers information about a test, some of which was already being
+passed into <code>withFixture</code>. In addition to
+the config map and test name, <code>TestData</code> also offers test text, scopes, and tags. In addition to being mixed into <code>NoArgTest</code> and <code>OneArgTest</code>,
+which are passed to <code>withFixture</code>, new forms of <code>beforeEach</code> and <code>afterEach</code> were added to <code>BeforeAndafterEach</code> that take
+a <a href="@milestoneScaladoc/#org.scalatest.TestData"><code>TestData</code></a> (and the old forms that took only a config map were deprecated). This gives <code>beforeEach</code> and <code>afterEach</code> methods to 
+ the same information enjoyed by <code>withFixture</code> methods.</li>
+</ul>
+
+<p>
+<em>Enhancements in 2.0.M5b:</em>
+</p>
+
+<ul>
+<li>Added traits <a href="@milestoneScaladoc/#org.scalatest.Spec"><code>Spec</code></code></a> and
+<a href="@milestoneScaladoc/#org.scalatest.fixture.Spec"><code>fixture.Spec</code></code></a> to serve as the new style trait
+in which tests are methods.</li>
+<li>Deprecated trait <a href="@milestoneScaladoc/#org.scalatest.Suite"><code>Suite</code></a> as a style trait.</li>
+<li>Added trait <a href="@milestoneScaladoc/#org.scalatest.SuiteMixin"><code>SuiteMixin</code></a> to serve as the new base class
+for stackable traits that can be mixed into <code>Suite</code>, and deprecated trait
+<a href="@milestoneScaladoc/#org.scalatest.AbstractSuite"><code>AbstractSuite</code></a>.</li>
+<li>Added trait <a href="@milestoneScaladoc/#org.scalatest.TimesOnInt"><code>TimesOnInt</code></a>, which allows you to repeatedly
+execute a block of code an integer number of times via syntax such as, <code>3 times println</code>.</li>
+<li>Added the <a href="@milestoneScaladoc/#org.scalatest.selenium.package"><code>org.scalatest.selenium</code></a> package, which provides the <a href="@milestoneScaladoc/#org.scalatest.selenium.WebBrowser">ScalaTest Selenium DSL</a>.</li> for testing web applications with Selenium.</li>
+<li>Added <a href="@milestoneScaladoc/#org.scalatest.tools.Runner$@@configuringReporters">unformatted mode</a> to stdout, stderr, and file reporters for helping debug problematic parallel test runs.</li>
+<li>Added case class <a href="@milestoneScaladoc/#org.scalatest.Args"><code>Args</code></a>, to hold the arguments passed
+into <a href="@milestoneScaladoc/#org.scalatest.Suite"><code>Suite</code></a>'s <code>run</code>, <code>runNestedSuites</code>, <code>runTests</code>, and <code>runTest</code> methods. The purpose of <code>Args</code> is to simplify the signatures of these four "run" lifecycle methods, making the signatures easier to remember and the methods more pleasant to override.</li>
+<li>Added <a href="@milestoneScaladoc/#org.scalatest.tools.Runner$@@specifyingChosenStyles"><code>chosenStyles</code></a> to <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.Args"><code>Args</code></a>, to hold the (possibly empty) set of styles chosen for the project. Previously this was passed around via the config map.</a>
+<li>Added an overloaded <code>run</code> method to <a href="@milestoneScaladoc/#org.scalatest.AbstractSuite"><code>AbstractSuite</code></a>
+that takes an optional test name string and a <a href="@milestoneScaladoc/#org.scalatest.Args"><code>Args</code></a>. Deprecated the old (and now overloaded) <code>run</code> method that takes seven args
+and added a final implementation of it to <a href="@milestoneScaladoc/#org.scalatest.AbstractSuite"><code>AbstractSuite</code></a> that calls the new, two-arg form of <code>run</code>.</li>
+<li>Changed <code>runNestedSuites</code> method so instead of taking six parameters it takes a single
+<a href="@milestoneScaladoc/#org.scalatest.Args"><code>Args</code></a> parameter. This will be a breaking change to any subtrait or subclass that overrode or invoked this method. See the <a href="#potentialBreakages">breaking changes section</a> for info on how to fix it.</li>
+<li>Changed <code>runTests</code> method so instead of taking an optional test name string plus six parameters it takes the optional test name string and 
+a single <a href="@milestoneScaladoc/#org.scalatest.Args"><code>Args</code></a> parameter. This will be a breaking change to any subtrait or subclass that overrode or invoked this method. See the <a href="#potentialBreakages">breaking changes section</a> for info on how to fix it.</li>
+<li>Changed <code>runTest</code> method so instead of taking a test name string and six parameters it takes the test name string and a single
+<a href="@milestoneScaladoc/#org.scalatest.Args"><code>Args</code></a> parameter. This will be a breaking change to any subtrait or subclass that overrode or invoked this method. See the <a href="#potentialBreakages">breaking changes section</a> for info on how to fix it.</li>
+<li>Narrowed the result types of <code>newInstance</code> in <a href="@milestoneScaladoc/#org.scalatest.OneInstancePerTest"><code>OneInstancePerTest</code></a> and <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.ParallelTestExecution"><code>ParallelTestExecution</code></a> to include the trait type. <em>I.e.</em>, previously the result type of <code>newInstance</code> was just <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.Suite"><code>Suite</code></a>. Now in <code>OneInstancePerTest</code> the result type is <code>Suite with OneInstancePerTest</code>, and in <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.ParallelTestExecution"><code>ParallelTestExecution</code></a> is <code>Suite with ParallelTestExecution</code>.</li>
+<li>Added several overloaded <code>assume</code> methods to trait <a href="@milestoneScaladoc/#org.scalatest.Assertions"><code>Assertions</code></a>. For symmetry, each <code>assume</code> method corresponds to
+an overloaded <code>assert</code> method with an identical signature. The <code>assume</code> methods behave similarly to the corresponding <code>assert</code>
+methods, except instead of throwing <a href="@milestoneScaladoc/#org.scalatest.TestFailedException"><code>TestFailedException</code></a> the <code>assume</code> methods throw <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.TestCanceledException"><code>TestCanceledException</code></a>.</li>
+<li>Added several overloaded <code>cancel</code> methods to trait <a href="@milestoneScaladoc/#org.scalatest.Assertions"><code>Assertions</code></a>. For symmetry, each <code>cancel</code> method corresponds to
+an overloaded <code>fail</code> method with an identical signature. The <code>cancel</code> methods behave similarly to the corresponding <code>fail</code>
+methods, except instead of throwing <a href="@milestoneScaladoc/#org.scalatest.TestFailedException"><code>TestFailedException</code></a> the <code>cancel</code> methods throw <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.TestCanceledException"><code>TestCanceledException</code></a>.</li>
+<li>Added a <a href="@milestoneScaladoc/#org.scalatest.events.TestCanceled"><code>TestCanceled</code></a> event to indicate a test has been canceled.</li>
+<li>Added a <a href="@milestoneScaladoc/#org.scalatest.exceptions.TestCanceledException"><code>TestCanceledException</code></a> that indicates a test has been canceled. (This is thrown by the <code>cancel</code> and <code>assume</code> methods added in this release to trait <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.exceptions.TestCanceledException"><code>Assertions</code></a>.)</li>
+<li>Added <a href="@milestoneScaladoc/#org.scalatest.events.ScopeOpened"><code>ScopeOpened</code></a> and <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.events.ScopeClosed"><code>ScopeClosed</code></a> events to indicate "scopes," such as the scope of a <code>describe</code> clause in a <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.FunSpec"><code>FunSpec</code></a>. Previously a "scope opened" event was indiciated via an <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.events.InfoProvided"><code>InfoProvided</code></a> events with <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.events.IndentedText"><code>IndentedText</code></a>.</li>
+<li>Added a <a href="@milestoneScaladoc/#org.scalatest.events.MarkupProvided"><code>MarkupProvided</code></a> event to indicate some markup text has been provided.<!--(r2880)--></li>
+<li>Added a <code> markup()</code> method to style traits in which tests are functions (I.e., the same style traits that already offered an <code>info()</code> method.) to allow markup text to be sent to the reporter from those traits. Added trait <a href="@milestoneScaladoc/#org.scalatest.Documenter"><code>Documenter</code></a>, the result type of <code>markup</code>.</li>
+<li>Enhanced stdout, stderr, and file reporters to display markup text.</li>
+<li>Added a <code>testText</code> field to all test events (<a href="@milestoneScaladoc/#org.scalatest.events.TestStarting"><code>TestStarting</code></a>, <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.events.TestIgnored"><code>TestIgnored</code></a>, <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.events.TestPending"><code>TestPending</code></a>, <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.events.TestCanceled"><code>TestCanceled</code></a>, <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.events.TestFailed"><code>TestFailed</code></a>, and <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.events.TestStarting"><code>TestSucceeded</code></a>), primarily for integration with IntelliJ IDEA. The "test text" is either the complete test name or a suffix of it. In a <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.FunSpec"><code>FunSpec</code></a>, for example, the test text will be the string passed to the <code>it</code> method, whereas the full test name will be the test text prefixed by the strings passed to enclosing <code>describe</code> method calls.<!--(r2899, r2944)--></li>
+<li>Added a <em>location API</em> for better integration with tools, especially IDEs. The location API consists of a sealed family of classes and objects, consisting of abstract base class <a href="@milestoneScaladoc/#org.scalatest.events.Location"><code>Location</code></a>, three case subclasses <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.events.LineInFile"><code>LineInFile</code></a>, <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.events.TopOfMethod"><code>TopOfMethod</code></a>, and <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.events.TopOfClass"><code>TopOfClass</code></a>, and singleton object <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.events.SeeStackDepthException"><code>SeeStackDepthException</code></a>. (For the time being there's also a <code>ToDoLocation</code> we're using to mark places that aren't yet firing proper locations, but this will be removed before 2.0.final is released.)</li>
+<li>Added <code>location</code>, an <code>Option[Location]</code> field, to class <a href="@milestoneScaladoc/#org.scalatest.events.Location"><code>Event</code></a>.</li>
+<li>Gave <code>Ordinal</code> nicer <code>toString</code> output, for example: <code>"Ordinal(99, 1, 0)"</code>.</li>
+<li>Added a boolean <code>excludeNestedSuites</code> field to the primary constructor of class <a href="@milestoneScaladoc/#org.scalatest.events.Location"><code>Filter</code></a>. This field supports rerunning selected (such as previously failed) tests.</li>
+<li>Added class <a href="@milestoneScaladoc/#org.scalatest.DynaTags"><code>DynaTags</code></a> to support the dynamic tagging of tests. The dynamic tagging feature (new in 2.0) can be used, for example, to select a subset of tests to run (such as tests that previously failed), by tagging them with <code>"Selected"</code> and only including tests tagged <code>"Selected"</code>. </li>
+<li>Added a <code>dynaTags</code> field to the primary constructor of class <a href="@milestoneScaladoc/#org.scalatest.events.Location"><code>Filter</code></a>. This field supports the dynamic tagging of tests.</li>
+<li>Added the <code>suiteId</code> lifecycle method to trait <a href="@milestoneScaladoc/#org.scalatest.AbstractSuite"><code>AbstractSuite</code></a> and its subtraits. This new lifecycle method is intended to provide a unique ID for each suite that executes in a suite of tests, so that tests can be dynamically tagged. (A dynamic tag identifies tests by <code>suiteId</code> and <code>testName</code>.)</li>
+<li>Added a <code>suiteId</code> to relevant events: <a href="@milestoneScaladoc/#org.scalatest.DynaTags"><code>TestStarting</code></a>, <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.DynaTags"><code>TestSucceeded</code></a>, <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.DynaTags"><code>TestFailed</code></a>, <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.DynaTags"><code>TestFailed</code></a>, <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.DynaTags"><code>TestPending</code></a>, <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.DynaTags"><code>TestCanceled</code></a>, <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.DynaTags"><code>SuiteStarting</code></a>, <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.DynaTags"><code>SuiteCompleted</code></a>, <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.DynaTags"><code>SuiteAborted</code></a>. This enables tests run previously to be dynamically tagged in future runs (because a dynamic tag requires both the <code>testName</code> and <code>suiteId</code>).</li>
+<li>Deprecated the previous two <code>apply</code> methods on <a href="@milestoneScaladoc/#org.scalatest.Filter"><code>Filter</code></a>, and added two new ones that take an additional <code>suiteId</code> parameter.</li>
+<li>Added the <code>rerunner</code> lifecycle method to <a href="@milestoneScaladoc/#org.scalatest.AbstractSuite"><code>AbstractSuite</code></a> and its subtraits, which provides an optional fully qualified name of a suite (with a public, no-arg constructor) that can be used create to rerun its tests. If class has a public, no-arg constructor, then that class's fully qualified name can be returned from <code>rerunner</code>. If it does not have a public, no-arg constructor, but rather is created as a nested suite of a class that does have a public, no-arg constructor, then the nested class can return from <code>rerunner</code> the fully qualified name of that outer, nesting class. To rerun a test in the nested class, ScalaTest can create the nesting class via its public, no-arg constructor, and run it. The nesting class will create the actual class in which the test resides, and run it as a nested suite, thereby rerunning the test.</li>
+<li>Added a socket reporter. This can be selected by passing a <code>-k</code> argument to <a href="@milestoneScaladoc/#org.scalatest.DynaTags"><code>Runner</code></a>. <!--: need to scaladoc that in Runner--></li>
+<!--<li>Added <code>toXML</code> methods to event classes, that serialize the events to XML. Initially, this is being used by the socket reporter, but will also likely eventually be used by the native ScalaTest XML file format. Made these toXML methods private to scalatest for now.--><!-- Why is socket reporter public. Should probably be private again. And also, need to document socket repoter. --></li>
+<li>Added to the summary output of "string" reporters&#8212;<em>i.e.</em>, the stdout, stderr, and file reporters&#8212;how many tests were canceled during a run.</li>
+<li>Added <code>decodedTestName</code>, an <code>Option[String]</code>, to test-related events. If defined, it means that the test was named using Scala's backtick notation, such as a test method in a <code>Suite</code> named <code>`test: an empty stack should complain on pop`</code>. The real test name will be encoded as <code>test$colon$u0020an$u0020empty$u0020stack$u0020should$u0020complain$u0020on$u0020pop</code>, whereas the decoded name will be <code>test: an empty stack should complain on pop</code>. This enables test names to be defined with backtick notation and still be presented to users in the more human-friendly, decoded form. If the decoded name would be identical to the encoded name (which will be the case if the name was not expressed in backticks and therefore never encoded in the first place), <code>decodedTestName</code> will be <code>None</code>. The events to which <code>decodedTestName</code> was added are: <a href="@milestoneScaladoc/#org.scalatest.TestStarting"><code>TestStarting</code></a>, <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.TestSucceeded"><code>TestSucceeded</code></a>, <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.TestFailed"><code>TestFailed</code></a>, <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.TestIgnored"><code>TestIgnored</code></a>, <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.TestPending"><code>TestPending</code></a>, <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.TestCanceled"><code>TestCanceled</code></a>.</li>
+<li>Added <code>decodedSuiteName</code>, an <code>Option[String]</code>, to suite-related events. If defined, it means that the suite was named using Scala's backtick notation, such as <code>`Stack Spec`</code>. The real suite name will, by default, be encoded as <code>Stack$u0020Spec</code>, whereas the decoded name will be <code>Stack Spec</code>. This enables suite names to be defined with backtick notation and still be presented to users in the more human-friendly, decoded form. If the decoded name would be identical to the encoded name (which will be the case if the name was not expressed in backticks and therefore never encoded in the first place), <code>decodedSuiteName</code> will be <code>None</code>. The events to which <code>decodedSuiteName</code> was added are: <a href="@milestoneScaladoc/#org.scalatest.TestStarting"><code>TestStarting</code></a>, <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.TestSucceeded"><code>TestSucceeded</code></a>, <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.TestFailed"><code>TestFailed</code></a>, <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.TestIgnored"><code>TestIgnored</code></a>, <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.TestPending"><code>TestPending</code></a>, <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.TestCanceled"><code>TestCanceled</code></a>, <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.SuiteStarting"><code>SuiteStarting</code></a>, <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.SuiteCompleted"><code>SuiteCompleted</code></a>, <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.SuiteAborted"><code>SuiteAborted</code></a>.</li>
+<li>Added a <a href="@milestoneScaladoc/#org.scalatest.DoNotDiscover"><code>DoNotDiscover</code></a> annotation that can be used to tell <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.tools.Runner$"><code>Runner</code></a> not to discover a suite class that it would otherwise discover.</li>
+<li>Added a <a href="@milestoneScaladoc/#org.scalatest.Finders"><code>Finders</code></a> annotation that specifies one or more <code>Finders</code> that can
+be used to determine selected tests from an AST in IDEs.</li>
+<li>Added a <a href="@milestoneScaladoc/#org.scalatest.DoNotDiscover"><code>DoNotDiscover</code></a> annotation to prevent <code>Suite</code> classes that would otherwise be discoverable (because they extend <code>Suite</code> and have a public, no-arg constructor) from being discovered by <code>Runner</code>.</li>
+<li>Added a <code>-i</code> command line argument to <code>Runner</code> to provide a way to specify a suite by suite ID. This complements the <code>-s</code> command, which allows you to identify a suite by fully qualified name. The <code>-i</code> command was added primarily to allow IDEs and other tools to rerun failed (or otherwise selected) tests.</li>
+<li>Added a <code>-t</code> to <a href="@milestoneScaladoc/#org.scalatest.tools.Runner$"><code>Runner</code></a>, a way to specify a specific test name. A <code>-t</code> clauses must follow <code>-s</code> or <code>-i</code>. All <code>-t</code>'s immediately following a <code>-s</code> or <code>-i</code> will be considered tests of the suite specified by that <code>-s</code> or <code>-i</code>.</li>
+<li>Added a <code>-z</code> argument to <a href="@milestoneScaladoc/#org.scalatest.tools.Runner$"><code>Runner</code></a>, a means to specify test names via a wildcard: any test whose string name includes the string specified with <code>-z</code> will be selected. <code>-z</code> clauses must follow <code>-s</code> or <code>-i</code> clauses. All <code>-z</code>'s immediately following a <code>-s</code> or <code>-i</code> will be considered wildcards selecting tests of the suite by that <code>-s</code> or <code>-i</code>. (Note: This approach to wildcard test names was suggested by Mathias Doenitz.)</li>
+<li>Changed the result type of <code>nestedSuites</code> from <code>List</code> to <code>immutable.IndexedSeq</code>. (Under the covers we currently return a <code>Vector</code>.) When ScalaTest 1.0 was initially released, <code>Vector</code> did not yet exist in the Scala library and <code>List</code> was considered by many to be the default <code>Seq</code> type to use. In practice, it was discovered that it is too easy to use <code>List</code> (and other <code>LinearSeq</code>'s) in a non-performant way. In 2.0 we wanted to take the opportunity to make the potentially <a href="#potentialBreakages">breaking change</a> of replacing <code>List</code> result types with <code>immutable.IndexedSeq</code>. This potentially breaking change is expected to affect very little, if any, user code.</li>
+<li>Added a new overloaded <code>apply</code> method to <a href="@milestoneScaladoc/#org.scalatest.Distributor"><code>Distributor</code></a> that takes a <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.Args"><code>Args</code></a>, and deprecated the old form. During the deprecation period, the old form will call the new form with default args. The purpose of this change was to make more information available to <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.Args"><code>Distributor</code></a> implementations.</li>
+<li>Added a <code>recordedEvents</code> field to test completion events: <a href="@milestoneScaladoc/#org.scalatest.events.TestPending"><code>TestPending</code></a>, <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.events.TestSucceeded"><code>TestSucceeded</code></a>, <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.events.TestFailed"><code>TestFailed</code></a>, and <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.events.TestCanceled"><code>TestCanceled</code></a>. Added sealed trait <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.events.RecordedEvent"><code>RecordedEvent</code></a>, which extends <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.events.Event"><code>Event</code></a> and has two subtraits: <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.events.InfoProvided"><code>InfoProvided</code></a> and <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.events.TestCanceled"><code>MarkupProvided</code></a>. Prior to 2.0, <code>InfoProvided</code> events were recorded during tests and played back after, so that they could appear
+after the test text in the standard out reporter, and in a color that matched that of the test text. The color of the test text (green if passed, red if failed, yellow
+if pending, etc.) could not be known until after the test had completed. By sending recorded events along with the test completion event, rather than playing them
+back afterwords, it is easier for Reporters to figure out when the last event for a test has been received. Enhanced filtering so that recorded events would be filtered
+out if the user asked for that.</li>
+<li>Changed a primary/auxiliary constructor pair to a primary constructor with a default parameter in <a href="@milestoneScaladoc/#org.scalatest.Tracker"><code>Tracker</code></a>.</li>
+<li>Added default values for <code>tagsToInclude</code> and <code>tagsToExclude</code> in <a href="@milestoneScaladoc/#org.scalatest.Filter"><code>Filter</code></a>.</li>
+<li>Updated the JUnit XML Reporter so that it no longer uses ordinals in determining which events belonged to which suites. It now uses <code>suiteId</code>.</li>
+<li>Added the ability to sort events locally when tests are run in parallel via <code>ParallelTestExecution</code>, with a timeout if something takes too long. This balances the desire to have sorted output while you are watching with the desire to see stuff happening while you are watching. Added <code>sortingTimeout</code> to <code>ParallelTestExecution</code>, the default of which is to use the timeout specified to <code>Runner</code> via -T (or 15 seconds if no -T given), but you can override the method. Added trait <a href="@milestoneScaladoc/#org.scalatest.DistributedTestSorter"><code>DistributedTestSorter</code></a> to support this featuren, and a field holding one in <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.Args"><code>Args</code></a></li>
+<li>Added the ability to specify a timeout for sorting during parallel runs. The -T takes a number of seconds, and this is used for test sorting. The value
+specified with <code>-T</code> plus one second is used for suite sorting.</li>
+<li>Added the ability to sort events locally when suites are run in parallel. This is disabled by default, and can be enabled with <code>-PS</code> argument to <code>Runner</code>.</li>
+<li>Made the <code>suiteId</code> of <code>DiscoverySuite</code> unique in a run.</li>
+<li>Ensure <code>info()</code> invocations in <a href="@milestoneScaladoc/#org.scalatest.fixture.Suite"><code>fixture.Suite</code></a> are recorded and reported in the completion event.</li>
+<li>Modified <a href="@milestoneScaladoc/#org.scalatest.OneInstancePerTest"><code>OneInstancePerTest</code></a> so that it calls <code>super.runTests</code> which emits events for scopes (such as <code>describe</code> clauses in <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.FunSpec"><code>FunSpec</code></a>).</li>
+<li>Similarly, modified <a href="@milestoneScaladoc/#org.scalatest.ParallelTestExecution"><code>ParallelTestExecution</code></a> so that it calls <code>super.runTests</code> which emits events for scopes (such as <code>describe</code> clauses in <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.FunSpec"><code>FunSpec</code></a>).</li>
+<li>Added duration to <code>TestPending</code> event.</li>
+<li>Changed the overloaded <code>apply</code> factory methods in <a href="@milestoneScaladoc/#org.scalatest.Filter"><code>Filter</code></a> to one <code>apply</code> method with default args.</li>
+<li>Deprecated the old form of the public constructor in <a href="@milestoneScaladoc/#org.scalatest.Filter"><code>Filter</code></a>, in favor of just using the <code>apply</code> method in the <code>Filter</code> companion object.</li>
+<li>Adding type aliases in <code>org.scalatest</code> package object for <code>ShouldMatchers</code> and <code>MustMatchers</code> to save an import when using matchers.</li>
+<li>Added new-style test method names (in backticks, starting with "test: ") in <a href="@milestoneScaladoc/#org.scalatest.Suite"><code>Suite</code></a> and deprecated the old-style names.</li>
+<li>Changed <a href="@milestoneScaladoc/#org.scalatest.ConfigMapFixture"><code>ConfigMapFixture</code></a> so that it calls <code>withFixture(test.toNoArgTest(...))</code> in its <code>withFixture(OneArgTest)</code> implementation. Previously it was just calling the test function directly. This enhancement enables trait stacking.</li>
+<li>Added <code>expectResult</code> to <a href="@milestoneScaladoc/#org.scalatest.Assertions"><code>Assertions</code></a>, and deprecated <code>expect</code>. <code>expect</code> will be used for a different purpose in a future version of ScalaTest.</li>
+<li>Did a major overhaul of the ScalaTest Scaladoc documentation. Most examples were rewritten to be simpler and clearer, ensuring they only show the best, recommended style. Callout boxes, tables, and text were added to ensure it is easy to understand the recommended usage of the various tools. Also aded a table of command-line arguments for <code>Runner</code>.</li>
+<li>Enable tagging of all tests in a suite by annotating the suite class with a tag annotation. One common use case for this is to annotate a suite class with <a href="@milestoneScaladoc/#org.scalatest.Ignore"><code>@@Ignore</code></a> to ignore all tests in the suite.</li>
+<li>Hacked up a way to get ScalaTest's annotations (<code>@@DoNotDiscover</code>, <code>@@Ignore</code>, <code>@@Style</code>, <code>@@TagAnnotation</code>, and <code>@@WrapWith</code>), which must be implemented in Java, to appear in ScalaTest's Scaladoc. This was done by pretending they are traits that extend <code>java.lang.annotation.Annotation</code>, and explaining at the top of the documentation that they are really Java <code>@@interface</code>s.</li>
+<li>Renamed <code>Matchers</code> in package <code>org.scalatest.matchers</code> to </code>ClassicMatchers</code> and deprecated <code>Matchers</code>.
+</ul>
+
+<p>
+<em>Bug fixes in 2.0.M5b:</em>
+</p>
+
+<ul>
+<li>Report an aborted suite as a failed test when running with <a href="@milestoneScaladoc/#org.scalatest.JUnitRunner"><code>JUnitRunner</code></a>.</li>
+<li>Print <code>should</code>/<code>can</code>/<code>must</code> from <code>WordSpec</code> and <code>fixture.WordSpec</code> in the standard out reporter for failed, canceled, and ignored tests.</li>
+<li>Include a <code>skipped</code> attribute in the JUnit XML output for ignored, pending, and canceled tests.</li>
+</ul>
+
+</div>
+}
