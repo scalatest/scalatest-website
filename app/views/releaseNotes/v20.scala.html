@@ -24,10 +24,14 @@
 <h1>ScalaTest 2.0 Release Notes</h1>
 
 <p>
-<a href="/download">ScalaTest 2.0</a> is a major upgrade to ScalaTest, the product of over two years of effort. Although it
+ScalaTest 2.0 is a major upgrade to ScalaTest, the culmination of over two years of focused effort. Although it
 includes many enhancements, we kept a close eye on compatibility with existing ScalaTest 1.x code.
-We also tried hard to preserve what people liked about ScalaTest 1.x: it is simple, the code is clean
-and clear, it is fully documented, and it "just works." 
+We also tried hard to preserve what people liked about ScalaTest 1.x: ScalaTest is simple, the code is clean
+and clear, it is fully documented, and it &ldquo;just works.&rdquo; 
+</p>
+
+<p>
+For information on how to use ScalaTest in your project, see the <a href="/download">download page</a>.
 </p>
 
 <a name="highlights"></a>
@@ -52,13 +56,13 @@ with <code>+-</code> in tests and production code.</li>
 </ul>
 
 <p>
-<em>Suite enhancements</em>
+<em>Suite and SuiteMixin enhancements</em>
 </p>
 
 <ul>
 <li>Added an <a href="@latestScaladoc/#org.scalatest.Outcome"><code>Outcome</code></a> return type to <code>withFixture</code>.</li>
-<li>Added a <a href="@latestScaladoc/#org.scalatest.Status"><code>Status</code></a> return type to <code>Suite</code>'s <code>run</code> methods.</li>
-<li>Used <code>Status</code> to ensure <a href="@latestScaladoc/#org.scalatest.BeforeAndAfterAll"><code>BeforeAndAfterAll</code></a>'s <code>afterAll</code>
+<li>Added a <a href="@latestScaladoc/#org.scalatest.Status"><code>Status</code></a> return type to <code>Suite</code>'s <code>run</code> methods, and
+used <code>Status</code> to ensure <a href="@latestScaladoc/#org.scalatest.BeforeAndAfterAll"><code>BeforeAndAfterAll</code></a>'s <code>afterAll</code>
 method is executed after any parallel execution completes.</li>
 <li>Refactored <code>Suite</code>'s <code>run</code> methods to take an <a href="@latestScaladoc/#org.scalatest.Args"><code>Args</code></a>, to make overriding nicer.</li>
 <li>Added <code>markup</code> to style traits to include <a href="@latestScaladoc/#org.scalatest.FlatSpec@@documenters">markup text for specifications</a>.</li>
@@ -67,6 +71,30 @@ method is executed after any parallel execution completes.</li>
 <li>Added <a href="@{latestScaladoc}/#org.scalatest.Sequential"><code>Sequential</code></a>
 and <a href="@{latestScaladoc}/#org.scalatest.Stepwise"><code>Stepwise</code></a> (to pre-existing
 <a href="@{latestScaladoc}/#org.scalatest.Suites"><code>Suites</code></a>) combinators for suite composition.</li>
+<li>Added support for <code>they</code> (in addition to <code>it</code>) to <a href="@{latestScaladoc}/#org.scalatest.FunSpec"><code>FunSpec</code></a> and <a href="@{latestScaladoc}/#org.scalatest.FlatSpec"><code>FlatSpec</code></a>.</li>
+<li>Added traits <a href="@latestScaladoc/#org.scalatest.Spec"><code>Spec</code></code></a> and
+<a href="@latestScaladoc/#org.scalatest.fixture.Spec"><code>fixture.Spec</code></code></a> to serve as the new style trait
+in which tests are methods, and deprecated the use of <a href="@latestScaladoc/#org.scalatest.Suite"><code>Suite</code></a> as a style trait.</li>
+<li>Added trait <a href="@latestScaladoc/#org.scalatest.SuiteMixin"><code>SuiteMixin</code></a> to serve as the new base class
+for stackable traits that can be mixed into <code>Suite</code>, and deprecated trait
+<a href="@latestScaladoc/#org.scalatest.AbstractSuite"><code>AbstractSuite</code></a>.</li>
+<li>Added <a href="@latestScaladoc/#org.scalatest.TestData"><code>TestData</code></a> trait, made
+<a href="@latestScaladoc/#org.scalatest.Suite$NoArgTest"><code>NoArgTest</code></a> and
+<a href="@latestScaladoc/#org.scalatest.fixture.Suite$OneArgTest"><code>OneArgTest</code></a> implement it,
+and added trait <a href="@{latestScaladoc}/#org.scalatest.BeforeAndAfterEachTestData"><code>BeforeAndAfterEachTestData</code></a> to faciliate using
+the test name, text, scopes, and tags, as well as the config map, in <code>withFixture</code>, <code>beforeEach</code>, and <code>afterEach</code> methods.
+<li>Added <a href="@{latestScaladoc}/#org.scalatest.BeforeAndAfterAllConfigMap"><code>BeforeAndAfterAllConfigMap</code></a> to faciliate using the
+config map in <code>beforeAll</code> and <code>afterAll</code> methods.</li>
+<li>Added trait <a href="@{latestScaladoc}/#org.scalatest.fixture.NoArg"><code>NoArg</code></a> to support a relatively rare use case motivated by Akka's TestKit.</li>
+<li>Changed the behavior of <a href="@{latestScaladoc}/#org.scalatest.BeforeAndAfterAll"><code>BeforeAndAfterAll</code></a> so that it only calls
+<code>beforeAll</code> and <code>afterAll</code> in the outer instance of
+a <a href="@{latestScaladoc}/#org.scalatest.OneInstancePerTest"><code>OneInstancePerTest</code></a> or
+<a href="@{latestScaladoc}/#org.scalatest.ParallelTestExecution"><code>ParallelTestExecution</code></a>.</li>
+<li>Enhanced <a href="@{latestScaladoc}/#org.scalatest.BeforeAndAfterAll"><code>BeforeAndAfterAll</code></a> and <a href="@{latestScaladoc}/#org.scalatest.BeforeAndAfterAllConfigMap"><code>BeforeAndAfterAllConfigMap</code></a> to
+    take <code>expectedTestCount</code> into consideration when deciding whether to invoke <code>beforeAll</code> and <code>afterAll</code>.</li>
+<li>Added a <a href="@{latestScaladoc}/#org.scalatest.Retries"><code>Retries</code></a> trait and a
+<a href="@{latestScaladoc}/#org.scalautils.Catcher"><code>Catcher</code></a> class to help deal with <em>flickers</em>: tests that
+usually pass but occasionally fail.</li>
 </ul>
 
 <p>
@@ -75,7 +103,8 @@ and <a href="@{latestScaladoc}/#org.scalatest.Stepwise"><code>Stepwise</code></a
 
 <ul>
 <li>Added the ability to <em>cancel</em> a test. Added <code>assume</code> and <code>cancel</code> methods to
-<a href="@latestScaladoc/#org.scalatest.Assertions"><code>Assertions</code></a>.</li>
+<a href="@latestScaladoc/#org.scalatest.Assertions"><code>Assertions</code></a>,
+and added a <code>cancelAfter</code> method to <a href="@{latestScaladoc}/#org.scalatest.concurrent.Timeouts"><code>Timeouts</code></a>.</li>
 <li>Reimplemented <code>assert</code> and <code>assume</code> as macros that produce descriptive error messages in 
 <a href="@latestScaladoc/#org.scalatest.Assertions"><code>Assertions</code></a>.</li>
 <li>Added <a href="@latestScaladoc/#org.scalatest.Inspectors"><code>Inspectors</code></a> (<code>forAll</code>, <code>forEvery</code>, <code>forAtLeast</code>,
@@ -105,6 +134,11 @@ and <code>theSameElementsInOrderAs</code>.</li>
 <li>Added an <a href="@latestScaladoc/#org.scalatest.Matchers@@checkingForEmptiness"><code>empty</code> matcher</a>.</li>
 <li>Added <code>a</code> and <code>an</code> matcher syntax to <a href="@latestScaladoc/#org.scalatest.Matchers@@checkingAnObjectsClass">check an object's class</a>.</li>
 <li>Added <a href="@latestScaladoc/#org.scalatest.Matchers@@expectedExceptions"><code>thrownBy</code> matcher syntax</a> for checking for expected exceptions.</li>
+<li>Refactored <a href="@{latestScaladoc}/#org.scalatest.matchers.MatchResult"><code>MatchResult</code></a> to improve runtime performance and enable
+modification of error messages during <a href="@{latestScaladoc}/#org.scalatest.matchers.Matcher@@composingMatchers">matcher composition</a>.</li>
+<li>Added <a href="@{latestScaladoc}/#org.scalautils.Prettifier"><code>Prettifier</code></a> and <a href="@{latestScaladoc}/#org.scalautils.PrettyMethods"><code>PrettyMethods</code></a> to <code>org.scalautils</code>.</li>
+<li>Enhanced <code>have length</code> and <code>have size</code> error messages to include the actual length or size.</li>
+<li>Use <code>Ordering</code> instead of <code>Ordered</code> for <code>be &lt;/&gt;/&lt;=/&gt;=</code>.</li>
 </ul>
 
 <p>
@@ -112,6 +146,15 @@ and <code>theSameElementsInOrderAs</code>.</li>
 </p>
 
 <ul>
+<li>Added support for <a href="@{latestScaladoc}/#org.scalatest.tools.Runner$@@configuringReporters"><em>reminders</em></a>, a summary of failed and/or
+canceled tests that can be optionally printed out at the end of a run in string (stdout, stderr, file) reporters. This obviates the need to scroll backwards
+in search of details about failed and/or canceled tests in console output, and also ensures that such details won't have scrolled off the top and out of existence.</li>
+<li>Enabled discovery to be used if only <code>-z</code> <code>&lt;test name wildcard&gt;</code> or <code>-t</code> <code>&lt;test name&gt;</code> is specified. In
+such cases <a href="@{latestScaladoc}/#org.scalatest.tools.Runner$"><code>Runner</code></a> will execute any tests with matching names on any suite discovered
+in the runpath.</li>
+<li>Enhanced <code>-s</code> to take a glob in addition to a complete, fully-qualified suite class name.</li>
+<li>Added a <em>slow poke detector</em> (TODO: Document slowpoke in Runner), which will emit <a href="@{latestScaladoc}/#org.scalatest.events.AlertProvided"><code>AlertProvided</code></a> events periodically listing
+    tests that have been running longer than a specified time limit.</li>
 </ul>
 
 <p>
@@ -126,6 +169,7 @@ and <code>theSameElementsInOrderAs</code>.</li>
 </p>
 
 <ul>
+<li>Added <a href="@{latestScaladoc}/#org.scalatest.events.DiscoveryStarting"><code>DiscoveryStarting</code></a> and <a href="@{latestScaladoc}/#org.scalatest.events.DiscoveryCompleted"><code>DiscoveryCompleted</code></a> events, and enhanced the GUI reporter to use these events to show a spinning icon during discovery.</li>
 </ul>
 
 <p>
@@ -133,7 +177,15 @@ and <code>theSameElementsInOrderAs</code>.</li>
 </p>
 
 <ul>
+<li>Added the <a href="@latestScaladoc/#org.scalatest.selenium.WebBrowser">ScalaTest Selenium DSL</a>.</li>
 <li>Added an HTML reporter. Here's an <a href="http://www.artima.com/html-scalatest-2.0.M5">example HTML report</a>.</li>
+<li>To make thread dumps more clear, gave useful names to ScalaTest threads: The main thread is now <code>ScalaTest-main</code>. The run thread is <code>ScalaTest-run</code>.
+    The dispatcher thread is <code>ScalaTest-dispatcher</code>. Thread-pool threads for parallel execution are <code>ScalaTest-N</code>. And main or thread-pool threads running
+    test suites are renamed to <code>ScalaTest-running-&lt;name of suite&gt;</code>, then changed back again once the suite has completed.</li>
+<li>Added trait <a href="@latestScaladoc/#org.scalautils.TimesOnInt"><code>TimesOnInt</code></a>, which allows you to repeatedly
+execute a block of code an integer number of times via syntax such as, <code>3 times println</code>.</li>
+<li>Added <a href="http://www.scalautils.org/user_guide/OrAndEvery"><code>Or</code> and <code>Every</code></a> to ScalaUtils, allowing you to
+represent errors in production code as <em>alternate return values</em> (like Either) and to optionally accumulate errors.</li>
 </ul>
 
 <ul>
@@ -227,9 +279,17 @@ objecgt, which had been deprecated since ScalaTest 1.5.</li>
 <h2>Detailed history of changes</h2>
 
 <p>
-For historians, <a href="/release_notes/2.0_history">this page</a> preverves relevant sections of the individual release notes
+For historians, the <a href="/release_notes/2.0_history">detailed history page</a> preverves relevant sections of the individual release notes
 for major 2.0 milestones and release candidates. For a quicker to read and more understandable overview,
 see the <a href="#highlights">Highlights section</a> above.
+</p>
+
+<h2>Acknowledgments</h2>
+
+<p>
+ScalaTest 2.0 is brought to you by Artima, Inc., where it is tended by Bill Venners, Chua Chee Seng, and George Berger. We
+would like to thank all our users for their suggestions and input, everyone who has contributed source code or reviewed our work-in-progress, and
+our financial sponsors (who prefer to remain unamed). Without your guidance and support, ScalaTest 2.0 would not have been possible.
 </p>
 
 </div>
