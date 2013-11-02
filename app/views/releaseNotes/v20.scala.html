@@ -26,10 +26,54 @@
 <p>
 ScalaTest 2.0 is a major upgrade to ScalaTest, the product of over two years of effort. Although it
 includes many enhancements, we kept a close eye on compatibility with existing ScalaTest 1.x code.
+We also tried hard to preserve what people liked about ScalaTest 1.x: it is simple, the code is clean
+and clear, and it "just works." 
 </p>
 
+<a name="highlights"></a>
 <h2>Highlights</h2>
 
+<ul>
+<li>Created sister library, ScalaUtils. See <a href="http://www.scalautils.org"><code>scalautils.org</code></a> for details.</li>
+<li>Added ability to <a href="http://www.scalautils.org/user_guide/CustomEquality">customize equality</a> with <code>===</code> in tests and production code, including an &ldquo;<a href="http://www.scalautils.org/user_guide/Explicitly">Explicitly DSL</a>.&rdquo;</li>
+<li>Added ability to enforce compile-time <a href="http://www.scalautils.org/user_guide/ConstrainedEquality">type constraints on equality checks</a> with <code>===</code> in tests and production code.</li>
+<li>Enhanced ability to do <a href="http://www.scalautils.org/user_guide/Tolerance">equality checks with tolerance</a> using <code>===</code>
+with <code>+-</code> in tests and production code.</li>
+<li>Added support for <a href="http://www.scalautils.org/user_guide/Normalization">normalizing values</a> before equality checks in tests and production code.</li>
+<li>Added an HTML reporter. Here's an <a href="http://www.artima.com/html-scalatest-2.0.M5">example HTML report</a>.</li>
+<li>Added <a href="@latestScaladoc/#org.scalatest.concurrent.AsyncAssertions"><code>AsyncAssertions</code></a> to
+<code>org.scalatest.concurrent</code>.</li>
+<li>Added the ability to <em>cancel</em> a test. Added <code>assume</code> and <code>cancel</code> methods to
+<a href="@latestScaladoc/#org.scalatest.Assertions"><code>Assertions</code></a>.</li>
+<li>Reimplemented <code>assert</code> and <code>assume</code> as macros that produce descriptive error messages in 
+<a href="@latestScaladoc/#org.scalatest.Assertions"><code>Assertions</code></a>.</li>
+<li>Added an <a href="@latestScaladoc/#org.scalatest.Outcome"><code>Outcome</code></a> return type to <code>withFixture</code>.</li>
+<li>Added a <a href="@latestScaladoc/#org.scalatest.Status"><code>Status</code></a> return type to <code>Suite</code>'s <code>run</code> methods.</li>
+<li>Used <code>Status</code> to ensure <a href="@latestScaladoc/#org.scalatest.BeforeAndAfterAll"><code>BeforeAndAfterAll</code></a>'s <code>afterAll</code>
+method is executed after any parallel execution completes.</li>
+<li>Refactored <code>Suite</code>'s <code>run</code> methods to take an <a href="@latestScaladoc/#org.scalatest.Args"><code>Args</code></a>, to make overriding nicer.</li>
+<li>Added <code>markup</code> to style traits to include <a href="@latestScaladoc/#org.scalatest.FlatSpec@@documenters">markup text for specifications</a>.</li>
+<li>Added <code>note</code> and <code>alert</code> to stye traits for sending
+<a href="@latestScaladoc/#org.scalatest.FlatSpec@@notifiersAlerters">status notifications</a> from tests.</li>
+<li>Added <a href="@latestScaladoc/#org.scalatest.Inspectors">Inspectors</a> (<code>forAll</code>, <code>forEvery</code>, <code>forAtLeast</code>,
+<code>forAtMost</code>, <code>forBetween</code>, <code>forExactly</code>) to enable assertions about collections, including nested collections.
+<li>Moved matchers DSL to <a href="@latestScaladoc/#org.scalatest.Matchers"><code>org.scalatest.Matchers</code></a>; deprecated
+<code>ShouldMatchers</code> and <code>MustMatchers</code>.</li>
+<li>Refactored matchers to use <a href="@latestScaladoc/#org.scalatest.enablers.package">enabling typeclasses</a> rather than implicit conversions, to make the syntax
+more broadly usable and easier to customize.</li>
+<li>Enhanced <a href="@latestScaladoc/#org.scalatest.Matchers@@workingWithContainers"><code>contain</code> matcher syntax</a> so it an be used to make richer assertions with <code>oneOf</code>, <code>noneOf</code>, <code>allOf</code>,
+<code>atLeastOneOf</code>, <code>atMostOneOf</code>, <code>inOrder</code>, <code>only</code>, <code>inOrderOnly</code>, <code>theSameElementsAs</code>,
+and <code>theSameElementsInOrderAs</code>.</li>
+<li>Added <a href="@latestScaladoc/#org.scalatest.Matchers@@inspectorShorthands">inspector shorthands</a> (<code>all</code>, <code>every</code>, <code>atLeast</code>
+<code>atMost</code>, <code>between</code>, <code>exactly</code>) to the matchers DSL.</li>
+<li>Added an <a href="@latestScaladoc/#org.scalatest.Matchers@@checkingForEmptiness"><code>empty</code> matcher</a>.</li>
+<li>Added <code>a</code> and <code>an</code> matcher syntax to <a href="@latestScaladoc/#org.scalatest.Matchers@@checkingAnObjectsClass">check an object's class</a>.</li>
+<li>Added <a href="@latestScaladoc/#org.scalatest.Matchers@@expectedExceptions"><code>thrownBy</code> matcher syntax</a> for checking for expected exceptions.</li>
+<li>Added <a href="@latestScaladoc/#org.scalatest.LoneElement"><code>LoneElement</code></a> to assert against single-element collections.</li>
+<li>Added <a href="@latestScaladoc/#org.scalatest.TryValues"><code>TryValues</code></a> to facilitate assertions about <code>Try</code> values.</li>
+</ul>
+
+<a name="breakingChanges"></a>
 <h2>Breaking changes</h2>
 
 <p>
@@ -37,6 +81,7 @@ ScalaTest 2.0 does include a few enhancements that will break existing code. To 
 how to migrate your code if affected, see the <a href="/user_guide/migrating_to_20">migration guide</a>.
 </p>
 
+<a name="newDeprecations"></a>
 <h2>New deprecations</h2>
 
 <ul>
@@ -89,6 +134,7 @@ During the deprecation period, the old form will call the new form with default 
 to <code>Distributor</code> implementations.</li>
 </ul>
 
+<a name="expiredDeprecations"></a>
 <h2>Expired deprecations</h2>
 
 <ul>
@@ -781,6 +827,12 @@ the lack of a thrown exception is transformed into a <a href="@{milestoneScalado
 
 <h1>Other enhancements in 2.0.M6</h1>
 
+<p>
+Note: We had to drop support of 2.9 recently because implicit lookup of contravariant type classes did not behave well, and this was
+required to keep all existing ScalaTest matcher code compiling. If you're on Scala 2.9, please continue with ScalaTest 1.9.2
+or ScalaTest 2.0.M5b until the day comes when you can upgrade to Scala 2.10 and ScalaTest 2.0.M6.
+</p>
+
 <ul>
 <li>Added <a href="@{milestoneScaladoc}/index.html#org.scalatest.Checkpoints"><code>Checkpoints</code></a>, which allows you to accumulate and report multiple assertions in a single test</li>
 <li> Added <a href="@{milestoneScaladoc}/index.html#org.scalatest.Informing"><code>Informing</code></a>, a trait that contains the <code>info</code> method, which was previously provided via an implicit that has been removed in 2.0.M6</li>
@@ -847,21 +899,7 @@ the lack of a thrown exception is transformed into a <a href="@{milestoneScalado
     test suites are renamed to ScalaTest-running-&lt;name of suite&gt;, then changed back again once the suite has completed.</li>
 </ul>
 
-<p>Deprecations</p>
-
-<p>
-Note: We had to drop support of 2.9 recently because implicit lookup of contravariant type classes did not behave well, and this was
-required to keep all existing ScalaTest matcher code compiling. If you're on Scala 2.9, please continue with ScalaTest 1.9.2
-or ScalaTest 2.0.M5b until the day comes when you can upgrade to Scala 2.10 and ScalaTest 2.0.M6.
-</p>
-
-<ul>
-<li>Deprecated the <code>before</code>/<code>afterEach(TestData)</code> methods in <a href="@{milestoneScaladoc}/index.html#org.scalatest.BeforeAndAfterEach"><code>BeforeAndAfterEach</code></a>.</li>
-<li>Deprecated <a href="@{milestoneScaladoc}/index.html#org.scalatest.FailureOf"><code>FailureOf</code></a> in favor of <a href="@{milestoneScaladoc}/index.html#org.scalatest.OutcomeOf"><code>OutcomeOf</code></a>.</li>
-<li>Deprecated <a href="@{milestoneScaladoc}/index.html#org.scalatest.matchers.ShouldMatchers"><code>org.scalatest.matchers.ShouldMatchers</code></a> in favor of <a href="@{milestoneScaladoc}/index.html#org.scalatest.Matchers"><code>org.scalatest.Matchers</code></a>.
-</ul>
-
-<p>Bug fixes:</p>
+<em>Bug fixes in 2.0.M6</em>
 
 <ul>
 <li>Fixed an osgi.bnd issue.</li>
@@ -952,17 +990,8 @@ a <a href="@milestoneScaladoc/#org.scalatest.TestData"><code>TestData</code></a>
  the same information enjoyed by <code>withFixture</code> methods.</li>
 </ul>
 
-<a name="detailedList"></a>
 <p>
-<em>Detailed list of changes:</em>
-</p>
-
-<p>
-The ScalaTest 2.0.M5b release includes the following enhancements, bug fixes, breaking changes, and deprecations: 
-</p>
-
-<p>
-<em>Enhancements:</em>
+<em>Enhancements in 2.0.M5b:</em>
 </p>
 
 <ul>
@@ -1057,84 +1086,13 @@ specified with <code>-T</code> plus one second is used for suite sorting.</li>
 </ul>
 
 <p>
-<em>Bug fixes</em>
+<em>Bug fixes in 2.0.M5b:</em>
 </p>
 
 <ul>
 <li>Report an aborted suite as a failed test when running with <a href="@milestoneScaladoc/#org.scalatest.JUnitRunner"><code>JUnitRunner</code></a>.</li>
 <li>Print <code>should</code>/<code>can</code>/<code>must</code> from <code>WordSpec</code> and <code>fixture.WordSpec</code> in the standard out reporter for failed, canceled, and ignored tests.</li>
 <li>Include a <code>skipped</code> attribute in the JUnit XML output for ignored, pending, and canceled tests.</li>
-</ul>
-
-<p>
-<em>Deprecations</em>
-</p>
-
-<ul>
-<li>Deprecated <code>expect</code> and add <code>expectResult</code> in <a href="@milestoneScaladoc/#org.scalatest.Assertions"><code>Assertions</code></a>.</li>
-<li>Deprecated old-style test method names in <a href="@milestoneScaladoc/#org.scalatest.Suite"><code>Suite</code></a>.</li>
-<li>Renamed <code>Matchers</code> to </code>ClassicMatchers</code> and deprecated <code>Matchers</code>. This was an implementation class, so likely
-few if any users actually used this in their code. But if you did, you'll need to rename that to <code>ClassicMatchers</code> to make way for a new
-more prominant use of <code>Matchers</code> in a future release of ScalaTest.</li>
-</ul>
-
-<p>
-<em>Removals</em>
-</p>
-
-<ul>
-<li>Removed <code>BeforeAndAfterEachFunctions</code> and <code>BeforeAndAfterAllFunctions</code>, which had been deprecated since ScalaTest 1.6.1. If you haven't
-done so already, you'll need to use <code>BeforeAndAfter</code> instead of <code>BeforeAndAfterEachFunctions</code>, and <code>BeforeAndAfterAll</code> instead
-of <code>BeforeAndAfterAllFunctions</code>.</li>
-<li>Removed <code>MultipleFixtureFeatureSpec</code>, <code>MultipleFixtureFlatSpec</code>, <code>MultipleFixtureFreeSpec</code>, <code>MultipleFixtureFunSuite</code>, <code>MultipleFixturePropSpec</code>, <code>MultipleFixtureSpec</code>, and <code>MultipleFixtureWordSpec</code>, which had been deprecated since ScalaTest 1.6.1. If you haven't
-done so already, you'll need to mix in <a href="@milestoneScaladoc/#org.scalatest.fixture.ConfigMapFixture"><code>ConfigMapFixture</code></a> to a <code>fixture.X</code> trait instead.</li>
-<li>Removed <code>org.scalatest.SuperSuite</code>, which had been deprecated in ScalaTest 1.5. Please use <a href="@milestoneScaladoc/#org.scalatest.Suites"><code>Suites</code> or <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.Specs"><code>Specs</code></a> instead.</li>
-<li>Removed the deprecated implicit conversion in the <code>Stopper</code> companion object that converted a <code>Stopper</code> to function type <code>() =&gt; Boolean</code>. This
-implicit conversion was added when the inheritance relationship between <code>Stopper</code> and <code>Function0[Boolean]</code> was severed to make it possible for <code>Stopper</code> to be implemented in Java. (Severing this relationship was originally a request by the IntelliJ IDEA folks, who wanted to write integration code in Java to smooth over binary incompatibilities between different Scala versions.)</li>
-<li>Added a <code>default</code> method in the <code>Stopper</code> companion object that returned a stopper that always returns false when applied.</li>
-<li>Removed the implicit conversion from <code>Reporter</code> to <code>Event =&gt; Unit</code> function type in the <code>Reporter</code> companion
-objecgt, which had been deprecated since ScalaTest 1.5.</li>
-<li>Removed the implicit conversion from <code>Rerunner</code> to <code>Function7</code>, which was deprecated in ScalaTest 1.5.</li>
-</ul>
-
-<p>
-<a name="breakingChangesIn20"></a>
-<em>Breaking changes</em>
-</p>
-
-<p>
-ScalaTest 2.0 includes a few changes for which it was not possible to go through a deprecation cycle, so some user code written under
-previous 1.x versions of ScalaTest will not compile unchanged under 2.0. Because the breaking changes do not involve actual test code, but rather
-the plumbing underneath, the breakages are expected to affect at most 5% of users, and less than 1% of actual code.
-The vast majority of users should be able to upgrade from 1.8 to 2.0 with a simple recompile, so long as they clear any deprecation
-warnings prior to the upgrade.
-</p>
-
-<ul>
-<li>By defining a final implementation of <a href="@milestoneScaladoc/#org.scalatest.AbstractSuite"><code>AbstractSuite</code></a>'s
-<code>run</code> method that takes seven arguments, subclasses and subtraits that had previously overridden it will break. To fix this, you'll need
-to override the new form of <code>run</code> that takes two arguments instead. An easy way to fix this is to replace the last six arguments 
-in your overriden <code>run</code> method signature with <code>"args: Args"</code>, then add an <code>"import args._"</code> at the top of your method body.</li>
-<li>Changed the result type of <code>nestedSuites</code> from <code>List</code> to <code>immutable.IndexedSeq</code>. (Under the covers we currently return a <code>Vector</code>.) When ScalaTest 1.0 was initially released, <code>Vector</code> did not yet exist in the Scala library and <code>List</code> was considered by many to be the default <code>Seq</code> type to use. In practice, it was discovered that it is too easy to use <code>List</code> (and other <code>LinearSeq</code>'s) in a non-performant way. In 2.0 we wanted to take the opportunity to make the potentially breaking change of replacing <code>List</code> result types with <code>immutable.IndexedSeq</code>. This potentially breaking change is expected to affect very little, if any, user code, essentially only code that called <code>nestedSuites</code> then used <code>::</code> or <code>:::</code> operators on the result. To fix such a break, use <code>+:</code> instead of <code>::</code> and <code>++</code> instead of <code>:::</code>.</li>
-<li>By establishing a <a href="@milestoneScaladoc/#org.scalatest.AbstractSuite"><code>Status</code></a> return type to <code>run</code>, <code>runNestedSuites</code>, <code>runTests</code>, and <code>runTest</code>, code that previously overrode these methods will need to be modified to return a <code>Status</code>. Most implementations
-will be able to return the same <code>Status</code> returned when <code>super.run...</code> is invoked. If you need to return your own <code>Status</code> object, you
-may be able to use one of the convenience classes and objects: 
-<a href="@milestoneScaladoc/#org.scalatest.FailedStatus$"><code>FailedStatus</code></a>,
-<a href="@milestoneScaladoc/#org.scalatest.SucceededStatus$"><code>SucceededStatus</code></a>,
-<a href="@milestoneScaladoc/#org.scalatest.StatefulStatus"><code>StatefulStatus</code></a>, and
-<a href="@milestoneScaladoc/#org.scalatest.CompositeStatus"><code>CompositeStatus</code></a>.</li>
-<li>Made major enhancements to the event model, primarily to support tools integration, but also to support a few new features unrelated to tools integration. These enhancements form a braeaking change becuase it is not possible to deprecate extractors in Scala, so pattern matches on the old-style events will likely break. This is the main breakage in ScalaTest 2.0, but it only effects users who created custom <code>Reporter</code>s, which was very rare, probably less than 1% of users.</li>
-<li>
-Because implicit conversions from structural types that enabled "have length/size" to be used on any object with an appropriate structure (such as
-a <code>getSize</code> method were removed from ScalaTest's matchers in 2.0.M5, any code relying on this feature will no longer compile. 
-This should affect very little code, but if it hits you, you'll need to create a type class
-as described in the Scaladoc for <a href="@milestoneScaladoc/#org.scalatest.matchers.ClassicMatchers$Length"><code>Length</code></a> and <a href="@milestoneScaladoc/#org.scalatest.matchers.ClassicMatchers$Size"><code>Size</code></a>. The reason for this breaking change is that although the structural implicits were rarely used, the compiler
-had to look at each one each time it needed to apply any implicit conversion. Scala 2.10 required that we add another 22 implicit conversions to this group, which
-just made the tradeoff seem unworthy. Dropping this feature eliminated a total of 46 implicit conversions. The structural type implicit conversion approach also turned
-out to not work if an object matched more than one of the structures, because the compile would fail complaining about ambiguous implicit conversions. The type class
-approach requires a bit more work up front in the (usually rare) cases that you want to use the length/size syntax with a type not already supported by ScalaTest's
-matchers, but compiles should be slightly faster as a result of fewer implicits being in scope.
-</li>
 </ul>
 
 </div>
