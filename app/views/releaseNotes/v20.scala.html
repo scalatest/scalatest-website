@@ -186,8 +186,10 @@ modification of error messages during <a href="@{latestScaladoc}/#org.scalatest.
 canceled tests that can be optionally printed out at the end of a run in string (stdout, stderr, file) reporters. This obviates the need to scroll backwards
 in search of details about failed and/or canceled tests in console output, and also ensures that such details won't have scrolled off the top and out of existence.</li>
 <li>Enhanced <code>-s</code> to take a glob in addition to a complete, fully-qualified suite class name.</li>
-<li>Added a <em>slow poke detector</em> (TODO: Document slowpoke in Runner), which will emit <a href="@{latestScaladoc}/#org.scalatest.events.AlertProvided"><code>AlertProvided</code></a> events periodically listing
-    tests that have been running longer than a specified time limit. (-W)</li>
+<li>Added <a href="@{latestScaladoc}/#org.scalatest.tools.Runner$@@slowpokeNotifications"><em>slowpoke notifications</em></a>, which
+emit <a href="@{latestScaladoc}/#org.scalatest.events.AlertProvided"><code>AlertProvided</code></a> events periodically listing
+tests that have been running longer than a specified time limit. (-W)</li>
+<li>Added ability to <a href="@{latestScaladoc}/#org.scalatest.tools.Runner$@@memorizingAndRerunning">memorize and rerun failed and canceled tests</a>. (-M and -A)</li>
 <li>Added to <a href="@latestScaladoc/#org.scalatest.tools.Runner$"><code>Runner</code></a> a way to specify tests to run by full or partial ("wildcard") name (<code>-z</code>).</li>
 <li>Enabled on-the-fly sorting of events (with a timeout) during parallel runs (<code>-PS</code>).</li>
 <li>Added <a href="@latestScaladoc/#org.scalatest.tools.Runner$@@configuringReporters">unformatted mode</a> to stdout (<em>-oU</em>), stderr (<code>-eU</code>), and
