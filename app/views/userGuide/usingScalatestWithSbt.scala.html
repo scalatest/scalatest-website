@@ -22,21 +22,12 @@
 <h1>Using ScalaTest with sbt</h1>
 
 <p>
-ScalaTest's <a href="@latestScaladoc/#org.scalatest.tools.ScalaTestFramework"><code>ScalaTestFramework</code></a> supports using ScalaTest from sbt.
+ScalaTest's <a href="@latestScaladoc/#org.scalatest.tools.Framework"><code>Framework</code></a> supports using ScalaTest from sbt.
 In sbt version 0.10 and higher, simply add a line like this to your project file:
 </p>
 
 <pre class="stGrayback">
-libraryDependencies += "org.scalatest" %% "scalatest" % "1.6.1" % "test"
-</pre>
-
-<p>
-The above line will work for any version of Scala 2.9. For example, it works for Scala 2.9.0-1.
-If you're using 2.8.1 or 2.8.2, you can write this:
-</p>
-
-<pre class="stGrayback">
-libraryDependencies += "org.scalatest" %% "scalatest" % "1.5.1" % "test"
+libraryDependencies += "org.scalatest" % "scalatest_2.10" % "2.0" % "test"
 </pre>
 
 <p>
@@ -53,6 +44,14 @@ If you want to run particular suites, use <code>test-only</code> and provide the
 
 <pre class="stGrayback">
 &gt; test-only org.acme.RedSuite org.acme.BlueSuite
+</pre>
+
+<p>
+Or you can specify a glob:
+</p>
+
+<pre class="stGrayback">
+&gt; test-only *RedSuite
 </pre>
 
 <p>

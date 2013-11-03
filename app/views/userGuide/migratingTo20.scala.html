@@ -160,8 +160,9 @@ For example, you'd change an overridden method like this:
 </p>
 
 <pre class="stHighlighted">
-<span class="stReserved">override</span> <span class="stReserved">def</span> runTests(testName: <span class="stType">Option</span>[<span class="stType">String</span>], reporter: <span class="stType">Reporter</span>, stopper: <span class="stType">Stopper</span>, filter: <span class="stType">Filter</span>,
-    configMap: <span class="stType">Map</span>[<span class="stType">String</span>, <span class="stType">Any</span>], distributor: <span class="stType">Option</span>[<span class="stType">Distributor</span>], tracker : <span class="stType">Tracker</span>) { <span class="stLineComment">// before</span>
+<span class="stReserved">override</span> <span class="stReserved">def</span> runTests(testName: <span class="stType">Option</span>[<span class="stType">String</span>], reporter: <span class="stType">Reporter</span>, <span class="stLineComment">// before</span>
+    stopper: <span class="stType">Stopper</span>, filter: <span class="stType">Filter</span>, configMap: <span class="stType">Map</span>[<span class="stType">String</span>, <span class="stType">Any</span>],
+    distributor: <span class="stType">Option</span>[<span class="stType">Distributor</span>], tracker : <span class="stType">Tracker</span>) {
 
   <span class="stLineComment">// Your existing code</span>
 }
@@ -262,7 +263,8 @@ However, if you were mixing in a style trait after <code>with</code>, you'll nee
 </p>
 
 <pre class="stHighlighted">
-<span class="stReserved">class</span> <span class="stType">MySpec</span> <span class="stReserved">extends</span> <span class="stType">TestKit(<span class="stType">ActorSystem</span>(<span class="stQuotedString">"my actors"</span>) <span class="stReserved">with</span> <span class="stType">FlatSpec</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> { <span class="stLineComment">// before</span>
+<span class="stReserved">class</span> <span class="stType">MySpec</span> <span class="stReserved">extends</span> <span class="stType">TestKit(<span class="stType">ActorSystem</span>(<span class="stQuotedString">"my actors"</span>) <span class="stLineComment">// before</span>
+    <span class="stReserved">with</span> <span class="stType">FlatSpec</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> {
   <span class="stLineComment">// ...</span>
 }
 </pre>
@@ -272,7 +274,8 @@ To this (by adding &ldquo;<code>Like</code>&rdquo; to <code>FlatSpec</code>):
 </p>
 
 <pre class="stHighlighted">
-<span class="stReserved">class</span> <span class="stType">MySpec</span> <span class="stReserved">extends</span> <span class="stType">TestKit(<span class="stType">ActorSystem</span>(<span class="stQuotedString">"my actors"</span>) <span class="stReserved">with</span> <span class="stType">FlatSpecLike</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> { <span class="stLineComment">// after</span>
+<span class="stReserved">class</span> <span class="stType">MySpec</span> <span class="stReserved">extends</span> <span class="stType">TestKit(<span class="stType">ActorSystem</span>(<span class="stQuotedString">"my actors"</span>) <span class="stLineComment">// after</span>
+    <span class="stReserved">with</span> <span class="stType">FlatSpecLike</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> {
   <span class="stLineComment">// ...</span>
 }
 </pre>
