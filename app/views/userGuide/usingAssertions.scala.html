@@ -14,7 +14,7 @@
  * limitations under the License.
  *@
 
-@import controllers.Application.milestoneScaladoc
+@import controllers.Application.latestScaladoc
 
 @userGuidePage("Using assertions") {
 <div style="text-align: left">
@@ -37,8 +37,8 @@ you can switch to the more expressive <a href="/user_guide/using_matchers">match
 </p>
 
 <p>
-ScalaTest's assertions are defined in trait <a href="@milestoneScaladoc/#org.scalatest.Assertions"><code>Assertions</code></a>, which is
-extended by <a href="@milestoneScaladoc/#org.scalatest.Suite"><code>Suite</code></a>, the supertrait to
+ScalaTest's assertions are defined in trait <a href="@latestScaladoc/#org.scalatest.Assertions"><code>Assertions</code></a>, which is
+extended by <a href="@latestScaladoc/#org.scalatest.Suite"><code>Suite</code></a>, the supertrait to
 all style traits. Trait <code>Assertions</code> also provides:
 </p>
 
@@ -68,7 +68,7 @@ Scala source file.
 <p>
 ScalaTest defines another <code>assert</code> method that hides the
 one in <code>Predef</code>. It behaves the same, except that if <code>false</code> is passed it throws
-<a href="@milestoneScaladoc/#org.scalatest.exceptions.TestFailedException"><code>TestFailedException</code></a> instead of <code>AssertionError</code>.
+<a href="@latestScaladoc/#org.scalatest.exceptions.TestFailedException"><code>TestFailedException</code></a> instead of <code>AssertionError</code>.
 Why? Because unlike <code>AssertionError</code>, <code>TestFailedException</code> carries information about exactly
 which item in the stack trace represents
 the line of test code that failed, which can help users more quickly find an offending line of code in a failing test.
@@ -90,11 +90,11 @@ to <code>assert</code>, like this:</p><p><pre class="stHighlighted">
 assert(attempted == <span class="stLiteral">1</span>, <span class="stQuotedString">&quot;Execution was attempted &quot;</span> + left + <span class="stQuotedString">&quot; times instead of 1 time&quot;</span>)
 </pre></p><p>Using this form of <code>assert</code>, the failure report will be more specific to your problem domain, thereby
 helping you debug the problem. This <code>Assertions</code> trait also mixes in the
-<a href="@milestoneScaladoc/#org.scalautils.TripleEquals"><code>TripleEquals</code></a>, which gives you a <code>===</code> operator
-that allows you to customize <a href="@milestoneScaladoc/#org.scalautils.Equality"><code>Equality</code></a> and perform equality checks with a numeric
-<a href="@milestoneScaladoc/#org.scalautils.Tolerance"><code>Tolerance</code></a>. You can also use <code>===</code> to enforce type constraints at compile time with
-sibling traits <a href="@milestoneScaladoc/#org.scalautils.TypeCheckedTripleEquals"><code>TypeCheckedTripleEquals</code></a> and
-<a href="@milestoneScaladoc/#org.scalautils.ConversionCheckedTripleEquals"><code>ConversionCheckedTripleEquals</code></a>.</p><h4> Expected results </h4><p>Although ScalaTest's <code>assert</code> macro provides a natural, readable extension to Scala's <code>assert</code> mechanism that
+<a href="@latestScaladoc/#org.scalautils.TripleEquals"><code>TripleEquals</code></a>, which gives you a <code>===</code> operator
+that allows you to customize <a href="@latestScaladoc/#org.scalautils.Equality"><code>Equality</code></a> and perform equality checks with a numeric
+<a href="@latestScaladoc/#org.scalautils.Tolerance"><code>Tolerance</code></a>. You can also use <code>===</code> to enforce type constraints at compile time with
+sibling traits <a href="@latestScaladoc/#org.scalautils.TypeCheckedTripleEquals"><code>TypeCheckedTripleEquals</code></a> and
+<a href="@latestScaladoc/#org.scalautils.ConversionCheckedTripleEquals"><code>ConversionCheckedTripleEquals</code></a>.</p><h4> Expected results </h4><p>Although ScalaTest's <code>assert</code> macro provides a natural, readable extension to Scala's <code>assert</code> mechanism that
 provides good error messages, as the operands become lengthy, the code becomes less readable. In addition, the error messages
 generated for <code>==</code> and <code>===</code> comparisons
 don't distinguish between actual and expected values. The operands are just called <code>left</code> and <code>right</code>,
@@ -145,7 +145,7 @@ the test, like this:</p><p><pre class="stHighlighted">
 assume(database.isAvailable)
 </pre></p><p>For each overloaded <code>assert</code> method, trait <code>Assertions</code> provides an
 overloaded <code>assume</code> method with an identical signature and behavior, except the
-<code>assume</code> methods throw <a href="@milestoneScaladoc/#org.scalatest.exceptions.TestCanceledException"><code>TestCanceledException</code></a> whereas the
+<code>assume</code> methods throw <a href="@latestScaladoc/#org.scalatest.exceptions.TestCanceledException"><code>TestCanceledException</code></a> whereas the
 <code>assert</code> methods throw <code>TestFailedException</code>. As with <code>assert</code>,
 <code>assume</code> hides a Scala method in <code>Predef</code> that performs a similar
 function, but throws <code>AssertionError</code>. And just as you can with <code>assert</code>,
@@ -181,9 +181,9 @@ withClue(<span class="stQuotedString">&quot;this is a clue&quot;</span>) {
 }
 </pre></p><p>The <code>withClue</code> method will only prepend the clue string to the detail
 message of exception types that mix in the <code>ModifiableMessage</code> trait.
-See the documentation for <a href="@milestoneScaladoc/#org.scalatest.exceptions.ModifiableMessage"><code>ModifiableMessage</code></a> for more information.
+See the documentation for <a href="@latestScaladoc/#org.scalatest.exceptions.ModifiableMessage"><code>ModifiableMessage</code></a> for more information.
 If you wish to place a clue string after a block of code, see the documentation for
-<a href="@milestoneScaladoc/#org.scalatest.AppendedClues"><code>AppendedClues</code></a>.</p>
+<a href="@latestScaladoc/#org.scalatest.AppendedClues"><code>AppendedClues</code></a>.</p>
 
 <p>
 Next, learn about <a href="tagging_your_tests">tagging your tests</a>.

@@ -14,8 +14,7 @@
  * limitations under the License.
  *@
 
-@import controllers.Application.milestoneVersion
-@import controllers.Application.milestoneJar
+@import controllers.Application.latestVersion
 @import controllers.Application.majorMinorScalaVersion
 
 @homePage("Home") {
@@ -71,7 +70,7 @@ you run it, you get an informal specification of the software being tested:
 </div>
 
 <pre class="scala">
-$ scala -cp scalatest_@{majorMinorScalaVersion}-@{milestoneVersion}.jar org.scalatest.run ExampleSpec
+$ scala -cp scalatest_@{majorMinorScalaVersion}-@{latestVersion}.jar org.scalatest.run ExampleSpec
 <span class="cyanincolor">Discovery starting.
 Discovery completed in 21 milliseconds.
 Run starting. Expected test count is: 2</span>

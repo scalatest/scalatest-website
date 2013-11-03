@@ -14,15 +14,15 @@
  * limitations under the License.
  *@
 
-@import controllers.Application.milestoneScaladoc
-@import controllers.Application.milestoneVersion
+@import controllers.Application.latestScaladoc
+@import controllers.Application.latestVersion
 
-@userGuidePage("Using assertions") {
+@userGuidePage("Using Selenium") {
 <div style="text-align: left">
 
 <h1>Using Selenium</h1>
 
-<p>ScalaTest @milestoneVersion includes a domain specific language (DSL) for writing browser-based tests using <a href="http://seleniumhq.org" target="_blank">Selenium</a>.</p><p>To use ScalaTest's Selenium DSL, mix trait <a href="@milestoneScaladoc/#org.scalatest.selenium.WebBrowser"><code>WebBrowser</code></a> into your test class. This trait provides the DSL in its
+<p>ScalaTest @latestVersion includes a domain specific language (DSL) for writing browser-based tests using <a href="http://seleniumhq.org" target="_blank">Selenium</a>.</p><p>To use ScalaTest's Selenium DSL, mix trait <a href="@latestScaladoc/#org.scalatest.selenium.WebBrowser"><code>WebBrowser</code></a> into your test class. This trait provides the DSL in its
 entirety except for one missing piece: an implicit <code>org.openqa.selenium.WebDriver</code>. One way to provide the missing
 implicit driver is to declare one as a member of your test class, like this:</p><p>
 <pre class="stHighlighted">
@@ -40,7 +40,7 @@ implicit driver is to declare one as a member of your test class, like this:</p>
 </pre></p><p>For convenience, however, ScalaTest provides a <code>WebBrowser</code> subtrait containing an implicit <code>WebDriver</code> for each
 driver provided by Selenium.
 Thus a simpler way to use the <code>HtmlUnit</code> driver, for example, is to extend
-ScalaTest's <a href="@milestoneScaladoc/#org.scalatest.selenium.HtmlUnit"><code>HtmlUnit</code></a> trait, like this:</p><p><pre class="stHighlighted">
+ScalaTest's <a href="@latestScaladoc/#org.scalatest.selenium.HtmlUnit"><code>HtmlUnit</code></a> trait, like this:</p><p><pre class="stHighlighted">
 <span class="stReserved">class</span> <span class="stType">BlogSpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> <span class="stReserved">with</span> <span class="stType">ShouldMatchers</span> <span class="stReserved">with</span> <span class="stType">HtmlUnit</span> {
 
   <span class="stReserved">val</span> host = <span class="stQuotedString">"http://localhost:9000/"</span>
@@ -57,7 +57,7 @@ ScalaTest's <a href="@milestoneScaladoc/#org.scalatest.selenium.HtmlUnit"><code>
 Google Chrome
 </td>
 <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
-<a href="@milestoneScaladoc/#org.scalatest.selenium.Chrome"><code>Chrome</code></a>
+<a href="@latestScaladoc/#org.scalatest.selenium.Chrome"><code>Chrome</code></a>
 </td>
 </tr>
 <tr>
@@ -65,7 +65,7 @@ Google Chrome
 Mozilla Firefox
 </td>
 <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
-<a href="@milestoneScaladoc/#org.scalatest.selenium.Firefox"><code>Firefox</code></a>
+<a href="@latestScaladoc/#org.scalatest.selenium.Firefox"><code>Firefox</code></a>
 </td>
 </tr>
 <tr>
@@ -73,7 +73,7 @@ Mozilla Firefox
 HtmlUnit
 </td>
 <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
-<a href="@milestoneScaladoc/#org.scalatest.selenium.HtmlUnit"><code>HtmlUnit</code></a>
+<a href="@latestScaladoc/#org.scalatest.selenium.HtmlUnit"><code>HtmlUnit</code></a>
 </td>
 </tr>
 <tr>
@@ -81,7 +81,7 @@ HtmlUnit
 Microsoft Internet Explorer
 </td>
 <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
-<a href="@milestoneScaladoc/#org.scalatest.selenium.InternetExplorer"><code>InternetExplorer</code></a>
+<a href="@latestScaladoc/#org.scalatest.selenium.InternetExplorer"><code>InternetExplorer</code></a>
 </td>
 </tr>
 <tr>
@@ -89,7 +89,7 @@ Microsoft Internet Explorer
 Apple Safari
 </td>
 <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
-<a href="@milestoneScaladoc/#org.scalatest.selenium.Safari"><code>Safari</code></a>
+<a href="@latestScaladoc/#org.scalatest.selenium.Safari"><code>Safari</code></a>
 </td>
 </tr>
 </table></p><h4> Navigation </h4><p>You can ask the browser to retrieve a page (go to a URL) like this:</p><p><pre class="stHighlighted">

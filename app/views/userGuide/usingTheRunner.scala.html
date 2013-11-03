@@ -14,7 +14,7 @@
  * limitations under the License.
  *@
 
-@import controllers.Application.milestoneScaladoc
+@import controllers.Application.latestScaladoc
 
 @userGuidePage("Using the Runner") {
 <div style="text-align: left">
@@ -26,7 +26,7 @@ To run a suite of tests from the command line, you can use the <code>org.scalate
 </p>
 
 <p>Note: this application offers the full range of ScalaTest features via command line arguments described below. If you just want
-to run a suite of tests from the command line and see results on the standard output, you may prefer to use <a href="@milestoneScaladoc/#org.scalatest.run$">ScalaTest's simple runner</a>.</p>
+to run a suite of tests from the command line and see results on the standard output, you may prefer to use <a href="@latestScaladoc/#org.scalatest.run$">ScalaTest's simple runner</a>.</p>
 
 <p>The basic form of a <code>Runner</code> invocation is:</p>
 
@@ -253,7 +253,7 @@ except those mentioned in the tags to exclude (and in the <code>org.scalatest.Ig
 (In other words, the absence of a <code>-n</code> option is like a wildcard, indicating all tests be included.)
 If tags to include is specified, then only those tests whose tags are mentioned in the argument following <code>-n</code>
 and not mentioned in the tags to exclude, will be executed. For more information on test tags, see
-the <a href="@milestoneScaladoc/#org.scalatest.Suite">documentation for <code>Suite</code></a>. Here are some examples:</p><ul><li><code>-n CheckinTests</code></li><li><code>-n FunctionalTests -l org.scalatest.tags.Slow</code></li><li><code>-n "CheckinTests FunctionalTests" -l "org.scalatest.tags.Slow org.scalatest.tags.Network"</code></li></ul>
+the <a href="@latestScaladoc/#org.scalatest.Suite">documentation for <code>Suite</code></a>. Here are some examples:</p><ul><li><code>-n CheckinTests</code></li><li><code>-n FunctionalTests -l org.scalatest.tags.Slow</code></li><li><code>-n "CheckinTests FunctionalTests" -l "org.scalatest.tags.Slow org.scalatest.tags.Network"</code></li></ul>
 
 <a name="specifyingSuffixesToDiscover"> </a>
 <h2> Specifying suffixes to discover </h2>
@@ -281,7 +281,7 @@ tests in parallel. If you include <code>-P</code> on the command line, <code>Run
 the <code>Suite</code>s you specify with <code>-s</code>. <code>Runner</code> will set up a thread pool to execute any <code>Suite</code>s
 passed to the <code>Distributor</code>'s <code>put</code> method in parallel. Trait <code>Suite</code>'s implementation of
 <code>runNestedSuites</code> will place any nested <code>Suite</code>s into this <code>Distributor</code>. Thus, if you have a <code>Suite</code>
-of tests that must be executed sequentially, you should override <code>runNestedSuites</code> as described in the <a href="@milestoneScaladoc/#org.scalatest.Distributor">documentation for <code>Distributor</code></a>.</p>
+of tests that must be executed sequentially, you should override <code>runNestedSuites</code> as described in the <a href="@latestScaladoc/#org.scalatest.Distributor">documentation for <code>Distributor</code></a>.</p>
 
 <p>The <code>-P</code> option may optionally be appended with a number (e.g.
 &quot;<code>-P10</code>&quot; -- no intervening space) to specify the number of
@@ -417,9 +417,9 @@ reliably on different operating systems.  Like <code>-t</code>, if <code>-z</cod
 <a name="scalingTimeSpans"> </a>
 <h2> Specifying a span scale factor </h2>
 
-<p>If you specify a integer or floating point <em>span scale factor</em> with <code>-F</code>, trait <a href="@milestoneScaladoc/#org.scalatest.concurrent.ScaledTimeSpans"><code>ScaledTimeSpans</code></a>
+<p>If you specify a integer or floating point <em>span scale factor</em> with <code>-F</code>, trait <a href="@latestScaladoc/#org.scalatest.concurrent.ScaledTimeSpans"><code>ScaledTimeSpans</code></a>
 trait will  return the specified value from its implementation of <code>spanScaleFactor</code>. This allows you to tune the &quot;patience&quot; of a run (how long to wait
-for asynchronous operations) from the command line. For more information, see the documentation for trait <a href="@milestoneScaladoc/#org.scalatest.concurrent.ScaledTimeSpans"><code>ScaledTimeSpans</code></a>.</p>
+for asynchronous operations) from the command line. For more information, see the documentation for trait <a href="@latestScaladoc/#org.scalatest.concurrent.ScaledTimeSpans"><code>ScaledTimeSpans</code></a>.</p>
 
 <a name="specifyingTestNGXML"> </a>
 <h2> Specifying TestNG XML config file paths </h2>
