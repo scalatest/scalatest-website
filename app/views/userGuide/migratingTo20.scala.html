@@ -199,8 +199,8 @@ and <a href="@latestScaladoc/#org.scalatest.CompositeStatus"><code>CompositeStat
 <p>
 Here's an example overriden <code>runTests</code> method that cancels an entire suite of tests if its Selenium
 driver is not supported. If the driver is supported, it just invokes <code>super.runTests</code> and returns the
-resulting <code>Status</code>. Otherwise it fires an alert message and returns <code>SucceededStatus</code>. (A succeeded <code>Status</code> doesn't mean
-any tests ran, just that no test failed and no suite aborted.)
+resulting <code>Status</code>. Otherwise it fires an alert message and returns <code>SucceededStatus</code>. (A succeeded <code>Status</code> doesn't necessarily mean
+that any tests ran, just that no test failed and no suite aborted.)
 </p>
 
 <pre class="stHighlighted">
@@ -261,7 +261,7 @@ However, if you were mixing in a style trait after <code>with</code>, you'll nee
 </p>
 
 <pre class="stHighlighted">
-<span class="stReserved">class</span> <span class="stType">MySpec</span> <span class="stReserved">extends</span> <span class="stType">TestKit(<span class="stType">ActorSystem</span>(<span class="stQuotedString">"my actors"</span>) <span class="stLineComment">// before</span>
+<span class="stReserved">class</span> <span class="stType">MySpec</span> <span class="stReserved">extends</span> <span class="stType">TestKit(<span class="stType">ActorSystem</span>(<span class="stQuotedString">"my actors"</span>)) <span class="stLineComment">// before</span>
     <span class="stReserved">with</span> <span class="stType">FlatSpec</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> {
   <span class="stLineComment">// ...</span>
 }
@@ -272,7 +272,7 @@ To this (by adding &ldquo;<code>Like</code>&rdquo; to <code>FlatSpec</code>):
 </p>
 
 <pre class="stHighlighted">
-<span class="stReserved">class</span> <span class="stType">MySpec</span> <span class="stReserved">extends</span> <span class="stType">TestKit(<span class="stType">ActorSystem</span>(<span class="stQuotedString">"my actors"</span>) <span class="stLineComment">// after</span>
+<span class="stReserved">class</span> <span class="stType">MySpec</span> <span class="stReserved">extends</span> <span class="stType">TestKit(<span class="stType">ActorSystem</span>(<span class="stQuotedString">"my actors"</span>)) <span class="stLineComment">// after</span>
     <span class="stReserved">with</span> <span class="stType">FlatSpecLike</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> {
   <span class="stLineComment">// ...</span>
 }
