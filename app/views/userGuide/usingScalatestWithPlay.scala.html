@@ -1,0 +1,156 @@
+@*
+* Copyright 2010-2013 Artima, Inc.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*@
+
+@import controllers.Application.latestScaladoc
+
+@userGuidePage("Using ScalaTest with sbt") {
+<div style="text-align: left">
+
+<h1>Using ScalaTest with Play</h1>
+
+<p>
+To use <code>ScalaTest</code> in <code>Play</code>, you first need to add a line like this to your project file:
+</p>
+
+<pre class="stGrayback">
+libraryDependencies += <span class="stLiteral">"org.scalatest"</span> % <span class="stLiteral">"scalatest_2.10"</span> % <span class="stLiteral">"2.0"</span> % <span class="stLiteral">"test"</span>
+</pre>
+
+<h2>Example Application and Integration Test</h2>
+
+<p>
+When you generate a new <code>Play</code> project, you'll get 2 example <code>ApplicationSpec</code> and
+<code>IntegrationSpec</code> that is written using <a href="http://etorreborre.github.io/specs2/"><code>specs2</code></a>.
+The followings show the equivalent version written in <code>ScalaTest</code>:
+</p>
+
+<p>
+ApplicationSpec:
+</p>
+
+<pre class="stHighlighted">
+<span class="stImport">import org.scalatest._
+
+import play.api.test._
+import play.api.test.Helpers._</span>
+
+<span class="stReserved">class</span> <span class="stType">ApplicationSpec</span> <span class="stReserved">extends</span> <span class="stType">WordSpec</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> {
+
+  <span class="stLiteral">"Application"</span> should {
+
+    <span class="stLiteral">"send 404 on a bad request"</span> in <span class="stReserved">new</span> <span class="stType">WithApplication</span> {
+      route(<span class="stType">FakeRequest</span>(GET, <span class="stLiteral">"/boum"</span>)) shouldBe <span class="stType">None</span>
+    }
+
+    <span class="stLiteral">"render the index page"</span> in <span class="stReserved">new</span> <span class="stType">WithApplication</span> {
+      val home = route(<span class="stType">FakeRequest</span>(GET, <span class="stLiteral">"/"</span>)).get
+
+      status(home) should equal (OK)
+      contentType(home) shouldBe <span class="stType">Some</span>(<span class="stLiteral">"text/html"</span>)
+      contentAsString(home) should include (<span class="stLiteral">"Your new application is ready."</span>)
+    }
+  }
+}
+</pre>
+
+<p>
+IntegrationSpec:
+</p>
+
+<pre class="stHighlighted">
+<span class="stImport">import org.scalatest._
+
+import play.api.test._
+import play.api.test.Helpers._</span>
+
+<span class="stReserved">class</span> <span class="stType">IntegrationSpec</span> <span class="stReserved">extends</span> <span class="stType">WordSpec</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> {
+
+  <span class="stLiteral">"Application"</span> should {
+
+    <span class="stLiteral">"work from within a browser"</span> in <span class="stReserved">new</span> <span class="stType">WithBrowser</span> {
+
+      browser.goTo(<span class="stLiteral">"http://localhost:"</span> + port)
+
+      browser.pageSource should include (<span class="stLiteral">"Your new application is ready."</span>)
+    }
+  }
+}
+</pre>
+
+<p>
+You can also use <code>ScalaTest</code>'s <a href="@routes.UserGuide.usingSelenium.url">selenium DSL</a> support to write integration test:
+</p>
+
+<pre class="stHighlighted">
+<span class="stImport">import org.scalatest._
+import selenium._
+
+import play.api.test._
+import play.api.test.Helpers._</span>
+
+<span class="stReserved">class</span> <span class="stType">SeleniumDslIntegrationSpec</span> <span class="stReserved">extends</span> <span class="stType">WordSpec</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> <span class="stReserved">with</span> <span class="stType">HtmlUnit</span> {
+
+  <span class="stLiteral">"Application"</span> should {
+
+    <span class="stLiteral">"work from within a browser"</span> in running(<span class="stType">TestServer</span>(testServerPort)) {
+
+      go to (<span class="stLiteral">"http://localhost:"</span> + testServerPort)
+
+      pageSource should include (<span class="stLiteral">"Your new application is ready."</span>)
+    }
+  }
+
+}
+</pre>
+
+<h2>Testing template</h2>
+
+<p>
+You can test a template as a standard Scala function:
+</p>
+
+<pre class="stHighlighted">
+<span class="stLiteral">"render index template"</span> in {
+  <span class="stReserved">val</span> html = views.html.index(<span class="stLiteral">"ScalaTest 2.0 released!"</span>)
+
+  contentType(html) shouldBe (<span class="stLiteral">"text/html"</span>)
+  contentAsString(html) should include (<span class="stLiteral">"ScalaTest 2.0"</span>)
+}
+</pre>
+
+<h2>Testing controller</h2>
+
+<p>
+You can test a controller action by providing a <code>FakeRequest</code>:
+</p>
+
+<pre class="stHighlighted">
+<span class="stLiteral">"respond to the index Action"</span> in {
+  <span class="stReserved">val</span> result = controllers.<span class="stType">Application</span>.index()(<span class="stType">FakeRequest</span>())
+
+  status(result) should equal (OK)
+  contentType(result) shouldBe <span class="stType">Some</span>(<span class="stLiteral">"text/html"</span>)
+  charset(result) shouldBe <span class="stType">Some</span>(<span class="stLiteral">"utf-8"</span>)
+  contentAsString(result) should include (<span class="stLiteral">"Your new application is ready."</span>)
+}
+</pre>
+
+<p>
+You can visit <a href="https://github.com/scalatest/scalatest-play"><code>scalatest-play</code></a> for a complete example <code>Play</code> project using <code>ScalaTest</code>.
+</p>
+
+</div>
+}
