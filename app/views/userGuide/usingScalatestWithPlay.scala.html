@@ -29,86 +29,116 @@ To use <code>ScalaTest</code> in <code>Play</code>, you first need to add a line
 libraryDependencies += <span class="stLiteral">"org.scalatest"</span> % <span class="stLiteral">"scalatest_2.10"</span> % <span class="stLiteral">"2.0"</span> % <span class="stLiteral">"test"</span>
 </pre>
 
-<h2>Example Application and Integration Test</h2>
+<h2>ScalaTest Support Classes</h2>
 
 <p>
-When you generate a new <code>Play</code> project, you'll get 2 example <code>ApplicationSpec</code> and
-<code>IntegrationSpec</code> that is written using <a href="http://etorreborre.github.io/specs2/"><code>specs2</code></a>.
-The followings show the equivalent version written in <code>ScalaTest</code>:
+You can download the following support classes and include them in your test source:
 </p>
 
+<ul>
+  <li><a href="https://github.com/scalatest/scalatest-play/blob/master/test/ScalaTestSupport.scala">ScalaTestSupport</a></li>
+  <li><a href="https://github.com/scalatest/scalatest-play/blob/master/test/UnitSpec.scala">UnitSpec</a></li>
+  <li><a href="https://github.com/scalatest/scalatest-play/blob/master/test/IntegrationSpec.scala">IntegrationSpec</a></li>
+</ul>
+
+<h2>Writing Unit Tests</h2>
+
 <p>
-ApplicationSpec:
+You can use <code>UnitSpec</code> and <code>withApplication</code> method to write your unit tests, here's an example:
 </p>
 
 <pre class="stHighlighted">
-<span class="stImport">import org.scalatest._
-
-import play.api.test._
+<span class="stImport">import play.api.test._
 import play.api.test.Helpers._</span>
 
-<span class="stReserved">class</span> <span class="stType">ApplicationSpec</span> <span class="stReserved">extends</span> <span class="stType">WordSpec</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> {
+<span class="stReserved">class</span> <span class="stType">ExampleUnitSpec</span> <span class="stReserved">extends</span> <span class="stType">UnitSpec</span> {
 
   <span class="stLiteral">"Application"</span> should {
 
-    <span class="stLiteral">"send 404 on a bad request"</span> in <span class="stReserved">new</span> <span class="stType">WithApplication</span> {
+    <span class="stLiteral">"send 404 on a bad request"</span> in {
+      withApplication() {
+        route(<span class="stType">FakeRequest</span>(GET, <span class="stLiteral">"/boum"</span>)) shouldBe <span class="stType">None</span>
+      }
+    }
+
+    <span class="stLiteral">"render the index page"</span> in {
+      withApplication() {
+        <span class="stReserved">val</span> home = route(<span class="stType">FakeRequest</span>(GET, <span class="stLiteral">"/"</span>)).get
+
+        status(home) should equal (OK)
+        contentType(home) shouldBe <span class="stType">Some</span>(<span class="stLiteral">"text/html"</span>)
+        contentAsString(home) should include (<span class="stLiteral">"Your new application is ready."</span>)
+      }
+    }
+  }
+}
+</pre>
+
+<p>
+Alternatively, if all your tests need to be wrapped in <code>withApplication</code> call, you can download and use
+<code><a href="https://github.com/scalatest/scalatest-play/blob/master/test/WithApplicationSpec.scala">WithApplicationSpec</a></code>
+to eliminate the duplicated <code>withApplication</code> call:
+</p>
+
+<pre class="stHighlighted">
+<span class="stImport">import play.api.test._
+import play.api.test.Helpers._</span>
+
+<span class="stReserved">class</span> <span class="stType">ExampleWithApplicationSpec</span> <span class="stReserved">extends</span> <span class="stType">WithApplicationSpec</span> {
+
+  <span class="stLiteral">"Application"</span> should {
+
+    <span class="stLiteral">"send 404 on a bad request"</span> in {
       route(<span class="stType">FakeRequest</span>(GET, <span class="stLiteral">"/boum"</span>)) shouldBe <span class="stType">None</span>
     }
 
-    <span class="stLiteral">"render the index page"</span> in <span class="stReserved">new</span> <span class="stType">WithApplication</span> {
-      val home = route(<span class="stType">FakeRequest</span>(GET, <span class="stLiteral">"/"</span>)).get
+    <span class="stLiteral">"render the index page"</span> in {
+      <span class="stReserved">val</span> home = route(<span class="stType">FakeRequest</span>(GET, <span class="stLiteral">"/"</span>)).get
 
       status(home) should equal (OK)
-      contentType(home) shouldBe <span class="stType">Some</span>(<span class="stLiteral">"text/html"</span>)
+      contentType(home) shouldBe <span class="stType">Some</span>("text/html")
       contentAsString(home) should include (<span class="stLiteral">"Your new application is ready."</span>)
     }
+
   }
+
 }
 </pre>
 
+<h2>Writing Integration Tests</h2>
+
 <p>
-IntegrationSpec:
+You can use <code>IntegrationSpec</code> and <code>withBrowser</code> method to write your integration tests, here's an example:
 </p>
 
 <pre class="stHighlighted">
-<span class="stImport">import org.scalatest._
-
-import play.api.test._
-import play.api.test.Helpers._</span>
-
-<span class="stReserved">class</span> <span class="stType">IntegrationSpec</span> <span class="stReserved">extends</span> <span class="stType">WordSpec</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> {
+<span class="stReserved">class</span> <span class="stType">ExampleIntegrationSpec</span> <span class="stReserved">extends</span> <span class="stType">IntegrationSpec</span> {
 
   <span class="stLiteral">"Application"</span> should {
 
-    <span class="stLiteral">"work from within a browser"</span> in <span class="stReserved">new</span> <span class="stType">WithBrowser</span> {
-
-      browser.goTo(<span class="stLiteral">"http://localhost:"</span> + port)
-
-      browser.pageSource should include (<span class="stLiteral">"Your new application is ready."</span>)
+    <span class="stLiteral">"work from within a browser"</span> in {
+      withBrowser() { port =>
+        go to (<span class="stLiteral">"http://localhost:"</span> + port)
+        pageSource should include (<span class="stLiteral">"Your new application is ready."</span>)
+      }
     }
   }
 }
 </pre>
 
 <p>
-You can also use <code>ScalaTest</code>'s <a href="@routes.UserGuide.usingSelenium.url">selenium DSL</a> support to write integration test:
+Alternatively, if all your tests need to be wrapped in <code>withBrowser</code> call, you can download and use
+<code><a href="https://github.com/scalatest/scalatest-play/blob/master/test/WithBrowserSpec.scala">WithBrowserSpec</a></code>
+to eliminate the duplicated <code>withBrowser</code> call:
 </p>
 
 <pre class="stHighlighted">
-<span class="stImport">import org.scalatest._
-import selenium._
-
-import play.api.test._
-import play.api.test.Helpers._</span>
-
-<span class="stReserved">class</span> <span class="stType">SeleniumDslIntegrationSpec</span> <span class="stReserved">extends</span> <span class="stType">WordSpec</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> <span class="stReserved">with</span> <span class="stType">HtmlUnit</span> {
+<span class="stReserved">class</span> <span class="stType">ExampleWithBrowserSpec</span> <span class="stReserved">extends</span> <span class="stType">WithBrowserSpec</span> {
 
   <span class="stLiteral">"Application"</span> should {
 
-    <span class="stLiteral">"work from within a browser"</span> in running(<span class="stType">TestServer</span>(testServerPort)) {
-
-      go to (<span class="stLiteral">"http://localhost:"</span> + testServerPort)
-
+    <span class="stLiteral">"work from within a browser"</span> in { port =>
+      go to (<span class="stLiteral">"http://localhost:"</span> + port)
       pageSource should include (<span class="stLiteral">"Your new application is ready."</span>)
     }
   }
@@ -116,7 +146,56 @@ import play.api.test.Helpers._</span>
 }
 </pre>
 
-<h2>Testing template</h2>
+<h2>Running Test Server</h2>
+
+<p>
+When you need to test the real HTTP stack from with your test, you can use <code>withServer</code> method:
+</p>
+
+<pre class="stHighlighted">
+<span class="stImport">import play.api.libs.ws.WS
+import play.api.test.Helpers._</span>
+
+<span class="stReserved">class</span> <span class="stType">ExampleTestServerSpec</span> <span class="stReserved">extends</span> <span class="stType">IntegrationSpec</span> {
+
+  <span class="stLiteral">"Application"</span> should {
+
+    <span class="stLiteral">"work from within a browser"</span> in {
+      withServer() { port =>
+        <span class="stLineComment">// await is from play.api.test.FutureAwaits</span>
+        <span class="stReserved">val</span> response = await(<span class="stType">WS</span>.url(<span class="stLiteral">"http://localhost:"</span> + port + <span class="stLiteral">"/boum"</span>).get())
+        response.status shouldBe <span class="stLiteral">404</span>
+      }
+    }
+  }
+}
+</pre>
+
+<p>
+Alternatively, if all your tests need to be wrapped in <code>withServer</code> call, you can download and use
+<code><a href="https://github.com/scalatest/scalatest-play/blob/master/test/WithServerSpec.scala">WithServerSpec</a></code>
+to eliminate the duplicated <code>withServer</code> call:
+</p>
+
+<pre class="stHighlighted">
+<span class="stImport">import play.api.libs.ws.WS
+import play.api.test.Helpers._</span>
+
+<span class="stReserved">class</span> <span class="stType">ExampleWithServerSpec</span> <span class="stReserved">extends</span> <span class="stType">WithServerSpec</span> {
+
+  <span class="stLiteral">"TestServer"</span> should {
+
+    <span class="stLiteral">"send 404 on a bad request"</span> in { port =>
+      <span class="stLineComment">// await is from play.api.test.FutureAwaits</span>
+      <span class="stReserved">val</span> response = await(<span class="stType">WS</span>.url(<span class="stLiteral">"http://localhost:"</span> + port + <span class="stLiteral">"/boum"</span>).get())
+      response.status shouldBe <span class="stLiteral">404</span>
+    }
+
+  }
+}
+</pre>
+
+<h2>Testing a Template</h2>
 
 <p>
 You can test a template as a standard Scala function:
@@ -131,7 +210,7 @@ You can test a template as a standard Scala function:
 }
 </pre>
 
-<h2>Testing controller</h2>
+<h2>Testing a Controller</h2>
 
 <p>
 You can test a controller action by providing a <code>FakeRequest</code>:
@@ -148,9 +227,42 @@ You can test a controller action by providing a <code>FakeRequest</code>:
 }
 </pre>
 
+<h2>Testing a Router</h2>
+
 <p>
-You can visit <a href="https://github.com/scalatest/scalatest-play"><code>scalatest-play</code></a> for a complete example <code>Play</code> project using <code>ScalaTest</code>.
+You can test the <code>Router</code> by calling <code>route</code> method:
 </p>
+
+<pre class="stHighlighted">
+<span class="stLiteral">"respond to the index Action"</span> in {
+  withApplication() {
+    <span class="stReserved">val</span> <span class="stType">Some</span>(result) = route(<span class="stType">FakeRequest</span>(GET, <span class="stLiteral">"/Bob"</span>))
+
+    status(result) should equal (OK)
+    contentType(result) shouldBe <span class="stType">Some</span>(<span class="stLiteral">"text/html"</span>)
+    charset(result) shouldBe <span class="stType">Some</span>(<span class="stLiteral">"utf-8"</span>)
+    contentAsString(result) should include (<span class="stLiteral">"Hello Bob"</span>)
+  }
+}
+</pre>
+
+<h2>Testing a model</h2>
+
+<p>
+You can use <code>inMemoryDatabase</code> method to test your database and model code:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">val</span> appWithMemoryDatabase = <span class="stType">FakeApplication</span>(additionalConfiguration = inMemoryDatabase(<span class="stLiteral">"test"</span>))
+<span class="stLiteral">"run an application"</span> in {
+  withApplication(appWithMemoryDatabase) {
+    <span class="stReserved">val</span> <span class="stType">Some</span>(macintosh) = <span class="stType">Computer</span>.findById(<span class="stLiteral">21</span>)
+
+    macintosh.name should equal (<span class="stLiteral">"Macintosh"</span>)
+    macintosh.introduced shouldBe <span class="stType">Some</span>(<span class="stLiteral">"1984-01-24"</span>)
+  }
+}
+</pre>
 
 </div>
 }
