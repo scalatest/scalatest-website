@@ -1,0 +1,125 @@
+@*
+* Copyright 2010-2013 Artima, Inc.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*@
+
+@userGuidePage("Using ScalaTest with IntelliJ") {
+<div style="text-align: left">
+
+<h1>ScalaTest support in IntelliJ Scala plugin</h1>
+
+<p>
+IntelliJ Scala plugin comes with good ScalaTest support, it features:
+</p>
+
+<ul>
+<li>Running ScalaTest suite by right-clicking on the source.</li>
+<li>Showing the run results in the format that mirrors the structure of the suite/specification.</li>
+<li>Hopping from results to source code.</li>
+</ul>
+
+<h2>Scala plugin</h2>
+
+<p>
+First make sure that latest version Scala plugin is installed and enabled, go to:
+</p>
+
+<pre class="stHighlighted">
+File -> Settings... -> Plugins
+</pre>
+
+on mac, you could go to:
+
+<pre class="stHighlighted">
+IntelliJ IDEA -> Preferences... -> Plugins
+</pre>
+
+<img src="@routes.Assets.at("images/intellij-scala-plugin.png")" alt="IntelliJ Scala plugin" border="0"/>
+
+<p>
+If it is not shown in the list, click <code>Install JetBrains plugin</code> and search for <code>scala</code>, right click on
+the <code>Scala</code> plugin and choose <code>Download and Install</code>:
+</p>
+
+<img src="@routes.Assets.at("images/intellij-install-scala.png")" alt="IntelliJ Install Scala plugin" border="0"/>
+
+<p>
+Close the <code>Browse JetBrains Plugins</code> window, click <code>Apply</code> on the <code>Settings</code> window and restart to
+activate the new plugin.
+</p>
+
+<h2>Using ScalaTest</h2>
+
+<p>
+To use ScalaTest in your Scala project, you must make sure ScalaTest is included as library in your module/project settings, both
+ScalaTest 1.x and the latest 2.0 version (recommended) are supported.
+</p>
+
+<p>
+If you are using <a href="http://www.scala-sbt.org"><code>SBT</code></a>, you can add ScalaTest as dependency in your <code>SBT</code>
+build file:
+</p>
+
+<pre class="stHighlighted">
+libraryDependencies += "org.scalatest" % "scalatest_2.10" % "2.0" % "test"
+</pre>
+
+<p>
+and use <a href="https://github.com/mpeltonen/sbt-idea">sbt-idea</a> to generate intellij project files, which you can then easily open with
+IntelliJ.
+</p>
+
+<p>
+If you want to configure the library dependency of IntelliJ project/module settings manually, please consult
+<a href="http://www.jetbrains.com/idea/webhelp/configuring-module-dependencies-and-libraries.html">Configuring Module Dependencies and Libraries</a>
+instead.
+</p>
+
+<h2>Running ScalaTest</h2>
+
+<p>
+After your project built successfully, you can run any ScalaTest suite by right clicking on the source:
+</p>
+
+<img src="@routes.Assets.at("images/intellij-run.png")" alt="IntelliJ Run ScalaTest" border="0"/>
+
+<p>
+The results will be shown following the structure of the specification:
+</p>
+
+<img src="@routes.Assets.at("images/intellij-result.png")" alt="IntelliJ Run ScalaTest" border="0"/>
+
+<p>
+You can hop to the related source by double-clicking on the test (leaf) nodes, for scope node (e.g. the <code>A Stack</code> node),
+you'll need to press <code>F4</code> key.
+</p>
+
+<h2>Creating ScalaTest Run Configuration Manually</h2>
+
+<p>
+You can also create ScalaTest Run Configuration manually by going:
+</p>
+
+<pre class="stHighlighted">
+Run -> Edit Configurations
+</pre>
+
+<p>
+Click on <code>+</code> at the upper left corner and choose <code>ScalaTest</code> to create a new ScalaTest Run Configuration:
+</p>
+
+<img src="@routes.Assets.at("images/intellij-run-config.png")" alt="IntelliJ Create ScalaTest Run Configuration" border="0"/>
+
+</div>
+}
