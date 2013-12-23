@@ -16,13 +16,24 @@
 
 @import controllers.Application.latestScaladoc
 @import controllers.Application.latestVersion
+@import controllers.Application.latestSeleniumVersion
 
 @userGuidePage("Using Selenium") {
 <div style="text-align: left">
 
 <h1>Using Selenium</h1>
 
-<p>ScalaTest @latestVersion includes a domain specific language (DSL) for writing browser-based tests using <a href="http://seleniumhq.org" target="_blank">Selenium</a>.</p><p>To use ScalaTest's Selenium DSL, mix trait <a href="@latestScaladoc/#org.scalatest.selenium.WebBrowser"><code>WebBrowser</code></a> into your test class. This trait provides the DSL in its
+<p>ScalaTest @latestVersion includes a domain specific language (DSL) for writing browser-based tests using <a href="http://seleniumhq.org" target="_blank">Selenium</a>.
+</p>
+
+<p>To use ScalaTest's Selenium DSL, you'll first need to add Selenium to your project dependencies. For example,
+in your sbt build you might add:</p>
+
+<pre class="stGrayback">
+libraryDependencies += "org.seleniumhq.selenium" % "selenium-java" % "@latestSeleniumVersion" % "test"
+</pre>
+
+<p>Then mix trait <a href="@latestScaladoc/#org.scalatest.selenium.WebBrowser"><code>WebBrowser</code></a> into your test class. This trait provides the DSL in its
 entirety except for one missing piece: an implicit <code>org.openqa.selenium.WebDriver</code>. One way to provide the missing
 implicit driver is to declare one as a member of your test class, like this:</p><p>
 <pre class="stHighlighted">

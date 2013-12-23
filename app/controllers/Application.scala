@@ -32,6 +32,7 @@ object Application extends Controller {
   val baseScalaVersion = "2.10.0"
   val majorMinorScalaVersion = "2.10"
   val latestScaladocFor192 = "http://doc.scalatest.org/1.9.2"
+  val latestSeleniumVersion = "2.35.0"
 
   def index = Action {
     Ok(views.html.index())
