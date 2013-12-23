@@ -102,7 +102,7 @@ use cases</a> table in the user guide.)
 </p>
 
 <p>
-Once you've selected your unit testing style, create a base class (not a trait) for your unit tests. You should mix into this class
+Once you've selected your unit testing style, create an abstract base class (not a trait) for your unit tests. You should mix into this class
 all the traits you think you'll use a lot. You can use any name, but we recommend the name <code>UnitSpec</code>.
 Here's an example:
 </p>
@@ -110,7 +110,10 @@ Here's an example:
 <pre class="stHighlighted">
 <span class="stReserved">package</span> com.mycompany.myproject
 
-<span class="stReserved">class</span> <span class="stType">UnitSpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> <span class="stReserved">with</span> <span class="stType">OptionValues</span> <span class="stReserved">with</span> <span class="stType">Inside</span>
+<span class="stReserved">import</span> org.scalatest._
+
+<span class="stReserved">abstract</span> <span class="stReserved">class</span> <span class="stType">UnitSpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> <span class="stReserved">with</span>
+  <span class="stType">OptionValues</span> <span class="stReserved">with</span> <span class="stType">Inside</span> <span class="stReserved">with</span> <span class="stType">Inspectors</span>
 </pre>
 
 <p>
