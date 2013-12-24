@@ -50,6 +50,10 @@ object Application extends Controller {
     Ok(views.html.scaladoc())
   }
 
+  def videos = Action {
+    Ok(views.html.videos())
+  }
+
   def community = Action {
     Ok(views.html.community())
   }

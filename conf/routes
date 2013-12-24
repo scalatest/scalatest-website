@@ -8,6 +8,7 @@ GET        /download                                                    controll
 GET        /user_guide                                                  controllers.UserGuide.userGuideIndex
 GET        /user_guide_1_9_2                                            controllers.UserGuide192.userGuideIndex
 GET        /scaladoc                                                    controllers.Application.scaladoc
+GET        /videos                                                      controllers.Application.videos
 GET        /community                                                   controllers.Application.community
 GET        /about                                                       controllers.Application.about
 GET        /release_notes                                               controllers.ReleaseNotes.releaseNotesIndex

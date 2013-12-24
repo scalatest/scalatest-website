@@ -1,0 +1,127 @@
+@*
+ * Copyright 2010-2013 Artima, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *@
+
+@widePage("Videos") {
+<div style="text-align: left">
+
+<h1>ScalaTest videos</h1>
+
+<table width="100%">
+<tr width="100%" valign="top">
+<td width="48%">
+<span style="font-size: 125%"><a href="javascript:void(window.open('http://skillsmatter.com/podcast/home/bill-venners', '_blank'))">Hidden Gems in ScalaTest</a></span>
+
+<p>
+ScalaTest 2.0 is a vast enough forest that it is hard to see all the useful trees. In this talk from the ScalaExchange
+conference on Dec 3, 2013, Bill Venners guides you
+through ScalaTest 2.0 by pointing out lesser-known features of the testing toolkit that can help you get stuff done. You'll
+gain insight into what ScalaTest offers, why ScalaTest is designed the way it is, and how you can get more out of it.
+</p>
+</td>
+<td width="4%">
+&nbsp;
+</td>
+<td width="48%">
+<em>Highlights of this talk</em>
+<ul>
+<li>The <code>Length</code> typeclass and a puzzle</li>
+<li>Something interesting to do with matchers that would give away the puzzle if I said more</li>
+<li>Inspecting nested collections with <code>forAll</code>, <code>forEvery</code>, <code>forAtMost</code>,
+<code>forAtLeast</code>, <code>forExactly</code>, <code>forBetween</code>.</li>
+<li>Inspector shorthands <code>all</code>, <code>every</code>, <code>no</code>, <code>atMost</code>,
+<code>atLeast</code>, <code>exactly</code>, <code>between</code>.</li>
+<li>Annotating test classes to tag all tests.</li>
+<li>Help for hanging or flickering tests.</li>
+<li>Getting the word out with <code>info</code>, <code>markup</code>, <code>note</code>, and <code>alert</code>.</li>
+<li>Reminders of failed and canceled tests in "string" <code>Reporter</code>s.</li>
+<li>How lazy <code>MatchResult</code>s killed three birds with one brush stroke.</li>
+</ul>
+</td>
+</tr>
+</table>
+
+<table width="100%">
+<tr width="100%" valign="top">
+<td width="48%">
+<span style="font-size: 125%"><a href="javascript:void(window.open('http://skillsmatter.com/podcast/home/implicit-conversions-implicit-parameters', '_blank'))">Implicit Conversions => Implicit Parameters</a></span>
+
+<p>
+In this talk from the ScalaExchange conference on Dec 2, 2013, Bill Venners tells the story of the journey from a design
+that leaned towards implicit conversions in ScalaTest 1.0 to one that emphasizes implicit parameters in ScalaTest
+and ScalaUtils 2.0.
+Using primarily demos in the Scala REPL, Bill shows several use cases and applications of implicit parameters that
+will help you understand the tradeoffs between implicit conversions and parameters and how to take advantage of
+implicit parameters in your own designs.
+</p>
+</td>
+<td width="4%">
+&nbsp;
+</td>
+<td width="48%">
+<em>Highlights of this talk</em>
+<ul>
+<li>Implicit parameters are good for configuring, customizing, constraining, and enabling</li>
+<li>Patience configuration for <code>eventually</code></li>
+<li>Better error messages with <code>assert</code> macros</li>
+<li><code>Normalization</code> typeclass</li>
+<li><code>Equality</code> typeclass</li>
+<li>Tolerance with <code>+-</code></li>
+<li><code>Explicitly</code> DSL</li>
+<li>Tunable type checks with <code>===</code></li>
+<li>Matcher syntax <em>enablers</em></li>
+<li><code>Containing</code> and <code>Aggregating</code> typeclasses</li>
+</ul>
+</td>
+</tr>
+</table>
+
+
+<table width="100%">
+<tr width="100%" valign="top">
+<td width="48%">
+<span style="font-size: 125%"><a href="javascript:void(window.open('http://www.youtube.com/watch?v=Pqh_QFFzIlI', '_blank'))">Simplicity in Scala Design</a></span>
+
+<p>
+In this talk from the Northeast Scala Symposium on Feb 8, 2013, Bill Venners focuses on how to achieve simplicity
+in Scala library, DSL, and application design. It highlights general principles
+that can be applied to any programming language, and shows specific techniques that can be used in Scala to "implement" the
+general principles. This talk gives you a set of concrete guidelines (which guide the design of ScalaTest) that can help
+you manage complexity in your Scala projects.
+</p>
+</td>
+<td width="4%">
+&nbsp;
+</td>
+<td width="48%">
+<em>The guidelines from this talk</em>
+<ul>
+<li>Design for busy teams.</li>
+<li>Make it obvious, guessable, or easy to remember.</li>
+<li>Design for readers, then writers.</li>
+<li>Make errors impossible, or difficult.</li>
+<li>Exploit familiarity.</li>
+<li>Document with examples.</li>
+<li>Minimize redundancy.</li>
+<li>Maximize consistency.</li>
+<li>Use symbols when your users are already experts in them.</li>
+<li>Minimize the magic.</li>
+</ul>
+</td>
+</tr>
+</table>
+
+</div>
+}
