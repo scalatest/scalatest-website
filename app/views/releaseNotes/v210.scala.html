@@ -1,0 +1,89 @@
+@*
+ * Copyright 2010-2013 Artima, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *@
+
+@import controllers.Application.milestoneScaladoc
+@import controllers.Application.latestScaladoc
+@import controllers.Application.milestoneVersion
+
+@releaseNotesPage("ScalaTest 2.1.0-RC2 Release Notes") {
+<div style="text-align: left">
+
+<h1>ScalaTest 2.1.0-RC2 Release Notes</h1>
+
+<p>
+ScalaTest 2.1.0-RC2 includes the following enhancements, deprecations, and bug fixes:
+</p>
+
+<p>
+For information on how to include ScalaTest in your project, see the <a href="/download">download page</a>.
+</p>
+
+<a name="highlights"></a>
+<h2>Enhancements</h2>
+
+<ul>
+<li>Added a <a href="@{milestoneScaladoc}/index.html#org.scalatest.RandomTestOrder"><code>RandomTestOrder</code></a> trait.</li>
+
+<li>Enhanced default <a href="@{milestoneScaladoc}/index.html#org.scalautils.Prettifier"><code>Prettifier</code></a> to prettify objects inside Scala and Java collections, <code>Option</code>, <code>Either</code>, <code>Try</code>, and ScalaUtils' <a href="@{milestoneScaladoc}/index.html#org.scalautils.Or"><code>Or</code></a> and <a href="@{milestoneScaladoc}/index.html#org.scalautils.Every"><code>Every</code></a>.</li>
+
+<li>Added <a href="@{milestoneScaladoc}/index.html#org.scalatest.Assertions@@checkingThatCodeDoesNotCompile">assertion</a> and <a href="@{milestoneScaladoc}/index.html#org.scalatest.Matchers@@checkingThatCodeDoesNotCompile">matcher</a> syntax to check that a snippet of Scala code does not compile.</li>
+
+<li>Made <a href="@{milestoneScaladoc}/index.html#org.scalatest.Inspectors">Inspectors</a> and <a href="@{milestoneScaladoc}/index.html#org.scalatest.Matchers@@inspectorShorthands">inspector shorthands</a> more general. Previously you could use them only on Scala Collections. Now can also use them on Java collections, arrays, and strings.</li>
+
+<li>Added indentation to <a href="@{milestoneScaladoc}/index.html#org.scalatest.Inside"><code>Inside</code></a>'s error messages.</li>
+
+<li>Modified the algorithm used for naming threads so that they include an identifier that remains constant through all renames.</li>
+
+<li>Improved HTML reporter's handling of aborted suites</li>
+
+<li>Ensure <a href="@{milestoneScaladoc}/index.html#org.scalatest.events.SuiteAborted"><code>SuiteAborted</code></a> events show up in reminders</li>
+
+<li>Use a ScalaCheck <code>Pretty</code> in ScalaTest error messages if it is supplied via a custom generator.</li>
+
+<li>Added links to source in ScalaTest/ScalaUtils Scaladoc.</li>
+
+<li>Upgraded ScalaCheck to 1.11.0. Also upgraded versions of other optional dependencies. To see the version numbers, consult <a href="https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest_2.10/2.1.0-RC2/scalatest_2.10-2.1.0-RC2.pom">ScalaTest's pom file</a>.</li>
+
+<li>Added support for <a href="@{milestoneScaladoc}/index.html#org.scalautils.Every"><code>Every</code></a> in ScalaTest matchers.</li>
+
+<li>Made a few classes <code>Serializable</code> that could occasionally get serialized in ScalaTest events sent across the network.</li>
+
+<li>Fire <a href="@{milestoneScaladoc}/index.html#org.scalatest.events.AlertProvided"><code>AlertProvided</code></a> if memory file contains test that cannot be rerun.</li>
+</ul>
+
+<a name="deprecations"></a>
+<h2>Deprecations</h2>
+
+<ul>
+<li>Deprecated the <code>evaluating { ... } should produce [...Exception]</code> syntax, which I intended to deprecate in 2.0.</li>
+</ul>
+
+<a name="bugFixes"></a>
+<h2>Bug fixes</h2>
+
+<ul>
+
+<li>Ensure sorted matcher works on single-element collections.</li>
+
+<li>Fixed bug whereby suites with no tests did not appear in the HTML reporter's home page list.</li>
+
+<li>Fixed bug in <code>assert</code>/<code>assume</code> macros that caused them to accidentally invoke by-names eagerly.</li>
+
+</ul>
+
+
+</div>
+}

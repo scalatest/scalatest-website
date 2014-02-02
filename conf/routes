@@ -22,6 +22,7 @@ GET        /getting_started_with_testng_in_scala                        controll
 GET        /at_a_glance/:style                                          controllers.Application.atAGlance(style)
 GET        /at_a_glance                                                 controllers.Application.bareAtAGlance()
 
+GET        /release_notes/2.1.0                                         controllers.ReleaseNotes.v210
 GET        /release_notes/2.0                                           controllers.ReleaseNotes.v20
 GET        /release_notes/2.0_history                                   controllers.ReleaseNotes.v20History
 GET        /release_notes/1.9.1                                         controllers.ReleaseNotes.v191
