@@ -18,20 +18,20 @@
 @import controllers.Application.latestScaladoc
 @import controllers.Application.milestoneVersion
 
-@releaseNotesPage("ScalaTest 2.1.0-RC3 Release Notes") {
+@releaseNotesPage("ScalaTest 2.1.0 Release Notes") {
 <div style="text-align: left">
 
-<h1>ScalaTest 2.1.0-RC3 Release Notes</h1>
+<h1>ScalaTest 2.1.0 Release Notes</h1>
 
 <p>
-ScalaTest 2.1.0-RC3 includes the following enhancements, deprecations, and bug fixes:
+ScalaTest 2.1.0 includes the following enhancements, deprecations, "resurrections," and bug fixes:
 </p>
 
 <p>
 For information on how to include ScalaTest in your project, see the <a href="/download">download page</a>.
 </p>
 
-<a name="highlights"></a>
+<a name="enhancements"></a>
 <h2>Enhancements</h2>
 
 <ul>
@@ -42,10 +42,6 @@ For information on how to include ScalaTest in your project, see the <a href="/d
 <li>Added <a href="@{milestoneScaladoc}/index.html#org.scalatest.Assertions@@checkingThatCodeDoesNotCompile">assertion</a> and <a href="@{milestoneScaladoc}/index.html#org.scalatest.Matchers@@checkingThatCodeDoesNotCompile">matcher</a> syntax to check that a snippet of Scala code does not compile.</li>
 
 <li>Made <a href="@{milestoneScaladoc}/index.html#org.scalatest.Inspectors">Inspectors</a> and <a href="@{milestoneScaladoc}/index.html#org.scalatest.Matchers@@inspectorShorthands">inspector shorthands</a> more general. Previously you could use them only on Scala Collections. Now can also use them on Java collections, arrays, and strings.</li>
-
-<li>Resurrected <a href="@{milestoneScaladoc}/index.html#org.scalatest.MustMatchers"><code>MustMatchers</code></a> in package <code>org.scalatest</code>.
-Changed deprecation warning for <code>org.scalatest.matchers.MustMatchers</code> to suggest using <code>org.scalatest.MustMatchers</code>
-instead of <code>org.scalatest.Matchers</code>, which was the suggestion in 2.0.</li>
 
 <li>Added <code>badMap</code> and <code>fold</code> methods to <a href="@{milestoneScaladoc}/index.html#org.scalautils.Or"><code>Or</code></a>.</li>
 
@@ -69,13 +65,23 @@ examples of explicitly specifying equality without using the <code>Explicitly</c
 
 <li>Added links to source in ScalaTest/ScalaUtils Scaladoc.</li>
 
-<li>Upgraded ScalaCheck to 1.11.0. Also upgraded versions of other optional dependencies. To see the version numbers, consult <a href="https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest_2.10/2.1.0-RC3/scalatest_2.10-2.1.0-RC3.pom">ScalaTest's pom file</a>.</li>
+<li>Upgraded ScalaCheck to 1.11.0. Also upgraded versions of other optional dependencies. To see the version numbers, consult <a href="https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest_2.10/2.1.0/scalatest_2.10-2.1.0.pom">ScalaTest's pom file</a>.</li>
 
 <li>Added support for <a href="@{milestoneScaladoc}/index.html#org.scalautils.Every"><code>Every</code></a> in ScalaTest matchers.</li>
 
 <li>Made a few classes <code>Serializable</code> that could occasionally get serialized in ScalaTest events sent across the network.</li>
 
 <li>Fire <a href="@{milestoneScaladoc}/index.html#org.scalatest.events.AlertProvided"><code>AlertProvided</code></a> if memory file contains test that cannot be rerun.</li>
+</ul>
+
+<a name="resurrections"></a>
+<h2>Resurrections</h2>
+
+<ul>
+<li>Resurrected <a href="@{milestoneScaladoc}/index.html#org.scalatest.MustMatchers"><code>MustMatchers</code></a> in package <code>org.scalatest</code>.
+Changed deprecation warning for <code>org.scalatest.matchers.MustMatchers</code> to suggest using <code>org.scalatest.MustMatchers</code>
+instead of <code>org.scalatest.Matchers</code>, which was the suggestion in 2.0. Apologies to <code>must</code> users who migrated to <code>should</code> already when upgrading to 2.0. This resurrection was made possible by a suggestion by Viktor Klang to use the verb "<code>will</code>" instead of "<code>must</code>" for pure matchers (that return a result instead of throwing an exception), which may appear in a future version of ScalaTest.</li>
+
 </ul>
 
 <a name="deprecations"></a>
