@@ -102,7 +102,7 @@ object Application extends Controller {
   }
 
   def scaladocsFile(release: String, file: String) = Action {
-    Redirect(scaladocsLocation + "/" + release + "/" + file)
+    Redirect(scaladocsLocation + "/" + release + "/index.html#" + file)
   }
 
   // Redirect legacy releases URLs (the are too big for free heroku,
