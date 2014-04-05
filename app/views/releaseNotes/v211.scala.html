@@ -23,21 +23,23 @@
 
 <p>
 ScalaTest 2.1.1 is a maintenance release for 2.1.x series that includes a feature enhancement and a bug fix.  No source code using
-ScalaTest 2.0+ should break, but you will likely need to do a clean build to upgrade.
+ScalaTest 2.0+ should break, but you will likely need to do a clean build to upgrade from 2.0.
+However, 2.1.1 is binary compatible with 2.1.0, so you can just change the version number in
+your build and go.
 </p>
 
 <a name="enhancements"></a>
 <h2>Enhancements</h2>
 
 <ul>
-<li>Added -z argument support to SBT integration.</li>
+<li>Added <code>-z</code> argument support to SBT integration.</li>
 </ul>
 
 <a name="bugFixes"></a>
 <h2>Bug fixes</h2>
 
 <ul>
-<li>Added the missing <code>must</code> support to <code>noException</code>, a[SomeException] and an[Exception] matcher syntax.</li>
+<li>Added missing <code>must</code> support to <code>noException</code>, <code>a [SomeException]</code> and <code>an [Exception]</code> matcher syntax.</li>
 </ul>
 
 <p>
