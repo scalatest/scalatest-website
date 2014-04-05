@@ -148,4 +148,8 @@ object UserGuide extends Controller {
     Ok(views.html.userGuide.usingScalaTestWithIntelliJ())
   }
 
+  def usingScalatestWithPlay = Action {
+    Ok(views.html.userGuide.usingScalatestWithPlay())
+  }
+
 }
