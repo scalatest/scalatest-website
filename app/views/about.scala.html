@@ -64,6 +64,8 @@ Several people have helped with ScalaTest, including:
 <li>Adriaan Moors</li>
 <li>Mirco Dotta</li>
 <li>Darlene Wallach</li>
+<li>Eugene Burmako</li>
+<li>Jason Zaugg</li>
 </ul>
 
 <p>
@@ -106,16 +108,24 @@ The followings are needed for building ScalaTest:
 </p>
 
 <ul>
-  <li>JDK 6 or 7</li>
-  <li><a href="javascript:void(window.open('http://www.scala-sbt.org/0.13.0/docs/Getting-Started/Setup.html', '_blank'))">SBT 0.13.0</a></li>
+  <li>JDK 6, 7 or 8</li>
+  <li><a href="javascript:void(window.open('http://www.scala-sbt.org/0.13.1/docs/Getting-Started/Setup.html', '_blank'))">SBT 0.13.1</a></li>
 </ul>
 
 <p>
-and use the following options in your SBT launch file:
+for JDK 6 or 7, use the following options in your SBT launch file:
 </p>
 
 <p>
-<code>SBT_OPTS="-server -Xms512M -Xmx2048M -Xss1M -XX:+CMSClassUnloadingEnabled -XX:+UseConcMarkSweepGC -XX:+CMSIncrementalMode -XX:NewRatio=8 -XX:MaxPermSize=512M"</code>
+<code>SBT_OPTS="-server -Xms512M -Xmx3000M -Xss1M -XX:+CMSClassUnloadingEnabled -XX:+UseConcMarkSweepGC -XX:+CMSIncrementalMode -XX:NewRatio=8 -XX:MaxPermSize=512M"</code>
+</p>
+
+<p>
+for JDK 8, use the following SBT options instead:
+</p>
+
+<p>
+<code>SBT_OPTS="-server -Xms512M -Xmx3000M -Xss1M  -XX:+UseConcMarkSweepGC -XX:NewRatio=8"</code>
 </p>
 
 <h3>Building and Running Tests</h3>
@@ -129,11 +139,11 @@ This command will build and run the regular tests:
 </p>
 
 <p>
-To run generated tests, you'll need to increase maximum heap size to <code>-Xmx3072M</code>, and use this command instead:
+To run generated tests, you'll need to increase maximum heap size to <code>-Xmx5000M</code>, and use this command instead:
 </p>
 
 <p>
-<code>$ sbt "project gentests" "test"</code>
+<code>$ sbt gentests/test</code>
 </p>
 
 <p>What it does is simply switch to <code>gentests</code> project and run <code>test</code>.</p>
