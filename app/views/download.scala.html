@@ -22,6 +22,402 @@
 
 <h1>Downloading ScalaTest</h1>
 
+<p>
+<strong>ScalaTest and ScalaUtils 2.1.3</strong> (for 2.10.0+) are available the
+<a href="https://oss.sonatype.org/content/groups/public/org/scalatest/">Sonatype OSS</a> Maven repository (which is mirrored on the
+central Maven repository as well).
+</p>
+
+<p>
+For a list of the changes in this release, see the <a href="/release_notes/2.1.3">release notes</a>. For detailed
+documentation, see the <a href="http://www.artima.com/docs-scalatest-2.1.3/#org.scalatest.FlatSpec">ScalaTest 2.1.3 Scaladoc</a>.
+</p>
+
+<p>
+ScalaUtils is a small library of utilities used by ScalaTest 2.1.3 that are useful in your production code as well as your tests. A copy of ScalaUtils is
+included in ScalaTest's jar file. If you wish to use ScalaUtils
+in your production code as well, see the <a href="#usingScalaUtils213">information on ScalaUtils</a> below or the
+<a href="http://scalautils.org"><code>scalautils.org</code></a> website. Here is the information for including ScalaTest
+in your project:
+</p>
+
+<ul>
+<li>group id: org.scalatest</li>
+<li>artifact id: scalatest_2.10</li>
+<li>version: 2.1.3</li>
+</ul>
+
+<p>Here's the code for your Maven POM:</p>
+
+<pre class="stHighlighted">
+  &lt;dependency&gt;
+    &lt;groupId&gt;org.scalatest&lt;/groupId&gt;
+    &lt;artifactId&gt;scalatest_2.10&lt;/artifactId&gt;
+    &lt;version&gt;2.1.3&lt;/version&gt;
+    &lt;scope&gt;test&lt;/scope&gt;
+  &lt;/dependency&gt;
+</pre>
+
+<p>
+And for sbt, version 0.10 or higher (for Scala 2.10.0+):
+</p>
+
+<pre class="stGrayback">
+libraryDependencies += "org.scalatest" % "scalatest_2.10" % "2.1.3" % "test"
+</pre>
+
+<p>
+Alternatively you can just download Jar files for the library and Scaladoc documentation by hand from Sonatype. The artifacts tagged with 2.10
+can be used with any 2.10.x release.
+Jar files are valid zip files, so to access the Scaladoc documentation just unzip the Jar file. The Scaladoc Jars
+do not contain a top-level directory, however, so you should unzip them in an empty directory.
+</p>
+
+<p>
+For Scala 2.10.x:
+</p>
+
+<ul>
+<li><a href="https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest_2.10/2.1.3/scalatest_2.10-2.1.3.jar">Download ScalaTest 2.1.3 Jar</a></li>
+<li><a href="https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest_2.10/2.1.3/scalatest_2.10-2.1.3-scaladoc.jar">Download ScalaTest 2.1.3 Scaladoc documentation</a></li>
+</ul>
+
+<p>
+If you don't have it already, you'll also need Scala. You can use any 2.10 release, which you can get from here:
+</p>
+
+<ul>
+<li><a href="http://www.scala-lang.org/downloads">Download latest Scala release</a></li>
+</ul>
+
+<a name="usingScalaUtils213"></a>
+<strong>Using ScalaUtils in your production code</strong>
+
+<p>
+The ScalaUtils library grew out of the ScalaTest 2.1.3 effort. ScalaTest 2.1.3 is tightly integrated with ScalaUtils. Although you
+should not include ScalaTest in your production class path (because when ScalaTest doesn't like something, it tends to
+throw <code>TestFailedException</code>), you can make use of ScalaUtils in you production code. Here's how:
+</p>
+
+<ul>
+<li>group id: org.scalautils</li>
+<li>artifact id: scalautils_2.10</li>
+<li>version: 2.1.3</li>
+</ul>
+
+<p>Here's the code for your Maven POM:</p>
+
+<pre class="stHighlighted">
+   &lt;dependency&gt;
+     &lt;groupId&gt;org.scalautils&lt;/groupId&gt;
+     &lt;artifactId&gt;scalautils_2.10&lt;/artifactId&gt;
+     &lt;version&gt;2.1.3&lt;/version&gt;
+   &lt;/dependency&gt;
+</pre>
+
+<p>
+And for sbt, version 0.10 or higher (for Scala 2.10.0+):
+</p>
+
+<pre class="stGrayback">
+libraryDependencies += "org.scalautils" % "scalautils_2.10" % "2.1.3"
+</pre>
+
+<p>
+Alternatively you can just download Jar files for the library and Scaladoc documentation by hand from Sonatype. The artifacts tagged with 2.10
+can be used with any 2.10.x release.
+Jar files are valid zip files, so to access the Scaladoc documentation just unzip the Jar file. The Scaladoc Jars
+do not contain a top-level directory, however, so you should unzip them in an empty directory.
+</p>
+
+<p>
+For Scala 2.10.x:
+</p>
+
+<ul>
+<li><a href="https://oss.sonatype.org/content/groups/public/org/scalautils/scalautils_2.10/2.1.3/scalautils_2.10-2.1.3.jar">Download ScalaUtils 2.1.3 Jar</a></li>
+<li><a href="https://oss.sonatype.org/content/groups/public/org/scalautils/scalautils_2.10/2.1.3/scalautils_2.10-2.1.3-scaladoc.jar">Download ScalaUtils 2.1.3 Scaladoc documentation</a></li>
+</ul>
+
+<p>
+If you don't have it already, you'll also need Scala. You can use any 2.10 release, which you can get from here:
+</p>
+
+<ul>
+<li><a href="http://www.scala-lang.org/downloads">Download latest Scala release</a></li>
+</ul>
+
+<p>
+For a list of the changes in this release, see the <a href="/release_notes/2.1.3">release notes</a>. For detailed
+documentation, see the <a href="http://www.artima.com/docs-scalatest-2.1.3/#org.scalautils.package">ScalaUtils 2.1.3 Scaladoc</a>.
+</p>
+
+<hr />
+
+<p>
+<strong>ScalaTest and ScalaUtils 2.1.2</strong> (for 2.10.0+) are available the
+<a href="https://oss.sonatype.org/content/groups/public/org/scalatest/">Sonatype OSS</a> Maven repository (which is mirrored on the
+central Maven repository as well).
+</p>
+
+<p>
+For a list of the changes in this release, see the <a href="/release_notes/2.1.2">release notes</a>. For detailed
+documentation, see the <a href="http://www.artima.com/docs-scalatest-2.1.2/#org.scalatest.FlatSpec">ScalaTest 2.1.2 Scaladoc</a>.
+</p>
+
+<p>
+ScalaUtils is a small library of utilities used by ScalaTest 2.1.2 that are useful in your production code as well as your tests. A copy of ScalaUtils is
+included in ScalaTest's jar file. If you wish to use ScalaUtils
+in your production code as well, see the <a href="#usingScalaUtils212">information on ScalaUtils</a> below or the
+<a href="http://scalautils.org"><code>scalautils.org</code></a> website. Here is the information for including ScalaTest
+in your project:
+</p>
+
+<ul>
+<li>group id: org.scalatest</li>
+<li>artifact id: scalatest_2.10</li>
+<li>version: 2.1.2</li>
+</ul>
+
+<p>Here's the code for your Maven POM:</p>
+
+<pre class="stHighlighted">
+  &lt;dependency&gt;
+    &lt;groupId&gt;org.scalatest&lt;/groupId&gt;
+    &lt;artifactId&gt;scalatest_2.10&lt;/artifactId&gt;
+    &lt;version&gt;2.1.2&lt;/version&gt;
+    &lt;scope&gt;test&lt;/scope&gt;
+  &lt;/dependency&gt;
+</pre>
+
+<p>
+And for sbt, version 0.10 or higher (for Scala 2.10.0+):
+</p>
+
+<pre class="stGrayback">
+libraryDependencies += "org.scalatest" % "scalatest_2.10" % "2.1.2" % "test"
+</pre>
+
+<p>
+Alternatively you can just download Jar files for the library and Scaladoc documentation by hand from Sonatype. The artifacts tagged with 2.10
+can be used with any 2.10.x release.
+Jar files are valid zip files, so to access the Scaladoc documentation just unzip the Jar file. The Scaladoc Jars
+do not contain a top-level directory, however, so you should unzip them in an empty directory.
+</p>
+
+<p>
+For Scala 2.10.x:
+</p>
+
+<ul>
+<li><a href="https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest_2.10/2.1.2/scalatest_2.10-2.1.2.jar">Download ScalaTest 2.1.2 Jar</a></li>
+<li><a href="https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest_2.10/2.1.2/scalatest_2.10-2.1.2-scaladoc.jar">Download ScalaTest 2.1.2 Scaladoc documentation</a></li>
+</ul>
+
+<p>
+If you don't have it already, you'll also need Scala. You can use any 2.10 release, which you can get from here:
+</p>
+
+<ul>
+<li><a href="http://www.scala-lang.org/downloads">Download latest Scala release</a></li>
+</ul>
+
+<a name="usingScalaUtils212"></a>
+<strong>Using ScalaUtils in your production code</strong>
+
+<p>
+The ScalaUtils library grew out of the ScalaTest 2.1.2 effort. ScalaTest 2.1.2 is tightly integrated with ScalaUtils. Although you
+should not include ScalaTest in your production class path (because when ScalaTest doesn't like something, it tends to
+throw <code>TestFailedException</code>), you can make use of ScalaUtils in you production code. Here's how:
+</p>
+
+<ul>
+<li>group id: org.scalautils</li>
+<li>artifact id: scalautils_2.10</li>
+<li>version: 2.1.2</li>
+</ul>
+
+<p>Here's the code for your Maven POM:</p>
+
+<pre class="stHighlighted">
+  &lt;dependency&gt;
+    &lt;groupId&gt;org.scalautils&lt;/groupId&gt;
+    &lt;artifactId&gt;scalautils_2.10&lt;/artifactId&gt;
+    &lt;version&gt;2.1.2&lt;/version&gt;
+  &lt;/dependency&gt;
+</pre>
+
+<p>
+And for sbt, version 0.10 or higher (for Scala 2.10.0+):
+</p>
+
+<pre class="stGrayback">
+libraryDependencies += "org.scalautils" % "scalautils_2.10" % "2.1.2"
+</pre>
+
+<p>
+Alternatively you can just download Jar files for the library and Scaladoc documentation by hand from Sonatype. The artifacts tagged with 2.10
+can be used with any 2.10.x release.
+Jar files are valid zip files, so to access the Scaladoc documentation just unzip the Jar file. The Scaladoc Jars
+do not contain a top-level directory, however, so you should unzip them in an empty directory.
+</p>
+
+<p>
+For Scala 2.10.x:
+</p>
+
+<ul>
+<li><a href="https://oss.sonatype.org/content/groups/public/org/scalautils/scalautils_2.10/2.1.2/scalautils_2.10-2.1.2.jar">Download ScalaUtils 2.1.2 Jar</a></li>
+<li><a href="https://oss.sonatype.org/content/groups/public/org/scalautils/scalautils_2.10/2.1.2/scalautils_2.10-2.1.2-scaladoc.jar">Download ScalaUtils 2.1.2 Scaladoc documentation</a></li>
+</ul>
+
+<p>
+If you don't have it already, you'll also need Scala. You can use any 2.10 release, which you can get from here:
+</p>
+
+<ul>
+<li><a href="http://www.scala-lang.org/downloads">Download latest Scala release</a></li>
+</ul>
+
+<p>
+For a list of the changes in this release, see the <a href="/release_notes/2.1.2">release notes</a>. For detailed
+documentation, see the <a href="http://www.artima.com/docs-scalatest-2.1.2/#org.scalautils.package">ScalaUtils 2.1.2 Scaladoc</a>.
+</p>
+
+<hr />
+
+<p>
+<strong>ScalaTest and ScalaUtils 2.1.1</strong> (for 2.10.0+) are available the
+<a href="https://oss.sonatype.org/content/groups/public/org/scalatest/">Sonatype OSS</a> Maven repository (which is mirrored on the
+central Maven repository as well).
+</p>
+
+<p>
+For a list of the changes in this release, see the <a href="/release_notes/2.1.1">release notes</a>. For detailed
+documentation, see the <a href="http://www.artima.com/docs-scalatest-2.1.1/#org.scalatest.FlatSpec">ScalaTest 2.1.1 Scaladoc</a>.
+</p>
+
+<p>
+ScalaUtils is a small library of utilities used by ScalaTest 2.1.1 that are useful in your production code as well as your tests. A copy of ScalaUtils is
+included in ScalaTest's jar file. If you wish to use ScalaUtils
+in your production code as well, see the <a href="#usingScalaUtils211">information on ScalaUtils</a> below or the
+<a href="http://scalautils.org"><code>scalautils.org</code></a> website. Here is the information for including ScalaTest
+in your project:
+</p>
+
+<ul>
+<li>group id: org.scalatest</li>
+<li>artifact id: scalatest_2.10</li>
+<li>version: 2.1.1</li>
+</ul>
+
+<p>Here's the code for your Maven POM:</p>
+
+<pre class="stHighlighted">
+  &lt;dependency&gt;
+    &lt;groupId&gt;org.scalatest&lt;/groupId&gt;
+    &lt;artifactId&gt;scalatest_2.10&lt;/artifactId&gt;
+    &lt;version&gt;2.1.1&lt;/version&gt;
+    &lt;scope&gt;test&lt;/scope&gt;
+  &lt;/dependency&gt;
+</pre>
+
+<p>
+And for sbt, version 0.10 or higher (for Scala 2.10.0+):
+</p>
+
+<pre class="stGrayback">
+libraryDependencies += "org.scalatest" % "scalatest_2.10" % "2.1.1" % "test"
+</pre>
+
+<p>
+Alternatively you can just download Jar files for the library and Scaladoc documentation by hand from Sonatype. The artifacts tagged with 2.10
+can be used with any 2.10.x release.
+Jar files are valid zip files, so to access the Scaladoc documentation just unzip the Jar file. The Scaladoc Jars
+do not contain a top-level directory, however, so you should unzip them in an empty directory.
+</p>
+
+<p>
+For Scala 2.10.x:
+</p>
+
+<ul>
+<li><a href="https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest_2.10/2.1.1/scalatest_2.10-2.1.1.jar">Download ScalaTest 2.1.1 Jar</a></li>
+<li><a href="https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest_2.10/2.1.1/scalatest_2.10-2.1.1-scaladoc.jar">Download ScalaTest 2.1.1 Scaladoc documentation</a></li>
+</ul>
+
+<p>
+If you don't have it already, you'll also need Scala. You can use any 2.10 release, which you can get from here:
+</p>
+
+<ul>
+<li><a href="http://www.scala-lang.org/downloads">Download latest Scala release</a></li>
+</ul>
+
+<a name="usingScalaUtils211"></a>
+<strong>Using ScalaUtils in your production code</strong>
+
+<p>
+The ScalaUtils library grew out of the ScalaTest 2.1.1 effort. ScalaTest 2.1.1 is tightly integrated with ScalaUtils. Although you
+should not include ScalaTest in your production class path (because when ScalaTest doesn't like something, it tends to
+throw <code>TestFailedException</code>), you can make use of ScalaUtils in you production code. Here's how:
+</p>
+
+<ul>
+<li>group id: org.scalautils</li>
+<li>artifact id: scalautils_2.10</li>
+<li>version: 2.1.1</li>
+</ul>
+
+<p>Here's the code for your Maven POM:</p>
+
+<pre class="stHighlighted">
+  &lt;dependency&gt;
+    &lt;groupId&gt;org.scalautils&lt;/groupId&gt;
+    &lt;artifactId&gt;scalautils_2.10&lt;/artifactId&gt;
+    &lt;version&gt;2.1.1&lt;/version&gt;
+  &lt;/dependency&gt;
+</pre>
+
+<p>
+And for sbt, version 0.10 or higher (for Scala 2.10.0+):
+</p>
+
+<pre class="stGrayback">
+libraryDependencies += "org.scalautils" % "scalautils_2.10" % "2.1.1"
+</pre>
+
+<p>
+Alternatively you can just download Jar files for the library and Scaladoc documentation by hand from Sonatype. The artifacts tagged with 2.10
+can be used with any 2.10.x release.
+Jar files are valid zip files, so to access the Scaladoc documentation just unzip the Jar file. The Scaladoc Jars
+do not contain a top-level directory, however, so you should unzip them in an empty directory.
+</p>
+
+<p>
+For Scala 2.10.x:
+</p>
+
+<ul>
+<li><a href="https://oss.sonatype.org/content/groups/public/org/scalautils/scalautils_2.10/2.1.1/scalautils_2.10-2.1.1.jar">Download ScalaUtils 2.1.1 Jar</a></li>
+<li><a href="https://oss.sonatype.org/content/groups/public/org/scalautils/scalautils_2.10/2.1.1/scalautils_2.10-2.1.1-scaladoc.jar">Download ScalaUtils 2.1.1 Scaladoc documentation</a></li>
+</ul>
+
+<p>
+If you don't have it already, you'll also need Scala. You can use any 2.10 release, which you can get from here:
+</p>
+
+<ul>
+<li><a href="http://www.scala-lang.org/downloads">Download latest Scala release</a></li>
+</ul>
+
+<p>
+For a list of the changes in this release, see the <a href="/release_notes/2.1.1">release notes</a>. For detailed
+documentation, see the <a href="http://www.artima.com/docs-scalatest-2.1.1/#org.scalautils.package">ScalaUtils 2.1.1 Scaladoc</a>.
+</p>
+
+<hr />
+
 <!--
 <p>
 You may also wish to try <a href="#latestRC">the latest ScalaTest/ScalaUtils 2.1.0 release candidate</a>.
