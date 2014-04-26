@@ -21,16 +21,16 @@ import examples.StyleTraitExamples
 
 object Application extends Controller {
 
-  val latestScaladoc = "http://doc.scalatest.org/2.1.0"
-  val latestVersion = "2.1.0"
+  val latestScaladoc = "http://doc.scalatest.org/2.1.4"
+  val latestVersion = "2.1.4"
   val milestoneVersion = "2.1.0-RC3"
   val milestoneJar = "https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest_2.10/2.1.0-RC3/scalatest_2.10-2.1.0-RC3.jar"
-  val latestJar = "https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest_2.10/2.1.0/scalatest_2.10-2.1.0.jar"
+  val latestJar = "https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest_2.11/2.1.4/scalatest_2.11-2.1.4.jar"
   val milestoneScaladoc = "http://www.artima.com/docs-scalatest-2.1.0-RC3"
   val scaladocsLocation = "http://doc.scalatest.org"
   val releasesLocation = "http://www.artima.com/downloadScalaTest"
-  val baseScalaVersion = "2.10.0"
-  val majorMinorScalaVersion = "2.10"
+  val baseScalaVersion = "2.11.0"
+  val majorMinorScalaVersion = "2.11"
   val latestScaladocFor192 = "http://doc.scalatest.org/1.9.2"
   val latestSeleniumVersion = "2.35.0"
 
