@@ -16,24 +16,25 @@
 package test
 
 import org.scalatest._
-
 import play.api.test._
 import play.api.test.Helpers._
+import org.scalatestplus.play._
 
-class ExampleUnitSpec extends UnitSpec {
-  
-  "Application" should {
+class ExampleUnitSpec extends PlaySpec with OneAppPerTest {
+
+  "Application" must {
     
-    "send 404 on a bad request" in running(FakeApplication()) {
-      route(FakeRequest(GET, "/boum")) shouldBe None
+    "send 404 on a bad request" in {
+      route(FakeRequest(GET, "/boum")) mustBe None
     }
     
     "render the index page" in running(FakeApplication()) {
       val home = route(FakeRequest(GET, "/")).get
         
-      status(home) shouldBe OK
-      contentType(home).value shouldBe "text/html"
-      contentAsString(home) should include ("ScalaTest")
+      status(home) mustBe OK
+      contentType(home).value mustBe "text/html"
+      contentAsString(home) must include ("ScalaTest")
     }
   }
 }
+
