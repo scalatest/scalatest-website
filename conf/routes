@@ -8,6 +8,7 @@ GET        /download                                                    controll
 GET        /user_guide                                                  controllers.UserGuide.userGuideIndex
 GET        /user_guide_1_9_2                                            controllers.UserGuide192.userGuideIndex
 GET        /scaladoc                                                    controllers.Application.scaladoc
+GET        /plus                                                        controllers.Plus.plusIndex
 GET        /videos                                                      controllers.Application.videos
 GET        /community                                                   controllers.Application.community
 GET        /about                                                       controllers.Application.about
@@ -99,6 +100,9 @@ GET        /user_guide_1_9_2/matchers_quick_reference                   controll
 GET        /user_guide_1_9_2/using_the_scalatest_maven_plugin           controllers.UserGuide192.usingTheScalatestMavenPlugin
 #GET        /user_guide_1_9_2/customizing_scalatest                      controllers.UserGuide192.customizingScalatest
 GET        /user_guide_1_9_2/using_scalatest_with_eclipse               controllers.UserGuide192.usingScalatestWithEclipse
+
+GET        /plus/play                                                   controllers.Plus.playFramework
+GET        /plus/play/versions                                          controllers.Plus.playVersions
 
 GET        /scaladoc/:release/                                          controllers.Application.scaladocs(release)
 GET        /scaladoc-:release/                                          controllers.Application.scaladocs(release)
