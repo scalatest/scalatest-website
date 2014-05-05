@@ -148,4 +148,8 @@ object UserGuide extends Controller {
     Ok(views.html.userGuide.usingScalaTestWithIntelliJ())
   }
 
+  def scalatestPlus = Action {
+    Ok(views.html.userGuide.scalatestPlus())
+  }
+
 }

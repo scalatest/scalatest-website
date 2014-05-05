@@ -1,0 +1,125 @@
+@*
+* Copyright 2010-2013 Artima, Inc.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*@
+
+@userGuidePage("ScalaTest+") {
+
+<div style="text-align: left">
+
+<h1>ScalaTest +</h1>
+
+<p>
+ScalaTest is friendly and does not stand alone, we understand that ScalaTest needs to integrate and play well with other frameworks like
+<a href="http://www.playframework.org">Play</a> to increase developer productivity.
+</p>
+
+<h2>ScalaTest + Play</h2>
+
+<p>
+<a href="http://github.com/scalatest/scalatestplus-play">ScalaTest + Play</a> is an integration library between ScalaTest and <a href="http://www.playframework.org">Play Framework</a>.
+It provides useful API to help developer to write tests for Play application efficiently using ScalaTest.
+</p>
+
+<p>
+ScalaTest + Play can be used in current 2.2.x version of Play, to use it just add the following dependency in your build.sbt/Build.scala:
+</p>
+
+<pre class="stGrayback">
+libraryDependencies += "org.scalatestplus" %% "play" % "1.0.0" % "test"
+</pre>
+
+<p>
+The following is a quick summary of main traits and classes provided by ScalaTest + Play to help you Play-Testing your application:
+</p>
+
+<table style="border-collapse: collapse; border: 1px solid black; width: 100%">
+<tr>
+<th class="ataglance">Name</th>
+<th class="ataglance">Description</th>
+</tr>
+
+<tr>
+<td class="ataglance"><a href="@routes.Application.scalatestPlusPlayScaladocsFile("1.0.0", "org.scalatestplus.play.PlaySpec")">PlaySpec</a></td>
+<td class="ataglance">Convenience base class for Play tests.</td>
+</tr>
+
+<tr>
+<td class="ataglance"><a href="@routes.Application.scalatestPlusPlayScaladocsFile("1.0.0", "org.scalatestplus.play.MixedPlaySpec")">FixedPlaySpec</a></td>
+<td class="ataglance">Convenience base class for "mixed fixture" Play tests.</td>
+</tr>
+
+<tr>
+<td class="ataglance"><a href="@routes.Application.scalatestPlusPlayScaladocsFile("1.0.0", "org.scalatestplus.play.OneAppPerSuite")">OneAppPerSuite</a></td>
+<td class="ataglance">Provides a new <code>FakeApplication</code> instance per suite.</td>
+</tr>
+
+<tr>
+<td class="ataglance"><a href="@routes.Application.scalatestPlusPlayScaladocsFile("1.0.0", "org.scalatestplus.play.OneAppPerTest")">OneAppPerTest</a></td>
+<td class="ataglance">Provides a new <code>FakeApplication</code> instance for each test.</td>
+</tr>
+
+<tr>
+<td class="ataglance"><a href="@routes.Application.scalatestPlusPlayScaladocsFile("1.0.0", "org.scalatestplus.play.OneServerPerSuite")">OneServerPerSuite</a></td>
+<td class="ataglance">Provides a new <code>FakeApplication</code> and running <code>TestServer</code> instance per suite.</td>
+</tr>
+
+<tr>
+<td class="ataglance"><a href="@routes.Application.scalatestPlusPlayScaladocsFile("1.0.0", "org.scalatestplus.play.OneServerPerTest")">OneServerPerTest</a></td>
+<td class="ataglance">Provides a new <code>FakeApplication</code> and running <code>TestServer</code> instance for each test in suite.</td>
+</tr>
+
+<tr>
+<td class="ataglance"><a href="@routes.Application.scalatestPlusPlayScaladocsFile("1.0.0", "org.scalatestplus.play.OneBrowserPerSuite")">OneBrowserPerSuite</a></td>
+<td class="ataglance">Provides a new Selenium <code>WebDriver</code> instance per suite.</td>
+</tr>
+
+<tr>
+<td class="ataglance"><a href="@routes.Application.scalatestPlusPlayScaladocsFile("1.0.0", "org.scalatestplus.play.OneBrowserPerTest")">OneBrowserPerTest.</a></td>
+<td class="ataglance">Provides a new Selenium <code>WebDriver</code> instance for each test in suite.</td>
+</tr>
+
+<tr>
+<td class="ataglance"><a href="@routes.Application.scalatestPlusPlayScaladocsFile("1.0.0", "org.scalatestplus.play.AllBrowsersPerSuite")">AllBrowsersPerSuite</a></td>
+<td class="ataglance">Run suites of tests using multiple browsers available on the running system, all tests in a suite share the same instance of browser.</td>
+</tr>
+
+<tr>
+<td class="ataglance"><a href="@routes.Application.scalatestPlusPlayScaladocsFile("1.0.0", "org.scalatestplus.play.AllBrowsersPerTest")">AllBrowsersPerTest</a></td>
+<td class="ataglance">Run suites of tests using multiple browsers available on the running system, all tests will get their own instance of browser.</td>
+</tr>
+
+<tr>
+<td class="ataglance"><a href="@routes.Application.scalatestPlusPlayScaladocsFile("1.0.0", "org.scalatestplus.play.ConfiguredApp")">ConfiguredApp</a></td>
+<td class="ataglance">Provides a configured <code>FakeApplication</code> (througn config map) to the suite.</td>
+</tr>
+
+<tr>
+<td class="ataglance"><a href="@routes.Application.scalatestPlusPlayScaladocsFile("1.0.0", "org.scalatestplus.play.ConfiguredServer")">ConfiguredServer</a></td>
+<td class="ataglance">Provides a configured <code>FakeApplication</code> and server port number (through config map) to the suite.</td>
+</tr>
+
+<tr>
+<td class="ataglance"><a href="@routes.Application.scalatestPlusPlayScaladocsFile("1.0.0", "org.scalatestplus.play.ConfiguredBrowser")">ConfiguredBrowser</a></td>
+<td class="ataglance">Provides a configured <code>FakeApplication</code>, server port number, and Selenium <code>WebDriver</code> (through config map) to the suite.</td>
+</tr>
+
+<tr>
+<td class="ataglance"><a href="@routes.Application.scalatestPlusPlayScaladocsFile("1.0.0", "org.scalatestplus.play.WsScalaTestClient")">WsScalaTestClient</a></td>
+<td class="ataglance">Provides convenience methods to create WS requests in tests, already mixed into PlaySpec and MixedPlaySpec.</td>
+</tr>
+
+</table>
+
+}
