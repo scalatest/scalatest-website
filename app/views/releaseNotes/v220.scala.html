@@ -1,0 +1,98 @@
+@*
+ * Copyright 2010-2014 Artima, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *@
+
+@import controllers.Application.latestScaladoc
+
+@releaseNotesPage("ScalaTest 2.2.0-M1 Release Notes") {
+<div style="text-align: left">
+
+<h1>ScalaTest 2.2.0-M1 Release Notes</h1>
+
+<p>
+ScalaTest 2.2.0-M1 includes the enhancements and deprecations listed below. No source code using
+ScalaTest 2.1.x should break, but you will likely need to do a clean build to upgrade.
+</p>
+
+<p>
+For information on how to include ScalaTest in your project, see the <a href="/download">download page</a>.
+</p>
+
+<h2><code>org.scalautils</code> => <code>org.scalactic</code></h2>
+
+<p>Renamed <code>org.scalautils</code> to <code>org.scalactic</code> (rhymes with "galactic"). All existing code using <code>org.scalautils</code> directly will continue to work, but will receive a deprecation warning. Please change <code>scalautils</code> to <code>scalactic</code> when convenient, because after a lengthy deprecation period, <code>org.scalautils</code> will be removed.</p>
+
+<h2>Enhanced <code>Assertions</code> error messages</h2>
+
+<p>Enhanced the macro that produces error messages from the <a href="@{latestScaladoc}/index.html#org.scalatest.Assertions"><code>Assertions</code></a> trait.</p>
+
+<h2>Added <code>DiagrammedAssertions</code></h2>
+
+<p>Building on the work that Peter N has done in Spock and Expecty, added <a href="@{latestScaladoc}/index.html#org.scalatest.DiagrammedAssertions"><code>DiagrammedAssertions</code></a> trait.</p>
+
+<h2>Scalactic <code>Requirements</code></h2>
+
+<p>Added a <a href="@{latestScaladoc}/index.html#org.scalactic.Requirements"><code>Requirements</code></a> trait.</p>
+
+<h2>Scalactic <code>Snapshots</code></h2>
+
+<p>Added <a href="@{latestScaladoc}/index.html#org.scalatest.Snapshots"><code>Snapshots</code></a> trait.</p>
+
+<h2><code>Assertions</code> and <code>Matchers</code> enhancements</h2>
+
+<p>Added <code>matchPattern</code>.</p>
+
+<p>Added <code>should</code> <code>compile</code> syntax.</p>
+
+<p>Deprecated <code>assertTypeError</code> in favor of <code>assertDoesNotCompile</code>. Added <code>assertCompiles</code> syntax.</p>
+
+<h2>Added <code>TestRegistration</code> trait</h2>
+
+<p>Added <code>TestRegistration</code>.</p>
+
+<a name="enhancements"></a>
+<h2>Other enhancements</h2>
+
+<ul>
+
+<li>Moved <code>Page</code> out of <code>WebBrowser</code> to become a sibling in package <code>org.scalatest.selenium</code>, to make it easier to create reusabled <code>Page</code> classes.</li>
+
+<li>Added <code>recover</code> and <code>recoverWith</code> methods to <code>Or</code>.</li>
+
+<li>Loosened type restrictions on HTML 5 input elements in the <a href="@{latestScaladoc}/index.html#org.scalatest.selenium.WebBrowser"><code>WebBrowser</code></a> trait's Selenium DSL to better support browsers that do not fully support the new elements. (Contributed by Matt Hughes.)</li>
+</ul>
+
+<!--
+<a name="bugFixes"></a>
+<h2>Bug fixes</h2>
+
+<ul>
+
+<li>Ensure sorted matcher works on single-element collections.</li>
+
+<li>Fixed bug whereby suites with no tests did not appear in the HTML reporter's home page list.</li>
+
+<li>Fixed bug in <code>assert</code>/<code>assume</code> macros that caused them to accidentally invoke by-names eagerly.</li>
+
+</ul>
+-->
+
+<p>
+            Visit <a href="@routes.ReleaseNotes.releaseNotesIndex">ScalaTest Release Notes</a> for links to the release notes of all previous versions, or
+step back in time by visiting the <a href="2.0">release notes for the previous version</a>.
+</p>
+
+</div>
+}
