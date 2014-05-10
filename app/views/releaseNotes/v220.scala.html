@@ -30,21 +30,25 @@ ScalaTest/ScalaUtils 2.1.x should break, but you will likely need to do a clean 
 For information on how to include ScalaTest in your project, see the <a href="/download">download page</a>.
 </p>
 
-<h2><code>org.scalautils</code> => <code>org.scalactic</code></h2>
+<h2>Introducing the "Scalactic" library</h2>
 
 <p>In 2.2.0, <code>org.scalautils</code> has been renamed to <code>org.scalactic</code> (rhymes with "galactic"). All existing code using <code>org.scalautils</code> directly will continue to work, but will receive a deprecation warning. Please change <code>scalautils</code> to <code>scalactic</code> when convenient, because after a lengthy deprecation period, <code>org.scalautils</code> will be removed.</p>
 
 <p>
-ScalaUtils started out as a small library carved out of ScalaTest that made sense for production code as well as tests. It has since been growing into its own, and 
+ScalaUtils started out as a small library carved out of ScalaTest that made sense for production code as well as tests. It has since been growing more mature as a production-code library focused on quality, and 
 deserved a more distinctive name. The name "scalactic" comes from this <a href="http://www.scala-lang.org/old/node/3087.html">2009 scala-internals discussion</a>.
 I proposed it as a word to mean Scala-like, like "Pythonic" for Python. It never caught on for that, so instead I thought it might work well as the new name for ScalaUtils.
 Also, because Scalactic precedes ScalaTest alphabetically, its documentation shows up at the top of the combined Scaladoc instead of the bottom, where ScalaUtils has
 less prominently appeared since 2.0.
 </p>
 
+<p>
+Somewhat ironically, that 2009 scala-internals thread was a debate about Paul Phillip's addition of a <code>times</code> method to <code>RichInt</code>, which would make the imperative looping syntax, <code>5 times println</code>, supported by the Scala standard library by default. Martin Odersky indicated he felt the syntax was not Scala-like, and asked, "what's the analogue of 'Pythonic' in Scala?" By suggesting scalactic I was implying that <code>times</code> on <code>Int</code> was <em>not</em> "scalactic," yet since its initial release of ScalaUtils, that very syntax has been available via its <code>TimesOnInt</code> trait. Since ScalaUtils is now called Scalactic, <code>TimesOnInt</code> is now part of Scalactic. Perhaps what's "scalactic" about this is that the <code>5 times println</code> syntax is available from a third-party library rather than by default from the standard library.
+</p>
+
 <h2>Enhanced <code>Assertions</code> error messages</h2>
 
-<p>Enhanced the macro that produces error messages from the <a href="@{latestScaladoc}/index.html#org.scalatest.Assertions"><code>Assertions</code></a> trait.
+<p>For ScalaTest 2.2.0, we have enhanced the macro that produces error messages from the <code>assert</code> methods of trait <a href="@{latestScaladoc}/index.html#org.scalatest.Assertions"><code>Assertions</code></a>.
 Here are some examples:</p>
 
 <pre>
@@ -98,7 +102,7 @@ org.scalatest.exceptions.TestFailedException: Some(2) was not empty
 <p>
 The macro works by recognizing patterns in the AST of the expression passed to <code>assert</code> and,
 for a finite set of common expressions, giving an error message that an equivalent ScalaTest matcher
-expression would give. For expressions that are not recognized, the macro prints out a string
+expression would give. For expressions that are not recognized, the macro currently prints out a string
 representation of the (desugared) AST and adds <code>"was false"</code>. Here are some examples of
 error messages for unrecognized expressions:
 </p>
@@ -110,14 +114,38 @@ org.scalatest.exceptions.TestFailedException: scala.None.isDefined was false
 	...
 
 scala&gt; assert(xs.exists(i =&gt; i &gt; 10))
-org.scalatest.exceptions.TestFailedException: xs.exists(((i: Int) => i.>(10))) was false
+org.scalatest.exceptions.TestFailedException: xs.exists(((i: Int) =&gt; i.&gt;(10))) was false
+	at org.scalatest.Assertions$class.newAssertionFailedException(Assertions.scala:422)
+        ...
+</pre>
+
+<p>
+In the future we hope to improve the default error messages by showing values at the leaf nodes, and to the extent possible, showing
+a representation of the original AST before it was desugared. Getting back to the original AST before desugaring is difficult (if not impossible) 
+using macros as they are currently defined, but hopefully this use case will help motivate some improvements in that direction to Scala macros.
+</p>
+
+<p>
+Note that if a clue string is supplied in the assertion, it will be appended to the macro-generated error message:
+</p>
+
+<pre>
+scala&gt; val p = true
+p: Boolean = true
+
+scala&gt; val q = false
+q: Boolean = false
+
+scala&gt; assert(p == q, s", though now that I think of it, $p has never equaled $q!")
+org.scalatest.exceptions.TestFailedException: true did not equal false, though now that I
+          think of it, true has never equaled false!
 	at org.scalatest.Assertions$class.newAssertionFailedException(Assertions.scala:422)
         ...
 </pre>
 
 <h2>Added <code>DiagrammedAssertions</code></h2>
 
-<p>Building on work that Peter Niederwieser has done in <a href="http://code.google.com/p/spock/">Spock</a> and <a href="https://github.com/pniederw/expecty">Expecty</a>, 2.2.0 introduces trait <a href="@{latestScaladoc}/index.html#org.scalatest.DiagrammedAssertions"><code>DiagrammedAssertions</code></a>. This trait extends <code>Assertions</code> and overrides its <code>assert</code> methods, modifying the default macro to give error messages that show the original line of code and the value of each part of the expression. Here are some examples:</p>
+<p>Building on work that Peter Niederwieser has done in <a href="http://code.google.com/p/spock/">Spock</a> and <a href="https://github.com/pniederw/expecty">Expecty</a>, ScalaTest 2.2.0 introduces trait <a href="@{latestScaladoc}/index.html#org.scalatest.DiagrammedAssertions"><code>DiagrammedAssertions</code></a>. This trait extends <code>Assertions</code> and overrides its <code>assert</code> methods, modifying the default macro to give error messages that show the original line of code and a value for each part of the expression. Here are some examples:</p>
 
 <pre>
 scala&gt; import DiagrammedAssertions._
@@ -203,7 +231,8 @@ assert(xs.exists(i =&gt; i &gt; 10))
 
 <p>
 If the expression passed to <code>assert</code> spans more than one line, <code>DiagrammedAssertions</code> falls
-back to the default style of error message, since drawing a diagram would be difficult. Here's an example:
+back to the default style of error message, since drawing a diagram would be difficult. Here's an example showing how 
+<code>DiagrammedAssertions</code> will treat a multi-line assertion (<em>i.e.</em>, you don't get a diagram):
 </p>
 
 <pre>
@@ -214,12 +243,67 @@ org.scalatest.exceptions.TestFailedException: "hello" started with "h", but "goo
 	...
 </pre>
 
+<p>
+Also, since an expression diagram essentially represents multi-line ascii art, if a clue string is provided, it appears above the diagram, not after it. It will often also show up in the diagram:
+</p>
+
+<pre>
+scala&gt; assert(None.isDefined, "Don't do this at home")
+org.scalatest.exceptions.TestFailedException: Don't do this at home
+
+
+assert(None.isDefined, "Don't do this at home")
+       |    |
+       None false
+
+	at org.scalatest.Assertions$class.newAssertionFailedException(Assertions.scala:422)
+	...
+
+scala&gt; assert(None.isDefined,
+     |   "Don't do this at home")
+org.scalatest.exceptions.TestFailedException: Don't do this at home
+
+assert(None.isDefined,
+       |    |
+       None false
+
+	at org.scalatest.Assertions$class.newAssertionFailedException(Assertions.scala:422)
+	...
+</pre>
+
 <h2>Scalactic <code>Requirements</code></h2>
 
-<p>Scalactic includes a new trait that was not in ScalaUtils called <a href="@{latestScaladoc}/index.html#org.scalactic.Requirements"><code>Requirements</code></a>. This trait applies macros to the task of pre-condition checking through methods named <code>require</code>, <code>requireState</code>, and <code>requireNonNull</code>. The <code>require</code> methods throw <code>IllegalArgumentException</code>, like the <code>require</code> methods of <code>Predef</code>, but give an error message extracted from the AST.</p>
+<p>Scalactic includes a new trait that was not in ScalaUtils called <a href="@{latestScaladoc}/index.html#org.scalactic.Requirements"><code>Requirements</code></a>. This trait applies macros to the task of pre-condition checking through methods named <code>require</code>, <code>requireState</code>, and <code>requireNonNull</code>. These three methods attempt aim to improve error messages provided when a pre-condition check fails at runtime in production code. Although it is recommended practice to supply helpful error messages when doing pre-condition checks, often people don't. Instead of this:
+
+<pre>
+scala&gt; val length = 5
+length: Int = 5
+
+scala&gt; val idx = 6
+idx: Int = 6
+
+scala&gt; require(idx &gt;= 0 &amp;&amp; idx &lt;= length, "index, " + idx + ", was less than zero or greater than or equal to length, " + length)
+java.lang.IllegalArgumentException: requirement failed: index, 6, was less than zero or greater than or equal to length, 5
+	at scala.Predef$.require(Predef.scala:233)
+	...
+</pre>
 
 <p>
-The error messages produced by <code>require</code> are the same as those of the <code>assert</code> methods of ScalaTest's <code>Assertions</code> trait. Here's an example:
+People write simply:
+</p>
+
+<pre>
+scala&gt; require(idx &gt;= 0 &amp;&amp; idx &lt;= length)
+java.lang.IllegalArgumentException: requirement failed
+	at scala.Predef$.require(Predef.scala:221)
+	...
+</pre>
+
+<p>
+Note that the detail message of the <code>IllegalArgumentException</code> thrown by the previous line of code is simply, <code>"requirement failed"</code>.
+Such messages often end up in a log file or bug report, where a better error message can save you time in debugging the problem.
+By importing the members of <code>Requirements</code> (or mixing in its companion trait), you'll get a more helpful error message extracted by a macro, whether or not
+a clue message is provided:
 </p>
 
 <pre>
@@ -229,20 +313,13 @@ import org.scalactic._
 scala&gt; import Requirements._
 import Requirements._
 
-scala&gt; val a = 1
-a: Int = 1
+scala&gt; require(idx &gt;= 0 &amp;&amp; idx &lt;= length)
+java.lang.IllegalArgumentException: 6 was greater than or equal to 0, but 6 was not less than or equal to 5
+	at org.scalactic.Requirements$RequirementsHelper.macroRequire(Requirements.scala:56)
+	...
 
-scala&gt; val b = 2
-b: Int = 2
-
-scala&gt; val c = 3
-c: Int = 3
-
-scala&gt; val d = 4
-d: Int = 4
-
-scala&gt; require(a == b || c &gt;= d) 
-java.lang.IllegalArgumentException: 1 did not equal 2, and 3 was not greater than or equal to 4
+scala&gt; require(idx &gt;= 0 &amp;&amp; idx &lt;= length, "(hopefully that helps)")
+java.lang.IllegalArgumentException: 6 was greater than or equal to 0, but 6 was not less than or equal to 5 (hopefully that helps)
 	at org.scalactic.Requirements$RequirementsHelper.macroRequire(Requirements.scala:56)
 	...
 </pre>
@@ -252,11 +329,18 @@ The <code>requireState</code> method provides identical error messages to <code>
 </p>
 
 <pre>
-scala&gt; requireState(a == b || c &gt;= d) 
-java.lang.IllegalStateException: 1 did not equal 2, and 3 was not greater than or equal to 4
+scala&gt; val connectionOpen = false
+connectionOpen: Boolean = false
+
+scala&gt; requireState(connectionOpen)
+java.lang.IllegalStateException: connectionOpen was false
 	at org.scalactic.Requirements$RequirementsHelper.macroRequireState(Requirements.scala:71)
 	...
 </pre>
+
+<p>
+Thus, whereas the <code>require</code> methods throw the Java platform's standard exception indicating a passed argument violated a precondition, <code>IllegalArgumentException</code>, the <code>requireState</code> methods throw the standard exception indicating an object's method was invoked when the object was in an inappropriate state for that method, <code>IllegalStateException</code>.
+</p>
 
 <p>
 The <code>requireNonNull</code> method takes one or more variables as arguments and throws <code>NullPointerException</code> with an error messages that includes the variable names if any are <code>null</code>. Here's an example:
@@ -274,6 +358,10 @@ java.lang.NullPointerException: e and f were null
 	at org.scalactic.Requirements$RequirementsHelper.macroRequireNonNull(Requirements.scala:101)
 	...
 </pre>
+
+<p>
+Although trait <code>Requirements</code> can help you debug problems that occur in production, bear in mind that a much better alternative is to make it impossible for such events to occur at all. Use the type system to ensure that all pre-conditions are met so that the compiler can find broken pre-conditions and point them out with compiler error messages. When this is not possible or practical, however, trait <code>Requirements</code> is helpful.
+</p>
 
 <h2>Scalactic <code>Snapshots</code></h2>
 
