@@ -70,8 +70,8 @@ c: Int = 3
 scala&gt; val d = 4
 d: Int = 4
 
-scala&gt; assert(a == b || c &gt;= d) 
-org.scalatest.exceptions.TestFailedException: 1 did not equal 2, and 3 was not greater than or equal to 4
+scala&gt; assert(a == b || c &gt;= d)
+org.scalatest.exceptions.TestFailedException: <strong>1 did not equal 2, and 3 was not greater than or equal to 4</strong>
 	at org.scalatest.Assertions$class.newAssertionFailedException(Assertions.scala:422)
 	...
 
@@ -79,22 +79,22 @@ scala&gt; val xs = List(1, 2, 3)
 xs: List[Int] = List(1, 2, 3)
 
 scala&gt; assert(xs.exists(_ == 4))
-org.scalatest.exceptions.TestFailedException: List(1, 2, 3) did not contain 4
+org.scalatest.exceptions.TestFailedException: <strong>List(1, 2, 3) did not contain 4</strong>
 	at org.scalatest.Assertions$class.newAssertionFailedException(Assertions.scala:422)
 	...
 
 scala&gt; assert("hello".startsWith("h") &amp;&amp; "goodbye".endsWith("y"))
-org.scalatest.exceptions.TestFailedException: "hello" started with "h", but "goodbye" did not end with "y"
+org.scalatest.exceptions.TestFailedException: <strong>"hello" started with "h", but "goodbye" did not end with "y"</strong>
 	at org.scalatest.Assertions$class.newAssertionFailedException(Assertions.scala:422)
 	...
 
 scala&gt; assert(num.isInstanceOf[Int])
-org.scalatest.exceptions.TestFailedException: 1.0 was not instance of scala.Int
+org.scalatest.exceptions.TestFailedException: <strong>1.0 was not instance of scala.Int</strong>
 	at org.scalatest.Assertions$class.newAssertionFailedException(Assertions.scala:422)
 	...
 
 scala&gt; assert(Some(2).isEmpty)
-org.scalatest.exceptions.TestFailedException: Some(2) was not empty
+org.scalatest.exceptions.TestFailedException: <strong>Some(2) was not empty</strong>
 	at org.scalatest.Assertions$class.newAssertionFailedException(Assertions.scala:422)
 	...
 </pre>
@@ -109,12 +109,12 @@ error messages for unrecognized expressions:
 
 <pre>
 scala&gt; assert(None.isDefined)
-org.scalatest.exceptions.TestFailedException: scala.None.isDefined was false
+org.scalatest.exceptions.TestFailedException: <strong>scala.None.isDefined was false</strong>
 	at org.scalatest.Assertions$class.newAssertionFailedException(Assertions.scala:422)
 	...
 
 scala&gt; assert(xs.exists(i =&gt; i &gt; 10))
-org.scalatest.exceptions.TestFailedException: xs.exists(((i: Int) =&gt; i.&gt;(10))) was false
+org.scalatest.exceptions.TestFailedException: <strong>xs.exists(((i: Int) =&gt; i.&gt;(10))) was false</strong>
 	at org.scalatest.Assertions$class.newAssertionFailedException(Assertions.scala:422)
         ...
 </pre>
@@ -137,8 +137,8 @@ scala&gt; val q = false
 q: Boolean = false
 
 scala&gt; assert(p == q, s", though now that I think of it, $p has never equaled $q!")
-org.scalatest.exceptions.TestFailedException: true did not equal false, though now that I
-          think of it, true has never equaled false!
+org.scalatest.exceptions.TestFailedException: <strong>true did not equal false, though now that I
+          think of it, true has never equaled false!</strong>
 	at org.scalatest.Assertions$class.newAssertionFailedException(Assertions.scala:422)
         ...
 </pre>
@@ -154,12 +154,12 @@ import DiagrammedAssertions._
 scala&gt; assert(a == b || c &gt;= d) 
 org.scalatest.exceptions.TestFailedException: 
 
-assert(a == b || c &gt;= d)
+<strong>assert(a == b || c &gt;= d)
        | |  | |  | |  |
        1 |  2 |  3 |  4
          |    |    false
          |    false
-         false
+         false</strong>
 
 	at org.scalatest.Assertions$class.newAssertionFailedException(Assertions.scala:422)
 	...
@@ -167,10 +167,10 @@ assert(a == b || c &gt;= d)
 scala&gt; assert(xs.exists(_ == 4))
 org.scalatest.exceptions.TestFailedException: 
 
-assert(xs.exists(_ == 4))
+<strong>assert(xs.exists(_ == 4))
        |  |
        |  false
-       List(1, 2, 3)
+       List(1, 2, 3)</strong>
 
 	at org.scalatest.Assertions$class.newAssertionFailedException(Assertions.scala:422)
 	...
@@ -178,10 +178,10 @@ assert(xs.exists(_ == 4))
 scala&gt; assert("hello".startsWith("h") &amp;&amp; "goodbye".endsWith("y"))
 org.scalatest.exceptions.TestFailedException: 
 
-assert("hello".startsWith("h") &amp;&amp; "goodbye".endsWith("y"))
+<strong>assert("hello".startsWith("h") &amp;&amp; "goodbye".endsWith("y"))
        |       |          |    |  |         |        |
        "hello" true       "h"  |  "goodbye" false    "y"
-                               false
+                               false</strong>
 
 	at org.scalatest.Assertions$class.newAssertionFailedException(Assertions.scala:422)
 	...
@@ -189,9 +189,9 @@ assert("hello".startsWith("h") &amp;&amp; "goodbye".endsWith("y"))
 scala&gt; assert(num.isInstanceOf[Int])
 org.scalatest.exceptions.TestFailedException: 
 
-assert(num.isInstanceOf[Int])
+<strong>assert(num.isInstanceOf[Int])
        |   |
-       1.0 false
+       1.0 false</strong>
 
 	at org.scalatest.Assertions$class.newAssertionFailedException(Assertions.scala:422)
 	...
@@ -199,10 +199,10 @@ assert(num.isInstanceOf[Int])
 scala&gt; assert(Some(2).isEmpty)
 org.scalatest.exceptions.TestFailedException: 
 
-assert(Some(2).isEmpty)
+<strong>assert(Some(2).isEmpty)
        |    |  |
        |    2  false
-       Some(2)
+       Some(2)</strong>
 
 	at org.scalatest.Assertions$class.newAssertionFailedException(Assertions.scala:422)
 	...
@@ -210,9 +210,9 @@ assert(Some(2).isEmpty)
 scala&gt; assert(None.isDefined)
 org.scalatest.exceptions.TestFailedException: 
 
-assert(None.isDefined)
+<strong>assert(None.isDefined)
        |    |
-       None false
+       None false</strong>
 
 	at org.scalatest.Assertions$class.newAssertionFailedException(Assertions.scala:422)
 	...
@@ -220,10 +220,10 @@ assert(None.isDefined)
 scala&gt; assert(xs.exists(i =&gt; i &gt; 10))
 org.scalatest.exceptions.TestFailedException: 
 
-assert(xs.exists(i =&gt; i &gt; 10))
+<strong>assert(xs.exists(i =&gt; i &gt; 10))
        |  |
        |  false
-       List(1, 2, 3)
+       List(1, 2, 3)</strong>
 
 	at org.scalatest.Assertions$class.newAssertionFailedException(Assertions.scala:422)
 	...
@@ -238,34 +238,33 @@ back to the default style of error message, since drawing a diagram would be dif
 <pre>
 scala&gt; assert("hello".startsWith("h") &amp;&amp;
      |   "goodbye".endsWith("y"))
-org.scalatest.exceptions.TestFailedException: "hello" started with "h", but "goodbye" did not end with "y"
+org.scalatest.exceptions.TestFailedException: <strong>"hello" started with "h", but "goodbye" did not end with "y"</strong>
 	at org.scalatest.Assertions$class.newAssertionFailedException(Assertions.scala:422)
 	...
 </pre>
 
 <p>
-Also, since an expression diagram essentially represents multi-line ascii art, if a clue string is provided, it appears above the diagram, not after it. It will often also show up in the diagram:
+Also, since an expression diagram essentially represents multi-line ascii art, if a clue string is provided, it appears <em>above</em> the diagram, not after it. It will often also show up in the diagram:
 </p>
 
 <pre>
 scala&gt; assert(None.isDefined, "Don't do this at home")
-org.scalatest.exceptions.TestFailedException: Don't do this at home
-
+org.scalatest.exceptions.TestFailedException: <strong>Don't do this at home
 
 assert(None.isDefined, "Don't do this at home")
        |    |
-       None false
+       None false</strong>
 
 	at org.scalatest.Assertions$class.newAssertionFailedException(Assertions.scala:422)
 	...
 
 scala&gt; assert(None.isDefined,
      |   "Don't do this at home")
-org.scalatest.exceptions.TestFailedException: Don't do this at home
+org.scalatest.exceptions.TestFailedException: <strong>Don't do this at home
 
 assert(None.isDefined,
        |    |
-       None false
+       None false</strong>
 
 	at org.scalatest.Assertions$class.newAssertionFailedException(Assertions.scala:422)
 	...
@@ -283,7 +282,7 @@ scala&gt; val idx = 6
 idx: Int = 6
 
 scala&gt; require(idx &gt;= 0 &amp;&amp; idx &lt;= length, "index, " + idx + ", was less than zero or greater than or equal to length, " + length)
-java.lang.IllegalArgumentException: requirement failed: index, 6, was less than zero or greater than or equal to length, 5
+java.lang.IllegalArgumentException: <strong>requirement failed: index, 6, was less than zero or greater than or equal to length, 5</strong>
 	at scala.Predef$.require(Predef.scala:233)
 	...
 </pre>
@@ -294,7 +293,7 @@ People write simply:
 
 <pre>
 scala&gt; require(idx &gt;= 0 &amp;&amp; idx &lt;= length)
-java.lang.IllegalArgumentException: requirement failed
+java.lang.IllegalArgumentException: <strong>requirement failed</strong>
 	at scala.Predef$.require(Predef.scala:221)
 	...
 </pre>
@@ -314,12 +313,12 @@ scala&gt; import Requirements._
 import Requirements._
 
 scala&gt; require(idx &gt;= 0 &amp;&amp; idx &lt;= length)
-java.lang.IllegalArgumentException: 6 was greater than or equal to 0, but 6 was not less than or equal to 5
+java.lang.IllegalArgumentException: <strong>6 was greater than or equal to 0, but 6 was not less than or equal to 5</strong>
 	at org.scalactic.Requirements$RequirementsHelper.macroRequire(Requirements.scala:56)
 	...
 
 scala&gt; require(idx &gt;= 0 &amp;&amp; idx &lt;= length, "(hopefully that helps)")
-java.lang.IllegalArgumentException: 6 was greater than or equal to 0, but 6 was not less than or equal to 5 (hopefully that helps)
+java.lang.IllegalArgumentException: <strong>6 was greater than or equal to 0, but 6 was not less than or equal to 5 (hopefully that helps)</strong>
 	at org.scalactic.Requirements$RequirementsHelper.macroRequire(Requirements.scala:56)
 	...
 </pre>
@@ -333,7 +332,7 @@ scala&gt; val connectionOpen = false
 connectionOpen: Boolean = false
 
 scala&gt; requireState(connectionOpen)
-java.lang.IllegalStateException: connectionOpen was false
+java.lang.IllegalStateException: <strong>connectionOpen was false</strong>
 	at org.scalactic.Requirements$RequirementsHelper.macroRequireState(Requirements.scala:71)
 	...
 </pre>
@@ -354,7 +353,7 @@ scala&gt; val f: java.util.Date = null
 f: java.util.Date = null
 
 scala&gt; requireNonNull(a, b, c, d, e, f)
-java.lang.NullPointerException: e and f were null
+java.lang.NullPointerException: <strong>e and f were null</strong>
 	at org.scalactic.Requirements$RequirementsHelper.macroRequireNonNull(Requirements.scala:101)
 	...
 </pre>
@@ -372,7 +371,7 @@ scala&gt; import Snapshots._
 import Snapshots._
 
 scala&gt; snap(a, b, c, d, e, f)
-res3: org.scalactic.SnapshotSeq = a was 1, b was 2, c was 3, d was 4, e was null, f was null
+res3: org.scalactic.SnapshotSeq = <strong>a was 1, b was 2, c was 3, d was 4, e was null, f was null</strong>
 </pre>
 
 <p><code>SnapshotSeq</code> offers a <code>lines</code> method that places each variable name/value pair on its own line:<p>
@@ -380,12 +379,12 @@ res3: org.scalactic.SnapshotSeq = a was 1, b was 2, c was 3, d was 4, e was null
 <pre>
 scala&gt; snap(a, b, c, d, e, f).lines
 res4: String = 
-a was 1
+<strong>a was 1
 b was 2
 c was 3
 d was 4
 e was null
-f was null
+f was null</strong>
 </pre>
 
 <p>
@@ -394,7 +393,7 @@ Or, because a <code>SnapshotSeq</code> is a <code>IndexedSeq[Snapshot]</code>, y
 
 <pre>
 scala&gt; snap(a, b, c, d, e, f).mkString("Wow! ", ", and ", ". That's so awesome!")
-res6: String = Wow! a was 1, and b was 2, and c was 3, and d was 4, and e was null, and f was null. That's so awesome!
+res6: String = <strong>Wow! a was 1, and b was 2, and c was 3, and d was 4, and e was null, and f was null. That's so awesome!</strong>
 </pre>
 
 <h2><code>Assertions</code> and <code>Matchers</code> enhancements</h2>
@@ -479,13 +478,28 @@ scala&gt; name should matchPattern { case Name(first, _, _) =&gt;
                       ^
 </pre>
 
-<p>Added <code>should</code> <code>compile</code> syntax.</p>
+<p>Added <code>should</code> <code>compile</code> syntax to <code>Matchers</code> and an <code>assertNoTypeError</code> method to <code>Assertions</code>.</p>
 
-<p>Deprecated <code>assertTypeError</code> in favor of <code>assertDoesNotCompile</code>. Added <code>assertCompiles</code> syntax.</p>
+<!--
+should compile fails whether there's a syntax error or a type error. 
+should typeCheck fails whether there's a syntax error or a type error, because passing a syntax error would hide bugs. So this doesn't make sense.
+shouldNot compile will succeed if there's either a type error or a syntax error
+shouldNot typeCheck will succeed only if there's a type error: a syntax error will cause it to fail
+
+So what we want is:
+should compile and assertCompiles
+shouldNot compile and assertDoesNotCompile
+shouldNot typeCheck and assertTypeError
+-->
 
 <h2>Added <code>TestRegistration</code> trait</h2>
 
-<p>Added <code>TestRegistration</code>.</p>
+<p>Added trait <code>TestRegistration</code> (and <code>fixture.TestRegistration</code>), which offers methods <code>registerTest</code> and <code>registerIgnoredTest</code>. ScalaTests's style traits that register tests as functions--<code>FunSuite</code>, <code>FunSpec</code>, <code>FeatureSpec</code>, <code>FlatSpec</code>, <code>FreeSpec</code>, <code>PropSpec</code>, and <code>WordSpec</code>--now extend <code>TestRegistration</code>. This provides a more generic way to define tests programmatically, such as this use case from the <a href="https://github.com/typelevel/discipline/blob/master/src/main/scala/scalatest/Discipline.scala">Discipline project</a>. Currently trait <code>Discipline</code> will only work with <code>FunSuite</code>. With this enhancement to ScalaTest <code>Discipline</code> can be made to work with any style in which test are functions registered at construction time.
+</p>
+
+<p>
+Another use case for <code>TestRegistration</code> is to make a type error to mix traits that facilitate registration of shared tests into a style that does not support test registration. For example, the <a href="http://doc.scalatest.org/plus-play/1.0.0/#org.scalatestplus.play.AllBrowsersPerSuite"><code>AllBrowsersPerSuite</code></a> and <a href="http://doc.scalatest.org/plus-play/1.0.0/#org.scalatestplus.play.AllBrowsersPerTest"><code>AllBrowsersPerTest</code></a> traits of the <a href="">ScalaTest + Play</a> library only work if mixed into a trait that support registration of tests as functions. When ScalaTest + Play is released against 2.2.0, <code>TestRegistration</code> will be added as a self-type to <code>AllBrowsersPerSuite</code> and <code>AllBrowsersPerTest</code> to make it a compiler error if someone attempts to mix them into a style that does not support test registration.
+</p>
 
 <a name="enhancements"></a>
 <h2>Other enhancements</h2>
@@ -494,7 +508,7 @@ scala&gt; name should matchPattern { case Name(first, _, _) =&gt;
 
 <li>Moved <code>Page</code> out of <code>WebBrowser</code> to become a sibling in package <code>org.scalatest.selenium</code>, to make it easier to create reusabled <code>Page</code> classes.</li>
 
-<li>Added <code>recover</code> and <code>recoverWith</code> methods to <code>Or</code>.</li>
+<li>Added <code>recover</code> and <code>recoverWith</code> methods to <code>Or</code>, modeled after similar methods in <code>scala.util.Try</code>.</li>
 
 <li>Loosened type restrictions on HTML 5 input elements in the <a href="@{latestScaladoc}/index.html#org.scalatest.selenium.WebBrowser"><code>WebBrowser</code></a> trait's Selenium DSL to better support browsers that do not fully support the new elements. (Contributed by Matt Hughes.)</li>
 </ul>
