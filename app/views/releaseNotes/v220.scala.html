@@ -365,7 +365,7 @@ Although trait <code>Requirements</code> can help you debug problems that occur 
 
 <h2>Scalactic <code>Snapshots</code></h2>
 
-<p>Scalactic also includes a new trait named <a href="@{latestScaladoc}/index.html#org.scalatest.Snapshots"><code>Snapshots</code></a> that was not part of ScalaUtils. <code>Snapshots</code> provides a <code>snap</code> method that takes one or more arguments and results in a <code>SnapshotSeq</code>, whose <code>toString</code> lists the names and values of each argument:</p>
+<p>Scalactic also includes a new trait named <a href="@{latestScaladoc}/index.html#org.scalatest.Snapshots"><code>Snapshots</code></a> that was not part of ScalaUtils. <code>Snapshots</code> provides a <code>snap</code> method that takes one or more arguments and results in a <code>SnapshotSeq</code>, whose <code>toString</code> lists the names and values of each argument. It intended use case is to help you write debug and log messages that give a "snapshot" of program state. Here's an example:</p>
 
 <pre>
 scala&gt; import Snapshots._
@@ -399,7 +399,85 @@ res6: String = Wow! a was 1, and b was 2, and c was 3, and d was 4, and e was nu
 
 <h2><code>Assertions</code> and <code>Matchers</code> enhancements</h2>
 
-<p>Added <code>matchPattern</code>.</p>
+<p>Added a <code>matchPattern</code> matcher that uses a macro to enforce intended usage. ScalaTest's <code>Inside</code> trait has long provided an
+<code>inside</code> construct that allows you to perform assertions on values obtained via a pattern match. Here's an example:</p>
+
+<pre>
+scala&gt; import org.scalatest._
+import org.scalatest._
+
+scala&gt; import Matchers._
+import Matchers._
+
+scala&gt; import Inside._
+import Inside._
+
+scala&gt; case class Name(first: String, middle: String, last: String)
+defined class Name
+
+scala&gt; val name = Name("Jane", "Q", "Programmer")
+name: Name = Name(Jane,Q,Programmer)
+
+scala&gt; inside(name) { case Name(first, _, _) =>
+     |   first should startWith ("S")
+     | }
+org.scalatest.exceptions.TestFailedException: "Jane" did not start with substring "S",
+inside Name(Jane,Q,Programmer)
+	at org.scalatest.MatchersHelper$.newTestFailedException(MatchersHelper.scala:160)
+	...
+</pre>
+
+<p>
+This <code>inside</code> construct can also be used simply to ensure a value matches a given pattern, like this:
+</p>
+
+<pre>
+scala&gt; inside(name) { case Name("Sandra", _, _) =&gt; }
+org.scalatest.exceptions.TestFailedException: The partial function passed as the second parameter
+    to inside was not defined at the value passed as the first parameter to inside, which was: Name(Jane,Q,Programmer)
+	at org.scalatest.Inside$class.inside(Inside.scala:126)
+	...
+</pre>
+
+<p>
+However, the programmer intent in the previous code is less obvious--did they just want to ensure the pattern matched or did they forget
+to add an assertion? The new <code>matchPattern</code> syntax is designed to make this more obvious for users of <code>Matchers</code>.
+Here's what it looks like:
+</p>
+
+<pre>
+scala&gt; name should matchPattern { case Name("Sandra", _, _) =&gt; }
+org.scalatest.exceptions.TestFailedException: Name(Jane,Q,Programmer) did not match the given pattern
+	at org.scalatest.MatchersHelper$.newTestFailedException(MatchersHelper.scala:160)
+	...
+</pre>
+
+<p>
+The reason <code>matchPattern</code> was not added earlier was that until the advent of macros, there was no way to prevent this kind
+of usage:
+</p>
+
+<pre>
+name should matchPattern { case Name(first, _, _) =&gt;
+  first should startWith ("S")
+}
+</pre>
+
+<p>
+The above use case is what <code>inside</code> is for. To make user code consistent, <code>matchPattern</code> uses a macro to ensure
+only a pattern is provided--no code is allowed to the right of the rocket. Here's what you'll see at compile-time if you accidentally attempt this:
+</p>
+
+<pre>
+scala&gt; name should matchPattern { case Name(first, _, _) =&gt;
+     |   first should startWith ("S")
+     | }
+&lt;console&gt;:21: error: No code is allowed to the right of rocket symbols (=&gt;) in a partial function
+    passed to matchPattern, because matchPattern is intended only for ensuring that an expression matches a
+    pattern. If you want to make further assertions after a successful pattern match, use org.scalatest.Inside instead.
+                first should startWith ("S")
+                      ^
+</pre>
 
 <p>Added <code>should</code> <code>compile</code> syntax.</p>
 
