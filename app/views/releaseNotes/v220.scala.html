@@ -325,7 +325,7 @@ java.lang.IllegalArgumentException: 6 was greater than or equal to 0, but 6 was 
 </pre>
 
 <p>
-The <code>requireState</code> method provides identical error messages to <code>require</code>, but throw <code>IllegalStateException</code> instead of <code>IllegalArgumentException</code>:
+The <code>requireState</code> method provides identical error messages to <code>require</code>, but throws <code>IllegalStateException</code> instead of <code>IllegalArgumentException</code>:
 </p>
 
 <pre>
@@ -365,7 +365,7 @@ Although trait <code>Requirements</code> can help you debug problems that occur 
 
 <h2>Scalactic <code>Snapshots</code></h2>
 
-<p>Scalactic also includes a new trait named <a href="@{latestScaladoc}/index.html#org.scalatest.Snapshots"><code>Snapshots</code></a> that was not part of ScalaUtils. <code>Snapshots</code> provides a <code>snap</code> method that takes one or more arguments and results in a <code>SnapshotSeq</code>, whose <code>toString</code> lists the names and values of each argument. It intended use case is to help you write debug and log messages that give a "snapshot" of program state. Here's an example:</p>
+<p>Scalactic also includes a new trait named <a href="@{latestScaladoc}/index.html#org.scalatest.Snapshots"><code>Snapshots</code></a> that was not part of ScalaUtils. <code>Snapshots</code> provides a <code>snap</code> method that takes one or more arguments and results in a <code>SnapshotSeq</code>, whose <code>toString</code> lists the names and values of each argument. Its intended use case is to help you write debug and log messages that give a "snapshot" of program state. Here's an example:</p>
 
 <pre>
 scala&gt; import Snapshots._
