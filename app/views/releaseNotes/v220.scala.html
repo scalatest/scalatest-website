@@ -31,7 +31,21 @@ ScalaTest/ScalaUtils 2.1.x should break, but you will likely need to do a clean 
 For information on how to include ScalaTest in your project, see the <a href="/download">download page</a>.
 </p>
 
-<h2>Introducing the "Scalactic" library</h2>
+<h2>Overview</h2>
+
+<ul>
+<li><a href="#introductingScalactic">Introducing the Scalactic library</a></li>
+<li><a href="#enhancedAssertionsErrorMessages">Enhanced <code>Assertions</code> error messages</a></li>
+<li><a href="#diagrammedAssertions"><code>DiagrammedAssertions</code></a></li>
+<li><a href="#scalacticRequirements">Scalactic <code>Requirements</code></a></li>
+<li><a href="#scalacticSnapshots">Scalactic <code>Snapshots</code></a></li>
+<li><a href="#newMatchersAndAssertions">New matchers and assertions</a></li>
+<li><a href="#testRegistration"><code>TestRegistration</code> trait</a></li>
+<li><a href="#otherEnhancements">Other enhancements</a></li>
+</ul>
+
+<a name="introductingScalactic"></a>
+<h2>Introducing the Scalactic library</h2>
 
 <p>In 2.2.0, <a href="@{latestScaladoc}/index.html#org.scalautils.package"><code>org.scalautils</code></a> has been renamed to <a href="@{milestoneScaladoc}/index.html#org.scalactic.package"><code>org.scalactic</code></a> (rhymes with "galactic"). All existing code using <code>org.scalautils</code> directly will continue to work, but will receive a deprecation warning. Please change <code>scalautils</code> to <code>scalactic</code> when convenient, because after a lengthy deprecation period, <code>org.scalautils</code> will be removed.</p>
 
@@ -47,6 +61,7 @@ less prominently appeared since 2.0.
 Somewhat ironically, that 2009 scala-internals thread was a debate about Paul Phillip's addition of a <code>times</code> method to <code>RichInt</code>, which would make the imperative looping syntax, <code>5 times println</code>, supported by the Scala standard library by default. Martin Odersky indicated he felt the syntax was not Scala-like, and asked, "what's the analogue of 'Pythonic' in Scala?" By suggesting scalactic I was implying that <code>times</code> on <code>Int</code> was <em>not</em> "scalactic," yet since its initial release of ScalaUtils, that very syntax has been available via its <code>TimesOnInt</code> trait. Since ScalaUtils is now called Scalactic, <code>TimesOnInt</code> is now part of Scalactic. Perhaps what's "scalactic" about this is that the <code>5 times println</code> syntax is available from a third-party library rather than by default from the standard library.
 </p>
 
+<a name="enhancedAssertionsErrorMessages"></a>
 <h2>Enhanced <code>Assertions</code> error messages</h2>
 
 <p>For ScalaTest 2.2.0, we have enhanced the macro that produces error messages from the <code>assert</code> methods of trait <a href="@{milestoneScaladoc}/index.html#org.scalatest.Assertions"><code>Assertions</code></a>.
@@ -160,7 +175,8 @@ org.scalatest.exceptions.TestCanceledException: <strong>2 equaled 2, but 3 equal
         ...
 </pre>
 
-<h2>Added <code>DiagrammedAssertions</code></h2>
+<a name="diagrammedAssertions"></a>
+<h2><code>DiagrammedAssertions</code></h2>
 
 <p>Building on work that Peter Niederwieser has done in <a href="http://code.google.com/p/spock/">Spock</a> and <a href="https://github.com/pniederw/expecty">Expecty</a>, ScalaTest 2.2.0 introduces trait <a href="@{milestoneScaladoc}/index.html#org.scalatest.DiagrammedAssertions"><code>DiagrammedAssertions</code></a>. This trait extends <a href="@{milestoneScaladoc}/index.html#org.scalatest.Assertions"><code>Assertions</code></a> and overrides its <code>assert</code> methods, modifying the default macro to give error messages that show the original line of code and a value for each part of the expression. Here are some examples:</p>
 
@@ -287,6 +303,7 @@ assert(None.isDefined,
 	...
 </pre>
 
+<a name="scalacticRequirements"></a>
 <h2>Scalactic <code>Requirements</code></h2>
 
 <p>Scalactic includes a new trait that was not in ScalaUtils called <a href="@{milestoneScaladoc}/index.html#org.scalactic.Requirements"><code>Requirements</code></a>. This trait applies macros to the task of pre-condition checking through methods named <code>require</code>, <code>requireState</code>, and <code>requireNonNull</code>. These three methods aim to improve error messages provided when a pre-condition check fails at runtime in production code. Although it is recommended practice to supply helpful error messages when doing pre-condition checks, often people don't. Instead of this:
@@ -379,6 +396,7 @@ java.lang.NullPointerException: <strong>e and f were null</strong>
 Although trait <code>Requirements</code> can help you debug problems that occur in production, bear in mind that a much better alternative is to make it impossible for such events to occur at all. Use the type system to ensure that all pre-conditions are met so that the compiler can find broken pre-conditions and point them out with compiler error messages. When this is not possible or practical, however, trait <code>Requirements</code> is helpful.
 </p>
 
+<a name="scalacticSnapshots"></a>
 <h2>Scalactic <code>Snapshots</code></h2>
 
 <p>Scalactic also includes a new trait named <a href="@{milestoneScaladoc}/index.html#org.scalactic.Snapshots"><code>Snapshots</code></a> that was not part of ScalaUtils. <code>Snapshots</code> provides a <code>snap</code> method that takes one or more arguments and results in a <a href="@{milestoneScaladoc}/index.html#org.scalactic.SnapshotSeq"><code>SnapshotSeq</code></a>, whose <code>toString</code> lists the names and values of each argument. Its intended use case is to help you write debug and log messages that give a "snapshot" of program state. Here's an example:</p>
@@ -413,6 +431,7 @@ scala&gt; snap(a, b, c, d, e, f).mkString("Wow! ", ", and ", ". That's so awesom
 res6: String = <strong>Wow! a was 1, and b was 2, and c was 3, and d was 4, and e was null, and f was null. That's so awesome!</strong>
 </pre>
 
+<a name="newMatchersAndAssertions"></a>
 <h2>New matchers and assertions</h2>
 
 <p>Added a <code>matchPattern</code> matcher that uses a macro to enforce intended usage. ScalaTest's <a href="@{milestoneScaladoc}/index.html#org.scalatest.Inside"><code>Inside</code></a> trait has long provided an
@@ -509,7 +528,8 @@ shouldNot compile and assertDoesNotCompile
 shouldNot typeCheck and assertTypeError
 -->
 
-<h2>Added <code>TestRegistration</code> trait</h2>
+<a name="testRegistration"></a>
+<h2><code>TestRegistration</code> trait</h2>
 
 <p>Added trait <a href="@{milestoneScaladoc}/index.html#org.scalatest.TestRegistration"><code>TestRegistration</code></a> (and <a href="@{milestoneScaladoc}/index.html#org.scalatest.fixture.TestRegistration"><code>fixture.TestRegistration</code></a>), which offers methods <code>registerTest</code> and <code>registerIgnoredTest</code>. ScalaTests's style traits that register tests as functions--<code>FunSuite</code>, <code>FunSpec</code>, <code>FeatureSpec</code>, <code>FlatSpec</code>, <code>FreeSpec</code>, <code>PropSpec</code>, and <code>WordSpec</code>--now extend <code>TestRegistration</code>. This provides a more generic way to define tests programmatically, such as this use case from the <a href="https://github.com/typelevel/discipline/blob/master/src/main/scala/scalatest/Discipline.scala">Discipline project</a>. Currently trait <code>Discipline</code> will only work with <code>FunSuite</code>. With this enhancement to ScalaTest <code>Discipline</code> can be made to work with any style in which test are functions registered at construction time.
 </p>
@@ -518,7 +538,7 @@ shouldNot typeCheck and assertTypeError
 Another use case for <code>TestRegistration</code> is to make a type error to mix traits that facilitate registration of shared tests into a style that does not support test registration. For example, the <a href="http://doc.scalatest.org/plus-play/1.0.0/#org.scalatestplus.play.AllBrowsersPerSuite"><code>AllBrowsersPerSuite</code></a> and <a href="http://doc.scalatest.org/plus-play/1.0.0/#org.scalatestplus.play.AllBrowsersPerTest"><code>AllBrowsersPerTest</code></a> traits of the <a href="/plus/play">ScalaTest + Play</a> library only work if mixed into a trait that support registration of tests as functions. When ScalaTest + Play is released against 2.2.0, <code>TestRegistration</code> will be added as a self-type to <code>AllBrowsersPerSuite</code> and <code>AllBrowsersPerTest</code> to make it a compiler error if someone attempts to mix them into a style that does not support test registration.
 </p>
 
-<a name="enhancements"></a>
+<a name="otherEnhancements"></a>
 <h2>Other enhancements</h2>
 
 <ul>

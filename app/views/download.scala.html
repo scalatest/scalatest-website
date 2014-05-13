@@ -20,6 +20,10 @@
 
 <div style="text-align: left">
 
+<p>
+<strong><a href="#latestMilestone">See where we're heading. Check out ScalaTest and Scalactic 2.2.0-M1.</a></strong>
+</p>
+
 <h1>Downloading ScalaTest</h1>
 
 <p>
@@ -701,7 +705,7 @@ documentation, see the <a href="@routes.Application.scaladocsFile("2.1.0", "org.
 <p>
 ScalaUtils is a small library of utilities used by ScalaTest 2.1.0 that are useful in your production code as well as your tests. A copy of ScalaUtils is
 included in ScalaTest's jar file. If you wish to use ScalaUtils
-in your production code as well, see the <a href="#usingScalaUtils">information on ScalaUtils</a> below or the
+in your production code as well, see the <a href="#usingScalaUtils210">information on ScalaUtils</a> below or the
 <a href="http://scalautils.org"><code>scalautils.org</code></a> website. Here is the information for including ScalaTest
 in your project:
 </p>
@@ -755,7 +759,7 @@ If you don't have it already, you'll also need Scala. You can use any 2.10 relea
 <li><a href="http://www.scala-lang.org/downloads">Download latest Scala release</a></li>
 </ul>
 
-<a name="usingScalaUtils"></a>
+<a name="usingScalaUtils210"></a>
 <strong>Using ScalaUtils in your production code</strong>
 
 <p>
@@ -832,7 +836,7 @@ documentation, see the <a href="@routes.Application.scaladocsFile("2.0", "org.sc
 <p>
 ScalaUtils is a small library of utilities used by ScalaTest 2.0 that are useful in your production code as well as your tests. A copy of ScalaUtils is
 included in ScalaTest's jar file. If you wish to use ScalaUtils
-in your production code as well, see the <a href="#usingScalaUtils">information on ScalaUtils</a> below or the
+in your production code as well, see the <a href="#usingScalaUtils20">information on ScalaUtils</a> below or the
 <a href="http://scalautils.org"><code>scalautils.org</code></a> website. Here is the information for including ScalaTest
 in your project:
 </p>
@@ -886,7 +890,7 @@ If you don't have it already, you'll also need Scala. You can use any 2.10 relea
 <li><a href="http://www.scala-lang.org/downloads">Download latest Scala release</a></li>
 </ul>
 
-<a name="usingScalaUtils"></a>
+<a name="usingScalaUtils20"></a>
 <strong>Using ScalaUtils in your production code</strong>
 
 <p>
@@ -1546,30 +1550,30 @@ For detailed documentation, see the <a href="/scaladoc/1.0/">ScalaTest 1.0 Scala
 
 <hr />
 
-<!--
-<a name="latestRC">
+<a name="latestMilestone">
+
 <p>
-<strong>ScalaTest and ScalaUtils 2.1.0-RC3</strong> (for 2.10.0+) are available the
+<strong>ScalaTest and Scalactic 2.2.0-M1</strong> (for 2.10.0+) are available the
 <a href="https://oss.sonatype.org/content/groups/public/org/scalatest/">Sonatype OSS</a> Maven repository (which is mirrored on the
 central Maven repository as well).
 
 <p>
-For a list of the changes in this release, see the <a href="/release_notes/2.1.0">release notes</a>. For detailed
-documentation, see the <a href="@{milestoneScaladoc}/#org.scalatest.FlatSpec">ScalaTest 2.1.0 Scaladoc</a>.
+For a list of the changes in this release, see the <strong><a href="/release_notes/2.2.0">release notes</a></strong>. For detailed
+documentation, see the <a href="@{milestoneScaladoc}/#org.scalatest.FlatSpec">ScalaTest 2.2.0 Scaladoc</a>.
 </p>
 
 <p>
-ScalaUtils is a small library of utilities used by ScalaTest 2.1 that are useful in your production code as well as your tests. A copy of ScalaUtils is
-included in ScalaTest's jar file. If you wish to use ScalaUtils
-in your production code as well, see the <a href="#usingScalaUtils">information on ScalaUtils</a> below or the
-<a href="http://scalautils.org"><code>scalautils.org</code></a> website. Here is the information for including ScalaTest
+Scalactic is a small library of utilities used by ScalaTest 2.2.0 that are useful in your production code as well as your tests. A copy of Scalactic is
+included in ScalaTest's jar file. If you wish to use Scalactic
+in your production code as well, see the <a href="#usingScalactic220">information on Scalactic</a> below<!--or the
+<a href="http://scalautils.org"><code>scalautils.org</code></a> website-->. Here is the information for including ScalaTest
 in your project:
 </p>
 
 <ul>
 <li>group id: org.scalatest</li>
 <li>artifact id: scalatest_2.10</li>
-<li>version: 2.1.0-RC3</li>
+<li>version: 2.2.0-M1</li>
 </ul>
 
 <p>Here's the code for your Maven POM:</p>
@@ -1578,7 +1582,7 @@ in your project:
 &lt;dependency&gt;
   &lt;groupId&gt;org.scalatest&lt;/groupId&gt;
   &lt;artifactId&gt;scalatest_2.10&lt;/artifactId&gt;
-  &lt;version&gt;2.1.0-RC3&lt;/version&gt;
+  &lt;version&gt;2.2.0-M1&lt;/version&gt;
   &lt;scope&gt;test&lt;/scope&gt;
 &lt;/dependency&gt;
 </pre>
@@ -1588,7 +1592,7 @@ And for sbt, version 0.10 or higher (for Scala 2.10.0+):
 </p>
 
 <pre class="stGrayback">
-libraryDependencies += "org.scalatest" % "scalatest_2.10" % "2.1.0-RC3" % "test"
+libraryDependencies += "org.scalatest" % "scalatest_2.10" % "2.2.0-M1" % "test"
 </pre>
 
 <p>
@@ -1603,8 +1607,8 @@ For Scala 2.10.x:
 </p>
 
 <ul>
-<li><a href="https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest_2.10/2.0/scalatest_2.10-2.1.0-RC3.jar">Download ScalaTest 2.1.0-RC3 Jar</a></li>
-<li><a href="https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest_2.10/2.0/scalatest_2.10-2.1.0-RC3-scaladoc.jar">Download ScalaTest 2.1.0-RC3 Scaladoc documentation</a></li>
+<li><a href="https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest_2.10/2.0/scalatest_2.10-2.2.0-M1.jar">Download ScalaTest 2.2.0-M1 Jar</a></li>
+<li><a href="https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest_2.10/2.0/scalatest_2.10-2.2.0-M1-scaladoc.jar">Download ScalaTest 2.2.0-M1 Scaladoc documentation</a></li>
 </ul>
 
 <p>
@@ -1614,30 +1618,29 @@ If you don't have it already, you'll also need Scala. You can use any 2.10 relea
 <ul>
 <li><a href="http://www.scala-lang.org/downloads">Download latest Scala release</a></li>
 </ul>
--->
 
-<a name="usingScalaUtils"></a>
-<strong>Using ScalaUtils in your production code</strong>
+<a name="usingScalactic220"></a>
+<strong>Using Scalactic in your production code</strong>
 
 <p>
-The ScalaUtils library grew out of the ScalaTest project. ScalaTest is tightly integrated with ScalaUtils. Although you
+The Scalactic library grew out of the ScalaTest project. ScalaTest is tightly integrated with Scalactic. Although you
 should not include ScalaTest in your production class path (because when ScalaTest doesn't like something, it tends to
-throw <code>TestFailedException</code>), you can make use of ScalaUtils in you production code. Here's how:
+throw <code>TestFailedException</code>), you can make use of Scalactic in your production code. Here's how:
 </p>
 
 <ul>
-<li>group id: org.scalautils</li>
-<li>artifact id: scalautils_2.10</li>
-<li>version: 2.1.0-RC3</li>
+<li>group id: org.scalactic</li>
+<li>artifact id: scalactic_2.10</li>
+<li>version: 2.2.0-M1</li>
 </ul>
 
 <p>Here's the code for your Maven POM:</p>
 
 <pre class="stHighlighted">
 &lt;dependency&gt;
-  &lt;groupId&gt;org.scalautils&lt;/groupId&gt;
-  &lt;artifactId&gt;scalautils_2.10&lt;/artifactId&gt;
-  &lt;version&gt;2.1.0-RC3&lt;/version&gt;
+  &lt;groupId&gt;org.scalactic&lt;/groupId&gt;
+  &lt;artifactId&gt;scalactic_2.10&lt;/artifactId&gt;
+  &lt;version&gt;2.2.0-M1&lt;/version&gt;
 &lt;/dependency&gt;
 </pre>
 
@@ -1646,7 +1649,7 @@ And for sbt, version 0.10 or higher (for Scala 2.10.0+):
 </p>
 
 <pre class="stGrayback">
-libraryDependencies += "org.scalautils" % "scalautils_2.10" % "2.1.0-RC3"
+libraryDependencies += "org.scalactic" % "scalactic_2.10" % "2.2.0-M1"
 </pre>
 
 <p>
@@ -1661,8 +1664,8 @@ For Scala 2.10.x:
 </p>
 
 <ul>
-<li><a href="https://oss.sonatype.org/content/groups/public/org/scalautils/scalautils_2.10/2.1.0-RC3/scalautils_2.10-2.0.jar">Download ScalaUtils 2.0 Jar</a></li>
-<li><a href="https://oss.sonatype.org/content/groups/public/org/scalautils/scalautils_2.10/2.1.0-RC3/scalautils_2.10-2.0-scaladoc.jar">Download ScalaUtils 2.0 Scaladoc documentation</a></li>
+<li><a href="https://oss.sonatype.org/content/groups/public/org/scalactic/scalactic_2.10/2.2.0-M1/scalactic_2.10-2.2.0-M1.jar">Download Scalactic 2.0 Jar</a></li>
+<li><a href="https://oss.sonatype.org/content/groups/public/org/scalactic/scalactic_2.10/2.2.0-M1/scalactic_2.10-2.2.0-M1-scaladoc.jar">Download Scalactic 2.0 Scaladoc documentation</a></li>
 </ul>
 
 <p>
@@ -1674,8 +1677,8 @@ If you don't have it already, you'll also need Scala. You can use any 2.10 relea
 </ul>
 
 <p>
-For a list of the changes in this release, see the <a href="/release_notes/2.1.0">release notes</a>. For detailed
-documentation, see the <a href="http://www.artima.com/docs-scalatest-2.1.0-RC3/index.html#org.scalautils.package">ScalaUtils 2.1.0 Scaladoc</a>.
+For a list of the changes in this release, see the <a href="/release_notes/2.2.0">release notes</a>. For detailed
+documentation, see the <a href="http://www.artima.com/docs-scalatest-2.2.0-M1/index.html#org.scalactic.package">Scalactic 2.2.0-M1 Scaladoc</a>.
 </p>
 
 </div>
