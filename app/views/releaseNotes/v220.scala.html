@@ -71,6 +71,9 @@ c: Int = 3
 scala&gt; val d = 4
 d: Int = 4
 
+scala&gt; val num = 1.0
+num: Double = 1.0
+
 scala&gt; assert(a == b || c &gt;= d)
 org.scalatest.exceptions.TestFailedException: <strong>1 did not equal 2, and 3 was not greater than or equal to 4</strong>
 	at org.scalatest.Assertions$class.newAssertionFailedException(Assertions.scala:422)
@@ -141,6 +144,19 @@ scala&gt; assert(p == q, s", though now that I think of it, $p has never equaled
 org.scalatest.exceptions.TestFailedException: <strong>true did not equal false, though now that I
           think of it, true has never equaled false!</strong>
 	at org.scalatest.Assertions$class.newAssertionFailedException(Assertions.scala:422)
+        ...
+</pre>
+
+<p>
+Lastly, the <code>assume</code> methods received the same enhancement as the <code>assert</code> methods. Compared to <code>assert</code>, you'll get
+the same error message given the same expression from <code>assume</code>, but via a thrown <code>TestCanceledException</code> instead of a <code>TestFailedException</code>.
+Here's an example:
+</p>
+
+<pre>
+scala&gt; assume(a + 1 == b &amp;&amp; c != d - 1)
+org.scalatest.exceptions.TestCanceledException: <strong>2 equaled 2, but 3 equaled 3</strong>
+	at org.scalatest.Assertions$class.newTestCanceledException(Assertions.scala:433)
         ...
 </pre>
 
@@ -273,7 +289,7 @@ assert(None.isDefined,
 
 <h2>Scalactic <code>Requirements</code></h2>
 
-<p>Scalactic includes a new trait that was not in ScalaUtils called <a href="@{milestoneScaladoc}/index.html#org.scalactic.Requirements"><code>Requirements</code></a>. This trait applies macros to the task of pre-condition checking through methods named <code>require</code>, <code>requireState</code>, and <code>requireNonNull</code>. These three methods attempt aim to improve error messages provided when a pre-condition check fails at runtime in production code. Although it is recommended practice to supply helpful error messages when doing pre-condition checks, often people don't. Instead of this:
+<p>Scalactic includes a new trait that was not in ScalaUtils called <a href="@{milestoneScaladoc}/index.html#org.scalactic.Requirements"><code>Requirements</code></a>. This trait applies macros to the task of pre-condition checking through methods named <code>require</code>, <code>requireState</code>, and <code>requireNonNull</code>. These three methods aim to improve error messages provided when a pre-condition check fails at runtime in production code. Although it is recommended practice to supply helpful error messages when doing pre-condition checks, often people don't. Instead of this:
 
 <pre>
 scala&gt; val length = 5
@@ -397,7 +413,7 @@ scala&gt; snap(a, b, c, d, e, f).mkString("Wow! ", ", and ", ". That's so awesom
 res6: String = <strong>Wow! a was 1, and b was 2, and c was 3, and d was 4, and e was null, and f was null. That's so awesome!</strong>
 </pre>
 
-<h2><code>Assertions</code> and <code>Matchers</code> enhancements</h2>
+<h2>New matchers and assertions</h2>
 
 <p>Added a <code>matchPattern</code> matcher that uses a macro to enforce intended usage. ScalaTest's <a href="@{milestoneScaladoc}/index.html#org.scalatest.Inside"><code>Inside</code></a> trait has long provided an
 <code>inside</code> construct that allows you to perform assertions on values obtained via a pattern match. Here's an example:</p>
@@ -441,7 +457,7 @@ org.scalatest.exceptions.TestFailedException: The partial function passed as the
 
 <p>
 However, the programmer intent in the previous code is less obvious--did they just want to ensure the pattern matched or did they forget
-to add an assertion? The new <code>matchPattern</code> syntax is designed to make this more obvious for users of <a href="@{milestoneScaladoc}/index.html#org.scalatest.Matchers"><code>Matchers</code></a>.
+to add an assertion? The new <a href="@{milestoneScaladoc}/index.html#org.scalatest.Matchers@@matchingAPattern"><code>matchPattern</code></a> syntax is designed to make this more obvious for users of <a href="@{milestoneScaladoc}/index.html#org.scalatest.Matchers"><code>Matchers</code></a>.
 Here's what it looks like:
 </p>
 
