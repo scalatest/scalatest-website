@@ -514,19 +514,13 @@ scala&gt; name should matchPattern { case Name(first, _, _) =&gt;
                       ^
 </pre>
 
-<p>Added <code>should</code> <code>compile</code> syntax to <code>Matchers</code> and an <code>assertNoTypeError</code> method to <code>Assertions</code>.</p>
+<p>Added <code>should</code> <code>compile</code> and <code>shouldNot</code> <code>typeCheck</code> syntax to <code>Matchers</code> and <code>assertCompiles</code> and <code>assertDoesNotCompile</code> methods to <code>Assertions</code>:</p>
 
-<!--
-should compile fails whether there's a syntax error or a type error. 
-should typeCheck fails whether there's a syntax error or a type error, because passing a syntax error would hide bugs. So this doesn't make sense.
-shouldNot compile will succeed if there's either a type error or a syntax error
-shouldNot typeCheck will succeed only if there's a type error: a syntax error will cause it to fail
-
-So what we want is:
-should compile and assertCompiles
-shouldNot compile and assertDoesNotCompile
-shouldNot typeCheck and assertTypeError
--->
+<ul>
+<li><code>should</code> <code>compile</code> and <code>assertCompiles</code>: fails if the given snippet of code does not compile for any reason, else succeeds</li>
+<li><code>shouldNot</code> <code>compile</code> and <code>assertDoesNotCompile</code>: succeeds the given snippet of code does not compile for any reason, else fails</li>
+<li><code>shouldNot</code> <code>typeCheck</code> and <code>assertTypeError</code>: succeeds only if the given snippet of code fails to compile because of a type error; fails if the code either compiles or fails to compile because a syntax (not type) error</li>
+</ul>
 
 <a name="testRegistration"></a>
 <h2><code>TestRegistration</code> trait</h2>
@@ -548,22 +542,32 @@ Another use case for <code>TestRegistration</code> is to make a type error to mi
 <li>Added <code>recover</code> and <code>recoverWith</code> methods to <code>Or</code>, modeled after similar methods in <code>scala.util.Try</code>.</li>
 
 <li>Loosened type restrictions on HTML 5 input elements in the <a href="@{milestoneScaladoc}/index.html#org.scalatest.selenium.WebBrowser"><code>WebBrowser</code></a> trait's Selenium DSL to better support browsers that do not fully support the new elements. (Contributed by Matt Hughes.)</li>
+
+<li>Allow multiple <code>-o</code> and <code>-e</code> parameters passed from sbt to ScalaTest's <code>Framework</code> implementation, so that you can
+have a <code>-oS</code>, for example, in your <code>testOptions</code> in the build file and override it, say, with <code>test-only ... -- -oF</code>.</li>
+
+<li>Allow multiple <code>-l</code> and <code>-n</code> parameters passed to <code>Runner</code>. The driving use case for this change is to make it easier
+to write sbt code that will include or exclude different tags in different situations.</li>
+
+<li>Broadened where ScalaTest looks for tag annotations on a class. Previously it only looked on the class itself. Now it will look at all superclasses, and
+will discover any tag annotations there that are also annotated with <code>@@Inherited</code>. Annotated all the tag annotations in the
+<code>org.scalatest.tags</code> method with <code>@@Inherited</code> so they could be used in this way. Did <em>not</em> make <code>org.scalatest.Ignore</code>
+<code>@@Inherited</code>.
+</li>
+
 </ul>
 
-<!--
 <a name="bugFixes"></a>
 <h2>Bug fixes</h2>
 
 <ul>
 
-<li>Ensure sorted matcher works on single-element collections.</li>
+<li>Ensured the thread sbt users to call <code>done</code> on a <code>Runner</code> instance in ScalaTest's <code>Framework</code> implementation
+waits until the <code>ServerSocket</code> thread has received an event signalling the run is completed.</li>
 
-<li>Fixed bug whereby suites with no tests did not appear in the HTML reporter's home page list.</li>
-
-<li>Fixed bug in <code>assert</code>/<code>assume</code> macros that caused them to accidentally invoke by-names eagerly.</li>
+<li>Ensured the <code>-o</code> configuration will be used when running sbt in fork mode.</li>
 
 </ul>
--->
 
 <p>
             Visit <a href="@routes.ReleaseNotes.releaseNotesIndex">ScalaTest Release Notes</a> for links to the release notes of all previous versions, or
