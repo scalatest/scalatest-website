@@ -61,6 +61,35 @@ less prominently appeared since 2.0.
 Somewhat ironically, that 2009 scala-internals thread was a debate about Paul Phillip's addition of a <code>times</code> method to <code>RichInt</code>, which would make the imperative looping syntax, <code>5 times println</code>, supported by the Scala standard library by default. Martin Odersky indicated he felt the syntax was not Scala-like, and asked, "what's the analogue of 'Pythonic' in Scala?" By suggesting scalactic I was implying that <code>times</code> on <code>Int</code> was <em>not</em> "scalactic," yet since its initial release of ScalaUtils, that very syntax has been available via its <code>TimesOnInt</code> trait. Since ScalaUtils is now called Scalactic, <code>TimesOnInt</code> is now part of Scalactic. Perhaps what's "scalactic" about this is that the <code>5 times println</code> syntax is available from a third-party library rather than by default from the standard library.
 </p>
 
+<p>
+Note that although <code>org.scalautils</code> package name in your source code will continue to work during the deprecation period, there will be no artifacts with an <code>org.scalautils</code> group ID released for 2.2.0. If you were using ScalaUtils only through ScalaTest, then your build will continue to work as before. But if you were using ScalaUtils standalone in your production code, you may see an error like:
+</p>
+
+<pre>
+[warn]     ::::::::::::::::::::::::::::::::::::::::::::::
+[warn]     ::          UNRESOLVED DEPENDENCIES         ::
+[warn]     ::::::::::::::::::::::::::::::::::::::::::::::
+[warn]     :: org.scalautils#scalautils_2.10;2.2.0-RC1: not found
+[warn]     ::::::::::::::::::::::::::::::::::::::::::::::
+</pre>
+
+<p>
+If so, you'll need to change <code>"scalautils"</code> to <code>"scalactic"</code> in your build. For example, in an sbt build, you
+would need to change:
+</p>
+
+<pre>
+libraryDependencies += "org.scalautils" % "scalautils" % "2.1.7" % "test"
+</pre>
+
+<p>
+to:
+</p>
+
+<pre>
+libraryDependencies += "org.scalactic" % "scalactic" % "2.2.0-RC1" % "test"
+</pre>
+
 <a name="enhancedAssertionsErrorMessages"></a>
 <h2>Enhanced <code>Assertions</code> error messages</h2>
 
