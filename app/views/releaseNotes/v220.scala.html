@@ -17,13 +17,13 @@
 @import controllers.Application.latestScaladoc
 @import controllers.Application.milestoneScaladoc
 
-@releaseNotesPage("Scalactic/ScalaTest 2.2.0-M1 Release Notes") {
+@releaseNotesPage("Scalactic/ScalaTest 2.2.0-RC1 Release Notes") {
 <div style="text-align: left">
 
-<h1>ScalaTest/Scalactic 2.2.0-M1 Release Notes</h1>
+<h1>ScalaTest/Scalactic 2.2.0-RC1 Release Notes</h1>
 
 <p>
-ScalaTest/Scalactic 2.2.0-M1 includes the enhancements and deprecations listed below. No source code using
+ScalaTest/Scalactic 2.2.0-RC1 includes the enhancements and deprecations listed below. No source code using
 ScalaTest/ScalaUtils 2.1.x should break, but you will likely need to do a clean build to upgrade.
 </p>
 
@@ -553,6 +553,10 @@ to write sbt code that will include or exclude different tags in different situa
 will discover any tag annotations there that are also annotated with <code>@@Inherited</code>. Annotated all the tag annotations in the
 <code>org.scalatest.tags</code> method with <code>@@Inherited</code> so they could be used in this way. Did <em>not</em> make <code>org.scalatest.Ignore</code>
 <code>@@Inherited</code>.
+</li>
+
+<li>
+Note that like ScalaTest 2.1.7, 2.2.0-RC1 was compiled without the <code>no-specialization</code> flag. See the <a href="2.1.7">2.1.7 release notes</a> for details.
 </li>
 
 </ul>

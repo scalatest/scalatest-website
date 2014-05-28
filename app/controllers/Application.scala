@@ -21,12 +21,12 @@ import examples.StyleTraitExamples
 
 object Application extends Controller {
 
-  val latestScaladoc = "http://doc.scalatest.org/2.1.5"
-  val latestVersion = "2.1.5"
-  val milestoneVersion = "2.2.0-M1"
-  val milestoneJar = "https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest_2.10/2.1.0-RC3/scalatest_2.10-2.1.0-RC3.jar"
-  val latestJar = "https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest_2.11/2.1.5/scalatest_2.11-2.1.5.jar"
-  val milestoneScaladoc = "http://www.artima.com/docs-scalatest-2.2.0-M1"
+  val latestScaladoc = "http://doc.scalatest.org/2.1.7"
+  val latestVersion = "2.1.7"
+  val milestoneVersion = "2.2.0-RC1"
+  val milestoneJar = "https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest_2.11/2.2.0-RC1/scalatest_2.11-2.2.0-RC1.jar"
+  val latestJar = "https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest_2.11/2.1.7/scalatest_2.11-2.1.7.jar"
+  val milestoneScaladoc = "http://www.artima.com/docs-scalatest-2.2.0-RC1"
   val scaladocsLocation = "http://doc.scalatest.org"
   val releasesLocation = "http://www.artima.com/downloadScalaTest"
   val baseScalaVersion = "2.11.0"
