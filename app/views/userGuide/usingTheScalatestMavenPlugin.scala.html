@@ -24,15 +24,10 @@ The ScalaTest Maven plugin allows you to run ScalaTest tests through Maven witho
 and access all functionality of the ScalaTest <code>Runner</code>, including parallel execution and multiple reporters.
 </p>
 
-<p>
-The ScalaTest Maven plugin is not yet released final. It will be released final in conjunction with the ScalaTest 2.0 release. You can access
-it in the meantime from the <a href="https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest-maven-plugin/1.0-RC1/"><code>oss.sonatype.org</code> repository</a>:
-</p>
-
 <ul>
 <li>group id: org.scalatest</li>
 <li>artifact id: scalatest-maven-plugin</li>
-<li>version: 1.0-RC2</li>
+<li>version: 1.0</li>
 </ul>
 
 <p>
@@ -54,7 +49,7 @@ Here's an example of how to do this in your pom.xml:
 &lt;plugin&gt;
   &lt;groupId&gt;org.scalatest&lt;/groupId&gt;
   &lt;artifactId&gt;scalatest-maven-plugin&lt;/artifactId&gt;
-  &lt;version&gt;1.0-RC2&lt;/version&gt;
+  &lt;version&gt;1.0&lt;/version&gt;
   &lt;configuration&gt;
     &lt;reportsDirectory&gt;${project.build.directory}/surefire-reports&lt;/reportsDirectory&gt;
     &lt;junitxml&gt;.&lt;/junitxml&gt;
