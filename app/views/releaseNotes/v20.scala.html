@@ -353,9 +353,13 @@ and <a href="@latestScaladoc/#org.scalatest.matchers.MustMatchers"><code>MustMat
 which resides in package <code>org.scalatest</code>. (<code>MustMatchers</code> was actually already deprecated in ScalaTest 1.9.2.)  For folks using
 <code>ShouldMatchers</code>, getting rid of the deprecation warning should be as simple as replacing <code>org.scalatest.matchers.ShouldMatchers</code> with
 <code>org.scalatest.Matchers</code>. For folks using <code>MustMatchers</code>, however, it will unfortnately be slightly more trouble, because the new
-<code>Matchers</code> trait only supports <code>should</code> not <code>must</code>. So you will need to search and replace your uses of
+<code>Matchers</code> trait only supports <code>should</code> not <code>must</code>. <strike>So you will need to search and replace your uses of
 <code>must</code> with <code>should</code>. <code>MustMatchers</code> and <code>must</code> will continue to work for a good long deprecation period,
-but eventually it will be removed to make way for <code>must</code> possibly coming back later to serve a different purpose. Apologies for this rather large deprecation.
+but eventually it will be removed to make way for <code>must</code> possibly coming back later to serve a different purpose. Apologies for this rather large deprecation.</strike>
+<strong>Update: <code>MustMatchers</code> was resurrected in 2.1.0 in the <code>org.scalatest</code> package, so there's no need anymore to change <code>must</code>
+to <code>should</code>. In fact, the <code>org.scalatest.MustMatchers</code> type alias was accidentally left undeprecated in 2.0, so where you
+are mixing in trait <code>org.scalatest.matchers.MustMatchers</code>, you can in 2.0 get rid of the deprecation warning by mixing in
+<code>org.scalatest.MustMatchers</code> instead.</strong>
 </li>
 <li>
 Deprecated the <code>beforeAll</code> and <code>afterAll</code> methods of trait

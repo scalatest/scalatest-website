@@ -1,4 +1,4 @@
-@*
+/**
  * Copyright 2010-2013 Artima, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,20 +12,23 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *@
+ */
+package controllers
 
-@(pagename: String)(body: => Html)
+import play.api._
+import play.api.mvc._
 
-@topImage = {
+object Plus extends Controller {
 
-      <div class="message">
-        <img src="@routes.Assets.at("images/scalaTestHeading.gif")" width="700"
-             height="200" alt="ScalaTest: Simply Productive"/>
-      </div>
-<p style="align: center">
-<span style="font-size: 150%">Just Released - <a href="/release_notes/2.2.0">ScalaTest and Scalactic 2.2.0</a>!</span>
-</p>
+  def plusIndex = Action {
+    Ok(views.html.plus.plusIndex())
+  }
+
+  def playFramework = Action {
+    Ok(views.html.plus.playFramework())
+  }
+
+  def playVersions = Action {
+    Ok(views.html.plus.playVersions())
+  }
 }
-
-@main(pagename, topImage){@body}
-

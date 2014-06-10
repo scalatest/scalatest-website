@@ -1,0 +1,624 @@
+@*
+ * Copyright 2010-2014 Artima, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *@
+
+@import controllers.Application.latestScaladoc
+@import controllers.Application.milestoneScaladoc
+
+@combinedReleaseNotesPage("Scalactic/ScalaTest 2.2.0 Release Notes") {
+<div style="text-align: left">
+
+<h1>ScalaTest/Scalactic 2.2.0 Release Notes</h1>
+
+<p>
+ScalaTest/Scalactic 2.2.0 includes the enhancements and deprecations listed below. No source code using
+ScalaTest/ScalaUtils 2.1.x should break, but you will likely need to do a clean build to upgrade.
+</p>
+
+<p>
+For information on how to include ScalaTest in your project, see the <a href="/download">download page</a>.
+For information on how to use <a href="http://www.scalactic.org/">Scalactic</a> in your production code, see its <a href="http://www.scalactic.org/download">download page</a>.
+</p>
+
+<h2>Overview</h2>
+
+<ul>
+<li><a href="#introductingScalactic">Introducing the Scalactic library</a></li>
+<li><a href="#enhancedAssertionsErrorMessages">Enhanced <code>Assertions</code> error messages</a></li>
+<li><a href="#diagrammedAssertions"><code>DiagrammedAssertions</code></a></li>
+<li><a href="#scalacticRequirements">Scalactic <code>Requirements</code></a></li>
+<li><a href="#scalacticSnapshots">Scalactic <code>Snapshots</code></a></li>
+<li><a href="#newMatchersAndAssertions">New matchers and assertions</a></li>
+<li><a href="#testRegistration"><code>TestRegistration</code> trait</a></li>
+<li><a href="#otherEnhancements">Other enhancements</a></li>
+</ul>
+
+<a name="introductingScalactic"></a>
+<h2>Introducing the Scalactic library</h2>
+
+<p>In 2.2.0, <a href="@{latestScaladoc}/index.html#org.scalautils.package"><code>org.scalautils</code></a> has been renamed to <a href="@{latestScaladoc}/index.html#org.scalactic.package"><code>org.scalactic</code></a> (rhymes with "galactic"). All existing code using <code>org.scalautils</code> directly will continue to work, but will receive a deprecation warning. Please change <code>scalautils</code> to <code>scalactic</code> when convenient, because after a lengthy deprecation period, <code>org.scalautils</code> will be removed.</p>
+
+<p>
+ScalaUtils started out as a small library carved out of ScalaTest that made sense for production code as well as tests. It has since been growing more mature as a production-code library focused on quality, and 
+deserved a more distinctive name. The name "scalactic" comes from this <a href="http://www.scala-lang.org/old/node/3087.html">2009 scala-internals discussion</a>.
+I proposed it as a word to mean Scala-like, like "Pythonic" for Python. It never caught on for that, so instead I thought it might work well as the new name for ScalaUtils.
+Also, because Scalactic precedes ScalaTest alphabetically, its documentation shows up at the top of the combined Scaladoc instead of the bottom, where ScalaUtils has
+less prominently appeared since 2.0.
+</p>
+
+<p>
+Somewhat ironically, that 2009 scala-internals thread was a debate about Paul Phillip's addition of a <code>times</code> method to <code>RichInt</code>, which would make the imperative looping syntax, <code>5 times println</code>, supported by the Scala standard library by default. Martin Odersky indicated he felt the syntax was not Scala-like, and asked, "what's the analogue of 'Pythonic' in Scala?" By suggesting scalactic I was implying that <code>times</code> on <code>Int</code> was <em>not</em> "scalactic," yet since its initial release of ScalaUtils, that very syntax has been available via its <code>TimesOnInt</code> trait. Since ScalaUtils is now called Scalactic, <code>TimesOnInt</code> is now part of Scalactic. Perhaps what's "scalactic" about this is that the <code>5 times println</code> syntax is available from a third-party library rather than by default from the standard library.
+</p>
+
+<p>
+Note that although <code>org.scalautils</code> package name in your source code will continue to work during the deprecation period, there will be no artifacts with an <code>org.scalautils</code> group ID released for 2.2.0. If you were using ScalaUtils only through ScalaTest, then your build will continue to work as before. But if you were using ScalaUtils standalone in your production code, you may see an error like:
+</p>
+
+<pre>
+[warn]     ::::::::::::::::::::::::::::::::::::::::::::::
+[warn]     ::          UNRESOLVED DEPENDENCIES         ::
+[warn]     ::::::::::::::::::::::::::::::::::::::::::::::
+[warn]     :: org.scalautils#scalautils_2.10;2.2.0: not found
+[warn]     ::::::::::::::::::::::::::::::::::::::::::::::
+</pre>
+
+<p>
+If so, you'll need to change <code>"scalautils"</code> to <code>"scalactic"</code> in your build. For example, in an sbt build, you
+would need to change:
+</p>
+
+<pre>
+libraryDependencies += "org.scalautils" % "scalautils" % "2.1.7" % "test"
+</pre>
+
+<p>
+to:
+</p>
+
+<pre>
+libraryDependencies += "org.scalactic" % "scalactic" % "2.2.0" % "test"
+</pre>
+
+<a name="enhancedAssertionsErrorMessages"></a>
+<h2>Enhanced <code>Assertions</code> error messages</h2>
+
+<p>For ScalaTest 2.2.0, we have enhanced the macro that produces error messages from the <code>assert</code> methods of trait <a href="@{latestScaladoc}/index.html#org.scalatest.Assertions"><code>Assertions</code></a>.
+Here are some examples:</p>
+
+<pre>
+scala&gt; import org.scalatest._
+import org.scalatest._
+
+scala&gt; import Assertions._
+import Assertions._
+
+scala&gt; val a = 1
+a: Int = 1
+
+scala&gt; val b = 2
+b: Int = 2
+
+scala&gt; val c = 3
+c: Int = 3
+
+scala&gt; val d = 4
+d: Int = 4
+
+scala&gt; val num = 1.0
+num: Double = 1.0
+
+scala&gt; assert(a == b || c &gt;= d)
+org.scalatest.exceptions.TestFailedException: <strong>1 did not equal 2, and 3 was not greater than or equal to 4</strong>
+	at org.scalatest.Assertions$class.newAssertionFailedException(Assertions.scala:422)
+	...
+
+scala&gt; val xs = List(1, 2, 3)
+xs: List[Int] = List(1, 2, 3)
+
+scala&gt; assert(xs.exists(_ == 4))
+org.scalatest.exceptions.TestFailedException: <strong>List(1, 2, 3) did not contain 4</strong>
+	at org.scalatest.Assertions$class.newAssertionFailedException(Assertions.scala:422)
+	...
+
+scala&gt; assert("hello".startsWith("h") &amp;&amp; "goodbye".endsWith("y"))
+org.scalatest.exceptions.TestFailedException: <strong>"hello" started with "h", but "goodbye" did not end with "y"</strong>
+	at org.scalatest.Assertions$class.newAssertionFailedException(Assertions.scala:422)
+	...
+
+scala&gt; assert(num.isInstanceOf[Int])
+org.scalatest.exceptions.TestFailedException: <strong>1.0 was not instance of scala.Int</strong>
+	at org.scalatest.Assertions$class.newAssertionFailedException(Assertions.scala:422)
+	...
+
+scala&gt; assert(Some(2).isEmpty)
+org.scalatest.exceptions.TestFailedException: <strong>Some(2) was not empty</strong>
+	at org.scalatest.Assertions$class.newAssertionFailedException(Assertions.scala:422)
+	...
+</pre>
+
+<p>
+The macro works by recognizing patterns in the AST of the expression passed to <code>assert</code> and,
+for a finite set of common expressions, giving an error message that an equivalent ScalaTest matcher
+expression would give. For expressions that are not recognized, the macro currently prints out a string
+representation of the (desugared) AST and adds <code>"was false"</code>. Here are some examples of
+error messages for unrecognized expressions:
+</p>
+
+<pre>
+scala&gt; assert(None.isDefined)
+org.scalatest.exceptions.TestFailedException: <strong>scala.None.isDefined was false</strong>
+	at org.scalatest.Assertions$class.newAssertionFailedException(Assertions.scala:422)
+	...
+
+scala&gt; assert(xs.exists(i =&gt; i &gt; 10))
+org.scalatest.exceptions.TestFailedException: <strong>xs.exists(((i: Int) =&gt; i.&gt;(10))) was false</strong>
+	at org.scalatest.Assertions$class.newAssertionFailedException(Assertions.scala:422)
+        ...
+</pre>
+
+<p>
+In the future we hope to improve the default error messages by showing values at the leaf nodes, and to the extent possible, showing
+a representation of the original AST before it was desugared. Getting back to the original AST before desugaring is difficult (if not impossible) 
+using macros as they are currently defined, but hopefully this use case will help motivate some improvements in that direction to Scala macros.
+</p>
+
+<p>
+Note that if a clue string is supplied in the assertion, it will be appended to the macro-generated error message:
+</p>
+
+<pre>
+scala&gt; val p = true
+p: Boolean = true
+
+scala&gt; val q = false
+q: Boolean = false
+
+scala&gt; assert(p == q, s", though now that I think of it, $p has never equaled $q!")
+org.scalatest.exceptions.TestFailedException: <strong>true did not equal false, though now that I
+          think of it, true has never equaled false!</strong>
+	at org.scalatest.Assertions$class.newAssertionFailedException(Assertions.scala:422)
+        ...
+</pre>
+
+<p>
+Lastly, the <code>assume</code> methods received the same enhancement as the <code>assert</code> methods. Compared to <code>assert</code>, you'll get
+the same error message given the same expression from <code>assume</code>, but via a thrown <code>TestCanceledException</code> instead of a <code>TestFailedException</code>.
+Here's an example:
+</p>
+
+<pre>
+scala&gt; assume(a + 1 == b &amp;&amp; c != d - 1)
+org.scalatest.exceptions.TestCanceledException: <strong>2 equaled 2, but 3 equaled 3</strong>
+	at org.scalatest.Assertions$class.newTestCanceledException(Assertions.scala:433)
+        ...
+</pre>
+
+<a name="diagrammedAssertions"></a>
+<h2><code>DiagrammedAssertions</code></h2>
+
+<p>Building on work that Peter Niederwieser has done in <a href="http://code.google.com/p/spock/">Spock</a> and <a href="https://github.com/pniederw/expecty">Expecty</a>, ScalaTest 2.2.0 introduces trait <a href="@{latestScaladoc}/index.html#org.scalatest.DiagrammedAssertions"><code>DiagrammedAssertions</code></a>. This trait extends <a href="@{latestScaladoc}/index.html#org.scalatest.Assertions"><code>Assertions</code></a> and overrides its <code>assert</code> methods, modifying the default macro to give error messages that show the original line of code and a value for each part of the expression. Here are some examples:</p>
+
+<pre>
+scala&gt; import DiagrammedAssertions._
+import DiagrammedAssertions._
+
+scala&gt; assert(a == b || c &gt;= d) 
+org.scalatest.exceptions.TestFailedException: 
+
+<strong>assert(a == b || c &gt;= d)
+       | |  | |  | |  |
+       1 |  2 |  3 |  4
+         |    |    false
+         |    false
+         false</strong>
+
+	at org.scalatest.Assertions$class.newAssertionFailedException(Assertions.scala:422)
+	...
+
+scala&gt; assert(xs.exists(_ == 4))
+org.scalatest.exceptions.TestFailedException: 
+
+<strong>assert(xs.exists(_ == 4))
+       |  |
+       |  false
+       List(1, 2, 3)</strong>
+
+	at org.scalatest.Assertions$class.newAssertionFailedException(Assertions.scala:422)
+	...
+
+scala&gt; assert("hello".startsWith("h") &amp;&amp; "goodbye".endsWith("y"))
+org.scalatest.exceptions.TestFailedException: 
+
+<strong>assert("hello".startsWith("h") &amp;&amp; "goodbye".endsWith("y"))
+       |       |          |    |  |         |        |
+       "hello" true       "h"  |  "goodbye" false    "y"
+                               false</strong>
+
+	at org.scalatest.Assertions$class.newAssertionFailedException(Assertions.scala:422)
+	...
+
+scala&gt; assert(num.isInstanceOf[Int])
+org.scalatest.exceptions.TestFailedException: 
+
+<strong>assert(num.isInstanceOf[Int])
+       |   |
+       1.0 false</strong>
+
+	at org.scalatest.Assertions$class.newAssertionFailedException(Assertions.scala:422)
+	...
+
+scala&gt; assert(Some(2).isEmpty)
+org.scalatest.exceptions.TestFailedException: 
+
+<strong>assert(Some(2).isEmpty)
+       |    |  |
+       |    2  false
+       Some(2)</strong>
+
+	at org.scalatest.Assertions$class.newAssertionFailedException(Assertions.scala:422)
+	...
+
+scala&gt; assert(None.isDefined)
+org.scalatest.exceptions.TestFailedException: 
+
+<strong>assert(None.isDefined)
+       |    |
+       None false</strong>
+
+	at org.scalatest.Assertions$class.newAssertionFailedException(Assertions.scala:422)
+	...
+
+scala&gt; assert(xs.exists(i =&gt; i &gt; 10))
+org.scalatest.exceptions.TestFailedException: 
+
+<strong>assert(xs.exists(i =&gt; i &gt; 10))
+       |  |
+       |  false
+       List(1, 2, 3)</strong>
+
+	at org.scalatest.Assertions$class.newAssertionFailedException(Assertions.scala:422)
+	...
+</pre>
+
+<p>
+If the expression passed to <code>assert</code> spans more than one line, <code>DiagrammedAssertions</code> falls
+back to the default style of error message, since drawing a diagram would be difficult. Here's an example showing how 
+<code>DiagrammedAssertions</code> will treat a multi-line assertion (<em>i.e.</em>, you don't get a diagram):
+</p>
+
+<pre>
+scala&gt; assert("hello".startsWith("h") &amp;&amp;
+     |   "goodbye".endsWith("y"))
+org.scalatest.exceptions.TestFailedException: <strong>"hello" started with "h", but "goodbye" did not end with "y"</strong>
+	at org.scalatest.Assertions$class.newAssertionFailedException(Assertions.scala:422)
+	...
+</pre>
+
+<p>
+Also, since an expression diagram essentially represents multi-line ascii art, if a clue string is provided, it appears <em>above</em> the diagram, not after it. It will often also show up in the diagram:
+</p>
+
+<pre>
+scala&gt; assert(None.isDefined, "Don't do this at home")
+org.scalatest.exceptions.TestFailedException: <strong>Don't do this at home
+
+assert(None.isDefined, "Don't do this at home")
+       |    |
+       None false</strong>
+
+	at org.scalatest.Assertions$class.newAssertionFailedException(Assertions.scala:422)
+	...
+
+scala&gt; assert(None.isDefined,
+     |   "Don't do this at home")
+org.scalatest.exceptions.TestFailedException: <strong>Don't do this at home
+
+assert(None.isDefined,
+       |    |
+       None false</strong>
+
+	at org.scalatest.Assertions$class.newAssertionFailedException(Assertions.scala:422)
+	...
+</pre>
+
+<a name="scalacticRequirements"></a>
+<h2>Scalactic <code>Requirements</code></h2>
+
+<p>Scalactic includes a new trait that was not in ScalaUtils called <a href="@{latestScaladoc}/index.html#org.scalactic.Requirements"><code>Requirements</code></a>. This trait applies macros to the task of pre-condition checking through methods named <code>require</code>, <code>requireState</code>, and <code>requireNonNull</code>. These three methods aim to improve error messages provided when a pre-condition check fails at runtime in production code. Although it is recommended practice to supply helpful error messages when doing pre-condition checks, often people don't. Instead of this:
+
+<pre>
+scala&gt; val length = 5
+length: Int = 5
+
+scala&gt; val idx = 6
+idx: Int = 6
+
+scala&gt; require(idx &gt;= 0 &amp;&amp; idx &lt;= length, "index, " + idx + ", was less than zero or greater than or equal to length, " + length)
+java.lang.IllegalArgumentException: <strong>requirement failed: index, 6, was less than zero or greater than or equal to length, 5</strong>
+	at scala.Predef$.require(Predef.scala:233)
+	...
+</pre>
+
+<p>
+People write simply:
+</p>
+
+<pre>
+scala&gt; require(idx &gt;= 0 &amp;&amp; idx &lt;= length)
+java.lang.IllegalArgumentException: <strong>requirement failed</strong>
+	at scala.Predef$.require(Predef.scala:221)
+	...
+</pre>
+
+<p>
+Note that the detail message of the <code>IllegalArgumentException</code> thrown by the previous line of code is simply, <code>"requirement failed"</code>.
+Such messages often end up in a log file or bug report, where a better error message can save you time in debugging the problem.
+By importing the members of <code>Requirements</code> (or mixing in its companion trait), you'll get a more helpful error message extracted by a macro, whether or not
+a clue message is provided:
+</p>
+
+<pre>
+scala&gt; import org.scalactic._
+import org.scalactic._
+
+scala&gt; import Requirements._
+import Requirements._
+
+scala&gt; require(idx &gt;= 0 &amp;&amp; idx &lt;= length)
+java.lang.IllegalArgumentException: <strong>6 was greater than or equal to 0, but 6 was not less than or equal to 5</strong>
+	at org.scalactic.Requirements$RequirementsHelper.macroRequire(Requirements.scala:56)
+	...
+
+scala&gt; require(idx &gt;= 0 &amp;&amp; idx &lt;= length, "(hopefully that helps)")
+java.lang.IllegalArgumentException: <strong>6 was greater than or equal to 0, but 6 was not less than or equal to 5 (hopefully that helps)</strong>
+	at org.scalactic.Requirements$RequirementsHelper.macroRequire(Requirements.scala:56)
+	...
+</pre>
+
+<p>
+The <code>requireState</code> method provides identical error messages to <code>require</code>, but throws <code>IllegalStateException</code> instead of <code>IllegalArgumentException</code>:
+</p>
+
+<pre>
+scala&gt; val connectionOpen = false
+connectionOpen: Boolean = false
+
+scala&gt; requireState(connectionOpen)
+java.lang.IllegalStateException: <strong>connectionOpen was false</strong>
+	at org.scalactic.Requirements$RequirementsHelper.macroRequireState(Requirements.scala:71)
+	...
+</pre>
+
+<p>
+Thus, whereas the <code>require</code> methods throw the Java platform's standard exception indicating a passed argument violated a precondition, <code>IllegalArgumentException</code>, the <code>requireState</code> methods throw the standard exception indicating an object's method was invoked when the object was in an inappropriate state for that method, <code>IllegalStateException</code>.
+</p>
+
+<p>
+The <code>requireNonNull</code> method takes one or more variables as arguments and throws <code>NullPointerException</code> with an error messages that includes the variable names if any are <code>null</code>. Here's an example:
+</p>
+
+<pre>
+scala&gt; val e: String = null
+e: String = null
+
+scala&gt; val f: java.util.Date = null
+f: java.util.Date = null
+
+scala&gt; requireNonNull(a, b, c, d, e, f)
+java.lang.NullPointerException: <strong>e and f were null</strong>
+	at org.scalactic.Requirements$RequirementsHelper.macroRequireNonNull(Requirements.scala:101)
+	...
+</pre>
+
+<p>
+Although trait <code>Requirements</code> can help you debug problems that occur in production, bear in mind that a much better alternative is to make it impossible for such events to occur at all. Use the type system to ensure that all pre-conditions are met so that the compiler can find broken pre-conditions and point them out with compiler error messages. When this is not possible or practical, however, trait <code>Requirements</code> is helpful.
+</p>
+
+<a name="scalacticSnapshots"></a>
+<h2>Scalactic <code>Snapshots</code></h2>
+
+<p>Scalactic also includes a new trait named <a href="@{latestScaladoc}/index.html#org.scalactic.Snapshots"><code>Snapshots</code></a> that was not part of ScalaUtils. <code>Snapshots</code> provides a <code>snap</code> method that takes one or more arguments and results in a <a href="@{latestScaladoc}/index.html#org.scalactic.SnapshotSeq"><code>SnapshotSeq</code></a>, whose <code>toString</code> lists the names and values of each argument. Its intended use case is to help you write debug and log messages that give a "snapshot" of program state. Here's an example:</p>
+
+<pre>
+scala&gt; import Snapshots._
+import Snapshots._
+
+scala&gt; snap(a, b, c, d, e, f)
+res3: org.scalactic.SnapshotSeq = <strong>a was 1, b was 2, c was 3, d was 4, e was null, f was null</strong>
+</pre>
+
+<p><code>SnapshotSeq</code> offers a <code>lines</code> method that places each variable name/value pair on its own line:<p>
+
+<pre>
+scala&gt; snap(a, b, c, d, e, f).lines
+res4: String = 
+<strong>a was 1
+b was 2
+c was 3
+d was 4
+e was null
+f was null</strong>
+</pre>
+
+<p>
+Or, because a <code>SnapshotSeq</code> is a <code>IndexedSeq[Snapshot]</code>, you can process it just like any other <code>Seq</code>, for example:
+</p>
+
+<pre>
+scala&gt; snap(a, b, c, d, e, f).mkString("Wow! ", ", and ", ". That's so awesome!")
+res6: String = <strong>Wow! a was 1, and b was 2, and c was 3, and d was 4, and e was null, and f was null. That's so awesome!</strong>
+</pre>
+
+<a name="newMatchersAndAssertions"></a>
+<h2>New matchers and assertions</h2>
+
+<p>Added a <code>matchPattern</code> matcher that uses a macro to enforce intended usage. ScalaTest's <a href="@{latestScaladoc}/index.html#org.scalatest.Inside"><code>Inside</code></a> trait has long provided an
+<code>inside</code> construct that allows you to perform assertions on values obtained via a pattern match. Here's an example:</p>
+
+<pre>
+scala&gt; import org.scalatest._
+import org.scalatest._
+
+scala&gt; import Matchers._
+import Matchers._
+
+scala&gt; import Inside._
+import Inside._
+
+scala&gt; case class Name(first: String, middle: String, last: String)
+defined class Name
+
+scala&gt; val name = Name("Jane", "Q", "Programmer")
+name: Name = Name(Jane,Q,Programmer)
+
+scala&gt; inside(name) { case Name(first, _, _) =>
+     |   first should startWith ("S")
+     | }
+org.scalatest.exceptions.TestFailedException: "Jane" did not start with substring "S",
+inside Name(Jane,Q,Programmer)
+	at org.scalatest.MatchersHelper$.newTestFailedException(MatchersHelper.scala:160)
+	...
+</pre>
+
+<p>
+This <code>inside</code> construct can also be used simply to ensure a value matches a given pattern, like this:
+</p>
+
+<pre>
+scala&gt; inside(name) { case Name("Sandra", _, _) =&gt; }
+org.scalatest.exceptions.TestFailedException: The partial function passed as the second parameter
+    to inside was not defined at the value passed as the first parameter to inside, which was: Name(Jane,Q,Programmer)
+	at org.scalatest.Inside$class.inside(Inside.scala:126)
+	...
+</pre>
+
+<p>
+However, the programmer intent in the previous code is less obvious--did they just want to ensure the pattern matched or did they forget
+to add an assertion? The new <a href="@{latestScaladoc}/index.html#org.scalatest.Matchers@@matchingAPattern"><code>matchPattern</code></a> syntax is designed to make this more obvious for users of <a href="@{latestScaladoc}/index.html#org.scalatest.Matchers"><code>Matchers</code></a>.
+Here's what it looks like:
+</p>
+
+<pre>
+scala&gt; name should matchPattern { case Name("Sandra", _, _) =&gt; }
+org.scalatest.exceptions.TestFailedException: Name(Jane,Q,Programmer) did not match the given pattern
+	at org.scalatest.MatchersHelper$.newTestFailedException(MatchersHelper.scala:160)
+	...
+</pre>
+
+<p>
+The reason <code>matchPattern</code> was not added earlier was that until the advent of macros, there was no way to prevent this kind
+of usage:
+</p>
+
+<pre>
+name should matchPattern { case Name(first, _, _) =&gt;
+  first should startWith ("S")
+}
+</pre>
+
+<p>
+The above use case is what <code>inside</code> is for. To make user code consistent, <code>matchPattern</code> uses a macro to ensure
+only a pattern is provided--no code is allowed to the right of the rocket. Here's what you'll see at compile-time if you accidentally attempt this:
+</p>
+
+<pre>
+scala&gt; name should matchPattern { case Name(first, _, _) =&gt;
+     |   first should startWith ("S")
+     | }
+&lt;console&gt;:21: error: No code is allowed to the right of rocket symbols (=&gt;) in a partial function
+    passed to matchPattern, because matchPattern is intended only for ensuring that an expression matches a
+    pattern. If you want to make further assertions after a successful pattern match, use org.scalatest.Inside instead.
+                first should startWith ("S")
+                      ^
+</pre>
+
+<p>Added <code>should</code> <code>compile</code> and <code>shouldNot</code> <code>typeCheck</code> syntax to <code>Matchers</code> and <code>assertCompiles</code> and <code>assertDoesNotCompile</code> methods to <code>Assertions</code>:</p>
+
+<ul>
+<li><code>should</code> <code>compile</code> and <code>assertCompiles</code>: fails if the given snippet of code does not compile for any reason, else succeeds</li>
+<li><code>shouldNot</code> <code>compile</code> and <code>assertDoesNotCompile</code>: succeeds the given snippet of code does not compile for any reason, else fails</li>
+<li><code>shouldNot</code> <code>typeCheck</code> and <code>assertTypeError</code>: succeeds only if the given snippet of code fails to compile because of a type error; fails if the code either compiles or fails to compile because a syntax (not type) error</li>
+</ul>
+
+<a name="testRegistration"></a>
+<h2><code>TestRegistration</code> trait</h2>
+
+<p>Added trait <a href="@{latestScaladoc}/index.html#org.scalatest.TestRegistration"><code>TestRegistration</code></a> (and <a href="@{latestScaladoc}/index.html#org.scalatest.fixture.TestRegistration"><code>fixture.TestRegistration</code></a>), which offers methods <code>registerTest</code> and <code>registerIgnoredTest</code>. ScalaTests's style traits that register tests as functions--<code>FunSuite</code>, <code>FunSpec</code>, <code>FeatureSpec</code>, <code>FlatSpec</code>, <code>FreeSpec</code>, <code>PropSpec</code>, and <code>WordSpec</code>--now extend <code>TestRegistration</code>. This provides a more generic way to define tests programmatically, such as this use case from the <a href="https://github.com/typelevel/discipline/blob/master/src/main/scala/scalatest/Discipline.scala">Discipline project</a>. Currently trait <code>Discipline</code> will only work with <code>FunSuite</code>. With this enhancement to ScalaTest <code>Discipline</code> can be made to work with any style in which test are functions registered at construction time.
+</p>
+
+<p>
+Another use case for <code>TestRegistration</code> is to make a type error to mix traits that facilitate registration of shared tests into a style that does not support test registration. For example, the <a href="http://doc.scalatest.org/plus-play/1.0.0/#org.scalatestplus.play.AllBrowsersPerSuite"><code>AllBrowsersPerSuite</code></a> and <a href="http://doc.scalatest.org/plus-play/1.0.0/#org.scalatestplus.play.AllBrowsersPerTest"><code>AllBrowsersPerTest</code></a> traits of the <a href="/plus/play">ScalaTest + Play</a> library only work if mixed into a trait that support registration of tests as functions. When ScalaTest + Play is released against 2.2.0, <code>TestRegistration</code> will be added as a self-type to <code>AllBrowsersPerSuite</code> and <code>AllBrowsersPerTest</code> to make it a compiler error if someone attempts to mix them into a style that does not support test registration.
+</p>
+
+<a name="otherEnhancements"></a>
+<h2>Other enhancements</h2>
+
+<ul>
+
+<li>Moved <a href="@{latestScaladoc}/index.html#org.scalatest.selenium.Page"><code>Page</code></a> out of <a href="@{latestScaladoc}/index.html#org.scalatest.selenium.WebBrowser"><code>WebBrowser</code></a> to become a sibling in package <a href="@{latestScaladoc}/index.html#org.scalatest.selenium.package"><code>org.scalatest.selenium</code></a>, to make it easier to create reusabled <code>Page</code> classes.</li>
+
+<li>Added <code>recover</code> and <code>recoverWith</code> methods to <code>Or</code>, modeled after similar methods in <code>scala.util.Try</code>.</li>
+
+<li>Loosened type restrictions on HTML 5 input elements in the <a href="@{latestScaladoc}/index.html#org.scalatest.selenium.WebBrowser"><code>WebBrowser</code></a> trait's Selenium DSL to better support browsers that do not fully support the new elements. (Contributed by Matt Hughes.)</li>
+
+<li>Allow multiple <code>-o</code> and <code>-e</code> parameters passed from sbt to ScalaTest's <code>Framework</code> implementation, so that you can
+have a <code>-oS</code>, for example, in your <code>testOptions</code> in the build file and override it, say, with <code>test-only ... -- -oF</code>.</li>
+
+<li>Allow multiple <code>-l</code> and <code>-n</code> parameters passed to <code>Runner</code>. The driving use case for this change is to make it easier
+to write sbt code that will include or exclude different tags in different situations.</li>
+
+<li>Broadened where ScalaTest looks for tag annotations on a class. Previously it only looked on the class itself. Now it will look at all superclasses, and
+will discover any tag annotations there that are also annotated with <code>@@Inherited</code>. Annotated all the tag annotations in the
+<code>org.scalatest.tags</code> method with <code>@@Inherited</code> so they could be used in this way. Did <em>not</em> make <code>org.scalatest.Ignore</code>
+<code>@@Inherited</code>.
+</li>
+
+<li>Made <a href="@{latestScaladoc}/index.html#org.scalatest.fixture.NoArg"><code>NoArg</code></a> thread safe. Originally it was not synchronized because its
+intended use is by one thread. Although this behavior was described in its Scaladoc documentation, this was changed in 2.2.0 to make it more bulletproof.
+</li>
+
+<li>Made <a href="@{latestScaladoc}/index.html#org.scalatest.fixture.NoArg"><code>NoArg</code></a> thread safe. Originally it was not synchronized because its
+intended use is by one thread. Although this behavior was described in its Scaladoc documentation, this was changed in 2.2.0 to make it more bulletproof.
+</li>
+
+<li>Added <code>ScalaTestVersion</code> to the <code>org.scalatest</code> package object and <code>ScalacticVersion</code> to the <code>org.scalactic</code>
+package object that return a string giving the version number. 
+</li>
+
+<li>
+Note that like ScalaTest 2.1.7, 2.2.0 was compiled without the <code>no-specialization</code> flag. See the <a href="2.1.7">2.1.7 release notes</a> for details.
+</li>
+
+</ul>
+
+<a name="bugFixes"></a>
+<h2>Bug fixes</h2>
+
+<ul>
+
+<li>Ensured the thread sbt users to call <code>done</code> on a <code>Runner</code> instance in ScalaTest's <code>Framework</code> implementation
+waits until the <code>ServerSocket</code> thread has received an event signalling the run is completed.</li>
+
+<li>Ensured the <code>-o</code> configuration will be used when running sbt in fork mode.</li>
+
+</ul>
+
+<p>
+            Visit <a href="@routes.ReleaseNotes.releaseNotesIndex">ScalaTest Release Notes</a> for links to the release notes of all previous versions, or
+step back in time by visiting the <a href="2.1.7">release notes for the previous version</a>.
+</p>
+
+</div>
+}

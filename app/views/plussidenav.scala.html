@@ -14,18 +14,18 @@
  * limitations under the License.
  *@
 
-@(pagename: String)(body: => Html)
+@(pagename: String)
 
-@topImage = {
-
-      <div class="message">
-        <img src="@routes.Assets.at("images/scalaTestHeading.gif")" width="700"
-             height="200" alt="ScalaTest: Simply Productive"/>
-      </div>
-<p style="align: center">
-<span style="font-size: 150%">Just Released - <a href="/release_notes/2.2.0">ScalaTest and Scalactic 2.2.0</a>!</span>
-</p>
+@genlink(title: String, url: String) = {
+  @if(pagename == title) {
+    <span><em>@title</em></span>
+  } else {
+    <a href="@url">@title</a>
+  }
+<br />
+<br />
 }
 
-@main(pagename, topImage){@body}
+<strong>Libraries</strong><br /><br />
+@genlink("ScalaTest + Play", "/plus/play")
 

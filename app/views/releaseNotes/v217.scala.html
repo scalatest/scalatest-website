@@ -1,0 +1,62 @@
+@*
+* Copyright 2010-2013 Artima, Inc.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*@
+
+@import controllers.Application.latestScaladoc
+
+@releaseNotesPage("ScalaTest 2.1.7 Release Notes") {
+    <div style="text-align: left">
+
+        <h1>ScalaTest 2.1.7 Release Notes</h1>
+
+        <p>
+            ScalaTest 2.1.7 is a maintenance release for the 2.1.x series that includes the two changes listed below.
+No source code using ScalaTest 2.0+ should break, but you may need to do a clean build to upgrade.
+Although, 2.1.7 will likely binary compatible for the vast majority of projects using earlier 2.1.x versions, because of a compiler bug in the interaction of
+the <code>no-specialization</code> flag and <code>DelayedInit</code> under Scala 2.10, it is safest to do a clean build to upgrade to 2.1.7.
+        </p>
+
+        <a name="changes"></a>
+        <h2>Changes</h2>
+
+        <ul>
+<li>In <a href="@{latestScaladoc}/index.html#org.scalatest.concurrent.AsyncAssertions"><code>AsyncAssertions</code></a>, if a <a href="@{latestScaladoc}/index.html#org.scalatest.concurrent.AsyncAssertions$Waiter"><code>Waiter</code></a> receives <em>more </em> than the expected number of dismissals, it will no longer report
+this as an error: <em>i.e.</em>, receiving greater than the number of expected dismissals without any failed assertion will simply
+cause the the test to complete, not to fail. As of 2.1.7, the only way a <code>Waiter</code> will cause a test to fail is if one of the
+asynchronous assertions to which it is applied fails.</li>
+
+            <li><p>Compiled ScalaTest 2.1.7 without the <code>no-specialization</code> flag. This flag was set in the ScalaTest build several years ago to work around a bug in the Scala 
+compiler. Although that compiler bug was fixed, the <code>no-specialization</code> flag persisted under the radar in the ScalaTest build until now. In theory the removal
+of this flag in the ScalaTest build shouldn't affect any users, but because of a bug in the interaction of Scala's <code>DelayedInit</code> flag and
+the <code>no-specialization</code> flag in Scala 2.10, there's a chance some users may need to recompile their tests without the <code>no-specialiation</code>
+flag under 2.10.
+</p>
+<p>
+The only place <code>DelayedInit</code> appears in ScalaTest is in its
+<a href="@{latestScaladoc}/index.html#org.scalatest.fixture.NoArg"><code>NoArg</code></a> trait. The documentation for this trait recommends using
+it only as a last resort, when none of the other, simpler alternatives for sharing fixtures will suffice. So <code>NoArg</code> should be only rarely used, but
+if you have used it and lightening strikes, it will take the form of a <code>NoSuchMethodError</code> when your tests run even though everything has compiled fine.
+To solve this problem, do a clean build of your project without the <code>no-specialization</code> flag. If you have any problems with this, please
+post to ScalaTest users and we'll help you out.</p>
+ </li>
+        </ul>
+
+        <p>
+            Visit <a href="@routes.ReleaseNotes.releaseNotesIndex">ScalaTest Release Notes</a> for links to the release notes of all previous versions, or
+step back in time by visiting the <a href="2.1.6">release notes for the previous version</a>.
+        </p>
+
+    </div>
+}
