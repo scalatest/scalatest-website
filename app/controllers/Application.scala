@@ -28,6 +28,7 @@ object Application extends Controller {
   val latestJar = "https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest_2.11/2.2.0/scalatest_2.11-2.2.0.jar"
   val milestoneScaladoc = "http://www.artima.com/docs-scalatest-2.2.0-RC1"
   val scaladocsLocation = "http://doc.scalatest.org"
+  val scalatestPlusPlayScaladocsLocation = "http://doc.scalatest.org/scalatestplus-play"
   val releasesLocation = "http://www.artima.com/downloadScalaTest"
   val baseScalaVersion = "2.11.0"
   val majorMinorScalaVersion = "2.11"
@@ -103,6 +104,10 @@ object Application extends Controller {
 
   def scaladocsFile(release: String, file: String) = Action {
     Redirect(scaladocsLocation + "/" + release + "/index.html#" + file)
+  }
+
+  def scalatestPlusPlayScaladocsFile(release: String, file: String) = Action {
+    Redirect(scalatestPlusPlayScaladocsLocation + "/" + release + "/index.html#" + file)
   }
 
   // Redirect legacy releases URLs (the are too big for free heroku,
