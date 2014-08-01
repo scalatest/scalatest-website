@@ -147,5 +147,4 @@ object UserGuide extends Controller {
   def usingScalatestWithIntelliJ = Action {
     Ok(views.html.userGuide.usingScalaTestWithIntelliJ())
   }
-
 }

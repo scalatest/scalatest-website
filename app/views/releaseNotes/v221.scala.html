@@ -1,0 +1,62 @@
+@*
+ * Copyright 2010-2014 Artima, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *@
+
+@import controllers.Application.latestScaladoc
+@import controllers.Application.milestoneScaladoc
+
+@combinedReleaseNotesPage("Scalactic/ScalaTest 2.2.1 Release Notes") {
+<div style="text-align: left">
+
+<h1>ScalaTest/Scalactic 2.2.1 Release Notes</h1>
+
+<p>
+ScalaTest/Scalactic 2.2.1 includes the enhancements and bug fixes listed below. No source code using
+ScalaTest/ScalaUtils 2.0 or higher should break, but from any version other than 2.2.0 (with which this release is binary
+compatible), you will likely need to do a clean build to upgrade.
+</p>
+
+<p>
+For information on how to include ScalaTest in your project, see the <a href="/download">download page</a>.
+For information on how to use <a href="http://www.scalactic.org/">Scalactic</a> in your production code, see its <a href="http://www.scalactic.org/download">download page</a>.
+</p>
+
+<h2>Overview</h2>
+
+<a name="enhancments"></a>
+<h2>Enhancements</h2>
+
+<ul>
+<li>Added traits <a href="@{latestScaladoc}/index.html#org.scalatest.StreamlinedXml"><code>StreamlinedXml</code></a>,
+<a href="@{latestScaladoc}/index.html#org.scalatest.StreamlinedXmlNormMethods"><code>StreamlinedXmlNormMethods</code></a>, and
+<a href="@{latestScaladoc}/index.html#org.scalatest.StreamlinedXmlEquality"><code>StreamlinedXmlEquality</code></a>,
+to make it easier to write tests that compare XML documents.</li>
+</ul>
+
+<a name="bugFixes"></a>
+<h2>Bug fixes</h2>
+
+<ul>
+<li>Made the <a href="@{latestScaladoc}/index.html#org.scalatest.DiagrammedAssertions"><code>DiagrammedAssertions</code></a> macro work with XML.</li>
+<li>Modified the default assert macro to work around a breaking change in macro support between Scala versions 2.11.1 and 2.11.2.</li>
+</ul>
+
+<p>
+            Visit <a href="@routes.ReleaseNotes.releaseNotesIndex">ScalaTest Release Notes</a> for links to the release notes of all previous versions, or
+step back in time by visiting the <a href="2.2.0">release notes for the previous version</a>.
+</p>
+
+</div>
+}
