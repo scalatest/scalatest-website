@@ -68,12 +68,15 @@ Here is a table of contents for this page:
 <li><a href="#workingWithContainers">Working with "containers"</a></li>
 <li><a href="#workingWithAggregations">Working with "aggregations"</a></li>
 <li><a href="#workingWithSequences">Working with "sequences"</a></li>
+<li><a href="#workingWithSortables">Working with "sortables"</a></li>
 <li><a href="#workingWithIterators">Working with iterators</a></li>
 <li><a href="#inspectorShorthands">Inspector shorthands</a></li>
 <li><a href="#singleElementCollections">Single-element collections</a></li>
 <li><a href="#javaCollectionsAndMaps">Java collections and maps</a></li>
+<li><a href="#stringsAndArraysAsCollections"><code>String</code>s and <code>Array</code>s as collections</a></li>
 <li><a href="#beAsAnEqualityComparison">Be as an equality comparison</a></li>
 <li><a href="#beingNegative">Being negative</a></li>
+<li><a href="#checkingThatCodeDoesNotCompile">Checking that a snippet of code does not compile</a></li>
 <li><a href="#logicalExpressions">Logical expressions with <code>and</code> and <code>or</code></a></li>
 <li><a href="#workingWithOptions">Working with <code>Option</code>s</a></li>
 <li><a href="#checkingArbitraryProperties">Checking arbitrary properties with <code>have</code></a></li>
@@ -691,6 +694,14 @@ the same exact elements in the same (iteration) order:</p>
 ordering of its elements, which in this case is 1, 2, 3. An iterator obtained from the left-hand <code>List</code> will produce the same elements
 in the same order.</p>
 
+<a name="workingWithSortables"></a>
+<h2> Working with &quot;sortables&quot; </h2>
+<p>You can also ask whether the elements of &quot;sortable&quot; objects (such as <code>Array</code>s, Java <code>List</code>s, and <code>GenSeq</code>s)
+are in sorted order, like this:</p>
+<p><pre class="stHighlighted">
+<span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>) shouldBe sorted
+</pre></p>
+
 <a name="workingWithIterators"> </a>
 <h2> Working with iterators </h2>
 
@@ -860,6 +871,30 @@ javaMap should contain key <span class="stLiteral">1</span>
 javaMap should contain value <span class="stQuotedString">&quot;Howdy&quot;</span>
 </pre></p>
 
+<a name="stringsAndArraysAsCollections"> </a>
+<h2> <code>String</code>s and <code>Array</code>s as collections </h2>
+<p>You can also use all the syntax described above for Scala and Java collections on <code>Array</code>s and
+<code>String</code>s. Here are some examples:</p>
+<pre class="stREPL">
+scala&gt; import org.scalatest._
+import org.scalatest._
+
+scala&gt; import Matchers._
+import Matchers._
+
+scala&gt; atLeast (2, Array(1, 2, 3)) should be &gt; 1
+
+scala&gt; atMost (2, &quot;halloo&quot;) shouldBe 'o'
+
+scala&gt; Array(1, 2, 3) shouldBe sorted
+
+scala&gt; &quot;abcdefg&quot; shouldBe sorted
+
+scala&gt; Array(1, 2, 3) should contain atMostOneOf (3, 4, 5)
+
+scala&gt; &quot;abc&quot; should contain atMostOneOf ('c', 'd', 'e')
+</pre>
+
 <a name="beAsAnEqualityComparison"> </a>
 <h2> <code>be</code> as an equality comparison </h2>
 
@@ -927,6 +962,42 @@ sum should not be &lt;= (<span class="stLiteral">10</span>)
 mylist should not equal (yourList)
 string should not startWith (<span class="stQuotedString">&quot;Hello&quot;</span>)
 </pre></p>
+
+<a name="checkingThatCodeDoesNotCompile"> </a>
+<h2>Checking that a snippet of code does not compile</h2>
+
+<p>Often when creating libraries you may wish to ensure that certain arrangements of code that
+represent potential &ldquo;user errors&rdquo; do not compile, so that your library is more error resistant.
+ScalaTest <code>Matchers</code> trait includes the following syntax for that purpose:</p>
+
+<pre class="stHighlighted">
+<span class="stQuotedString">&quot;val a: String = 1&quot;</span> shouldNot compile
+</pre>
+
+<p>If you want to ensure that a snippet of code does not compile because of a type error (as opposed
+to a syntax error), use:</p>
+
+<pre class="stHighlighted">
+<span class="stQuotedString">&quot;val a: String = 1&quot;</span> shouldNot typeCheck
+</pre>
+
+<p>
+Note that the <code>shouldNot</code> <code>typeCheck</code> syntax will only succeed if the given snippet of code does not
+compile because of a type error. A syntax error will still result on a thrown <code>TestFailedException</code>.
+</p>
+
+<p>If you want to state that a snippet of code <em>does</em> compile, you can make that
+more obvious with:</p>
+
+<pre class="stHighlighted">
+<span class="stQuotedString">&quot;val a: Int = 1&quot;</span> should compile
+</pre>
+
+<p>
+Although the previous three constructs are implemented with macros that determine at compile time whether
+the snippet of code represented by the string does or does not compile, errors
+are reported as test failures at runtime.
+</p>
 
 <a name="logicalExpressions"> </a>
 <h2> Logical expressions with <code>and</code> and <code>or</code> </h2>
