@@ -17,19 +17,29 @@
 @widePage("Videos") {
 <div style="text-align: left">
 
-<h1>ScalaTest videos</h1>
+<h1>ScalaTest-related videos</h1>
 
+<!--
+December 9, 2014 Scala eXchange ScalaTest and Scalactic 30
+https://skillsmatter.com/skillscasts/6021-scalatest-and-scalactic-3-0
+In this talk, Bill Venners will give you a tour of what's new in ScalaTest and Scalactic 3.0, including equality enhancements, EquaSets, restricted value types, and laws checking. 
+-->
+<!--
+Comparing Functional Error Handling in Scalaz and Scalactic
+Northeast Scala Symposium January 30, 2015
+In this talk I'll compare and contrast the approaches to functional error handling taken by Scalaz and Scalactic. I'll look at how different opinions on typeclass coherence led to two classes in Scalaz, \/ and Validation, and just one in Scalactic, Or. I'll explain why when it comes to success values, I feel left is right and right is wrong, whereas the Scalazzi think the opposite. I'll show how the libraries use algebraic structures differently. And I'll explore how different opinions on how best to leverage functional programming (FP) in Scala led to different library designs.
+-->
 <table width="100%">
 <tr width="100%" valign="top">
 <td width="48%">
-<span style="font-size: 125%"><a href="javascript:void(window.open('https://www.youtube.com/watch?v=gUjLFPRt2KU', '_blank'))">Equality for All</a></span>
+<span style="font-size: 125%"><a href="javascript:void(window.open('http://www.youtube.com/watch?v=Pqh_QFFzIlI', '_blank'))">Simplicity in Scala Design</a></span>
 
 <p>
-The Java platform defines a notion of universal equality in the equals method of java.lang.Object: because the type of
-the parameter passed to equals is java.lang.Object, any object can be compared for equality with any other object. This
-allows different types that represent the same (or compatible) concepts to be compared for equality (such as Int and
-BigInt, or Vector[Int] and List[Int]), but also allows comparisons to compile that will always fail at runtime (such
-as Int and String).
+In this talk from the Northeast Scala Symposium on Feb 8, 2013, Bill Venners focuses on how to achieve simplicity
+in Scala library, DSL, and application design. It highlights general principles
+that can be applied to any programming language, and shows specific techniques that can be used in Scala to "implement" the
+general principles. This talk gives you a set of concrete guidelines (which guide the design of ScalaTest and Scalactic) that can help
+you manage complexity in your Scala projects.
 </p>
 </td>
 <td width="4%">
@@ -38,29 +48,22 @@ as Int and String).
 <td width="48%">
 <em>The guidelines from this talk</em>
 <ul>
-<li>Think of programming as investing.</li>
-<li>Write focused tests with descriptive names.</li>
-<li>Beware duplication in tests!</li>
-<li>Don't overspecify in tests.</li>
-<li>Transform human errors into type errors.</li>
-<li>Throw exceptions only at humans, never at code.</li>
-<li>Minimize pre-conditions.</li>
+<li>Design for busy teams.</li>
+<li>Make it obvious, guessable, or easy to remember.</li>
+<li>Design for readers, then writers.</li>
+<li>Make errors impossible, or difficult.</li>
+<li>Exploit familiarity.</li>
+<li>Document with examples.</li>
+<li>Minimize redundancy.</li>
+<li>Maximize consistency.</li>
+<li>Use symbols when your users are already experts in them.</li>
+<li>Minimize the magic.</li>
 </ul>
-<em>
-<p>
-And on tests versus types:
-</p>
-<blockquote>
-Tests can only find your code not guilty. They can't prove it innocent.
-</blockquote>
-<blockquote>
-Types can only "prove innocence" to the extent they are tested.
-</blockquote>
-</em>
 </td>
 </tr>
 </table>
 
+<hr />
 <table width="100%">
 <tr width="100%" valign="top">
 <td width="48%">
@@ -74,8 +77,9 @@ can help you find bugs, they can't prove the absence of bugs.
 </p>
 
 <p>
-So how do you maximize the return on your investment in tests? In this talk, Bill Venners, lead developer of
-ScalaTest, will tackle this question and give his opinions. You'll come away with a set of specific guidelines
+So how do you maximize the return on your investment in tests? In this talk from the ScalaDays conference on June 17, 2014,
+Bill Venners, lead developer of
+ScalaTest, tackles this question and give his opinions. You'll come away with a set of specific guidelines
 that can help you decide how best to employ testing in your projects.
 </p>
 </td>
@@ -108,40 +112,43 @@ Types can only "prove innocence" to the extent they are tested.
 </tr>
 </table>
 
+<hr />
 <table width="100%">
 <tr width="100%" valign="top">
 <td width="48%">
-<span style="font-size: 125%"><a href="javascript:void(window.open('http://skillsmatter.com/podcast/home/bill-venners', '_blank'))">Hidden Gems in ScalaTest</a></span>
+<span style="font-size: 125%"><a href="javascript:void(window.open('https://www.youtube.com/watch?v=gUjLFPRt2KU', '_blank'))">Equality for All</a></span>
 
 <p>
-ScalaTest 2.0 is a vast enough forest that it is hard to see all the useful trees. In this talk from the ScalaExchange
-conference on Dec 3, 2013, Bill Venners guides you
-through ScalaTest 2.0 by pointing out lesser-known features of the testing toolkit that can help you get stuff done. You'll
-gain insight into what ScalaTest offers, why ScalaTest is designed the way it is, and how you can get more out of it.
+The Java platform defines a notion of universal equality in the equals method of java.lang.Object: because the type of
+the parameter passed to equals is java.lang.Object, any object can be compared for equality with any other object. This
+allows different types that represent the same (or compatible) concepts to be compared for equality (such as Int and
+BigInt, or Vector[Int] and List[Int]), but also allows comparisons to compile that will always fail at runtime (such
+as Int and String).
+</p>
+</p>
+In this talk from the Scala by the Bay conference on August 8, 2014, Bill Venners discusses
+work in progress on ScalaTest and Scalactic to make equality comparisons in Scala safer.
 </p>
 </td>
 <td width="4%">
 &nbsp;
 </td>
 <td width="48%">
-<em>Highlights of this talk</em>
+<em>Highlights from this talk</em>
 <ul>
-<li>The <code>Length</code> typeclass and a puzzle</li>
-<li>Something interesting to do with matchers that would give away the puzzle if I said more</li>
-<li>Inspecting nested collections with <code>forAll</code>, <code>forEvery</code>, <code>forAtMost</code>,
-<code>forAtLeast</code>, <code>forExactly</code>, <code>forBetween</code>.</li>
-<li>Inspector shorthands <code>all</code>, <code>every</code>, <code>no</code>, <code>atMost</code>,
-<code>atLeast</code>, <code>exactly</code>, <code>between</code>.</li>
-<li>Annotating test classes to tag all tests.</li>
-<li>Help for hanging or flickering tests.</li>
-<li>Getting the word out with <code>info</code>, <code>markup</code>, <code>note</code>, and <code>alert</code>.</li>
-<li>Reminders of failed and canceled tests in "string" <code>Reporter</code>s.</li>
-<li>How lazy <code>MatchResult</code>s killed three birds with one brush stroke.</li>
+<li>Equivalence classes in Set theory, Java, and Scala.</li>
+<li>Java's equals contract.</li>
+<li>Cooperative equality.</li>
+<li>Alternate equality.</li>
+<li>Candidate rules for equality comparison type errors.</li>
+<li>How to deal with implicit conversions.</li>
+<li>"Enabled" equality.</li>
 </ul>
 </td>
 </tr>
 </table>
 
+<hr />
 <table width="100%">
 <tr width="100%" valign="top">
 <td width="48%">
@@ -177,40 +184,41 @@ implicit parameters in your own designs.
 </tr>
 </table>
 
-
+<hr />
 <table width="100%">
 <tr width="100%" valign="top">
 <td width="48%">
-<span style="font-size: 125%"><a href="javascript:void(window.open('http://www.youtube.com/watch?v=Pqh_QFFzIlI', '_blank'))">Simplicity in Scala Design</a></span>
+<span style="font-size: 125%"><a href="javascript:void(window.open('http://skillsmatter.com/podcast/home/bill-venners', '_blank'))">Hidden Gems in ScalaTest</a></span>
 
 <p>
-In this talk from the Northeast Scala Symposium on Feb 8, 2013, Bill Venners focuses on how to achieve simplicity
-in Scala library, DSL, and application design. It highlights general principles
-that can be applied to any programming language, and shows specific techniques that can be used in Scala to "implement" the
-general principles. This talk gives you a set of concrete guidelines (which guide the design of ScalaTest) that can help
-you manage complexity in your Scala projects.
+ScalaTest 2.0 is a vast enough forest that it is hard to see all the useful trees. In this talk from the ScalaExchange
+conference on Dec 3, 2013, Bill Venners guides you
+through ScalaTest 2.0 by pointing out lesser-known features of the testing toolkit that can help you get stuff done. You'll
+gain insight into what ScalaTest offers, why ScalaTest is designed the way it is, and how you can get more out of it.
 </p>
 </td>
 <td width="4%">
 &nbsp;
 </td>
 <td width="48%">
-<em>The guidelines from this talk</em>
+<em>Highlights of this talk</em>
 <ul>
-<li>Design for busy teams.</li>
-<li>Make it obvious, guessable, or easy to remember.</li>
-<li>Design for readers, then writers.</li>
-<li>Make errors impossible, or difficult.</li>
-<li>Exploit familiarity.</li>
-<li>Document with examples.</li>
-<li>Minimize redundancy.</li>
-<li>Maximize consistency.</li>
-<li>Use symbols when your users are already experts in them.</li>
-<li>Minimize the magic.</li>
+<li>The <code>Length</code> typeclass and a puzzle</li>
+<li>Something interesting to do with matchers that would give away the puzzle if I said more</li>
+<li>Inspecting nested collections with <code>forAll</code>, <code>forEvery</code>, <code>forAtMost</code>,
+<code>forAtLeast</code>, <code>forExactly</code>, <code>forBetween</code>.</li>
+<li>Inspector shorthands <code>all</code>, <code>every</code>, <code>no</code>, <code>atMost</code>,
+<code>atLeast</code>, <code>exactly</code>, <code>between</code>.</li>
+<li>Annotating test classes to tag all tests.</li>
+<li>Help for hanging or flickering tests.</li>
+<li>Getting the word out with <code>info</code>, <code>markup</code>, <code>note</code>, and <code>alert</code>.</li>
+<li>Reminders of failed and canceled tests in "string" <code>Reporter</code>s.</li>
+<li>How lazy <code>MatchResult</code>s killed three birds with one brush stroke.</li>
 </ul>
 </td>
 </tr>
 </table>
+
 
 </div>
 }
