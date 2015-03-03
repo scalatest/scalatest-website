@@ -712,6 +712,10 @@ pre.stStyleExamples {
   color: #B0B0B0;
 }
 
+.stExplain {
+  color: #901010;
+}
+
 .stBlockComment, .stLineComment {
   color: gray;
   font-style: italic;
