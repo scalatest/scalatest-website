@@ -22,248 +22,110 @@
 </tr>
 
 <tr>
-<td class="ataglance" colspan="2"><pre class="stTight">@Html(selectedStyle.seleniumExample)</pre></td>
-<td class="ataglance" colspan="2">
-<p>Example of using <a href="@{milestoneScaladoc}/index.html#org.scalatest.selenium.WebBrowser"><code>WebBrowser</code></a> and <a href="@{milestoneScaladoc}/index.html#org.scalatest.selenium.HtmlUnit"><code>HtmlUnit</code></a> for selenium test.  You could use other DSL listed in this section.</p>
-<p><strong>Note: You'll need to setup your project to use Selenium and HtmlUnit driver for the example to work correctly.</strong></p>
-</td>
-</tr>
+<td class="ataglance" colspan="4">
+<pre class="stTight">@Html(selectedStyle.seleniumExample)
 
-<tr>
-<td class="ataglance" colspan="2"><code>go to <span class="stLiteral">"http://www.scalatest.org"</span></code></td>
-<td class="ataglance" colspan="2">Go to ScalaTest website</td>
-</tr>
+go to <span class="stLiteral">"http://www.scalatest.org"</span>                              <span class="stExplain">// Go to ScalaTest website</span>
 
-<tr>
-<td class="ataglance" colspan="2"><code>pageTitle should be (<span class="stLiteral">"ScalaTest"</span>)</code></td>
-<td class="ataglance" colspan="2">Check page title</td>
-</tr>
+pageTitle should be (<span class="stLiteral">"ScalaTest"</span>)                             <span class="stExplain">// Check page title</span>
 
-<tr>
-<td class="ataglance" colspan="2"><code>click on <span class="stLiteral">"q"</span></code></td>
-<td class="ataglance" colspan="2">Click on element which has attribute id or name = "q"</td>
-</tr>
+click on <span class="stLiteral">"q"</span>                                                  <span class="stExplain">// Click on element which has attribute id or name = "q"</span>
 
-<tr>
-<td class="ataglance" colspan="2"><code>click on id(<span class="stLiteral">"q"</span>)</code></td>
-<td class="ataglance" colspan="2">Click on element which has attribute id = "q"</td>
-</tr>
+click on id(<span class="stLiteral">"q"</span>)                                              <span class="stExplain">// Click on element which has attribute id = "q"</span>
 
-<tr>
-<td class="ataglance" colspan="2"><code>click on name(<span class="stLiteral">"name"</span>)</code></td>
-<td class="ataglance" colspan="2">Click on element which has attribute name = "q"</td>
-</tr>
+click on name(<span class="stLiteral">"name"</span>)                                         <span class="stExplain">// Click on element which has attribute name = "q"</span>
 
-<tr>
-<td class="ataglance" colspan="2"><code>click on tagName(<span class="stLiteral">"input"</span>)</code></td>
-<td class="ataglance" colspan="2">Click on element which is a <code>input</code> tag</td>
-</tr>
+click on tagName(<span class="stLiteral">"input"</span>)                                     <span class="stExplain">// Click on element which is an 'input' tag</span>
 
-<tr>
-<td class="ataglance" colspan="2"><code>click on className(<span class="stLiteral">"quickref"</span>)</code></td>
-<td class="ataglance" colspan="2">Click on element which has CSS class <code>quickref</code> tag</td>
-</tr>
+click on className(<span class="stLiteral">"quickref"</span>)                                <span class="stExplain">// Click on element which has the CSS class 'quickref' tag</span>
 
-<tr>
-<td class="ataglance" colspan="2"><code>cssSelector(<span class="stLiteral">"a[id='aLink']"</span>).element.tagName should be (<span class="stLiteral">"a"</span>)</code></td>
-<td class="ataglance" colspan="2">Check a element's tag name, selected by using CSS selector</td>
-</tr>
+cssSelector(<span class="stLiteral">"a[id='aLink']"</span>).element.tagName should be (<span class="stLiteral">"a"</span>)  <span class="stExplain">// Check a element's tag name, selected by using CSS selector</span>
 
-<tr>
-<td class="ataglance" colspan="2"><code>linkText(<span class="stLiteral">"Click Me!"</span>).element.tagName should be (<span class="stLiteral">"a"</span>)</code></td>
-<td class="ataglance" colspan="2">Check a element's tag name, selected by using the link text</td>
-</tr>
+linkText(<span class="stLiteral">"Click Me!"</span>).element.tagName should be (<span class="stLiteral">"a"</span>)         <span class="stExplain">// Check a element's tag name, selected by using the link text</span>
 
-<tr>
-<td class="ataglance" colspan="2"><code>partialLinkText(<span class="stLiteral">"Click"</span>).element.tagName should be (<span class="stLiteral">"a"</span>)</code></td>
-<td class="ataglance" colspan="2">Check a element's tag name, selected by using the partial link text</td>
-</tr>
+partialLinkText(<span class="stLiteral">"Click"</span>).element.tagName should be (<span class="stLiteral">"a"</span>)      <span class="stExplain">// Check a element's tag name, selected by using the partial link text</span>
 
-<tr>
-<td class="ataglance" colspan="2"><code>enter(<span class="stLiteral">"Cheese!"</span>)</code></td>
-<td class="ataglance" colspan="2">Enter "Cheese!" into currently selected text element</td>
-</tr>
+enter(<span class="stLiteral">"Cheese!"</span>)                                              <span class="stExplain">// Enter "Cheese!" into currently selected text element</span>
 
-<tr>
-<td class="ataglance" colspan="2"><code>submit()</code></td>
-<td class="ataglance" colspan="2">Submit form</td>
-</tr>
+submit()                                                      <span class="stExplain">// Submit form</span>
 
-<tr>
-<td class="ataglance" colspan="2"><code>textField(<span class="stLiteral">"q"</span>).value = "<span class="stLiteral">Cheese!"</span></code></td>
-<td class="ataglance" colspan="2">Set text field (which has attribute id or name = "q") to "Cheese!"</td>
-</tr>
+textField(<span class="stLiteral">"q"</span>).value = "<span class="stLiteral">Cheese!"</span>                              <span class="stExplain">// Set text field (which has attribute id or name = "q") to "Cheese!"</span>
 
-<tr>
-<td class="ataglance" colspan="2"><code>textField(<span class="stLiteral">"q"</span>).value should be (<span class="stLiteral">"Cheese!"</span>)</code></td>
-<td class="ataglance" colspan="2">Read and check a text field (which has attribute id or name = "q") value</td>
-</tr>
+textField(<span class="stLiteral">"q"</span>).value should be (<span class="stLiteral">"Cheese!"</span>)                    <span class="stExplain">// Read and check a text field (which has attribute id or name = "q") value</span>
 
-<tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight">radioButtonGroup(<span class="stLiteral">"group1"</span>).value = <span class="stLiteral">"Option 2"</span>
+
+radioButtonGroup(<span class="stLiteral">"group1"</span>).value = <span class="stLiteral">"Option 2"</span>                 <span class="stExplain">// Set radio button group (which has group name = "group1") to choose "Option 2"</span>
 <span class="lineComment">// or</span>
 radioButtonGroup(<span class="stLiteral">"group1"</span>).selection = <span class="stType">Some</span>(<span class="stLiteral">"Option 2"</span>)
-</pre>
-</td>
-<td class="ataglance" colspan="2">Set radio button group (which has group name = "group1") to choose "Option 2"</td>
-</tr>
 
-<tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight">radioButtonGroup(<span class="stLiteral">"group1"</span>).value should be (<span class="stLiteral">"Option 2"</span>)
+
+radioButtonGroup(<span class="stLiteral">"group1"</span>).value should be (<span class="stLiteral">"Option 2"</span>)       <span class="stExplain">// Read and check radio button group (which has group name = "group1") chosen value</span>
 <span class="lineComment">// or</span>
 radioButtonGroup(<span class="stLiteral">"group1"</span>).selection should be (<span class="stType">Some</span>(<span class="stLiteral">"Option 2"</span>))
-</pre>
-</td>
-<td class="ataglance" colspan="2">Read and check radio button group (which has group name = "group1") chosen value</td>
-</tr>
 
-<tr>
-<td class="ataglance" colspan="2"><code>click on radioButton(<span class="stLiteral">"opt1"</span>)</code></td>
-<td class="ataglance" colspan="2">Click on a radio button (which has attribute id or name = "opt1")</td>
-</tr>
+click on radioButton(<span class="stLiteral">"opt1"</span>)                                  <span class="stExplain">// Click on a radio button (which has attribute id or name = "opt1")</span>
 
-<tr>
-<td class="ataglance" colspan="2"><code>radioButton(<span class="stLiteral">"opt1"</span>).isSelected should be (<span class="stLiteral">true</span>)</code></td>
-<td class="ataglance" colspan="2">Check if a radio button (which has attribute id or name = "opt1") is selected</td>
-</tr>
+radioButton(<span class="stLiteral">"opt1"</span>).isSelected should be (<span class="stLiteral">true</span>)               <span class="stExplain">// Check if a radio button (which has attribute id or name = "opt1") is selected</span>
 
-<tr>
-<td class="ataglance" colspan="2"><code>checkbox(<span class="stLiteral">"cbx1"</span>).select()</code></td>
-<td class="ataglance" colspan="2">Select a check box (which has attribute id or name = "cbx1")</td>
-</tr>
+checkbox(<span class="stLiteral">"cbx1"</span>).select()                                     <span class="stExplain">// Select a check box (which has attribute id or name = "cbx1")</span>
 
-<tr>
-<td class="ataglance" colspan="2"><code>checkbox(<span class="stLiteral">"cbx1"</span>).clear()</code></td>
-<td class="ataglance" colspan="2">Clear a check box (which has attribute id or name = "cbx1")</td>
-</tr>
+checkbox(<span class="stLiteral">"cbx1"</span>).clear()                                      <span class="stExplain">// Clear a check box (which has attribute id or name = "cbx1")</span>
 
-<tr>
-<td class="ataglance" colspan="2"><code>checkbox(<span class="stLiteral">"cbx1"</span>).isSelected should be (<span class="stLiteral">true</span>)</code></td>
-<td class="ataglance" colspan="2">Check if a check box (which has attribute id or name = "cbx1") is selected</td>
-</tr>
 
-<tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight">singleSel(<span class="stLiteral">"select1"</span>).value = <span class="stLiteral">"option2"</span>
+checkbox(<span class="stLiteral">"cbx1"</span>).isSelected should be (<span class="stLiteral">true</span>)                  <span class="stExplain">// Check if a check box (which has attribute id or name = "cbx1") is selected</span>
+
+singleSel(<span class="stLiteral">"select1"</span>).value = <span class="stLiteral">"option2"</span>                        <span class="stExplain">// Set a single-selection dropdown list (which has attribute id or name = "select1") to choose "option2"</span>
 <span class="lineComment">// or</span>
 singleSel(<span class="stLiteral">"select1"</span>).selection = <span class="stType">Some</span>(<span class="stLiteral">"option2"</span>)
-</pre>
-</td>
-<td class="ataglance" colspan="2">Set a single-selection dropdown list (which has attribute id or name = "select1") to choose "option2"</td>
-</tr>
 
-<tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight">singleSel(<span class="stLiteral">"select1"</span>).clear()
+
+singleSel(<span class="stLiteral">"select1"</span>).clear()                                  <span class="stExplain">// Clear the selection of a single-selection dropdown list (which has attribute id or name = "select1")</span>
 <span class="lineComment">// or</span>
 singleSel(<span class="stLiteral">"select1"</span>).selection = <span class="stType">None</span>
-</pre>
-</td>
-<td class="ataglance" colspan="2">Clear the selection of a single-selection dropdown list (which has attribute id or name = "select1")</td>
-</tr>
 
-<tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight">singleSel(<span class="stLiteral">"select1"</span>).value should be (<span class="stLiteral">"option2"</span>)
+singleSel(<span class="stLiteral">"select1"</span>).value should be (<span class="stLiteral">"option2"</span>)              <span class="stExplain">// Read and check currently selected value of a single-selection dropdown list (which has attribute id or name = "select1")</span>
 <span class="lineComment">// or</span>
 singleSel(<span class="stLiteral">"select1"</span>).selection should be (<span class="stType">Some</span>(<span class="stLiteral">"option2"</span>))
-</pre>
-</td>
-<td class="ataglance" colspan="2">Read and check currently selected value of a single-selection dropdown list (which has attribute id or name = "select1")</td>
-</tr>
 
-<tr>
-<td class="ataglance" colspan="2"><code>multiSel(<span class="stLiteral">"select2"</span>).values = <span class="stType">Seq</span>(<span class="stLiteral">"option5"</span>, <span class="stLiteral">"option6"</span>)</code></td>
-<td class="ataglance" colspan="2">Set the selection of a multi-selection list (which has attribute id or name = "select2")</td>
-</tr>
+multiSel(<span class="stLiteral">"select2"</span>).values = <span class="stType">Seq</span>(<span class="stLiteral">"option5"</span>, <span class="stLiteral">"option6"</span>)        <span class="stExplain">// Set the selection of a multi-selection list (which has attribute id or name = "select2")</span>
 
-<tr>
-<td class="ataglance" colspan="2"><code>multiSel(<span class="stLiteral">"select2"</span>).values += <span class="stLiteral">"option3"</span></code></td>
-<td class="ataglance" colspan="2">Select "option3" in addition to current selection of a multi-selection list (which has attribute id or name = "select2")</td>
-</tr>
+multiSel(<span class="stLiteral">"select2"</span>).values += <span class="stLiteral">"option3"</span>                       <span class="stExplain">// Select "option3" in addition to current selection of a multi-selection list (which has attribute id or name = "select2")</span>
 
-<tr>
-<td class="ataglance" colspan="2"><code>multiSel(<span class="stLiteral">"select2"</span>).clear(<span class="stLiteral">"option5"</span>)</code></td>
-<td class="ataglance" colspan="2">Clear "option5" from current selection of a multi-selection list (which has attribute id or name = "select2")</td>
-</tr>
+multiSel(<span class="stLiteral">"select2"</span>).clear(<span class="stLiteral">"option5"</span>)                          <span class="stExplain">// Clear "option5" from current selection of a multi-selection list (which has attribute id or name = "select2")</span>
 
-<tr>
-<td class="ataglance" colspan="2"><code>multiSel(<span class="stLiteral">"select2"</span>).clearAll()</code></td>
-<td class="ataglance" colspan="2">Clear all selection of a multi-selection list (which has attribute id or name = "select2")</td>
-</tr>
+multiSel(<span class="stLiteral">"select2"</span>).clearAll()                                <span class="stExplain">// Clear all selection of a multi-selection list (which has attribute id or name = "select2")</span>
 
-<tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight">multiSel(<span class="stLiteral">"select2"</span>).values should have size <span class="stLiteral">2</span>
+multiSel(<span class="stLiteral">"select2"</span>).values should have size <span class="stLiteral">2</span>                 <span class="stExplain">// Read and check currently selected values of a multi-selection list (which has attribute id or name = "select2")</span>
 multiSel(<span class="stLiteral">"select2"</span>).values(<span class="stLiteral">0</span>) should be (<span class="stLiteral">"option5"</span>)
 multiSel(<span class="stLiteral">"select2"</span>).values(<span class="stLiteral">1</span>) should be (<span class="stLiteral">"option6"</span>)
-</pre>
-<td class="ataglance" colspan="2">Read and check currently selected values of a multi-selection list (which has attribute id or name = "select2")</td>
-</tr>
 
-<tr>
-<td class="ataglance" colspan="2"><code>goBack()</code></td>
-<td class="ataglance" colspan="2">Go back to previous page in history</td>
-</tr>
+goBack()                                                      <span class="stExplain">// Go back to previous page in history</span>
 
-<tr>
-<td class="ataglance" colspan="2"><code>goForward()</code></td>
-<td class="ataglance" colspan="2">Go forward to next page in history</td>
-</tr>
+goForward()                                                   <span class="stExplain">// Go forward to next page in history</span>
 
-<tr>
-<td class="ataglance" colspan="2"><code>reloadPage()</code></td>
-<td class="ataglance" colspan="2">Reload the current page</td>
-</tr>
+reloadPage()                                                  <span class="stExplain">// Reload the current page</span>
 
-<tr>
-<td class="ataglance" colspan="2"><code>add cookie (<span class="stLiteral">"name1"</span>, <span class="stLiteral">"value1"</span>)</code></td>
-<td class="ataglance" colspan="2">Add new cookie with name = "name1" and value = "value1"</td>
-</tr>
+add cookie (<span class="stLiteral">"name1"</span>, <span class="stLiteral">"value1"</span>)                                <span class="stExplain">// Add new cookie with name = "name1" and value = "value1"</span>
 
-<tr>
-<td class="ataglance" colspan="2"><code>cookie(<span class="stLiteral">"name1"</span>).value should be (<span class="stLiteral">"value1"</span>)</code></td>
-<td class="ataglance" colspan="2">Read and check a cookie's value</td>
-</tr>
+cookie(<span class="stLiteral">"name1"</span>).value should be (<span class="stLiteral">"value1"</span>)                    <span class="stExplain">// Read and check a cookie's value</span>
 
-<tr>
-<td class="ataglance" colspan="2"><code>delete cookie <span class="stLiteral">"name1"</span></code></td>
-<td class="ataglance" colspan="2">Delete cookie "name1"</td>
-</tr>
+delete cookie <span class="stLiteral">"name1"</span>                                         <span class="stExplain">// Delete cookie "name1</span>
 
-<tr>
-<td class="ataglance" colspan="2"><code>delete all cookies</code></td>
-<td class="ataglance" colspan="2">Delete all cookies under the same domain.</td>
-</tr>
+delete all cookies                                            <span class="stExplain">// Delete all cookies under the same domain.</span>
 
-<tr>
-<td class="ataglance" colspan="2"><code>capture to <span class="stLiteral">"MyScreenShot"</span></code></td>
-<td class="ataglance" colspan="2">Capture the screen and save as "MyScreenShot.png"</td>
-</tr>
 
-<tr>
-<td class="ataglance" colspan="2"><code>setCaptureDir(<span class="stLiteral">"/home/your_name/screenshots"</span>)</code></td>
-<td class="ataglance" colspan="2">Set the directory to save captured pictures.</td>
-</tr>
+capture to <span class="stLiteral">"MyScreenShot"</span>                                     <span class="stExplain">// Capture the screen and save as "MyScreenShot.png"</span>
 
-<tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight">withScreenshot {
-  assert(<span class="stLiteral">"Gold"</span> == <span class="stLiteral">"Silver"</span>, <span class="stLiteral">"Expected gold, but got silver"</span>)
+setCaptureDir(<span class="stLiteral">"/home/your_name/screenshots"</span>)                  <span class="stExplain">// Set the directory to save captured pictures.</span>
+
+withScreenshot {                                              <span class="stExplain">// Auto capture screen when something goes wrong (e.g. test failed)</span>
+assert(<span class="stLiteral">"Gold"</span> == <span class="stLiteral">"Silver"</span>, <span class="stLiteral">"Expected gold, but got silver"</span>)
 }
+
+close()                                                       <span class="stExplain">// Close current browser window</span>
+
+quit()                                                        <span class="stExplain">// Close all windows and exit the driver</span>
+
 </pre>
 </td>
-<td class="ataglance" colspan="2">Auto capture screen when something goes wrong (e.g. test failed)</td>
-</tr>
-
-<tr>
-<td class="ataglance" colspan="2"><code>close()</code></td>
-<td class="ataglance" colspan="2">Close current browser window</td>
-</tr>
-
-<tr>
-<td class="ataglance" colspan="2"><code>quit()</code></td>
-<td class="ataglance" colspan="2">Close all windows and exit the driver</td>
 </tr>

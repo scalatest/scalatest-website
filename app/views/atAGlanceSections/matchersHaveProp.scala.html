@@ -22,52 +22,45 @@
 </tr>
 
 <tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stReserved">case</span> <span class="stReserved">class</span> <span class="stType">Book</span>(title: <span class="stType">String</span>, author: <span class="stType">String</span>, pubYear: <span class="stType">Int</span>)
-<span class="stLiteral">val</span> book = <span class="stType">Book</span>(<span class="stLiteral">"A Book"</span>, <span class="stLiteral">"Sally"</span>, <span class="stLiteral">2008</span>)
-book should have (
-  <span class="stQuotedString">'title</span> (<span class="stQuotedString">"A Book"</span>),
+<td class="ataglance" colspan="4">
+<pre class="stTight">
+<span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stImport">case class Book(title: String, author: String, pubYear: Int)
+val book = Book("A Book", "Sally", 2008)</span>
+
+book should have (                                 <span class="stExplain">// check arbitrary properties dynamically (via reflection)</span>
+  <span class="stQuotedString">'title</span> (<span class="stQuotedString">"A Book"</span>),                               <span class="stExplain">// see <a href="@milestoneScaladoc/#org.scalatest.Matchers$HavePropertyMatcherGenerator">HavePropertyMatcherGenerator</a></span>
   <span class="stQuotedString">'author</span> (<span class="stQuotedString">"Sally"</span>),
   <span class="stQuotedString">'pubYear</span> (<span class="stLiteral">2008</span>)
 )
-</pre>
-</td>
-<td class="ataglance" colspan="2">Check arbitrary properties dynamically with <code>Symbols</code> (For the details on how a field or method is selected during this
-process, see <a href="@milestoneScaladoc/#org.scalatest.Matchers$HavePropertyMatcherGenerator"><code>HavePropertyMatcherGenerator</code></a>.)</td>
-</tr>
 
-<tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight"><span class="stImport">import org.scalatest._
+<span class="stImport">import org.scalatest._                             <span class="stExplain">// check arbitrary properties statically with <a href="@milestoneScaladoc/#org.scalatest.matchers.HavePropertyMatcher">HavePropertyMatchers</a></span>
 import Matchers._
 import matchers._</span>
 <span class="stReserved">case</span> <span class="stReserved">class</span> <span class="stType">Book</span>(title: <span class="stType">String</span>, author: <span class="stType">String</span>)
-<span class="stReserved">def</span> title(expectedValue: <span class="stType">String</span>) =
-  <span class="stReserved">new</span> <span class="stType">HavePropertyMatcher</span>[<span class="stType">Book</span>, <span class="stType">String</span>] {
-    <span class="stReserved">def</span> apply(book: <span class="stType">Book</span>) =
-      <span class="stType">HavePropertyMatchResult</span>(
-        book.title == expectedValue,
-        <span class="stLiteral">"title"</span>,
-        expectedValue,
-        book.title
-      )
-  }
-<span class="stReserved">def</span> author(expectedValue: <span class="stType">String</span>) =
-  <span class="stReserved">new</span> <span class="stType">HavePropertyMatcher</span>[<span class="stType">Book</span>, <span class="stType">String</span>] {
-    <span class="stReserved">def</span> apply(book: <span class="stType">Book</span>) =
-      <span class="stType">HavePropertyMatchResult</span>(
-        book.author == expectedValue,
-        <span class="stLiteral">"author"</span>,
-        expectedValue,
-        book.author
-      )
-  }
+<span class="stReserved">def</span> title(expectedValue: <span class="stType">String</span>) = <span class="stReserved">new</span> <span class="stType">HavePropertyMatcher</span>[<span class="stType">Book</span>, <span class="stType">String</span>] {
+  <span class="stReserved">def</span> apply(book: <span class="stType">Book</span>) = <span class="stType">HavePropertyMatchResult</span>(
+    book.title == expectedValue,
+    <span class="stLiteral">"title"</span>,
+    expectedValue,
+    book.title
+  )
+}
+<span class="stReserved">def</span> author(expectedValue: <span class="stType">String</span>) = <span class="stReserved">new</span> <span class="stType">HavePropertyMatcher</span>[<span class="stType">Book</span>, <span class="stType">String</span>] {
+  <span class="stReserved">def</span> apply(book: <span class="stType">Book</span>) = <span class="stType">HavePropertyMatchResult</span>(
+    book.author == expectedValue,
+    <span class="stLiteral">"author"</span>,
+    expectedValue,
+    book.author
+  )
+}
 <span class="stLiteral">val</span> book = <span class="stType">Book</span>(<span class="stLiteral">"A Book"</span>, <span class="stLiteral">"Sally"</span>)
 book should have (
   <span class="stQuotedString">title</span> (<span class="stQuotedString">"A Book"</span>),
   <span class="stQuotedString">author</span> (<span class="stQuotedString">"Sally"</span>)
 )
-</pre></td>
-<td class="ataglance" colspan="2">Check arbitrary properties statically with <a href="@milestoneScaladoc/#org.scalatest.matchers.HavePropertyMatcher"><code>HavePropertyMatchers</code></a></td>
+
+
+</pre>
+</td>
 </tr>

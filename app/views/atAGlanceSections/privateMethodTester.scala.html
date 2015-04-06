@@ -22,9 +22,11 @@
 </tr>
 
 <tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight"><span class="stImport">import org.scalatest.PrivateMethodTester._</span>
-<span class="stReserved">class</span> <span class="stType">TaxCalculator</span> {
+<td class="ataglance" colspan="4">
+<pre class="stTight">
+<span class="stImport">import org.scalatest.PrivateMethodTester._</span>
+
+<span class="stReserved">class</span> <span class="stType">TaxCalculator</span> {                                                <span class="stExplain">// Use <a href="@{milestoneScaladoc}/index.html#org.scalatest.PrivateMethodTester">PrivateMethodTester</a> to invoke a private method for testing purpose</span>
   <span class="stReserved">private</span> <span class="stReserved">def</span> calc(amount: <span class="stType">Double</span>, percentage: <span class="stType">Double</span>): <span class="stType">Double</span> =
     amount * percentage / 100.00
   <span class="stReserved">def</span> calculateTax(amount: <span class="stType">Double</span>): <span class="stType">Double</span> =
@@ -34,5 +36,5 @@
 <span class="stReserved">val</span> calcMethod = <span class="stType">PrivateMethod</span>[<span class="stType">Double</span>](<span class="stQuotedString">'calc</span>)
 calculator invokePrivate calcMethod(<span class="stLiteral">1000.00</span>, <span class="stLiteral">8.88</span>)</pre>
 </td>
-<td class="ataglance" colspan="2">Use <a href="@{milestoneScaladoc}/index.html#org.scalatest.PrivateMethodTester"><code>PrivateMethodTester</code></a> to invoke a private method for testing purpose</td>
+<td class="ataglance" colspan="2"></td>
 </tr>

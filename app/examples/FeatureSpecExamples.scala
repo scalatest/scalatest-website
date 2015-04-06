@@ -139,8 +139,9 @@ object FeatureSpecExamples extends StyleTraitExamples {
       |}""".stripMargin
 
   val seleniumExample: String =
-    """<span class="stImport">import org.scalatest._
-      |import selenium._</span>
+    """<span class="stImport">import org.scalatest._                        <span class="stExplain">// Example of using <a href="@{milestoneScaladoc}/index.html#org.scalatest.selenium.WebBrowser">WebBrowser</a> and <a href="@{milestoneScaladoc}/index.html#org.scalatest.selenium.HtmlUnit">HtmlUnit</a> for selenium test.  You could use other DSL listed in this section. </span>
+      |import selenium._</span>                             <span class="stExplain">// Note: You'll need to setup your project to use Selenium and HtmlUnit driver for the example to work correctly.</span>
+      |
       |<span class="stReserved">class</span> <span class="stType">BlogSpec</span> <span class="stReserved">extends</span> <span class="stType">FeatureSpec</span> <span class="stReserved">with</span> <span class="stType">WebBrowser</span> <span class="stReserved">with</span> <span class="stType">HtmlUnit</span> {
       |  <span class="stReserved">val</span> host = <span class="stLiteral">"http://localhost:9000/"</span>
       |  scenario(<span class="stLiteral">"The blog app home page should have the correct title"</span>) {

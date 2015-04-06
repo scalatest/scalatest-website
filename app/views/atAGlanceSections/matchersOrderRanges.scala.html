@@ -17,78 +17,23 @@
 @(selectedStyle: examples.StyleTraitExamples)
 <tr>
 <th colspan="4" class="ataglance"><a name="matchers_order_ranges"></a>Matchers - Order and ranges</th>
-</tr>
-
-<tr>
+</tr><tr>
 <td class="ataglance" colspan="4">
 <pre class="stTight">
+
 <span class="stImport">import org.scalatest.Matchers._
 val one = 1</span>
-one should be &lt; <span class="stLiteral">7</span>    <span class="stExplain">// This syntax can be used with any type T for</span>
-one should be &gt; <span class="stLiteral">0</span>    <span class="stExplain">// which an implicit Ordered[T] exists.</span>
+one should be &lt; <span class="stLiteral">7</span>                               <span class="stExplain">// works for any T when an implicit Ordered[T] exists</span>
 one should be &lt;= <span class="stLiteral">7</span>
 one should be &gt;= <span class="stLiteral">0</span>
+
+<span class="stImport">val num = 8</span>
+num should (be &gt;= <span class="stLiteral">1</span> and be &lt;= <span class="stLiteral">10</span>)               <span class="stExplain">// one way to ensure a value is within a range or tolerance.</span>
+
+<span class="stImport">val seven = 7</span>
+seven should be (<span class="stLiteral">6</span> +- <span class="stLiteral">2</span>)                        <span class="stExplain">// another way to verify a range</span>
+7.0 should be (<span class="stLiteral">6.9</span> +- <span class="stLiteral">0.2</span>)                      <span class="stExplain">// works for both integral and floating point types</span>
+
 </pre>
 </td>
-</tr>
-<tr>
-<th colspan="4" class="ataglance"><a name="matchers_order_ranges"></a>Matchers - Order and ranges</th>
-</tr>
-
-<tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stReserved">val</span> one = <span class="stLiteral">1</span>
-one should be &lt; <span class="stLiteral">7</span></pre></td>
-<td class="ataglance" colspan="2">Works for any type implicitly convertible to <code>Ordered[T]</code></td>
-</tr>
-
-<tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stReserved">val</span> one = <span class="stLiteral">1</span>
-one should be &gt; <span class="stLiteral">0</span></pre></td>
-<td class="ataglance" colspan="2">Works for any type implicitly convertible to <code>Ordered[T]</code></td>
-</tr>
-
-<tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stReserved">val</span> one = <span class="stLiteral">1</span>
-one should be &lt;= <span class="stLiteral">7</span></pre></td>
-<td class="ataglance" colspan="2">Works for any type implicitly convertible to <code>Ordered[T]</code></td>
-</tr>
-
-<tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stReserved">val</span> one = <span class="stLiteral">1</span>
-one should be &gt;= <span class="stLiteral">0</span></pre>
-</td>
-<td class="ataglance" colspan="2">Works for any type implicitly convertible to <code>Ordered[T]</code></td>
-</tr>
-
-<tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stReserved">val</span> num = <span class="stLiteral">8</span>
-num should (be &gt;= <span class="stLiteral">1</span> and be &lt;= <span class="stLiteral">10</span>)</pre></td>
-<td class="ataglance" colspan="2">One way to ensure within a range or tolerance</td>
-</tr>
-
-<tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stReserved">val</span> seven = <span class="stLiteral">7</span>
-seven should be (<span class="stLiteral">6</span> +- <span class="stLiteral">2</span>)</pre>
-</td>
-<td class="ataglance" colspan="2">Another way to ensure within a range or tolerance</td>
-</tr>
-
-<tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-7.0 should be (<span class="stLiteral">6.9</span> +- <span class="stLiteral">0.2</span>)</pre>
-</td>
-<td class="ataglance" colspan="2"><code>+-</code> works for both integral and floating point types</td>
 </tr>

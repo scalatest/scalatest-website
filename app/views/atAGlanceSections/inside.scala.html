@@ -22,22 +22,25 @@
 </tr>
 
 <tr>
-<td class="ataglance" colspan="2">
+<td class="ataglance" colspan="4">
 <pre class="stTight"><span class="stImport">import org.scalatest._
 import Matchers._
-import Inside._</span>
+import Inside._</span>                                               <span class="stExplain">// Checking nested object graph using <a href="@{milestoneScaladoc}/index.html#org.scalatest.Inside">Inside</a></span>
+
 <span class="stReserved">case</span> <span class="stReserved">class</span> <span class="stType">Name</span>(first: <span class="stType">String</span>, middle: <span class="stType">String</span>, last: <span class="stType">String</span>)
+
 <span class="stReserved">case</span> <span class="stReserved">class</span> <span class="stType">Record</span>(name: <span class="stType">Name</span>, age: <span class="stType">Int</span>)
 <span class="stReserved">val</span> rec =
   <span class="stType">Record</span>(
     <span class="stType">Name</span>(<span class="stLiteral">"Sally"</span>, <span class="stLiteral">"Anna"</span>, <span class="stLiteral">"Jones"</span>),
     <span class="stLiteral">38</span>
   )
+
 inside (rec) { case <span class="stType">Record</span>(name, age) =>
   inside (name) { case <span class="stType">Name</span>(first, middle, last) =>
     first should be (<span class="stLiteral">"Sally"</span>)
   }
-}</pre>
-</td>
-<td class="ataglance" colspan="2">Checking nested object graph using <a href="@{milestoneScaladoc}/index.html#org.scalatest.Inside"><code>Inside</code></a></td>
+}
+
+</pre>
 </tr>

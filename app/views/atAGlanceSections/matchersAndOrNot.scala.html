@@ -20,37 +20,21 @@
 </tr>
 
 <tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stReserved">val</span> result = <span class="stLiteral">8</span>
-result should (be &gt; <span class="stLiteral">0</span> and be &lt; <span class="stLiteral">10</span>)</pre>
-</td>
-<td class="ataglance" colspan="2">You can <em>and</em> matcher expressions together with <code>and</code></td>
-</tr>
+<td class="ataglance" colspan="4">
+<pre class="stTight">
+<span class="stImport">import org.scalatest.Matchers._
+val result = 8</span>
+result should (be &gt; <span class="stLiteral">0</span> and be &lt; <span class="stLiteral">10</span>)                         <span class="stExplain">// You can <em>and</em> matcher expressions together</span>
 
-<tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stReserved">val</span> map = <span class="stType">Map</span>(<span class="stLiteral">"hi"</span> -> <span class="stLiteral">"HI"</span>, <span class="stLiteral">"hei"</span> -> <span class="stLiteral">"HEI"</span>, <span class="stLiteral">"he"</span> -> <span class="stLiteral">"HE"</span>)
-map should (contain key (<span class="stQuotedString">"hi"</span>) or contain key (<span class="stQuotedString">"ho"</span>))</pre>
-</td>
-<td class="ataglance" colspan="2">You can <em>or</em> matcher expressions together with <code>or</code></td>
-</tr>
+<span class="stImport">val map = Map("hi" -> "HI", "hei" -> "HEI", "he" -> "HE")</span>
+map should (contain key (<span class="stQuotedString">"hi"</span>) or contain key (<span class="stQuotedString">"ho"</span>))      <span class="stExplain">// You can <em>or</em> matcher expressions together</span>
 
-<tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stReserved">val</span> result = <span class="stLiteral">"Hello Word"</span>
-result should not be (<span class="stReserved">null</span>)</pre>
-</td>
-<td class="ataglance" colspan="2">You can negate the meaning of a matcher expression with <code>not</code></td>
-</tr>
+<span class="stImport">val result = "Hello Word"</span>                                  <span class="stExplain">// You can negate a matcher expression</span>
+result should not be (<span class="stReserved">null</span>)
 
-<tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stReserved">val</span> map = <span class="stType">Map</span>(<span class="stLiteral">"one"</span> -> <span class="stLiteral">1</span>, <span class="stLiteral">"two"</span> -> <span class="stLiteral">2</span>, <span class="stLiteral">"three"</span> -> <span class="stLiteral">3</span>)
-map should (contain key (<span class="stQuotedString">"two"</span>) and not contain value (<span class="stLiteral">7</span>))</pre>
+<span class="stImport">val map = Map("one" -> 1, "two" -> 2, "three" -> 3)</span>
+map should (contain key (<span class="stQuotedString">"two"</span>) and not contain value (<span class="stLiteral">7</span>)) <span class="stExplain">// Another example of negation</span>
+
+</pre>
 </td>
-<td class="ataglance" colspan="2">Another example of negation with <code>not</code></td>
 </tr>

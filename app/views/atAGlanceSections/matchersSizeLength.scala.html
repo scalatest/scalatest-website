@@ -20,19 +20,15 @@
 </tr>
 
 <tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stReserved">val</span> result = <span class="stLiteral">"hai"</span>
-result should have length <span class="stLiteral">3</span></pre>
-</td>
-<td class="ataglance" colspan="2">Works for any object with <code>length</code> field or method or <code>getLength</code> method; length can be <code>Int</code> or <code>Long</code></td>
-</tr>
+<td class="ataglance" colspan="4">
+<pre class="stTight">
+<span class="stImport">import org.scalatest.Matchers._
+val result = "hai"</span>
 
-<tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stReserved">val</span> result = <span class="stLiteral">"hai"</span>
-result should have size <span class="stLiteral">3</span></pre>
+result should have length <span class="stLiteral">3</span>                     <span class="stExplain">// Works for any object with length field or method or getLength method; length can be Int or Long</span>
+
+result should have size <span class="stLiteral">3</span>                       <span class="stExplain">// Works for any object with size field or method or getSize method; size can be Int or Long</span>
+
+</pre>
 </td>
-<td class="ataglance" colspan="2">Works for any object with <code>size</code> field or method or <code>getSize</code> method; size can be <code>Int</code> or <code>Long</code></td>
 </tr>

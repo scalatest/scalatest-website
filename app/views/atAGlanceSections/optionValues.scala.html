@@ -22,22 +22,16 @@
 </tr>
 
 <tr>
-<td class="ataglance" colspan="2">
+<td class="ataglance" colspan="4">
 <pre class="stTight"><span class="stImport">import org.scalatest._
 import OptionValues._</span>
-<span class="stReserved">val</span> anOption = <span class="stType">Some</span>(<span class="stLiteral">18</span>)
-assert(anOption.value > <span class="stLiteral">9</span>)</pre>
-</td>
-<td class="ataglance" colspan="2">Use <a href="@{milestoneScaladoc}/index.html#org.scalatest.OptionValues"><code>OptionValues</code></a> to check <code>Option</code>'s value, using <code>assert</code></td>
-</tr>
+<span class="stReserved">val</span> anOption = <span class="stType">Some</span>(<span class="stLiteral">18</span>)                        <span class="stExplain">// Use <a href="@{milestoneScaladoc}/index.html#org.scalatest.OptionValues">OptionValues</a> to check Option's value, using assert</span>
+assert(anOption.value > <span class="stLiteral">9</span>)
 
-<tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight"><span class="stImport">import org.scalatest._
-import Matchers._
-import OptionValues._</span>
-<span class="stReserved">val</span> anOption = <span class="stType">Some</span>(<span class="stLiteral">18</span>)
-anOption.value should be > <span class="stLiteral">9</span></pre>
+<span class="stImport">import Matchers._</span>
+<span class="stReserved">val</span> anOption = <span class="stType">Some</span>(<span class="stLiteral">18</span>)                        <span class="stExplain">// Use <a href="@{milestoneScaladoc}/index.html#org.scalatest.OptionValues">OptionValues</a> to check Option's value, using Matchers syntax</span>
+anOption.value should be > <span class="stLiteral">9</span>
+
+</pre>
 </td>
-<td class="ataglance" colspan="2">Use <a href="@{milestoneScaladoc}/index.html#org.scalatest.OptionValues"><code>OptionValues</code></a> to check <code>Option</code>'s value, using <code>Matchers</code> syntax</td>
 </tr>

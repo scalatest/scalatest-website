@@ -20,92 +20,37 @@
 </tr>
 
 <tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stReserved">val</span> option = <span class="stType">Some</span>(<span class="stLiteral">1</span>)
-option should be (<span class="stType">Some</span>(<span class="stLiteral">1</span>))</pre></td>
-<td class="ataglance" colspan="2">Check whether an option contains a certain value</td>
-</tr>
-
-<tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stReserved">val</span> option = <span class="stType">Some</span>(<span class="stLiteral">1</span>)
-option should be (<span class="stLiteral">'defined</span>)</pre>
-</td>
-<td class="ataglance" colspan="2">Check whether an option is defined</td>
-</tr>
-
-<tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stReserved">val</span> option = <span class="stType">None</span>
-option should be (empty)</pre>
-</td>
-<td class="ataglance" colspan="2">Check whether an option is empty</td>
-</tr>
-
-<tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stReserved">val</span> option = <span class="stType">None</span>
-option should be (<span class="stType">None</span>)</pre>
-</td>
-<td class="ataglance" colspan="2">Another way to check whether an option is empty</td>
-</tr>
-
-<tr>
-<td class="ataglance" colspan="2">
+<td class="ataglance" colspan="4">
 <pre class="stTight"><span class="stImport">import org.scalatest.Matchers._
-import org.scalatest.OptionValues._</span>
-<span class="stReserved">val</span> option = <span class="stType">Some</span>(<span class="stLiteral">3</span>)
-option.value should be &lt; <span class="stLiteral">7</span></pre>
-</td>
-<td class="ataglance" colspan="2">State both that an option is defined as well as something about its value</td>
-</tr>
 
-<tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stReserved">val</span> either = <span class="stType">Left</span>(<span class="stLiteral">1</span>)
-either should be (<span class="stType">Left</span>(<span class="stLiteral">1</span>))</pre>
-</td>
-<td class="ataglance" colspan="2">Check whether an either is <code>Left</code> with a certain value</td>
-</tr>
+val option = Some(1)</span>
+option should be (<span class="stType">Some</span>(<span class="stLiteral">1</span>))                                <span class="stExplain">// Check whether an option contains a certain value</span>
 
-<tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stReserved">val</span> either = <span class="stType">Left</span>(<span class="stLiteral">1</span>)
-either should be (<span class="stType">'left</span>)</pre>
-</td>
-<td class="ataglance" colspan="2">Check whether an either is left</td>
-</tr>
+<span class="stImport">val option = Some(1)</span>
+option should be (<span class="stLiteral">'defined</span>)                               <span class="stExplain">// Check whether an option is defined</span>
 
-<tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stReserved">val</span> either = <span class="stType">Right</span>(<span class="stLiteral">1</span>)
-either should be (<span class="stType">Right</span>(<span class="stLiteral">1</span>))</pre>
-</td>
-<td class="ataglance" colspan="2">Check whether an either is <code>Right</code> with a certain value</td>
-</tr>
+<span class="stImport">val option = Some(1)</span>
+option should be (empty)                                  <span class="stExplain">// Check whether an option is empty</span>
 
-<tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stReserved">val</span> either = <span class="stType">Right</span>(<span class="stLiteral">1</span>)
-either should be (<span class="stLiteral">'right</span>)</pre>
-</td>
-<td class="ataglance" colspan="2">Check whether an either is right</td>
-</tr>
+<span class="stImport">val option = None</span>
+option should be (<span class="stType">None</span>)                                   <span class="stExplain">// Another way to check whether an option is empty</span>
 
-<tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._
-import org.scalatest.EitherValues._</span>
-<span class="stReserved">val</span> either = <span class="stType">Right</span>(<span class="stLiteral">3</span>)
-either.right.value should be &lt; <span class="stLiteral">7</span></pre>
+<span class="stImport">val either = Left(1)</span>
+either should be (<span class="stType">'left</span>)                                  <span class="stExplain">// Check whether an either is a Left</span>
+
+<span class="stImport">val either = Left(1)</span>
+either should be (<span class="stType">Left</span>(<span class="stLiteral">1</span>))                                <span class="stExplain">// Check whether an either is Left with a certain value</span>
+
+<span class="stImport">val either = Right(1)</span>
+either should be (<span class="stType">'right</span>)                                 <span class="stExplain">// Check whether an either is a Right</span>
+
+<span class="stImport">val either = Right(1)</span>
+either should be (<span class="stType">Right</span>(<span class="stLiteral">1</span>))                               <span class="stExplain">// Check whether an either is Right with a certain value</span>
+
+<span class="stImport">import org.scalatest.EitherValues._
+val either = Right(3)</span>
+either.right.value should be &lt; <span class="stLiteral">7</span>                          <span class="stExplain">// Check both how an either is defined as well as something about its value</span>
+
+</pre>
 </td>
-<td class="ataglance" colspan="2">State both how an either is defined as well as something about its value</td>
 </tr>

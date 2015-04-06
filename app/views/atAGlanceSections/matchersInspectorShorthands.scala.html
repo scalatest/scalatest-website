@@ -19,51 +19,24 @@
 <tr>
 <th class="ataglance" colspan="4"><a name="matchers_inspector_shorthands"></a>Matchers - Inspector Shorthands</th>
 </tr>
-
 <tr>
-<td class="ataglance" colspan="2"><pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stReserved">val</span> xs = <span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>, <span class="stLiteral">4</span>, <span class="stLiteral">5</span>)
-all (xs) should be &lt; 10</pre>
-</td>
-<td class="ataglance" colspan="2">Use <code>all</code> inspector shorthand to check that all elements in <code>xs</code> is less than <code>10</code></td>
-</tr>
+<td class="ataglance" colspan="4">
+<pre class="stTight">
+<span class="stImport">import org.scalatest.Matchers._
+val xs = List(1, 2, 3, 4, 5)</span>
 
-<tr>
-<td class="ataglance" colspan="2"><pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stReserved">val</span> xs = <span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>, <span class="stLiteral">4</span>, <span class="stLiteral">5</span>)
-atMost (<span class="stLiteral">2</span>, xs) should be &gt;= <span class="stLiteral">4</span></pre>
-</td>
-<td class="ataglance" colspan="2">Use <code>atMost</code> inspector shorthand to check that at most 2 elements in <code>xs</code> is greater than or equal to <code>4</code></td>
-</tr>
+all (xs) should be &lt; 10                                  <span class="stExplain">// check that all elements in xs are less than 10</span>
 
-<tr>
-<td class="ataglance" colspan="2"><pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stReserved">val</span> xs = <span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>, <span class="stLiteral">4</span>, <span class="stLiteral">5</span>)
-atLeast (<span class="stLiteral">3</span>, xs) should be &lt; <span class="stLiteral">5</span></pre>
-</td>
-<td class="ataglance" colspan="2">Use <code>atLeast</code> inspector shorthand to check that at least 3 elements in <code>xs</code> is lesser than <code>5</code></td>
-</tr>
+atMost (2, xs) should be &gt;= 4                            <span class="stExplain">// check that at most 2 elements in xs are greater than or equal to 4</span>
 
-<tr>
-<td class="ataglance" colspan="2"><pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stReserved">val</span> xs = <span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>, <span class="stLiteral">4</span>, <span class="stLiteral">5</span>)
-between (<span class="stLiteral">2</span>, <span class="stLiteral">3</span>, xs) should (be &gt; <span class="stLiteral">1</span> and be &lt; <span class="stLiteral">5</span>)</pre>
-</td>
-<td class="ataglance" colspan="2">Use <code>between</code> inspector shorthand to check that 2 to 3 elements in <code>xs</code> is greater than <code>5</code> and less than <code>5</code></td>
-</tr>
+atLeast (3, xs) should be &lt; 5                            <span class="stExplain">// check that at least 3 elements in xs are lesser than 5</span>
 
-<tr>
-<td class="ataglance" colspan="2"><pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stReserved">val</span> xs = <span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>, <span class="stLiteral">4</span>, <span class="stLiteral">5</span>)
-exactly (<span class="stLiteral">2</span>, xs) should be &lt;= <span class="stLiteral">2</span></pre>
-</td>
-<td class="ataglance" colspan="2">Use <code>exactly</code> inspector shorthand to check that 2 elements in <code>xs</code> is less than or equal to <code>2</code></td>
-</tr>
+between (2, 3, xs) should (be &gt; 1 and be &lt; 5)            <span class="stExplain">// check that 2 to 3 elements in xs are greater than 5 and less than 5</span>
 
-<tr>
-<td class="ataglance" colspan="2"><pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stReserved">val</span> xs = <span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>, <span class="stLiteral">4</span>, <span class="stLiteral">5</span>)
-every (xs) should be &lt; <span class="stReserved">10</span></pre>
+exactly (2, xs) should be &lt;= 2                           <span class="stExplain">// check that 2 elements in xs are less than or equal to 2</span>
+
+every (xs) should be &lt; 10                                <span class="stExplain">// check that all elements in xs are less than 10</span>
+
+</pre>
 </td>
-<td class="ataglance" colspan="2">Use <code>every</code> inspector shorthand to check that all elements in <code>xs</code> is less than <code>10</code></td>
 </tr>

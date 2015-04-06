@@ -20,24 +20,20 @@
 </tr>
 
 <tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stReserved">val</span> s = <span class="stLiteral">"hai"</span>
-evaluating {
-  s.charAt(-<span class="stLiteral">1</span>)
-} should produce [<span class="stType">IndexOutOfBoundsException</span>]</pre></td>
-<td class="ataglance" colspan="2">Checks that a particular exception type is thrown by a bit of code</td>
-</tr>
+<td class="ataglance" colspan="4">
+<pre class="stTight">
+<span class="stImport">import org.scalatest.Matchers._
 
-<tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stReserved">val</span> s = <span class="stLiteral">"hai"</span>
-<span class="stReserved">val</span> caught = evaluating {
+val s = "hai"</span>
+evaluating {                                    <span class="stExplain">// Checks that a particular exception type is thrown by a bit of code</span>
   s.charAt(-<span class="stLiteral">1</span>)
 } should produce [<span class="stType">IndexOutOfBoundsException</span>]
+
+<span class="stReserved">val</span> caught = evaluating {                       <span class="stExplain">// Inspects the caught exception</span>
+s.charAt(-<span class="stLiteral">1</span>)
+} should produce [<span class="stType">IndexOutOfBoundsException</span>]
 caught.getMessage should be (<span class="stQuotedString">"String index out of range: -1"</span>)
+
 </pre>
 </td>
-<td class="ataglance" colspan="2">Inspects the caught exception</td>
 </tr>

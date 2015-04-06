@@ -20,21 +20,19 @@
 </tr>
 
 <tr>
-<td class="ataglance" colspan="2"><pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stReserved">class</span> <span class="stType">Tiger</span>
-<span class="stReserved">val</span> tiger = <span class="stReserved">new</span> <span class="stType">Tiger</span>
-tiger shouldBe a [<span class="stType">Tiger</span>]</pre>
-</td>
-<td class="ataglance" colspan="2">Check if an object is the specified <code>Class</code> instance</td>
-</tr>
+<td class="ataglance" colspan="4">
+<pre class="stTight">
+<span class="stImport">import org.scalatest.Matchers._</span>
+class Tiger
+val tiger = new Tiger
+tiger shouldBe a [<span class="stType">Tiger</span>]                                <span class="stExplain">// Check if an object is the specified Class instance</span>
 
-<tr>
-<td class="ataglance" colspan="2"><pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stReserved">class</span> <span class="stType">Apple</span>
-<span class="stReserved">val</span> apple = <span class="stReserved">new</span> <span class="stType">Apple</span>
-<span class="stReserved">val</span> appleList = <span class="stType">List</span>(apple)
-appleList shouldBe a [<span class="stType">List</span>[_]] <span class="stLineComment">// recommended</span>
-appleList shouldBe a [<span class="stType">List</span>[<span class="stType">Apple</span>]] <span class="stLineComment">// discouraged</span></pre>
+class Apple
+val apple = new Apple
+<span class="stReserved">val</span> appleList = <span class="stType">List</span>(apple)                             <span class="stExplain">// Because type parameters are erased on the JVM, we recommend you insert an underscore for any type parameters when using this syntax.</span>
+appleList shouldBe a [<span class="stType">List</span>[_]] <span class="stLineComment">// recommended</span>           <span class="stExplain">// Both of the examples given test only that the result is an instance of List[_], because at runtime the type parameter has been erased</span>
+appleList shouldBe a [<span class="stType">List</span>[<span class="stType">Apple</span>]] <span class="stLineComment">// discouraged</span>
+
+</pre>
 </td>
-<td class="ataglance" colspan="2">Because type parameters are erased on the JVM, we recommend you insert an underscore for any type parameters when using this syntax. Both of the examples given test only that the result is an instance of List[_], because at runtime the type parameter has been erased</td>
 </tr>

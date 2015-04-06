@@ -20,48 +20,33 @@
 <tr>
 <th colspan="4" class="ataglance"><a name="matchers_boolean_be"></a>Matchers - Checking boolean properties with <code>be</code></th>
 </tr>
-
 <tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stType">Set</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>) should be (<span class="stQuotedString">'traversableAgain</span>)</pre></td>
-<td class="ataglance" colspan="2">Accesses <code>traversableAgain</code> or <code>isTraversableAgain</code> dynamically (For the details on how a field or method is dynamically selected, see the documentation for <a href="@milestoneScaladoc/#org.scalatest.words.BeWord"><code>BeWord</code></a>.)</td>
-</tr>
+<td class="ataglance" colspan="4">
+<pre class="stTight">
+<span class="stImport">import org.scalatest.Matchers._</span>                 <span class="stExplain">// access a boolean property dynamically (via reflection)</span>
 
-<tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._
-import java.io.File</span>
-<span class="stReserved">val</span> temp = new <span class="stType">File</span>(<span class="stLiteral">"aFile.txt"</span>)
-temp should be a (<span class="stQuotedString">'file</span>)</pre>
-</td>
-<td class="ataglance" colspan="2">Can insert an 'a'</td>
-</tr>
+<span class="stType">Set</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>) should be (<span class="stQuotedString">'nonEmpty</span>)              <span class="stExplain">// will also match isNonEmpty</span>
 
-<tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._
-import java.awt._
-import event.KeyEvent</span>
-<span class="stReserved">val</span> canvas = <span class="stReserved">new</span> Canvas
-<span class="stReserved">val</span> keyEvent = <span class="stReserved">new</span> <span class="stType">KeyEvent</span>(canvas, <span class="stLiteral">0</span>, <span class="stLiteral">0</span>, <span class="stLiteral">0</span>, <span class="stLiteral">0</span>, <span class="stLiteral">'0'</span>)
-keyEvent should be an (<span class="stQuotedString">'actionKey</span>)</pre></td>
-<td class="ataglance" colspan="2">Can insert an 'an'</td>
-</tr>
+<span class="stImport">import java.io.File
+val temp = new File("aFile.txt")</span>
+temp should be a (<span class="stQuotedString">'file</span>)                        <span class="stExplain">// can use an optional 'a' or 'an'</span>
 
-<tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight"><span class="stImport">import org.scalatest._
-import Matchers._
-import matchers._
-import java.io.File</span>
-<span class="stReserved">class</span> <span class="stType">FileBePropertyMatcher</span> <span class="stReserved">extends</span> <span class="stType">BePropertyMatcher</span>[<span class="stType">java.io.File</span>] {
+<span class="stImport">import java.awt._
+import event.KeyEvent
+val canvas = new Canvas
+val keyEvent = new KeyEvent(canvas, 0, 0, 0, 0, '0')</span>
+keyEvent should be an (<span class="stQuotedString">'actionKey</span>)
+
+<span class="stImport">import org.scalatest._</span>
+
+<span class="stReserved">class</span> <span class="stType">FileBePropertyMatcher</span> <span class="stReserved">extends</span>             <span class="stExplain">// For static checking, a <a href="@milestoneScaladoc/#org.scalatest.matchers.BePropertyMatcher">BePropertyMatcher</a> can be defined.</span>
+    <span class="stType">BePropertyMatcher</span>[<span class="stType">java.io.File</span>] {
   <span class="stReserved">def</span> apply(left: <span class="stType">File</span>) =
     <span class="stType">BePropertyMatchResult</span>(left.isFile, <span class="stType">"file"</span>)
 }
 <span class="stReserved">val</span> file = <span class="stReserved">new</span> <span class="stType">FileBePropertyMatcher</span>
 <span class="stReserved">val</span> temp = new <span class="stType">File</span>(<span class="stLiteral">"aFile.txt"</span>)
-temp should be a file</pre>
-</td>
-<td class="ataglance" colspan="2">For static checking (and to get rid of the unslightly tick mark), use a <a href="@milestoneScaladoc/#org.scalatest.matchers.BePropertyMatcher"><code>BePropertyMatcher</code></a></td>
+temp should be a file
+
+</pre></td>
 </tr>

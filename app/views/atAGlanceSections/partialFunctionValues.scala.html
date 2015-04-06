@@ -22,22 +22,16 @@
 </tr>
 
 <tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight"><span class="stImport">import org.scalatest._
+<td class="ataglance" colspan="4">
+<pre class="stTight">
+<span class="stImport">import org.scalatest._
 import PartialFunctionValues._</span>
-<span class="stReserved">val</span> map = <span class="stType">Map</span>(<span class="stLiteral">"one"</span> -> <span class="stLiteral">1</span>, <span class="stLiteral">"two"</span> -> <span class="stLiteral">2</span>, <span class="stLiteral">"three"</span> -> <span class="stLiteral">3</span>)
-assert(map.valueAt(<span class="stLiteral">"two"</span>) == <span class="stLiteral">2</span>)</pre>
-</td>
-<td class="ataglance" colspan="2">Use <a href="@{milestoneScaladoc}/index.html#org.scalatest.PartialFunctionValues"><code>PartialFunctionValues</code></a> to check value of a <code>PartialFunction</code>, using <code>assert</code></td>
-</tr>
+<span class="stReserved">val</span> map = <span class="stType">Map</span>(<span class="stLiteral">"one"</span> -> <span class="stLiteral">1</span>, <span class="stLiteral">"two"</span> -> <span class="stLiteral">2</span>, <span class="stLiteral">"three"</span> -> <span class="stLiteral">3</span>)                  <span class="stExplain">// Use <a href="@{milestoneScaladoc}/index.html#org.scalatest.PartialFunctionValues">PartialFunctionValues</a> to check value of a PartialFunction, using assert</span>
+assert(map.valueAt(<span class="stLiteral">"two"</span>) == <span class="stLiteral">2</span>)
 
-<tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight"><span class="stImport">import org.scalatest._
-import Matchers._
-import PartialFunctionValues._</span>
-<span class="stReserved">val</span> map = <span class="stType">Map</span>(<span class="stLiteral">"one"</span> -> <span class="stLiteral">1</span>, <span class="stLiteral">"two"</span> -> <span class="stLiteral">2</span>, <span class="stLiteral">"three"</span> -> <span class="stLiteral">3</span>)
-map.valueAt(<span class="stLiteral">"two"</span>) should equal (<span class="stLiteral">2</span>)</pre>
-</td>
-<td class="ataglance" colspan="2">Use <a href="@{milestoneScaladoc}/index.html#org.scalatest.PartialFunctionValues"><code>PartialFunctionValues</code></a> to check value of a <code>PartialFunction</code>, using <code>Matchers</code> syntax</td>
+<span class="stImport">import Matchers._</span>
+<span class="stReserved">val</span> map = <span class="stType">Map</span>(<span class="stLiteral">"one"</span> -> <span class="stLiteral">1</span>, <span class="stLiteral">"two"</span> -> <span class="stLiteral">2</span>, <span class="stLiteral">"three"</span> -> <span class="stLiteral">3</span>)                  <span class="stExplain">// Use <a href="@{milestoneScaladoc}/index.html#org.scalatest.PartialFunctionValues">PartialFunctionValues</a> to check value of a PartialFunction, using Matchers syntax</span>
+map.valueAt(<span class="stLiteral">"two"</span>) should equal (<span class="stLiteral">2</span>)
+
+</pre>
 </tr>

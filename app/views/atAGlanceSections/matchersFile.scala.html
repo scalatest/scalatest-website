@@ -20,43 +20,22 @@
 </tr>
 
 <tr>
-<td class="ataglance" colspan="2"><pre class="stTight"><span class="stImport">import org.scalatest.Matchers._
-import java.io.File</span>
-<span class="stReserved">val</span> javaHomeDir = <span class="stReserved">new</span> <span class="stType">File</span>(<span class="stType">System</span>.getProperty(<span class="stLiteral">"java.home"</span>))
-javaHomeDir should exist</pre>
-</td>
-<td class="ataglance" colspan="2">Check if Java Home directory exists</td>
-</tr>
+<td class="ataglance" colspan="4">
+<pre class="stTight">
+<span class="stImport">import org.scalatest.Matchers._
+import java.io.File
+val javaHomeDir = new File(System.getProperty("java.home"))</span>
 
-<tr>
-<td class="ataglance" colspan="2"><pre class="stTight"><span class="stImport">import org.scalatest.Matchers._
-import java.io.File</span>
-<span class="stReserved">val</span> javaHomeLicenseFile =
-  <span class="stReserved">new</span> <span class="stType">File</span>(<span class="stType">System</span>.getProperty(<span class="stLiteral">"java.home"</span>) +
-           <span class="stType">System</span>.getProperty(<span class="stLiteral">"file.separator"</span>) + <span class="stLiteral">"LICENSE"</span>)
-javaHomeLicenseFile should exist</pre>
-</td>
-<td class="ataglance" colspan="2">Check if LICENSE file exists in Java Home directory</td>
-</tr>
+javaHomeDir should exist                                     <span class="stExplain">// Check if a directory exists </span>
 
-<tr>
-<td class="ataglance" colspan="2"><pre class="stTight"><span class="stImport">import org.scalatest.Matchers._
-import java.io.File</span>
-<span class="stReserved">val</span> javaHomeLicenseFile =
-  <span class="stReserved">new</span> <span class="stType">File</span>(<span class="stType">System</span>.getProperty(<span class="stLiteral">"java.home"</span>) +
-           <span class="stType">System</span>.getProperty(<span class="stLiteral">"file.separator"</span>) + <span class="stLiteral">"LICENSE"</span>)
-javaHomeLicenseFile shouldBe readable</pre>
-</td>
-<td class="ataglance" colspan="2">Check if LICENSE file in Java Home directory is readable</td>
-</tr>
+<span class="stImport">val javaHomeLicenseFile = javaHomeDir +
+  System.getProperty("file.separator") + "LICENSE")</span>
 
-<tr>
-<td class="ataglance" colspan="2"><pre class="stTight"><span class="stImport">import org.scalatest.Matchers._
-import java.io.File</span>
-<span class="stReserved">val</span> javaHomeLicenseFile =
-  <span class="stReserved">new</span> <span class="stType">File</span>(<span class="stType">System</span>.getProperty(<span class="stLiteral">"java.home"</span>) +
-           <span class="stType">System</span>.getProperty(<span class="stLiteral">"file.separator"</span>) + <span class="stLiteral">"LICENSE"</span>)
-javaHomeLicenseFile shouldBe writable</pre>
-</td>
-<td class="ataglance" colspan="2">Check if LICENSE file in Java Home directory is writable</td>
+javaHomeLicenseFile should exist                             <span class="stExplain">// Check if a file exists </span>
+
+javaHomeLicenseFile shouldBe readable                        <span class="stExplain">// Check if a file is readable </span>
+
+javaHomeLicenseFile shouldBe writable                        <span class="stExplain">// Check if a file is writable </span>
+
+</pre>
 </tr>

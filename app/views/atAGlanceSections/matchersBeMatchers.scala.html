@@ -22,8 +22,8 @@
 </tr>
 
 <tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight"><span class="stImport">import org.scalatest._
+<td class="ataglance" colspan="4">
+<pre class="stTight"><span class="stImport">import org.scalatest._                          <span class="stExplain">// To place an arbitrary token after <code>be</code>, use a <a href="@milestoneScaladoc/#org.scalatest.matchers.BeMatcher">BeMatcher</a>.</span>
 import Matchers._
 import matchers._</span>
 <span class="stReserved">class</span> <span class="stType">OddMatcher</span> <span class="stReserved">extends</span> <span class="stType">BeMatcher</span>[<span class="stType">Int</span>] {
@@ -37,5 +37,4 @@ import matchers._</span>
 <span class="stReserved">val</span> odd = <span class="stReserved">new</span> <span class="stType">OddMatcher</span>
 <span class="stLiteral">7</span> should be (odd)</pre>
 </td>
-<td class="ataglance" colspan="2">To place an arbitrary token after <code>be</code>, use a <a href="@milestoneScaladoc/#org.scalatest.matchers.BeMatcher"><code>BeMatcher</code></a>.
 </tr>

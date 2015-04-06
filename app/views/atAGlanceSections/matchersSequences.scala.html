@@ -22,36 +22,18 @@
 </tr>
 
 <tr>
-<td class="ataglance" colspan="2"><pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>, <span class="stLiteral">3</span>, <span class="stLiteral">3</span>) should contain inOrderOnly (<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>)</pre>
-</td>
-<td class="ataglance" colspan="2">Check if a <code>List</code> (or any <code>GenTraversable</code>) contains only the specified elements in same order</td>
-</tr>
+<td class="ataglance" colspan="4">
+<pre class="stTight">
+<span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>, <span class="stLiteral">3</span>, <span class="stLiteral">3</span>) should contain inOrderOnly (<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>)                  <span class="stExplain">// Check if a List (or any GenTraversable) contains only the specified elements in same order</span>
 
-<tr>
-<td class="ataglance" colspan="2"><pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stType">Array</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>, <span class="stLiteral">3</span>, <span class="stLiteral">3</span>) should contain inOrderOnly (<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>)</pre>
-</td>
-<td class="ataglance" colspan="2">Check if an <code>Array</code> contains only the specified elements in same order</td>
-</tr>
+<span class="stType">Array</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>, <span class="stLiteral">3</span>, <span class="stLiteral">3</span>) should contain inOrderOnly (<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>)                 <span class="stExplain">// Check if an Array contains only the specified elements in same order</span>
 
-<tr>
-<td class="ataglance" colspan="2"><pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stLiteral">"122333"</span> should contain inOrderOnly (<span class="stLiteral">'1'</span>, <span class="stLiteral">'2'</span>, <span class="stLiteral">'3'</span>)</pre>
-</td>
-<td class="ataglance" colspan="2">Check if a <code>String</code> contains only the specified characters in same order</td>
-</tr>
+<span class="stLiteral">"122333"</span> should contain inOrderOnly (<span class="stLiteral">'1'</span>, <span class="stLiteral">'2'</span>, <span class="stLiteral">'3'</span>)                          <span class="stExplain">// Check if a String contains only the specified characters in same order</span>
 
-<tr>
-<td class="ataglance" colspan="2"><pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stType">List</span>(<span class="stLiteral">0</span>, <span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">2</span>, <span class="stLiteral">99</span>, <span class="stLiteral">3</span>, <span class="stLiteral">3</span>, <span class="stLiteral">3</span>, <span class="stLiteral">5</span>) should contain inOrder (<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>)</pre>
-</td>
-<td class="ataglance" colspan="2">Check if a <code>List</code> (or any <code>GenTraversable</code>) contains the specified elements in same order</td>
-</tr>
+<span class="stType">List</span>(<span class="stLiteral">0</span>, <span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">2</span>, <span class="stLiteral">99</span>, <span class="stLiteral">3</span>, <span class="stLiteral">3</span>, <span class="stLiteral">3</span>, <span class="stLiteral">5</span>) should contain inOrder (<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>)            <span class="stExplain">// Check if a List (or any GenTraversable) contains the specified elements in same order</span>
 
-<tr>
-<td class="ataglance" colspan="2"><pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>) should contain theSameElementsInOrderAs <span class="stType">Vector</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>)</pre>
-</td>
-<td class="ataglance" colspan="2">Check if a <code>List</code> (or any <code>GenTraversable</code>) contains the same elements in same order as the specified <code>Vector</code> (or any <code>GenTraversable</code>)</td>
+<span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>) should contain theSameElementsInOrderAs <span class="stType">Vector</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>)        <span class="stExplain">// Check if a List (or any GenTraversable) contains the same elements in same order as the specified Vector (or any GenTraversable)</span>
+
+</pre>
 </tr>

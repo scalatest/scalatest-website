@@ -22,61 +22,28 @@
 </tr>
 
 <tr>
-<td class="ataglance" colspan="2"><pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>) should contain atLeastOneOf (<span class="stLiteral">2</span>, <span class="stLiteral">3</span>, <span class="stLiteral">4</span>)</pre>
-</td>
-<td class="ataglance" colspan="2">Check if a <code>List</code> (or any <code>GenTraversable</code>) contains at least one of the specified elements</td>
-</tr>
+<td class="ataglance" colspan="4">
+<pre class="stTight">
+<span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>) should contain atLeastOneOf (<span class="stLiteral">2</span>, <span class="stLiteral">3</span>, <span class="stLiteral">4</span>)                          <span class="stExplain">// Check if a List (or any GenTraversable) contains at least one of the specified elements</span>
 
-<tr>
-<td class="ataglance" colspan="2"><pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stType">Array</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>) should contain atLeastOneOf (<span class="stLiteral">3</span>, <span class="stLiteral">4</span>, <span class="stLiteral">5</span>)</pre>
-</td>
-<td class="ataglance" colspan="2">Check if an <code>Array</code> contains at least one of the specified elements</td>
-</tr>
+<span class="stType">Array</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>) should contain atLeastOneOf (<span class="stLiteral">3</span>, <span class="stLiteral">4</span>, <span class="stLiteral">5</span>)                         <span class="stExplain">// Check if an Array contains at least one of the specified elements</span>
 
-<tr>
-<td class="ataglance" colspan="2"><pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stLiteral">"abc"</span> should contain atLeastOneOf (<span class="stLiteral">'c'</span>, <span class="stLiteral">'a'</span>, <span class="stLiteral">'t'</span>)</pre>
-</td>
-<td class="ataglance" colspan="2">Check if a <code>String</code> contains at least one of the specified characters</td>
-</tr>
+<span class="stLiteral">"abc"</span> should contain atLeastOneOf (<span class="stLiteral">'c'</span>, <span class="stLiteral">'a'</span>, <span class="stLiteral">'t'</span>)                            <span class="stExplain">// Check if a String contains at least one of the specified characters</span>
 
-<tr>
-<td class="ataglance" colspan="2"><pre class="stTight"><span class="stImport">import org.scalatest.Matchers._
-import org.scalautils.Explicitly._
+<span class="stImport">import org.scalautils.Explicitly._                                           <span class="stExplain">// Using <a href="@milestoneScaladoc/#org.scalautils.StringNormalizations"><code>StringNormalizations</code></a> explicitly</span>
 import org.scalautils.StringNormalizations._</span>
-(<span class="stType">Vector</span>(<span class="stLiteral">" A"</span>, <span class="stLiteral">"B "</span>) should contain
- atLeastOneOf (<span class="stLiteral">"a "</span>, <span class="stLiteral">"b"</span>, <span class="stLiteral">"c"</span>)) (after being lowerCased and trimmed)</pre>
-</td>
-<td class="ataglance" colspan="2">Specify to use <a href="@milestoneScaladoc/#org.scalautils.StringNormalizations"><code>StringNormalizations</code></a> explicitly before checking if a <code>Vector</code> contains at least one of the specified <code>String</code></td>
-</tr>
+(<span class="stType">Vector</span>(<span class="stLiteral">" A"</span>, <span class="stLiteral">"B "</span>) should contain atLeastOneOf (<span class="stLiteral">"a "</span>, <span class="stLiteral">"b"</span>, <span class="stLiteral">"c"</span>)) (after being lowerCased and trimmed)
 
-<tr>
-<td class="ataglance" colspan="2"><pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>, <span class="stLiteral">4</span>, <span class="stLiteral">5</span>) should contain atMostOneOf (5, 6, 7)</pre>
-</td>
-<td class="ataglance" colspan="2">Check if a <code>List</code> (or any <code>GenTraversable</code>) contains at most one of the specified elements</td>
-</tr>
+<span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>, <span class="stLiteral">4</span>, <span class="stLiteral">5</span>) should contain atMostOneOf (5, 6, 7)                     <span class="stExplain">// Check if a List (or any GenTraversable) contains at most one of the specified element</span>
 
-<tr>
-<td class="ataglance" colspan="2"><pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>, <span class="stLiteral">4</span>, <span class="stLiteral">5</span>) should contain allOf (<span class="stLiteral">2</span>, <span class="stLiteral">3</span>, <span class="stLiteral">5</span>)</pre>
-</td>
-<td class="ataglance" colspan="2">Check if a <code>List</code> (or any <code>GenTraversable</code>) contains all of the specified elements</td>
-</tr>
+<span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>, <span class="stLiteral">4</span>, <span class="stLiteral">5</span>) should contain allOf (<span class="stLiteral">2</span>, <span class="stLiteral">3</span>, <span class="stLiteral">5</span>)                           <span class="stExplain">// Check if a List (or any GenTraversable) contains all of the specified elements</span>
 
-<tr>
-<td class="ataglance" colspan="2"><pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>, <span class="stLiteral">2</span>, <span class="stLiteral">1</span>) should contain only (<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>)</pre>
-</td>
-<td class="ataglance" colspan="2">Check if a <code>List</code> (or any <code>GenTraversable</code>) contains only the specified elements</td>
-</tr>
+<span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>, <span class="stLiteral">2</span>, <span class="stLiteral">1</span>) should contain only (<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>)                            <span class="stExplain">// Check if a List (or any GenTraversable) contains only the specified elements</span>
 
-<tr>
-<td class="ataglance" colspan="2"><pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stReserved">val</span> expected = <span class="stType">Vector</span>(<span class="stLiteral">3</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>, <span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>)
-<span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>, <span class="stLiteral">3</span>, <span class="stLiteral">3</span>) should contain theSameElementsAs expected</pre>
+<span class="stReserved">val</span> expected = <span class="stType">Vector</span>(<span class="stLiteral">3</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>, <span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>)                                      <span class="stExplain">// Check if a List (or any GenTraversable) contains only the </span>
+<span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>, <span class="stLiteral">3</span>, <span class="stLiteral">3</span>) should contain theSameElementsAs expected             <span class="stExplain">// same elements as the specified Vector (or any GenTraversable)</span>
+
+</pre>
 </td>
-<td class="ataglance" colspan="2">Check if a <code>List</code> (or any <code>GenTraversable</code>) contains only the same elements as the specified <code>Vector</code> (or any <code>GenTraversable</code>)</td>
 </tr>

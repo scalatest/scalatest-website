@@ -20,46 +20,24 @@
 </tr>
 
 <tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stReserved">val</span> result = <span class="stLiteral">5</span> - <span class="stReserved">2</span>
-result should equal (<span class="stLiteral">3</span>)</pre>
-</td>
-<td class="ataglance" colspan="2">Calls <em>left</em> <code>==</code> <em>right</em>, except for arrays</td>
-</tr>
+<td class="ataglance" colspan="4">
+<pre class="stTight">
+<span class="stImport">import org.scalatest.Matchers._
+val result = 5 - 2</span>
+result should equal (<span class="stLiteral">3</span>)                            <span class="stExplain">// Calls <em>left</em> <code>==</code> <em>right</em>, except for arrays</span>
 
-<tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stType">Array</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>) should equal (<span class="stType">Array</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>))</pre>
-</td>
-<td class="ataglance" colspan="2">Arrays are compared structurally, by calling <em>left</em><code>.deep</code> <code>==</code> <em>right</em><code>.deep</code></td></tr>
-<tr>
+<span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stType">Array</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>) should equal (<span class="stType">Array</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>))             <span class="stExplain">// Arrays are compared structurally, by calling <em>left</em><code>.deep</code> <code>==</code> <em>right</em><code>.deep</code></span>
 
-<tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stReserved">val</span> result = <span class="stLiteral">"thick"</span>.substring(<span class="stLiteral">1</span>, <span class="stLiteral">3</span>)
-result should be (<span class="stLiteral">"hi"</span>)</pre>
-</td>
-<td class="ataglance" colspan="2">Calls <em>left</em> <code>==</code> <em>right</em>, except for arrays</td>
-</tr>
+<span class="stImport">val result = "thick".substring(1, 3)</span>
+result should be (<span class="stLiteral">"hi"</span>)                            <span class="stExplain">// Calls <em>left</em> <code>==</code> <em>right</em>, except for arrays</span>
 
-<tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stType">Array</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>) should be (<span class="stType">Array</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>))</pre>
-</td>
-<td class="ataglance" colspan="2">Arrays are compared structurally, by calling <em>left</em><code>.deep</code> <code>==</code> <em>right</em><code>.deep</code></td></tr>
-<tr>
+<span class="stType">Array</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>) should be (<span class="stType">Array</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>))                <span class="stExplain">// Arrays are compared structurally, by calling <em>left</em><code>.deep</code> <code>==</code> <em>right</em><code>.deep</code></span>
 
-<tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stReserved">val</span> list = <span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>)
+<span class="stReserved">val</span> list = <span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>)                           <span class="stExplain">// Calls <em>left</em> <code>eq</code> <em>right</em></span>
 <span class="stReserved">val</span> ref1 = list
 <span class="stReserved">val</span> ref2 = list
-ref1 should be theSameInstanceAs ref2</pre>
-</td>
-<td class="ataglance" colspan="2">Calls <em>left</em> <code>eq</code> <em>right</em></td>
+ref1 should be theSameInstanceAs ref2
+
+</pre>
 </tr>

@@ -20,43 +20,21 @@
 </tr>
 
 <tr>
-<td class="ataglance" colspan="2"><pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stType">List</span>.empty shouldBe empty</pre>
-</td>
-<td class="ataglance" colspan="2">Check if a <code>List</code> (and any <code>GenTraversable</code>) is empty</td>
-</tr>
+<td class="ataglance" colspan="4">
+<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
 
-<tr>
-<td class="ataglance" colspan="2"><pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stType">None</span> shouldBe empty</pre>
-</td>
-<td class="ataglance" colspan="2">Check if an <code>Option</code> is empty</td>
-</tr>
+<span class="stType">List</span>.empty shouldBe empty                                 <span class="stExplain">// Check if a List (and any GenTraversable) is empty</span>
 
-<tr>
-<td class="ataglance" colspan="2"><pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stLiteral">""</span> shouldBe empty</pre>
-</td>
-<td class="ataglance" colspan="2">Check if a <code>String</code> is empty</td>
-</tr>
+<span class="stType">None</span> shouldBe empty                                       <span class="stExplain">// Check if an Option is empty</span>
 
-<tr>
-<td class="ataglance" colspan="2"><pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-new java.util.<span class="stType">HashMap</span>[<span class="stType">Int</span>, <span class="stType">Int</span>] shouldBe empty</pre>
-</td>
-<td class="ataglance" colspan="2">Check if a <code>java.util.Map</code> is empty</td>
-</tr>
+<span class="stLiteral">""</span> shouldBe empty                                         <span class="stExplain">// Check if a String is empty</span>
 
-<tr>
-<td class="ataglance" colspan="2"><pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stReserved">new</span> { <span class="stReserved">def</span> isEmpty = <span class="stReserved">true</span> } shouldBe empty</pre>
-</td>
-<td class="ataglance" colspan="2">Check if a structural type is empty</td>
-</tr>
+new java.util.<span class="stType">HashMap</span>[<span class="stType">Int</span>, <span class="stType">Int</span>] shouldBe empty            <span class="stExplain">// Check if a java.util.Map is empty</span>
 
-<tr>
-<td class="ataglance" colspan="2"><pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stType">Array</span>.empty shouldBe empty</pre>
+<span class="stReserved">new</span> { <span class="stReserved">def</span> isEmpty = <span class="stReserved">true</span> } shouldBe empty                 <span class="stExplain">// Check if a structural type is empty</span>
+
+<span class="stType">Array</span>.empty shouldBe empty                                <span class="stExplain">// Check if an Array is empty</span>
+
+</pre>
 </td>
-<td class="ataglance" colspan="2">Check if an <code>Array</code> is empty</td>
 </tr>

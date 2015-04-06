@@ -21,9 +21,10 @@
 </tr>
 
 <tr>
-<td class="ataglance" colspan="2"><pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
+<td class="ataglance" colspan="4">
+<pre class="stTight">
+<span class="stImport">import org.scalatest.Matchers._</span><span class="stExplain">// Use toStream to convert Iterator to Stream to work with contain</span>
 <span class="stReserved">val</span> it = <span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>).iterator
-it.toStream should contain (<span class="stLiteral">2</span>)</pre>
-</td>
-<td class="ataglance" colspan="2">Use <code>toStream</code> to convert <code>Iterator</code> to <code>Stream</code> to work with <code>contain</code></td>
+it.toStream should contain (<span class="stLiteral">2</span>)
+</pre>
 </tr>

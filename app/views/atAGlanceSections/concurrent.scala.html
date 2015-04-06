@@ -22,45 +22,24 @@
 </tr>
 
 <tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight"><span class="stImport">import org.scalatest._
-import concurrent.Eventually._
-import Matchers._</span>
+<td class="ataglance" colspan="4">
+<pre class="stTight"><span class="stImport">import org.scalatest._                                                        <span class="stExplain">// <a href="@{milestoneScaladoc}/index.html#org.scalatest.concurrent.Eventually">eventually</a> retries the block until it no longer throws an exception, using</span>
+import concurrent.Eventually._                                                <span class="stExplain">// a timeout and interval taken from an implicit <a href="@{milestoneScaladoc}/index.html#org.scalatest.concurrent.AbstractPatienceConfiguration$PatienceConfig">PatienceConfig</a>.</span>
+import Matchers._</span>                                                             <span class="stExplain">// The default <a href="@{milestoneScaladoc}/index.html#org.scalatest.concurrent.AbstractPatienceConfiguration$PatienceConfig">PatienceConfig</a> is 150 milliseconds timeout and 15 milliseconds interval.
+                                                                              <span class="stExplain">// If you import IntegrationPatience, you'll get 15 seconds timeout and 150 milliseconds interval. If you want something else, you can define your own implicit <a href="@{milestoneScaladoc}/index.html#org.scalatest.concurrent.AbstractPatienceConfiguration$PatienceConfig">PatienceConfig</a> like the next example.</span></span>
+
 <span class="stReserved">val</span> it = <span class="stType">Vector</span>(<span class="stLiteral">"sad"</span>, <span class="stLiteral">"happy"</span>).iterator
 eventually { it.next shouldBe <span class="stLiteral">"happy"</span> }
+
+<span class="stImport">import org.scalatest.time.SpanSugar._</span>                                         <span class="stExplain">// Define custom implicit <a href="@{milestoneScaladoc}/index.html#org.scalatest.concurrent.AbstractPatienceConfiguration$PatienceConfig">PatienceConfig</a></span>
+<span class="stReserved">implicit</span> <span class="stReserved">val</span> patienceConfig =
+<span class="stType">PatienceConfig</span>(timeout = scaled(<span class="stLiteral">2</span> seconds), interval = scaled(<span class="stLiteral">5</span> millis))
+
+<span class="stImport">import org.scalatest.time._</span>                                                   <span class="stExplain">// Use <a href="@{milestoneScaladoc}/index.html#org.scalatest.concurrent.Eventually">eventually</a> with explicit timeout</span>
+eventually (timeout(<span class="stType">Span</span>(<span class="stLiteral">5</span>, <span class="stType">Seconds</span>))) { <span class="stBlockComment">/*code omitted*/</span> }
+
+eventually (timeout(<span class="stLiteral">5</span> seconds), interval(<span class="stLiteral">5</span> millis)) { <span class="stBlockComment">/*code omitted*/</span> }      <span class="stExplain">// Use <a href="@{milestoneScaladoc}/index.html#org.scalatest.concurrent.Eventually">eventually</a> with explicit timeout and interval</span>
+
 </pre>
 </td>
-<td class="ataglance" colspan="2">
-<a href="@{milestoneScaladoc}/index.html#org.scalatest.concurrent.Eventually"><code>eventually</code></a> retries the past block until it no longer throws an exception, using
-a timeout and interval taken from an implicit <a href="@{milestoneScaladoc}/index.html#org.scalatest.concurrent.AbstractPatienceConfiguration$PatienceConfig"><code>PatienceConfig</code></a>.
-The default <a href="@{milestoneScaladoc}/index.html#org.scalatest.concurrent.AbstractPatienceConfiguration$PatienceConfig"><code>PatienceConfig</code></a> is 150 milliseconds timeout and 15 milliseconds interval. If you import IntegrationPatience, you'll get 15 seconds timeout and 150 milliseconds interval. If you want something else, you can define your own implicit <a href="@{milestoneScaladoc}/index.html#org.scalatest.concurrent.AbstractPatienceConfiguration$PatienceConfig"><code>PatienceConfig</code></a> like the next example.
-</td>
-</tr>
-
-<tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight"><span class="stImport">import concurrent.Eventually._
-import org.scalatest.time.SpanSugar._</span>
-<span class="stReserved">implicit</span> <span class="stReserved">val</span> patienceConfig =
-<span class="stType">PatienceConfig</span>(timeout = scaled(<span class="stLiteral">2</span> seconds), interval = scaled(<span class="stLiteral">5</span> millis))</pre>
-</td>
-<td class="ataglance" colspan="2">Define custom implicit <a href="@{milestoneScaladoc}/index.html#org.scalatest.concurrent.AbstractPatienceConfiguration$PatienceConfig"><code>PatienceConfig</code></a></td>
-</tr>
-
-<tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight"><span class="stImport">import org.scalatest.concurrent.Eventually._
-import org.scalatest.time._</span>
-eventually (timeout(<span class="stType">Span</span>(<span class="stLiteral">5</span>, <span class="stType">Seconds</span>))) { <span class="stBlockComment">/*code omitted*/</span> }</pre>
-</td>
-<td class="ataglance" colspan="2">Use <a href="@{milestoneScaladoc}/index.html#org.scalatest.concurrent.Eventually"><code>eventually</code></a> with explicit <code>timeout</code></td>
-</tr>
-
-<tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight"><span class="stImport">import org.scalatest.concurrent.Eventually._
-import org.scalatest.time.SpanSugar._</span>
-eventually (timeout(<span class="stLiteral">5</span> seconds), interval(<span class="stLiteral">5</span> millis)) { <span class="stBlockComment">/*code omitted*/</span> }</pre>
-</td>
-<td class="ataglance" colspan="2">Use <a href="@{milestoneScaladoc}/index.html#org.scalatest.concurrent.Eventually"><code>eventually</code></a> with explicit <code>timeout</code> and <code>interval</code></td>
 </tr>

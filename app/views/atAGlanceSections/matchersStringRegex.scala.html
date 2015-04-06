@@ -20,89 +20,25 @@
 </tr>
 
 <tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stReserved">val</span> string = <span class="stLiteral">"Hello World"</span>
-string should startWith (<span class="stQuotedString">"Hello"</span>)</pre></td>
-<td class="ataglance" colspan="2">Starts with substring</td>
-</tr>
+<td class="ataglance" colspan="4">
+<pre class="stTight">
+<span class="stImport">import org.scalatest.Matchers._
+val string = "Hello World"</span>
+string should startWith (<span class="stQuotedString">"Hello"</span>)               <span class="stExplain">// starts with the given substring</span>
 
-<tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stReserved">val</span> string = <span class="stLiteral">"hello world"</span>
-string should endWith (<span class="stQuotedString">"world"</span>)</pre></td>
-<td class="ataglance" colspan="2">Ends with substring</td>
-</tr>
+string should endWith (<span class="stQuotedString">"world"</span>)                 <span class="stExplain">// ends with the given substring</span>
 
-<tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stReserved">val</span> string = <span class="stLiteral">"six seven eight"</span>
-string should include (<span class="stQuotedString">"seven"</span>)</pre></td>
-<td class="ataglance" colspan="2">Includes substring</td>
-</tr>
+string should include (<span class="stQuotedString">"seven"</span>)                 <span class="stExplain">// includes the given substring</span>
 
-<tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stReserved">val</span> string = <span class="stLiteral">"Hello"</span>
-string should startWith regex <span class="stQuotedString">"Hel*o"</span></pre></td>
-<td class="ataglance" colspan="2">Starts with substring matching regular expression string</td>
-</tr>
+string should startWith regex <span class="stQuotedString">"Hel*o"</span>           <span class="stExplain">// starts with a substring matching the regular expression</span>
+string should startWith regex <span class="stQuotedString">"Hel*o"</span>.r         <span class="stExplain">// (works with String or Regex)</span>
 
-<tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stReserved">val</span> string = <span class="stLiteral">"Hello World"</span>
-string should startWith regex <span class="stQuotedString">"Hel*o"</span>.r</pre></td>
-<td class="ataglance" colspan="2">Starts with substring matching regular expression <code>Regex</code></td>
-</tr>
+string should endWith regex <span class="stQuotedString">"wo.ld"</span>.r           <span class="stExplain">// ends with a substring matching the regular expression</span>
 
-<tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stReserved">val</span> string = <span class="stLiteral">"hello world"</span>
-string should endWith regex <span class="stQuotedString">"wo.ld"</span></pre></td>
-<td class="ataglance" colspan="2">Ends with substring matching regular expression string</td>
-</tr>
+string should include regex <span class="stQuotedString">"wo.ld"</span>.r           <span class="stExplain">// includes substring matching regular expression</span>
 
-<tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stReserved">val</span> string = <span class="stLiteral">"hello world"</span>
-string should endWith regex <span class="stQuotedString">"wo.ld"</span>.r</pre></td>
-<td class="ataglance" colspan="2">Ends with substring matching regular expression <code>Regex</code></td>
-</tr>
+<span class="stImport">val re = &#34;&#34;&#34;(-)?(\d+)(\.\d*)?&#34;&#34;&#34;.r</span>
+string should fullyMatch regex re               <span class="stExplain">// includes substring matching regular expression</span>
 
-<tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stReserved">val</span> string = <span class="stLiteral">"hello world"</span>
-string should include regex <span class="stQuotedString">"wo.ld"</span></pre></td>
-<td class="ataglance" colspan="2">Includes substring matching regular expression string</td>
-</tr>
-
-<tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stReserved">val</span> string = <span class="stLiteral">"hello world"</span>
-string should include regex <span class="stQuotedString">"wo.ld"</span>.r</pre></td>
-<td class="ataglance" colspan="2">Includes substring matching regular expression <code>Regex</code></td>
-</tr>
-
-<tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stReserved">val</span> string = <span class="stLiteral">"3.142"</span>
-string should fullyMatch regex <span class="stQuotedString">&#34;&#34;&#34;(-)?(\d+)(\.\d*)?&#34;&#34;&#34;</span></pre></td>
-<td class="ataglance" colspan="2">Fully matches regular expression string</td>
-</tr>
-
-<tr>
-<td class="ataglance" colspan="2">
-<pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stReserved">val</span> string = <span class="stLiteral">"3.142"</span>
-string should fullyMatch regex <span class="stQuotedString">&#34;&#34;&#34;(-)?(\d+)(\.\d*)?&#34;&#34;&#34;</span>.r</pre></td>
-<td class="ataglance" colspan="2">Fully matches regular expression <code>Regex</code></td>
+</pre>
 </tr>
