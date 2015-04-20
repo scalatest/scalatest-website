@@ -1094,28 +1094,30 @@ traversable should (contain (<span class="stLiteral">7</span>) or (contain (<spa
 <a name="workingWithOptions"> </a>
 <h2> Working with <code>Option</code>s </h2>
 
-<p>ScalaTest matchers has no special support for <code>Option</code>s, but you can
-work with them quite easily using syntax shown previously. For example, if you wish to check
+<p>You can work with options using ScalaTest's equality, <code>empty</code>,
+<code>defined</code>, and <code>contain</code> syntax.
+For example, if you wish to check
 whether an option is <code>None</code>, you can write any of:</p>
 
 <p><pre class="stHighlighted">
-option should equal (<span class="stType">None</span>)
-option should be (<span class="stType">None</span>)
-option should not be (<span class="stQuotedString">'defined</span>)
-option should be (<span class="stQuotedString">'empty</span>)
+option shouldEqual <span class="stType">None</span>
+option shouldBe <span class="stType">None</span>
+option should === (<span class="stType">None</span>)
+option shouldBe <span class="stQuotedString">empty</span>
 </pre></p>
 
 <p>If you wish to check an option is defined, and holds a specific value, you can write either of:</p>
 
 <p><pre class="stHighlighted">
-option should equal (<span class="stType">Some</span>(<span class="stQuotedString">&quot;hi&quot;</span>))
-option should be (<span class="stType">Some</span>(<span class="stQuotedString">&quot;hi&quot;</span>))
+option shouldEqual <span class="stType">Some</span>(<span class="stQuotedString">&quot;hi&quot;</span>)
+option shouldBe <span class="stType">Some</span>(<span class="stQuotedString">&quot;hi&quot;</span>)
+option should === (<span class="stType">Some</span>(<span class="stQuotedString">&quot;hi&quot;</span>))
 </pre></p>
 
 <p>If you only wish to check that an option is defined, but don't care what it's value is, you can write:</p>
 
 <p><pre class="stHighlighted">
-option should be (<span class="stQuotedString">'defined</span>)
+option shouldBe <span class="stQuotedString">defined</span>
 </pre></p>
 
 <p>If you mix in (or import the members of) <a href="@latestScaladoc/#org.scalatest.OptionValues"><code>OptionValues</code></a>,
@@ -1125,6 +1127,17 @@ you can write one statement that indicates you believe an option should be defin
 <span class="stReserved">import</span> org.scalatest.OptionValues._
 option.value should be &lt; (<span class="stLiteral">7</span>)
 </pre></p>
+
+<p>
+As mentioned previously, you can use also use ScalaTest's <code>contain</code>, <code>contain oneOf</code>, and
+<code>contain noneOf</code> syntax with options:
+</p>
+
+<pre class="stHighlighted">
+<span class="stType">Some</span>(<span class="stLiteral">2</span>) should contain (<span class="stLiteral">2</span>)
+<span class="stType">Some</span>(<span class="stLiteral">7</span>) should contain oneOf (<span class="stLiteral">5</span>, <span class="stLiteral">7</span>, <span class="stLiteral">9</span>)
+<span class="stType">Some</span>(<span class="stLiteral">0</span>) should contain noneOf (<span class="stLiteral">7</span>, <span class="stLiteral">8</span>, <span class="stLiteral">9</span>)
+</pre>
 
 <a name="checkingArbitraryProperties"> </a>
 <h2> Checking arbitrary properties with <code>have</code> </h2>
