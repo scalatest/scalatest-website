@@ -1103,7 +1103,7 @@ whether an option is <code>None</code>, you can write any of:</p>
 option shouldEqual <span class="stType">None</span>
 option shouldBe <span class="stType">None</span>
 option should === (<span class="stType">None</span>)
-option shouldBe <span class="stQuotedString">empty</span>
+option shouldBe empty
 </pre></p>
 
 <p>If you wish to check an option is defined, and holds a specific value, you can write either of:</p>
@@ -1117,7 +1117,7 @@ option should === (<span class="stType">Some</span>(<span class="stQuotedString"
 <p>If you only wish to check that an option is defined, but don't care what it's value is, you can write:</p>
 
 <p><pre class="stHighlighted">
-option shouldBe <span class="stQuotedString">defined</span>
+option shouldBe defined
 </pre></p>
 
 <p>If you mix in (or import the members of) <a href="@latestScaladoc/#org.scalatest.OptionValues"><code>OptionValues</code></a>,
