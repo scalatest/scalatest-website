@@ -70,14 +70,14 @@ object FlatSpecExamples extends StyleTraitExamples {
       |  }
       |}
       |
-      |@DoNotDiscover <span class="stExplain">// Disable discovery of this test class</span>
+      |@DoNotDiscover <span class="stExplain">// Disable discovery of a test class</span>
       |<span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> { <span class="stBlockComment">/*code omitted*/</span> }
       |
-      |@Ignore <span class="stExplain">// Ignore all tests in this test class</span>
+      |@Ignore <span class="stExplain">// Ignore all tests in a test class</span>
       |<span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> { <span class="stBlockComment">/*code omitted*/</span> }
       |
       |<span class="stImport">import tags.Slow</span>
-      |@Slow <span class="stExplain">// Mark all tests in this test class with a tag</span>
+      |@Slow <span class="stExplain">// Mark all tests in a test class with a tag</span>
       |<span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> { <span class="stBlockComment">/*code omitted*/</span> }
       |""".stripMargin
 
