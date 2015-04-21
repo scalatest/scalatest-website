@@ -20,12 +20,54 @@ object FlatSpecExamples extends StyleTraitExamples {
   val name: String = "FlatSpec"
 
   val exampleUsage: String =
-    """<span class="stImport">import org.scalatest.FlatSpec</span>
+    """<span class="stImport">import org.scalatest._</span>
+      |
+      |<span class="stReserved">object</span> <span class="stType">SlowTest</span> <span class="stReserved">extends</span> <span class="stType">Tag</span>(<span class="stLiteral">"com.mycompany.tags.SlowTest"</span>) <span class="stExplain">// Tag used in example below</span>
+      |
       |<span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> {
-      |  behavior of <span class="stLiteral">"An empty Set"</span>
-      |  it should <span class="stLiteral">"have size 0"</span> in { assert(<span class="stType">Set</span>.empty.size === <span class="stLiteral">0</span>) }
-      |  it should <span class="stLiteral">"produce NoSuchElementException when head is invoked"</span> in {
-      |    intercept[<span class="stType">NoSuchElementException</span>] { <span class="stType">Set</span>.empty.head }
+      |  <span class="stReserved">override</span> <span class="stReserved">def</span> withFixture(test: <span class="stType">NoArgTest</span>) = { <span class="stExplain">// Define a shared fixture</span>
+      |    <span class="stExplain">// Shared setup (run at beginning of each test)</span>
+      |    <span class="stReserved">try</span> test()
+      |    <span class="stReserved">finally</span> {
+      |      <span class="stExplain">// Shared cleanup (run at end of each test)</span>
+      |    }
+      |  }
+      |  <span class="stLiteral">"An empty Set"</span> should <span class="stLiteral">"have size 0"</span> in { <span class="stExplain">// Define first test for subject, "An empty Set"</span>
+      |    assert(<span class="stType">Set</span>.empty.size == <span class="stLiteral">0</span>)
+      |  }
+      |  it should <span class="stLiteral">"produce NoSuchElementException when head is invoked"</span> in { <span class="stExplain">// Define another test for the same</span>
+      |    intercept[<span class="stType">NoSuchElementException</span>] {                                <span class="stExplain">// subject with 'it'</span>
+      |      <span class="stType">Set</span>.empty.head
+      |    }
+      |  }
+      |  ignore should <span class="stLiteral">"be empty"</span> in { <span class="stExplain">// To ignore a test, change 'it' to 'ignore'...</span>
+      |    assert(<span class="stType">Set</span>.empty.isEmpty)
+      |  }
+      |  it should <span class="stLiteral">"not be non-empty"</span> ignore { <span class="stExplain">// ...or change 'in' to 'ignore'</span>
+      |    assert(!<span class="stType">Set</span>.empty.nonEmpty)
+      |  }
+      |  <span class="stLiteral">"A non-empty Set"</span> should <span class="stLiteral">"have the correct size"</span> in {
+      |    assert(<span class="stType">Set</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>).size == <span class="stLiteral">3</span>)
+      |  }
+      |  it should <span class="stLiteral">"produce return a contained value when head is invoked"</span> is (pending) <span class="stExplain">// Define a pending test</span>
+      |  it should <span class="stLiteral">"be non-empty"</span> taggedAs(<span class="stType">SlowTest</span>) in { <span class="stExplain">// Tag a test</span>
+      |    assert(<span class="stType">Set(1, 2, 3)</span>.nonEmpty)
+      |  }
+      |}
+      |
+      |<span class="stExplain">// Can also pass fixtures into tests with fixture.FlatSpec</span>
+      |<span class="stReserved">class</span> <span class="stType">StringSpec</span> <span class="stReserved">extends</span> <span class="stType">fixture.FlatSpec</span> {
+      |  <span class="stReserved">type</span> FixtureParam = <span class="stType">String</span> <span class="stExplain">// Define the type of the passed fixture object</span>
+      |  <span class="stReserved">override</span> <span class="stReserved">def</span> withFixture(test: <span class="stType">OneArgTest</span>) = {
+      |    <span class="stExplain">// Shared setup (run before each test), including...</span>
+      |    <span class="stReserved">val</span> fixture = <span class="stLiteral">"a fixture object"</span> <span class="stExplain">// ...creating a fixture object</span>
+      |    <span class="stReserved">try</span> test(fixture) <span class="stExplain">// Pass the fixture into the test</span>
+      |    <span class="stReserved">finally</span> {
+      |      <span class="stExplain">// Shared cleanup (run at end of each test)</span>
+      |    }
+      |  }
+      |  <span class="stLiteral">"The passed fixture"</span> can <span class="stLiteral">"be used in the test"</span> in { s =&gt; <span class="stExplain">// Fixture passed in as s</span>
+      |    assert(s == <span class="stLiteral">"a fixture object"</span>)
       |  }
       |}""".stripMargin
 
@@ -88,7 +130,7 @@ object FlatSpecExamples extends StyleTraitExamples {
       |<span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> {
       |  <span class="stReserved">def</span> setup() { <span class="stBlockComment">/*code omitted*/</span> }
       |  <span class="stReserved">def</span> cleanup() { <span class="stBlockComment">/*code omitted*/</span> }
-      |  <span class="stReserved">override</span> <span class="stReserved">protected</span> <span class="stReserved">def</span> withFixture(test: <span class="stType">NoArgTest</span>) = {
+      |  <span class="stReserved">override</span> <span class="stReserved">def</span> withFixture(test: <span class="stType">NoArgTest</span>) = {
       |    setup()
       |    <span class="stReserved">try</span> test() <span class="stReserved">finally</span> cleanup()
       |  }
@@ -100,7 +142,7 @@ object FlatSpecExamples extends StyleTraitExamples {
       |  <span class="stReserved">def</span> setup() { <span class="stBlockComment">/*code omitted*/</span> }
       |  <span class="stReserved">def</span> cleanup() { <span class="stBlockComment">/*code omitted*/</span> }
       |  <span class="stReserved">type</span> FixtureParam = <span class="stType">String</span>
-      |  <span class="stReserved">override</span> <span class="stReserved">protected</span> <span class="stReserved">def</span> withFixture(test: <span class="stType">OneArgTest</span>) = {
+      |  <span class="stReserved">override</span> <span class="stReserved">def</span> withFixture(test: <span class="stType">OneArgTest</span>) = {
       |    setup()
       |    <span class="stReserved">try</span> test(<span class="stLiteral">"this is a fixture param"</span>) <span class="stReserved">finally</span> cleanup()
       |  }
