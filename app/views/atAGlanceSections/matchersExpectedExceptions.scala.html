@@ -23,17 +23,16 @@
 <td class="ataglance" colspan="4">
 <pre class="stTight">
 <span class="stImport">import org.scalatest.Matchers._
-
 val s = "hai"</span>
-evaluating {                                    <span class="stExplain">// Checks that a particular exception type is thrown by a bit of code</span>
+an [<span class="stType">IndexOutOfBoundsException</span>] should be thrownBy { <span class="stExplain">// Ensure a particular exception type is thrown</span>
   s.charAt(-<span class="stLiteral">1</span>)
-} should produce [<span class="stType">IndexOutOfBoundsException</span>]
-
-<span class="stReserved">val</span> caught = evaluating {                       <span class="stExplain">// Inspects the caught exception</span>
-s.charAt(-<span class="stLiteral">1</span>)
-} should produce [<span class="stType">IndexOutOfBoundsException</span>]
-caught.getMessage should be (<span class="stQuotedString">"String index out of range: -1"</span>)
-
+}
+<span class="stReserved">val</span> caught = the [<span class="stType">IndexOutOfBoundsException</span>] thrownBy { <span class="stExplain">// Capturing an expected exception in a variable</span>
+  s.charAt(-<span class="stLiteral">1</span>)
+}
+the [<span class="stType">IndexOutOfBoundsException</span>] thrownBy { <span class="stExplain">// Inspecting an expected exception</span>
+  s.charAt(-<span class="stLiteral">1</span>)
+} should have message (<span class="stQuotedString">"String index out of range: -1"</span>)
 </pre>
 </td>
 </tr>
