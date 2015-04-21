@@ -1,0 +1,75 @@
+@*
+* Copyright 2010-2013 Artima, Inc.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*@
+
+@(selectedStyle: examples.StyleTraitExamples)
+@import controllers.Application.milestoneScaladoc
+
+<tr>
+<th class="ataglance" colspan="4"><a name="inside"></a>Assertions</th>
+</tr>
+
+<tr>
+<td class="ataglance" colspan="4">
+<pre class="stTight"><span class="stImport">import org.scalatest._
+import Assertions._</span>
+
+<span class="stReserved">val</span> (a, b, c, d) = (<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>, <span class="stLiteral">4</span>)
+
+assert(a == b || c &gt;= d) <span class="stExplain">// Error message: 1 did not equal 2, and 3 was not greater than or equal to 4</span>
+
+assertResult(2) { c + d } <span class="stExplain">// Error message: Expected 2, but got 7</span>
+
+intercept[<span class="stType">IllegalArgumentException</span>] { <span class="stExplain">// Error message: Expected exception java.lang.IllegalArgumentException</span>
+  c / <span class="stLiteral">0</span>                               <span class="stExplain">// to be thrown, but java.lang.ArithmeticException was thrown.</span>
+}
+
+fail(<span class="stLiteral">"I've got a bad feeling about this"</span>) <span class="stExplain">// Error message: I've got a bad feeling about this</span>
+
+<span class="stExplain">// Succeeds if doesn't compile because of type or syntax error</span>
+assertDoesNotCompile(<span class="stLiteral">"val a: Int = 1"</span>) <span class="stExplain">// Error message: Expected a compiler error, but got none for code:</span>
+                                       <span class="stExplain">// val a: Int = 1</span>
+
+<span class="stExplain">// Succeeds only if a type error</span>
+assertTypeError(<span class="stLiteral">"val a: Int = 1"</span>) <span class="stExplain">// Error message: Expected a type error, but got none for code:</span>
+                                  <span class="stExplain">// val a: Int = 1</span>
+
+<span class="stExplain">// Succeeds only if no type or syntax error</span>
+assertCompiles(<span class="stLiteral">"_"</span>) <span class="stExplain">// Error message: Expected no compiler error, but got the following parse error:</span>
+                    <span class="stExplain">// "unbound placeholder parameter", for code: _</span>
+
+<span class="stExplain">// Tests that can't run because of missing preconditions should be <em>canceled</em></span>
+cancel(<span class="stLiteral">"Network was down"</span>) <span class="stExplain">// Error message: Network was down</span>
+
+<span class="stExplain">// Tests can also be canceled with assume</span>
+<span class="stImport">case class Database(available: Boolean)
+val db = Database(false)</span>
+assume(db.available) <span class="stExplain">// Error message: db.available was false</span>
+
+<span class="stExplain">// You can add clues to error messages</span>
+assert(a == b, <span class="stLiteral">", but you already knew that"</span>) <span class="stExplain">// Error message: 1 did not equal 2, but you already knew that</span>
+
+assertResult(2, <span class="stLiteral">", what a bummer!"</span>) { a + b } <span class="stExplain">// Error message: Expected 2, but got 3, what a bummer!</span>
+
+assume(db.available, <span class="stLiteral">"yet again"</span>) <span class="stExplain">// Error message: db.available was false yet again</span>
+
+withClue(<span class="stLiteral">"prepended clue"</span>) { <span class="stExplain">// Error message: prepended clue 1 did not equal 2</span>
+  assert(a == b)
+}
+
+<span class="stImport">import AppendedClues._</span>
+assert(a == b) withClue <span class="stLiteral">"appended clue"</span> <span class="stExplain">// Error message: 1 did not equal 2 appended clue</span>
+</pre>
+</tr>
