@@ -22,8 +22,6 @@ object FlatSpecExamples extends StyleTraitExamples {
   val exampleUsage: String =
     """<span class="stImport">import org.scalatest._</span>
       |
-      |<span class="stReserved">object</span> <span class="stType">SlowTest</span> <span class="stReserved">extends</span> <span class="stType">Tag</span>(<span class="stLiteral">"com.mycompany.tags.SlowTest"</span>) <span class="stExplain">// Tag used in example below</span>
-      |
       |<span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> {
       |  <span class="stReserved">override</span> <span class="stReserved">def</span> withFixture(test: <span class="stType">NoArgTest</span>) = { <span class="stExplain">// Define a shared fixture</span>
       |    <span class="stExplain">// Shared setup (run at beginning of each test)</span>
@@ -50,7 +48,8 @@ object FlatSpecExamples extends StyleTraitExamples {
       |    assert(<span class="stType">Set</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>).size == <span class="stLiteral">3</span>)
       |  }
       |  it should <span class="stLiteral">"produce return a contained value when head is invoked"</span> is (pending) <span class="stExplain">// Define a pending test</span>
-      |  it should <span class="stLiteral">"be non-empty"</span> taggedAs(<span class="stType">SlowTest</span>) in { <span class="stExplain">// Tag a test</span>
+      |  <span class="stImport">import tagobjects.Slow</span>
+      |  it should <span class="stLiteral">"be non-empty"</span> taggedAs(<span class="stType">Slow</span>) in { <span class="stExplain">// Tag a test</span>
       |    assert(<span class="stType">Set(1, 2, 3)</span>.nonEmpty)
       |  }
       |}
@@ -69,7 +68,18 @@ object FlatSpecExamples extends StyleTraitExamples {
       |  <span class="stLiteral">"The passed fixture"</span> can <span class="stLiteral">"be used in the test"</span> in { s =&gt; <span class="stExplain">// Fixture passed in as s</span>
       |    assert(s == <span class="stLiteral">"a fixture object"</span>)
       |  }
-      |}""".stripMargin
+      |}
+      |
+      |@DoNotDiscover <span class="stExplain">// Disable discovery of this test class</span>
+      |<span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> { <span class="stBlockComment">/*code omitted*/</span> }
+      |
+      |@Ignore <span class="stExplain">// Ignore all tests in this test class</span>
+      |<span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> { <span class="stBlockComment">/*code omitted*/</span> }
+      |
+      |<span class="stImport">import tags.Slow</span>
+      |@Slow <span class="stExplain">// Mark all tests in this test class with a tag</span>
+      |<span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> { <span class="stBlockComment">/*code omitted*/</span> }
+      |""".stripMargin
 
   val play2Example: String =
     """<span class="stImport">import org.scalatest._</span>
@@ -109,9 +119,9 @@ object FlatSpecExamples extends StyleTraitExamples {
 
   val taggingTest: String =
     """<span class="stImport">import org.scalatest._</span>
-      |<span class="stReserved">object</span> <span class="stType">SlowTest</span> <span class="stReserved">extends</span> <span class="stType">Tag</span>(<span class="stLiteral">"com.mycompany.tags.SlowTest"</span>)
+      |<span class="stReserved">object</span> <span class="stType">Slow</span> <span class="stReserved">extends</span> <span class="stType">Tag</span>(<span class="stLiteral">"com.mycompany.tags.Slow"</span>)
       |<span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> {
-      |  <span class="stLiteral">"An empty Set"</span> should <span class="stLiteral">"have size 0"</span> taggedAs(<span class="stType">SlowTest</span>) in {
+      |  <span class="stLiteral">"An empty Set"</span> should <span class="stLiteral">"have size 0"</span> taggedAs(<span class="stType">Slow</span>) in {
       |    <span class="stBlockComment">/*code omitted*/</span>
       |  }
       |}""".stripMargin
