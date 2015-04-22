@@ -58,7 +58,7 @@ greeting should === ("hi")
 greeting should equal ("hi") (after being lowerCased) <span class="stExplain">// Both succeed, because 'after being lowercased'</span>
 (greeting should === ("hi")) (after being lowerCased) <span class="stExplain">// defines an Equality[String] that ignores case</span>
 
-implicit val strEq = lowerCased.toEquality <span class="stExplain">// Can provide a custom Equality[L] implicitly</span>
+<span class="stImport">implicit val strEq = lowerCased.toEquality</span> <span class="stExplain">// Can provide a custom Equality[L] implicitly</span>
 greeting should equal ("hi")               <span class="stExplain">// Succeeds because equal the implicit Equality[String]</span>
 greeting should === ("hi")                 <span class="stExplain">// (defined as strEq) that ignores case</span>
 
