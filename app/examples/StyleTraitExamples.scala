@@ -18,6 +18,7 @@ package examples
 
 trait StyleTraitExamples {
   val name: String
+  def description: String
   def exampleUsage: String
   def play2Example: String
   def doNotDiscover: String

@@ -19,6 +19,8 @@ object PropSpecExamples extends StyleTraitExamples {
 
   val name: String = "PropSpec"
 
+  val description: String = """PropSpec is perfect for teams that want to write tests exclusively in terms of property checks; also a good choice for writing the occasional test matrix when a different style trait is chosen as the main unit testing style."""
+
   val exampleUsage: String =
     """<span class="stImport">import org.scalatest._</span>
       |<span class="stImport">import prop._</span>

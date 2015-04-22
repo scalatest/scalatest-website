@@ -19,6 +19,8 @@ object FunSuiteExamples extends StyleTraitExamples {
 
   val name: String = "FunSuite"
 
+  val description: String = """For teams coming from xUnit, FunSuite feels comfortable and familiar while still giving some of the benefits of BDD: FunSuite makes it easy to write descriptive test names, natural to write focused tests, and generates specification-like output that can facilitate communication among stakeholders."""
+
   val exampleUsage: String =
     """<span class="stImport">import org.scalatest.FunSuite</span>
       |<span class="stReserved">class</span> <span class="stType">SetSuite</span> <span class="stReserved">extends</span> <span class="stType">FunSuite</span> {

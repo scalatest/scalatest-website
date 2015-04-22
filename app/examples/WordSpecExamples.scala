@@ -19,6 +19,8 @@ object WordSpecExamples extends StyleTraitExamples {
 
   val name: String = "WordSpec"
 
+  val description: String = """For teams coming from specs or specs2, WordSpec will feel familiar, and is often the most natural way to port specsN tests to ScalaTest. WordSpec is very prescriptive in how text must be written, so a good fit for teams who want a high degree of discipline enforced upon their specification text."""
+
   val exampleUsage: String =
     """<span class="stImport">import org.scalatest.WordSpec</span>
       |<span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">WordSpec</span> {

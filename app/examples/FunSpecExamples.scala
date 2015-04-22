@@ -19,6 +19,8 @@ object FunSpecExamples extends StyleTraitExamples {
 
   val name: String = "FunSpec"
 
+  val description: String = """For teams coming from Ruby's RSpec tool, FunSpec will feel very familiar; More generally, for any team that prefers BDD, FunSpec's nesting and gentle guide to structuring text (with describe and it) provides an excellent general-purpose choice for writing specification-style tests."""
+
   val exampleUsage: String =
     """<span class="stImport">import org.scalatest.FunSpec</span>
       |<span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">FunSpec</span> {

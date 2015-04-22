@@ -17,5 +17,10 @@
 @(selectedStyle: examples.StyleTraitExamples)
 
 <tr>
-<td class="ataglance" colspan="4"><pre class="stTight">@Html(selectedStyle.exampleUsage)</pre></td>
+<td class="ataglance" colspan="4">
+<p>
+@(selectedStyle.description)
+</p>
+<pre class="stTight">@Html(selectedStyle.exampleUsage)</pre>
+</td>
 </tr>

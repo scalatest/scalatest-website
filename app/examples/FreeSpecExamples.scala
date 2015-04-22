@@ -19,6 +19,8 @@ object FreeSpecExamples extends StyleTraitExamples {
 
   val name: String = "FreeSpec"
 
+  val description: String = """Because it gives absolute freedom (and no guidance) on how specification text should be written, FreeSpec is a good choice for teams experienced with BDD and able to agree on how to structure the specification text."""
+
   val exampleUsage: String =
     """<span class="stImport">import org.scalatest.FreeSpec</span>
       |<span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">FreeSpec</span> {

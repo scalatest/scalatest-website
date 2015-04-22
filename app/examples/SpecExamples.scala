@@ -19,6 +19,8 @@ object SpecExamples extends StyleTraitExamples {
 
   val name: String = "Spec"
 
+  val description: String = """Spec allows you to define tests as methods, which saves one function literal per test compared to style classes that represent tests as functions. Fewer function literals translates into faster compile times and fewer generated class files, which can help minimize build times. As a result, using Spec can be a good choice in large projects where build times are a concern as well as when generating large numbers of tests programatically via static code generators."""
+
   val exampleUsage: String =
     """<span class="stImport">import org.scalatest.Spec</span>
       |<span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">Spec</span> {

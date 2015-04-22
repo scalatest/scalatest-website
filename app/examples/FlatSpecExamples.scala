@@ -19,6 +19,8 @@ object FlatSpecExamples extends StyleTraitExamples {
 
   val name: String = "FlatSpec"
 
+  val description: String = """FlatSpec is a good first step for teams wishing to move from xUnit to BDD. Its structure is flat like xUnit, so simple and familiar, but the test names must be written in a specification style: "X should Y," "A must B," etc."""
+
   val exampleUsage: String =
     """<span class="stImport">import org.scalatest._</span>
       |
@@ -30,8 +32,9 @@ object FlatSpecExamples extends StyleTraitExamples {
       |      <span class="stExplain">// Shared cleanup (run at end of each test)</span>
       |    }
       |  }
-      |  <span class="stLiteral">"An empty Set"</span> should <span class="stLiteral">"have size 0"</span> in { <span class="stExplain">// Define first test for subject, "An empty Set"</span>
-      |    assert(<span class="stType">Set</span>.empty.size == <span class="stLiteral">0</span>)
+      |  <span class="stExplain">// Define the first test for a <em>subject</em>, in this case: "An empty Set"</span>
+      |  <span class="stLiteral">"An empty Set"</span> should <span class="stLiteral">"have size 0"</span> in { <span class="stExplain">// Name the subject, write 'should', then the rest of the test name</span>
+      |    assert(<span class="stType">Set</span>.empty.size == <span class="stLiteral">0</span>)            <span class="stExplain">// (Can use 'must' or 'can' instead of 'should')</span>
       |  }
       |  it should <span class="stLiteral">"produce NoSuchElementException when head is invoked"</span> in { <span class="stExplain">// Define another test for the same</span>
       |    intercept[<span class="stType">NoSuchElementException</span>] {                                <span class="stExplain">// subject with 'it'</span>

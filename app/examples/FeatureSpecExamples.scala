@@ -19,6 +19,8 @@ object FeatureSpecExamples extends StyleTraitExamples {
 
   val name: String = "FeatureSpec"
 
+  val description: String = """FeatureSpec is primarily intended for acceptance testing, including facilitating the process of programmers working alongside non-programmers to define the acceptance requirements."""
+
   val exampleUsage: String =
     """<span class="stImport">import org.scalatest._</span>
       |<span class="stReserved">class</span> <span class="stType">TVSet</span> {

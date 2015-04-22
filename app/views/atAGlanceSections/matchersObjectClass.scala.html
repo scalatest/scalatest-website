@@ -22,16 +22,13 @@
 <tr>
 <td class="ataglance" colspan="4">
 <pre class="stTight">
-<span class="stImport">import org.scalatest.Matchers._</span>
+<span class="stImport">import org.scalatest.Matchers._
 class Tiger
-val tiger = new Tiger
-tiger shouldBe a [<span class="stType">Tiger</span>]                                <span class="stExplain">// Check if an object is the specified Class instance</span>
+val tiger = new Tiger</span>
+tiger shouldBe a [<span class="stType">Tiger</span>]       <span class="stExplain">// Ensure an object is an instance of a specified class or trait</span>
 
-class Apple
-val apple = new Apple
-<span class="stReserved">val</span> appleList = <span class="stType">List</span>(apple)                             <span class="stExplain">// Because type parameters are erased on the JVM, we recommend you insert an underscore for any type parameters when using this syntax.</span>
-appleList shouldBe a [<span class="stType">List</span>[_]] <span class="stLineComment">// recommended</span>           <span class="stExplain">// Both of the examples given test only that the result is an instance of List[_], because at runtime the type parameter has been erased</span>
-appleList shouldBe a [<span class="stType">List</span>[<span class="stType">Apple</span>]] <span class="stLineComment">// discouraged</span>
+<span class="stImport">val tigerList = List(tiger)</span>    <span class="stExplain">// Because type parameters are erased on the JVM, you must use</span>
+tigerList shouldBe a [<span class="stType">List</span>[_]] <span class="stExplain">// an underscore for any type parameters when using this syntax</span>
 
 </pre>
 </td>
