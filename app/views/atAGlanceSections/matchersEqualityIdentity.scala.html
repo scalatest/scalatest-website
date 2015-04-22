@@ -23,21 +23,52 @@
 <td class="ataglance" colspan="4">
 <pre class="stTight">
 <span class="stImport">import org.scalatest.Matchers._
-val result = 5 - 2</span>
-result should equal (<span class="stLiteral">3</span>)                            <span class="stExplain">// Calls <em>left</em> <code>==</code> <em>right</em>, except for arrays</span>
+def incr(i: Int) = i + 1
+val result = incr(2)</span>
+result should equal (<span class="stLiteral">3</span>) <span class="stExplain">// By default, calls <em>left</em> <code>==</code> <em>right</em>, except for arrays</span>
+result should be (<span class="stLiteral">3</span>)    <span class="stExplain">// Calls <em>left</em> <code>==</code> <em>right</em>, except for arrays</span>
+result should === (<span class="stLiteral">3</span>)   <span class="stExplain">// By default, calls <em>left</em> <code>==</code> <em>right</em>, except for arrays</span>
 
-<span class="stImport">import org.scalatest.Matchers._</span>
-<span class="stType">Array</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>) should equal (<span class="stType">Array</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>))             <span class="stExplain">// Arrays are compared structurally, by calling <em>left</em><code>.deep</code> <code>==</code> <em>right</em><code>.deep</code></span>
+<span class="stType">Array</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>) should equal (<span class="stType">Array</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>)) <span class="stExplain">// Arrays are compared structurally,</span>
+<span class="stType">Array</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>) should be (<span class="stType">Array</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>))    <span class="stExplain">// by calling <em>left</em><code>.deep</code> <code>==</code> <em>right</em><code>.deep</code></span>
+<span class="stType">Array</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>) should === (<span class="stType">Array</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>))
 
-<span class="stImport">val result = "thick".substring(1, 3)</span>
-result should be (<span class="stLiteral">"hi"</span>)                            <span class="stExplain">// Calls <em>left</em> <code>==</code> <em>right</em>, except for arrays</span>
+result shouldEqual <span class="stLiteral">3</span> <span class="stExplain">// Alternate forms for equal and be</span>
+result shouldBe <span class="stLiteral">3</span>    <span class="stExplain">// that don't require parentheses</span>
 
-<span class="stType">Array</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>) should be (<span class="stType">Array</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>))                <span class="stExplain">// Arrays are compared structurally, by calling <em>left</em><code>.deep</code> <code>==</code> <em>right</em><code>.deep</code></span>
+<span class="stExplain">// The === syntax can give you a type error for suspicious equality comparisons</span>
+<span class="stImport">import org.scalactic._
+import TypeCheckedTripleEquals._</span>
+result should === ("three") <span class="stExplain">// Fails to compile with error message: types String and Int
+                            // do not adhere to the type constraint selected for the === and
+                            // !== operators; the missing implicit parameter is of type
+                            // org.scalactic.Constraint[String,Int]
+                            //      greeting should === (3)
+                            //               ^</span>
 
-<span class="stReserved">val</span> list = <span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>)                           <span class="stExplain">// Calls <em>left</em> <code>eq</code> <em>right</em></span>
-<span class="stReserved">val</span> ref1 = list
-<span class="stReserved">val</span> ref2 = list
-ref1 should be theSameInstanceAs ref2
+<span class="stExplain">// The equal matcher and === syntax compare with an implicit Equality[L],</span>
+<span class="stExplain">// where L is the left hand type (i.e., the type of greeting below)</span>
+val greeting = "Hi"
+greeting should equal ("hi") <span class="stExplain">// Both fail with error message: "[H]i" did not equal "[h]i"</span>
+greeting should === ("hi")
 
+<span class="stImport">import org.scalactic._</span> <span class="stExplain">// Can provide a custom Equality[L] explicitly</span>
+<span class="stImport">import Explicitly._</span>
+<span class="stImport">import StringNormalizations._</span>
+greeting should equal ("hi") (after being lowerCased) <span class="stExplain">// Both succeed, because 'after being lowercased'</span>
+(greeting should === ("hi")) (after being lowerCased) <span class="stExplain">// defines an Equality[String] that ignores case</span>
+
+implicit val strEq = lowerCased.toEquality <span class="stExplain">// Can provide a custom Equality[L] implicitly</span>
+greeting should equal ("hi")               <span class="stExplain">// Succeeds because equal the implicit Equality[String]</span>
+greeting should === ("hi")                 <span class="stExplain">// (defined as strEq) that ignores case</span>
+
+greeting should not equal "bye"            <span class="stExplain">// equal and be are negated with not</span>
+greeting should not be "such sweet sorrow"
+greeting should !== ("ho")                 <span class="stExplain">// === is negated as !==</span>
+
+<span class="stImport">val list = List(1, 2, 3)              <span class="stExplain">// Ensure two objects have the same identity</span>
+val ref1 = list
+val ref2 = list</span>
+ref1 should be theSameInstanceAs ref2 <span class="stExplain">// Calls <em>left</em> <code>eq</code> <em>right</em></span>
 </pre>
 </tr>
