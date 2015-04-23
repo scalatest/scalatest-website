@@ -47,9 +47,10 @@ object FlatSpecExamples extends StyleTraitExamples {
       |  it should <span class="stLiteral">"not be non-empty"</span> ignore { <span class="stExplain">// ...or change 'in' to 'ignore'</span>
       |    assert(!<span class="stType">Set</span>.empty.nonEmpty)
       |  }
-      |  <span class="stLiteral">"A non-empty Set"</span> should <span class="stLiteral">"have the correct size"</span> in {
+      |  <span class="stLiteral">"A non-empty Set"</span> should <span class="stLiteral">"have the correct size"</span> in { <span class="stExplain">// Describe another subject</span>
       |    assert(<span class="stType">Set</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>).size == <span class="stLiteral">3</span>)
       |  }
+      |  <span class="stExplain">// 'it' now refers to 'A non-empty Set'</span>
       |  it should <span class="stLiteral">"produce return a contained value when head is invoked"</span> is (pending) <span class="stExplain">// Define a pending test</span>
       |  <span class="stImport">import tagobjects.Slow</span>
       |  it should <span class="stLiteral">"be non-empty"</span> taggedAs(<span class="stType">Slow</span>) in { <span class="stExplain">// Tag a test</span>
