@@ -77,7 +77,7 @@ object FunSpecExamples extends StyleTraitExamples {
       |      it(<span class="stLiteral">"should return a contained value when head is invoked"</span>) (pending)
       |      <span class="stImport">import tagobjects.Slow</span>
       |      it(<span class="stLiteral">"should be non-empty"</span>, <span class="stType">Slow</span>) { <span class="stExplain">// Tag a test by placing a tag object after the test name</span>
-      |        assert(<span class="stType">Set</span>.empty.nonEmpty)
+      |        assert(<span class="stType">Set</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>).nonEmpty)
       |      }
       |    }
       |  }
