@@ -16,7 +16,7 @@
 
 @(selectedStyle: examples.StyleTraitExamples)
 <tr>
-<th colspan="4" class="ataglance"><a name="matchers_size_length"></a>Matchers - Size and length</th>
+<th colspan="4" class="ataglance"><a name="matchers_size_length"></a>Matchers - Length and size</th>
 </tr>
 
 <tr>
@@ -25,9 +25,13 @@
 <span class="stImport">import org.scalatest.Matchers._
 val result = "hai"</span>
 
-result should have length <span class="stLiteral">3</span>                     <span class="stExplain">// Works for any object with length field or method or getLength method; length can be Int or Long</span>
+result should have length <span class="stLiteral">3</span> <span class="stExplain">// Works for any type T for which an implicit Length[T] is available, including String, Array,</span>
+                            <span class="stExplain">// scala.collection.GenSeq, java.util.List, and any object with length field or method or</span>
+                            <span class="stExplain">// getLength method; the length value can be Int or Long.</span>
 
-result should have size <span class="stLiteral">3</span>                       <span class="stExplain">// Works for any object with size field or method or getSize method; size can be Int or Long</span>
+result should have size <span class="stLiteral">3</span>   <span class="stExplain">// Works for any type T for which an implicit Size[T] is available, including String, Array,</span>
+                            <span class="stExplain">// scala.collection.GenTraversable, java.util.Collection, java.util.Map, and any object with</span>
+                            <span class="stExplain">// size field or method or getSize method; the size value can be Int or Long.</span>
 
 </pre>
 </td>
