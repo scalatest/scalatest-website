@@ -22,17 +22,80 @@ object SpecExamples extends StyleTraitExamples {
   val description: String = """Spec allows you to define tests as methods, which saves one function literal per test compared to style classes that represent tests as functions. Fewer function literals translates into faster compile times and fewer generated class files, which can help minimize build times. As a result, using Spec can be a good choice in large projects where build times are a concern as well as when generating large numbers of tests programatically via static code generators."""
 
   val exampleUsage: String =
-    """<span class="stImport">import org.scalatest.Spec</span>
+    """<span class="stImport">import org.scalatest._</span>
+      |
       |<span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">Spec</span> {
-      |  <span class="stReserved">object</span> `A Set` {
-      |    <span class="stReserved">object</span> `when empty` {
-      |      <span class="stReserved">def</span> `should have size 0` { assert(<span class="stType">Set</span>.empty.size === <span class="stLiteral">0</span>) }
-      |      <span class="stReserved">def</span> `should produce NoSuchElementException when head is invoked` {
-      |        intercept[<span class="stType">NoSuchElementException</span>] { <span class="stType">Set</span>.empty.head }
+      |  <span class="stReserved">override</span> <span class="stReserved">def</span> withFixture(test: <span class="stType">NoArgTest</span>) = { <span class="stExplain">// Define a shared fixture</span>
+      |    <span class="stExplain">// Shared setup (run at beginning of each test)</span>
+      |    <span class="stReserved">try</span> test()
+      |    <span class="stReserved">finally</span> {
+      |      <span class="stExplain">// Shared cleanup (run at end of each test)</span>
+      |    }
+      |  }
+      |
+      |  <span class="stExplain">// Describe a <em>scope</em> for a <em>subject</em>, in this case: "A Set"</span>
+      |  <span class="stReserved">object</span> <span class="stLiteral">`A Set`</span> { <span class="stExplain">// All tests within these curly braces are about "A Set"</span>
+      |
+      |    <span class="stExplain">// Can describe nested scopes that "narrow" its outer scopes</span>
+      |    <span class="stReserved">object</span> <span class="stLiteral">`(when empty)`</span> { <span class="stExplain">// All tests within these curly braces are about "A Set (when empty)"</span>
+      |
+      |      <span class="stReserved">def</span> <span class="stLiteral">`should have size 0`</span> {    <span class="stExplain">// Here, 'it' refers to "A Set (when empty)". The full name</span>
+      |        assert(<span class="stType">Set</span>.empty.size == <span class="stLiteral">0</span>) <span class="stExplain">// of this test is: "A Set (when empty) should have size 0"</span>
+      |      }
+      |      <span class="stReserved">def</span> <span class="stLiteral">`should produce NoSuchElementException when head is invoked`</span> { // <span class="stExplain">Define another test</span>
+      |        intercept[<span class="stType">NoSuchElementException</span>] {
+      |          <span class="stType">Set</span>.empty.head
+      |        }
+      |      }
+      |      @<span class="stType">Ignore<span> <span class="stReserved">def</span> <span class="stLiteral">`should should be empty`</span> { <span class="stExplain">// To ignore a test, change 'it' to 'ignore'...</span>
+      |        assert(<span class="stType">Set</span>.empty.isEmpty)
+      |      }
+      |    }
+      |
+      |    <span class="stExplain">// Describe a second nested scope that narrows "A Set" in a different way</span>
+      |    <span class="stReserved">object</span> <span class="stLiteral">`(when non-empty)`</span> { <span class="stExplain">// All tests within these curly braces are about "A Set (when non-empty)"</span>
+      |
+      |      <span class="stReserved">def</span> <span class="stLiteral">`should have the correct size`</span> { <span class="stExplain">// Here, 'it' refers to "A Set (when non-empty)". This test's full</span>
+      |        assert(<span class="stType">Set</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>).size == <span class="stLiteral">3</span>)     <span class="stExplain">// name is: "A Set (when non-empty) should have the correct size"</span>
+      |      }
+      |      <span class="stExplain">// Define a pending test by using { pending } for the body</span>
+      |      <span class="stReserved">def</span> <span class="stLiteral">`return a contained value when head is invoked`</span> { pending }
+      |      <span class="stImport">import org.scalatest.tags.Slow</span>
+      |      @<span class="stType">Slow<span> <span class="stReserved">def</span> <span class="stLiteral">`should be non-empty`</span> { <span class="stExplain">// Tag a test by placing a tag object after the test name</span>
+      |        assert(<span class="stType">Set</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>).nonEmpty)
       |      }
       |    }
       |  }
-      |} """.stripMargin
+      |}
+      |
+      |<span class="stExplain">// Can also pass fixtures into tests with fixture.Spec</span>
+      |<span class="stReserved">class</span> <span class="stType">StringSpec</span> <span class="stReserved">extends</span> <span class="stType">fixture.Spec</span> {
+      |  <span class="stReserved">type</span> FixtureParam = <span class="stType">String</span> <span class="stExplain">// Define the type of the passed fixture object</span>
+      |  <span class="stReserved">override</span> <span class="stReserved">def</span> withFixture(test: <span class="stType">OneArgTest</span>) = {
+      |    <span class="stExplain">// Shared setup (run before each test), including...</span>
+      |    <span class="stReserved">val</span> fixture = <span class="stLiteral">"a fixture object"</span> <span class="stExplain">// ...creating a fixture object</span>
+      |    <span class="stReserved">try</span> test(fixture) <span class="stExplain">// Pass the fixture into the test</span>
+      |    <span class="stReserved">finally</span> {
+      |      <span class="stExplain">// Shared cleanup (run at end of each test)</span>
+      |    }
+      |  }
+      |  <span class="stReserved">object</span> <span class="stLiteral">`The passed fixture`</span> {
+      |   <span class="stReserved">def</span> <span class="stLiteral">`can be used in the test`</span> in { s =&gt; <span class="stExplain">// Fixture passed in as s</span>
+      |      assert(s == <span class="stLiteral">"a fixture object"</span>)
+      |    }
+      |  }
+      |}
+      |
+      |@DoNotDiscover <span class="stExplain">// Disable discovery of a test class</span>
+      |<span class="stReserved">class</span> <span class="stType">InvisibleSpec</span> <span class="stReserved">extends</span> <span class="stType">Spec</span> { <span class="stBlockComment">/*code omitted*/</span> }
+      |
+      |@Ignore <span class="stExplain">// Ignore all tests in a test class</span>
+      |<span class="stReserved">class</span> <span class="stType">IgnoredSpec</span> <span class="stReserved">extends</span> <span class="stType">Spec</span> { <span class="stBlockComment">/*code omitted*/</span> }
+      |
+      |<span class="stImport">import tags.Slow</span>
+      |@Slow <span class="stExplain">// Mark all tests in a test class with a tag</span>
+      |<span class="stReserved">class</span> <span class="stType">SlowSpec</span> <span class="stReserved">extends</span> <span class="stType">Spec</span> { <span class="stBlockComment">/*code omitted*/</span> }
+      |""".stripMargin
 
   val play2Example: String =
     """<span class="stImport">import org.scalatest._</span>
