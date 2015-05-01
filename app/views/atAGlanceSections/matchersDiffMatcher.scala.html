@@ -27,12 +27,12 @@
 import java.awt._
 import event.KeyEvent
 
-val canvas = new Canvas                                      <span class="stExplain">// You can check boolean properties dynamically with be and a Symbol (the tick mark syntax)</span>
-val keyEvent = new KeyEvent(canvas, 0, 0, 0, 0, '0')</span>         <span class="stExplain">// For statically typed approach, use a <a href="@milestoneScaladoc/#org.scalatest.matchers.BePropertyMatcher">BePropertyMatcher</a> or <a href="@milestoneScaladoc/#org.scalatest.matchers.BeMatcher">BeMatcher</a></span>
+val canvas = new Canvas                                      <span class="stExplain">// You can check boolean properties dynamically with be and a Symbol (the tick mark</span>
+val keyEvent = new KeyEvent(canvas, 0, 0, 0, 0, '0')</span>         <span class="stExplain">// syntax). For statically typed approach, use a <a href="@milestoneScaladoc/#org.scalatest.matchers.BePropertyMatcher">BePropertyMatcher</a> or <a href="@milestoneScaladoc/#org.scalatest.matchers.BeMatcher">BeMatcher</a>.</span>
 keyEvent should be an (<span class="stQuotedString">'actionKey</span>)
 
-<span class="stImport">case class Book(title: String, author: String)               <span class="stExplain">// You can check arbitrary properties dynamically with have and a Symbol (the tick mark syntax)</span>
-val book = Book("A Tale of Two Cities", "Sally")</span>             <span class="stExplain">// For a statically type approach, use a <a href="@milestoneScaladoc/#org.scalatest.matchers.HavePropertyMatcher">HavePropertyMatchers</a></span>
+<span class="stImport">case class Book(title: String, author: String)               <span class="stExplain">// You can check arbitrary properties dynamically with have and a Symbol (the tick</span>
+val book = Book("A Tale of Two Cities", "Sally")</span>             <span class="stExplain">//  mark syntax). For a statically type approach, use a <a href="@milestoneScaladoc/#org.scalatest.matchers.HavePropertyMatcher">HavePropertyMatchers</a>.</span>
 book should have ('title(<span class="stQuotedString">"A Tale of Two Cities"</span>))
 
 <span class="stReserved">val</span> defined = <span class="stQuotedString">'defined</span>                                       <span class="stExplain">// One way to get rid of the tick mark for a dynamic property check</span>

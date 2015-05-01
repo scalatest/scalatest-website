@@ -24,32 +24,32 @@
 <pre class="stTight"><span class="stImport">import org.scalatest.Matchers._
 
 val option = Some(1)</span>
-option should be (<span class="stType">Some</span>(<span class="stLiteral">1</span>))                                <span class="stExplain">// Check whether an option contains a certain value</span>
+option should be (<span class="stType">Some</span>(<span class="stLiteral">1</span>))                                <span class="stExplain">// Check whether an Option contains a certain value</span>
 
 <span class="stImport">val option = Some(1)</span>
-option should be (<span class="stLiteral">defined</span>)                               <span class="stExplain">// Check whether an option is defined</span>
+option shouldBe <span class="stLiteral">defined</span>                                   <span class="stExplain">// Check whether an Option is defined</span>
 
 <span class="stImport">val option = Some(1)</span>
-option should be (empty)                                  <span class="stExplain">// Check whether an option is empty</span>
+option shouldBe empty                                     <span class="stExplain">// Check whether an Option is empty</span>
 
 <span class="stImport">val option = None</span>
-option should be (<span class="stType">None</span>)                                   <span class="stExplain">// Another way to check whether an option is empty</span>
+option should be (<span class="stType">None</span>)                                   <span class="stExplain">// Another way to check whether an Option is empty</span>
 
 <span class="stImport">val either = Left(1)</span>
-either should be (<span class="stType">'left</span>)                                  <span class="stExplain">// Check whether an either is a Left</span>
+either should be (<span class="stType">'left</span>)                                  <span class="stExplain">// Check whether an Either is a Left</span>
 
 <span class="stImport">val either = Left(1)</span>
-either should be (<span class="stType">Left</span>(<span class="stLiteral">1</span>))                                <span class="stExplain">// Check whether an either is Left with a certain value</span>
+either should be (<span class="stType">Left</span>(<span class="stLiteral">1</span>))                                <span class="stExplain">// Check whether an Either is Left with a certain value</span>
 
 <span class="stImport">val either = Right(1)</span>
-either should be (<span class="stType">'right</span>)                                 <span class="stExplain">// Check whether an either is a Right</span>
+either should be (<span class="stType">'right</span>)                                 <span class="stExplain">// Check whether an Either is a Right</span>
 
 <span class="stImport">val either = Right(1)</span>
-either should be (<span class="stType">Right</span>(<span class="stLiteral">1</span>))                               <span class="stExplain">// Check whether an either is Right with a certain value</span>
+either should be (<span class="stType">Right</span>(<span class="stLiteral">1</span>))                               <span class="stExplain">// Check whether an Either is Right with a certain value</span>
 
 <span class="stImport">import org.scalatest.EitherValues._
-val either = Right(3)</span>
-either.right.value should be &lt; <span class="stLiteral">7</span>                          <span class="stExplain">// Check both how an either is defined as well as something about its value</span>
+val either = Right(3)</span>                                     <span class="stExplain">// Check both that an Either is defined as well as something</span>
+either.right.value should be &lt; <span class="stLiteral">7</span>                          <span class="stExplain">// about its value</span>
 
 </pre>
 </td>

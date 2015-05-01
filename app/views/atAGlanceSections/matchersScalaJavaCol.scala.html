@@ -37,8 +37,8 @@
 map should contain key (<span class="stLiteral">1</span>)                                <span class="stExplain">// check whether a map contains a particular key or value</span>
 should contain value (<span class="stQuotedString">"two"</span>)
 
-<span class="stImport">import PartialFunctionValues._</span>                            <span class="stExplain">// check both that a map is defined at a key as well as something about its value</span>
-<span class="stType">Map</span>(<span class="stLiteral">"I"</span> -> <span class="stLiteral">1</span>, <span class="stLiteral">"II"</span> -> <span class="stLiteral">2</span>, <span class="stLiteral">"III"</span> -> <span class="stLiteral">3</span>).valueAt(<span class="stQuotedString">"II"</span>) should equal (<span class="stQuotedString">2</span>)
+<span class="stImport">import PartialFunctionValues._</span>                                      <span class="stExplain">// check both that a map is defined at a key as</span>
+<span class="stType">Map</span>(<span class="stLiteral">"I"</span> -> <span class="stLiteral">1</span>, <span class="stLiteral">"II"</span> -> <span class="stLiteral">2</span>, <span class="stLiteral">"III"</span> -> <span class="stLiteral">3</span>).valueAt(<span class="stQuotedString">"II"</span>) should equal (<span class="stQuotedString">2</span>) <span class="stExplain">// well as something about its value</span>
 
 <span class="stImport">import java.util._
 val javaCol = new ArrayList[Int]</span>
@@ -60,8 +60,8 @@ javaList should have length (<span class="stLiteral">3</span>)                  
 <span class="stImport">val javaCol = new HashSet[String]
 javaCol.add("three")
 javaCol.add("five")
-javaCol.add("seven")</span>
-javaCol should contain (<span class="stQuotedString">"five"</span>)                           <span class="stExplain">// Check whether a java.util.Collection contains a particular element</span>
+javaCol.add("seven")</span>                                      <span class="stExplain">// Check whether a java.util.Collection contains a</span>
+javaCol should contain (<span class="stQuotedString">"five"</span>)                           <span class="stExplain">// particular element</span>
 
 <span class="stImport">val javaMap = new HashMap[Int, String]
 javaMap.put(1, "one")
