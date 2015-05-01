@@ -25,11 +25,11 @@
 <td class="ataglance" colspan="4">
 <pre class="stTight"><span class="stImport">import org.scalatest.Matchers._</span>
 
-<span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>) should contain (<span class="stLiteral">2</span>)                                  <span class="stExplain">// Check if a List (or any GenTraversable) contains the specified element</span>
+<span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>) should contain (<span class="stLiteral">2</span>)                            <span class="stExplain">// Check if a List (or any GenTraversable) contains the specified element</span>
 
-<span class="stType">Map</span>(<span class="stLiteral">'a'</span> -> <span class="stLiteral">1</span>, <span class="stLiteral">'b'</span> -> <span class="stLiteral">2</span>, <span class="stLiteral">'c'</span> -> <span class="stLiteral">3</span>) should contain (<span class="stLiteral">'b'</span> -> <span class="stLiteral">2</span>)                         <span class="stExplain">// Check if a Map contains the specified mapping</span>
+<span class="stType">Map</span>(<span class="stLiteral">'a'</span> -&gt; <span class="stLiteral">1</span>, <span class="stLiteral">'b'</span> -&gt; <span class="stLiteral">2</span>, <span class="stLiteral">'c'</span> -&gt; <span class="stLiteral">3</span>) should contain (<span class="stLiteral">'b'</span> -&gt; <span class="stLiteral">2</span>) <span class="stExplain">// Check if a Map contains the specified mapping</span>
 
-<span class="stType">Set</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>) should contain (<span class="stLiteral">2</span>)                                   <span class="stExplain">// Check if various collections contain a specified element</span>
+<span class="stType">Set</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>) should contain (<span class="stLiteral">2</span>)                             <span class="stExplain">// Check if various collections contain a specified element</span>
 
 <span class="stType">Array</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>) should contain (<span class="stLiteral">2</span>)
 
@@ -37,7 +37,7 @@
 
 <span class="stType">Some</span>(<span class="stLiteral">2</span>) should contain (<span class="stLiteral">2</span>)
 
-<span class="stImport">import org.scalautils.Explicitly._                                <span class="stExplain">// Using <a href="@milestoneScaladoc/#org.scalautils.StringNormalizations"><code>StringNormalizations</code></a> explicitly</span>
+<span class="stImport">import org.scalautils.Explicitly._                          <span class="stExplain">// Using <a href="@milestoneScaladoc/#org.scalautils.StringNormalizations"><code>StringNormalizations</code></a> explicitly</span>
 import org.scalautils.StringNormalizations._</span>
 (<span class="stType">List</span>(<span class="stLiteral">"Hi"</span>, <span class="stLiteral">"Di"</span>, <span class="stLiteral">"Ho"</span>) should contain (<span class="stLiteral">"ho"</span>)) (after being lowerCased)
 
