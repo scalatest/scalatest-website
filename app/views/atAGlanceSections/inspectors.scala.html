@@ -25,17 +25,17 @@
 import Matchers._
 import Inspectors._</span>
 
-forAll(<span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>)) { _ should be > <span class="stLiteral">0</span> }                     <span class="stExplain">// Check that every element passes the assertion block</span>
+forAll(<span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>)) { _ should be &gt; <span class="stLiteral">0</span> }                     <span class="stExplain">// Check that every element passes the assertion block</span>
 
 forAtLeast(<span class="stLiteral">1</span>, <span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>)) { _ should be &gt; <span class="stLiteral">2</span> }              <span class="stExplain">// Check that at least the specified number of elements pass the assertion block</span>
 
-forAtMost(<span class="stLiteral">2</span>, <span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>)) { _ should be > <span class="stLiteral">1</span> }               <span class="stExplain">// Check that at most the specified number of elements pass the assertion block</span>
+forAtMost(<span class="stLiteral">2</span>, <span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>)) { _ should be &gt; <span class="stLiteral">1</span> }               <span class="stExplain">// Check that at most the specified number of elements pass the assertion block</span>
 
-forBetween(<span class="stLiteral">2</span>, <span class="stLiteral">4</span>, <span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>, <span class="stLiteral">4</span>, <span class="stLiteral">5</span>)) { _ should be > <span class="stLiteral">2</span> }     <span class="stExplain">// Check that the specified minimum and maximum number of elements (inclusive) pass the assertion block</span>
+forBetween(<span class="stLiteral">2</span>, <span class="stLiteral">4</span>, <span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>, <span class="stLiteral">4</span>, <span class="stLiteral">5</span>)) { _ should be &gt; <span class="stLiteral">2</span> }     <span class="stExplain">// Check that the specified minimum and maximum number of elements (inclusive) pass the assertion block</span>
 
-forEvery(<span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>)) { _ should be > <span class="stLiteral">0</span> }                   <span class="stExplain">// Check that every element passes the assertion block, listing all failing elements on failure (whereas forAll just reports the first failing element)</span>
+forEvery(<span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>)) { _ should be &gt; <span class="stLiteral">0</span> }                   <span class="stExplain">// Check that every element passes the assertion block, listing all failing elements on failure (whereas forAll just reports the first failing element)</span>
 
-forExactly(<span class="stLiteral">2</span>, <span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>)) { _ should be > <span class="stLiteral">1</span> }              <span class="stExplain">// Check that the exact specified number of elements pass the assertion block</span>
+forExactly(<span class="stLiteral">2</span>, <span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>)) { _ should be &gt; <span class="stLiteral">1</span> }              <span class="stExplain">// Check that the exact specified number of elements pass the assertion block</span>
 
 </pre>
 </tr>
