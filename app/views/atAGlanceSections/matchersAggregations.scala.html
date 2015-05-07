@@ -31,8 +31,8 @@
 
 <span class="stLiteral">"abc"</span> should contain atLeastOneOf (<span class="stLiteral">'c'</span>, <span class="stLiteral">'a'</span>, <span class="stLiteral">'t'</span>)    <span class="stExplain">// Check if a String contains at least one of the specified characters</span>
 
-<span class="stImport">import org.scalautils.Explicitly._                       <span class="stExplain">// Using <a href="@milestoneScaladoc/#org.scalautils.StringNormalizations"><code>StringNormalizations</code></a> explicitly</span>
-import org.scalautils.StringNormalizations._</span>
+<span class="stImport">import org.scalactic.Explicitly._                       <span class="stExplain">// Using <a href="@milestoneScaladoc/#org.scalactic.StringNormalizations"><code>StringNormalizations</code></a> explicitly</span>
+import org.scalactic.StringNormalizations._</span>
 (<span class="stType">Vector</span>(<span class="stLiteral">" A"</span>, <span class="stLiteral">"B "</span>) should contain atLeastOneOf (<span class="stLiteral">"a "</span>, <span class="stLiteral">"b"</span>, <span class="stLiteral">"c"</span>)) (after being lowerCased and trimmed)
 
 <span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>, <span class="stLiteral">4</span>, <span class="stLiteral">5</span>) should contain atMostOneOf (<span class="stLiteral">5</span>, <span class="stLiteral">6</span>, <span class="stLiteral">7</span>) <span class="stExplain">// Check if a List (or any GenTraversable) contains at most one of the specified element</span>

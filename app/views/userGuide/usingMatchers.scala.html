@@ -124,7 +124,7 @@ result shouldBe <span class="stLiteral">3</span>       <span class="stLineCommen
 </pre></p>
 
 <p>The &ldquo;<code>left</code> <code>should</code> <code>equal</code> <code>(right)</code>&rdquo; syntax requires an
-<a href="@latestScaladoc/#org.scalautils.Equality"><code>org.scalautils.Equality[L]</code></a> to be provided (either implicitly or explicitly), where
+<a href="@latestScaladoc/#org.scalactic.Equality"><code>org.scalactic.Equality[L]</code></a> to be provided (either implicitly or explicitly), where
 <code>L</code> is the left-hand type on which <code>should</code> is invoked. In the &quot;<code>left</code> <code>should</code> <code>equal</code> <code>(right)</code>&quot; case,
 for example, <code>L</code> is the type of <code>left</code>. Thus if <code>left</code> is type <code>Int</code>, the &quot;<code>left</code> <code>should</code>
 <code>equal</code> <code>(right)</code>&quot;
@@ -154,7 +154,7 @@ the two arrays structurally, taking into consideration the equality of the array
 or <code>shouldEqual</code> syntax by defining implicit <code>Equality</code> instances that will be used instead of default <code>Equality</code>.
 You might do this to normalize types before comparing them with <code>==</code>, for instance, or to avoid calling the <code>==</code> method entirely,
 such as if you want to compare <code>Double</code>s with a tolerance.
-For an example, see the main documentation of <a href="@latestScaladoc/#org.scalautils.Equality">trait <code>Equality</code></a>.</p>
+For an example, see the main documentation of <a href="@latestScaladoc/#org.scalactic.Equality">trait <code>Equality</code></a>.</p>
 
 <p>You can always supply implicit parameters explicitly, but in the case of implicit parameters of type <code>Equality[T]</code>, ScalaUtils provides a
 simple &quot;explictly&quot; DSL. For example, here's how you could explicitly supply an <code>Equality[String]</code> instance that normalizes both left and right
@@ -164,18 +164,18 @@ sides (which must be strings), by transforming them to lowercase:</p>
 scala&gt; import org.scalatest.Matchers._
 import org.scalatest.Matchers._
 
-scala&gt; import org.scalautils.Explicitly._
-import org.scalautils.Explicitly._
+scala&gt; import org.scalactic.Explicitly._
+import org.scalactic.Explicitly._
 
-scala&gt; import org.scalautils.StringNormalizations._
-import org.scalautils.StringNormalizations._
+scala&gt; import org.scalactic.StringNormalizations._
+import org.scalactic.StringNormalizations._
 
 scala&gt; &quot;Hi&quot; should equal (&quot;hi&quot;) (after being lowerCased)
 </pre>
 
 <p>The <code>after</code> <code>being</code> <code>lowerCased</code> expression results in an <code>Equality[String]</code>, which is then passed
 explicitly as the second curried parameter to <code>equal</code>. For more information on the explictly DSL, see the main documentation
-for trait <a href="@latestScaladoc/#org.scalautils.Explicitly"><code>Explicitly</code></a>.</p>
+for trait <a href="@latestScaladoc/#org.scalactic.Explicitly"><code>Explicitly</code></a>.</p>
 
 <p>The &quot;<code>should</code> <code>be</code>&quot; and <code>shouldBe</code> syntax do not take an <code>Equality[T]</code> and can therefore not be customized.
 They always use the default approach to equality described above. As a result, &quot;<code>should</code> <code>be</code>&quot; and <code>shouldBe</code> will
@@ -189,20 +189,20 @@ constraints at compile-time between the left and right sides of the equality com
 scala&gt; import org.scalatest.Matchers._
 import org.scalatest.Matchers._
 
-scala&gt; import org.scalautils.TypeCheckedTripleEquals._
-import org.scalautils.TypeCheckedTripleEquals._
+scala&gt; import org.scalactic.TypeCheckedTripleEquals._
+import org.scalactic.TypeCheckedTripleEquals._
 
 scala&gt; Some(2) should === (2)
 &lt;console&gt;:17: error: types Some[Int] and Int do not adhere to the equality constraint
 selected for the === and !== operators; the missing implicit parameter is of
-type org.scalautils.Constraint[Some[Int],Int]
+type org.scalactic.Constraint[Some[Int],Int]
               Some(2) should === (2)
                       ^
 </pre>
 
 <p>By default, the &quot;<code>Some(2)</code> <code>should</code> <code>===</code> <code>(2)</code>&quot; statement would fail at runtime. By mixing in
 the equality constraints provided by <code>TypeCheckedTripleEquals</code>, however, the statement fails to compile. For more information
-and examples, see the main documentation for <a href="@latestScaladoc/#org.scalautils.TypeCheckedTripleEquals">trait <code>TypeCheckedTripleEquals</code></a>.</p>
+and examples, see the main documentation for <a href="@latestScaladoc/#org.scalactic.TypeCheckedTripleEquals">trait <code>TypeCheckedTripleEquals</code></a>.</p>
 
 <a name="checkingSizeAndLength"> </a>
 <h2> Checking size and length </h2>
@@ -505,11 +505,11 @@ scala&gt; List(&quot;Hi&quot;, &quot;Di&quot;, &quot;Ho&quot;) should contain (&
 org.scalatest.exceptions.TestFailedException: List(Hi, Di, Ho) did not contain element &quot;ho&quot;
         at ...
 
-scala&gt; import org.scalautils.Explicitly._
-import org.scalautils.Explicitly._
+scala&gt; import org.scalactic.Explicitly._
+import org.scalactic.Explicitly._
 
-scala&gt; import org.scalautils.StringNormalizations._
-import org.scalautils.StringNormalizations._
+scala&gt; import org.scalactic.StringNormalizations._
+import org.scalactic.StringNormalizations._
 
 scala&gt; (List(&quot;Hi&quot;, &quot;Di&quot;, &quot;Ho&quot;) should contain (&quot;ho&quot;)) (after being lowerCased)
 </pre>
