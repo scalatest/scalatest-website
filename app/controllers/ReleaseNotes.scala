@@ -1,5 +1,5 @@
 /**
- * Copyright 2010-2013 Artima, Inc.
+ * Copyright 2010-2015 Artima, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,6 +22,10 @@ object ReleaseNotes extends Controller {
 
   def releaseNotesIndex = Action {
     Ok(views.html.releaseNotes.releaseNotesIndex())
+  }
+
+  def v300 = Action {
+    Ok(views.html.releaseNotes.v300())
   }
 
   def v224 = Action {
