@@ -250,8 +250,33 @@ capture to <span class="stQuotedString">&quot;MyScreenShot.png&quot;</span>
 </pre></p><p>or</p><p><pre class="stHighlighted">
 capture to <span class="stQuotedString">&quot;MyScreenShot&quot;</span>
 </pre></p><p>Both will result in a same file name <code>MyScreenShot.png</code>.</p><p>You can also change the target folder screenshot file is written to, by saying:</p><p><pre class="stHighlighted">
-capture set <span class="stQuotedString">&quot;/home/your_name/screenshots&quot;</span>
-</pre></p><a name="pageObjects"></a><h4> Using the page object pattern </h4><p>If you use the page object pattern, mixing trait <code>Page</code> into your page classes will allow you to use the <code>go to</code>
+setCaptureDir(<span class="stQuotedString">&quot;/home/your_name/screenshots&quot;</span>)
+</pre></p>
+
+<p>
+If you want to capture a screenshot when something goes wrong (e.g. test failed), you can
+use <code>withScreenshot</code>:
+</p>
+
+<p>
+<pre class="stHighlighted">
+withScreenshot {
+  assert(<span class="stQuotedString">&quot;Gold&quot;</span> == <span class="stQuotedString">&quot;Silver&quot;</span>, <span class="stQuotedString">&quot;Expected gold, but got silver&quot;</span>)
+}
+</pre>
+</p>
+
+<p>
+In case the test code fails, you'll see the screenshot location appended to the error message, for example:
+</p>
+
+<p>
+<pre>
+Expected gold but got silver; screenshot capture in /tmp/AbCdEfGhIj.png
+</pre>
+</p>
+
+<a name="pageObjects"></a><h4> Using the page object pattern </h4><p>If you use the page object pattern, mixing trait <code>Page</code> into your page classes will allow you to use the <code>go to</code>
 syntax with your page objects. Here's an example:</p><p><pre class="stHighlighted">
 <span class="stReserved">class</span> <span class="stType">HomePage</span> <span class="stReserved">extends</span> <span class="stType">Page</span> {
   <span class="stReserved">val</span> url = <span class="stQuotedString">&quot;localhost:9000/index.html&quot;</span>
