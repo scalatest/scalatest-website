@@ -602,7 +602,7 @@ pre.scala {
   line-height: 110%;
   padding-left: 4%;
   padding-top: 24px;
-  background-color: #2c415c;
+  background-color: #1c314c;
   color: white;
   text-align: left;
 }
@@ -620,10 +620,10 @@ pre.scala {
   color: #428bdd;
 }
 .literal {
-  color: #00cc00;
+  color: #7cbb5b;
 }
 .quotedString {
-  color: #00cc00;
+  color: #7cbb5b;
 }
 .blank-line {
   line-height: 70%;
