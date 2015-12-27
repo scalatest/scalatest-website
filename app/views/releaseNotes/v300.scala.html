@@ -120,6 +120,10 @@ how to migrate your code if affected, see the <a href="/user_guide/migrating_to_
 <a name="newDeprecations"></a>
 <h2>New deprecations</h2>
 
+<p>
+Deprecated the parameterless <code>execute</code> method on <code>Suite</code>. Please use the empty parens version instead: <code>execute()</code>.
+</p>
+
 <p>Deprecated <code>ConversionCheckedTripleEquals</code>, because code that is using it can still compile but mean something quite different
 if it is removed. Most people who used <code>ConversionCheckedTripleEquals</code> did so to allow numeric comparisons such as
 <code>1 === 1L</code> to compile, while still getting a type error for comarisons like <code>"one" === 1</code>.

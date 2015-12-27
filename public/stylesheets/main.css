@@ -328,7 +328,11 @@ body.overview h1 span {
 }
  
 div.message {
-        margin: 50px auto 10px auto;
+        margin: 17px auto 15px auto;
+}
+ 
+div.homePageMessage {
+        margin: 37px auto 25px auto;
 }
  
 body.overview div.content {
