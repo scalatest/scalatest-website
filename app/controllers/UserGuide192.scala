@@ -106,7 +106,7 @@ object UserGuide192 extends Controller {
   }
 
   def matchersQuickReference = Action {
-    Ok(views.html.userGuide_1_9_2.matchersQuickReference())
+    Redirect(routes.Application.atAGlance("FlatSpec").url)
   }
 
   def usingTheScalatestMavenPlugin = Action {
