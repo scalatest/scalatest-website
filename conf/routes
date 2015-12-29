@@ -11,6 +11,7 @@ GET        /scaladoc                                                    controll
 GET        /plus                                                        controllers.Plus.plusIndex
 GET        /videos                                                      controllers.Application.videos
 GET        /community                                                   controllers.Application.community
+GET        /supersafe                                                   controllers.Application.supersafe
 GET        /about                                                       controllers.Application.about
 GET        /release_notes                                               controllers.ReleaseNotes.releaseNotesIndex
 GET        /getting_started_with_fun_suite                              controllers.Application.gettingStartedWithFunSuite

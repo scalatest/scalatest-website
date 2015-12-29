@@ -58,6 +58,10 @@ object Application extends Controller {
     Ok(views.html.community())
   }
 
+  def supersafe = Action {
+    Ok(views.html.supersafe())
+  }
+
   def about = Action {
     Ok(views.html.about())
   }
