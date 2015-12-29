@@ -20,29 +20,183 @@
 <h1>ScalaTest support in SuperSafe Community Edition</h1>
 
 <p>
-Artima SuperSafe Community Edition
+Artima SuperSafe Community Edition is a free Scala compiler plugin that provides compiler errors for certain
+ScalaTest/Scalactic <code>===</code> and matcher expressions that can save you time and ensure certain
+errors don't exist in your code. (See the
+<a href="#installation">installation section</a> below for instructions
+on installing SuperSafe Community Edition.) Here are some examples:
 </p>
 
-<ul>
-<li><a href="javascript:void(window.open('http://groups.google.com/group/scalatest-users', '_blank'))">http://groups.google.com/group/scalatest-users</a></li>
-</ul>
+<pre class="scala">
+scala&gt; <span class="reserved">import</span> org.scalatest._
+<span class="lineComment">import org.scalatest._</span>
+
+scala&gt; <span class="reserved">import</span> Assertions._
+<span class="lineComment">import Assertions._</span>
+
+scala&gt; val x = <span class="type">Some</span>(<span class="literal">1</span>)
+<span class="lineComment">x: Some[Int] = Some(1)</span>
+
+scala&gt; assert(x === <span class="literal">1</span>)
+<span class="lineComment">&lt;console&gt;:18: error: [Artima SuperSafe] Values of type Some[Int] and Int may
+not be compared with the === operator. If you really want to compare them for
+equality, configure Artima SuperSafe to allow those types to be compared for
+equality.  For more information on this kind of error, see:
+http://www.artima.com/supersafe_user_guide.html#safer-equality
+       assert(x === 1)
+             ^</span>
+
+scala&gt; assert(x !== <span class="literal">1</span>) // Note this assertion would have succeeded
+<span class="lineComment">&lt;console&gt;:18: error: [Artima SuperSafe] Values of type Some[Int] and Int may
+not be compared with the !== operator. If you really want to compare them for
+inequality, configure Artima SuperSafe to allow those types to be compared for
+inequality (which will also enable them to be compared for equality).  For
+more information on this kind of error, see:
+http://www.artima.com/supersafe_user_guide.html#safer-equality
+       assert(x !== 1)
+             ^</span>
+
+scala&gt; <span class="reserved">import</span> Matchers._
+<span class="lineComment">import Matchers._</span>
+
+scala&gt; x should equal (<span class="literal">1</span>)
+<span class="lineComment">&lt;console&gt;:21: error: [Artima SuperSafe] Values of type Some[Int] and Int may
+not be compared for equality with ScalaTest's equal matcher syntax. If you
+really want this expression to compile, configure Artima SuperSafe to allow
+Some[Int] and Int to be compared for equality.  For more information on this
+kind of error, see:
+http://www.artima.com/supersafe_user_guide.html#safer-equality
+       x should equal (<span class="literal">1</span>)
+                       ^</span>
+
+scala&gt; x should not equal 1 // Note this assertion would have succeeded
+<span class="lineComment">&lt;console&gt;:21: error: [Artima SuperSafe] Values of type Some[Int] and Int may
+not be compared for equality with ScalaTest's not equal matcher syntax. If you
+really want this expression to compile, configure Artima SuperSafe to allow
+Some[Int] and Int to be compared for equality.  For more information on this
+kind of error, see:
+http://www.artima.com/supersafe_user_guide.html#safer-equality
+       x should not equal 1
+                          ^</span>
+
+scala&gt; x shouldBe <span class="quotedString">"hi"</span>
+<span class="lineComment">&lt;console&gt;:21: error: [Artima SuperSafe] Values of type Some[Int] and String
+may not be compared for equality with ScalaTest's shouldBe matcher syntax. If
+you really want this expression to compile, configure Artima SuperSafe to
+allow Some[Int] and String to be compared for equality.  For more information
+on this kind of error, see:
+http://www.artima.com/supersafe_user_guide.html#safer-equality
+       x shouldBe "hi"
+                  ^</span>
+
+scala&gt; x should === (<span class="quotedString">"hi"</span>)
+<span class="lineComment">&lt;console&gt;:21: error: [Artima SuperSafe] Values of type Some[Int] and String
+may not be compared for equality with ScalaTest's === matcher syntax. If you
+really want this expression to compile, configure Artima SuperSafe to allow
+Some[Int] and String to be compared for equality.  For more information on
+this kind of error, see:
+http://www.artima.com/supersafe_user_guide.html#safer-equality
+       x should === ("hi")
+                     ^</span>
+
+scala&gt; List(<span class="literal">1</span>, <span class="literal">2</span>, <span class="literal">3</span>) should contain (<span class="quotedString">"hi"</span>)
+<span class="lineComment">&lt;console&gt;:20: error: [Artima SuperSafe] Values of type Int and String may not
+be compared for equality with ScalaTest's contain matcher syntax. If you
+really want this expression to compile, configure Artima SuperSafe to allow
+Int and String to be compared for equality.  For more information on this
+kind of error, see:
+http://www.artima.com/supersafe_user_guide.html#safer-equality
+       List(1, 2, 3) should contain ("hi")
+                                     ^</span>
+
+scala&gt; List(<span class="literal">1</span>, <span class="literal">2</span>, <span class="literal">3</span>) should not contain (<span class="quotedString">"ho"</span>)
+<span class="lineComment">&lt;console&gt;:20: error: [Artima SuperSafe] Values of type Int and String may not
+be compared for equality with ScalaTest's contain matcher syntax. If you
+really want this expression to compile, configure Artima SuperSafe to allow
+Int and String to be compared for equality.  For more information on this
+kind of error, see:
+http://www.artima.com/supersafe_user_guide.html#safer-equality
+       List(1, 2, 3) should not contain ("ho")
+                                         ^</span>
+
+scala&gt; List(<span class="literal">1</span>, <span class="literal">2</span>, <span class="literal">3</span>) should contain oneOf (<span class="quotedString">"hi"</span>, <span class="quotedString">"ho"</span>)
+<span class="lineComment"><console>:20: error: [Artima SuperSafe] Values of type List[Int] and String may not be
+compared for equality with ScalaTest's oneOf matcher syntax. If you really
+want this expression to compile, configure Artima SuperSafe to allow Int and
+wtring to be compared for equality.  For more information on this kind of
+error, see: http://www.artima.com/supersafe_user_guide.html#safer-equality
+       List(1, 2, 3) should contain oneOf ("hi", "ho")
+                                           ^</span>
+
+</pre>
+
+<a name="installation"></a>
+<h2>Installation of SuperSafe Community Edition</h2>
 
 <p>
-Or, you can post to the ScalaTest Forum at:
+If you are using sbt as your build tool, you can install the SuperSafe Community Edition in two easy steps.
 </p>
-
-<ul>
-<li><a href="javascript:void(window.open('http://www.artima.com/forums/forum.jsp?forum=284', '_blank'))">http://www.artima.com/forums/forum.jsp?forum=284</a></li>
-
-</ul>
 
 <p>
-Issues can be submitted here:
+1. Add the <em>Artima Maven Repository</em> as a resolver in ~/.sbt/0.13/global.sbt, like this:
 </p>
 
-<ul>
-<li><a href="javascript:void(window.open('https://github.com/scalatest/scalatest/issues', '_blank'))">https://github.com/scalatest/scalatest/issues</a></li>
-</ul>
+<pre class="stGrayback">
+resolvers += "Artima Maven Repository" at "http://repo.artima.com/releases"
+</pre>
+
+<p>
+2. Add the following line to your project/plugins.sbt:
+</p>
+
+<pre class="stGrayback">
+addSbtPlugin("com.artima.supersafe" % "sbtplugin" % "1.1.0-RC4")
+</pre>
+
+<p>
+If you are using Maven as your build tool, you can install the community edition of SuperSafe in two easy steps. 
+</p>
+
+<p>
+1. Add the <em>Artima Maven Repository</em> to your <code>pom.xml</code>, like this:
+</p>
+
+<pre class="stGrayback">
+&lt;repositories&gt;
+    <b>&lt;repository&gt;
+        &lt;id&gt;artima&lt;/id&gt;
+        &lt;name&gt;Artima Maven Repository&lt;/name&gt;
+        &lt;url&gt;http://repo.artima.com/releases&lt;/url&gt;
+    &lt;/repository&gt;</b>
+&lt;/repositories&gt;
+</pre>
+
+<p>
+2. Add the compiler plugin to your <code>pom.xml</code>, like this:
+</p>
+
+<pre class="stGrayback">
+&lt;plugin&gt;
+    &lt;groupId&gt;net.alchim31.maven&lt;/groupId&gt;
+    &lt;artifactId&gt;scala-maven-plugin&lt;/artifactId&gt;
+    &lt;configuration&gt;
+        &lt;compilerPlugins&gt;
+            <b>&lt;compilerPlugin&gt;
+                &lt;groupId&gt;com.artima.supersafe&lt;/groupId&gt;
+                &lt;artifactId&gt;supersafe_2.11.7&lt;/artifactId&gt;
+                &lt;version&gt;1.1.0-RC3&lt;/version&gt;
+            &lt;/compilerPlugin&gt;</b>
+        &lt;/compilerPlugins&gt;
+    &lt;/configuration&gt;
+    &lt;executions&gt;
+        ...
+    &lt;/executions&gt;
+&lt;/plugin&gt;
+</pre>
+
+<p>
+Note: You need to use the exact Scala version in the artifactId, because compiler plugin depends on compiler API that's not binary compatible between Scala minor releases.
+</p>
 
 </div>
 }
