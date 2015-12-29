@@ -17,13 +17,13 @@
 @import controllers.Application.latestScaladoc
 @import controllers.Application.milestoneScaladoc
 
-@combinedReleaseNotesPage("Scalactic/ScalaTest 2.2.4 Release Notes") {
+@combinedReleaseNotesPage("Scalactic/ScalaTest 2.2.6 Release Notes") {
 <div style="text-align: left">
 
 <h1>ScalaTest/Scalactic 2.2.6 Release Notes</h1>
 
 <p>
-ScalaTest/Scalactic 2.2.6 includes the enhancements listed below. No source code using
+ScalaTest/Scalactic 2.2.6 includes the enhancements and bug fixes listed below. No source code using
 ScalaTest/ScalaUtils 2.0 or higher should break, but from any version other than other 2.2.x releases (with which this release is binary
 compatible), you will likely need to do a clean build to upgrade.
 </p>
@@ -35,39 +35,36 @@ see its <a href="http://www.scalactic.org/download">download page</a>.
 </p>
 
 <a name="enhancements"></a>
-<h2>Enhancements</h2>
+<h2>Enhancement</h2>
 
 <ul>
-<li>
-Added a <code>Chain</code> type that represents a non-empty <code>List</code>, as well as an <code>End</code> object
-that can serve as a starting point for expressions like <code>1 :: 2 :: 3 :: End</code>.
-</li>
-<li>
-Added a <code>from</code> method to <code>Or</code>'s companion object that takes an
-<code>Option</code> of the <code>Good</code> type and a by-name of the <code>Bad</code> type.
-</li>
-<li>
-Added an <code>OptionSugar</code> trait that provides an implicit conversion that adds a <code>toOr</code> method
-to <code>Option</code> that takes a by-name of the <code>Bad</code> type. <code>toOr</code> will convert a
-<code>Some</code> to a <code>Good</code> and <code>None</code> to the given <code>Bad</code> value.
-</li>
-<li>
-Added an <code>TrySugar</code> trait that provides an implicit conversion that adds a <code>toOr</code> method
-to <code>Try</code>. <code>toOr</code> will convert a
-<code>Success</code> to a <code>Good</code> and a <code>Failure</code> to a <code>Bad</code>.
-</li>
-<li>
-Update ScalaCheck dependency to version 1.12.1.
-</li>
-<li>
-Use hard-coded 127.0.0.1 as the host name for the socket reporter when running sbt in fork mode. This
-fixed a spurious stack trace annoyance.
-</li>
+<li>Updated the ScalaCheck dependency to version 1.12.6.</li>
+</ul>
+
+<a name="bugFixes"></a>
+<h2>Bug fixes</h2>
+
+<ul>
+<li>Fixed <code>length</code> and <code>size</code> problems in <code>assert</code>, <code>assume</code>, <code>require</code>,
+ and <code>requireState</code> macros when used with a custom <code>length</code> or <code>size</code> method that returns a non-integral
+ type (reported as <a href="https://github.com/scalatest/scalatest/issues/478">github issue #478</a>).</li>
+<li>Fixed a <code>ClassNotFoundException</code> problem when ScalaCheck was used with fork mode in sbt.</li>
+<li>Fixed an implicit numeric widening problem in ScalaTest's <code>assert</code> macro (reported as
+    <a href="https://github.com/scalatest/scalatest/issues/445">github issue #445</a>).</li>
+<li>Ensure <code>DiagrammedAssertions</code> can handle java static fields (reported
+    as <a href="https://github.com/scalatest/scalatest/issues/615">github issue #615</a> and
+    <a href="https://github.com/scalatest/scalatest/issues/611">github issue #611</a>).</li>
+<li>Changed <code>Framework</code> to use ScalaTest's thread pool for nested suites, instead of handling nested suites as nested
+    tasks returned to sbt (reported as <a href="https://github.com/scalatest/scalatest/issues/613">github issue #613</a>).</li>
+<li>Fixed a serialization failure when <code>eventually</code> was called inside a <code>withClue</code> block
+    (reported as <a href="https://github.com/scalatest/scalatest/issues/358">github issue #358</a>).</li>
+<li>Made <code>Every</code> extend <code>Serializable</code> (reported as
+    <a href="https://github.com/scalatest/scalatest/issues/663">github issue #663</a>).</li>
 </ul>
 
 <p>
             Visit <a href="@routes.ReleaseNotes.releaseNotesIndex">ScalaTest Release Notes</a> for links to the release notes of all previous versions, or
-step back in time by visiting the <a href="2.2.2">release notes for the previous version</a>.
+step back in time by visiting the <a href="2.2.5">release notes for the previous version</a>.
 </p>
 
 </div>

@@ -24,6 +24,8 @@ GET        /at_a_glance/:style                                          controll
 GET        /at_a_glance                                                 controllers.Application.bareAtAGlance()
 
 GET        /release_notes/3.0.0                                         controllers.ReleaseNotes.v300
+GET        /release_notes/2.2.6                                         controllers.ReleaseNotes.v226
+GET        /release_notes/2.2.5                                         controllers.ReleaseNotes.v225
 GET        /release_notes/2.2.4                                         controllers.ReleaseNotes.v224
 GET        /release_notes/2.2.2                                         controllers.ReleaseNotes.v222
 GET        /release_notes/2.2.1                                         controllers.ReleaseNotes.v221
