@@ -27,14 +27,14 @@
 <span class="stImport">import org.scalatest._
 import EitherValues._</span>
 
-<span class="stReserved">val</span> either1: <span class="stType">Either</span>[<span class="stType">String</span>, <span class="stType">Int</span>] = <span class="stType">Right</span>(<span class="stLiteral">16</span>)                         <span class="stExplain">// Use <a href="@{milestoneScaladoc}/index.html#org.scalatest.EitherValues">EitherValues</a> to check left and right value of an Either, using assert</span>
-assert(either1.right.value > <span class="stLiteral">9</span>)
+<span class="stReserved">val</span> either1: <span class="stType">Either</span>[<span class="stType">String</span>, <span class="stType">Int</span>] = <span class="stType">Right</span>(<span class="stLiteral">16</span>)                         <span class="stExplain">// Use <a href="@{milestoneScaladoc}/index.html#org.scalatest.EitherValues">EitherValues</a> to check left and right value</span>
+assert(either1.right.value > <span class="stLiteral">9</span>)                                      <span class="stExplain">// of an Either, using assert</span>
 <span class="stReserved">val</span> either2: <span class="stType">Either</span>[<span class="stType">String</span>, <span class="stType">Int</span>] = <span class="stType">Left</span>(<span class="stLiteral">"Muchas problemas"</span>)
 assert(either2.left.value == <span class="stLiteral">"Muchas problemas"</span>)
 
 <span class="stImport">import Matchers._</span>
-<span class="stReserved">val</span> either1: <span class="stType">Either</span>[<span class="stType">String</span>, <span class="stType">Int</span>] = <span class="stType">Right</span>(<span class="stLiteral">16</span>)                         <span class="stExplain">// Use <a href="@{milestoneScaladoc}/index.html#org.scalatest.EitherValues">EitherValues</a> to check left and right value of an Either, using Matchers syntax</span>
-either1.right.value should be > <span class="stLiteral">9</span>
+<span class="stReserved">val</span> either1: <span class="stType">Either</span>[<span class="stType">String</span>, <span class="stType">Int</span>] = <span class="stType">Right</span>(<span class="stLiteral">16</span>)                         <span class="stExplain">// Use <a href="@{milestoneScaladoc}/index.html#org.scalatest.EitherValues">EitherValues</a> to check left and right value</span>
+either1.right.value should be > <span class="stLiteral">9</span>                                    <span class="stExplain">// of an Either, using Matchers syntax</span>
 <span class="stReserved">val</span> either2: <span class="stType">Either</span>[<span class="stType">String</span>, <span class="stType">Int</span>] = <span class="stType">Left</span>(<span class="stLiteral">"Muchas problemas"</span>)
 either2.left.value should be (<span class="stLiteral">"Muchas problemas"</span>)
 

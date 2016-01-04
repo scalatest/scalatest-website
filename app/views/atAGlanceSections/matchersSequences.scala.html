@@ -24,16 +24,21 @@
 <tr>
 <td class="ataglance" colspan="4">
 <pre class="stTight">
-<span class="stImport">import org.scalatest.Matchers._</span>                                       <span class="stExplain">// Check if a List (or any GenTraversable) contains only</span>
-<span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>, <span class="stLiteral">3</span>, <span class="stLiteral">3</span>) should contain inOrderOnly (<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>)           <span class="stExplain">// the specified elements in same order</span>
+<span class="stImport">import org.scalatest.Matchers._</span>                                       <span class="stExplain">// Check if a List (or any GenTraversable)</span>
+<span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>, <span class="stLiteral">3</span>, <span class="stLiteral">3</span>) should contain inOrderOnly (<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>)           <span class="stExplain">// contains only the specified elements in same</span>
+                                                                      <span class="stExplain">// order</span>
                                                                       
-<span class="stType">Array</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>, <span class="stLiteral">3</span>, <span class="stLiteral">3</span>) should contain inOrderOnly (<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>)          <span class="stExplain">// Check if an Array contains only the specified elements in same order</span>
-
-<span class="stLiteral">"122333"</span> should contain inOrderOnly (<span class="stLiteral">'1'</span>, <span class="stLiteral">'2'</span>, <span class="stLiteral">'3'</span>)                   <span class="stExplain">// Check if a String contains only the specified characters in same order</span>
-
-<span class="stType">List</span>(<span class="stLiteral">0</span>, <span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">2</span>, <span class="stLiteral">99</span>, <span class="stLiteral">3</span>, <span class="stLiteral">3</span>, <span class="stLiteral">3</span>, <span class="stLiteral">5</span>) should contain inOrder (<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>)     <span class="stExplain">// Check if a List (or any GenTraversable) contains the specified</span>
+<span class="stType">Array</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>, <span class="stLiteral">3</span>, <span class="stLiteral">3</span>) should contain inOrderOnly (<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>)          <span class="stExplain">// Check if an Array contains only the specified</span>
                                                                       <span class="stExplain">// elements in same order</span>
-<span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>) should contain theSameElementsInOrderAs <span class="stType">Vector</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>) <span class="stExplain">// Check if a List (or any GenTraversable) contains the same elements</span>
-                                                                      <span class="stExplain">// in same order as the specified Vector (or any GenTraversable)</span>
+
+<span class="stLiteral">"122333"</span> should contain inOrderOnly (<span class="stLiteral">'1'</span>, <span class="stLiteral">'2'</span>, <span class="stLiteral">'3'</span>)                   <span class="stExplain">// Check if a String contains only the specified</span>
+                                                                      <span class="stExplain">// characters in same order</span>
+
+<span class="stType">List</span>(<span class="stLiteral">0</span>, <span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">2</span>, <span class="stLiteral">99</span>, <span class="stLiteral">3</span>, <span class="stLiteral">3</span>, <span class="stLiteral">3</span>, <span class="stLiteral">5</span>) should contain inOrder (<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>)     <span class="stExplain">// Check if a List (or any GenTraversable)</span>
+                                                                      <span class="stExplain">// contains the specified elements in same order</span>
+
+<span class="stType">List</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>) should contain theSameElementsInOrderAs <span class="stType">Vector</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>) <span class="stExplain">// Check if a List (or any GenTraversable)</span>
+                                                                      <span class="stExplain">// contains the same elements in same order as the</span>
+                                                                      <span class="stExplain">// specified Vector (or any GenTraversable)</span>
 </pre>
 </tr>

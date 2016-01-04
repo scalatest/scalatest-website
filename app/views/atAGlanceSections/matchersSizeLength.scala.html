@@ -25,9 +25,9 @@
 <span class="stImport">import org.scalatest.Matchers._
 val result = "hai"</span>
 
-result should have length <span class="stLiteral">3</span> <span class="stExplain">// Works for any type T for which an implicit Length[T] is available, including String, Array,</span>
-                            <span class="stExplain">// scala.collection.GenSeq, java.util.List, and any object with length field or method or</span>
-                            <span class="stExplain">// getLength method; the length value can be Int or Long.</span>
+result should have length <span class="stLiteral">3</span> <span class="stExplain">// Works for any type T for which an implicit Length[T] is available, including String,</span>
+                            <span class="stExplain">// Array, scala.collection.GenSeq, java.util.List, and any object with length field or</span>
+                            <span class="stExplain">// method or getLength method; the length value can be Int or Long.</span>
 
 result should have size <span class="stLiteral">3</span>   <span class="stExplain">// Works for any type T for which an implicit Size[T] is available, including String, Array,</span>
                             <span class="stExplain">// scala.collection.GenTraversable, java.util.Collection, java.util.Map, and any object with</span>
