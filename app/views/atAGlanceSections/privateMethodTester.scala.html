@@ -26,8 +26,8 @@
 <pre class="stTight">
 <span class="stImport">import org.scalatest.PrivateMethodTester._</span>
 
-<span class="stReserved">class</span> <span class="stType">TaxCalculator</span> {                                                <span class="stExplain">// Use <a href="@{milestoneScaladoc}/index.html#org.scalatest.PrivateMethodTester">PrivateMethodTester</a> to invoke a private method for testing purpose</span>
-  <span class="stReserved">private</span> <span class="stReserved">def</span> calc(amount: <span class="stType">Double</span>, percentage: <span class="stType">Double</span>): <span class="stType">Double</span> =
+<span class="stReserved">class</span> <span class="stType">TaxCalculator</span> {                                                <span class="stExplain">// Use <a href="@{milestoneScaladoc}/index.html#org.scalatest.PrivateMethodTester">PrivateMethodTester</a> to invoke a private</span>
+  <span class="stReserved">private</span> <span class="stReserved">def</span> calc(amount: <span class="stType">Double</span>, percentage: <span class="stType">Double</span>): <span class="stType">Double</span> =     <span class="stExplain">// method for testing purpose</span>
     amount * percentage / 100.00
   <span class="stReserved">def</span> calculateTax(amount: <span class="stType">Double</span>): <span class="stType">Double</span> =
     calc(amount, <span class="stLiteral">5.00</span>)

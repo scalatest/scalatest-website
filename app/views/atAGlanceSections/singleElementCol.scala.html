@@ -23,11 +23,11 @@
 <tr>
 <td class="ataglance" colspan="4">
 <pre class="stTight">
-<span class="stImport">import org.scalatest._                                        <span class="stExplain">// Use <code>loneElement</code> to check that the <code>Set</code> (or any <code>GenTraversable</code>) contains single element, and that element is</span>
-import Matchers._                                             <span class="stExplain">// greater than or equal to <code>10</code>.  If the <code>GenTraversable</code> does not contain single element, <code>TestFailedException</code></span>
-import LoneElement._</span>                                          <span class="stExplain">// will be thrown.</span>
-
-<span class="stType">Set</span>(<span class="stLiteral">18</span>).loneElement should be &gt;= <span class="stReserved">10</span>
+<span class="stImport">import org.scalatest._                                        <span class="stExplain">// Use <code>loneElement</code> to check that the <code>Set</code> (or any</span>
+import Matchers._                                             <span class="stExplain">// <code>GenTraversable</code>) contains single element, and that</span>
+import LoneElement._</span>                                          <span class="stExplain">// element is greater than or equal to <code>10</code>.  If the</span>
+                                                              <span class="stExplain">// <code>GenTraversable</code> does not contain single element,</span>
+<span class="stType">Set</span>(<span class="stLiteral">18</span>).loneElement should be &gt;= <span class="stReserved">10</span>                           <span class="stExplain">// <code>TestFailedException</code> will be thrown.</span>
 
 </pre>
 </tr>

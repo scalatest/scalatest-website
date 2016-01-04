@@ -27,11 +27,13 @@ val xs = List(1, 2, 3, 4, 5)</span>
 
 all (xs) should be &lt; 10                                  <span class="stExplain">// check that all elements in xs are less than 10</span>
 
-atMost (2, xs) should be &gt;= 4                            <span class="stExplain">// check that at most 2 elements in xs are greater than or equal to 4</span>
+atMost (2, xs) should be &gt;= 4                            <span class="stExplain">// check that at most 2 elements in xs are greater than or</span>
+                                                         <span class="stExplain">// equal to 4</span>
 
 atLeast (3, xs) should be &lt; 5                            <span class="stExplain">// check that at least 3 elements in xs are lesser than 5</span>
 
-between (2, 3, xs) should (be &gt; 1 and be &lt; 5)            <span class="stExplain">// check that 2 to 3 elements in xs are greater than 5 and less than 5</span>
+between (2, 3, xs) should (be &gt; 1 and be &lt; 5)            <span class="stExplain">// check that 2 to 3 elements in xs are greater than 5 and less</span>
+                                                         <span class="stExplain">// than 5</span>
 
 exactly (2, xs) should be &lt;= 2                           <span class="stExplain">// check that 2 elements in xs are less than or equal to 2</span>
 

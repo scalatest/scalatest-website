@@ -27,26 +27,26 @@
 import java.awt._
 import event.KeyEvent
 
-val canvas = new Canvas                                      <span class="stExplain">// You can check boolean properties dynamically with be and a Symbol (the tick mark</span>
-val keyEvent = new KeyEvent(canvas, 0, 0, 0, 0, '0')</span>         <span class="stExplain">// syntax). For statically typed approach, use a <a href="@milestoneScaladoc/#org.scalatest.matchers.BePropertyMatcher">BePropertyMatcher</a> or <a href="@milestoneScaladoc/#org.scalatest.matchers.BeMatcher">BeMatcher</a>.</span>
-keyEvent should be an (<span class="stQuotedString">'actionKey</span>)
+val canvas = new Canvas                                      <span class="stExplain">// You can check boolean properties dynamically with be and</span>
+val keyEvent = new KeyEvent(canvas, 0, 0, 0, 0, '0')</span>         <span class="stExplain">// a Symbol (the tick mark syntax). For statically typed</span>
+keyEvent should be an (<span class="stQuotedString">'actionKey</span>)                           <span class="stExplain">// approach, use a <a href="@milestoneScaladoc/#org.scalatest.matchers.BePropertyMatcher">BePropertyMatcher</a> or <a href="@milestoneScaladoc/#org.scalatest.matchers.BeMatcher">BeMatcher</a>.</span>
 
-<span class="stImport">case class Book(title: String, author: String)               <span class="stExplain">// You can check arbitrary properties dynamically with have and a Symbol (the tick</span>
-val book = Book("A Tale of Two Cities", "Sally")</span>             <span class="stExplain">//  mark syntax). For a statically type approach, use a <a href="@milestoneScaladoc/#org.scalatest.matchers.HavePropertyMatcher">HavePropertyMatchers</a>.</span>
-book should have ('title(<span class="stQuotedString">"A Tale of Two Cities"</span>))
+<span class="stImport">case class Book(title: String, author: String)               <span class="stExplain">// You can check arbitrary properties dynamically with have</span>
+val book = Book("A Tale of Two Cities", "Sally")</span>             <span class="stExplain">// and a Symbol (the tick mark syntax). For a statically</span>
+book should have ('title(<span class="stQuotedString">"A Tale of Two Cities"</span>))            <span class="stExplain">// typed approach, use a <a href="@milestoneScaladoc/#org.scalatest.matchers.HavePropertyMatcher">HavePropertyMatchers</a>.</span>
 
-<span class="stReserved">val</span> defined = <span class="stQuotedString">'defined</span>                                       <span class="stExplain">// One way to get rid of the tick mark for a dynamic property check</span>
-<span class="stType">Some</span>(<span class="stQuotedString">"hi"</span>) should be (defined)
+<span class="stReserved">val</span> defined = <span class="stQuotedString">'defined</span>                                       <span class="stExplain">// One way to get rid of the tick mark for a dynamic</span>
+<span class="stType">Some</span>(<span class="stQuotedString">"hi"</span>) should be (defined)                               <span class="stExplain">// property check</span>
 
 
-<span class="stReserved">val</span> beDefined = be (<span class="stQuotedString">'defined</span>)                                <span class="stExplain">// One way to get rid of the tick mark and a pair of parentheses</span>
-<span class="stType">Some</span>(<span class="stQuotedString">"hi"</span>) should beDefined
+<span class="stReserved">val</span> beDefined = be (<span class="stQuotedString">'defined</span>)                                <span class="stExplain">// One way to get rid of the tick mark and a pair of</span>
+<span class="stType">Some</span>(<span class="stQuotedString">"hi"</span>) should beDefined                                  <span class="stExplain">// parentheses</span>
 
 <span class="stReserved">val</span> beWithinTolerance = be &gt;= <span class="stLiteral">0</span> and be <= <span class="stLiteral">10</span>                 <span class="stExplain">// You can combine matchers with and, or, and not</span>
 <span class="stLiteral">8</span> should beWithinTolerance
 
-<span class="stImport">import matchers._</span>                                            <span class="stExplain">// You can compose a matcher with a function that transforms the input type</span>
-<span class="stReserved">val</span> beOdd = <span class="stType">Matcher</span>((i: <span class="stType">Int</span>) =&gt;
+<span class="stImport">import matchers._</span>                                            <span class="stExplain">// You can compose a matcher with a function that</span>
+<span class="stReserved">val</span> beOdd = <span class="stType">Matcher</span>((i: <span class="stType">Int</span>) =&gt;                              <span class="stExplain">// transforms the input type</span>
   <span class="stType">MatchResult</span>(
     i % <span class="stLiteral">2</span> != <span class="stLiteral">0</span>,
     i + <span class="stLiteral">" is not odd"</span>,
@@ -55,14 +55,14 @@ book should have ('title(<span class="stQuotedString">"A Tale of Two Cities"</sp
 <span class="stReserved">val</span> beOddAsInt = beOdd compose { (s: <span class="stType">String</span>) =&gt; s.toInt }
 <span class="stQuotedString">"3"</span> should beOddAsInt
 
-<span class="stImport">import java.io.File</span>                                           <span class="stExplain">// You can also use matcher composition to create a new matcher given a parameter</span>
-<span class="stReserved">def</span> endWithExtension(ext: <span class="stType">String</span>) =
+<span class="stImport">import java.io.File</span>                                           <span class="stExplain">// You can also use matcher composition to create a new</span>
+<span class="stReserved">def</span> endWithExtension(ext: <span class="stType">String</span>) =                           <span class="stExplain">// matcher given a parameter</span>
 endWith(ext) compose { (f: <span class="stType">File</span>) =&gt; f.getPath }
 <span class="stReserved">new</span> <span class="stType">File</span>(<span class="stQuotedString">"output.txt"</span>) should endWithExtension("txt")
 
-<span class="stReserved">val</span> beOdd =  <span class="stType">Matcher</span> { (left: <span class="stType">Int</span>) =&gt;                         <span class="stExplain">// You can use a factory method to define a custom matcher (such factory methods</span>
-  <span class="stType">MatchResult</span>(                                                <span class="stExplain">// also exist for <a href="@milestoneScaladoc/#org.scalatest.matchers.BeMatcher"><code>BeMatcher</code></a>, <a href="@milestoneScaladoc/#org.scalatest.matchers.BePropertyMatcher">BePropertyMatcher</a>, and <a href="@milestoneScaladoc/#org.scalatest.matchers.HavePropertyMatcher">HavePropertyMatcher</a></span>
-    left % <span class="stLiteral">2</span> == <span class="stLiteral">1</span>,
+<span class="stReserved">val</span> beOdd =  <span class="stType">Matcher</span> { (left: <span class="stType">Int</span>) =&gt;                         <span class="stExplain">// You can use a factory method to define a custom matcher</span>
+  <span class="stType">MatchResult</span>(                                                <span class="stExplain">// (such factory methods also exist for <a href="@milestoneScaladoc/#org.scalatest.matchers.BeMatcher"><code>BeMatcher</code></a>,</span>
+    left % <span class="stLiteral">2</span> == <span class="stLiteral">1</span>,                                            <span class="stExplain">// <a href="@milestoneScaladoc/#org.scalatest.matchers.BePropertyMatcher">BePropertyMatcher</a>, and <a href="@milestoneScaladoc/#org.scalatest.matchers.HavePropertyMatcher">HavePropertyMatcher</a></span>
     left + <span class="stQuotedString">" was not odd"</span>,
     left + <span class="stQuotedString">" was odd"</span>)
   }
