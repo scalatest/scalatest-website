@@ -42,6 +42,10 @@ object Application extends Controller {
     Ok(views.html.download())
   }
 
+  def olderReleases = Action {
+    Ok(views.html.olderReleases())
+  }
+
   def quickStart = Action {
     Ok(views.html.quickStart())
   }
