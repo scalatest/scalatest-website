@@ -20,11 +20,9 @@
 
 <div style="text-align: left">
 
-<!--
 <p>
-<strong><a href="#latestReleaseCandidate">Try our latest release candidate: ScalaTest and Scalactic 2.2.0-RC1.</a></strong>
+<strong><em><a href="#latestMilestone">Try our latest 3.0.0 milestone release: ScalaTest and Scalactic 3.0.0-M15.</a></em></strong>
 </p>
--->
 
 <h1>Downloading ScalaTest</h1>
 
@@ -1436,12 +1434,6 @@ documentation, see the <a href="@routes.Application.scaladocsFile("2.1.1", "org.
 
 <hr />
 
-<!--
-<p>
-You may also wish to try <a href="#latestRC">the latest ScalaTest/ScalaUtils 2.1.0 release candidate</a>.
-</p>
--->
-
 <p>
 <strong>ScalaTest and ScalaUtils 2.1.0</strong> (for 2.10.0+) are available the
 <a href="https://oss.sonatype.org/content/groups/public/org/scalatest/">Sonatype OSS</a> Maven repository (which is mirrored on the
@@ -2298,6 +2290,148 @@ For a list of the changes in this release, see the <a href="/release_notes/1.0">
 For detailed documentation, see the <a href="/scaladoc/1.0/">ScalaTest 1.0 Scaladoc</a>.
 </p>
 
+<hr /> <!-- ############################################### -->
+
+<a name="latestMilestone"></a>
+<p>
+<strong>ScalaTest and Scalactic 3.0.0-M15</strong> (for 2.10.0+ and 2.11.0+) are available the
+<a href="https://oss.sonatype.org/content/groups/public/org/scalatest/">Sonatype OSS</a> Maven repository (which is mirrored on the
+central Maven repository as well).
+
+<p>
+For a list of the changes in this release, see the <strong><a href="/release_notes/3.0.0">release notes</a></strong>. For detailed
+documentation, see the <a href="http://www.artima.com/docs-scalatest-3.0.0-M15/index.html#org.scalatest.FlatSpec">ScalaTest 3.0.0-M15 Scaladoc</a>.
+</p>
+
+<p>
+Scalactic is a small library of utilities used by ScalaTest 3.0.0-M15 that are useful in your production code as well as your tests. A copy of Scalactic is
+included in ScalaTest's jar file. If you wish to use Scalactic
+in your production code as well, see the download page on the
+<a href="http://www.scalactic.org/download"><code>scalactic.org</code></a> website. Here is the information for including ScalaTest
+in your project:
+</p>
+
+<ul>
+<li>group id: org.scalatest</li>
+<li>artifact id: scalatest_2.10 or scalatest_2.11</li>
+<li>version: 3.0.0-M15</li>
+</ul>
+
+<p>Here's the code for your Maven POM (for Scala 2.11.0+):</p>
+
+<pre class="stHighlighted">
+&lt;dependency&gt;
+  &lt;groupId&gt;org.scalatest&lt;/groupId&gt;
+  &lt;artifactId&gt;scalatest_2.11&lt;/artifactId&gt;
+  &lt;version&gt;3.0.0-M15&lt;/version&gt;
+  &lt;scope&gt;test&lt;/scope&gt;
+&lt;/dependency&gt;
+</pre>
+
+<p>
+And for sbt, version 0.10 or higher (for Scala 2.11.0+):
+</p>
+
+<pre class="stGrayback">
+libraryDependencies += "org.scalatest" % "scalatest_2.11" % "3.0.0-M15" % "test"
+</pre>
+
+<p>
+We recommend you also install the SuperSafe 1.1.0-RC4 compiler plugin when you upgrade
+to ScalaTest 3.0.0-M15, because SuperSafe will provide <a href="/supersafe">extra safety checks</a> for <code>===</code> and matcher expressions
+that can save you time. Although SuperSafe is a product, these safety checks for the Scalactic and
+ScalaTest libraries are provided for free as part of the community edition of SuperSafe.
+</p>
+
+<p>
+If you are using sbt as your build tool, you can install the community edition of SuperSafe in two easy steps.
+</p>
+
+<p>
+1. Add the <em>Artima Maven Repository</em> as a resolver in ~/.sbt/0.13/global.sbt, like this:
+</p>
+
+<pre class="stGrayback">
+resolvers += "Artima Maven Repository" at "http://repo.artima.com/releases"
+</pre>
+
+<p>
+2. Add the following line to your project/plugins.sbt:
+</p>
+
+<pre class="stGrayback">
+addSbtPlugin("com.artima.supersafe" % "sbtplugin" % "1.1.0-RC4")
+</pre>
+
+<p>
+If you are using Maven as your build tool, you can install the community edition of SuperSafe in two easy steps. 
+</p>
+
+<p>
+1. Add the <em>Artima Maven Repository</em> to your <code>pom.xml</code>, like this:
+</p>
+
+<pre class="stGrayback">
+&lt;repositories&gt;
+    <b>&lt;repository&gt;
+        &lt;id&gt;artima&lt;/id&gt;
+        &lt;name&gt;Artima Maven Repository&lt;/name&gt;
+        &lt;url&gt;http://repo.artima.com/releases&lt;/url&gt;
+    &lt;/repository&gt;</b>
+&lt;/repositories&gt;
+</pre>
+
+<p>
+2. Add the compiler plugin to your <code>pom.xml</code>, like this:
+</p>
+
+<pre class="stGrayback">
+&lt;plugin&gt;
+    &lt;groupId&gt;net.alchim31.maven&lt;/groupId&gt;
+    &lt;artifactId&gt;scala-maven-plugin&lt;/artifactId&gt;
+    &lt;configuration&gt;
+        &lt;compilerPlugins&gt;
+            <b>&lt;compilerPlugin&gt;
+                &lt;groupId&gt;com.artima.supersafe&lt;/groupId&gt;
+                &lt;artifactId&gt;supersafe_2.11.7&lt;/artifactId&gt;
+                &lt;version&gt;1.1.0-RC3&lt;/version&gt;
+            &lt;/compilerPlugin&gt;</b>
+        &lt;/compilerPlugins&gt;
+    &lt;/configuration&gt;
+    &lt;executions&gt;
+        ...
+    &lt;/executions&gt;
+&lt;/plugin&gt;
+</pre>
+
+<p>
+Note: You need to use the exact Scala version in the artifactId, because compiler plugin depends on compiler API that's not binary compatible between Scala minor releases.
+</p>
+
+<p>
+If you prefer, you can download Jar files for the library and Scaladoc documentation by hand from Sonatype. The artifacts tagged with 2.11
+can be used with any 2.11.x release.
+Jar files are valid zip files, so to access the Scaladoc documentation just unzip the Jar file. The Scaladoc Jars
+do not contain a top-level directory, however, so you should unzip them in an empty directory.
+</p>
+
+<p>
+For Scala 2.11.x:
+</p>
+
+<ul>
+<li><a href="https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest_2.11/3.0.0-M15/scalatest_2.11-3.0.0-M15.jar">Download ScalaTest 3.0.0-M15 Jar</a></li>
+<li><a href="https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest_2.11/3.0.0-M15/scalatest_2.11-3.0.0-M15-scaladoc.jar">Download ScalaTest 3.0.0-M15 Scaladoc documentation</a></li>
+</ul>
+
+<p>
+If you don't have it already, you'll also need Scala. You can use any 2.10 or 2.11 release, which you can get from here:
+</p>
+
+<ul>
+<li><a href="http://www.scala-lang.org/downloads">Download latest Scala release</a></li>
+</ul>
 </div>
+
 }
 

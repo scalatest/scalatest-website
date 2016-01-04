@@ -18,13 +18,18 @@
 @import controllers.Application.latestScaladoc
 @import controllers.Application.milestoneVersion
 
-@releaseNotesPage("ScalaTest 2.0 Release Notes") {
+@combinedReleaseNotesPage("Scalactic/ScalaTest 3.0.0 Release Notes") {
 <div style="text-align: left">
 
-<h1>ScalaTest/Scalactic 3.0.0 Release Notes</h1>
+<h1>ScalaTest/Scalactic 3.0.0-M15 Release Notes</h1>
 
 <p>
-ScalaTest 3.0.0 is a major upgrade to ScalaTest and Scalactic, the culmination of over a year of effort. Although it
+<strong><em>Note: Eventually this will be the home for the 3.0.0 final release notes. These release notes are written
+from the perspective of the final release, but with 3.0.0 replaced with 3.0.0-M15, the current milestone version.</em></strong>
+</p>
+
+<p>
+ScalaTest 3.0.0-M15 is a major upgrade to ScalaTest and Scalactic, the culmination of over a year of effort. Although it
 includes many enhancements, we kept a close eye on compatibility with existing ScalaTest/Scalactic 2.x code.
 We also tried hard to preserve what people liked about both ScalaTest and Scalactic: that it is simple, the code is clean
 and clear, it's fully documented, and because of very thorough testing, it &ldquo;just works.&rdquo; 
@@ -39,7 +44,7 @@ For information on how to use <a href="http://www.scalactic.org/">Scalactic</a> 
 <h2>Highlights</h2>
 
 <p>
-The most significant enhancement to ScalaTest and Scalactic in the 3.0.0 release is that they now fully support Scala.js.
+The most significant enhancement to ScalaTest and Scalactic in the 3.0.0-M15 release is that they now fully support Scala.js.
 The advent of Scala.js represented a major, completely unforeseen change in requirements for ScalaTest.
 As a result, Scala.js support required a
 rather large number of changes to the ScalaTest's eight-year old codebase. Fortunately, the changes
@@ -48,10 +53,12 @@ JVM) should break because of the addition of Scala.js support.
 </p>
 
 <p>
-ScalaTest and Scalactic 3.0.0 does include a small number of changes that could in theory break user code, but we expect
-the numbers of users and amount of code affected to be quite small in practice. For most users, upgrading to ScalaTest
-and/or Scalactic 3.0.0 should require only a clean build with the new version--so long as all deprecation warnings in 2.2.x
-are dealt with before the upgrade. ScalaTest 3.0.0 does include several deprecation expirations, the removal of features 
+Scalactic 3.0.0-M15 does include one change that could in theory break 2.2.x user code, but we expect
+the numbers of users and amount of code affected to be quite small in practice. ScalaTest 3.0.0-M15, on the other hand should include
+<em>no breaking changes</em> to existing 2.2.x code so long as all deprecation warnings have been cleared prior to
+upgrading. For most users, upgrading to ScalaTest
+and/or Scalactic 3.0.0-M15 should require only a clean build with the new version.
+ScalaTest 3.0.0-M15 does include several deprecation expirations, the removal of features 
 that were deprecated at the time of the 2.0.0 release, October 2013. For more detail, see the
 <a href="#potentialBreakages">potential breakages</a> and the <a href="#expiredDeprecations">expired deprecations</a> sections below.
 </p>
@@ -59,12 +66,12 @@ that were deprecated at the time of the 2.0.0 release, October 2013. For more de
 <p>
 The SuperSafe compiler plugin has also been enhanced with some new features that give compiler errors for Scalactic's <code>===</code>
 operator and ScalaTest's <code>equal</code>, <code>be</code>, and <code>contain</code> matchers. These features are enabled
-by default (i.e., they don't require a SuperSafe license key to be installed), so all you need to do to add the plugin to
-your project. For more details, see the <a href="#supersafeEnhancements">SuperSafe enhancements</a> below.
+by default in SuperSafe's Community Edition (i.e., they don't require a SuperSafe license key to be installed), so all you
+need to do is add the plugin to your project. For more details, see the <a href="#supersafeEnhancements">SuperSafe enhancements</a> below.
 </p>
 
 <p>
-Here's a list of the main enhancements in Scalactic 3.0.0:
+Here's a list of the main enhancements in Scalactic 3.0.0-M15:
 </p>
 
 <ul>
@@ -80,24 +87,41 @@ added in package <code>org.scalactic.anyvals</code> along with <code>CompileTime
 create your own restricted value <code>AnyVal</code> types.</li>
 <li>Renamed <code>Constraint</code> to <code>CanEqual</code> and made a deprecated type alias for any user code currently
 referring to <code>Constraint</code>.</li>
-<li>Added a concise type lambda syntax to <code>Or</code>'s companion object. <code>Or.G[Int]#B</code> means an <code>Or</code>
+<!--<li>Added a concise type lambda syntax to <code>Or</code>'s companion object. <code>Or.G[Int]#B</code> means an <code>Or</code>
 with a "good" type, <code>G</code>, of <code>Int</code> and the "bad" type, <code>B</code>, unspecified. <code>Or.B[ErrorMessage]#G</code> means an <code>Or</code>
-with a "bad" type, <code>B</code>, of <code>ErrorMessage</code> and the "good" type, <code>G</code>, unspecified.</li>
+with a "bad" type, <code>B</code>, of <code>ErrorMessage</code> and the "good" type, <code>G</code>, unspecified.</li>-->
 <li>Made <code>Chain</code> an <code>AnyVal</code> that wraps <code>List</code> instead of an <code>AnyRef</code>.
-dropped extension of PartialFunction.</li>
-<li>Dropped unused type param in Good and Bad.</li>
-<li>Added validating method to TrySugar, and added FutureSugar with validating in it. (need to scaladoc these) ValidationFailedException was added for 
-    this as well.</li>
-<li>Hey, move ValidationFailedException to the exceptions package! Throw NAE instead of IAE in ValidationFailedException</li>
-<li>Use of anyvals package in property based test config object, use maxDiscardFactor</li>
+Dropped its inheritance relationship with <code>PartialFunction</code>.</li>
+<li>Dropped unused type param in <code>Good</code> and <code>Bad</code>, specifying <code>Nothing</code> for that now missing type parameter
+when extending <code>Or</code>. This is a breaking change, but one which we don't expect will affect much client code in practice.</li>
+<li>Added a <code>validating</code> method to <code>TrySugar</code>, and added <code>FutureSugar</code> also with a <code>validating</code>
+method. Also added <code>ValidationFailedException</code> to support these <code>validating</code> methods as well.</li>
 </ul>
 
 <p>
-Here's a list of the main enhancements in ScalaTest 3.0.0:
+Here's a list of the main enhancements in ScalaTest 3.0.0-M15:
 </p>
 
 <ul>
 <li>Added support for Scala.js.</li>
+<li>Defined <code>org.scalatest.Assertion</code> as a type alias for the singleton type, <a href="@{milestoneScaladoc}/index.html#org.scalatest.Succeeded$"><code>org.scalatest.Succeeded.type</code></a>.</li>
+<li>Changed the result type of assertions and matcher expressions from <code>Unit</code> to <code>Assertion</code>.</li>
+<li>Changed the result type of <code>org.scalatest</code> styles from <code>Unit</code> to <code>Any</code> so that users who
+compile with <code>-Ywarn-value-discard</code> will not get warnings for tests that end in an assertion or matcher expression,
+which no longer has a <code>Unit</code> result type.</li>
+<li>Added "async" testing styles--<a href="@{milestoneScaladoc}/index.html#org.scalatest.AsyncFunSuite"><code>AsyncFunSuite</code></a>,
+<a href="@{milestoneScaladoc}/index.html#org.scalatest.AsyncFunSpec"><code>AsyncFunSpec</code></a>,
+<a href="@{milestoneScaladoc}/index.html#org.scalatest.AsyncFlatSpec"><code>AsyncFlatSpec</code></a>,
+<a href="@{milestoneScaladoc}/index.html#org.scalatest.AsyncFreeSpec"><code>AsyncFreeSpec</code></a>,
+<a href="@{milestoneScaladoc}/index.html#org.scalatest.AsyncWordSpec"><code>AsyncWordspec</code></a>, and
+<a href="@{milestoneScaladoc}/index.html#org.scalatest.AsyncFeatureSpec"><code>AsyncFeatureSpec</code></a>--in which
+the result type of tests is <code>Future[Assertion]</code>.
+</li>
+<li>Deprecated <a href="@{milestoneScaladoc}/#org.scalatest.prop.Configuration$PropertyCheckConfig"><code>PropertyCheckConfig</code></a> in
+favor of <a href="@{milestoneScaladoc}/#org.scalatest.prop.Configuration$PropertyCheckConfiguration"><code>PropertyCheckConfiguration</code></a> in 
+object <code>org.scalatest.prop.Configuration</code>. The new class uses <code>org.scalactic.anyvals</code> and instead of an absolute
+<code>maxDiscarded</code> value, calculates that value by multiplying a <code>maxDiscardFactor</code> by the <code>minSuccessful</code> value.
+</li>
 <li>Added overloaded <code>exists</code> and <code>forEvery</code> methods to <code>TableDrivenPropertyChecks</code>. <code>exists</code> succeeds if at
 least one row of the table satisfies the assertion block. <code>forEvery</code> requires that all rows of the table satisfy the assertion
 block, like <code>forAll</code>, but reports information about all rows that fail the assertion block (where <code>forAll</code>
@@ -112,7 +136,7 @@ consistently when mixed in either before and after <code>OneInstancePerTest</cod
 <h2>Potential breakages</h2>
 
 <p>
-Although we have worked hard to ensure the vast majority of ScalaTest 2.2.x code to compile under 3.0.0, ScalaTest 3.0.0 does include a small
+Although we have worked hard to ensure the vast majority of ScalaTest 2.2.x code to compile under 3.0.0-M15, ScalaTest 3.0.0-M15 does include a small
 number of changes that can break existing code. To see the list, and learn
 how to migrate your code if affected, see the <a href="/user_guide/migrating_to_20">migration guide</a>.
 </p>
