@@ -20,39 +20,76 @@
 
 <div style="text-align: left">
 
-<p>
-<strong><em><a href="#latestMilestone">Try our latest 3.0.0 milestone release: ScalaTest and Scalactic 3.0.0-M15.</a></em></strong>
-</p>
-
 <h1>Installing ScalaTest</h1>
 
 <p>
-<strong>ScalaTest and Scalactic 2.2.6</strong> (for 2.10.0+ and 2.11.0+) are available the
-<a href="https://oss.sonatype.org/content/groups/public/org/scalatest/">Sonatype OSS</a> Maven repository (which is mirrored on the
-central Maven repository as well).
-
-<p>
-For a list of the changes in this release, see the <strong><a href="/release_notes/2.2.6">release notes</a></strong>. For detailed
-documentation, see the <a href="http://doc.scalatest.org/2.2.6/index.html#org.scalatest.FlatSpec">ScalaTest 2.2.6 Scaladoc</a>.
-</p>
-
-<p>
-Scalactic is a small library of utilities used by ScalaTest 2.2.6 that are useful in your production code as well as your tests. A copy of Scalactic is
-included in ScalaTest's jar file. If you wish to use Scalactic
-in your production code as well, see the download page on the
-<a href="http://www.scalactic.org/download"><code>scalactic.org</code></a> website. Here is the information for including ScalaTest
-in your project:
-</p>
+<strong>ScalaTest and Scalactic 2.2.6</strong> (for 2.10.0+ and 2.11.0+)
 
 <ul>
-<li>group id: org.scalatest</li>
-<li>artifact id: scalatest_2.10 or scalatest_2.11</li>
-<li>version: 2.2.6</li>
+<li><a href="/release_notes/2.2.6">Combined 2.2.6 Release Notes</a></li>
+<li><a href="http://doc.scalatest.org/2.2.6/index.html#org.scalatest.FlatSpec">Combined 2.2.6 Scaladoc</a></li>
 </ul>
 
-<p>Here's the code for your Maven POM (for Scala 2.11.0+):</p>
+<p>
+The <a href="https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest_2.11/2.2.6/">ScalaTest 2.2.6 binaries</a> and <a href="https://oss.sonatype.org/content/groups/public/org/scalactic/scalactic_2.11/2.2.6/">Scalactic 2.2.6 binaries</a> are available via the Sonatype OSS Maven repository and mirrored on Maven central.
+</p>
+
+<hr /> <!-- ############################################### -->
+
+<p>
+<em>To include ScalaTest 2.2.6 in your <a href="http://www.scala-sbt.org"><strong>sbt</strong></a> project:</em>
+</p>
+
+<p>
+1. Add these lines to your build file:
+</p>
 
 <pre class="stHighlighted">
+libraryDependencies += <span class="stQuotedString">"org.scalactic"</span> %% <span class="stQuotedString">"scalactic"</span> % <span class="stQuotedString">"2.2.6"</span>
+libraryDependencies += <span class="stQuotedString">"org.scalatest"</span> %% <span class="stQuotedString">"scalatest"</span> % <span class="stQuotedString">"2.2.6"</span> % <span class="stQuotedString">"test"</span>
+</pre>
+
+<p>
+The dependency on <a href="http://www.scalactic.org">Scalactic</a>, ScalaTest's sister library focused on quality through types, is recommended but not required.
+</p>
+
+<p>
+2. We also recommend you also include the <a href="/supersafe">SuperSafe Community Edition</a> Scala compiler plugin, which will flag errors in your ScalaTest (and
+Scalactic) code at compile time, by first adding this line to <code>~/.sbt/0.13/global.sbt</code>:
+</p>
+
+<pre class="stHighlighted">
+resolvers += <span class="stQuotedString">"Artima Maven Repository"</span> at <span class="stQuotedString">"http://repo.artima.com/releases"</span>
+</pre>
+
+<p>
+3. Then adding the following line to <code>project/plugins.sbt</code>:
+</p>
+
+<pre class="stHighlighted">
+addSbtPlugin(<span class="stQuotedString">"com.artima.supersafe"</span> % <span class="stQuotedString">"sbtplugin"</span> % <span class="stQuotedString">"1.1.0-RC5"</span>)
+</pre>
+
+<p>
+You are off and running! As a next step, visit the <a href="/user_guide">Getting Started</a> section of the user guide.
+</p>
+
+<hr /> <!-- ############################################### -->
+
+<p>
+<em>To include ScalaTest 2.2.6 in your <strong>Maven</strong> project</em>:
+</p>
+
+<p>
+1. Add the following dependencies to your <code>pom.xml</code>:
+</p>
+
+<pre class="stHighlighted">
+&lt;dependency&gt;
+  &lt;groupId&gt;org.scalactic&lt;/groupId&gt;
+  &lt;artifactId&gt;scalactic_2.11&lt;/artifactId&gt;
+  &lt;version&gt;2.2.6&lt;/version&gt;
+&lt;/dependency&gt;
 &lt;dependency&gt;
   &lt;groupId&gt;org.scalatest&lt;/groupId&gt;
   &lt;artifactId&gt;scalatest_2.11&lt;/artifactId&gt;
@@ -62,73 +99,33 @@ in your project:
 </pre>
 
 <p>
-And for sbt, version 0.10 or higher (for Scala 2.11.0+):
-</p>
-
-<pre class="stGrayback">
-libraryDependencies += "org.scalatest" % "scalatest_2.11" % "2.2.6" % "test"
-</pre>
-
-<p>
-We recommend you also install the SuperSafe 1.1.0-RC4 compiler plugin when you upgrade
-to ScalaTest 2.2.6, because SuperSafe will provide <a href="/supersafe">extra safety checks</a> for <code>===</code> and matcher expressions
-that can save you time. Although SuperSafe is a product, these safety checks for the Scalactic and
-ScalaTest libraries are provided for free as part of the community edition of SuperSafe.
+The dependency on <a href="http://www.scalactic.org">Scalactic</a>, ScalaTest's sister library focused on quality through types, is
+recommended but not required.
 </p>
 
 <p>
-If you are using sbt as your build tool, you can install the community edition of SuperSafe in two easy steps.
+2. We also recommend you also include the <a href="/supersafe">SuperSafe Community Edition</a> Scala compiler plugin, which will flag errors in your ScalaTest (and
+Scalactic) code at compile time, by adding the following lines to your <code>pom.xml</code>:
 </p>
 
-<p>
-1. Add the <em>Artima Maven Repository</em> as a resolver in ~/.sbt/0.13/global.sbt, like this:
-</p>
-
-<pre class="stGrayback">
-resolvers += "Artima Maven Repository" at "http://repo.artima.com/releases"
-</pre>
-
-<p>
-2. Add the following line to your project/plugins.sbt:
-</p>
-
-<pre class="stGrayback">
-addSbtPlugin("com.artima.supersafe" % "sbtplugin" % "1.1.0-RC4")
-</pre>
-
-<p>
-If you are using Maven as your build tool, you can install the community edition of SuperSafe in two easy steps. 
-</p>
-
-<p>
-1. Add the <em>Artima Maven Repository</em> to your <code>pom.xml</code>, like this:
-</p>
-
-<pre class="stGrayback">
+<pre class="stHighlighted">
 &lt;repositories&gt;
-    <b>&lt;repository&gt;
+    &lt;repository&gt;
         &lt;id&gt;artima&lt;/id&gt;
         &lt;name&gt;Artima Maven Repository&lt;/name&gt;
         &lt;url&gt;http://repo.artima.com/releases&lt;/url&gt;
-    &lt;/repository&gt;</b>
+    &lt;/repository&gt;
 &lt;/repositories&gt;
-</pre>
-
-<p>
-2. Add the compiler plugin to your <code>pom.xml</code>, like this:
-</p>
-
-<pre class="stGrayback">
 &lt;plugin&gt;
     &lt;groupId&gt;net.alchim31.maven&lt;/groupId&gt;
     &lt;artifactId&gt;scala-maven-plugin&lt;/artifactId&gt;
     &lt;configuration&gt;
         &lt;compilerPlugins&gt;
-            <b>&lt;compilerPlugin&gt;
+            &lt;compilerPlugin&gt;
                 &lt;groupId&gt;com.artima.supersafe&lt;/groupId&gt;
                 &lt;artifactId&gt;supersafe_2.11.7&lt;/artifactId&gt;
-                &lt;version&gt;1.1.0-RC3&lt;/version&gt;
-            &lt;/compilerPlugin&gt;</b>
+                &lt;version&gt;1.1.0-RC5&lt;/version&gt;
+            &lt;/compilerPlugin&gt;
         &lt;/compilerPlugins&gt;
     &lt;/configuration&gt;
     &lt;executions&gt;
@@ -138,31 +135,21 @@ If you are using Maven as your build tool, you can install the community edition
 </pre>
 
 <p>
-Note: You need to use the exact Scala version in the artifactId, because compiler plugin depends on compiler API that's not binary compatible between Scala minor releases.
+<em>Note: You need to use the exact Scala version in the artifactId, because compiler plugin depends on compiler API that's not binary compatible between Scala minor releases.</em>
 </p>
 
 <p>
-If you prefer, you can download Jar files for the library and Scaladoc documentation by hand from Sonatype. The artifacts tagged with 2.11
-can be used with any 2.11.x release.
-Jar files are valid zip files, so to access the Scaladoc documentation just unzip the Jar file. The Scaladoc Jars
-do not contain a top-level directory, however, so you should unzip them in an empty directory.
+You are off and running! As a next step, visit the <a href="/user_guide">Getting Started</a> section of the user guide.
 </p>
 
-<p>
-For Scala 2.11.x:
-</p>
-
-<ul>
-<li><a href="https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest_2.11/2.2.6/scalatest_2.11-2.2.6.jar">Download ScalaTest 2.2.6 Jar</a></li>
-<li><a href="https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest_2.11/2.2.6/scalatest_2.11-2.2.6-scaladoc.jar">Download ScalaTest 2.2.6 Scaladoc documentation</a></li>
-</ul>
+<hr /> <!-- ############################################### -->
 
 <p>
 If you don't have it already, you'll also need Scala. You can use any 2.10 or 2.11 release, which you can get from here:
 </p>
 
 <ul>
-<li><a href="http://www.scala-lang.org/downloads">Download latest Scala release</a></li>
+<li><a href="http://www.scala-lang.org/downloads">Download the latest Scala release</a></li>
 </ul>
 
 <hr /> <!-- ############################################### -->
@@ -286,7 +273,8 @@ If you are using Maven as your build tool, you can install the community edition
 </pre>
 
 <p>
-Note: You need to use the exact Scala version in the artifactId, because compiler plugin depends on compiler API that's not binary compatible between Scala minor releases.
+<em>Note: You need to use the exact Scala version in the artifactId, because the compiler plugin depends on the compiler API, which is not guaranteed
+to be binary compatible between Scala minor releases.</em>
 </p>
 
 <p>
