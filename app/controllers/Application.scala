@@ -28,6 +28,7 @@ object Application extends Controller {
   val milestoneJar = "https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest_2.11/3.0.0-M15/scalatest_2.11-3.0.0-M15.jar"
   val latestJar = "https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest_2.11/2.2.6/scalatest_2.11-2.2.6.jar"
   val milestoneScaladoc = "http://www.artima.com/docs-scalatest-3.0.0-M15"
+  val milestoneScalacticScaladoc = "http://www.artima.com/docs-scalactic-3.0.0-M15"
   val scaladocsLocation = "http://doc.scalatest.org"
   val releasesLocation = "http://www.artima.com/downloadScalaTest"
   val baseScalaVersion = "2.11.7"

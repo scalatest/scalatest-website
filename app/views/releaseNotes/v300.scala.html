@@ -15,6 +15,7 @@
  *@
 
 @import controllers.Application.milestoneScaladoc
+@import controllers.Application.milestoneScalacticScaladoc
 @import controllers.Application.latestScaladoc
 @import controllers.Application.milestoneVersion
 
@@ -29,15 +30,15 @@ from the perspective of the final release, but with 3.0.0 replaced with 3.0.0-M1
 </p>
 
 <p>
-ScalaTest 3.0.0-M15 is a major upgrade to ScalaTest and Scalactic, the culmination of over a year of effort. Although it
+Version 3.0.0-M15 is a major upgrade to ScalaTest and Scalactic, the culmination of over a year of effort. Although it
 includes many enhancements, we kept a close eye on compatibility with existing ScalaTest/Scalactic 2.x code.
 We also tried hard to preserve what people liked about both ScalaTest and Scalactic: that it is simple, the code is clean
 and clear, it's fully documented, and because of very thorough testing, it &ldquo;just works.&rdquo; 
 </p>
 
 <p>
-For information on how to include ScalaTest in your project, see the <a href="/download">download page</a>.
-For information on how to use <a href="http://www.scalactic.org/">Scalactic</a> in your production code, see its <a href="http://www.scalactic.org/download">download page</a>.
+For information on how to include ScalaTest in your project, see the <a href="/install">Install page</a>.
+For information on how to use <a href="http://www.scalactic.org/">Scalactic</a> in your production code, see its <a href="http://www.scalactic.org/download">Install page</a>.
 </p>
 
 <a name="highlights"></a>
@@ -48,7 +49,7 @@ The most significant enhancement to ScalaTest and Scalactic in the 3.0.0-M15 rel
 The advent of Scala.js represented a major, completely unforeseen change in requirements for ScalaTest.
 As a result, Scala.js support required a
 rather large number of changes to the ScalaTest's eight-year old codebase. Fortunately, the changes
-were almost entirely internal to ScalaTest, so no existing ScalaTest user code (i.e., for Scala on the
+were almost entirely internal to ScalaTest, so no existing ScalaTest user code (<em>i.e.</em>, for Scala on the
 JVM) should break because of the addition of Scala.js support.
 </p>
 
@@ -60,14 +61,14 @@ upgrading. For most users, upgrading to ScalaTest
 and/or Scalactic 3.0.0-M15 should require only a clean build with the new version.
 ScalaTest 3.0.0-M15 does include several deprecation expirations, the removal of features 
 that were deprecated at the time of the 2.0.0 release, October 2013. For more detail, see the
-<a href="#potentialBreakages">potential breakages</a> and the <a href="#expiredDeprecations">expired deprecations</a> sections below.
+<a href="#breakingChanges">breaking changes</a> and the <a href="#expiredDeprecations">expired deprecations</a> sections below.
 </p>
 
 <p>
 The SuperSafe compiler plugin has also been enhanced with some new features that give compiler errors for Scalactic's <code>===</code>
 operator and ScalaTest's <code>equal</code>, <code>be</code>, and <code>contain</code> matchers. These features are enabled
-by default in SuperSafe's Community Edition (i.e., they don't require a SuperSafe license key to be installed), so all you
-need to do is add the plugin to your project. For more details, see the <a href="#supersafeEnhancements">SuperSafe enhancements</a> below.
+by default in SuperSafe's Community Edition (<em>i.e.</em>, they don't require a SuperSafe license key to be installed), so all you
+need to do is add the plugin to your project. For more details, see <a href="/supersafe">ScalaTest in SuperSafe Community Edition</a>.
 </p>
 
 <p>
@@ -76,26 +77,26 @@ Here's a list of the main enhancements in Scalactic 3.0.0-M15:
 
 <ul>
 <li>Added support for Scala.js.</li>
-<li>Added <code>org.scalactic.exceptions.NullArgumentException</code>, and changed all places in ScalaTest
+<li>Added <a href="@{milestoneScalacticScaladoc}/index.html#org.scalactic.exceptions.NullArgumentException"><code>org.scalactic.exceptions.NullArgumentException</code></a>, and changed all places in ScalaTest
 and Scalactic that threw <code>NullPointerException</code> in earlier releases to throw <code>NullArgumentException</code>.
 Although throwing <code>NullPointerException</code> is the tradition in Java APIs, Scala.js does not support a
 <code>NullPointerException</code>. To make the behavior
 consistent on both the JVM and Scala.js, the change to throwing <code>NullArgumentException</code> was made throughout 
-the ScalaTest and Scalactic, including the <code>requireNonNull</code> method of trait <code>Requirements</code>.</li>
-<li>Positive numeric types, such as <code>PosInt</code>, <code>PosZInt</code>, <code>PosFloat</code>, <em>etc.</em>, have been
-added in package <code>org.scalactic.anyvals</code> along with <code>CompileTimeAssertions</code>, which you can help you
+the ScalaTest and Scalactic, including the <code>requireNonNull</code> method of trait <a href="@{milestoneScalacticScaladoc}/index.html#org.scalactic.Requirements"><code>Requirements</code></a>.</li>
+<li>Positive numeric types, such as <a href="@{milestoneScalacticScaladoc}/index.html#org.scalactic.anyvals.PosInt"><code>PosInt</code></a>, <a href="@{milestoneScalacticScaladoc}/index.html#org.scalactic.anyvals.PosZInt"><code>PosZInt</code></a>, <a href="@{milestoneScalacticScaladoc}/index.html#org.scalactic.anyvals.PosFloat"><code>PosFloat</code></a>, <em>etc.</em>, have been
+added in package <a href="@{milestoneScalacticScaladoc}/index.html#org.scalactic.anyvals.package"><code>org.scalactic.anyvals</code></a> along with <a href="@{milestoneScalacticScaladoc}/index.html#org.scalactic.anyvals.CompileTimeAssertions"><code>CompileTimeAssertions</code></a>, which you can help you
 create your own restricted value <code>AnyVal</code> types.</li>
-<li>Renamed <code>Constraint</code> to <code>CanEqual</code> and made a deprecated type alias for any user code currently
+<li>Renamed <code>Constraint</code> to <a href="@{milestoneScalacticScaladoc}/index.html#org.scalactic.CanEqual"><code>CanEqual</code></a> and made a deprecated type alias for any user code currently
 referring to <code>Constraint</code>.</li>
 <!--<li>Added a concise type lambda syntax to <code>Or</code>'s companion object. <code>Or.G[Int]#B</code> means an <code>Or</code>
 with a "good" type, <code>G</code>, of <code>Int</code> and the "bad" type, <code>B</code>, unspecified. <code>Or.B[ErrorMessage]#G</code> means an <code>Or</code>
 with a "bad" type, <code>B</code>, of <code>ErrorMessage</code> and the "good" type, <code>G</code>, unspecified.</li>-->
-<li>Made <code>Chain</code> an <code>AnyVal</code> that wraps <code>List</code> instead of an <code>AnyRef</code>.
+<li>Made <a href="@{milestoneScalacticScaladoc}/index.html#org.scalactic.Chain"><code>Chain</code></a> an <code>AnyVal</code> that wraps <code>List</code> instead of an <code>AnyRef</code>.
 Dropped its inheritance relationship with <code>PartialFunction</code>.</li>
-<li>Dropped unused type param in <code>Good</code> and <code>Bad</code>, specifying <code>Nothing</code> for that now missing type parameter
-when extending <code>Or</code>. This is a breaking change, but one which we don't expect will affect much client code in practice.</li>
-<li>Added a <code>validating</code> method to <code>TrySugar</code>, and added <code>FutureSugar</code> also with a <code>validating</code>
-method. Also added <code>ValidationFailedException</code> to support these <code>validating</code> methods as well.</li>
+<li>Dropped unused type parameter in <a href="@{milestoneScalacticScaladoc}/index.html#org.scalactic.Good"><code>Good</code></a> and <a href="@{milestoneScalacticScaladoc}/index.html#org.scalactic.Bad"><code>Bad</code></a>, specifying <code>Nothing</code> for that now missing type parameter
+when extending <a href="@{milestoneScalacticScaladoc}/index.html#org.scalactic.Or"><code>Or</code></a>. This is a breaking change, but one which hopefully won't affect much client code in practice.</li>
+<li>Added a <code>validating</code> method to <a href="@{milestoneScalacticScaladoc}/index.html#org.scalactic.TrySugar"><code>TrySugar</code></a>, and added <a href="@{milestoneScalacticScaladoc}/index.html#org.scalactic.FutureSugar"><code>FutureSugar</code></a> also with a <code>validating</code>
+method. Also added <a href="@{milestoneScalacticScaladoc}/index.html#org.scalactic.exceptions.ValidationFailedException"><code>ValidationFailedException</code></a> to support these <code>validating</code> methods as well.</li>
 </ul>
 
 <p>
@@ -109,144 +110,121 @@ Here's a list of the main enhancements in ScalaTest 3.0.0-M15:
 <li>Changed the result type of <code>org.scalatest</code> styles from <code>Unit</code> to <code>Any</code> so that users who
 compile with <code>-Ywarn-value-discard</code> will not get warnings for tests that end in an assertion or matcher expression,
 which no longer has a <code>Unit</code> result type.</li>
-<li>Added "async" testing styles--<a href="@{milestoneScaladoc}/index.html#org.scalatest.AsyncFunSuite"><code>AsyncFunSuite</code></a>,
+<li>Added "async" testing styles&#8212;<a href="@{milestoneScaladoc}/index.html#org.scalatest.AsyncFunSuite"><code>AsyncFunSuite</code></a>,
 <a href="@{milestoneScaladoc}/index.html#org.scalatest.AsyncFunSpec"><code>AsyncFunSpec</code></a>,
 <a href="@{milestoneScaladoc}/index.html#org.scalatest.AsyncFlatSpec"><code>AsyncFlatSpec</code></a>,
 <a href="@{milestoneScaladoc}/index.html#org.scalatest.AsyncFreeSpec"><code>AsyncFreeSpec</code></a>,
 <a href="@{milestoneScaladoc}/index.html#org.scalatest.AsyncWordSpec"><code>AsyncWordspec</code></a>, and
-<a href="@{milestoneScaladoc}/index.html#org.scalatest.AsyncFeatureSpec"><code>AsyncFeatureSpec</code></a>--in which
+<a href="@{milestoneScaladoc}/index.html#org.scalatest.AsyncFeatureSpec"><code>AsyncFeatureSpec</code></a>&#8212;in which
 the result type of tests is <code>Future[Assertion]</code>.
 </li>
-<li>Deprecated <a href="@{milestoneScaladoc}/#org.scalatest.prop.Configuration$PropertyCheckConfig"><code>PropertyCheckConfig</code></a> in
-favor of <a href="@{milestoneScaladoc}/#org.scalatest.prop.Configuration$PropertyCheckConfiguration"><code>PropertyCheckConfiguration</code></a> in 
-object <code>org.scalatest.prop.Configuration</code>. The new class uses <code>org.scalactic.anyvals</code> and instead of an absolute
-<code>maxDiscarded</code> value, calculates that value by multiplying a <code>maxDiscardFactor</code> by the <code>minSuccessful</code> value.
-</li>
-<li>Added overloaded <code>exists</code> and <code>forEvery</code> methods to <code>TableDrivenPropertyChecks</code>. <code>exists</code> succeeds if at
+<li>Added overloaded <code>exists</code> and <code>forEvery</code> methods to <a href="@{milestoneScaladoc}/#org.scalatest.prop.TableDrivenPropertyChecks"><code>TableDrivenPropertyChecks</code></a>. <code>exists</code> succeeds if at
 least one row of the table satisfies the assertion block. <code>forEvery</code> requires that all rows of the table satisfy the assertion
 block, like <code>forAll</code>, but reports information about all rows that fail the assertion block (where <code>forAll</code>
 just reports the first row that fails and short circuits).</li>
-<li>Enhanced ScalaTest matchers with <code>oneElementOf</code>, <code>noElementsOf</code>, <code>atLeastOneElementOf</code>, <code>atMostOneElementOf</code>, <code>allElementsOf</code>, <code>inOrderElementsOf</code> syntax, all of which must follow <code>contain</code>.</li>
-<li>Modified ScalaTest's <code>BeforeAndAfterEach</code> and <code>BeforeAndAfter</code> so that it will interact properly and
-consistently when mixed in either before and after <code>OneInstancePerTest</code>.<!--scaladoc this behavior--></li>
-<li>Did a bit of modularization. scalatest.jar, scalatest-all.jar, scalactic.jar</li>
+<li>Enhanced ScalaTest <a href="@{milestoneScaladoc}/#org.scalatest.Matchers"><code>Matchers</code></a> with <code>oneElementOf</code>, <code>noElementsOf</code>, <code>atLeastOneElementOf</code>, <code>atMostOneElementOf</code>, <code>allElementsOf</code>, <code>inOrderElementsOf</code> syntax, all of which must follow <code>contain</code>.</li>
+<li>Modified ScalaTest's <a href="@{milestoneScaladoc}/#org.scalatest.BeforeAndAfterEach"><code>BeforeAndAfterEach</code></a> and <a href="@{milestoneScaladoc}/#org.scalatest.BeforeAndAfter"><code>BeforeAndAfter</code></a> so that it will interact properly and
+consistently when mixed in either before and after <a href="@{milestoneScaladoc}/#org.scalatest.OneInstancePerTest"><code>OneInstancePerTest</code></a>.</li><!--scaladoc this behavior-->
+<li>In 2.x releases of ScalaTest, the ScalaTest JAR file included a copy of the Scalactic library, which ScalaTest uses.
+In 3.0.0-M15 the ScalaTest JAR file contains only ScalaTest, and has a required dependency on Scalactic. 3.0.0-M15 includes
+a new artifact, scalatest-app, which includes both ScalaTest and Scalactic. The purpose of scalatest-app is to suppose ScalaTest
+being run as an application, such as on the <a href="/quick_start">Quick Start</a> page.</li>
 </ul>
 
-<a name="potentialBreakages"></a>
-<h2>Potential breakages</h2>
+<a name="breakingChanges"></a>
+<h2>Breaking changes</h2>
 
-<p>
-Although we have worked hard to ensure the vast majority of ScalaTest 2.2.x code to compile under 3.0.0-M15, ScalaTest 3.0.0-M15 does include a small
-number of changes that can break existing code. To see the list, and learn
-how to migrate your code if affected, see the <a href="/user_guide/migrating_to_20">migration guide</a>.
-</p>
+<p>The one breaking change in 3.0.0-M15 is in Scalactic: we dropped an unnecessary type parameter in <a href="@{milestoneScalacticScaladoc}/index.html#org.scalactic.Good"><code>Good</code></a> and <a href="@{milestoneScalacticScaladoc}/index.html#org.scalactic.Bad"><code>Bad</code></a>, specifying
+<code>Nothing</code> for that now missing type parameter
+when extending <a href="@{milestoneScalacticScaladoc}/index.html#org.scalactic.Or"><code>Or</code></a>. There should be no breaking
+changes in ScalaTest 3.0.0-M15 other than expired deprecations.</p>
 
 <a name="newDeprecations"></a>
 <h2>New deprecations</h2>
 
-<p>
-Deprecated the parameterless <code>execute</code> method on <code>Suite</code>. Please use the empty parens version instead: <code>execute()</code>.
-</p>
-
-<p>Deprecated <code>ConversionCheckedTripleEquals</code>, because code that is using it can still compile but mean something quite different
-if it is removed. Most people who used <code>ConversionCheckedTripleEquals</code> did so to allow numeric comparisons such as
-<code>1 === 1L</code> to compile, while still getting a type error for comarisons like <code>"one" === 1</code>.
-If that was your driving use case, we recommend you use the community (free) features of the Artima SuperSafe compiler plugin to
-get the type checking you desire with plain old <code>org.scalactic.TripleEquals</code>. If you were using <code>ConversionCheckedTripleEquals</code>
-more generally, to compare two of your own types for equality that have an implicit conversion between them, we recommend you use
-a type annotation on the "from" type. For example, if you have an implicit conversion from <code>Foo</code> to </code>Bar</code>, and you had
-the following comparison enabled by <code>ConversionCheckedTripleEquals</code> (where <code>foo</code> is type <code>Foo</code>
-and <code>bar</code> is type <code>Bar</code>):
-</p>
-
-<pre>
-import ConversionCheckedTripleEquals._
-assert(foo === bar)
-</pre>
-
-<p>
-Instead use a type annotation on <code>foo</code> so that the compiler will convert it to <code>Bar</code>, like this:
-</p>
-
-<pre>
-import TripleEquals._
-assert((foo: Bar) === bar)
-</pre>
-
 <ul>
-<li>Deprecated the <code>withGood</code> method in <code>org.scalactic.Accumulation</code> that takes one <code>Or</code>
+<li>Deprecated <a href="@{milestoneScalacticScaladoc}/index.html#org.scalactic.ConversionCheckedTripleEquals"><code>ConversionCheckedTripleEquals</code></a>, because code that is using it can still compile but mean something quite different
+if it is removed.
+</li>
+<li>
+Deprecated the parameterless <code>execute</code> method on <a href="@{milestoneScaladoc}/#org.scalatest.Suite"><code>Suite</code></a>. Please use the empty parens version instead: <code>execute()</code>.
+</li>
+<li>Deprecated the <code>withGood</code> method on the <a href="@{milestoneScalacticScaladoc}/index.html#org.scalactic.Accumulation$"><code>org.scalactic.Accumulation</code></a> object that takes one <code>Or</code>
 and one transformation function. Please call <code>map</code> on the <code>Or</code>
 and pass in the same function instead.</li>
-<li>Deprecated the <code>asOr</code> method on <code>Or</code>, because its main use case is now obsolete, since
-Good(value).orBad[Type] and Good[Type].orBad(value) now return Or. You can simply remove <code>asOr</code> invocation from
-such expressions, or if used elsewhere, replace it with a widening type annotation, such as: <code>(hasTypeGood: Int Or ErrorMessage)</code>.
+<li>Deprecated the <code>asOr</code> method on <a href="@{milestoneScalacticScaladoc}/index.html#org.scalactic.Or"><code>Or</code></a>, because its main use case is now obsolete, since
+<code>Good(value).orBad[Type]</code> and <code>Good[Type].orBad(value)</code> now return <code>Or</code>. You can simply remove <code>asOr</code>
+invocation from such expressions, or if used elsewhere, replace it with a widening type annotation, such as:
+<code>(hasTypeGood: Int Or ErrorMessage)</code>.
 </li>
-<li>Deprecated <code>org.scalactic.Constraint</code>. Please change any occurences to its new name, <code>CanEqual</code>. (<code>Constraint</code>
+<li>Deprecated <code>org.scalactic.Constraint</code>. Please change any occurences to its new name, <a href="@{milestoneScalacticScaladoc}/index.html#org.scalactic.CanEqual"><code>CanEqual</code></a>. (<code>Constraint</code>
 should appear explicitly in user code only very rarely if at all, as normally it will be used only implicitly.)</li>
 <li>
-Added an already deprecated implicit conversion because the inheritance relationship between <code>Filter</code> and <code>Function2[Set[String], Map[String, Set[String]], List[(String, Boolean)]]</code> was removed. Most likely this implicit conversion will not be needed by any user code, but if you see the deprecation warning, please change the use to the apply method that takes a suiteId instead, the one with this signature: <code>def apply(testNames: Set[String], testTags: Map[String, Set[String]], suiteId: String): List[(String, Boolean)]</code>.
+Added an already deprecated implicit conversion to the <a href="@{milestoneScaladoc}/index.html#org.scalatest.Filter$"><code>Filter</code> companion object</a> because the inheritance relationship between <a href="@{milestoneScaladoc}/index.html#org.scalatest.Filter"><code>Filter</code></a> and <code>Function2[Set[String], Map[String, Set[String]], List[(String, Boolean)]]</code> was removed.
 </li>
-<li>
-Deprecated the old way of doing <code>org.scalatest.prop.Configuration</code> in favor of the new way.
+<li>Deprecated <a href="@{milestoneScaladoc}/#org.scalatest.prop.Configuration$PropertyCheckConfig"><code>PropertyCheckConfig</code></a> in
+favor of <a href="@{milestoneScaladoc}/#org.scalatest.prop.Configuration$PropertyCheckConfiguration"><code>PropertyCheckConfiguration</code></a> in 
+object <a href="@{milestoneScaladoc}/#org.scalatest.prop.Configuration"><code>org.scalatest.prop.Configuration</code></a>. The new class uses <code>org.scalactic.anyvals</code> and instead of an absolute
+<code>maxDiscarded</code> value, calculates that value by multiplying a <code>maxDiscardFactor</code> by the <code>minSuccessful</code> value.
 </li>
-<li>
+<!--<li>
 See if we should remove Rerunner.
 </li>
-<li>Did I deprecate toOr on Or?</li>
 <li>
 Also we changed the defaults of the scalacheck config.
-</li>
-<li>Deprecated in Accumulation the withGood method that takes one param, because that's the same as map</li>
-
+</li>-->
 </ul>
+
 <a name="expiredDeprecations"></a>
 <h2>Expired deprecations</h2>
 
 <ul>
-<li>Removed the <code>before</code>/<code>afterEach(TestData)</code> methods in <a href="@latestScaladoc/#org.scalatest.BeforeAndAfterEach"><code>BeforeAndAfterEach</code></a> (deprecated in ScalaTest 2.0) in favor of <a href="@latestScaladoc/#org.scalatest.BeforeAndAfterEachTestData"><code>BeforeAndAfterEachTestData</code></a>.</li>
-<li>Removed <code>org.scalatest.FailureOf</code> (deprecated in ScalaTest 2.0) in favor of <a href="@latestScaladoc/#org.scalatest.OutcomeOf"><code>OutcomeOf</code></a>.</li>
-<li>Removed <code>expect</code> and <code>expectResult</code> (deprecated in ScalaTest 2.0) in <a href="@latestScaladoc/#org.scalatest.Assertions"><code>Assertions</code></a> in favor of <code>assertResult</code>.</li>
-<li>Removed the support for using <a href="@latestScaladoc/#org.scalatest.Suite"><code>Suite</code></a> as a style trait (deprecated in ScalaTest 2.0) in favor of <a href="@latestScaladoc/#org.scalatest.Spec"><code>Spec</code></a>.</li>
+<li>Removed the <code>before</code>/<code>afterEach(TestData)</code> methods in <a href="http://doc.scalatest.org/2.2.6/#org.scalatest.BeforeAndAfterEach"><code>BeforeAndAfterEach</code></a> (deprecated in ScalaTest 2.0) in favor of <a href="http://doc.scalatest.org/2.2.6/#org.scalatest.BeforeAndAfterEachTestData"><code>BeforeAndAfterEachTestData</code></a>.</li>
+<li>Removed <code>org.scalatest.FailureOf</code> (deprecated in ScalaTest 2.0) in favor of <a href="http://doc.scalatest.org/2.2.6/#org.scalatest.OutcomeOf"><code>OutcomeOf</code></a>.</li>
+<li>Removed <code>expect</code> and <code>expectResult</code> (deprecated in ScalaTest 2.0) in <a href="http://doc.scalatest.org/2.2.6/#org.scalatest.Assertions"><code>Assertions</code></a> in favor of <code>assertResult</code>.</li>
+<li>Removed the support for using <a href="http://doc.scalatest.org/2.2.6/#org.scalatest.Suite"><code>Suite</code></a> as a style trait (deprecated in ScalaTest 2.0) in favor of <a href="http://doc.scalatest.org/2.2.6/#org.scalatest.Spec"><code>Spec</code></a>.</li>
 <li>
 Removed the <code>assert</code> and <code>assume</code> methods whose <code>===</code> and <code>!==</code>
 operator return <code>Option[String]</code> (deprecated in ScalaTest 2.0) in favor of <code>assert</code> and <code>assume</code> macros that return <code>Boolean</code>.
 </li>
-<li>Removed the <code>plusOrMinus</code> (deprecated in ScalaTest 2.0) operator used with <a href="@latestScaladoc/#org.scalatest.Matchers"><code>Matchers</code></a> in
+<li>Removed the <code>plusOrMinus</code> (deprecated in ScalaTest 2.0) operator used with <a href="http://doc.scalatest.org/2.2.6/#org.scalatest.Matchers"><code>Matchers</code></a> in
 favor of the <code>+-</code> symbol.</li>
 <li>
-Removed <a href="@latestScaladoc/#org.scalatest.matchers.ShouldMatchers"><code>ShouldMatchers</code></a> (deprecated in ScalaTest 2.0)
-and <a href="@latestScaladoc/#org.scalatest.matchers.MustMatchers"><code>MustMatchers</code></a> (deprecated in ScalaTest 1.9.2), both members of package
-<code>org.scalatest.matchers</code>, in favor of <a href="@latestScaladoc/#org.scalatest.Matchers"><code>Matchers</code></a>,
-and <a href="@latestScaladoc/#org.scalatest.MustMatchers"><code>MustMatchers</code></a>,
+Removed <a href="http://doc.scalatest.org/2.2.6/#org.scalatest.matchers.ShouldMatchers"><code>ShouldMatchers</code></a> (deprecated in ScalaTest 2.0)
+and <a href="http://doc.scalatest.org/2.2.6/#org.scalatest.matchers.MustMatchers"><code>MustMatchers</code></a> (deprecated in ScalaTest 1.9.2), both members of package
+<code>org.scalatest.matchers</code>, in favor of <a href="http://doc.scalatest.org/2.2.6/#org.scalatest.Matchers"><code>Matchers</code></a>,
+and <a href="http://doc.scalatest.org/2.2.6/#org.scalatest.MustMatchers"><code>MustMatchers</code></a>,
 which resides in package <code>org.scalatest</code>.
 </li>
 <li>
 Removed the <code>beforeAll</code> and <code>afterAll</code> methods of trait
-<a href="@latestScaladoc/#org.scalatest.BeforeAndAfterAll"><code>BeforeAndAfterAll</code></a> that take a config map (deprecated in ScalaTest 2.0)
-in favor of <a href="@latestScaladoc/#org.scalatest.BeforeAndAfterAllConfigMap"><code>BeforeAndAfterAllConfigMap</code></a>.
+<a href="http://doc.scalatest.org/2.2.6/#org.scalatest.BeforeAndAfterAll"><code>BeforeAndAfterAll</code></a> that take a config map (deprecated in ScalaTest 2.0)
+in favor of <a href="http://doc.scalatest.org/2.2.6/#org.scalatest.BeforeAndAfterAllConfigMap"><code>BeforeAndAfterAllConfigMap</code></a>.
 </li>
 <li>Removed <code>given</code>/<code>when</code>/<code>then</code>/<code>and</code> methods of trait
-<a href="@latestScaladoc/#org.scalatest.GivenWhenThen"><code>GivenWhenThen</code></a> (deprecated in ScalaTest 2.0) in favor of capitalized forms,
+<a href="http://doc.scalatest.org/2.2.6/#org.scalatest.GivenWhenThen"><code>GivenWhenThen</code></a> (deprecated in ScalaTest 2.0) in favor of capitalized forms,
 <code>Given</code>/<code>When</code>/<code>Then</code>/<code>And</code>, because <code>then</code> was deprecated as an identifier in Scala 2.10.
 </li>
-<li>Removed the two original <code>apply</code> methods on <a href="@latestScaladoc/#org.scalatest.Filter"><code>Filter</code></a> (deprecated in ScalaTest 2.0), in favor of
+<li>Removed the two original <code>apply</code> methods on <a href="http://doc.scalatest.org/2.2.6/#org.scalatest.Filter"><code>Filter</code></a> (deprecated in ScalaTest 2.0), in favor of
 two new ones added in ScalaTest 2.0 that take an additional <code>suiteId</code> parameter.</li>
 </li>
-<li>Removed trait <a href="@latestScaladoc/#org.scalatest.AbstractSuite"><code>AbstractSuite</code></a> (deprecated in ScalaTest 2.0)
-in favor of trait <a href="@latestScaladoc/#org.scalatest.SuiteMixin"><code>SuiteMixin</code></a>, which since 2.0 has served as the base class
+<li>Removed trait <a href="http://doc.scalatest.org/2.2.6/#org.scalatest.AbstractSuite"><code>AbstractSuite</code></a> (deprecated in ScalaTest 2.0)
+in favor of trait <a href="http://doc.scalatest.org/2.2.6/#org.scalatest.SuiteMixin"><code>SuiteMixin</code></a>, which since 2.0 has served as the base class
 for stackable traits that can be mixed into <code>Suite</code>.</li>
 <li>
-Removed the original <code>apply</code> method on <a href="@latestScaladoc/#org.scalatest.Distributor"><code>Distributor</code></a> (deprecated in ScalaTest 2.0) in favor of the <code>apply</code> method added in 2.0 that takes a <a href="@latestScaladoc/#org.scalatest.Args"><code>Args</code></a>.
+Removed the original <code>apply</code> method on <a href="http://doc.scalatest.org/2.2.6/#org.scalatest.Distributor"><code>Distributor</code></a> (deprecated in ScalaTest 2.0) in favor of the <code>apply</code> method added in 2.0 that takes a <a href="http://doc.scalatest.org/2.2.6/#org.scalatest.Args"><code>Args</code></a>.
 </li>
 </ul>
 
+<!--
 <h2>Acknowledgments</h2>
 
 <p>
-ScalaTest 2.0 is brought to you by Artima, Inc., where it is tended by Bill Venners, Chua Chee Seng, and George Berger. We
+ScalaTest 3.0 is brought to you by Artima, Inc., where it is tended by Bill Venners, Chua Chee Seng, and George Berger. We
 would like to thank all our users for their suggestions and input, everyone who has <a href="/about">contributed source code or reviewed our work-in-progress</a>, and
 our financial sponsors (who prefer to remain unamed). Without your guidance and support, ScalaTest 2.0 would not have been possible.
 </p>
+-->
 
 </div>
 }
