@@ -608,7 +608,7 @@ pre.scala {
 }
 
 .greenincolor {
-  color: #00cc00;
+  color: #7cbb5b;
 }
 .cyanincolor {
   color: #428bdd;
@@ -701,11 +701,11 @@ pre.stStyleExamples {
 }
 
 .stLiteral {
-  color: #2b875e;
+  color: #3c7b1b;
 }
 
 .stQuotedString {
-  color: #2b875e;
+  color: #3c7b1b;
 }
 
 .stReserved {
