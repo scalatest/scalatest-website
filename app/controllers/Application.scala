@@ -39,8 +39,12 @@ object Application extends Controller {
     Ok(views.html.index())
   }
 
+  def install = Action {
+    Ok(views.html.install())
+  }
+
   def download = Action {
-    Ok(views.html.download())
+    Redirect(routes.Application.install.url)
   }
 
   def olderReleases = Action {

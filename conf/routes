@@ -5,6 +5,7 @@
 GET        /                                                            controllers.Application.index
 GET        /quick_start                                                 controllers.Application.quickStart
 GET        /download                                                    controllers.Application.download
+GET        /install                                                     controllers.Application.install
 GET        /older_releases                                              controllers.Application.olderReleases
 GET        /user_guide                                                  controllers.UserGuide.userGuideIndex
 GET        /user_guide_1_9_2                                            controllers.UserGuide192.userGuideIndex
