@@ -16,6 +16,7 @@
 
 @import controllers.Application.latestScaladoc
 @import controllers.Application.latestVersion
+@import controllers.Application.latestSuperSafeVersion
 @import controllers.Application.latestJar
 @import controllers.Application.majorMinorScalaVersion
 
@@ -54,15 +55,7 @@ named <code>ExampleSpec.scala</code>:
 </pre>
 
 <p>
-In a <code>FlatSpec</code>, you combine tests with text that specifies the behavior being tested.
-Each test name specifies a bit of behavior about a <em>subject</em> under test.
-You start by identifying the subject with a string name (here, <code>"A Stack"</code>), write <code>should</code>, 
-then write another string that describes the behavior expected of the subject.
-The code of the test appears in curly braces after an <code>in</code> following the text.
-</p>
-
-<p>
-You can compile this <code>FlatSpec</code> like this (using <a href="@{latestJar}">this Jar file</a>):
+You can compile this <code>FlatSpec</code> (using <a href="@{latestJar}">this Jar file</a>) like this:
 </p>
 
 <pre class="scala">
@@ -75,9 +68,7 @@ Here's how you run it:
 
 <pre class="scala">
 $ scala -cp scalatest_@{majorMinorScalaVersion}-@{latestVersion}.jar org.scalatest.run ExampleSpec
-<span class="cyanincolor">Discovery starting.
-Discovery completed in 21 milliseconds.
-Run starting. Expected test count is: 2</span>
+<span class="cyanincolor">Run starting. Expected test count is: 2</span>
 <span class="greenincolor">ExampleSpec:
 A Stack
 - should pop values in last-in-first-out order
@@ -90,59 +81,57 @@ Tests: succeeded 2, failed 0, canceled 0, ignored 0, pending 0</span>
 </pre>
 
 <p>
-To get going on a project, first select a style for unit testing. If you don't have a preference,
-we recommend starting with <code>FlatSpec</code> for unit testing. We think <code>FlatSpec</code> is a good default choice because it
-has a flat structure, similar to the XUnit-style tests familiar to most users, but encourages a BDD-style of using
-descriptive specifications of behavior for test names.
+<strong>To include ScalaTest in your <a href="http://www.scala-sbt.org">sbt</a> project:</strong>
 </p>
 
 <p>
-(For a quick guide to ScalaTest's style traits, see the <a href="user_guide/selecting_a_style#styleTraitUseCases">Style trait
-use cases</a> table in the user guide.)
-</p>
-
-<p>
-Once you've selected your unit testing style, create an abstract base class (not a trait) for your unit tests. You should mix into this class
-all the traits you think you'll use a lot. You can use any name, but we recommend the name <code>UnitSpec</code>.
-Here's an example:
+1. Add these lines to your build file:
 </p>
 
 <pre class="stHighlighted">
-<span class="stReserved">package</span> com.mycompany.myproject
-
-<span class="stReserved">import</span> org.scalatest._
-
-<span class="stReserved">abstract</span> <span class="stReserved">class</span> <span class="stType">UnitSpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> <span class="stReserved">with</span>
-  <span class="stType">OptionValues</span> <span class="stReserved">with</span> <span class="stType">Inside</span> <span class="stReserved">with</span> <span class="stType">Inspectors</span>
+libraryDependencies += <span class="stQuotedString">"org.scalactic"</span> %% <span class="stQuotedString">"scalactic"</span> % <span class="stQuotedString">"@{latestVersion}"</span>
+libraryDependencies += <span class="stQuotedString">"org.scalatest"</span> %% <span class="stQuotedString">"scalatest"</span> % <span class="stQuotedString">"@{latestVersion}"</span> % <span class="stQuotedString">"test"</span>
 </pre>
 
 <p>
-You can now write unit tests for your project using your custom base class:
+The dependency on <a href="http://www.scalactic.org">Scalactic</a>, ScalaTest's sister library focused on quality through types, is recommended but not required.
+</p>
+
+<p>
+2. We also recommend you also include the <a href="/supersafe">SuperSafe Community Edition</a> Scala compiler plugin, which will flag errors in your ScalaTest (and
+Scalactic) code at compile time, by first adding this line to <code>~/.sbt/0.13/global.sbt</code>:
 </p>
 
 <pre class="stHighlighted">
-<span class="stReserved">package</span> com.mycompany.myproject
-
-<span class="stReserved">import</span> org.scalatest._
-
-<span class="stReserved">class</span> <span class="stType">MySpec</span> <span class="stReserved">extends</span> <span class="stType">UnitSpec</span> {
-  // Your tests here
-}
+resolvers += <span class="stQuotedString">"Artima Maven Repository"</span> at <span class="stQuotedString">"http://repo.artima.com/releases"</span>
 </pre>
 
 <p>
-To include ScalaTest in your sbt project, simply add this line:
+3. Then adding the following line to <code>project/plugins.sbt</code>:
 </p>
 
 <pre class="stHighlighted">
-libraryDependencies += <span class="stQuotedString">"org.scalatest"</span> % <span class="stQuotedString">"scalatest_@{majorMinorScalaVersion}"</span> % <span class="stQuotedString">"@{latestVersion}"</span> % <span class="stQuotedString">"test"</span>
+addSbtPlugin(<span class="stQuotedString">"com.artima.supersafe"</span> % <span class="stQuotedString">"sbtplugin"</span> % <span class="stQuotedString">"@{latestSuperSafeVersion}"</span>)
 </pre>
 
 <p>
-To include ScalaTest in your Maven project, use:
+You are off and running! As a next step, visit the <a href="/user_guide">Getting Started</a> section of the user guide.
+</p>
+
+<p>
+<strong>To include ScalaTest in your Maven project</strong>:
+</p>
+
+<p>
+1. Add the following dependencies to your <code>pom.xml</code>:
 </p>
 
 <pre class="stHighlighted">
+&lt;dependency&gt;
+  &lt;groupId&gt;org.scalactic&lt;/groupId&gt;
+  &lt;artifactId&gt;scalactic_2.11&lt;/artifactId&gt;
+  &lt;version&gt;@{latestVersion}&lt;/version&gt;
+&lt;/dependency&gt;
 &lt;dependency&gt;
   &lt;groupId&gt;org.scalatest&lt;/groupId&gt;
   &lt;artifactId&gt;scalatest_2.11&lt;/artifactId&gt;
@@ -151,9 +140,44 @@ To include ScalaTest in your Maven project, use:
 &lt;/dependency&gt;
 </pre>
 
+<p>
+The dependency on <a href="http://www.scalactic.org">Scalactic</a>, ScalaTest's sister library focused on quality through types, is
+recommended but not required.
+</p>
 
 <p>
-You are off and running! For more information, consult the <a href="/user_guide">user guide</a>.
+2. We also recommend you also include the <a href="/supersafe">SuperSafe Community Edition</a> Scala compiler plugin, which will flag errors in your ScalaTest (and
+Scalactic) code at compile time, by adding the following lines to your <code>pom.xml</code>:
+</p>
+
+<pre class="stHighlighted">
+&lt;repositories&gt;
+    &lt;repository&gt;
+        &lt;id&gt;artima&lt;/id&gt;
+        &lt;name&gt;Artima Maven Repository&lt;/name&gt;
+        &lt;url&gt;http://repo.artima.com/releases&lt;/url&gt;
+    &lt;/repository&gt;
+&lt;/repositories&gt;
+&lt;plugin&gt;
+    &lt;groupId&gt;net.alchim31.maven&lt;/groupId&gt;
+    &lt;artifactId&gt;scala-maven-plugin&lt;/artifactId&gt;
+    &lt;configuration&gt;
+        &lt;compilerPlugins&gt;
+            &lt;compilerPlugin&gt;
+                &lt;groupId&gt;com.artima.supersafe&lt;/groupId&gt;
+                &lt;artifactId&gt;supersafe_2.11.7&lt;/artifactId&gt;
+                &lt;version&gt;@{latestSuperSafeVersion}&lt;/version&gt;
+            &lt;/compilerPlugin&gt;
+        &lt;/compilerPlugins&gt;
+    &lt;/configuration&gt;
+    &lt;executions&gt;
+        ...
+    &lt;/executions&gt;
+&lt;/plugin&gt;
+</pre>
+
+<p>
+You are off and running! As a next step, visit the <a href="/user_guide">Getting Started</a> section of the user guide.
 </p>
 
 <p>
