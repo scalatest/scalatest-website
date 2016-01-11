@@ -182,7 +182,8 @@ Also we changed the defaults of the scalacheck config.
 <li>Removed the <code>before</code>/<code>afterEach(TestData)</code> methods in <a href="http://doc.scalatest.org/2.2.6/#org.scalatest.BeforeAndAfterEach"><code>BeforeAndAfterEach</code></a> (deprecated in ScalaTest 2.0) in favor of <a href="http://doc.scalatest.org/2.2.6/#org.scalatest.BeforeAndAfterEachTestData"><code>BeforeAndAfterEachTestData</code></a>.</li>
 <li>Removed <code>org.scalatest.FailureOf</code> (deprecated in ScalaTest 2.0) in favor of <a href="http://doc.scalatest.org/2.2.6/#org.scalatest.OutcomeOf"><code>OutcomeOf</code></a>.</li>
 <li>Removed <code>expect</code> and <code>expectResult</code> (deprecated in ScalaTest 2.0) in <a href="http://doc.scalatest.org/2.2.6/#org.scalatest.Assertions"><code>Assertions</code></a> in favor of <code>assertResult</code>.</li>
-<li>Removed the support for using <a href="http://doc.scalatest.org/2.2.6/#org.scalatest.Suite"><code>Suite</code></a> as a style trait (deprecated in ScalaTest 2.0) in favor of <a href="http://doc.scalatest.org/2.2.6/#org.scalatest.Spec"><code>Spec</code></a>.</li>
+<li>Removed the support for using <a href="http://doc.scalatest.org/2.2.6/#org.scalatest.Suite"><code>Suite</code></a> as a style trait (deprecated in ScalaTest 2.0) in favor of <a href="http://doc.scalatest.org/2.2.6/#org.scalatest.Spec"><code>Spec</code></a> (which itself was deprecated in 3.0.0-M15
+and renamed <a href="@{milestoneScaladoc}/#org.scalatest.refspec.RefSpec"><code>org.scalatest.refspec.RefSpec</code></a>.)</li>
 <li>
 Removed the <code>assert</code> and <code>assume</code> methods whose <code>===</code> and <code>!==</code>
 operator return <code>Option[String]</code> (deprecated in ScalaTest 2.0) in favor of <code>assert</code> and <code>assume</code> macros that return <code>Boolean</code>.
