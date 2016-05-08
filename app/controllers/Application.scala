@@ -76,6 +76,10 @@ object Application extends Controller {
     Ok(views.html.about())
   }
 
+  def donate = Action {
+    Ok(views.html.donate())
+  }
+
 /*
   def releaseNotes = Action {
     Ok(views.html.releaseNotes())

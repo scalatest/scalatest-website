@@ -15,6 +15,7 @@ GET        /videos                                                      controll
 GET        /community                                                   controllers.Application.community
 GET        /supersafe                                                   controllers.Application.supersafe
 GET        /about                                                       controllers.Application.about
+GET        /donate                                                      controllers.Application.donate
 GET        /release_notes                                               controllers.ReleaseNotes.releaseNotesIndex
 GET        /getting_started_with_fun_suite                              controllers.Application.gettingStartedWithFunSuite
 GET        /getting_started_with_fun_spec                               controllers.Application.gettingStartedWithFunSpec
