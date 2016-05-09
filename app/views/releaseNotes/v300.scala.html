@@ -97,6 +97,7 @@ Dropped its inheritance relationship with <code>PartialFunction</code>.</li>
 when extending <a href="@{milestoneScalacticScaladoc}/index.html#org.scalactic.Or"><code>Or</code></a>. This is a breaking change, but one which hopefully won't affect much client code in practice.</li>
 <li>Added a <code>validating</code> method to <a href="@{milestoneScalacticScaladoc}/index.html#org.scalactic.TrySugar"><code>TrySugar</code></a>, and added <a href="@{milestoneScalacticScaladoc}/index.html#org.scalactic.FutureSugar"><code>FutureSugar</code></a> also with a <code>validating</code>
 method. Also added <a href="@{milestoneScalacticScaladoc}/index.html#org.scalactic.exceptions.ValidationFailedException"><code>ValidationFailedException</code></a> to support these <code>validating</code> methods as well.</li>
+<li>Added <a href="@{milestoneScalacticScaladoc}/index.html#org.scalactic.source.Position"><code>Position</code></a> that supports capturing of caller's source code position through macro.</li>
 </ul>
 
 <p>
@@ -116,7 +117,8 @@ which no longer has a <code>Unit</code> result type.</li>
 <a href="@{milestoneScaladoc}/index.html#org.scalatest.AsyncFreeSpec"><code>AsyncFreeSpec</code></a>,
 <a href="@{milestoneScaladoc}/index.html#org.scalatest.AsyncWordSpec"><code>AsyncWordspec</code></a>, and
 <a href="@{milestoneScaladoc}/index.html#org.scalatest.AsyncFeatureSpec"><code>AsyncFeatureSpec</code></a>&#8212;in which
-the result type of tests is <code>Future[Assertion]</code>.
+the result type of tests is <code>Future[Assertion]</code>.  All asynchronous style traits mixed in <a href="@{milestoneScaladoc}/index.html#org.scalatest.RecoverMethods"><code>RecoverMethods</code></a>
+that contains <code>recoverToExceptionIf</code> for asynchronous use case for <code>intercept</code> and <code>recoverToSucceededIf</code> for asynchronous use case for <code>assertThrows</code>.
 </li>
 <li>Added overloaded <code>exists</code> and <code>forEvery</code> methods to <a href="@{milestoneScaladoc}/#org.scalatest.prop.TableDrivenPropertyChecks"><code>TableDrivenPropertyChecks</code></a>. <code>exists</code> succeeds if at
 least one row of the table satisfies the assertion block. <code>forEvery</code> requires that all rows of the table satisfy the assertion
@@ -129,6 +131,7 @@ consistently when mixed in either before and after <a href="@{milestoneScaladoc}
 In 3.0.0-RC1 the ScalaTest JAR file contains only ScalaTest, and has a required dependency on Scalactic. 3.0.0-RC1 includes
 a new artifact, scalatest-app, which includes both ScalaTest and Scalactic. The purpose of scalatest-app is to suppose ScalaTest
 being run as an application, such as on the <a href="/quick_start">Quick Start</a> page.</li>
+<li>Added support of passing custom <a href="@{milestoneScalacticScaladoc}/index.html#org.scalactic.Prettifier"><code>Prettifier</code></a> to <a href="@{milestoneScaladoc}/index.html#org.scalatest.Assertions"><code>Assertions</code></a>, <a href="@{milestoneScaladoc}/index.html#org.scalatest.Matchers"><code>Matchers</code></a> and other classes that produce error messages.</li>
 </ul>
 
 <a name="breakingChanges"></a>
