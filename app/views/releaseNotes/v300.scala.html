@@ -22,15 +22,15 @@
 @combinedReleaseNotesPage("Scalactic/ScalaTest 3.0.0 Release Notes") {
 <div style="text-align: left">
 
-<h1>ScalaTest/Scalactic 3.0.0-M15 Release Notes</h1>
+<h1>ScalaTest/Scalactic 3.0.0-RC1 Release Notes</h1>
 
 <p>
 <strong><em>Note: Eventually this will be the home for the 3.0.0 final release notes. These release notes are written
-from the perspective of the final release, but with 3.0.0 replaced with 3.0.0-M15, the current milestone version.</em></strong>
+from the perspective of the final release, but with 3.0.0 replaced with 3.0.0-RC1, the current milestone version.</em></strong>
 </p>
 
 <p>
-Version 3.0.0-M15 is a major upgrade to ScalaTest and Scalactic, the culmination of over a year of effort. Although it
+Version 3.0.0-RC1 is a major upgrade to ScalaTest and Scalactic, the culmination of over a year of effort. Although it
 includes many enhancements, we kept a close eye on compatibility with existing ScalaTest/Scalactic 2.x code.
 We also tried hard to preserve what people liked about both ScalaTest and Scalactic: that it is simple, the code is clean
 and clear, it's fully documented, and because of very thorough testing, it &ldquo;just works.&rdquo; 
@@ -45,7 +45,7 @@ For information on how to use <a href="http://www.scalactic.org/">Scalactic</a> 
 <h2>Highlights</h2>
 
 <p>
-The most significant enhancement to ScalaTest and Scalactic in the 3.0.0-M15 release is that they now fully support Scala.js.
+The most significant enhancement to ScalaTest and Scalactic in the 3.0.0-RC1 release is that they now fully support Scala.js.
 The advent of Scala.js represented a major, completely unforeseen change in requirements for ScalaTest.
 As a result, Scala.js support required a
 rather large number of changes to the ScalaTest's eight-year old codebase. Fortunately, the changes
@@ -54,12 +54,12 @@ JVM) should break because of the addition of Scala.js support.
 </p>
 
 <p>
-Scalactic 3.0.0-M15 does include one change that could in theory break 2.2.x user code, but we expect
-the numbers of users and amount of code affected to be quite small in practice. ScalaTest 3.0.0-M15, on the other hand should include
+Scalactic 3.0.0-RC1 does include one change that could in theory break 2.2.x user code, but we expect
+the numbers of users and amount of code affected to be quite small in practice. ScalaTest 3.0.0-RC1, on the other hand should include
 <em>no breaking changes</em> to existing 2.2.x code so long as all deprecation warnings have been cleared prior to
 upgrading. For most users, upgrading to ScalaTest
-and/or Scalactic 3.0.0-M15 should require only a clean build with the new version.
-ScalaTest 3.0.0-M15 does include several deprecation expirations, the removal of features 
+and/or Scalactic 3.0.0-RC1 should require only a clean build with the new version.
+ScalaTest 3.0.0-RC1 does include several deprecation expirations, the removal of features 
 that were deprecated at the time of the 2.0.0 release, October 2013. For more detail, see the
 <a href="#breakingChanges">breaking changes</a> and the <a href="#expiredDeprecations">expired deprecations</a> sections below.
 </p>
@@ -72,7 +72,7 @@ need to do is add the plugin to your project. For more details, see <a href="/su
 </p>
 
 <p>
-Here's a list of the main enhancements in Scalactic 3.0.0-M15:
+Here's a list of the main enhancements in Scalactic 3.0.0-RC1:
 </p>
 
 <ul>
@@ -100,7 +100,7 @@ method. Also added <a href="@{milestoneScalacticScaladoc}/index.html#org.scalact
 </ul>
 
 <p>
-Here's a list of the main enhancements in ScalaTest 3.0.0-M15:
+Here's a list of the main enhancements in ScalaTest 3.0.0-RC1:
 </p>
 
 <ul>
@@ -126,7 +126,7 @@ just reports the first row that fails and short circuits).</li>
 <li>Modified ScalaTest's <a href="@{milestoneScaladoc}/#org.scalatest.BeforeAndAfterEach"><code>BeforeAndAfterEach</code></a> and <a href="@{milestoneScaladoc}/#org.scalatest.BeforeAndAfter"><code>BeforeAndAfter</code></a> so that it will interact properly and
 consistently when mixed in either before and after <a href="@{milestoneScaladoc}/#org.scalatest.OneInstancePerTest"><code>OneInstancePerTest</code></a>.</li><!--scaladoc this behavior-->
 <li>In 2.x releases of ScalaTest, the ScalaTest JAR file included a copy of the Scalactic library, which ScalaTest uses.
-In 3.0.0-M15 the ScalaTest JAR file contains only ScalaTest, and has a required dependency on Scalactic. 3.0.0-M15 includes
+In 3.0.0-RC1 the ScalaTest JAR file contains only ScalaTest, and has a required dependency on Scalactic. 3.0.0-RC1 includes
 a new artifact, scalatest-app, which includes both ScalaTest and Scalactic. The purpose of scalatest-app is to suppose ScalaTest
 being run as an application, such as on the <a href="/quick_start">Quick Start</a> page.</li>
 </ul>
@@ -134,10 +134,10 @@ being run as an application, such as on the <a href="/quick_start">Quick Start</
 <a name="breakingChanges"></a>
 <h2>Breaking changes</h2>
 
-<p>The one breaking change in 3.0.0-M15 is in Scalactic: we dropped an unnecessary type parameter in <a href="@{milestoneScalacticScaladoc}/index.html#org.scalactic.Good"><code>Good</code></a> and <a href="@{milestoneScalacticScaladoc}/index.html#org.scalactic.Bad"><code>Bad</code></a>, specifying
+<p>The one breaking change in 3.0.0-RC1 is in Scalactic: we dropped an unnecessary type parameter in <a href="@{milestoneScalacticScaladoc}/index.html#org.scalactic.Good"><code>Good</code></a> and <a href="@{milestoneScalacticScaladoc}/index.html#org.scalactic.Bad"><code>Bad</code></a>, specifying
 <code>Nothing</code> for that now missing type parameter
 when extending <a href="@{milestoneScalacticScaladoc}/index.html#org.scalactic.Or"><code>Or</code></a>. There should be no breaking
-changes in ScalaTest 3.0.0-M15 other than expired deprecations.</p>
+changes in ScalaTest 3.0.0-RC1 other than expired deprecations.</p>
 
 <a name="newDeprecations"></a>
 <h2>New deprecations</h2>
@@ -182,7 +182,7 @@ Also we changed the defaults of the scalacheck config.
 <li>Removed the <code>before</code>/<code>afterEach(TestData)</code> methods in <a href="http://doc.scalatest.org/2.2.6/#org.scalatest.BeforeAndAfterEach"><code>BeforeAndAfterEach</code></a> (deprecated in ScalaTest 2.0) in favor of <a href="http://doc.scalatest.org/2.2.6/#org.scalatest.BeforeAndAfterEachTestData"><code>BeforeAndAfterEachTestData</code></a>.</li>
 <li>Removed <code>org.scalatest.FailureOf</code> (deprecated in ScalaTest 2.0) in favor of <a href="http://doc.scalatest.org/2.2.6/#org.scalatest.OutcomeOf"><code>OutcomeOf</code></a>.</li>
 <li>Removed <code>expect</code> and <code>expectResult</code> (deprecated in ScalaTest 2.0) in <a href="http://doc.scalatest.org/2.2.6/#org.scalatest.Assertions"><code>Assertions</code></a> in favor of <code>assertResult</code>.</li>
-<li>Removed the support for using <a href="http://doc.scalatest.org/2.2.6/#org.scalatest.Suite"><code>Suite</code></a> as a style trait (deprecated in ScalaTest 2.0) in favor of <a href="http://doc.scalatest.org/2.2.6/#org.scalatest.Spec"><code>Spec</code></a> (which itself was deprecated in 3.0.0-M15
+<li>Removed the support for using <a href="http://doc.scalatest.org/2.2.6/#org.scalatest.Suite"><code>Suite</code></a> as a style trait (deprecated in ScalaTest 2.0) in favor of <a href="http://doc.scalatest.org/2.2.6/#org.scalatest.Spec"><code>Spec</code></a> (which itself was deprecated in 3.0.0-RC1
 and renamed <a href="@{milestoneScaladoc}/#org.scalatest.refspec.RefSpec"><code>org.scalatest.refspec.RefSpec</code></a>.)</li>
 <li>
 Removed the <code>assert</code> and <code>assume</code> methods whose <code>===</code> and <code>!==</code>

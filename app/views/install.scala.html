@@ -156,36 +156,37 @@ If you don't have it already, you'll also need Scala. You can use any 2.10 or 2.
 
 <a name="latestMilestone"></a>
 <p>
-<strong>ScalaTest and Scalactic 3.0.0-M15</strong> (the latest <em>3.0 milestone</em> release for 2.10.0+ and 2.11.0+)
+<strong>ScalaTest and Scalactic 3.0.0-RC1</strong> (the latest <em>3.0 release candidate</em> for 2.10.0+ and 2.11.0+)
 
 <ul>
-<li><a href="/release_notes/3.0.0">Combined 3.0.0-M15 Release Notes</a></li>
-<li><a href="http://www.artima.com/docs-scalatest-3.0.0-M15/index.html#org.scalatest.FlatSpec">Combined 3.0.0-M15 Scaladoc</a></li>
+<li><a href="/release_notes/3.0.0">Combined 3.0.0-RC1 Release Notes</a></li>
+<li><a href="http://www.artima.com/docs-scalatest-3.0.0-RC1/index.html#org.scalatest.FlatSpec">Combined 3.0.0-RC1 Scaladoc</a></li>
 </ul>
 
 <p>
-The <a href="https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest_2.11/3.0.0-M15/">ScalaTest 3.0.0-M15 artifacts</a> and <a href="https://oss.sonatype.org/content/groups/public/org/scalactic/scalactic_2.11/3.0.0-M15/">Scalactic 3.0.0-M15 artifacts</a> are available via the Sonatype OSS Maven repository and mirrored on Maven central.
+The <a href="https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest_2.11/3.0.0-RC1/">ScalaTest 3.0.0-RC1 artifacts</a> and <a href="https://oss.sonatype.org/content/groups/public/org/scalactic/scalactic_2.11/3.0.0-RC1/">Scalactic 3.0.0-RC1 artifacts</a> are available via the Sonatype OSS Maven repository and mirrored on Maven central.
 </p>
 
 <hr /> <!-- ############################################### -->
 
 <p>
-<em>To include ScalaTest 3.0.0-M15 in your <a href="http://www.scala-sbt.org"><strong>sbt</strong></a> project:</em>
+<em>To include ScalaTest 3.0.0-RC1 in your <a href="http://www.scala-sbt.org"><strong>sbt</strong></a> project:</em>
 </p>
 
 <p>
-1. Add these lines to your build file:
+<!--1.--> Add these lines to your build file:
 </p>
 
 <pre class="stHighlighted">
-libraryDependencies += <span class="stQuotedString">"org.scalactic"</span> %% <span class="stQuotedString">"scalactic"</span> % <span class="stQuotedString">"3.0.0-M15"</span>
-libraryDependencies += <span class="stQuotedString">"org.scalatest"</span> %% <span class="stQuotedString">"scalatest"</span> % <span class="stQuotedString">"3.0.0-M15"</span> % <span class="stQuotedString">"test"</span>
+libraryDependencies += <span class="stQuotedString">"org.scalactic"</span> %% <span class="stQuotedString">"scalactic"</span> % <span class="stQuotedString">"3.0.0-RC1"</span>
+libraryDependencies += <span class="stQuotedString">"org.scalatest"</span> %% <span class="stQuotedString">"scalatest"</span> % <span class="stQuotedString">"3.0.0-RC1"</span> % <span class="stQuotedString">"test"</span>
 </pre>
 
 <p>
 The dependency on <a href="http://www.scalactic.org">Scalactic</a>, ScalaTest's sister library focused on quality through types, is recommended but not required.
 </p>
 
+<!--
 <p>
 2. We also recommend you also include the <a href="/supersafe">SuperSafe Community Edition</a> Scala compiler plugin, which will flag errors in your ScalaTest (and
 Scalactic) code at compile time, by first adding this line to <code>~/.sbt/0.13/global.sbt</code>:
@@ -202,6 +203,7 @@ resolvers += <span class="stQuotedString">"Artima Maven Repository"</span> at <s
 <pre class="stHighlighted">
 addSbtPlugin(<span class="stQuotedString">"com.artima.supersafe"</span> % <span class="stQuotedString">"sbtplugin"</span> % <span class="stQuotedString">"1.1.0-RC6"</span>)
 </pre>
+-->
 
 <p>
 You are off and running! As a next step, visit the <a href="/user_guide">Getting Started</a> section of the user guide.
@@ -210,23 +212,23 @@ You are off and running! As a next step, visit the <a href="/user_guide">Getting
 <hr /> <!-- ############################################### -->
 
 <p>
-<em>To include ScalaTest 3.0.0-M15 in your <strong>Maven</strong> project</em>:
+<em>To include ScalaTest 3.0.0-RC1 in your <strong>Maven</strong> project</em>:
 </p>
 
 <p>
-1. Add the following dependencies to your <code>pom.xml</code>:
+<!-- 1. --> Add the following dependencies to your <code>pom.xml</code>:
 </p>
 
 <pre class="stHighlighted">
 &lt;dependency&gt;
   &lt;groupId&gt;org.scalactic&lt;/groupId&gt;
   &lt;artifactId&gt;scalactic_2.11&lt;/artifactId&gt;
-  &lt;version&gt;3.0.0-M15&lt;/version&gt;
+  &lt;version&gt;3.0.0-RC1&lt;/version&gt;
 &lt;/dependency&gt;
 &lt;dependency&gt;
   &lt;groupId&gt;org.scalatest&lt;/groupId&gt;
   &lt;artifactId&gt;scalatest_2.11&lt;/artifactId&gt;
-  &lt;version&gt;3.0.0-M15&lt;/version&gt;
+  &lt;version&gt;3.0.0-RC1&lt;/version&gt;
   &lt;scope&gt;test&lt;/scope&gt;
 &lt;/dependency&gt;
 </pre>
@@ -236,6 +238,7 @@ The dependency on <a href="http://www.scalactic.org">Scalactic</a>, ScalaTest's 
 recommended but not required.
 </p>
 
+<!--
 <p>
 2. We also recommend you also include the <a href="/supersafe">SuperSafe Community Edition</a> Scala compiler plugin, which will flag errors in your ScalaTest (and
 Scalactic) code at compile time, by adding the following lines to your <code>pom.xml</code>:
@@ -270,7 +273,7 @@ Scalactic) code at compile time, by adding the following lines to your <code>pom
 <p>
 <em>Note: You need to use the exact Scala version in the artifactId, because compiler plugin depends on compiler API that's not binary compatible between Scala minor releases.</em>
 </p>
-
+-->
 <p>
 You are off and running! As a next step, visit the <a href="/user_guide">Getting Started</a> section of the user guide.
 </p>
