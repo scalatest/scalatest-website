@@ -80,6 +80,10 @@ object Application extends Controller {
     Ok(views.html.donate())
   }
 
+  def sponsor = Action {
+    Ok(views.html.sponsor())
+  }
+
 /*
   def releaseNotes = Action {
     Ok(views.html.releaseNotes())

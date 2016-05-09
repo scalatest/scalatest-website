@@ -16,6 +16,7 @@ GET        /community                                                   controll
 GET        /supersafe                                                   controllers.Application.supersafe
 GET        /about                                                       controllers.Application.about
 GET        /donate                                                      controllers.Application.donate
+GET        /sponsor                                                     controllers.Application.sponsor
 GET        /release_notes                                               controllers.ReleaseNotes.releaseNotesIndex
 GET        /getting_started_with_fun_suite                              controllers.Application.gettingStartedWithFunSuite
 GET        /getting_started_with_fun_spec                               controllers.Application.gettingStartedWithFunSpec
