@@ -26,7 +26,7 @@
 
 <p>
 <strong><em>Note: Eventually this will be the home for the 3.0.0 final release notes. These release notes are written
-from the perspective of the final release, but with 3.0.0 replaced with 3.0.0-RC1, the current milestone version.</em></strong>
+from the perspective of the final release, but with 3.0.0 replaced with 3.0.0-RC1, the current release candidate version.</em></strong>
 </p>
 
 <p>
@@ -48,28 +48,31 @@ For information on how to use <a href="http://www.scalactic.org/">Scalactic</a> 
 The most significant enhancement to ScalaTest and Scalactic in the 3.0.0-RC1 release is that they now fully support Scala.js.
 The advent of Scala.js represented a major, completely unforeseen change in requirements for ScalaTest.
 As a result, Scala.js support required a
-rather large number of changes to the ScalaTest's eight-year old codebase. Fortunately, the changes
-were almost entirely internal to ScalaTest, so no existing ScalaTest user code (<em>i.e.</em>, for Scala on the
+very large number of changes to the ScalaTest's eight-year old codebase. Fortunately, the changes
+were mostly internal to ScalaTest, so little existing ScalaTest user code (<em>i.e.</em>, for Scala on the
 JVM) should break because of the addition of Scala.js support.
 </p>
 
 <p>
-Scalactic 3.0.0-RC1 does include one change that could in theory break 2.2.x user code, but we expect
-the numbers of users and amount of code affected to be quite small in practice. ScalaTest 3.0.0-RC1, on the other hand should include
-<em>no breaking changes</em> to existing 2.2.x code so long as all deprecation warnings have been cleared prior to
-upgrading. For most users, upgrading to ScalaTest
+ScalaTest and Scalactic 3.0.0-RC1 include a few changes that could in theory break 2.2.x user code, but we expect
+the number of users and amount of code affected to be small in practice. However, because features that have been deprecated
+for at least a year (primarily features that were deprecated in October 2013, when 2.0.0 was released) have been removed,
+we recommend you clear any deprecation warnings
+given by ScalaTest and Scalactic version 2.2.6 prior to upgrading.
+For many users, upgrading to ScalaTest
 and/or Scalactic 3.0.0-RC1 should require only a clean build with the new version.
-ScalaTest 3.0.0-RC1 does include several deprecation expirations, the removal of features 
-that were deprecated at the time of the 2.0.0 release, October 2013. For more detail, see the
-<a href="#breakingChanges">breaking changes</a> and the <a href="#expiredDeprecations">expired deprecations</a> sections below.
+ScalaTest 3.0.0-RC1 does include several new deprecations as well as the deprecation expirations. For more detail, see the
+<a href="#breakingChanges">breaking changes</a>, <a href="#newDeprecations">new deprecations</a>, and the <a href="#expiredDeprecations">expired deprecations</a> sections below.
 </p>
 
+<!--
 <p>
 The SuperSafe compiler plugin has also been enhanced with some new features that give compiler errors for Scalactic's <code>===</code>
 operator and ScalaTest's <code>equal</code>, <code>be</code>, and <code>contain</code> matchers. These features are enabled
 by default in SuperSafe's Community Edition (<em>i.e.</em>, they don't require a SuperSafe license key to be installed), so all you
 need to do is add the plugin to your project. For more details, see <a href="/supersafe">ScalaTest in SuperSafe Community Edition</a>.
 </p>
+-->
 
 <p>
 Here's a list of the main enhancements in Scalactic 3.0.0-RC1:
@@ -107,6 +110,11 @@ Here's a list of the main enhancements in ScalaTest 3.0.0-RC1:
 <ul>
 <li>Added support for Scala.js.</li>
 <li>Defined <code>org.scalatest.Assertion</code> as a type alias for the singleton type, <a href="@{milestoneScaladoc}/index.html#org.scalatest.Succeeded$"><code>org.scalatest.Succeeded.type</code></a>.</li>
+<li>Added type <a href="@{milestoneScaladoc}/index.html#org.scalatest.compatible.Assertion"><code>org.scalatest.compatible.Assertion</code></a> to serve
+as the actual type required by test bodies in the new async styles. Eventually this will be released as a separate Java artifact, just a simple
+marker interface, so third-party libraries can provide assertions that ScalaTest will recognize as valid assertions without requiring the
+third party libraries depend on a version of ScalaTest. They will only need to depend on a version of the scalatest-compat.jar Java artifact, which 
+will be very stable.</li>
 <li>Changed the result type of assertions and matcher expressions from <code>Unit</code> to <code>Assertion</code>.</li>
 <li>Changed the result type of <code>org.scalatest</code> styles from <code>Unit</code> to <code>Any</code> so that users who
 compile with <code>-Ywarn-value-discard</code> will not get warnings for tests that end in an assertion or matcher expression,
@@ -131,16 +139,35 @@ consistently when mixed in either before and after <a href="@{milestoneScaladoc}
 In 3.0.0-RC1 the ScalaTest JAR file contains only ScalaTest, and has a required dependency on Scalactic. 3.0.0-RC1 includes
 a new artifact, scalatest-app, which includes both ScalaTest and Scalactic. The purpose of scalatest-app is to suppose ScalaTest
 being run as an application, such as on the <a href="/quick_start">Quick Start</a> page.</li>
-<li>Added support of passing custom <a href="@{milestoneScalacticScaladoc}/index.html#org.scalactic.Prettifier"><code>Prettifier</code></a> to <a href="@{milestoneScaladoc}/index.html#org.scalatest.Assertions"><code>Assertions</code></a>, <a href="@{milestoneScaladoc}/index.html#org.scalatest.Matchers"><code>Matchers</code></a> and other classes that produce error messages.</li>
+<li>Added implicit parameters of type <a href="@{milestoneScalacticScaladoc}/index.html#org.scalactic.Prettifier"><code>Prettifier</code></a> to <a href="@{milestoneScaladoc}/index.html#org.scalatest.Assertions"><code>Assertions</code></a>, <a href="@{milestoneScaladoc}/index.html#org.scalatest.Matchers"><code>Matchers</code></a>, and other classes that produce error messages. This makes it easy to customize the string representation of a type in an error message, for example, to reduce the size of string representations of large collections.</li>
+<li>Added implicit parameters of type <a href="@{milestoneScalacticScaladoc}/index.html#org.scalactic.source.Position"><code>source.Position</code></a> to
+<a href="@{milestoneScaladoc}/index.html#org.scalatest.Assertions"><code>Assertions</code></a>, <a href="@{milestoneScaladoc}/index.html#org.scalatest.Matchers"><code>Matchers</code></a>, and other classes that produce error messages. This allowed us to replace the JVM-specific technique we used previously to determine the file name and line number of the offending line of test code prior to 3.0, which involved inspecting the stack. This technique did not work at all when running Scala.js tests on Node.js or Phantom.js, and allows us on the JVM to access an additional piece of information that wasn't available when inspecting the stack: the full path to the source file. The full path was desired for Ensime and will eventually make it out to the reporters (we didn't have time to get it to the reporters in 3.0.0-RC1). This also makes it very simple for users to define custom assertions and get the right stack depth (really, the right filename and line number). We've wanted to solve that problem for a very long time, and users have occasionally requested it. For example, it was requested for the scalaz-scalatest library that created custom ScalaTest assertions for Scalaz.</li>
 </ul>
 
 <a name="breakingChanges"></a>
 <h2>Breaking changes</h2>
 
-<p>The one breaking change in 3.0.0-RC1 is in Scalactic: we dropped an unnecessary type parameter in <a href="@{milestoneScalacticScaladoc}/index.html#org.scalactic.Good"><code>Good</code></a> and <a href="@{milestoneScalacticScaladoc}/index.html#org.scalactic.Bad"><code>Bad</code></a>, specifying
+<p>1) The one breaking change in Scalactic in 3.0.0-RC1 is that we dropped an unnecessary type parameter in <a href="@{milestoneScalacticScaladoc}/index.html#org.scalactic.Good"><code>Good</code></a> and <a href="@{milestoneScalacticScaladoc}/index.html#org.scalactic.Bad"><code>Bad</code></a>, specifying
 <code>Nothing</code> for that now missing type parameter
 when extending <a href="@{milestoneScalacticScaladoc}/index.html#org.scalactic.Or"><code>Or</code></a>. There should be no breaking
 changes in ScalaTest 3.0.0-RC1 other than expired deprecations.</p>
+
+<p>
+2) In ScalaTest, one potentially breaking change is in <a href="@{milestoneScaladoc}/index.html#org.scalatest.concurrent.TimeLimitedTests"><code>TimeLimitedTests</code></a>, which now uses an implicit <a href="@{milestoneScaladoc}/index.html#org.scalatest.concurrent.Signaler"><code>Signaler</code></a> instead
+of an implicit <a href="@{milestoneScaladoc}/index.html#org.scalatest.concurrent.Interruptor"><code>Interruptor</code></a>. Whereas the default <code>Interruptor</code> in <code>TimeLimitedTests</code> prior to 3.0 was
+a <a href="@{milestoneScaladoc}/index.html#org.scalatest.concurrent.ThreadInterruptor$"><code>ThreadInterruptor</code></a>, the default signaler is <a href="@{milestoneScaladoc}/index.html#org.scalatest.concurrent.DoNotSignal$"><code>DoNotSignal</code></a>. This default makes more sense with the advent of
+ScalaTest 3.0's support for Scala.js and async testing styles. If you were relying on the default behavior of interrupting a thread on
+the JVM in ScalaTest 2.2.x, you'll need to define an implicit <code>val</code> referring to a <a href="@{milestoneScaladoc}/index.html#org.scalatest.concurrent.ThreadSignaler$"><code>ThreadSignaler</code></a>. If you had alreday overriden
+the default <code>Interuptor</code> (referenced from <code>defaultInterruptor</code>) you'll need to define a corresponding <code>Signaler</code> instead
+(unless you had defined the <code>Interruptor</code> to be <code>DoNotInterrupt</code>, in which case you can just remove the
+<code>defaultInterruptor</code> override entirely and enjoy the default <code>Signaler</code>, <code>DoNotSignal</code>).
+</p>
+
+<p>
+3) Lastly, in ScalaTest we changed the signature of the <code>whenCompleted</code> method of trait <a href="@{milestoneScaladoc}/index.html#org.scalatest.Status"><code>Status</code></a> changed. Where it previously
+took a function of type <code>Boolean =&gt; Unit</code>, it now takes a function of type <code>Try[Boolean] =&gt; Unit</code>. This 
+breaking change should affect very few users.
+</p>
 
 <a name="newDeprecations"></a>
 <h2>New deprecations</h2>
