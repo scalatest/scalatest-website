@@ -23,17 +23,12 @@
 
 <p>
 <a href="http://www.artima.com/supersafe_user_guide_rc.html">Artima SuperSafe</a> is a commercial Scala compiler plugin with a free Community Edition
-that checks ScalaTest/Scalactic <code>===</code> and matcher expressions for correctness.
+that checks ScalaTest/Scalactic <code>===</code> and matcher expressions in version 3.0.0-RC2 for correctness.
 Using SuperSafe Community Edition together with ScalaTest can save you time and ensure certain
 errors do not exist in your code. (See the
 <a href="#installation">installation section</a> below for instructions
 on installing SuperSafe Community Edition.)
 </p>
-
-<em>Note, because we changed the AST (abstract syntax tree) of parsed ScalaTest code with the most recent unanticipated major overhaul of the ScalaTest/Scalactic 3.0 effort&mdash;adding implicit <code>Prettifier</code>s and
-<code>source.Positions</code> to assertion and matcher expressions&mdash;the current release candidate version of SuperSafe 1.1 does not detect the
-errors listed below. We are working on updating SuperSafe so that it will work with ScalaTest 3.0.0 and will update this page with the 
-new SuperSafe version once it is released.</em>
 
 <pre class="scala">
 scala&gt; <span class="reserved">import</span> org.scalatest._
