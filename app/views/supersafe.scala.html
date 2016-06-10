@@ -23,7 +23,7 @@
 
 <p>
 <a href="http://www.artima.com/supersafe_user_guide_rc.html">Artima SuperSafe</a> is a commercial Scala compiler plugin with a free Community Edition
-that checks ScalaTest/Scalactic <code>===</code> and matcher expressions in version 3.0.0-RC2 for correctness.
+that checks ScalaTest/Scalactic <code>===</code> and matcher expressions for correctness.
 Using SuperSafe Community Edition together with ScalaTest can save you time and ensure certain
 errors do not exist in your code. (See the
 <a href="#installation">installation section</a> below for instructions
@@ -157,6 +157,11 @@ addSbtPlugin("com.artima.supersafe" % "sbtplugin" % "@{latestSuperSafeVersion}")
 </pre>
 
 <p>
+<em>Note: If using ScalaTest 2.2.6 or earlier, use SuperSafe version 1.1.0-RC6 instead, which
+will be the last version of SuperSafe to support ScalaTest 2.x.</em>
+<p>
+
+<p>
 If you are using Maven as your build tool, you can install the community edition of SuperSafe in two easy steps. 
 </p>
 
@@ -196,6 +201,11 @@ If you are using Maven as your build tool, you can install the community edition
     &lt;/executions&gt;
 &lt;/plugin&gt;
 </pre>
+
+<p>
+<em>Note: If using ScalaTest 2.2.6 or earlier, use SuperSafe version 1.1.0-RC6 instead, which
+will be the last version of SuperSafe to support ScalaTest 2.x.</em>
+</p>
 
 <p>
 Note: You need to use the exact Scala version in the artifactId, because compiler plugin depends on compiler API that's not binary compatible between Scala minor releases.
