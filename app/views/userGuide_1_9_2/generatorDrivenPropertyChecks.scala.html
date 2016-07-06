@@ -25,7 +25,7 @@
 To use generator-driven property checks, you must mix in trait <a href="@latestScaladocFor192/index.html#org.scalatest.prop.GeneratorDrivenPropertyChecks"><code>GeneratorDrivenPropertyChecks</code></a> (or import the
 members of its companion object). If you are also using table-driven property checks, you can mix in
 trait <a href="@latestScaladocFor192/index.html#org.scalatest.prop.PropertyChecks"><code>PropertyChecks</code></a>,
-which extends both <code>GeneratorDrivenPropertyChecks</code> and <a href="@latestScaladocFor192/index.html#org.scalatest.prop.TableDrivenPropertyChecks"><code>TableDrivenPropertyChecks</code></a>. Generator-driven property checks uses <a href="http://code.google.com/p/scalacheck/">ScalaCheck</a>, so you must also include the ScalaCheck JAR file on your classpath when you compile and run your tests.
+which extends both <code>GeneratorDrivenPropertyChecks</code> and <a href="@latestScaladocFor192/index.html#org.scalatest.prop.TableDrivenPropertyChecks"><code>TableDrivenPropertyChecks</code></a>. Generator-driven property checks uses <a href="http://www.scalacheck.org/">ScalaCheck</a>, so you must also include the ScalaCheck JAR file on your classpath when you compile and run your tests.
 </p>
 
 <p>
@@ -38,7 +38,7 @@ some condition is true.
 <p>
 For an example of trait <code>GeneratorDrivenPropertyChecks</code> in action, imagine you want to test this <code>Fraction</code> class:
 </p>
- 
+
 <pre class="stHighlighted">
 <span class="stReserved">class</span> <span class="stType">Fraction</span>(n: <span class="stType">Int</span>, d: <span class="stType">Int</span>) {
 <br />  require(d != <span class="stLiteral">0</span>)
@@ -261,7 +261,7 @@ Occurred when passed generated values (
 
 <p>
 The property checks performed by the <code>forAll</code> methods of this trait can be flexibly configured via the services
-provided by supertrait <code>Configuration</code>.  The five configuration parameters for property checks along with their 
+provided by supertrait <code>Configuration</code>.  The five configuration parameters for property checks along with their
 default values and meanings are described in the following table:
 </p>
 
@@ -337,7 +337,7 @@ specifies the number of worker threads to use during property evaluation
 <p>
 The <code>forAll</code> methods of trait <code>GeneratorDrivenPropertyChecks</code> each take a <code>PropertyCheckConfig</code>
 object as an implicit parameter. This object provides values for each of the five configuration parameters. Trait <code>Configuration</code>
-provides an implicit <code>val</code> named <code>generatorDrivenConfig</code> with each configuration parameter set to its default value. 
+provides an implicit <code>val</code> named <code>generatorDrivenConfig</code> with each configuration parameter set to its default value.
 If you want to set one or more configuration parameters to a different value for all property checks in a suite you can override this
 val (or hide it, for example, if you are importing the members of the <code>GeneratorDrivenPropertyChecks</code> companion object rather
 than mixing in the trait.) For example, if
@@ -371,7 +371,7 @@ forAll (minSuccessful(<span class="stLiteral">500</span>)) &#123; (n: <span clas
 </pre>
 
 <p>
-This invocation of <code>forAll</code> will use 500 for <code>minSuccessful</code> and whatever values are specified by the 
+This invocation of <code>forAll</code> will use 500 for <code>minSuccessful</code> and whatever values are specified by the
 implicitly passed <code>PropertyCheckConfig</code> object for the other configuration parameters.
 If you want to set multiple configuration parameters in this way, just list them separated by commas:
 </p>

@@ -24,7 +24,7 @@
 <p>
 ScalaTest supports two styles of property-based testing: ScalaTest style and ScalaCheck style. Both approaches use ScalaCheck to actually check properties
 when tests are run. This page describes the ScalaCheck style.
-(For information on the tradeoffs of each style, see the <a href="#selectingAStyle">Selecting a property-based testing style</a> section below.) 
+(For information on the tradeoffs of each style, see the <a href="#selectingAStyle">Selecting a property-based testing style</a> section below.)
 </p>
 
 <p>
@@ -57,7 +57,7 @@ Here's an example of using ScalaCheck from a <code>JUnitSuite</code>:
 The <code>check</code> method, defined in <code>Checkers</code>, makes it easy to write property-based tests inside
 ScalaTest, JUnit, and TestNG test suites. This example specifies a property that <code>List</code>'s <code>:::</code> method
 should obey. ScalaCheck properties are expressed as function values that take the required
-test data as parameters. ScalaCheck will generate test data using generators and 
+test data as parameters. ScalaCheck will generate test data using generators and
 repeatedly pass generated data to the function. In this case, the test data is composed of integer lists named <code>a</code> and <code>b</code>.
 Inside the body of the function, you see:
 </p>
@@ -75,7 +75,7 @@ contains information about the failure, including the values that cause the prop
 
 <p>
 For more information on using ScalaCheck properties, see the documentation for ScalaCheck, which is available
-from <a href="http://code.google.com/p/scalacheck/">http://code.google.com/p/scalacheck/</a>.
+from <a href="http://www.scalacheck.org/">http://www.scalacheck.org/</a>.
 </p>
 
 <p>
@@ -227,7 +227,7 @@ for supertrait <a href="@latestScaladocFor192/index.html#org.scalatest.prop.Conf
 <a name="selectingAStyle"></a><h2>Selecting a property-based testing style</h2>
 
 <p>
-For the ScalaTest style, you mix in 
+For the ScalaTest style, you mix in
 trait <a href="@latestScaladocFor192/index.html#org.scalatest.prop.GeneratorDrivenPropertyChecks"><code>GeneratorDrivenPropertyChecks</code></a> and
 express properties with <code>whenever</code> clauses and matcher expressions. For the ScalaCheck style, you mix in trait
 <a href="@latestScaladocFor192/index.html#org.scalatest.prop.Checkers"><code>Checkers</code></a> and
@@ -298,7 +298,7 @@ I think this style is easier to both write and read. When it fails, it tells you
 
 
 <pre>
-forAll { (m: Int, n: Int) =>                  
+forAll { (m: Int, n: Int) =>
   val res = myMagicFunction(n, m)
   res should (be >= m and be >= n and be < m + n)
 }
