@@ -50,12 +50,19 @@ libraryDependencies += <span class="stQuotedString">"org.scalactic"</span> %% <s
 libraryDependencies += <span class="stQuotedString">"org.scalatest"</span> %% <span class="stQuotedString">"scalatest"</span> % <span class="stQuotedString">"2.2.6"</span> % <span class="stQuotedString">"test"</span>
 </pre>
 
+If you're using pre-release 3.0.x version, which supports scala-js, you should use <code>%%%</code> instead in your scala-js project:
+
+<pre class="stHighlighted">
+libraryDependencies += <span class="stQuotedString">"org.scalactic"</span> %%% <span class="stQuotedString">"scalactic"</span> % <span class="stQuotedString">"3.0.0-RC2"</span>
+libraryDependencies += <span class="stQuotedString">"org.scalatest"</span> %%% <span class="stQuotedString">"scalatest"</span> % <span class="stQuotedString">"3.0.0-RC2"</span> % <span class="stQuotedString">"test"</span>
+</pre>
+
 <p>
 The dependency on <a href="http://www.scalactic.org">Scalactic</a>, ScalaTest's sister library focused on quality through types, is recommended but not required.
 </p>
 
 <p>
-2. We also recommend you also include the <a href="/supersafe">SuperSafe Community Edition</a> Scala compiler plugin, which will flag errors in your ScalaTest (and
+2. If you're using pre-release 3.0.x version, we also recommend you also include the <a href="/supersafe">SuperSafe Community Edition</a> Scala compiler plugin, which will flag errors in your ScalaTest (and
 Scalactic) code at compile time, by first adding this line to <code>~/.sbt/0.13/global.sbt</code>:
 </p>
 
@@ -68,7 +75,7 @@ resolvers += <span class="stQuotedString">"Artima Maven Repository"</span> at <s
 </p>
 
 <pre class="stHighlighted">
-addSbtPlugin(<span class="stQuotedString">"com.artima.supersafe"</span> % <span class="stQuotedString">"sbtplugin"</span> % <span class="stQuotedString">"1.1.0-RC6"</span>)
+addSbtPlugin(<span class="stQuotedString">"com.artima.supersafe"</span> % <span class="stQuotedString">"sbtplugin"</span> % <span class="stQuotedString">"1.1.0-RC7"</span>)
 </pre>
 
 <p>
@@ -105,7 +112,7 @@ recommended but not required.
 </p>
 
 <p>
-2. We also recommend you also include the <a href="/supersafe">SuperSafe Community Edition</a> Scala compiler plugin, which will flag errors in your ScalaTest (and
+2. If you're using pre-release 3.0.x version, we recommend you to also include the <a href="/supersafe">SuperSafe Community Edition</a> Scala compiler plugin, which will flag errors in your ScalaTest (and
 Scalactic) code at compile time, by adding the following lines to your <code>pom.xml</code>:
 </p>
 
@@ -124,8 +131,8 @@ Scalactic) code at compile time, by adding the following lines to your <code>pom
         &lt;compilerPlugins&gt;
             &lt;compilerPlugin&gt;
                 &lt;groupId&gt;com.artima.supersafe&lt;/groupId&gt;
-                &lt;artifactId&gt;supersafe_2.11.7&lt;/artifactId&gt;
-                &lt;version&gt;1.1.0-RC6&lt;/version&gt;
+                &lt;artifactId&gt;supersafe_2.11.8&lt;/artifactId&gt;
+                &lt;version&gt;1.1.0-RC7&lt;/version&gt;
             &lt;/compilerPlugin&gt;
         &lt;/compilerPlugins&gt;
     &lt;/configuration&gt;
