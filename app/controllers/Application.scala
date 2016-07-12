@@ -22,6 +22,7 @@ import examples.StyleTraitExamples
 object Application extends Controller {
 
   val latestScaladoc = "http://doc.scalatest.org/3.0.0"
+  val latestScalacticScaladoc = "http://doc.scalactic.org/3.0.0"
   val latestVersion = "3.0.0"
   val latestSuperSafeVersion = "1.1.0-RC7"
   val milestoneVersion = "3.0.0-RC4"
