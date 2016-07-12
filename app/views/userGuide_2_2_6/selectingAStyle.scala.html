@@ -78,7 +78,7 @@ information and examples, click on the links:
     assert(Set.empty.size == <span class="stLiteral">0</span>)
   }
 <br />  test(<span class="stQuotedString">&quot;Invoking head on an empty Set should produce NoSuchElementException&quot;</span>) {
-    assertThrows[<span class="stType">NoSuchElementException</span>] {
+    intercept[<span class="stType">NoSuchElementException</span>] {
       Set.empty.head
     }
   }
@@ -99,7 +99,7 @@ flat like xUnit, so simple and familiar, but the test names must be written in a
     assert(Set.empty.size == <span class="stLiteral">0</span>)
   }
 <br />  it should <span class="stQuotedString">&quot;produce NoSuchElementException when head is invoked&quot;</span> in {
-    assertThrows[<span class="stType">NoSuchElementException</span>] {
+    intercept[<span class="stType">NoSuchElementException</span>] {
       Set.empty.head
     }
   }
@@ -124,7 +124,7 @@ general-purpose choice for writing specification-style tests.
         assert(Set.empty.size == <span class="stLiteral">0</span>)
       }
 <br />      it(<span class="stQuotedString">&quot;should produce NoSuchElementException when head is invoked&quot;</span>) {
-        assertThrows[<span class="stType">NoSuchElementException</span>] {
+        intercept[<span class="stType">NoSuchElementException</span>] {
           Set.empty.head
         }
       }
@@ -149,7 +149,7 @@ For teams coming from specs or specs2, <a href="@latestScaladoc/#org.scalatest.W
         assert(Set.empty.size == <span class="stLiteral">0</span>)
       }
 <br />      <span class="stQuotedString">&quot;produce NoSuchElementException when head is invoked&quot;</span> in {
-        assertThrows[<span class="stType">NoSuchElementException</span>] {
+        intercept[<span class="stType">NoSuchElementException</span>] {
           Set.empty.head
         }
       }
@@ -174,7 +174,35 @@ Because it gives absolute freedom (and no guidance) on how specification text sh
         assert(Set.empty.size == <span class="stLiteral">0</span>)
       }
 <br />      <span class="stQuotedString">&quot;should produce NoSuchElementException when head is invoked&quot;</span> in {
-        assertThrows[<span class="stType">NoSuchElementException</span>] {
+        intercept[<span class="stType">NoSuchElementException</span>] {
+          Set.empty.head
+        }
+      }
+    }
+  }
+}
+</pre>
+</td>
+</tr>
+
+<tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+<h2>Spec</h2>
+<p class="stStyleDesc">
+<a href="@latestScaladoc/#org.scalatest.Spec"><code>Spec</code></a> allows you to define tests as methods, which saves one function literal per test
+compared to style classes that represent tests as functions. Fewer function literals translates into faster compile times and fewer generated class files, which
+can help minimize build times. As a result, using <code>Spec</code> can be a good choice in large projects where build times are a concern as well as when
+generating large numbers of tests programatically via static code generators. 
+</p>
+<pre class="stStyleExamples">
+<span class="stReserved">import</span> org.scalatest.Spec
+<br /><span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">Spec</span> {
+<br />  <span class="stReserved">object</span> <span class="literalIdentifier">&#96;A Set&#96;</span> {
+    <span class="stReserved">object</span> <span class="literalIdentifier">&#96;when empty&#96;</span> {
+      <span class="stReserved">def</span> <span class="literalIdentifier">&#96;should have size 0&#96;</span> {
+        assert(Set.empty.size == <span class="stLiteral">0</span>)
+      }
+<br />      <span class="stReserved">def</span> <span class="literalIdentifier">&#96;should produce NoSuchElementException when head is invoked&#96;</span> {
+        intercept[<span class="stType">NoSuchElementException</span>] {
           Set.empty.head
         }
       }
@@ -262,38 +290,6 @@ Trait <a href="@latestScaladoc/#org.scalatest.FeatureSpec"><code>FeatureSpec</co
 </pre>
 </td>
 </tr>
-
-<tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
-<h2>RefSpec (JVM only)</h2>
-<p class="stStyleDesc">
-<a href="@latestScaladoc/#org.scalatest.refspec.RefSpec"><code>RefSpec</code></a> allows you to define tests as methods, which saves one function literal per test
-compared to style classes that represent tests as functions. Fewer function literals translates into faster compile times and fewer generated class files, which
-can help minimize build times. As a result, using <code>Spec</code> can be a good choice in large projects where build times are a concern as well as when
-generating large numbers of tests programatically via static code generators.
-</p>
-<pre class="stStyleExamples">
-<span class="stReserved">import</span> org.scalatest.refspec.RefSpec
-<br /><span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">RefSpec</span> {
-<br />  <span class="stReserved">object</span> <span class="literalIdentifier">&#96;A Set&#96;</span> {
-    <span class="stReserved">object</span> <span class="literalIdentifier">&#96;when empty&#96;</span> {
-      <span class="stReserved">def</span> <span class="literalIdentifier">&#96;should have size 0&#96;</span> {
-        assert(Set.empty.size == <span class="stLiteral">0</span>)
-      }
-<br />      <span class="stReserved">def</span> <span class="literalIdentifier">&#96;should produce NoSuchElementException when head is invoked&#96;</span> {
-        assertThrows[<span class="stType">NoSuchElementException</span>] {
-          Set.empty.head
-        }
-      }
-    }
-  }
-}
-</pre>
-<p class="stStyleDesc">
-Note: The "<code>Ref</code>" in <code>RefSpec</code> stands for reflection, which <code>RefSpec</code> uses to discover tests. As reflection is not availble in Scala.js, this class is not available on Scala.js.
-</p>
-</td>
-</tr>
-
 </table>
 </p>
 

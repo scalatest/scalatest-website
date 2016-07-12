@@ -70,7 +70,7 @@ After the sentence you put the word <code>in</code> followed by the body of the 
   }
 <br />  it should <span class="stQuotedString">&quot;throw NoSuchElementException if an empty stack is popped&quot;</span> in {
     <span class="stReserved">val</span> emptyStack = <span class="stReserved">new</span> <span class="stType">Stack[String]</span>
-    assertThrows[<span class="stType">NoSuchElementException</span>] {
+    intercept[<span class="stType">NoSuchElementException</span>] {
       emptyStack.pop()
     }
   }
@@ -82,7 +82,7 @@ After the sentence you put the word <code>in</code> followed by the body of the 
 </p>
 
 <pre class="stExamples">
-$ scalac -cp scalatest-app_@{baseScalaVersion}-@{latestVersion}.jar StackSpec.scala
+$ scalac -cp scalatest_@{baseScalaVersion}-@{latestVersion}.jar StackSpec.scala
 </pre>
 
 <p>
@@ -90,7 +90,7 @@ $ scalac -cp scalatest-app_@{baseScalaVersion}-@{latestVersion}.jar StackSpec.sc
 </p>
 
 <pre class="stExamples">
-$ scala -cp scalatest-app_@{baseScalaVersion}-@{latestVersion}.jar org.scalatest.run StackSpec
+$ scala -cp scalatest_@{baseScalaVersion}-@{latestVersion}.jar org.scalatest.run StackSpec
 <span class="stCyan">Run starting. Expected test count is: 2</span>
 <span class="stGreen">StackSpec:
 A Stack 

@@ -1,0 +1,100 @@
+@*
+ * Copyright 2010-2016 Artima, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *@
+
+@import controllers.Application.latestScaladoc
+
+@userGuidePage("Using ScalaTest with sbt") {
+<div style="text-align: left">
+
+<h1>Using ScalaTest with sbt</h1>
+
+<p>
+ScalaTest's <a href="@latestScaladoc/#org.scalatest.tools.Framework"><code>Framework</code></a> supports using ScalaTest from sbt.
+In sbt version 0.10 and higher, simply add a line like this to your project file:
+</p>
+
+<pre class="stGrayback">
+libraryDependencies += "org.scalatest" % "scalatest_2.10" % "2.0" % "test"
+</pre>
+
+<p>
+Your test sources files go into <code>src/test/scala</code>. You can run all of them from the sbt console with:
+</p>
+
+<pre class="stGrayback">
+&gt; test
+</pre>
+
+<p>
+If you want to run particular suites, use <code>test-only</code> and provide their fully qualified names in a space separated list:
+</p>
+
+<pre class="stGrayback">
+&gt; test-only org.acme.RedSuite org.acme.BlueSuite
+</pre>
+
+<p>
+Or you can specify a glob:
+</p>
+
+<pre class="stGrayback">
+&gt; test-only *RedSuite
+</pre>
+
+<p>
+You can configure the output shown when running with sbt in four ways: 1) turn off color, 2) show
+short stack traces, 3) full stack traces, and 4) show durations for everything. To do so you must
+pass a <code>-o</code> argument to ScalaTest, and after the -o, place any combination of:
+</p>
+
+<ul>
+<li>D - show durations</li>
+<li>S - show short stack traces</li>
+<li>F - show full stack traces</li>
+<li>W - without color</li>
+</ul>
+
+<p>
+For example, "-oDF" would show full stack traces and durations (the amount
+of time spent in each test).
+</p>
+
+<p>
+To pass arguments from sbt to ScalaTest you can either add test options globally, like this:
+</p>
+
+<pre class="stGrayback">
+testOptions in Test += Tests.Argument("-oD")
+</pre>
+
+<p>
+Or if you are using more than one test framework, like this:
+</p>
+
+<pre class="stGrayback">
+testOptions in Test += Tests.Argument(TestFrameworks.ScalaTest, "-oD")
+</pre>
+
+<p>
+You can also pass arguments for individual runs by placing them after <code>--</code>, like this:
+</p>
+
+<pre class="stGrayback">
+&gt; test-only org.acme.RedSuite -- -oD
+</pre>
+
+</div>
+}

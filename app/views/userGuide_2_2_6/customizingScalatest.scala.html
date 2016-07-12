@@ -14,19 +14,11 @@
  * limitations under the License.
  *@
 
-@(pagename: String)(body: => Html)
+@userGuidePage("Customizing ScalaTest") {
+<div style="text-align: left">
 
-@topImage = {
+<h1>Customizing ScalaTest</h1>
 
-      <div class="homePageMessage">
-        <img src="@routes.Assets.at("images/scalaTestHeading.gif")" width="700"
-             height="200" alt="ScalaTest: Simply Productive"/>
-      </div>
-<p style="align: center">
-<span style="font-size: 150%">Just Released - <a href="/release_notes/3.0.0">ScalaTest and Scalactic 3.0.0</a></span>, which includes
-Scala.js support and new async testing styles!</span>
-</p>
+
+</div>
 }
-
-@main(pagename, topImage){@body}
-

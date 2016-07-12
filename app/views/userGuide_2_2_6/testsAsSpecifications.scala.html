@@ -1,0 +1,152 @@
+@*
+ * Copyright 2010-2016 Artima, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *@
+
+@import controllers.Application.latestScaladoc
+
+@userGuidePage("Tests as specifications") {
+<div style="text-align: left">
+
+<h1>Tests as specifications</h1>
+
+<p>
+In the behavior-driven development (BDD) style of testing, test suites act as <em>executable specifications</em>&#8212;specifications of system behavior that
+can be executed to verify that behavior. ScalaTest provides rich support for this style of testing.
+</p>
+
+<p>
+In BDD, test names are sentences that specify a bit of desired behavior that the body of the test will ensure is working. This keeps tests focused
+on just one thing, making it easier to figure out what behavior has been broken when a test fails. To keep the focus on specifying behavior, the word
+&ldquo;test&rdquo; disappears from the source code and is replaced with words that make the code feel more like a specification. For example, in ScalaTest's <a href="@latestScaladoc/#org.scalatest.FunSpec"><code>FunSpec</code></a> trait, you use
+the word &ldquo;describe&rdquo; to name and qualify the subject under test, and &ldquo;it&rdquo; to mark the beginning of a sentence about a bit of the subject's behavior.  Here's an example <code>FunSpec</code>:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">import</span> org.scalatest.FunSpec
+<span class="stReserved">import</span> scala.collection.mutable.Stack
+<br /><span class="stReserved">class</span> <span class="stType">StackSpec</span> <span class="stReserved">extends</span> <span class="stType">FunSpec</span> {
+<br />  describe(<span class="stQuotedString">"A Stack"</span>) {
+<br />    it(<span class="stQuotedString">"should pop values in last-in-first-out order"</span>) {
+      <span class="stReserved">val</span> stack = <span class="stReserved">new</span> <span class="stType">Stack[Int]</span>
+      stack.push(<span class="stLiteral">1</span>)
+      stack.push(<span class="stLiteral">2</span>)
+      assert(stack.pop() === <span class="stLiteral">2</span>)
+      assert(stack.pop() === <span class="stLiteral">1</span>)
+    }
+<br />    it(<span class="stQuotedString">"should throw NoSuchElementException if an empty stack is popped"</span>) {
+      <span class="stReserved">val</span> emptyStack = <span class="stReserved">new</span> <span class="stType">Stack[String]</span>
+      intercept[<span class="stType">NoSuchElementException</span>] {
+        emptyStack.pop()
+      }
+    }
+  }
+}
+</pre>
+
+<p>
+In addition to source code that reads more like a specification, the BDD approach also
+encourages that test run reports also appear more like specifications. In addition to simply
+reporting results, specification-style reports can facilitate communication about the system being tested
+among stakeholders such as developers, managers, and customers.
+For example, were you to run <code>StackSpec</code> from within the Scala interpreter:
+</p>
+
+<pre class="stREPL">
+scala> (new StackSpec).execute()
+</pre>
+
+<p>
+You would see ScalaTest's standard-out reporter display the results as
+an easy to read as an informal specification of the <em>subject</em> being tested:
+</p>
+
+<pre class="stREPL">
+<span class="stGreen">A Stack
+- should pop values in last-in-first-out order
+- should throw NoSuchElementException if an empty stack is popped</span>
+</pre>
+
+<p>
+ScalaTest also gives you ways to specify with greater granularity than just the test names. For example,
+mixing in trait <code>GivenWhenThen</code> would enable you to write code like:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">import</span> org.scalatest.FunSpec
+<span class="stReserved">import</span> org.scalatest.GivenWhenThen
+<span class="stReserved">import</span> scala.collection.mutable.Stack
+<br /><span class="stReserved">class</span> <span class="stType">StackSpec</span> <span class="stReserved">extends</span> <span class="stType">FunSpec</span> <span class="stReserved">with</span> <span class="stType">GivenWhenThen</span> {
+<br />  describe(<span class="stQuotedString">"A Stack"</span>) {
+<br />    it(<span class="stQuotedString">"should pop values in last-in-first-out-order"</span>) {
+<br />      given(<span class="stQuotedString">"a non-empty stack"</span>)
+      <span class="stReserved">val</span> stack = <span class="stReserved">new</span> <span class="stType">Stack[Int]</span>
+      stack.push(<span class="stLiteral">1</span>)
+      stack.push(<span class="stLiteral">2</span>)
+      <span class="stReserved">val</span> oldSize = stack.size
+<br />      when(<span class="stQuotedString">"pop is invoked on the stack"</span>)
+      <span class="stReserved">val</span> result = stack.pop()
+<br />      then(<span class="stQuotedString">"the most recently pushed element should be returned"</span>)
+      assert(result === <span class="stLiteral">2</span>)
+<br />      and(<span class="stQuotedString">"the stack should have one less item than before"</span>)
+      assert(stack.size === oldSize - <span class="stLiteral">1</span>)
+    }
+<br />    it(<span class="stQuotedString">"should throw NoSuchElementException if an empty stack is popped"</span>) {
+<br />      given(<span class="stQuotedString">"an empty stack"</span>)
+      <span class="stReserved">val</span> emptyStack = <span class="stReserved">new</span> <span class="stType">Stack[String]</span>
+<br />      when(<span class="stQuotedString">"pop is invoked on the stack"</span>)
+      then(<span class="stQuotedString">"NoSuchElementException should be thrown"</span>)
+      intercept[<span class="stType">NoSuchElementException</span>] {
+        emptyStack.pop()
+      }
+<br />      and(<span class="stQuotedString">"the stack should still be empty"</span>)
+      assert(emptyStack.isEmpty)
+    }
+  }
+}
+</pre>
+
+<p>
+Were you to run this <code>StackSpec</code> in the Scala interpreter, you would see:
+</p>
+
+<pre class="stREPL">
+<span class="stGreen">A Stack
+- should pop values in last-in-first-out-order
+  + Given a non-empty stack 
+  + When pop is invoked on the stack 
+  + Then the most recently pushed element should be returned 
+  + And the stack should have one less item than before 
+- should throw NoSuchElementException if an empty stack is popped
+  + Given an empty stack 
+  + When pop is invoked on the stack 
+  + Then NoSuchElementException should be thrown 
+  + And the stack should still be empty 
+</pre>
+
+<p>
+ScalaTest provides many traits that facilitate BDD style: Compared to <a href="@latestScaladoc/#org.scalatest.FunSpec"><code>Spec</code></a>,
+<a href="@latestScaladoc/#org.scalatest.WordSpec"><code>WordSpec</code></a> and <a href="@latestScaladoc/#org.scalatest.FlatSpec"><code>FlatSpec</code></a> provide more gramatical structure (<em>e.g.</em>,
+test names must include <code>should</code>, <code>can</code>, or <code>must</code>), whereas
+<a href="@latestScaladoc/#org.scalatest.FreeSpec"><code>FreeSpec</code></a> gives complete freedom to the writer. Other BDD traits facilitate specific kinds of
+testing: <a href="@latestScaladoc/#org.scalatest.FeatureSpec"><code>FeatureSpec</code></a>'s syntax
+is geared towards acceptance, integration, and functional testing, and <a href="@latestScaladoc/#org.scalatest.PropSpec"><code>PropSpec</code></a>
+is geared towards property-based testing.
+</p>
+
+<p>
+Next, learn about <a href="/user_guide/property_based_testing">property-based testing</a>.
+</p>
+</div>
+}

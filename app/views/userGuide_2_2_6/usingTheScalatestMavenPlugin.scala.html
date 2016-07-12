@@ -1,0 +1,260 @@
+@*
+ * Copyright 2010-2016 Artima, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *@
+
+@userGuide.userGuidePage("Using the ScalaTest Maven plugin") {
+<div style="text-align: left">
+
+<h1>Using the ScalaTest Maven plugin</h1>
+
+<p>
+The ScalaTest Maven plugin allows you to run ScalaTest tests through Maven without requiring <code>@@RunWith(classOf[JUnitRunner])</code> annotations
+and access all functionality of the ScalaTest <code>Runner</code>, including parallel execution and multiple reporters.
+</p>
+
+<ul>
+<li>group id: org.scalatest</li>
+<li>artifact id: scalatest-maven-plugin</li>
+<li>version: 1.0</li>
+</ul>
+
+<p>
+To use the ScalaTest Maven plugin, you need to disable SureFire and enable ScalaTest.
+Here's an example of how to do this in your pom.xml:
+</p>
+
+<pre>
+&lt;!-- disable surefire -- &gt;
+&lt;plugin&gt;
+  &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+  &lt;artifactId&gt;maven-surefire-plugin&lt;/artifactId&gt;
+  &lt;version&gt;2.7&lt;/version&gt;
+  &lt;configuration&gt;
+    &lt;skipTests&gt;true&lt;/skipTests&gt;
+  &lt;/configuration&gt;
+&lt;/plugin&gt;
+&lt;!-- enable scalatest -- &gt;
+&lt;plugin&gt;
+  &lt;groupId&gt;org.scalatest&lt;/groupId&gt;
+  &lt;artifactId&gt;scalatest-maven-plugin&lt;/artifactId&gt;
+  &lt;version&gt;1.0&lt;/version&gt;
+  &lt;configuration&gt;
+    &lt;reportsDirectory&gt;${project.build.directory}/surefire-reports&lt;/reportsDirectory&gt;
+    &lt;junitxml&gt;.&lt;/junitxml&gt;
+    &lt;filereports&gt;WDF TestSuite.txt&lt;/filereports&gt;
+  &lt;/configuration&gt;
+  &lt;executions&gt;
+    &lt;execution&gt;
+      &lt;id&gt;test&lt;/id&gt;
+      &lt;goals&gt;
+        &lt;goal&gt;test&lt;/goal&gt;
+      &lt;/goals&gt;
+    &lt;/execution&gt;
+  &lt;/executions&gt;
+&lt;/plugin&gt;
+</pre>
+
+<p>
+The ScalaTest Maven plugin contains two "mojos". The <em>test</em> mojo is for "mvn test" commands, and the reporter mojo is for "mvn site" commands.
+Here are the configuration parameters.
+</p>
+
+<table style="border-collapse: collapse; border: 1px solid black">
+<tr>
+<th colspan="2" class="quickref">Configuration options</th>
+</tr>
+
+<tr>
+<tr>
+<td class="quickref"><code>runpath</code></td>
+<td class="quickref">
+Comma separated list of additional elements to be added
+to the ScalaTest runpath. <code>project.build.outputDirectory</code> and
+<code>project.build.testOutputDirectory</code> are included by default
+     </td>
+</tr>
+
+<tr>
+<td class="quickref"><code>suites</code></td>
+<td class="quickref">Comma separated list of suites to be executed</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>tagsToInclude</code></td>
+<td class="quickref">Comma separated list of tags to include</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>tagsToExclude</code></td>
+<td class="quickref">Comma separated list of tags to exclude</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>config</code></td>
+<td class="quickref">Comma separated list of configuration parameters to pass to ScalaTest.
+The parameters must be of the format &lt;key&gt;=&lt;value&gt;: <em>e.g.</em>, <code>foo=bar,monkey=donkey</code></td>
+</tr>
+
+<tr>
+<td class="quickref"><code>parallel</code></td>
+<td class="quickref">Set to true to run suites in parallel</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>membersOnlySuites</code></td>
+<td class="quickref">Comma separated list of packages containing suites to execute</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>wildcardSuites</code></td>
+<td class="quickref">Comma separated list of wildcard suite names to execute</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>testNGConfigFiles</code></td>
+<td class="quickref">Comma separated list of testNG xml files to execute</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>jUnitClasses</code></td>
+<td class="quickref">Comma separated list of JUnit test class names to execute</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>forkMode</code></td>
+<td class="quickref">Option to specify the forking mode. Can be "never" or "once". Surefire's "always" option, which would
+fork for each test-class, may be supported later.</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>argLine</code></td>
+<td class="quickref">Option to specify additional JVM options to pass to the forked process.</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>environmentVariables</code></td>
+<td class="quickref">Additional environment variables to pass to the forked process.</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>systemProperties</code></td>
+<td class="quickref">Additional system properties to pass to the forked process.</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>debugForkedProcess</code></td>
+<td class="quickref">
+Option to specify whether the forked process should wait at startup for a remote debugger to attach.
+If set to <code>true</code>, the forked process will suspend at startup and wait for a remote
+debugger to attach to the configured port.
+</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>debugArgLine</code></td>
+<td class="quickref">JVM options to pass to the forked process when <code>debugForkedProcess</code> is true.
+     If set to a non-empty value, the standard debug arguments are replaced by the specified arguments.
+     This allows customization of how remote debugging is done, without having to reconfigure the JVM
+     options in <code>argLine</code>.</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>debuggerPort</code></td>
+<td class="quickref">Port to listen on when debugging the forked process. The default value is 5005.</td> 
+</tr>
+
+<tr>
+<td class="quickref"><code>forkedProcessTimeoutInSeconds</code></td>
+<td class="quickref">Timeout in seconds to allow the forked process to run before killing it and failing the test run.
+If set to 0, process never times out. The default value is 0.</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>logForkedProcessCommand</code></td>
+<td class="quickref">Whether or not to log the command used to launch the forked process. The default value is false.</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>reportsDirectory</code></td>
+<td class="quickref">(TestMojo only) Output directory in which ScalaTest file reports should be written to.  Passed to ScalaTest via the -f argument.</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>skipTests</code></td>
+<td class="quickref">(TestMojo only) Set to true to skip execution of tests.</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>testFailureIgnore</code></td>
+<td class="quickref">(TestMojo only) Set to true to avoid failing the build when tests fail</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>filereports</code></td>
+<td class="quickref">(TestMojo only) Comma separated list of filereporters. A filereporter consists of an optional
+configuration and a mandatory filename, separated by whitespace: <em>e.g.</em>, <code>all.txt,XE ignored_and_pending.txt</code>
+For more info on configuring reporters, see the scalatest documentation.</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>reporters</code></td>
+<td class="quickref">(TestMojo only) Comma separated list of reporters. A reporter consist of an optional configuration
+and a mandatory reporter classname, separated by whitespace. The reporter classname
+must be the fully qualified name of a class extending <code>org.scalatest.Reporter</code>:
+<em>e.g.</em>, <code>C my.SuccessReporter,my.EverythingReporter</code>
+For more info on configuring reporters, see the ScalaTest documentation.</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>junitxml</code></td>
+<td class="quickref">(TestMojo only) Comma separated list of junitxml. A junitxml consists of 
+a mandatory directory for the xml files.
+For more info on configuring reporters, see the scalatest documentation.</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>stdout</code></td>
+<td class="quickref">(TestMojo only) Configuration for logging to stdout. (This logger is always enabled)
+For more info on configuring reporters, see the scalatest documentation.</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>stderr</code></td>
+<td class="quickref">(TestMojo only) Configuration for logging to stderr. It is disabled by default, but will be enabled
+when configured. Empty configuration just means enable.
+For more info on configuring reporters, see the scalatest documentation.</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>reportingOutputDirectory</code></td>
+<td class="quickref">(ReporterMojo only) Directory where reports will go.</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>fileReporterOptions</code></td>
+<td class="quickref">(ReporterMojo only) Consists of an optional configuration parameters for the file reporter.
+For more info on configuring reporters, see the ScalaTest documentation.</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>spanScaleFactor</code></td>
+<td class="quickref">Optional span scale factor, if not specified it will be 1.0.</td>
+</tr>
+
+</table>
+
+</div>
+}
+

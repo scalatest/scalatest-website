@@ -22,15 +22,10 @@
 @combinedReleaseNotesPage("Scalactic/ScalaTest 3.0.0 Release Notes") {
 <div style="text-align: left">
 
-<h1>ScalaTest/Scalactic 3.0.0-RC4 Release Notes</h1>
+<h1>ScalaTest/Scalactic 3.0.0 Release Notes</h1>
 
 <p>
-<strong><em>Note: Eventually this will be the home for the 3.0.0 final release notes. These release notes are written
-from the perspective of the final release, but with 3.0.0 replaced with 3.0.0-RC4, the current release candidate version.</em></strong>
-</p>
-
-<p>
-Version 3.0.0-RC4 is a major upgrade to ScalaTest and Scalactic, the culmination of over a year of effort. Although it
+Version 3.0.0 is a major upgrade to ScalaTest and Scalactic, the culmination of over a year of effort. Although it
 includes many enhancements, we kept a close eye on compatibility with existing ScalaTest/Scalactic 2.x code.
 We also tried hard to preserve what people liked about both ScalaTest and Scalactic: that it is simple, the code is clean
 and clear, it's fully documented, and because of very thorough testing, it &ldquo;just works.&rdquo; 
@@ -45,7 +40,7 @@ For information on how to use <a href="http://www.scalactic.org/">Scalactic</a> 
 <h2>Highlights</h2>
 
 <p>
-The most significant enhancement to ScalaTest and Scalactic in the 3.0.0-RC4 release is that they now fully support Scala.js.
+The most significant enhancement to ScalaTest and Scalactic in the 3.0.0 release is that they now fully support Scala.js.
 The advent of Scala.js represented a major, completely unforeseen change in requirements for ScalaTest.
 As a result, Scala.js support required a
 very large number of changes to the ScalaTest's eight-year old codebase. Fortunately, the changes
@@ -54,14 +49,14 @@ JVM) should break because of the addition of Scala.js support.
 </p>
 
 <p>
-ScalaTest and Scalactic 3.0.0-RC4 include a few changes that could in theory break 2.2.x user code, but we expect
+ScalaTest and Scalactic 3.0.0 include a few changes that could in theory break 2.2.x user code, but we expect
 the number of users and amount of code affected to be small in practice. However, because features that have been deprecated
 for at least a year (primarily features that were deprecated in October 2013, when 2.0.0 was released) have been removed,
 we recommend you clear any deprecation warnings
 given by ScalaTest and Scalactic version 2.2.6 prior to upgrading.
 For many users, upgrading to ScalaTest
-and/or Scalactic 3.0.0-RC4 should require only a clean build with the new version.
-ScalaTest 3.0.0-RC4 does include several new deprecations as well as the deprecation expirations. For more detail, see the
+and/or Scalactic 3.0.0 should require only a clean build with the new version.
+ScalaTest 3.0.0 does include several new deprecations as well as the deprecation expirations. For more detail, see the
 <a href="#breakingChanges">breaking changes</a>, <a href="#newDeprecations">new deprecations</a>, and the <a href="#expiredDeprecations">expired deprecations</a> sections below.
 </p>
 
@@ -75,7 +70,7 @@ need to do is add the plugin to your project. For more details, see <a href="/su
 -->
 
 <p>
-Here's a list of the main enhancements in Scalactic 3.0.0-RC4:
+Here's a list of the main enhancements in Scalactic 3.0.0:
 </p>
 
 <ul>
@@ -105,7 +100,7 @@ method. Also added <a href="@{milestoneScalacticScaladoc}/index.html#org.scalact
 </ul>
 
 <p>
-Here's a list of the main enhancements in ScalaTest 3.0.0-RC4:
+Here's a list of the main enhancements in ScalaTest 3.0.0:
 </p>
 
 <ul>
@@ -137,12 +132,12 @@ just reports the first row that fails and short circuits).</li>
 <li>Modified ScalaTest's <a href="@{milestoneScaladoc}/#org.scalatest.BeforeAndAfterEach"><code>BeforeAndAfterEach</code></a> and <a href="@{milestoneScaladoc}/#org.scalatest.BeforeAndAfter"><code>BeforeAndAfter</code></a> so that it will interact properly and
 consistently when mixed in either before and after <a href="@{milestoneScaladoc}/#org.scalatest.OneInstancePerTest"><code>OneInstancePerTest</code></a>.</li><!--scaladoc this behavior-->
 <li>In 2.x releases of ScalaTest, the ScalaTest JAR file included a copy of the Scalactic library, which ScalaTest uses.
-In 3.0.0-RC4 the ScalaTest JAR file contains only ScalaTest, and has a required dependency on Scalactic. 3.0.0-RC4 includes
+In 3.0.0 the ScalaTest JAR file contains only ScalaTest, and has a required dependency on Scalactic. 3.0.0 includes
 a new artifact, scalatest-app, which includes both ScalaTest and Scalactic. The purpose of scalatest-app is to suppose ScalaTest
 being run as an application, such as on the <a href="/quick_start">Quick Start</a> page.</li>
 <li>Added implicit parameters of type <a href="@{milestoneScalacticScaladoc}/index.html#org.scalactic.Prettifier"><code>Prettifier</code></a> to <a href="@{milestoneScaladoc}/index.html#org.scalatest.Assertions"><code>Assertions</code></a>, <a href="@{milestoneScaladoc}/index.html#org.scalatest.Matchers"><code>Matchers</code></a>, and other classes that produce error messages. This makes it easy to customize the string representation of a type in an error message, for example, to reduce the size of string representations of large collections.</li>
 <li>Added implicit parameters of type <a href="@{milestoneScalacticScaladoc}/index.html#org.scalactic.source.Position"><code>source.Position</code></a> to
-<a href="@{milestoneScaladoc}/index.html#org.scalatest.Assertions"><code>Assertions</code></a>, <a href="@{milestoneScaladoc}/index.html#org.scalatest.Matchers"><code>Matchers</code></a>, and other classes that produce error messages. This allowed us to replace the JVM-specific technique we used previously to determine the file name and line number of the offending line of test code prior to 3.0, which involved inspecting the stack. This technique did not work at all when running Scala.js tests on Node.js or Phantom.js, and allows us on the JVM to access an additional piece of information that wasn't available when inspecting the stack: the full path to the source file. The full path was desired for Ensime and will eventually make it out to the reporters (we didn't have time to get it to the reporters in 3.0.0-RC4). This also makes it very simple for users to define custom assertions and get the right stack depth (really, the right filename and line number). We've wanted to solve that problem for a very long time, and users have occasionally requested it. For example, it was requested for the scalaz-scalatest library that created custom ScalaTest assertions for Scalaz.</li>
+<a href="@{milestoneScaladoc}/index.html#org.scalatest.Assertions"><code>Assertions</code></a>, <a href="@{milestoneScaladoc}/index.html#org.scalatest.Matchers"><code>Matchers</code></a>, and other classes that produce error messages. This allowed us to replace the JVM-specific technique we used previously to determine the file name and line number of the offending line of test code prior to 3.0, which involved inspecting the stack. This technique did not work at all when running Scala.js tests on Node.js or Phantom.js, and allows us on the JVM to access an additional piece of information that wasn't available when inspecting the stack: the full path to the source file. The full path was desired for Ensime and will eventually make it out to the reporters (we didn't have time to get it to the reporters in 3.0.0). This also makes it very simple for users to define custom assertions and get the right stack depth (really, the right filename and line number). We've wanted to solve that problem for a very long time, and users have occasionally requested it. For example, it was requested for the scalaz-scalatest library that created custom ScalaTest assertions for Scalaz.</li>
 <li>Added optional string <code>failedCodeFilePathname</code> field to <code>StackDepth</code>, which is mixed into "stack depth exceptions." Changed
 all stack depth exceptions (subclasses of <a href="@{milestoneScaladoc}/index.html#org.scalatest.exceptions.StackDepthException"><code>StackDepthException</code></a> and <a href="@{milestoneScaladoc}/index.html#org.scalatest.junit.JUnitTestFailedError"><code>JUnitTestFailedError</code></a>) so that the constructor takes
 either a <code>Position</code> or a stack depth function: <code>Either[Position, StackDepthException =&gt; Int]</code>. In most situations a
@@ -160,10 +155,10 @@ ENSIME to allow text editors (such as Emacs, Vim, or Sublime) to click and hop t
 <a name="breakingChanges"></a>
 <h2>Breaking changes</h2>
 
-<p>1) The main breaking change in Scalactic in 3.0.0-RC4 is that we dropped an unnecessary type parameter in <a href="@{milestoneScalacticScaladoc}/index.html#org.scalactic.Good"><code>Good</code></a> and <a href="@{milestoneScalacticScaladoc}/index.html#org.scalactic.Bad"><code>Bad</code></a>, specifying
+<p>1) The main breaking change in Scalactic in 3.0.0 is that we dropped an unnecessary type parameter in <a href="@{milestoneScalacticScaladoc}/index.html#org.scalactic.Good"><code>Good</code></a> and <a href="@{milestoneScalacticScaladoc}/index.html#org.scalactic.Bad"><code>Bad</code></a>, specifying
 <code>Nothing</code> for that now missing type parameter
 when extending <a href="@{milestoneScalacticScaladoc}/index.html#org.scalactic.Or"><code>Or</code></a>. There should be no breaking
-changes in ScalaTest 3.0.0-RC4 other than expired deprecations.</p>
+changes in ScalaTest 3.0.0 other than expired deprecations.</p>
 
 <p>
 2) Because we started using <a href="@{milestoneScalacticScaladoc}/index.html#org.scalactic.Prettifier"><code>Prettifier</code></a> as an implicit type in 3.0, we dropped its inheritance relationship with
@@ -190,7 +185,7 @@ the default <code>Interuptor</code> (referenced from <code>defaultInterruptor</c
 </p>
 
 <p>
-4) In 3.0.0-RC4, the <code>withFixture</code> method has been moved from
+4) In 3.0.0, the <code>withFixture</code> method has been moved from
 <a href="@{milestoneScaladoc}/index.html#org.scalatest.Suite"><code>Suite</code></a> to a new trait, <a href="@{milestoneScaladoc}/index.html#org.scalatest.TestSuite"><code>TestSuite</code></a>. This was done to make room for a <code>withFixture</code> method with a different signature in
 <a href="@{milestoneScaladoc}/index.html#org.scalatest.AsyncTestSuite"><code>AsyncTestSuite</code></a>. If you factored out a <code>withFixture</code>
 method into a separate "suite mixin" trait, you'll need to change <code>"Suite"</code> to <code>"TestSuite"</code> and <code>"SuiteMixin"</code>
@@ -266,7 +261,7 @@ Also we changed the defaults of the scalacheck config.
 <li>Removed the <code>before</code>/<code>afterEach(TestData)</code> methods in <a href="http://doc.scalatest.org/2.2.6/#org.scalatest.BeforeAndAfterEach"><code>BeforeAndAfterEach</code></a> (deprecated in ScalaTest 2.0) in favor of <a href="http://doc.scalatest.org/2.2.6/#org.scalatest.BeforeAndAfterEachTestData"><code>BeforeAndAfterEachTestData</code></a>.</li>
 <li>Removed <code>org.scalatest.FailureOf</code> (deprecated in ScalaTest 2.0) in favor of <a href="http://doc.scalatest.org/2.2.6/#org.scalatest.OutcomeOf"><code>OutcomeOf</code></a>.</li>
 <li>Removed <code>expect</code> and <code>expectResult</code> (deprecated in ScalaTest 2.0) in <a href="http://doc.scalatest.org/2.2.6/#org.scalatest.Assertions"><code>Assertions</code></a> in favor of <code>assertResult</code>.</li>
-<li>Removed the support for using <a href="http://doc.scalatest.org/2.2.6/#org.scalatest.Suite"><code>Suite</code></a> as a style trait (deprecated in ScalaTest 2.0) in favor of <a href="http://doc.scalatest.org/2.2.6/#org.scalatest.Spec"><code>Spec</code></a> (which itself was deprecated in 3.0.0-RC4
+<li>Removed the support for using <a href="http://doc.scalatest.org/2.2.6/#org.scalatest.Suite"><code>Suite</code></a> as a style trait (deprecated in ScalaTest 2.0) in favor of <a href="http://doc.scalatest.org/2.2.6/#org.scalatest.Spec"><code>Spec</code></a> (which itself was deprecated in 3.0.0
 and renamed <a href="@{milestoneScaladoc}/#org.scalatest.refspec.RefSpec"><code>org.scalatest.refspec.RefSpec</code></a>.)</li>
 <li>
 Removed the <code>assert</code> and <code>assume</code> methods whose <code>===</code> and <code>!==</code>

@@ -17,16 +17,25 @@
 @(pagename: String)(body: => Html)
 
 @topImage = {
-
-      <div class="homePageMessage">
-        <img src="@routes.Assets.at("images/scalaTestHeading.gif")" width="700"
-             height="200" alt="ScalaTest: Simply Productive"/>
+      <div class="message">
+        <a class="scalatestLogo" href="/">
+          <img src="@routes.Assets.at("images/scalaTestLogo.gif")"
+               width="400" height="60" alt="ScalaTest"/>
+        </a>
       </div>
-<p style="align: center">
-<span style="font-size: 150%">Just Released - <a href="/release_notes/3.0.0">ScalaTest and Scalactic 3.0.0</a></span>, which includes
-Scala.js support and new async testing styles!</span>
-</p>
 }
 
-@main(pagename, topImage){@body}
+@main(pagename, topImage, "UserGuideContainer") {
+  <table width="100%" cellspacing="10px">
+  <tr valign="top">
+  <td align="left" width="20%">
+  @sidenav(pagename)
+  </td>
+  <td width="80%">
+  @body
+  </td>
+  </tr>
+  </table>
+}
+
 
