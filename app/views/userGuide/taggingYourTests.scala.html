@@ -59,7 +59,7 @@ If you run this version of <code>StackSpec</code> in the Scala interpreter with:
 </p>
 
 <pre class="stREPL">
-scala> (new StackSpec).execute()
+scala&gt; (new StackSpec).execute()
 </pre>
 
 <p>
@@ -78,34 +78,34 @@ It will run only the first test and report that the second test was ignored:
 Each style trait provides a way to tag tests. To tag tests in a <code>FlatSpec</code>, for example,
 you pass objects that extend abstract class <code>org.scalatest.Tag</code> to <code>taggedAs</code>
 just before the <code>in</code>. Class <code>Tag</code> takes one parameter, a string name.
-Here's how you might define tags to mark tests that are slow or require a database:
+Here's how you might define tags to mark tests that require a database:
 </p>
 
 <pre class="stHighlighted">
 <span class="stReserved">import</span> org.scalatest.Tag
-<br /><span class="stReserved">object</span> <span class="stType">SlowTest</span> <span class="stReserved">extends</span> <span class="stType">Tag</span>(<span class="stQuotedString">"com.mycompany.tags.SlowTest"</span>)
-<span class="stReserved">object</span> <span class="stType">DbTest</span> <span class="stReserved">extends</span> <span class="stType">Tag</span>(<span class="stQuotedString">"com.mycompany.tags.DbTest"</span>)
+<br /><span class="stReserved">object</span> <span class="stType">DbTest</span> <span class="stReserved">extends</span> <span class="stType">Tag</span>(<span class="stQuotedString">"com.mycompany.tags.DbTest"</span>)
 </pre>
 
 <p>
-Given these definitions, you could tag <code>FlatSpec</code> tests like this:
+Given this definitions, you could tag <code>FlatSpec</code> tests like this:
 </p>
 
 <pre class="stHighlighted">
 <span class="stReserved">import</span> org.scalatest.FlatSpec
+<span class="stReserved">import</span> org.scalatest.tagobjects.Slow
 <br /><span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> {
-<br />  <span class="stQuotedString">&quot;The Scala language&quot;</span> must <span class="stQuotedString">&quot;add correctly&quot;</span> taggedAs(<span class="stType">SlowTest</span>) in {
+<br />  <span class="stQuotedString">&quot;The Scala language&quot;</span> must <span class="stQuotedString">&quot;add correctly&quot;</span> taggedAs(<span class="stType">Slow</span>) in {
       <span class="stReserved">val</span> sum = <span class="stLiteral">1</span> + <span class="stLiteral">1</span>
       assert(sum === <span class="stLiteral">2</span>)
     }
-<br />  it must <span class="stQuotedString">&quot;subtract correctly&quot;</span> taggedAs(<span class="stType">SlowTest</span>, <span class="stType">DbTest</span>) in {
+<br />  it must <span class="stQuotedString">&quot;subtract correctly&quot;</span> taggedAs(<span class="stType">Slow</span>, <span class="stType">DbTest</span>) in {
     <span class="stReserved">val</span> diff = <span class="stLiteral">4</span> - <span class="stLiteral">1</span>
     assert(diff === <span class="stLiteral">3</span>)
   }
 }
 </pre>
 
-<p>This code marks both tests with the <code>com.mycompany.tags.SlowTest</code> tag,
+<p>This code marks both tests with the <code>org.scalatest.tagobjects.Slow</code> tag,
 and test <code>"The Scala language should subtract correctly"</code> with the <code>com.mycompany.tags.DbTest</code> tag.
 </p>
 
