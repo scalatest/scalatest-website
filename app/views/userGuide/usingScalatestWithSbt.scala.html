@@ -15,6 +15,8 @@
  *@
 
 @import controllers.Application.latestScaladoc
+@import controllers.Application.latestVersion
+@import controllers.Application.latestSuperSafeVersion
 
 @userGuidePage("Using ScalaTest with sbt") {
 <div style="text-align: left">
@@ -23,17 +25,43 @@
 
 <p>
 ScalaTest's <a href="@latestScaladoc/#org.scalatest.tools.Framework"><code>Framework</code></a> supports using ScalaTest from sbt.
-In sbt version 0.10 and higher, simply add a line like this to your project file:
+In sbt version 0.10 and higher, you add ScalaTest to your project in three easy steps.
 </p>
 
-<pre class="stGrayback">
-libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.0" % "test"
+<p>
+1. add this to your project file:
+</p>
+
+<pre class="stHighlighted">
+libraryDependencies += <span class="stQuotedString">"org.scalactic"</span> %% <span class="stQuotedString">"scalactic"</span> % <span class="stQuotedString">"@latestVersion"</span>
+libraryDependencies += <span class="stQuotedString">"org.scalatest"</span> %% <span class="stQuotedString">"scalatest"</span> % <span class="stQuotedString">"@latestVersion"</span> % <span class="stQuotedString">"test"</span>
+</pre>
+
+<p>
+The dependency on <a href="http://www.scalactic.org">Scalactic</a>, ScalaTest's sister library focused on quality through types, is recommended but not required.
+</p>
+
+<p>
+2. We also recommend you also include the <a href="/supersafe">SuperSafe Community Edition</a> Scala compiler plugin, which will flag errors in your ScalaTest (and
+Scalactic) code at compile time, by first adding this line to <code>~/.sbt/0.13/global.sbt</code>:
+</p>
+
+<pre class="stHighlighted">
+resolvers += <span class="stQuotedString">"Artima Maven Repository"</span> at <span class="stQuotedString">"http://repo.artima.com/releases"</span>
+</pre>
+
+<p>
+3. Then adding the following line to <code>project/plugins.sbt</code>:
+</p>
+
+<pre class="stHighlighted">
+addSbtPlugin(<span class="stQuotedString">"com.artima.supersafe"</span> % <span class="stQuotedString">"sbtplugin"</span> % <span class="stQuotedString">"@{latestSuperSafeVersion}"</span>)
 </pre>
 
 <h2>Running Tests</h2>
 
 <p>
-Your test sources files go into <code>src/test/scala</code>. You can run all of them from the sbt console with:
+Your test source files go into <code>src/test/scala</code>. You can run all of them from the sbt console with:
 </p>
 
 <pre class="stGrayback">
@@ -41,7 +69,7 @@ Your test sources files go into <code>src/test/scala</code>. You can run all of 
 </pre>
 
 <p>
-If you want to run particular suites, use <code>test-only</code> and provide their fully qualified names in a space separated list:
+If you want to run particular suites, you can use <code>test-only</code> and provide their fully qualified names in a space separated list:
 </p>
 
 <pre class="stGrayback">
@@ -57,12 +85,17 @@ Or you can specify a glob:
 </pre>
 
 <p>
-To run only test(s) affected by your latest code changes (either in main or test), you can use <code>test-quick</code>:
+To run only tests affected by your latest code changes, either in main or test, you can use <code>test-quick</code>:
 </p>
 
 <pre class="stGrayback">
 &gt; test-quick
 </pre>
+
+<p>
+As with test-only, you can specify a space-separated list of fully qualified names and globs to further reduce the tests
+selected.
+</p>
 
 <h2>Running Suites in Parallel</h2>
 
