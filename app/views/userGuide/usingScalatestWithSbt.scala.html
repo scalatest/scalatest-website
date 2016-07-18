@@ -15,6 +15,8 @@
  *@
 
 @import controllers.Application.latestScaladoc
+@import controllers.Application.latestVersion
+@import controllers.Application.latestSuperSafeVersion
 
 @userGuidePage("Using ScalaTest with sbt") {
 <div style="text-align: left">
@@ -23,15 +25,43 @@
 
 <p>
 ScalaTest's <a href="@latestScaladoc/#org.scalatest.tools.Framework"><code>Framework</code></a> supports using ScalaTest from sbt.
-In sbt version 0.10 and higher, simply add a line like this to your project file:
+In sbt version 0.10 and higher, you add ScalaTest to your project in three easy steps.
 </p>
 
-<pre class="stGrayback">
-libraryDependencies += "org.scalatest" % "scalatest_2.10" % "2.0" % "test"
+<p>
+1. add this to your project file:
+</p>
+
+<pre class="stHighlighted">
+libraryDependencies += <span class="stQuotedString">"org.scalactic"</span> %% <span class="stQuotedString">"scalactic"</span> % <span class="stQuotedString">"@latestVersion"</span>
+libraryDependencies += <span class="stQuotedString">"org.scalatest"</span> %% <span class="stQuotedString">"scalatest"</span> % <span class="stQuotedString">"@latestVersion"</span> % <span class="stQuotedString">"test"</span>
 </pre>
 
 <p>
-Your test sources files go into <code>src/test/scala</code>. You can run all of them from the sbt console with:
+The dependency on <a href="http://www.scalactic.org">Scalactic</a>, ScalaTest's sister library focused on quality through types, is recommended but not required.
+</p>
+
+<p>
+2. We also recommend you also include the <a href="/supersafe">SuperSafe Community Edition</a> Scala compiler plugin, which will flag errors in your ScalaTest (and
+Scalactic) code at compile time, by first adding this line to <code>~/.sbt/0.13/global.sbt</code>:
+</p>
+
+<pre class="stHighlighted">
+resolvers += <span class="stQuotedString">"Artima Maven Repository"</span> at <span class="stQuotedString">"http://repo.artima.com/releases"</span>
+</pre>
+
+<p>
+3. Then adding the following line to <code>project/plugins.sbt</code>:
+</p>
+
+<pre class="stHighlighted">
+addSbtPlugin(<span class="stQuotedString">"com.artima.supersafe"</span> % <span class="stQuotedString">"sbtplugin"</span> % <span class="stQuotedString">"@{latestSuperSafeVersion}"</span>)
+</pre>
+
+<h2>Running Tests</h2>
+
+<p>
+Your test source files go into <code>src/test/scala</code>. You can run all of them from the sbt console with:
 </p>
 
 <pre class="stGrayback">
@@ -39,7 +69,7 @@ Your test sources files go into <code>src/test/scala</code>. You can run all of 
 </pre>
 
 <p>
-If you want to run particular suites, use <code>test-only</code> and provide their fully qualified names in a space separated list:
+If you want to run particular suites, you can use <code>test-only</code> and provide their fully qualified names in a space separated list:
 </p>
 
 <pre class="stGrayback">
@@ -55,33 +85,60 @@ Or you can specify a glob:
 </pre>
 
 <p>
-You can configure the output shown when running with sbt in four ways: 1) turn off color, 2) show
-short stack traces, 3) full stack traces, and 4) show durations for everything. To do so you must
-pass a <code>-o</code> argument to ScalaTest, and after the -o, place any combination of:
-</p>
-
-<ul>
-<li>D - show durations</li>
-<li>S - show short stack traces</li>
-<li>F - show full stack traces</li>
-<li>W - without color</li>
-</ul>
-
-<p>
-For example, "-oDF" would show full stack traces and durations (the amount
-of time spent in each test).
-</p>
-
-<p>
-To pass arguments from sbt to ScalaTest you can either add test options globally, like this:
+To run only tests affected by your latest code changes, either in main or test, you can use <code>test-quick</code>:
 </p>
 
 <pre class="stGrayback">
-testOptions in Test += Tests.Argument("-oD")
+&gt; test-quick
 </pre>
 
 <p>
-Or if you are using more than one test framework, like this:
+As with test-only, you can specify a space-separated list of fully qualified names and globs to further reduce the tests
+selected.
+</p>
+
+<h2>Running Suites in Parallel</h2>
+
+<p>
+With the proliferation of multi-core architectures, and the often parallelizable nature of tests, it is common to run tests in parallel.  SBT by default
+runs suites in parallel, using its own thread pool.  In case you need to run you suites in serial, you can add the following to your sbt build file:
+</p>
+
+<pre class="stGrayback">
+parallelExecution in Test := false
+</pre>
+
+<p>
+ScalaTest uses its own thread pool to run <code>ParallelTestExecution</code> suites, its pool size is determined by the following formula:
+</p>
+
+<pre class="stGrayback">
+Pool Size = Available Processors x 2
+</pre>
+
+<h2>Showing Test Classpath</h2>
+
+To see classpath that sbt uses to lookup for test classes, you can use the following command:
+
+<pre class="stGrayback">
+&gt; show test:full-classpath
+</pre>
+
+<h2>Buffered Output</h2>
+
+<p>
+By default, logging is buffered for each suite until all tests for that suite complete. This leads to test results within a
+suite are not shown until all tests in the suite are completed.  This can be disabled by setting logBuffered:
+</p>
+
+<pre class="stGrayback">
+logBuffered in Test := false
+</pre>
+
+<h2>Specifying ScalaTest Arguments</h2>
+
+<p>
+You can pass arguments to ScalaTest by using <code>testOptions</code> and <code>Tests.Argument</code> in your sbt build file:
 </p>
 
 <pre class="stGrayback">
@@ -89,11 +146,176 @@ testOptions in Test += Tests.Argument(TestFrameworks.ScalaTest, "-oD")
 </pre>
 
 <p>
-You can also pass arguments for individual runs by placing them after <code>--</code>, like this:
+The <code>-oD</code> argument above will be pass to ScalaTest for all test runs, you can also pass arguments for individual runs by using
+<code>test-only</code> and placing them after <code>--</code>, like this:
 </p>
 
 <pre class="stGrayback">
 &gt; test-only org.acme.RedSuite -- -oD
+</pre>
+
+<h2>Using Reporters</h2>
+
+<p>
+You can use ScalaTest's reporters by specifying the passing the following arguments to ScalaTest:
+</p>
+
+<ul>
+  <li><code>-f[configs...] &lt;filename&gt;</code> - causes test results to be written to the named file</li>
+  <li><code>-u &lt;directory&gt;</code> - causes test results to be written to junit-style xml files in the named directory</li>
+  <li><code>-h &lt;directory&gt; [-Y <CSS file>]</code> - causes test results to be written to HTML files in the named directory, optionally included the specified CSS file</li>
+  <li><code>-a &lt;number of files to archive&gt;</code> - causes specified number of old summary and durations files to be archived (in summaries/ and durations/ subdirectories) for dashboard reporter (default is two)</li>
+  <li><code>-o[configs...]</code> - causes test results to be written to the standard output</li>
+  <li><code>-e[configs...]</code> - causes test results to be written to the standard error</li>
+  <li><code>-k &lt;host&gt; &lt;port&gt;</code> - causes test results to be written to socket in the named host and port number, using XML format</li>
+  <li><code>-K &lt;host&gt; &lt;port&gt;</code> - causes test results to be written to socket in the named host and port number, using Java object binary format</li>
+  <li><code>-C[configs...] &lt;reporterclass&gt;</code> - causes test results to be reported to an instance of the specified fully qualified Reporter class name</li>
+</ul>
+
+<p>
+Each reporter argument on the command line can include configuration characters. Configuration characters are specified immediately following the <code>-o</code>, <code>-e</code>, <code>-f</code>, or <code>-C</code>. The following configuration characters, which cause reports to be dropped, are valid for any reporter:
+</p>
+
+<ul>
+  <li><code>N</code> - drop TestStarting events</li>
+  <li><code>C</code> - drop TestSucceeded events</li>
+  <li><code>X</code> - drop TestIgnored events</li>
+  <li><code>E</code> - drop TestPending events</li>
+  <li><code>H</code> - drop SuiteStarting events</li>
+  <li><code>L</code> - drop SuiteCompleted events</li>
+  <li><code>O</code> - drop InfoProvided events</li>
+  <li><code>P</code> - drop ScopeOpened events</li>
+  <li><code>Q</code> - drop ScopeClosed events</li>
+  <li><code>R</code> - drop ScopePending events</li>
+  <li><code>M</code> - drop MarkupProvided events</li>
+</ul>
+
+<p>
+ A dropped event will not be delivered to the reporter at all. So the reporter will not know about it and therefore not present information about the event in its report. For example, if you specify <code>-oN</code>, the standard output reporter will never receive any <code>TestStarting</code> events and will therefore never report them. The purpose of these configuration parameters is to allow users to selectively remove events they find add clutter to the report without providing essential information.
+</p>
+
+<p>
+The following reporter configuration parameters may additionally be used on standard output (<code>-o</code>), standard error (<code>-e</code>), and file (<code>-f</code>) reporters:
+</p>
+
+<ul>
+  <li><code>W</code> - without color</li>
+  <li><code>D</code> - show all durations</li>
+  <li><code>S</code> - show short stack traces</li>
+  <li><code>F</code> - show full stack traces</li>
+  <li><code>U</code> - unformatted mode</li>
+  <li><code>I</code> - show reminder of failed and canceled tests without stack traces</li>
+  <li><code>T</code> - show reminder of failed and canceled tests with short stack traces</li>
+  <li><code>G</code> - show reminder of failed and canceled tests with full stack traces</li>
+  <li><code>K</code> - exclude TestCanceled events from reminder</li>
+</ul>
+
+<p>
+If you specify a <code>W</code>, <code>D</code>, <code>S</code>, <code>F</code>, <code>U</code>, <code>R</code>, <code>T</code>, <code>G</code>, or <code>K</code> for any reporter other than standard output, standard error, or file reporters, ScalaTest will complain with an error message and not perform the run.
+</p>
+
+<p>
+Configuring a standard output, error, or file reporter with <code>D</code> will cause that reporter to print a duration for each test and suite. When running in the default mode, a duration will only be printed for the entire run.
+</p>
+
+<p>
+Configuring a standard output, error, or file reporter with <code>F</code> will cause that reporter to print full stack traces for all exceptions, including <code>TestFailedExceptions</code>. Every <code>TestFailedException</code> contains a stack depth of the line of test code that failed so that users won't need to search through a stack trace to find it. When running in the default, mode, these reporters will only show full stack traces when other exceptions are thrown, such as an exception thrown by production code. When a <code>TestFailedException</code> is thrown in default mode, only the source filename and line number of the line of test code that caused the test to fail are printed along with the error message, not the full stack trace.
+</p>
+
+<p>
+The <code>U</code> unformatted configuration removes some formatting from the output and adds verbosity. The purpose of unformatted (or, "ugly") mode is to facilitate debugging of parallel runs. If you have tests that fail or hang during parallel runs, but succeed when run sequentially, unformatted mode can help. In unformatted mode, you can see exactly what is happening when it is happening. Rather than attempting to make the output look as pretty and human-readable as possible, unformatted mode will just print out verbose information about each event as it arrives, helping you track down the problem you are trying to debug.
+</p>
+
+<p>
+By default, a standard output, error, or file reporter inserts ansi escape codes into the output printed to change and later reset terminal colors. Information printed as a result of run starting, completed, and stopped events is printed in cyan. Information printed as a result of ignored or pending test events is shown in yellow. Information printed as a result of test failed, suite aborted, or run aborted events is printed in red. All other information is printed in green. The purpose of these colors is to facilitate speedy reading of the output, especially the finding of failed tests, which can get lost in a sea of passing tests. Configuring a standard output, error, or file reporter into without-color mode (<code>W</code>) will turn off this behavior. No ansi codes will be inserted.
+</p>
+
+<p>
+The <code>R</code>, <code>T</code>, and <code>G</code> options enable "reminders" of failed and, optionally, canceled tests to be printed at the end of the summary. This minimizes or eliminates the need to search and scroll backwards to find out what tests failed or were canceled. For large test suites, the actual failure message could have scrolled off the top of the buffer, making it otherwise impossible to see what failed. You can configure the detail level of the stack trace for regular reports of failed and canceled tests independently from that of reminders. To set the detail level for regular reports, use <code>S</code> for short stack traces, <code>F</code> for full stack traces, or nothing for the default of no stack trace. To set the detail level for reminder reports, use <code>T</code> for reminders with short stack traces, <code>G</code> for reminders with full stack traces in reminders, or <code>R</code> for reminders with no stack traces. If you wish to exclude reminders of canceled tests, i.e., only see reminders of failed tests, specify <code>K</code> along with one of <code>R</code>, <code>T</code>, or <code>G</code>, as in "<code>-oRK</code>".
+</p>
+
+<p>
+For example, to run a suite using two reporters, the file reporter configured to present every reported event and a standard error reporter configured to present everything but test starting, test succeeded, test ignored, test pending, suite starting, suite completed, and info provided events, you would use the following in your sbt build file:
+</p>
+
+<pre class="stGrayback">
+testOptions in Test += Tests.Argument(TestFrameworks.ScalaTest, "-f", "result.txt", "-eNDXEHLO")
+</pre>
+
+<p>
+Note that no white space is allowed between the reporter option and the initial configuration parameters. So "-e NDXEHLO" will not work, "-eNDXEHLO" will work.
+</p>
+
+<h2>Include and Exclude Tests with Tags</h2>
+
+<p>
+You can specify tag names of tests to include or exclude from a run. To specify tags to include, use <code>-n</code> followed by a list of tag names to include.  Similarly, to specify tags to exclude, use <code>-l</code> followed by a list of tag names to exclude. If tags to include is not specified, then all tests except those mentioned in the tags to exclude (and in the org.scalatest.Ignore tag), will be executed. (In other words, the absence of a <code>-n</code> option is like a wildcard, indicating all tests be included.) If tags to include is specified, then only those tests whose tags are mentioned in the argument following <code>-n</code> and not mentioned in the tags to exclude, will be executed. For more information on test tags, see the <a href="http://www.artima.com/docs-scalatest-3.0.0/index.html#org.scalatest.Suite">documentation for Suite</a>. Here are some examples:
+</p>
+
+<pre class="stGrayback">
+&gt; test-only org.acme.* -- -n CheckinTests
+&gt; test-only org.acme.* -- -n FunctionalTests -l org.scalatest.tags.Slow
+&gt; test-only org.acme.* -- -n "CheckinTests FunctionalTests" -l "org.scalatest.tags.Slow org.scalatest.tags.Network"
+</pre>
+
+<h2>Specifying Chosen Styles</h2>
+
+<p>
+ You can optionally specify chosen styles for a ScalaTest run. ScalaTest supports different styles of testing so that different teams can use the style or styles that best suits their situation and culture. But in any one project, it is recommended you decide on one main style for unit testing, and consistently use only that style for unit testing throughout the project. If you also have integration tests in your project, you may wish to pick a different style for them than you are using for unit testing. You may want to allow certain styles to be used in special testing situations on a project, but in general, it is best to minimize the styles used in any given project to a few, or one.
+</p>
+
+<p>
+ To facilitate the communication and enforcement of a team's style choices for a project, you can specify the chosen styles in your project build. If chosen styles is defined, ScalaTest style traits that are not among the chosen list will abort with a message complaining that the style trait is not one of the chosen styles. The style name for each ScalaTest style trait is its fully qualified name. For example, to specify that <code>org.scalatest.FunSpec</code> as your chosen style you'd pass this to ScalaTest in your sbt build file:
+</p>
+
+<pre class="stGrayback">
+testOptions in Test += Tests.Argument(TestFrameworks.ScalaTest, "-y", "org.scalatest.FunSpec")
+</pre>
+
+<p>
+If you wanted <code>org.scalatest.FunSpec</code> as your main unit testing style, but also wanted to allow <code>PropSpec</code> for test matrixes and FeatureSpec for integration tests, you would write:
+</p>
+
+<pre class="stGrayback">
+testOptions in Test += Tests.Argument(TestFrameworks.ScalaTest, "-y", "org.scalatest.FunSpec", "-y", "0org.scalatest.PropSpec", "-y", "org.scalatest.FeatureSpec")
+</pre>
+
+<p>
+ To select <code>org.scalatest.FlatSpec</code> as your main unit testing style, but allow <code>org.scalatest.fixture.FlatSpec</code> for multi-threaded unit tests, you'd write:
+</p>
+
+<pre class="stGrayback">
+testOptions in Test += Tests.Argument(TestFrameworks.ScalaTest, "-y", "org.scalatest.FlatSpec", "-y", "org.scalatest.fixture.FlatSpec")
+</pre>
+
+<p>
+The style name for a suite is obtained by invoking its styleName method. Custom style traits can override this method so that a custom style can participate in the chosen styles list.
+</p>
+
+<p>
+Because ScalaTest is so customizable, a determined programmer could circumvent the chosen styles check, but in practice <code>-y</code> should be persuasive enough tool to keep most team members in line.
+</p>
+
+<h2>Specifying a span scale factor</h2>
+
+<p>
+If you specify a integer or floating point span scale factor with <code>-F</code>, trait <a href="http://www.artima.com/docs-scalatest-3.0.0/org/scalatest/concurrent/ScaledTimeSpans.html"><code>ScaledTimeSpans</code></a> trait will return the specified value from its implementation of <code>spanScaleFactor</code>. This allows you to tune the "patience" of a run (how long to wait for asynchronous operations) from the command line. For more information, see the documentation for trait <a href="http://www.artima.com/docs-scalatest-3.0.0/org/scalatest/concurrent/ScaledTimeSpans.html"><code>ScaledTimeSpans</code></a>.
+</p>
+
+<h2>Slowpoke notifications</h2>
+
+<p>
+You can request to receive periodic notifications of slowpokes, tests that have been running longer than a given amount of time, specified in seconds by the first integer after <code>-W</code>, the delay. You specify the period between slowpoke notifications in seconds with the second integer after <code>-W</code>, the period. Thus to receive notifications very minute of tests that have been running longer than two minutes, you'd use:
+</p>
+
+<pre class="stGrayback">
+testOptions in Test += Tests.Argument(TestFrameworks.ScalaTest, "-W", "120", "60")
+</pre>
+
+<p>Slowpoke notifications will be sent via <a href="http://www.artima.com/docs-scalatest-3.0.0/org/scalatest/events/AlertProvided.html"><code>AlertProvided</code></a> events. The standard out reporter, for example, will report such notifications like:</p>
+
+<pre class="scala">
+<span class="stYellow">*** Test still running after 2 minutes, 13 seconds: suite name: ExampleSpec, test name: An egg timer should take 10 minutes.</span>
 </pre>
 
 </div>
