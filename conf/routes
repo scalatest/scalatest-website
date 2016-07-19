@@ -86,6 +86,7 @@ GET        /user_guide/using_scalatest_with_eclipse                     controll
 GET        /user_guide/using_selenium                                   controllers.UserGuide.usingSelenium
 GET        /user_guide/migrating_to_20                                  controllers.UserGuide.migratingTo20
 GET        /user_guide/using_scalatest_with_intellij                    controllers.UserGuide.usingScalatestWithIntelliJ
+GET        /user_guide/async_testing                                    controllers.UserGuide.asyncTesting
 
 GET        /user_guide_1_9_2/using_assertions                           controllers.UserGuide192.usingAssertions
 GET        /user_guide_1_9_2/writing_your_first_test                    controllers.UserGuide192.writingYourFirstTest
