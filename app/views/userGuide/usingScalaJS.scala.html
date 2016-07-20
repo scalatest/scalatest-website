@@ -1,0 +1,89 @@
+@*
+* Copyright 2010-2016 Artima, Inc.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*@
+
+@import controllers.Application.latestScaladoc
+@import controllers.Application.latestVersion
+@import controllers.Application.latestSeleniumVersion
+
+@userGuidePage("Using Scala-js") {
+    <div style="text-align: left">
+
+        <h1>Using Scala-js</h1>
+
+        <p>
+            ScalaTest @latestVersion includes support for <a href="http://www.scala-js.org/">Scala-js</a>.  Following steps in <a href="https://www.scala-js.org/tutorial/basic/">Scala-js Basic Tutorial</a>,
+            you'll add the following to SBT build file to use ScalaTest:
+        </p>
+
+        <pre class="stHighlighted">libraryDependencies += <span class="stLiteral">"org.scalatest"</span> %%% <span class="stLiteral">"scalatest"</span> % <span class="stLiteral">"3.0.0"</span> % <span class="stLiteral">"test"</span></pre>
+
+        <p>
+            The following is an example test suite written using ScalaTest:
+        </p>
+
+        <pre class="stHighlighted"><span class="stReserved">package</span> tutorial.webapp
+
+<span class="stReserved">import</span> org.scalatest._
+<span class="stReserved">import</span> org.scalajs.jquery.<span class="stType">jQuery</span>
+
+<span class="stReserved">class</span> <span class="stType">TutorialTestWithScalaTest</span> <span class="stReserved">extends</span> <span class="stType">FunSpec</span> {
+
+  <span class="stLineComment">// Initialize App</span>
+  <span class="stType">TutorialApp</span>.setupUI()
+
+  describe(<span class="stLiteral">"TutorialApp"</span>) {
+    it(<span class="stLiteral">"should contains 'Hello Word' text in its body"</span>) {
+      assert(jQuery(<span class="stLiteral">"p:contains('Hello World')"</span>).length == <span class="stLiteral">1</span>)
+    }
+
+    it(<span class="stLiteral">"should append 'You clicked the button!' text when user click on the 'Click me!' button"</span>) {
+      <span class="stReserved">def</span> messageCount =
+        jQuery(<span class="stLiteral">"p:contains('You clicked the button!')"</span>).length
+
+      <span class="stReserved">val</span> button = jQuery(<span class="stLiteral">"button:contains('Click me!')"</span>)
+      assert(button.length == <span class="stLiteral">1</span>)
+      assert(messageCount == <span class="stLiteral">0</span>)
+
+      for (c <- <span class="stLiteral">1</span> to <span class="stLiteral">5</span>) {
+        button.click()
+        assert(messageCount == c)
+      }
+    }
+
+  }
+}</pre>
+
+        <p>
+            The first test uses <code>jQuery</code> to verify that our page contains exactly one &lt;p&gt; element which contains the text <code>“Hello World”</code> after the UI has been set up.  The second test check the behavior that
+            when 'Click me!' button is clicked, it will append new &lt;p&gt; element which contains the text <code>“Hello World”</code> in the body of the page.
+        </p>
+
+        <p>
+            You can run the test by issuing <code>test</code> command in the sbt:
+        </p>
+
+        <pre class="scala">&gt; test
+[info] <span class="stGreen">TutorialTestWithScalaTest:</span>
+[info] <span class="stGreen">TutorialApp</span>
+[info] <span class="stGreen">- should contains 'Hello Word' text in its body</span>
+[info] <span class="stGreen">- should append 'You clicked the button!' text when user click on the 'Click me!' button</span></pre>
+
+        <p>
+            Next, learn about <a href="/user_guide/other_goodies">other goodies</a> ScalaTest has that can help you address specific problems.
+        </p>
+
+    </div>
+}
