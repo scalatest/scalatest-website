@@ -58,6 +58,19 @@ resolvers += <span class="stQuotedString">"Artima Maven Repository"</span> at <s
 addSbtPlugin(<span class="stQuotedString">"com.artima.supersafe"</span> % <span class="stQuotedString">"sbtplugin"</span> % <span class="stQuotedString">"@{latestSuperSafeVersion}"</span>)
 </pre>
 
+<h2>Buffered Output</h2>
+
+<p>
+By default, sbt buffers log output for each suite until all tests for that suite complete and causing "spurty" output. We recommend you
+disable sbt's log buffering so you can enjoy ScalaTest's built-in event buffering algorithm, which shows the events of one suite 
+as they occur until that suite either completes or a timeout occurs, at which point ScalaTest switches a different suite's events.
+Just add this to your sbt build:
+</p>
+
+<pre class="stGrayback">
+logBuffered in Test := false
+</pre>
+
 <h2>Running Tests</h2>
 
 <p>
@@ -100,8 +113,8 @@ selected.
 <h2>Running Suites in Parallel</h2>
 
 <p>
-With the proliferation of multi-core architectures, and the often parallelizable nature of tests, it is common to run tests in parallel.  SBT by default
-runs suites in parallel, using its own thread pool.  In case you need to run you suites in serial, you can add the following to your sbt build file:
+With the proliferation of multi-core architectures, and the often parallelizable nature of tests, it is common to run tests in parallel.  Sbt by default
+runs suites in parallel, using its own thread pool.  In case you need to run your suites serially, you can add the following to your sbt build file:
 </p>
 
 <pre class="stGrayback">
@@ -116,23 +129,14 @@ ScalaTest uses its own thread pool to run <code>ParallelTestExecution</code> sui
 Pool Size = Available Processors x 2
 </pre>
 
-<h2>Showing Test Classpath</h2>
-
-To see classpath that sbt uses to lookup for test classes, you can use the following command:
-
-<pre class="stGrayback">
-&gt; show test:full-classpath
-</pre>
-
-<h2>Buffered Output</h2>
+<h2>Showing the Test Classpath</h2>
 
 <p>
-By default, logging is buffered for each suite until all tests for that suite complete. This leads to test results within a
-suite are not shown until all tests in the suite are completed.  This can be disabled by setting logBuffered:
+To see classpath that sbt uses to lookup for test classes, you can use the following command:
 </p>
 
 <pre class="stGrayback">
-logBuffered in Test := false
+&gt; show test:full-classpath
 </pre>
 
 <h2>Specifying ScalaTest Arguments</h2>
@@ -165,7 +169,7 @@ You can use ScalaTest's reporters by specifying the passing the following argume
   <li><code>-u &lt;directory&gt;</code> - causes test results to be written to junit-style xml files in the named directory</li>
   <li><code>-h &lt;directory&gt; [-Y <CSS file>]</code> - causes test results to be written to HTML files in the named directory, optionally included the specified CSS file</li>
   <li><code>-a &lt;number of files to archive&gt;</code> - causes specified number of old summary and durations files to be archived (in summaries/ and durations/ subdirectories) for dashboard reporter (default is two)</li>
-  <li><code>-o[configs...]</code> - causes test results to be written to the standard output</li>
+  <li><code>-o[configs...]</code> - causes test results to be written back to sbt, which usually displays it on the standard output</li>
   <li><code>-e[configs...]</code> - causes test results to be written to the standard error</li>
   <li><code>-k &lt;host&gt; &lt;port&gt;</code> - causes test results to be written to socket in the named host and port number, using XML format</li>
   <li><code>-K &lt;host&gt; &lt;port&gt;</code> - causes test results to be written to socket in the named host and port number, using Java object binary format</li>
@@ -277,7 +281,8 @@ If you wanted <code>org.scalatest.FunSpec</code> as your main unit testing style
 </p>
 
 <pre class="stGrayback">
-testOptions in Test += Tests.Argument(TestFrameworks.ScalaTest, "-y", "org.scalatest.FunSpec", "-y", "0org.scalatest.PropSpec", "-y", "org.scalatest.FeatureSpec")
+testOptions in Test += Tests.Argument(TestFrameworks.ScalaTest, "-y", "org.scalatest.FunSpec",
+    "-y", "org.scalatest.PropSpec", "-y", "org.scalatest.FeatureSpec")
 </pre>
 
 <p>
@@ -285,7 +290,8 @@ testOptions in Test += Tests.Argument(TestFrameworks.ScalaTest, "-y", "org.scala
 </p>
 
 <pre class="stGrayback">
-testOptions in Test += Tests.Argument(TestFrameworks.ScalaTest, "-y", "org.scalatest.FlatSpec", "-y", "org.scalatest.fixture.FlatSpec")
+testOptions in Test += Tests.Argument(TestFrameworks.ScalaTest, "-y", "org.scalatest.FlatSpec",
+    "-y", "org.scalatest.fixture.FlatSpec")
 </pre>
 
 <p>
@@ -315,7 +321,8 @@ testOptions in Test += Tests.Argument(TestFrameworks.ScalaTest, "-W", "120", "60
 <p>Slowpoke notifications will be sent via <a href="http://www.artima.com/docs-scalatest-3.0.0/org/scalatest/events/AlertProvided.html"><code>AlertProvided</code></a> events. The standard out reporter, for example, will report such notifications like:</p>
 
 <pre class="scala">
-<span class="stYellow">*** Test still running after 2 minutes, 13 seconds: suite name: ExampleSpec, test name: An egg timer should take 10 minutes.</span>
+<span class="stYellow">*** Test still running after 2 minutes, 13 seconds: suite name: ExampleSpec, test name: An egg
+    timer should take 10 minutes.</span>
 </pre>
 
 </div>
