@@ -151,4 +151,8 @@ object UserGuide extends Controller {
   def asyncTesting = Action {
     Ok(views.html.userGuide.asyncTesting())
   }
+
+  def usingScalaJS = Action {
+    Ok(views.html.userGuide.usingScalaJS())
+  }
 }
