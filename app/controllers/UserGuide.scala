@@ -144,6 +144,10 @@ object UserGuide extends Controller {
     Ok(views.html.userGuide.migratingTo20())
   }
 
+  def migratingTo30 = Action {
+    Ok(views.html.userGuide.migratingTo30())
+  }
+
   def usingScalatestWithIntelliJ = Action {
     Ok(views.html.userGuide.usingScalaTestWithIntelliJ())
   }
