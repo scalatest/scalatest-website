@@ -49,6 +49,9 @@ These are the points of potential breakage in ScalaTest 3.0, which are described
 <li><a href="#withFixtureMethods">Mixin traits that override <code>withFixture</code></a>
 <li><a href="#whenCompleted">Signature of <code>Status.whenCompleted</code></a>
 <li><a href="#fragileBaseClassProblem">The fragile base class problem</a>
+<li><a href="#inferredResultTypes">Inferred result types in <code>JUnitSuite</code>, <code>JUnit3Suite</code>, and <code>TestNGSuite</code></a>
+
+
 <h2></h2>
 </ol>
 
@@ -132,9 +135,49 @@ You will need to add the "Test" prefix, like this:
 <h2>Signature of <code>Status.whenCompleted</code></h2>
 
 <p>
-Lastly, in ScalaTest we changed the signature of the <code>whenCompleted</code> method of trait <a href="@{latestScaladoc}/index.html#org.scalatest.Status"><code>Status</code></a> changed. Where it previously
+In ScalaTest we changed the signature of the <code>whenCompleted</code> method of trait <a href="@{latestScaladoc}/index.html#org.scalatest.Status"><code>Status</code></a> changed. Where it previously
 took a function of type <code>Boolean =&gt; Unit</code>, it now takes a function of type <code>Try[Boolean] =&gt; Unit</code>. This 
 breaking change should affect very few users.
+</p>
+
+<a name="inferredResultTypes"></a>
+<h2>Inferred result types in <code>JUnitSuite</code>, <code>JUnit3Suite</code>, and <code>TestNGSuite</code></h2>
+
+<p>
+Lastly, because the result type of assertions and matcher expressions has changed from <code>Unit</code> to <code>Assertion</code>, any tests
+in <code>JUnitSuite</code>, <code>JUnit3Suite</code>, and <code>TestNGSuite</code>s that ended with an assertion or matcher expression, and used
+neither the (now deprecated) procedure style <code>"...@@Test def theTestName() &#123;..."</code> nor an explicit type annotation,
+<code>"...@@Test def theTestName(): Unit = &#123;..."</code>, will no longer be recognized by those frameworks.
+These test frameworks require that the result type of test methods be <code>void</code> in Java, which equates to <code>Unit</code> in Scala.
+</p>
+
+<p>
+Only <code>JUnitSuite</code>, which is based on JUnit 4, will
+indicate with a test failure that a method annotated with <code>@@Test</code> did not have result type <code>void</code>.
+You will get a test failure with an error message like:
+</p>
+
+<pre>
+java.lang.Exception: Method verifySomething() should be void
+</pre>
+
+<p>
+By contrast, any such tests
+in <code>JUnit3Suite</code> and <code>TestNGSuite</code> will be silently ignored by JUnit 3 and TestNG.
+To get the tests running again in any of these styles, ensure an explicit result type is placed on each test method, like:
+</p>
+
+<pre class="stHighlighted">
+@@Test <span class="stReserved">def</span> verifySomething(): <span class="stType">Unit</span> = {
+  <span class="stReserved">val</span> x = <span class="stLiteral">1</span>
+  assert(x == <span class="stLiteral">1</span>)
+}
+</pre>
+
+<p>
+If this change has a significant impact on your project, please contact Artima by emailing Bill Venners at bill AT artima.com. We
+are happy to help you upgrade your <code>JUnitSuite</code>, <code>JUnit3Suite</code>, or <code>TestNGSuite</code>, tests to
+ScalaTest 3.0.
 </p>
 
 <a name="fragileBaseClassProblem"></a>
