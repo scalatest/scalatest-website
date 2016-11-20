@@ -29,18 +29,19 @@
         </p>
 
         <p>
-            For information on how to include ScalaTest in your project, see the <a href="/download">download page</a>.
+            For information on how to include ScalaTest in your project, see the <a href="/install">install page</a>.
             For information on how to use <a href="http://www.scalactic.org/">Scalactic</a> in your production code,
-            see its <a href="http://www.scalactic.org/download">download page</a>.
+            see its <a href="http://www.scalactic.org/install">install page</a>.
         </p>
 
         <a name="enhancements"></a>
         <h2>Enhancements</h2>
 
         <ul>
-            <li>Eliminated unnecessary casts in <code>Or</code>.
-            <li>Unregister reporter to free up memory when completedTests is called in <code>SuiteSortingReporter</code></li>
-            <li>Changed PositionMacro to only put in file path name when environment variable SCALACTIC_FILE_PATHNAMES is set to true, the default off behavior enable reproducable test build.</li>
+            <li>Unregister the reporter to free up memory when <code>completedTests</code> is called in <code>SuiteSortingReporter</code></li>
+            <li>Changed the <code>Position.default</code> macro so that it only includes the file pathname in the resulting <code>Position</code>
+             if the environment variable <code>SCALACTIC_FILE_PATHNAMES</code> is set to true, so that the default behavior is to
+             create reproducible test binaries.</li>
             <li>Updated the ScalaCheck dependency to version 1.13.4.</li>
             <li>Updated the Scala-js dependency to version 0.6.13.</li>
         </ul>
@@ -49,10 +50,11 @@
         <h2>Bug fixes</h2>
 
         <ul>
-            <li>Fixed typecheck bug in ConfigMap.</li>
-            <li>Fixed output of nested suites not being displayed in SBT problem.</li>
-            <li>Fixed timer not canceled problem in TimeLimitedTests. (reported as <a href="https://github.com/scalatest/scalatest/issues/981">github issue #981</a>))</li>
-            <li>Fixed slowpoke alert not being displayed in SBT problem.</li>
+            <li>Fixed a bug in the <code>ConfigMap.getRequired</code>, whereby <code>isAssignablefrom</code> was being used backwards. (submitted
+as <a href="https://github.com/scalatest/scalatest/pull/962">github pull request #962</a>)</li>
+            <li>Fixed a bug in which the results of running nested suites were not being displayed in SBT.</li>
+            <li>Fixed a bug in which the timer used in <code>TimeLimitedTests</code> was not being canceled. (reported as <a href="https://github.com/scalatest/scalatest/issues/981">github issue #981</a>))</li>
+            <li>Fixed a bug that prevented slowpoke alerts from being displayed when running ScalaTest via sbt.</li>
         </ul>
 
         <p>
