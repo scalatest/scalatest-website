@@ -204,6 +204,23 @@ type org.scalactic.Constraint[Some[Int],Int]
 the equality constraints provided by <code>TypeCheckedTripleEquals</code>, however, the statement fails to compile. For more information
 and examples, see the main documentation for <a href="@latestScaladoc/#org.scalactic.TypeCheckedTripleEquals">trait <code>TypeCheckedTripleEquals</code></a>.</p>
 
+<p>An example of TypeCheckedTripleEquals mixed in a test class:</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">import</span> org.scalatest._
+<span class="stReserved">import</span> org.scalactic.TypeCheckedTripleEquals
+
+<span class="stReserved">class</span> MyTest <span class="stReserved">extends</span> FunSuite <span class="stReserved">with</span> Matchers <span class="stReserved">with</span> TypeCheckedTripleEquals {
+
+  test("Type checked ===") {
+    val i : Int    = 42
+    val s : String = "42"
+    
+    i should === (s) // Do not compile because i is an Int and s is a String, great !
+  }
+}
+</pre>
+
 <a name="checkingSizeAndLength"> </a>
 <h2> Checking size and length </h2>
 
