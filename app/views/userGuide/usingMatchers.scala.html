@@ -213,8 +213,8 @@ and examples, see the main documentation for <a href="@latestScaladoc/#org.scala
 <span class="stReserved">class</span> MyTest <span class="stReserved">extends</span> FunSuite <span class="stReserved">with</span> Matchers <span class="stReserved">with</span> TypeCheckedTripleEquals {
 
   test("Type checked ===") {
-    val i : Int    = 42
-    val s : String = "42"
+    val i: Int    = 42
+    val s: String = "42"
     
     i should === (s) // Do not compile because i is an Int and s is a String, great !
   }
