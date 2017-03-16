@@ -46,28 +46,14 @@ Here are links to the mocking frameworks described on this page:
 
 <p>
 <a href="http://www.scalamock.org">ScalaMock</a> is a native, open-source Scala mocking
-    framework written by Paul Butcher that allows you to mock objects and functions.
+    framework, originally written by Paul Butcher, that allows you to mock objects and functions.
 ScalaMock supports three different mocking styles:
 </p>
 
-<!--
-    Here's how the example used in the previous sections would look in ScalaMock:
-<pre class="stHighlighted">
-<span class="stReserved">val</span> mockCollaborator = mock[<span class="stType">Collaborator</span>]
-
-mockCollaborator expects 'documentAdded withArgs (<span class="stQuotedString">"Document"</span>)
-mockCollaborator expects 'documentChanged withArgs (<span class="stQuotedString">"Document"</span>) repeated <span class="stLiteral">3</span> times
-
-classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
-classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
-classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
-classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
-</pre>
--->
 <ul>
 <li>Function mocks</li>
+<li>Macro genrated (type-safe) mocks</li>
 <li>Proxy (dynamic) mocks</li>
-<li>Generated (type-safe) mocks</li>
 </ul>
 
 <p>To use ScalaMock, mix <code>org.scalamock.scalatest.MockFactory</code> into your <code>Suite</code> class,
@@ -97,10 +83,40 @@ it should return the string <code>&quot;Forty two&quot;</code>:</p>
 m expects (<span class="stLiteral">42</span>) returning <span class="stQuotedString">&quot;Forty two&quot;</span> once
 </pre>
 
+<h2>Macro genrated (type-safe) mocks</h2>
+
+<p>This is the preferred mocking style in ScalaMock with the richest set of features. It can mock Scala traits,
+Java interfaces, and classes. There is also support for Scala.JS. Macro mocks are implemented as (compile-time generated)
+subclasses of the type to mock, which has a few limitations:
+Singletons/Companion Objects or final classes can not been mocked with this technology. Mocking a class with macro mocks means
+that all constructor code is still executed, so it is advised to mock a trait/interface instead where possible.</p>
+
+To use macro mocks, mix <code>org.scalamock.MockFactory</code> into your test suite.
+Macro mocks are created with <code>mock</code>. The following, for example, creates a mock that implements
+all the <code>Turtle</code> trait (interface):</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">val</span> m = mock[<span class="stType">Turtle</span>]
+</pre>
+
+<p>You can then set expectations on each of the methods within those traits. Here is an example:</p>
+
+<pre class="stHighlighted">
+m setPosition _ expects(<span class="stLiteral">10.0</span>, <span class="stLiteral">10.0</span>)
+m forward _ expects(<span class="stLiteral">5.0</span>)
+m getPosition _ expects() returns(<span class="stLiteral">15.0</span>, <span class="stLiteral">10.0</span>)
+</pre>
+
+<p>There are a lot of additional features in ScalaMock, like being able to execute a Scala function on call to dynamically create
+a return value or perform other actions. You can use mocks either in the style shown here, or more similar to 
+Mockito, with verifications after the code under test. Macro mocks have support for asynchronous testing with mocks, integrated with ScalaTest's
+<em>AsyncFlatSpec</em> et al.
+More information can be found in <a href="http://scalamock.org/user-guide/">ScalaMock's User Guide</a>.</p>
+
 <h2>Proxy mocks</h2>
 
-<p>Proxy mocks can only be used to mock Scala traits and Java interfaces. (To mock classes, singleton/companion
-objects <em>etc</em>., please use <a href="#generatedMocks">generated mocks</a>.)
+<p>Proxy mocks can only be used to mock Scala traits and Java interfaces. (To mock classes, please use macro mocks</a>).
+Proxy mocks depend on the JVM classloader.
 To use proxy mocks, mix <code>org.scalamock.ProxyMockFactory</code> into your test suite.
 Proxy mocks are created with <code>mock</code>. The following, for example, creates a mock that implements
 all the <code>Turtle</code> trait (interface):</p>
@@ -129,42 +145,6 @@ m expects 'forward
 <pre class="stHighlighted">
 m expects 'forward anyNumberOfTimes
 m stubs 'forward
-</pre>
-
-<a name="generatedMocks"></a>
-<h2>Generated mocks</h2>
-
-<p>Generated mocks rely on the ScalaMock compiler plugin.
-Classes that are going to be mocked need to be declared with the <code>org.scalamock.annotation.mock</code>
-annotation. To mock a class together with its companion object, use
-<code>org.scalamock.annotation.mockWithCompanion</code>. To mock a standalone singleton object, use
-<code>org.scalamock.annotation.mockObject</code>.</p>
-
-<p>In addition to <code>MockFactory</code>, your test class also needs to mix in <code>GeneratedMockFactory</code>.</p>
-
-<p>Then, to create a regular mock object, use <code>mock</code>:</p>
-
-<pre class="stHighlighted">
-<span class="stReserved">val</span> m = mock[<span class="stType">Turtle</span>]
-
-m.expects.forward(<span class="stLiteral">10.0</span>) twice
-</pre>
-
-<p>To mock a singleton or companion object, use <code>mockObject</code>:</p>
-
-<pre class="stHighlighted">
-<span class="stReserved">val</span> m = mockObject(<span class="stType">Turtle</span>)
-
-m.expects.createTurtle
-</pre>
-
-<p>And to mock a constructor invocation, use <code>newInstance</code>:</p>
-
-<pre class="stHighlighted">
-<span class="stReserved">val</span> m = mock[<span class="stType">Turtle</span>]
-
-m.expects.newInstance('blue)
-m.expects.forward(<span class="stLiteral">10.0</span>)
 </pre>
 
 <h2>Expectations</h2>
