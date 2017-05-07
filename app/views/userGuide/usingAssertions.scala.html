@@ -29,7 +29,7 @@ ScalaTest makes three assertions available by default in any style trait. You ca
 <ul>
 <li><code>assert</code> for general assertions;</li>
 <li><code>assertResult</code> to differentiate expected from actual values;</li>
-<li><code>assertThrows</code> to ensure a bit of code throws an expected exception.</li>
+<li><code>assertThrows</code> (since version 3.0.x) to ensure a bit of code throws an expected exception.</li>
 </ul>
 
 <p>
@@ -161,7 +161,7 @@ as when invalid arguments are passed to the method. You can do this in the JUnit
 to the catch case, which does nothing. If, however, <code>charAt</code> fails to throw an exception,
 the next statement, <code>fail()</code>, will be run. The <code>fail</code> method always completes abruptly with
 a <code>TestFailedException</code>, thereby signaling a failed test.</p><p>To make this common use case easier to express and read, ScalaTest provides two methods:
-<code>assertThrows</code> and <code>intercept</code>.
+<code>assertThrows</code> (since version 3.0.x) and <code>intercept</code>.
 Here's how you use <code>assertThrows</code>:</p><p><a name="assertThrowsMethod"></a>
 <pre class="stHighlighted">
 <span class="stReserved">val</span> s = <span class="stQuotedString">"hi"</span>
