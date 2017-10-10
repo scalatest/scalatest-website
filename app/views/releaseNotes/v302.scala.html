@@ -1,0 +1,64 @@
+@*
+* Copyright 2010-2014 Artima, Inc.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*@
+
+@import controllers.Application.latestScaladoc
+@import controllers.Application.milestoneScaladoc
+
+@combinedReleaseNotesPage("Scalactic/ScalaTest 3.0.2 Release Notes") {
+    <div style="text-align: left">
+
+        <h1>ScalaTest/Scalactic 3.0.2 Release Notes</h1>
+
+        <p>
+            ScalaTest/Scalactic 3.0.2 (for Scala 2.10, 2.11 and 2.12) includes the enhancements and bug fixes listed below. No source code using
+            ScalaTest/ScalaUtils 3.0 or higher should break, but from any version other than other 3.0.x releases (with which this release is binary
+            compatible), you will likely need to do a clean build to upgrade.
+        </p>
+
+        <p>
+            For information on how to include ScalaTest in your project, see the <a href="/install">install page</a>.
+            For information on how to use <a href="http://www.scalactic.org/">Scalactic</a> in your production code,
+            see its <a href="http://www.scalactic.org/install">install page</a>.
+        </p>
+
+        <a name="enhancements"></a>
+        <h2>Enhancements</h2>
+
+        <ul>
+            <li>Pulled out <code>commons-io</code>, <code>jetty</code> dependencies from scalatest artifact's <code>pom.xml</code>, they are used by our tests only.</li>
+            <li>Updated <code>easymock</code> version to 3.2.</li>
+            <li>Updated <code>jmock</code> version to 2.8.1.</li>
+            <li>Updated <code>mockito</code> version to 1.10.19.</li>
+            <li>Updated <code>guice</code> version to 4.0.</li>
+            <li>Updated <code>selenium</code> version to 2.45.0.</li>
+            <li>Updated <code>testng</code> version to 6.7.</li>
+            <li>Switch to use the more stable <code>getSimpleNameOfAnObjectsClass</code> in place of <code>getClass.getSimpleName</code>.</li>
+        </ul>
+
+        <a name="bugFixes"></a>
+        <h2>Bug fixes</h2>
+
+        <ul>
+            <li>None (enhancements only)</li>
+        </ul>
+
+        <p>
+            Visit <a href="@routes.ReleaseNotes.releaseNotesIndex">ScalaTest Release Notes</a> for links to the release notes of all previous versions, or
+            step back in time by visiting the <a href="3.0.0">release notes for the previous version</a>.
+        </p>
+
+    </div>
+}
