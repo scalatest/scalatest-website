@@ -17,13 +17,13 @@
 @import controllers.Application.latestScaladoc
 @import controllers.Application.milestoneScaladoc
 
-@combinedReleaseNotesPage("Scalactic/ScalaTest 3.0.2 Release Notes") {
+@combinedReleaseNotesPage("Scalactic/ScalaTest 3.0.3 Release Notes") {
     <div style="text-align: left">
 
-        <h1>ScalaTest/Scalactic 3.0.2 Release Notes</h1>
+        <h1>ScalaTest/Scalactic 3.0.3 Release Notes</h1>
 
         <p>
-            ScalaTest/Scalactic 3.0.2 (for Scala 2.10, 2.11 and 2.12) includes the enhancements and bug fixes listed below. No source code using
+            ScalaTest/Scalactic 3.0.3 (for Scala 2.10, 2.11 and 2.12) includes the enhancements and bug fixes listed below. No source code using
             ScalaTest/ScalaUtils 3.0 or higher should break, but from any version other than other 3.0.x releases (with which this release is binary
             compatible), you will likely need to do a clean build to upgrade.
         </p>
@@ -40,14 +40,7 @@
         <h2>Enhancements</h2>
 
         <ul>
-            <li>Pulled out <code>commons-io</code>, <code>jetty</code> dependencies from scalatest artifact's <code>pom.xml</code>, they are used by our tests only.</li>
-            <li>Updated <code>easymock</code> version to 3.2.</li>
-            <li>Updated <code>jmock</code> version to 2.8.1.</li>
-            <li>Updated <code>mockito</code> version to 1.10.19.</li>
-            <li>Updated <code>guice</code> version to 4.0.</li>
-            <li>Updated <code>selenium</code> version to 2.45.0.</li>
-            <li>Updated <code>testng</code> version to 6.7.</li>
-            <li>Switch to use the more stable <code>getSimpleNameOfAnObjectsClass</code> in place of <code>getClass.getSimpleName</code>.</li>
+            None (bugfixes only)
         </ul>
 
 	<hr></hr>
@@ -56,7 +49,7 @@
         <h2>Bug fixes</h2>
 
         <ul>
-            <li>None (enhancements only)</li>
+            <li>Fixed java classes in artifacts built for Scala 2.10 and 2.11 (Java 6 support was needed, but it had been compiled with Java 8). You can see details of the problem described here: <a href="https://github.com/scalatest/scalatest/issues/1141">github issue #1141</a></li>
         </ul>
 
 	<hr></hr>
