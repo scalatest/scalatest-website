@@ -27,7 +27,7 @@ object Application extends Controller {
   val latestSuperSafeVersion = "1.1.2"				// updated per BV request -- 170130 PL
   val milestoneVersion = "3.0.1-RC4"
   val milestoneJar = "https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest_2.11/3.0.1-RC4/scalatest_2.11-3.0.1-RC4.jar"
-  val latestJar = "https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest-app_2.11/3.0.4/scalatest-app_2.11-3.0.4.jar"
+  val latestJar = "https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest-app_2.12/3.0.4/scalatest-app_2.12-3.0.4.jar"
   val milestoneScaladoc = "http://www.artima.com/docs-scalatest-3.0.1-RC4"
   val milestoneScalacticScaladoc = "http://www.artima.com/docs-scalactic-3.0.1-RC4"
   val scaladocsLocation = "http://doc.scalatest.org"
