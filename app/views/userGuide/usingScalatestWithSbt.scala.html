@@ -253,7 +253,7 @@ Note that no white space is allowed between the reporter option and the initial 
 <h2>Include and Exclude Tests with Tags</h2>
 
 <p>
-You can specify tag names of tests to include or exclude from a run. To specify tags to include, use <code>-n</code> followed by a list of tag names to include.  Similarly, to specify tags to exclude, use <code>-l</code> followed by a list of tag names to exclude. If tags to include is not specified, then all tests except those mentioned in the tags to exclude (and in the org.scalatest.Ignore tag), will be executed. (In other words, the absence of a <code>-n</code> option is like a wildcard, indicating all tests be included.) If tags to include is specified, then only those tests whose tags are mentioned in the argument following <code>-n</code> and not mentioned in the tags to exclude, will be executed. For more information on test tags, see the <a href="http://www.artima.com/docs-scalatest-3.0.0/index.html#org.scalatest.Suite">documentation for Suite</a>. Here are some examples:
+You can specify tag names of tests to include or exclude from a run. To specify tags to include, use <code>-n</code> followed by a list of tag names to include.  Similarly, to specify tags to exclude, use <code>-l</code> followed by a list of tag names to exclude. If tags to include is not specified, then all tests except those mentioned in the tags to exclude (and in the org.scalatest.Ignore tag), will be executed. (In other words, the absence of a <code>-n</code> option is like a wildcard, indicating all tests be included.) If tags to include is specified, then only those tests whose tags are mentioned in the argument following <code>-n</code> and not mentioned in the tags to exclude, will be executed. For more information on test tags, see the <a href="   http://doc.scalatest.org/3.0.1/#org.scalatest.Suite">documentation for Suite</a>. Here are some examples:
 </p>
 
 <pre class="stGrayback">
@@ -305,7 +305,7 @@ Because ScalaTest is so customizable, a determined programmer could circumvent t
 <h2>Specifying a span scale factor</h2>
 
 <p>
-If you specify a integer or floating point span scale factor with <code>-F</code>, trait <a href="http://www.artima.com/docs-scalatest-3.0.0/org/scalatest/concurrent/ScaledTimeSpans.html"><code>ScaledTimeSpans</code></a> trait will return the specified value from its implementation of <code>spanScaleFactor</code>. This allows you to tune the "patience" of a run (how long to wait for asynchronous operations) from the command line. For more information, see the documentation for trait <a href="http://www.artima.com/docs-scalatest-3.0.0/org/scalatest/concurrent/ScaledTimeSpans.html"><code>ScaledTimeSpans</code></a>.
+If you specify a integer or floating point span scale factor with <code>-F</code>, trait <a href="http://doc.scalatest.org/3.0.1/#org.scalatest.concurrent.ScaledTimeSpans"><code>ScaledTimeSpans</code></a> trait will return the specified value from its implementation of <code>spanScaleFactor</code>. This allows you to tune the "patience" of a run (how long to wait for asynchronous operations) from the command line. For more information, see the documentation for trait <a href="http://doc.scalatest.org/3.0.1/#org.scalatest.concurrent.ScaledTimeSpans"><code>ScaledTimeSpans</code></a>.
 </p>
 
 <h2>Slowpoke notifications</h2>
@@ -318,7 +318,7 @@ You can request to receive periodic notifications of slowpokes, tests that have 
 testOptions in Test += Tests.Argument(TestFrameworks.ScalaTest, "-W", "120", "60")
 </pre>
 
-<p>Slowpoke notifications will be sent via <a href="http://www.artima.com/docs-scalatest-3.0.0/org/scalatest/events/AlertProvided.html"><code>AlertProvided</code></a> events. The standard out reporter, for example, will report such notifications like:</p>
+<p>Slowpoke notifications will be sent via <a href="http://doc.scalatest.org/3.0.1/#org.scalatest.events.AlertProvided"><code>AlertProvided</code></a> events. The standard out reporter, for example, will report such notifications like:</p>
 
 <pre class="scala">
 <span class="stYellow">*** Test still running after 2 minutes, 13 seconds: suite name: ExampleSpec, test name: An egg
