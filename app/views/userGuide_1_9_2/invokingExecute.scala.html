@@ -179,7 +179,7 @@ ScalaTest 1.5, <code>execute</code> was changed from four overloaded methods to 
 the default and named parameters feature introduced in Scala 2.8.
 To not break existing source code, <code>testName</code> needed to have type <code>String</code>, as it did in two of the overloaded
 <code>execute</code> methods prior to 1.5. The other reason is that <code>execute</code> has always been designed to be called primarily
-from an interpeter environment, such as the Scala REPL (Read-Evaluate-Print-Loop). In an interpreter environment, minimizing keystrokes is king.
+from an interpreter environment, such as the Scala REPL (Read-Evaluate-Print-Loop). In an interpreter environment, minimizing keystrokes is king.
 A <code>String</code> type with a <code>null</code> default value lets users type <code>suite.execute("my test name")</code> rather than
 <code>suite.execute(Some("my test name"))</code>, saving several keystrokes.
 </p>
