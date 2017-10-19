@@ -1,0 +1,190 @@
+@*
+* Copyright 2010-2014 Artima, Inc.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*@
+
+@import controllers.Application.latestScaladoc
+@import controllers.Application.milestoneScaladoc
+
+@combinedReleaseNotesPage("Scalactic/ScalaTest 3.1.0 Release Notes") {
+    <div style="text-align: left">
+
+        <h1>ScalaTest/Scalactic 3.1.0 Release Notes</h1>
+
+        <p>
+            ScalaTest/Scalactic 3.1.0 (for Scala 2.10, 2.11 and 2.12) includes the enhancements and bug fixes listed below. No source code using
+            ScalaTest/ScalaUtils 3.0 or higher should break, but from any version other than other 3.0.x releases (with which this release is binary
+            compatible), you will likely need to do a clean build to upgrade.
+        </p>
+
+        <p>
+            For information on how to include ScalaTest in your project, see the <a href="/install">install page</a>.
+            For information on how to use <a href="http://www.scalactic.org/">Scalactic</a> in your production code,
+            see its <a href="http://www.scalactic.org/install">install page</a>.
+        </p>
+
+	<p style="margin-bottom:1px;">&nbsp;</p>
+
+        <!---
+        ====================================================================================================
+                                                S C A L A C T I C
+        ====================================================================================================
+        -->
+
+        <hr style="height:5px;border:none;color:#333;background-color:#333;" /> <!-- ############################################### -->
+        <div style="text-align: center">
+	    <h1 style="margin-bottom:3px;">Scalactic</h1>
+        </div>
+
+	<hr></hr>
+        <a name="newFeatures"></a>
+        <h2>New Features</h2>
+
+        <ul>
+            <li>Added <code>NonZero</code> <code>AnyVal</code>s.</li>
+            <li>Added <code>NumericString</code> <code>AnyVal</code>s.</li>
+            <li>Added <code>Neg</code> and <code>NegZ</code> <code>AnyVal</code>s.</li>
+            <li>Added <code>Present</code>, a wrapper class to allow any value to be used with <code>'for'</code>.</li>
+            <li>Added <code>PosFinite</code> and <code>PosZFinite</code> <code>AnyVal</code>s.</li>
+            <li>Added <code>NegFinite</code> and <code>NegZFinite</code> <code>AnyVal</code>s.</li>
+            <li>Added <code>NonZeroFiniteFloat</code> and <code>NonZeroFiniteDouble</code> <code>AnyVal</code>s.</li>
+            <li>Added <code>FiniteFloat</code> and <code>FiniteDouble</code> <code>AnyVal</code>s.</li>
+            <li>Added <code>NonEmpty</code> <code>AnyVal</code>s.</li>
+            <li>Added <code>RegexString</code> <code>AnyVal</code>s (still mark as private).</li>
+
+        </ul>
+
+
+	<hr></hr>
+        <a name="enhancements"></a>
+        <h2>Enhancements</h2>
+
+        <ul>
+            <li>Use the <code>isValid</code> method technique in all built-in <code>AnyVal</code>s. Add <code>ensuringValid</code> methods to all <code>AnyVal</code> companion objects.</li>
+            <li>Use <code>ensuringValid</code> in the macro to avoid the very temporary <code>Option</code> instance it had been creating before because of idealism. Pragmatism has won again in the end!</li>
+            <li>Renamed <code>Percent</code> to <code>PercentageInt</code>.</li>
+            <li>Changed <code>DigitChar</code> to <code>NumericChar</code>.</li>
+            <li>Use <code>ensuringValid</code> instead of from/get in implementations of <code>AnyVal</code>s methods.</li>
+            <li>Added Scaladoc to <code>ensuringValid</code> method in <code>Pos*</code> <code>AnyVal</code>s.</li>
+            <li>Added <code>isValid</code> and <code>fromOrElse</code> methods to all the <code>Pos*</code> <code>AnyVals</code> types.</li>
+            <li>Added an <code>ensuringValid</code> method that takes an <code>X =&gt; X</code> function to each of the <code>PosX</code> and <code>PosZX</code>.</li>
+            <li>Added <code>MinPositiveValue</code> constants to <code>PosDouble</code> and <code>PosZDouble</code> companion objects.</li>
+            <li>Added a <code>sumOf</code> and <code>productOf</code> method to companion object of <code>PosDouble</code>, <code>PosZDouble</code>, <code>PosFloat</code> and <code>PosZFloat</code>.</li>
+            <li>Added <code>plus</code> method to <code>PosFloat</code> and <code>PosZFloat</code>.</li>
+            <li>Added <code>tryingValid</code>, <code>passOrElse</code>, <code>goodOrElse</code> and <code>rightOrElse</code> methods to <code>PosInt</code>.</li>
+            <li>Improved Scaladoc on <code>Prettifier</code>.</li>
+            <li>Changed negation methods in <code>AnyVal</code>s to return another <code>anyvals</code> type.</li>
+
+        </ul>
+
+
+	<hr></hr>
+        <a name="bugFixes"></a>
+        <h2>Bug Fixes</h2>
+
+        <ul>
+            <li>None</li>
+        </ul>
+
+
+	<hr></hr>
+        <a name="deprecations"></a>
+        <h2>Deprecations</h2>
+
+        <ul>
+            <li>Moved <code>org.scalactic.Chain</code> as <code>org.scalactic.anyvals.NonEmptyList</code>, deprecated <code>Chain</code> in <code>org.scalactic</code>.</li>
+        </ul>
+
+	<p style="margin-bottom:1px;">&nbsp;</p>
+
+        <!---
+        ====================================================================================================
+                                               S C A L A T E S T
+        ====================================================================================================
+        -->
+
+        <hr style="height:5px;border:none;color:#333;background-color:#333;" /> <!-- ############################################### -->
+        <div style="text-align: center">
+	    <h1 style="margin-bottom:3px;">ScalaTest</h1>
+        </div>
+	<hr></hr>
+
+        <a name="newFeatures"></a>
+        <h2>New Features</h2>
+
+        <ul>
+            <li>Added asynchronous support to <code>Inspectors</code>.</li>
+            <li>Added asynchronous support to <code>TableAsserting</code>.</li>
+            <li>Added asynchronous support to <code>WheneverAsserting</code>.</li>
+            <li>Added JSON support to events and <code>StringReporter</code>.</li>
+            <li>Added <code>Ultimately</code>, which is an asynchronous version of <code>Eventually</code>.</li>
+
+
+        </ul>
+
+
+	<hr></hr>
+        <a name="enhancements"></a>
+        <h2>Enhancements</h2>
+
+        <ul>
+            <li>Enhanced WebBrowser's <code>isInputField</code> method to handle element has attribute <code>'type'</code> value returns <code>null</code> as <code>'text'</code> type.</li>
+            <li>Enhanced WebBrowser's <code>value_=</code> method to execute javascript to set <code>value</code> when the driver being used is <code>JavascriptExecutor</code>.</li>
+            <li>Added <code>toDir</code> method to WebBrowser.</li>
+            <li>No longer use <code>.toLowerCase</code> when looking at the value of the environment variable for filling file pathnames; it now looks for the value <code>"yes"</code>, not <code>"true"</code>.</li>
+            <li>Removed an unnecessary nested synchronized call in <code>SuiteSortingReporter</code>.</li>
+            <li>Made <code>MessageRecorder</code> thread-safe.</li>
+
+        </ul>
+
+
+	<hr></hr>
+        <a name="bugFixes"></a>
+        <h2>Bug Fixes</h2>
+
+        <ul>
+            <li>Fixed macro-based assertion that had problem when used directly with package name without mixin in/import the trait.</li>
+        </ul>
+
+
+	<hr></hr>
+        <a name="deprecations"></a>
+        <h2>Deprecations</h2>
+
+        <ul>
+            <li>In <code>FeatureSpec</code>, changed <code>'feature'</code> to <code>'Feature'</code>. Deprecated <code>'feature'</code>.</li>
+            <li>In <code>FeatureSpec</code>, changed <code>'scenario'</code> to <code>'Scenario'</code>. Deprecated <code>'scenario'</code>.</li>
+            <li>In <code>FeatureSpec</code>, changed <code>'scenariosFor'</code> to <code>'ScenariosFor'</code>. Deprecated <code>'scenariosFor'</code>.</li>
+            <li>Moved <code>Checkers</code> under <code>org.scalatest.prop</code> to <code>org.scalatest.check</code> package, deprecated <code>Checkers</code> under <code>org.scalatest.prop</code>.</li>
+
+        </ul>
+
+
+
+
+	<hr></hr>
+
+
+	<p style="margin-bottom:1px;">&nbsp;</p>
+
+        <p>
+            Visit <a href="@routes.ReleaseNotes.releaseNotesIndex">ScalaTest Release Notes</a> for links to the release notes of all previous versions, or
+            step back in time by visiting the <a href="3.0.3">release notes for the previous version</a>.
+        </p>
+
+
+
+
+    </div>
+}
