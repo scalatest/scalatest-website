@@ -15,6 +15,7 @@
  *@
 
 @import controllers.Application.latestScaladoc
+@import controllers.Application.latestScalacticScaladoc
 
 @userGuidePage("Using matchers") {
 <div style="text-align: left">
@@ -40,7 +41,7 @@ using the word <code>should</code>. Just mix in <a href="@latestScaladoc/#org.sc
 
 <p>
 You can alternatively import the members of the trait, a technique particularly useful when you want to try out matcher expressions in the 
-Scala interpeter. Here's an example where the members of <code>Matchers</code> are imported:
+Scala interpreter. Here's an example where the members of <code>Matchers</code> are imported:
 </p>
 
 <pre class="stHighlighted">
@@ -124,7 +125,7 @@ result shouldBe <span class="stLiteral">3</span>       <span class="stLineCommen
 </pre></p>
 
 <p>The &ldquo;<code>left</code> <code>should</code> <code>equal</code> <code>(right)</code>&rdquo; syntax requires an
-<a href="@latestScaladoc/#org.scalactic.Equality"><code>org.scalactic.Equality[L]</code></a> to be provided (either implicitly or explicitly), where
+<a href="@latestScalacticScaladoc/#org.scalactic.Equality"><code>org.scalactic.Equality[L]</code></a> to be provided (either implicitly or explicitly), where
 <code>L</code> is the left-hand type on which <code>should</code> is invoked. In the &quot;<code>left</code> <code>should</code> <code>equal</code> <code>(right)</code>&quot; case,
 for example, <code>L</code> is the type of <code>left</code>. Thus if <code>left</code> is type <code>Int</code>, the &quot;<code>left</code> <code>should</code>
 <code>equal</code> <code>(right)</code>&quot;
@@ -154,7 +155,7 @@ the two arrays structurally, taking into consideration the equality of the array
 or <code>shouldEqual</code> syntax by defining implicit <code>Equality</code> instances that will be used instead of default <code>Equality</code>.
 You might do this to normalize types before comparing them with <code>==</code>, for instance, or to avoid calling the <code>==</code> method entirely,
 such as if you want to compare <code>Double</code>s with a tolerance.
-For an example, see the main documentation of <a href="@latestScaladoc/#org.scalactic.Equality">trait <code>Equality</code></a>.</p>
+For an example, see the main documentation of <a href="@latestScalacticScaladoc/#org.scalactic.Equality">trait <code>Equality</code></a>.</p>
 
 <p>You can always supply implicit parameters explicitly, but in the case of implicit parameters of type <code>Equality[T]</code>, ScalaUtils provides a
 simple &quot;explictly&quot; DSL. For example, here's how you could explicitly supply an <code>Equality[String]</code> instance that normalizes both left and right
@@ -175,7 +176,7 @@ scala&gt; &quot;Hi&quot; should equal (&quot;hi&quot;) (after being lowerCased)
 
 <p>The <code>after</code> <code>being</code> <code>lowerCased</code> expression results in an <code>Equality[String]</code>, which is then passed
 explicitly as the second curried parameter to <code>equal</code>. For more information on the explictly DSL, see the main documentation
-for trait <a href="@latestScaladoc/#org.scalactic.Explicitly"><code>Explicitly</code></a>.</p>
+for trait <a href="@latestScalacticScaladoc/#org.scalactic.Explicitly"><code>Explicitly</code></a>.</p>
 
 <p>The &quot;<code>should</code> <code>be</code>&quot; and <code>shouldBe</code> syntax do not take an <code>Equality[T]</code> and can therefore not be customized.
 They always use the default approach to equality described above. As a result, &quot;<code>should</code> <code>be</code>&quot; and <code>shouldBe</code> will
@@ -202,7 +203,7 @@ type org.scalactic.Constraint[Some[Int],Int]
 
 <p>By default, the &quot;<code>Some(2)</code> <code>should</code> <code>===</code> <code>(2)</code>&quot; statement would fail at runtime. By mixing in
 the equality constraints provided by <code>TypeCheckedTripleEquals</code>, however, the statement fails to compile. For more information
-and examples, see the main documentation for <a href="@latestScaladoc/#org.scalactic.TypeCheckedTripleEquals">trait <code>TypeCheckedTripleEquals</code></a>.</p>
+and examples, see the main documentation for <a href="@latestScalacticScaladoc/#org.scalactic.TypeCheckedTripleEquals">trait <code>TypeCheckedTripleEquals</code></a>.</p>
 
 <a name="checkingSizeAndLength"> </a>
 <h2> Checking size and length </h2>
