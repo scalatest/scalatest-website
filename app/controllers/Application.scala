@@ -24,7 +24,7 @@ object Application extends Controller {
   val latestScaladoc =          "http://doc.scalatest.org/3.0.1"
   val latestScalacticScaladoc = "http://doc.scalactic.org/3.0.1"
   val latestVersion = "3.0.4"
-  val latestSuperSafeVersion = "1.1.2"				// updated per BV request -- 170130 PL
+  val latestSuperSafeVersion = "1.1.3"				// updated per BV request -- 170130 PL  and now, per Chee Seng concurrence 171115 to 1.1.3
   val milestoneVersion = "3.0.1-RC4"
   val milestoneJar = "https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest_2.11/3.0.1-RC4/scalatest_2.11-3.0.1-RC4.jar"
   val latestJar = "https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest-app_2.12/3.0.4/scalatest-app_2.12-3.0.4.jar"
@@ -32,7 +32,7 @@ object Application extends Controller {
   val milestoneScalacticScaladoc = "http://www.artima.com/docs-scalactic-3.0.1-RC4"
   val scaladocsLocation = "http://doc.scalatest.org"
   val releasesLocation = "http://www.artima.com/downloadScalaTest"
-  val baseScalaVersion = "2.12.3"
+  val baseScalaVersion = "2.12.4"				// updated per Chee Seng 171115 PL
   val majorMinorScalaVersion = "2.12"
   val latestScaladocFor192 = "http://doc.scalatest.org/1.9.2"
   val latestSeleniumVersion = "2.35.0"
