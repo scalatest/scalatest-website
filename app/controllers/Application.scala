@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 package controllers
-
+ 
 import play.api._
 import play.api.mvc._
 import examples.StyleTraitExamples
