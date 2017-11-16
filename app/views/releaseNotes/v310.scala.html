@@ -139,7 +139,7 @@
         <h2>Enhancements</h2>
 
         <ul>
-            <li>Enhanced WebBrowser's <code>isInputField</code> method to handle element has attribute <code>'type'</code> value returns <code>null</code> as <code>'text'</code> type.</li>
+            <li>Enhanced WebBrowser's <code>isInputField</code> method to treat "input element that returns <code>null</code> when <code>getType</code> is called" as a <code>'text'</code>-type input element </li>
             <li>Enhanced WebBrowser's <code>value_=</code> method to execute javascript to set <code>value</code> when the driver being used is <code>JavascriptExecutor</code>.</li>
             <li>Added <code>toDir</code> method to WebBrowser.</li>
             <li>No longer use <code>.toLowerCase</code> when looking at the value of the environment variable for filling file pathnames; it now looks for the value <code>"yes"</code>, not <code>"true"</code>.</li>
@@ -154,7 +154,9 @@
         <h2>Bug Fixes</h2>
 
         <ul>
-            <li>Fixed macro-based assertion that had problem when used directly with package name without mixin in/import the trait.</li>
+            <li>Fixed macro-based assertion that had a problem when used directly with package name without mixin and import of the trait.
+Before this fix, the following will not work: <code>org.scalatest.Assertions.assert(a1 === a3)</code> The user had to mix in Assertions into their class and use:
+<code>assert(a1 === a3)</code> After this fix, both of the cases now work.  </li>
         </ul>
 
 
