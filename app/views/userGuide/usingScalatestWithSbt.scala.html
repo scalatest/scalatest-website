@@ -82,11 +82,14 @@ Your test source files go into <code>src/test/scala</code>. You can run all of t
 </pre>
 
 <p>
-If you want to run particular suites, you can use <code>test-only</code> and provide their fully qualified names in a space separated list:
+If you want to run particular suites, you can use <code>testOnly</code> and provide their fully qualified names in a space separated list:
+</p>
+<p>
+If you use sbt older than 0.13, you can use <code>test-only</code> instead of <code>testOnly</code>
 </p>
 
 <pre class="stGrayback">
-&gt; test-only org.acme.RedSuite org.acme.BlueSuite
+&gt; testOnly org.acme.RedSuite org.acme.BlueSuite
 </pre>
 
 <p>
@@ -94,7 +97,7 @@ Or you can specify a glob:
 </p>
 
 <pre class="stGrayback">
-&gt; test-only *RedSuite
+&gt; testOnly *RedSuite
 </pre>
 
 <p>
@@ -102,11 +105,11 @@ To run only tests affected by your latest code changes, either in main or test, 
 </p>
 
 <pre class="stGrayback">
-&gt; test-quick
+&gt; testQuick
 </pre>
 
 <p>
-As with test-only, you can specify a space-separated list of fully qualified names and globs to further reduce the tests
+As with testOnly, you can specify a space-separated list of fully qualified names and globs to further reduce the tests
 selected.
 </p>
 
@@ -151,11 +154,11 @@ testOptions in Test += Tests.Argument(TestFrameworks.ScalaTest, "-oD")
 
 <p>
 The <code>-oD</code> argument above will be pass to ScalaTest for all test runs, you can also pass arguments for individual runs by using
-<code>test-only</code> and placing them after <code>--</code>, like this:
+<code>testOnly</code> and placing them after <code>--</code>, like this:
 </p>
 
 <pre class="stGrayback">
-&gt; test-only org.acme.RedSuite -- -oD
+&gt; testOnly org.acme.RedSuite -- -oD
 </pre>
 
 <h2>Using Reporters</h2>
@@ -257,9 +260,9 @@ You can specify tag names of tests to include or exclude from a run. To specify 
 </p>
 
 <pre class="stGrayback">
-&gt; test-only org.acme.* -- -n CheckinTests
-&gt; test-only org.acme.* -- -n FunctionalTests -l org.scalatest.tags.Slow
-&gt; test-only org.acme.* -- -n "CheckinTests FunctionalTests" -l "org.scalatest.tags.Slow org.scalatest.tags.Network"
+&gt; testOnly org.acme.* -- -n CheckinTests
+&gt; testOnly org.acme.* -- -n FunctionalTests -l org.scalatest.tags.Slow
+&gt; testOnly org.acme.* -- -n "CheckinTests FunctionalTests" -l "org.scalatest.tags.Slow org.scalatest.tags.Network"
 </pre>
 
 <h2>Specifying Chosen Styles</h2>
