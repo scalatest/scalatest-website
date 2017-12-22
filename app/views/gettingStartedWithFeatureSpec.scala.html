@@ -90,19 +90,19 @@ If you wish, you can flesh out the specification by mixing in <a href="@latestSc
  
     scenario(<span class="stQuotedString">"pop is invoked on a non-empty stack"</span>) {
  
-      given(<span class="stQuotedString">"a non-empty stack"</span>)
-      when(<span class="stQuotedString">"when pop is invoked on the stack"</span>)
-      then(<span class="stQuotedString">"the most recently pushed element should be returned"</span>)
-      and(<span class="stQuotedString">"the stack should have one less item than before"</span>)
+      Given(<span class="stQuotedString">"a non-empty stack"</span>)
+      When(<span class="stQuotedString">"when pop is invoked on the stack"</span>)
+      Then(<span class="stQuotedString">"the most recently pushed element should be returned"</span>)
+      And(<span class="stQuotedString">"the stack should have one less item than before"</span>)
       pending
     }
  
     scenario(<span class="stQuotedString">"pop is invoked on an empty stack"</span>) {
  
-      given(<span class="stQuotedString">"an empty stack"</span>)
-      when(<span class="stQuotedString">"when pop is invoked on the stack"</span>)
-      then(<span class="stQuotedString">"NoSuchElementException should be thrown"</span>)
-      and(<span class="stQuotedString">"the stack should still be empty"</span>)
+      Given(<span class="stQuotedString">"an empty stack"</span>)
+      When(<span class="stQuotedString">"when pop is invoked on the stack"</span>)
+      Then(<span class="stQuotedString">"NoSuchElementException should be thrown"</span>)
+      And(<span class="stQuotedString">"the stack should still be empty"</span>)
       pending
     }
   }
@@ -157,34 +157,34 @@ When you can't put off writing the actual tests themselves any longer, you can f
 
     scenario(<span class="stQuotedString">"pop is invoked on a non-empty stack"</span>) {
  
-      given(<span class="stQuotedString">"a non-empty stack"</span>)
+      Given(<span class="stQuotedString">"a non-empty stack"</span>)
       <span class="stReserved">val</span> stack = <span class="stReserved">new</span> <span class="stType">Stack[Int]</span>
       stack.push(<span class="stLiteral">1</span>)
       stack.push(<span class="stLiteral">2</span>)
       <span class="stReserved">val</span> oldSize = stack.size
  
-      when(<span class="stQuotedString">"when pop is invoked on the stack"</span>)
+      When(<span class="stQuotedString">"when pop is invoked on the stack"</span>)
       <span class="stReserved">val</span> result = stack.pop()
  
-      then(<span class="stQuotedString">"the most recently pushed element should be returned"</span>)
+      Then(<span class="stQuotedString">"the most recently pushed element should be returned"</span>)
       assert(result === <span class="stLiteral">2</span>)
  
-      and(<span class="stQuotedString">"the stack should have one less item than before"</span>)
+      And(<span class="stQuotedString">"the stack should have one less item than before"</span>)
       assert(stack.size === oldSize - <span class="stLiteral">1</span>)
     }
  
     scenario(<span class="stQuotedString">"pop is invoked on an empty stack"</span>) {
  
-      given(<span class="stQuotedString">"an empty stack"</span>)
+      Given(<span class="stQuotedString">"an empty stack"</span>)
       <span class="stReserved">val</span> emptyStack = <span class="stReserved">new</span> <span class="stType">Stack[Int]</span>
  
-      when(<span class="stQuotedString">"when pop is invoked on the stack"</span>)
-      then(<span class="stQuotedString">"NoSuchElementException should be thrown"</span>)
+      When(<span class="stQuotedString">"when pop is invoked on the stack"</span>)
+      Then(<span class="stQuotedString">"NoSuchElementException should be thrown"</span>)
       intercept[<span class="stType">NoSuchElementException</span>] {
         emptyStack.pop()
       }
  
-      and(<span class="stQuotedString">"the stack should still be empty"</span>)
+      And(<span class="stQuotedString">"the stack should still be empty"</span>)
       assert(emptyStack.isEmpty)
     }
   }
@@ -303,31 +303,31 @@ want to run before each test by <code>before { ... }</code>, and after each test
 
     scenario(<span class="stQuotedString">"pop is invoked on a non-empty stack"</span>) {
  
-      given(<span class="stQuotedString">"a non-empty stack"</span>)
+      Given(<span class="stQuotedString">"a non-empty stack"</span>)
       stack.push(<span class="stLiteral">1</span>)
       stack.push(<span class="stLiteral">2</span>)
       <span class="stReserved">val</span> oldSize = stack.size
  
-      when(<span class="stQuotedString">"when pop is invoked on the stack"</span>)
+      When(<span class="stQuotedString">"when pop is invoked on the stack"</span>)
       <span class="stReserved">val</span> result = stack.pop()
  
-      then(<span class="stQuotedString">"the most recently pushed element should be returned"</span>)
+      Then(<span class="stQuotedString">"the most recently pushed element should be returned"</span>)
       assert(result === <span class="stLiteral">2</span>)
  
-      and(<span class="stQuotedString">"the stack should have one less item than before"</span>)
+      And(<span class="stQuotedString">"the stack should have one less item than before"</span>)
       assert(stack.size === oldSize - <span class="stLiteral">1</span>)
     }
  
     scenario(<span class="stQuotedString">"pop is invoked on an empty stack"</span>) {
  
-      given(<span class="stQuotedString">"an empty stack"</span>)
-      when(<span class="stQuotedString">"when pop is invoked on the stack"</span>)
-      then(<span class="stQuotedString">"NoSuchElementException should be thrown"</span>)
+      Given(<span class="stQuotedString">"an empty stack"</span>)
+      When(<span class="stQuotedString">"when pop is invoked on the stack"</span>)
+      Then(<span class="stQuotedString">"NoSuchElementException should be thrown"</span>)
       intercept[<span class="stType">NoSuchElementException</span>] {
         stack.pop()
       }
  
-      and(<span class="stQuotedString">"the stack should still be empty"</span>)
+      And(<span class="stQuotedString">"the stack should still be empty"</span>)
       assert(stack.isEmpty)
     }
   }
