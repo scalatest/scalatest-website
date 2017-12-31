@@ -1,0 +1,57 @@
+@*
+ * Copyright 2010-2017 Artima, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *@
+
+@import controllers.Application.latestScaladoc
+
+@userGuidePage("Using Either Values") {
+<div style="text-align: left">
+
+<h1>Using <code>EitherValues</code></h1>
+
+<p>ScalaTest's <a href="@latestScaladoc/#org.scalatest.EitherValues"><code>EitherValues</code></a> trait provides an implicit conversion that adds <code>left.value</code> and <code>right.value</code> methods
+to <code>Either</code>, which will return the selected value of the <code>Either</code> if defined,
+or throw <code>TestFailedException</code> if not.</p><p>This construct allows you to express in one statement that an <code>Either</code> should be <em>left</em> or <em>right</em>
+and that its value should meet some expectation. Here's are some examples:</p><p><pre class="stHighlighted">
+either1.right.value should be &gt; <span class="stLiteral">9</span>
+either2.left.value should be (<span class="stQuotedString">&quot;Muchas problemas&quot;</span>)
+</pre></p><p>Or, using assertions instead of matcher expressions:</p><p><pre class="stHighlighted">
+assert(either1.right.value &gt; <span class="stLiteral">9</span>)
+assert(either2.left.value === <span class="stQuotedString">&quot;Muchas problemas&quot;</span>)
+</pre></p><p>Were you to simply invoke <code>right.get</code> or <code>left.get</code> on the <code>Either</code>,
+if the <code>Either</code> wasn't defined as expected (<em>e.g.</em>, it was a <code>Left</code> when you expected a <code>Right</code>), it
+would throw a <code>NoSuchElementException</code>:</p><p><pre class="stHighlighted">
+<span class="stReserved">val</span> either: <span class="stType">Either[String, Int]</span> = <span class="stType">Left</span>(<span class="stQuotedString">&quot;Muchas problemas&quot;</span>)
+<br />either.right.get should be &gt; <span class="stLiteral">9</span> <span class="stLineComment">// either.right.get throws NoSuchElementException</span>
+</pre></p><p>The <code>NoSuchElementException</code> would cause the test to fail, but without providing a <a href="@latestScaladoc/#org.scalatest.StackDepth">stack depth</a> pointing
+to the failing line of test code. This stack depth, provided by <a href="@latestScaladoc/#org.scalatest.TestFailedException"><code>TestFailedException</code></a> (and a
+few other ScalaTest exceptions), makes it quicker for
+users to navigate to the cause of the failure. Without <code>EitherValues</code>, to get
+a stack depth exception you would need to make two statements, like this:</p><p><pre class="stHighlighted">
+<span class="stReserved">val</span> either: <span class="stType">Either[String, Int]</span> = <span class="stType">Left</span>(<span class="stQuotedString">&quot;Muchas problemas&quot;</span>)
+<br />either should be (<span class="stQuotedString">'right</span>) <span class="stLineComment">// throws TestFailedException</span>
+either.right.get should be &gt; <span class="stLiteral">9</span>
+</pre></p><p>The <code>EitherValues</code> trait allows you to state that more concisely:</p><p><pre class="stHighlighted">
+<span class="stReserved">val</span> either: <span class="stType">Either[String, Int]</span> = <span class="stType">Left</span>(<span class="stQuotedString">&quot;Muchas problemas&quot;</span>)
+<br />either.right.value should be &gt; <span class="stLiteral">9</span> <span class="stLineComment">// either.right.value throws TestFailedException</span>
+</pre>
+</p>
+
+<p>
+Next, we can look at another goodie. Let's learn about using <a href="/user_guide/using_PartialFunctionValues">PartialFunctionValues</a>.
+</p>
+
+</div>
+}

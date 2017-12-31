@@ -159,4 +159,31 @@ object UserGuide extends Controller {
   def usingScalaJS = Action {
     Ok(views.html.userGuide.usingScalaJS())
   }
+
+  def usingInside = Action {
+    Ok(views.html.userGuide.usingInside())
+  }
+
+  def usingOptionValues = Action {
+    Ok(views.html.userGuide.usingOptionValues())
+  }
+
+  def usingEitherValues = Action {
+    Ok(views.html.userGuide.usingEitherValues())
+  }
+
+  def usingPartialFunctionValues = Action {
+    Ok(views.html.userGuide.usingPartialFunctionValues())
+  }
+
+  def usingPrivateMethodTester = Action {
+    Ok(views.html.userGuide.usingPrivateMethodTester())
+  }
+
+  def usingWrapWith = Action {
+    Ok(views.html.userGuide.usingWrapWith())
+  }
+
+
 }
+
