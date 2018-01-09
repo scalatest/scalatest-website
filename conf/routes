@@ -70,6 +70,12 @@ GET        /user_guide/testing_with_mock_objects                        controll
 GET        /user_guide/tests_as_specifications                          controllers.UserGuide.testsAsSpecifications
 GET        /user_guide/property_based_testing                           controllers.UserGuide.propertyBasedTesting
 GET        /user_guide/other_goodies                                    controllers.UserGuide.otherGoodies
+GET        /user_guide/using_inside                                     controllers.UserGuide.usingInside
+GET        /user_guide/using_OptionValues                               controllers.UserGuide.usingOptionValues
+GET        /user_guide/using_EitherValues                               controllers.UserGuide.usingEitherValues
+GET        /user_guide/using_PartialFunctionValues                      controllers.UserGuide.usingPartialFunctionValues	   
+GET        /user_guide/using_PrivateMethodTester                        controllers.UserGuide.usingPrivateMethodTester	   
+GET        /user_guide/using_WrapWith                                   controllers.UserGuide.usingWrapWith	   
 GET        /user_guide/philosophy_and_design                            controllers.UserGuide.philosophyAndDesign
 GET        /user_guide/design_and_philosophy                            controllers.UserGuide.designAndPhilosophy
 GET        /user_guide/selecting_a_style                                controllers.UserGuide.selectingAStyle
