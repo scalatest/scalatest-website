@@ -145,3 +145,18 @@ object Application extends Controller {
     Redirect(routes.Application.atAGlance("FlatSpec").url)
   }
 }
+
+
+//
+//  This is used for printing the current year for copyright notices
+//
+import java.util.Calendar
+
+object TheYear {
+
+  def whatYearIsThis(): String = {
+    val now = Calendar.getInstance()
+    now.get(Calendar.YEAR).toString
+  }
+}
+
