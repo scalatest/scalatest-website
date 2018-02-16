@@ -23,7 +23,7 @@ object Application extends Controller {
 
   val latestScaladoc =          "http://doc.scalatest.org/3.0.1"
   val latestScalacticScaladoc = "http://doc.scalactic.org/3.0.1"
-  val latestVersion = "3.0.4"
+  val latestVersion = "3.0.5"
   val latestSuperSafeVersion = "1.1.3"				// updated per BV request -- 170130 PL  and now, per Chee Seng concurrence 171115 to 1.1.3
   val milestoneVersion = "3.0.1-RC4"
   val milestoneJar = "https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest_2.11/3.0.1-RC4/scalatest_2.11-3.0.1-RC4.jar"
