@@ -51,9 +51,9 @@
         <h2>Bug Fixes</h2>
 
         <ul>
-            <li>Fixed implicit view not available problem when used with compile macro.</li>
-            <li>Fixed stack depth problem in <code>RefSpecLike </code>and <code>fixture.SpecLike</code> under Scala 2.13.</li>
-            <li>Changed <code>Framework</code> and <code>ScalaTestFramework</code> to set <code>spanScaleFactor</code> for Runner object instance for different Runner using different class loader, this fixed incorrect <code>Runner.spanScaleFactor</code> being used when multiple sbt projects tests run concurrently.</li>
+            <li>Fixed the implicit view not available problem when used with compile macro.</li>
+            <li>Fixed a stack depth problem in <code>RefSpecLike </code>and <code>fixture.SpecLike</code> under Scala 2.13.</li>
+            <li>Changed <code>Framework</code> and <code>ScalaTestFramework</code> to set <code>spanScaleFactor</code> for Runner object instances for different Runners using different class loaders. This fixed a problem whereby an incorrect <code>Runner.spanScaleFactor</code> could be used when the tests for multiple sbt project's were run concurrently.</li>
             <li>Fixed a bug in <code>endsWith</code> regex matcher.</li>
         </ul>
 
