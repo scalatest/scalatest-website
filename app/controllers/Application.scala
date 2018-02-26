@@ -19,6 +19,7 @@ import play.api._
 import play.api.mvc._
 import examples.StyleTraitExamples
 
+
 object Application extends Controller {
 
   val latestScaladoc =          "http://doc.scalatest.org/3.0.1"
@@ -143,20 +144,6 @@ object Application extends Controller {
 
   def bareAtAGlance() = Action {
     Redirect(routes.Application.atAGlance("FlatSpec").url)
-  }
-}
-
-
-//
-//  This is used for printing the current year for copyright notices
-//
-import java.util.Calendar
-
-object TheYear {
-
-  def whatYearIsThis(): String = {
-    val now = Calendar.getInstance()
-    now.get(Calendar.YEAR).toString
   }
 }
 
