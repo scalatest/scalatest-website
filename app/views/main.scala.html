@@ -14,7 +14,11 @@
  * limitations under the License.
  *@
 
+
 @(pagename: String, topImage: Html, containerStyle: String ="Container")(body: => Html)
+
+@import helpers.CalendarHelper.currentYear
+
 
 <!DOCTYPE html>
 <html>
@@ -77,7 +81,7 @@ AdButler.ads.push({handler: function(opt){ AdButler.register(167933, 205886, [66
       </p>
 
       <p>
-        Copyright &copy; 2009-2017 Artima, Inc. All Rights Reserved.
+        Copyright &copy; 2009-@currentYear() Artima, Inc. All Rights Reserved.
       </p>
 
       <p>

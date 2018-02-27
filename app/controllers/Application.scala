@@ -19,6 +19,7 @@ import play.api._
 import play.api.mvc._
 import examples.StyleTraitExamples
 
+
 object Application extends Controller {
 
   val latestScaladoc =          "http://doc.scalatest.org/3.0.1"
@@ -145,3 +146,4 @@ object Application extends Controller {
     Redirect(routes.Application.atAGlance("FlatSpec").url)
   }
 }
+
