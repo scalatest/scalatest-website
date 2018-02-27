@@ -16,15 +16,14 @@
 
 package helpers
 
-
 //
 //  This is used for printing the current year for copyright notices
 //
 import java.util.Calendar
 
-object TheYear {
+object CalendarHelper {
 
-  def whatYearIsThis(): String = {
+  def currentYear(): String = {
     val now = Calendar.getInstance()
     now.get(Calendar.YEAR).toString
   }
