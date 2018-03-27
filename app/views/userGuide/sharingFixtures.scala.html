@@ -510,9 +510,9 @@ factored out into two <em>stackable fixture traits</em> named <code>Builder</cod
 
 <p><pre class="stHighlighted">
 <span class="stReserved">package</span> org.scalatest.examples.flatspec.composingwithfixture
-<br /><span class="stReserved">import</span> org.scalatest._
+<br /><span class="stReserved">import</span> org.scalatest.{FlatSpec, TestSuite, TestSuiteMixin}
 <span class="stReserved">import</span> collection.mutable.ListBuffer
-<br /><span class="stReserved">trait</span> <span class="stType">Builder</span> <span class="stReserved">extends</span> <span class="stType">SuiteMixin</span> { <span class="stReserved">this</span>: <span class="stType">Suite</span> =&gt;
+<br /><span class="stReserved">trait</span> <span class="stType">Builder</span> <span class="stReserved">extends</span> <span class="stType">TestSuiteMixin</span> { <span class="stReserved">this</span>: <span class="stType">TestSuite</span> =&gt;
 <br />  <span class="stReserved">val</span> builder = <span class="stReserved">new</span> <span class="stType">StringBuilder</span>
 <br />  <span class="stReserved">abstract</span> <span class="stReserved">override</span> <span class="stReserved">def</span> withFixture(test: <span class="stType">NoArgTest</span>) = {
     builder.append(<span class="stQuotedString">&quot;ScalaTest is &quot;</span>)
@@ -520,7 +520,7 @@ factored out into two <em>stackable fixture traits</em> named <code>Builder</cod
     <span class="stReserved">finally</span> builder.clear()
   }
 }
-<br /><span class="stReserved">trait</span> <span class="stType">Buffer</span> <span class="stReserved">extends</span> <span class="stType">SuiteMixin</span> { <span class="stReserved">this</span>: <span class="stType">Suite</span> =&gt;
+<br /><span class="stReserved">trait</span> <span class="stType">Buffer</span> <span class="stReserved">extends</span> <span class="stType">TestSuiteMixin</span> { <span class="stReserved">this</span>: <span class="stType">TestSuite</span> =&gt;
 <br />  <span class="stReserved">val</span> buffer = <span class="stReserved">new</span> <span class="stType">ListBuffer[String]</span>
 <br />  <span class="stReserved">abstract</span> <span class="stReserved">override</span> <span class="stReserved">def</span> withFixture(test: <span class="stType">NoArgTest</span>) = {
     <span class="stReserved">try</span> <span class="stReserved">super</span>.withFixture(test) <span class="stLineComment">// To be stackable, must call super.withFixture</span>
