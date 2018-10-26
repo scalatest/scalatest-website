@@ -1553,7 +1553,7 @@ an [<span class="stType">IndexOutOfBoundsException</span>] should be thrownBy s.
 this expression will result in that exception. But if <code>charAt</code> completes normally, or throws a different
 exception, this expression will complete abruptly with a <code>TestFailedException</code>.</p>
 
-<p>If you need to further isnpect an expected exception, you can capture it using this syntax:</p>
+<p>If you need to further inspect an expected exception, you can capture it using this syntax:</p>
 
 <p><pre class="stHighlighted">
 <span class="stReserved">val</span> thrown = the [<span class="stType">IndexOutOfBoundsException</span>] thrownBy s.charAt(-<span class="stLiteral">1</span>)
