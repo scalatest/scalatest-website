@@ -51,10 +51,10 @@
         <h2>Bug Fixes</h2>
 
         <ul>
-            <li>Fixed the implicit view not available problem when used with compile macro.</li>
-            <li>Fixed a stack depth problem in <code>RefSpecLike </code>and <code>fixture.SpecLike</code> under Scala 2.13.</li>
-            <li>Changed <code>Framework</code> and <code>ScalaTestFramework</code> to set <code>spanScaleFactor</code> for Runner object instances for different Runners using different class loaders. This fixed a problem whereby an incorrect <code>Runner.spanScaleFactor</code> could be used when the tests for multiple sbt project's were run concurrently.</li>
-            <li>Fixed a bug in <code>endsWith</code> regex matcher.</li>
+            <li>Fixed incorrect test count problem in scala-js starting 0.6.22.</li>
+            <li>Fixed problem when partial unification is enabled with <code>-Ypartial-unification</code>.</li>
+            <li>Enhanced <code>TypeMatcherHelper</code> to handle primitive types checking.</li>
+            <li>Enhanced <code>TypeMatcherHelper</code> to handle <code>AnyVal</code> correctly.</li>
         </ul>
 
 
@@ -62,11 +62,12 @@
         <h2>Improvements</h2>
 
         <ul>
-            <li>Removed duplicated parsing code for -C in <code>ArgsParser</code>.</li>
-            <li>Improved performance in <code>WebBrowser</code>.</li>
-            <li>Documentation typo rectification.</li>
-            <li>Improve validity of Junit XML reports.</li>
-            <li>Improved performance by replacing all <code>.size == 0 </code>and <code>.length == 0 </code>to <code>.isEmpty</code>.</li>
+            <li>Moved away from using octal escapes, as they are deprecated and will be removed in Scala 2.13.</li>
+            <li>Wrap <code>&lt;script&gt;</code> sections of HtmlReporter in <code>&lt;![CDATA[]]&gt;</code>.</li>
+            <li>Bumped up to use ScalaCheck 1.14.0.</li>
+            <li>Bumped up to use scala-xml version 1.1.0.</li>
+            <li>Bumped up to use scala-js version 0.6.26.</li>
+            <li>Added support for Scala 2.13.0-M5.</li>
         </ul>
 
 
@@ -74,21 +75,37 @@
         <h2>Enhancements</h2>
 
         <ul>
-            <li>Added <code>'C'</code> option to <code>-P</code>, which will tell <code>-P</code> to use cached thread pool.</li>
+            <li></li>Added support of <code>-T</code> argument in SBT.</li>
         </ul>
 
 
-        <a name="scalatest_external_dependencies"></a>
-        <h2>External Dependencies Update</h2>
+        <a name="scalatest_deprecations"></a>
+        <h2>Deprecations</h2>
 
         <ul>
-            <li>Bumped up <code>scala-js</code> version to 0.6.22.</li>
-            <li>Changed to depend on <code>mockito-core</code>, not <code>mockito-all</code>.</li>
-            <li>Bumped up <code>jmock</code> version to 2.8.3.</li>
-            <li>Bumped up <code>junit</code> version to 4.12.</li>
-            <li>Removed dependency to <code>scala-parser-combinators</code>.</li>
+            <li>Deprecated <code>to</code> and <code>until</code> method in <code>Float</code> and <code>Double</code> anyvals.</li>
+            <li>Deprecated ScalaCheck related classes in <code>org.scalatest.prop</code>, moved the classes into <code>org.scalatestplus.scalacheck</code>.</li>
+            <li>Deprecated classes in <code>org.scalatest.easymock</code>, moved the classes into <code>org.scalatestplus.easymock</code>.</li>
+            <li>Deprecated classes in <code>org.scalatest.jmock</code>, moved the classes into <code>org.scalatestplus.jmock</code>.</li>
+            <li>Deprecated classes in <code>org.scalatest.junit</code>, moved the classes into <code>org.scalatestplus.junit</code>.</li>
+            <li>Deprecated classes in <code>org.scalatest.mockito</code>, moved the classes into <code>org.scalatestplus.mockito</code>.</li>
+            <li>Deprecated classes in <code>org.scalatest.selenium</code>, moved the classes into <code>org.scalatestplus.selenium</code>.</li>
+            <li>Deprecated classes in <code>org.scalatest.testng</code>, moved the classes into <code>org.scalatestplus.testng</code>.</li>
         </ul>
 
+        <a name="scalatest_autofix"></a>
+        <h2>Autofix for ScalaTest 3.0</h2>
+
+        <p>
+                To help users to migrate from deprecated packages to new packages, we include an
+                autofix tool that can help you to rename the packages automatically.
+        </p>
+        <p>
+                If you're using the latest Scala 2.11 or 2.12, you can follow this guide to use autofix:
+        </p>
+        <p>    
+                <a href="https://github.com/scalatest/autofix/tree/master/3.0.6">https://github.com/scalatest/autofix/tree/master/3.0.6</a>
+        </p>
 	<br/>
 
 	<!-- ====================================== SCALACTIC ==================================================== -->
@@ -101,52 +118,15 @@
 
 	<hr></hr>
 
-        <a name="scalactic_bugfixes"></a>
-        <h2>Bug Fixes</h2>
-
-        <ul>
-            <li>Fixed Accumulation's Combinable problem when used with ScalaTest's <code>shouldEqual</code>.</li>
-        </ul>
-
-
-        <a name="scalactic_improvements"></a>
-        <h2>Improvements</h2>
-
-        <ul>
-            <li>Pretty print <code>ArrayOps</code>.</li>
-            <li>Improved performance by replacing all <code>.size == 0</code> and <code>.length == 0</code> to <code>.isEmpty</code>.</li>
-        </ul>
-
-
-        <a name="scalactic_external_dependencies"></a>
-        <h2>External Dependencies Update</h2>
-
-        <ul>
-            <li>Bumped up <code>scala-js</code> version to 0.6.22.</li>
-        </ul>
-
+    <p>Scalactic 3.0.5 contains no changes to Scalactic compared to 3.0.4.</p>
 	<br/>
 
 	<!-- ====================================== NOTES ==================================================== -->
 
         <hr style="height:3px;border:none;color:#333;background-color:#333;" /> <!-- ############################################### -->
 
-	<div align="center" style="padding-top:0.8rem">
-	<h1>General Notes</h1>
-	</div>
 
 	<hr></hr>
-
-
-        <a name="notes"></a>
-        <h2>Notes for 3.0.5-M1</h2>
-	<ul>
-            <li> The M1 release is created for Scala 2.13.0-M3, which we detected a potential regression when building ScalaTest's own tests. You can use 3.0.5-M1 if you need to cross build with Scala 2.13.0-M3. For further details, please see: <a href="https://github.com/scalatest/scalatest/issues/1321#issuecomment-365005265">github issue #1321 (comment)</a>
-            </li>
-        </ul>
-
-
-        <hr></hr>
 
         <p>
             Visit <a href="@routes.ReleaseNotes.releaseNotesIndex">ScalaTest Release Notes</a> for links to the release notes of all previous versions, or
