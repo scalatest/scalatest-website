@@ -782,4 +782,25 @@ pre.stTight {
   padding-bottom: 0px;
 }
 
+th.stTableHeader {
+  background-color: #CCCCCC;
+  border-width: 1px;
+  padding: 3px;
+  padding-top: 7px;
+  border: 1px solid black;
+  text-align: center;
+}
+
+td.stTableData {
+  border-width: 1px;
+  padding: 3px;
+  border: 1px solid black;
+  text-align: center;
+}
+
+table.stTableOverall {
+  border-collapse: collapse;
+  border: 1px solid black;
+}
+
 
