@@ -25,7 +25,7 @@
         <p>
             ScalaTest/Scalactic 3.1.0 (for Scala 2.11, 2.12, and 2.13) includes the enhancements and bug fixes listed below.
             No source code using ScalaTest/Scalactic 3.0.8 should break, other than expired deprecations, but
-            because this release is not binary compatible with 3.0.8), you will likely need to do a clean build to upgrade. Also,
+            because this release is not binary compatible with 3.0.8), you will likely need to do a clean build to upgrade.
         </p>
 
         <p>
@@ -46,11 +46,51 @@
 
 	<hr></hr>
 
+        <p>
+        The major new feature of ScalaTest 3.1.0 is modularity. Anything involving third party integrations has been moved to an
+        <code>org.scalatestplus</code> package. For example, ScalaCheck integration has been moved to the <code>org.scalatestplus.scalacheck</code>
+        package. These integration artifacts can now evolve independently, which allows them to more easily
+        track updates in the third party libraries as well as in ScalaTest.
+        </p>
+
+        <p>
+        We have modularized ScalaTest internally as well in 3.1.0. In
+        addition to releasing the customary monolithic <code>scalatest</code> artifact that contains everything in the library, as of 3.1.0
+        we will also release more focused artifacts, such as <code>scalatest-funsuite</code>. If you add a dependency on
+        <code>scalatest-funsuite</code> in your project's build, members of your team will only be able to use the <code>FunSuite</code> style. Any attempts
+        to use styles such as <code>FlatSpec</code> or <code>FeatureSpec</code> will not compile in that project unless the build file is changed.
+        </p>
+
+        <p>
+        The purpose of the internal modularization is to help teams maintain style consistency across a project when using ScalaTest. Although
+        the original intent and expectation was that one or more or specific ScalaTest styles would be chosen for individual projects, it was easy
+        for an individual developer to use a different style. Thus choices that were intended for project leads ended up being made by individual
+        developers working on the project.
+        </p>
+
+        <p>
+        We also are releasing modules for assertion styles. All artifacts include ScalaTest's basic assertions, but if you use a focused module such as
+        <code>scalatest-funsuite</code>, your team will only be able to use ScalaTest's basic assertions unless you add another dependency. If you want to
+        use matchers, for example, you would add either <code>scalatest-shouldmatchers</code> (if you prefer <code>should</code>) or
+        <code>scalatest-mustmatchers</code> (if you prefer <code>must</code>). If you add the
+        former, your team will be able to write matcher expressions with <code>should</code>, but not <code>must</code>, unless the build is changed.
+        Similarly, if you want to use diagrammed assertions on your project, you would add a dependency to <code>scalatest-diagrams</code>.
+        </p>
+
+        <p>
+        Both internal and external modularization required that we rename many traits, classes, and objects so that the members of each module belong
+        exclusively to a single package. In the monolithic ScalaTest artifact, which everyone is currently using in their build, the old names are
+        deprecated and will continue to work. To upgrade, you should be able to just change the version to 3.1.0 after fixing any deprecation warnings.
+        Your project should compile as before, but you'll get deprecation warnings about the name changes. To help you with all the renames, we are
+        providing a ScalaFix tool that will rewrite all the names across your test code.
+        </p>
+
         <a name="scalatest_bugfixes"></a>
         <h2>Bug Fixes</h2>
 
         <ul>
           <li>Fixed macro-based assertion that has problem when used directly with package name without mixin in/import the trait.</li>
+          <li>Fixed problem of occasional exceptions when doing async on the JVM.</li>
         </ul>
 
         <a name="scalatest_improvements"></a>
@@ -103,7 +143,6 @@ the upper case versions that have always been shown in our reports.</li>
                 Similarly, the traits and classes in package <code>org.scalatest.path</code> have &ldquo;<code>Path</code>&rdquo; prefixed to their
                 former simple names in their new location.
                 For example, <code>org.scalatest.path.FunSpec</code> becomes <code>org.scalatest.funsuite.PathAnyFunSpec</code>.
-@* TODO: Move the path traits to their respective new homes *@
                 </p>
                 <p>
                 Here are the details:
@@ -434,11 +473,26 @@ the upper case versions that have always been shown in our reports.</li>
 
 
 @*
-TODO: We should create a ScalaFix app for this, but we do have a support/feature2Feature.scala that does it.
-*@
-@*
-TODO: FunSuite in org.scalatest is a class not a type alias. I wonder if we can make that a type alias.
-Probably same for all the others.
+Add: Tweaked Scaladoc for BeforeAndAfter traits.
+- Serialize execution of branches as well as tests within branches. 
+  https://github.com/scalatest/scalatest/pull/1628/commits/d59a0d7a003a036aa637702636d44b582210065f
+- Send infoProvided events in order in async-style tests even if a non-default execution context.
+  https://github.com/scalatest/scalatest/pull/1628/commits/9dcd8e3395b16a57cc0eca8dd46cdc43ab7e596b
+- Bug fix: closed race condition causing the concurrency bug
+  https://github.com/scalatest/scalatest/pull/1628/commits/c08f188ec877df7836bdf8784208508fe4a310d4
+- Fixed another bug: is pending (three commits in a row) AsyncFreeSpec, AsyncFlatSpec, AsyncWordSpec.
+  https://github.com/scalatest/scalatest/pull/1628/commits/78fb078cafc42a8ff19a03826f7f8bb750afec02
+- Refactored implementation of StatefulStatus to eliminate a potential race condition, despite not
+  having evidence it ever caused a problem.
+- Refactored implementation of CompositeStatus to eliminate a leak of the this ref in the constructor.
+- Ensure that if two threads call setCompleted on a StatefulStatus.
+  https://github.com/scalatest/scalatest/pull/1628/commits/a18a548cbd2bd4345d8cbc5d9dec471b31df6c71
+- Changed isCompleted from parameterless to empty parens form, because it can observe a side effect.
+  https://github.com/scalatest/scalatest/pull/1628/commits/15b1e7fa96180980df78b03e8b2fdab0d6033f42
+- Added to Scaladoc on StatefulStatus.setCompleted. Corrected typos in Scaladoc for the BeforeAndAfter traits.
+  https://github.com/scalatest/scalatest/pull/1628/commits/285c6b87fa2b13c10f82d4789e2a6c2094d38e8f
+  https://github.com/scalatest/scalatest/pull/1628/commits/f4aade25c0bfaf6c8dafa264c3f412324179b873
+
 *@
 
         </ul>
@@ -453,13 +507,55 @@ Probably same for all the others.
                 name and the actual implementation in the new package from the ScalaTest artifact. From now on these will be released as a 
                 separate, optional module to allow ScalaTest and its ScalaCheck integration library to evolve more independently.
                 See http://xyz for the details on how to add the ScalaTest+ScalaCheck integration library to your build.</li>
-@*
-TODO: We should create a ScalaFix app for this, but we do have a support/feature2Feature.scala that does it.
-*@
-@*
-TODO: FunSuite in org.scalatest is a class not a type alias. I wonder if we can make that a type alias.
-Probably same for all the others.
-*@
+              <li>Removed the <code>trap</code> method from trait <code>Assertions</code>, and with it, the <code>NormalResult</code> case
+                  class in the <code>Assertions</code> companion object.
+              </li>
+              <li>
+              Removed the parameterless execute method that has been deprecated since ???. Use execute() instead. 
+              </li>
+              <li>
+              Removed a deprecated implicit conversion was added in ScalaTest 3.0.0 because the inheritance relationship
+              between Filter and Function2[Set[String], Map[String, Set[String]], List[(String, Boolean)]] was dropped. Please use
+              the apply method that takes a suiteId instead, the one with this
+              signature: def apply(testNames: Set[String], testTags: Map[String, Set[String]], suiteId: String): List[(String, Boolean)].")
+              </li>
+              <li>
+              Removed the overloaded <code>thread</code> method in <code>Conductors</code> and <code>ConductorMethods</code>
+              in package <code>org.scalatest.concurrent</code> that takes a string name. Please use threadNamed instead.
+              </li>
+              <li>
+              Removed deprecated type alias in <code>org.scalatest.concurrent</code> for the old name
+              of <code>AsyncAssertions</code> to the new name, <code>Waiters</code>. And the entire package object goes away.
+              </li>
+              <li>
+              Removed <code>Interruptor</code> <code>SelectorInterruptor</code> <code>SocketInterruptor</code> <code>ThreadInterruptor</code>
+              in the <code>org.scalatest.concurrent</code> package.
+              </li>
+<li>
+deprecated Please use org.scalatest.concurrent.TimeLimits instead trait Timeouts
+</li>
+<li>
+Removed <code>DeprecatedTimeLimitedTests</code>
+</li>
+<li>
+TODO: In org.scalatest, Please use PendingStatement instead
+  type PendingNothing = PendingStatement
+</li>
+<li>
+TODO: In org.scalatest, 
+
+type SpecLike = refspec.RefSpecLike
+type Spec = refspec.RefSpec
+</li>
+<li>
+Removed fixture.Spec and fixture.SpecLike that have been deprecated for a long time. Use FunSpec instead.
+</li>
+<li>
+Dropped a long deprecated PendingNothing that was used probably only internally, but it was public.
+  Please use PendingStatement instead
+  type PendingNothing = PendingStatement
+</li>
+
 
         </ul>
 
@@ -660,9 +756,7 @@ Broken in PosFloat too. PosZFloat and surely PosZDouble too.
         <ul>
             <li>Deprecated <code>org.scalactic.Chain</code>, because it has been renamed to <code>org.scalactic.anyvals.NonEmptyList</code> to
                 have consistent naming with the other newly added <code>NonEmpty*</code> <code>anyvals</code> types.</li>
-@*
-TODO: We should create a ScalaFix app for this, but we do have a support/feature2Feature.scala that does it.
-*@
+            </li>Deprecated <code>styleName</code> in the style traits. TODO make sure we did this everywhere, including in Suite and SuiteMixin.</li>
         </ul>
 
 	<br/>
@@ -677,8 +771,6 @@ TODO: We should create a ScalaFix app for this, but we do have a support/feature
         </p>
 
     </div>
-
-@* TODO: Remove Present *@ 
 
 @*
 
@@ -846,7 +938,7 @@ What's this about:
 Added Any as type for K and V for GenMapDiffer companion object.
 
 Added Differ, Prettifier and PrettyPair to scalacticDotty module.
-  Are these new in 3.1.0?
+  Are these new in 3.1.0? Yes I think so.
 
  Ported over from 3.2.x: Added -S argument to allow setting of fixed init seed.
  Oh, but this is probably will be hidden in 3.1.0.
@@ -890,5 +982,162 @@ add _root_ to the macros defined in TypeMatcherMacro
 Fixed javascript error in report files generated by HtmlReporter.
   I think this was in 3.0.8 too though.
 
+moved DiagrammedAssertions to diagrams.Diagrams
+
+moved Matchers to matchers.should.Matchers
+moved MustMatchers to matchers.must.Matchers
+
+moved words that were only needed by matchers to matchers.dsl
+moved remaining words to verbs. This means wordspec is the only thing starting with word.
+left deprecations.
+
+removed single arg form of withGood in Accumulation. Use map instead. Call map on the first param, passing in the old second (function) param as the new lone (function) param
+remove deprecated alias from Constaint to CanEqual
+
+removed DeprecatedPrettyMethods, the 2.2.6 PrettyMethods trait that was renamed to DeprecatedPrettyMethods. It was
+ a quick way to get old code working again that defined an implicit <code>PrettifierConfig</code>, but
+ before the deprecation cycle is over please change the implicit <code>PrettifierConfig</code> to
+ an implicit <code>Prettifier</code>.
+
+   This removed PrettifierConfig also. replacement is Prettifier (and PrettyMethods).
+   implicit Prettifier and PrettyMethods instead
+
+
+Droppe ConversionCheckedTripleEquals (and LowPriorityConversionCheckedConstraint) from Scalactic. Expired its deprecation. 
+
+Deprecated these methods, which probably should have been deprecated when ConverstionCheckedTriplEquals was deprecated:
+
+lowPriorityConversionCheckedConstraint[A, B](implicit equivalenceOfB: Equivalence[B], cnv: A => B): A CanEqual B = new AToBEquivalenceConstraint[A, B](equivalenceOfB, cnv)
+convertEquivalenceToAToBConversionConstraint[A, B](equivalenceOfB: Equivalence[B])(implicit ev: A => B): A CanEqual B = new AToBEquivalenceConstraint[A, B](equivalenceOfB, ev)
+conversionCheckedConstraint[A, B](implicit equivalenceOfA: Equivalence[A], cnv: B => A): A CanEqual B = new BToAEquivalenceConstraint[A, B](equivalenceOfA, cnv)
+def convertEquivalenceToBToAConversionConstraint[A, B](equivalenceOfA: Equivalence[A])(implicit ev: B => A): A CanEqual B = new BToAEquivalenceConstraint[A, B](equivalenceOfA, ev)
+
+These were used to support ConversionCheckedTripleEquals, and so are no longer needed.
+
+Changed styleName to reflect new names, and allow finer granularity:
+
+org.scalatest.FixtureSuite
+    org.scalatest.fixture.Suite
+    org.scalatest.FixtureSuite
+
+org.scalatest.featurespec.AnyFeatureSpecLike
+  org.scalatest.FeatureSpec
+  org.scalatest.featurespec.AnyFeatureSpec
+     
+org.scalatest.featurespec.AsyncFeatureSpecLike
+  org.scalatest.FeatureSpec
+  org.scalatest.featurespec.AsyncFeatureSpec
+ 
+org.scalatest.featurespec.FixtureAnyFeatureSpecLike
+  org.scalatest.fixture.FeatureSpec
+  org.scalatest.featurespec.FixtureAnyFeatureSpec
+ 
+org.scalatest.featurespec.FixtureAsyncFeatureSpecLike
+  org.scalatest.fixture.FeatureSpec
+  org.scalatest.featurespec.FixtureAsyncFeatureSpec
+
+org.scalatest.flatspec.AnyFlatSpecLike
+  org.scalatest.FlatSpec
+  org.scalatest.flatspec.AnyFlatSpec
+     
+org.scalatest.flatspec.AsyncFlatSpecLike
+  org.scalatest.FlatSpec
+  org.scalatest.flatspec.AsyncFlatSpec
+ 
+org.scalatest.flatspec.FixtureAnyFlatSpecLike
+  org.scalatest.fixture.FlatSpec
+  org.scalatest.flatspec.FixtureAnyFlatSpec
+ 
+org.scalatest.flatspec.FixtureAsyncFlatSpecLike
+  org.scalatest.fixture.FlatSpec
+  org.scalatest.flatspec.FixtureAsyncFlatSpec
+ 
+org.scalatest.freespec.AnyFreeSpecLike
+  org.scalatest.FreeSpec
+  org.scalatest.freespec.AnyFreeSpec
+     
+org.scalatest.freespec.AsyncFreeSpecLike
+  org.scalatest.FreeSpec
+  org.scalatest.freespec.AsyncFreeSpec
+ 
+org.scalatest.freespec.FixtureAnyFreeSpecLike
+  org.scalatest.fixture.FreeSpec
+  org.scalatest.freespec.FixtureAnyFreeSpec
+ 
+org.scalatest.freespec.FixtureAsyncFreeSpecLike
+  org.scalatest.fixture.FreeSpec
+  org.scalatest.freespec.FixtureAsyncFreeSpec
+ 
+org.scalatest.freespec.PathAnyFreeSpecLike
+  org.scalatest.path.FreeSpec
+  org.scalatest.freespec.PathAnyFreeSpec
+     
+org.scalatest.funspec.AnyFunSpecLike
+  org.scalatest.FunSpec
+  org.scalatest.funspec.AnyFunSpec
+     
+org.scalatest.funspec.AsyncFunSpecLike
+  org.scalatest.FunSpec
+  org.scalatest.funspec.AsyncFunSpec
+ 
+org.scalatest.funspec.FixtureAnyFunSpecLike
+  org.scalatest.fixture.FunSpec
+  org.scalatest.funspec.FixtureAnyFunSpec
+ 
+org.scalatest.funspec.FixtureAsyncFunSpecLike
+  org.scalatest.fixture.FunSpec
+  org.scalatest.funspec.FixtureAsyncFunSpec
+ 
+org.scalatest.funspec.PathAnyFunSpecLike
+  org.scalatest.path.FunSpec
+  org.scalatest.funspec.PathAnyFunSpec
+     
+org.scalatest.funsuite.AnyFunSuiteLike
+  org.scalatest.FunSuite
+  org.scalatest.funsuite.AnyFunSuite
+ 
+org.scalatest.funsuite.AsyncFunSuiteLike
+  org.scalatest.FunSuite
+  org.scalatest.funsuite.AsyncFunSuite
+ 
+org.scalatest.funsuite.FixtureAnyFunSuiteLike
+  org.scalatest.fixture.FunSuite
+  org.scalatest.funsuite.FixtureAnyFunSuite
+ 
+org.scalatest.funsuite.FixtureAsyncFunSuiteLike
+  org.scalatest.fixture.FunSuite
+  org.scalatest.funsuite.FixtureAsyncFunSuite
+ 
+org.scalatest.propspec.AnyPropSpecLike
+  org.scalatest.PropSpec
+  org.scalatest.propspec.AnyPropSpec
+   
+org.scalatest.propspec.AsyncPropSpecLike
+  org.scalatest.PropSpec
+  org.scalatest.propspec.AsyncPropSpec
+ 
+org.scalatest.propspec.FixtureAnyPropSpecLike
+  org.scalatest.fixture.PropSpec
+  org.scalatest.propspec.FixtureAnyPropSpec
+ 
+org.scalatest.propspec.FixtureAsyncPropSpecLike
+  org.scalatest.fixture.PropSpec
+  org.scalatest.propspec.FixtureAsyncPropSpec
+ 
+org.scalatest.wordspec.AnyWordSpecLike
+  org.scalatest.WordSpec
+  org.scalatest.wordspec.AnyWordSpec
+     
+org.scalatest.wordspec.AsyncWordSpecLike
+  org.scalatest.WordSpec
+  org.scalatest.wordspec.AsyncWordSpec
+ 
+org.scalatest.wordspec.FixtureAnyWordSpecLike
+  org.scalatest.fixture.WordSpec
+  org.scalatest.wordspec.FixtureAnyWordSpec
+ 
+org.scalatest.wordspec.FixtureAsyncWordSpecLike
+  org.scalatest.fixture.WordSpec
+  org.scalatest.wordspec.FixtureAsyncWordSpec
 *@
 }
