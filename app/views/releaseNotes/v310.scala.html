@@ -54,22 +54,21 @@
         </p>
 
         <p>
-        We have modularized ScalaTest internally as well in 3.1.0. In
+        We have also modularized ScalaTest internally in 3.1.0. In
         addition to releasing the customary monolithic <code>scalatest</code> artifact that contains everything in the library, as of 3.1.0
         we will also release more focused artifacts, such as <code>scalatest-funsuite</code>. If you add a dependency on
         <code>scalatest-funsuite</code> in your project's build, members of your team will only be able to use the <code>FunSuite</code> style. Any attempts
-        to use styles such as <code>FlatSpec</code> or <code>FeatureSpec</code> will not compile in that project unless the build file is changed.
+        to use other styles, such as <code>FlatSpec</code> or <code>FeatureSpec</code>, will not compile in that project unless the build file is changed.
         </p>
 
         <p>
         The purpose of the internal modularization is to help teams maintain style consistency across a project when using ScalaTest. Although
         the original intent and expectation was that one or more or specific ScalaTest styles would be chosen for individual projects, it was easy
-        for an individual developer to use a different style. Thus choices that were intended for project leads ended up being made by individual
-        developers working on the project.
+        for an individual developer to use a different style.
         </p>
 
         <p>
-        We also are releasing modules for assertion styles. All artifacts include ScalaTest's basic assertions, but if you use a focused module such as
+        We also are releasing modules for assertion styles. All artifacts include ScalaTest's basic assertions, but if you use a focused module like
         <code>scalatest-funsuite</code>, your team will only be able to use ScalaTest's basic assertions unless you add another dependency. If you want to
         use matchers, for example, you would add either <code>scalatest-shouldmatchers</code> (if you prefer <code>should</code>) or
         <code>scalatest-mustmatchers</code> (if you prefer <code>must</code>). If you add the
@@ -78,10 +77,12 @@
         </p>
 
         <p>
-        Both internal and external modularization required that we rename many traits, classes, and objects so that the members of each module belong
-        exclusively to a single package. In the monolithic ScalaTest artifact, which everyone is currently using in their build, the old names are
-        deprecated and will continue to work. To upgrade, you should be able to just change the version to 3.1.0 after fixing any deprecation warnings.
-        Your project should compile as before, but you'll get deprecation warnings about the name changes. To help you with all the renames, we are
+        Modularization required that we rename many traits, classes, and objects so that all the members of each package would belong
+        to a single module. In the monolithic ScalaTest artifact, which everyone is currently using in their build, the old names are
+        deprecated and will continue to work for a very long time to come (at least two years). To upgrade to 3.1.0, we recommend that
+        you first upgrade to 3.0.8 and clear all deprecation warnings. We offer a ScalaFix tool to help you fix the 3.0.8 deprecation warnings.
+        Then, just change the version to 3.1.0. Your project should compile as before, but you'll get deprecation warnings about the name
+        changes. To help you with all the renames, we are
         providing a ScalaFix tool that will rewrite all the names across your test code.
         </p>
 
