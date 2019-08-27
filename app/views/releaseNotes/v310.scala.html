@@ -91,7 +91,9 @@
 
         <ul>
           <li>Fixed macro-based assertion that has problem when used directly with package name without mixin in/import the trait.</li>
-          <li>Fixed problem of occasional exceptions when doing async on the JVM.</li>
+          <li>Fixed race condition causing occasional <code>ConcurrentModificationException</code> when executing async styles with a non-default execution context on the JVM. (<a href="https://github.com/scalatest/scalatest/pull/1628/commits/c08f188ec877df7836bdf8784208508fe4a310d4">PR #1628</a>)</li>
+          <li>Made <code>is pending</code> work in AsyncFreeSpec, AsyncFlatSpec, AsyncWordSpec. (<a href="https://github.com/scalatest/scalatest/pull/1628/commits/78fb078cafc42a8ff19a03826f7f8bb750afec02">PR #1628</a>)</li>
+          <li>Refactored the implementation of <code>CompositeStatus</code> to eliminate a leak of the <code>this</code> reference in the constructor.</li>
         </ul>
 
         <a name="scalatest_improvements"></a>
@@ -102,17 +104,31 @@
 <code>FeatureSpec</code> syntax more consistent internally, now that <code>Given</code>, <code>When</code>, and <code>Then</code> are upper cased (which was forced upon us by <code>then</code> being
 reclaimed to be used a Scala keyword) and also externally consistent with Cucumber and Gherkin, and internally consistent with 
 the upper case versions that have always been shown in our reports.</li>
-          <li>Added asynchronous support to <code>Inspectors</code>.</li>
-          <li>Added asynchronous support to <code>TableAsserting</code>.</li>
-          <li>Added asynchronous support to <code>WheneverAsserting</code>.</li>
+          <li>Added asynchronous support to <code>Inspectors</code>. If the result type of the body is <code>Future[Assertion]</code>,
+              the result type of the entire expression will be <code>Future[Assertion]</code>.</li>
+          <li>Added asynchronous support to <code>TableAsserting</code>. If the result type of the body is <code>Future[Assertion]</code>,
+              the result type of the entire expression will be <code>Future[Assertion]</code>.</li>
+          <li>Added asynchronous support to <code>WheneverAsserting</code>. If the result type of the body is <code>Future[Assertion]</code>,
+              the result type of the entire expression will be <code>Future[Assertion]</code>.</li>
           <li>Added JSON support to events and StringReporter.</li>
-          <li>Added <code>Ultimately</code>, an asynchronous version of <code>Eventually</code>.</li>
+          <li>Added asynchronous support <code>Eventually</code>, by factoring out the rety behavior to a <code>Retrying</code> typeclass. If the result type of the body is <code>Future[Assertion]</code>,
+              the result type of the entire expression will be <code>Future[Assertion]</code>.</li>
           <li>Enhanced <code>WebBrowser's</code> <code>isInputField</code> method to handle element has attribute <code>'type'</code> value returns <code>null</code> as <code>'text'</code> type.</li>
           <li>Enhanced <code>WebBrowser</code>'s <code>value_=</code> method to execute javascript to set value when the driver being used is <code>JavascriptExecutor</code>.</li>
           <li>Added <code>toDir</code> method to <code>WebBrowser</code>.</li>
           <li>No longer use <code>.toLowerCase</code> when looking at the value of the environment variable for filling file pathnames, and it now looks for the value <code>"yes"</code>, not <code>"true"</code>.</li>
           <li>Removed an unnecessary nested synchronized call in <code>SuiteSortingReporter</code>.</li>
           <li>Made <code>MessageRecorder</code> thread-safe.</li>
+          <li>Serialize the execution of scopes as well as tests within scopes when executing async styles. (<a href="https://github.com/scalatest/scalatest/pull/1628/commits/d59a0d7a003a036aa637702636d44b582210065f">PR #1628</a>)</li>
+
+<li>Send <code>TestIgnored</code> events in order in async-style tests even under a non-default execution context (<a href="https://github.com/scalatest/scalatest/pull/1628/commits/9dcd8e3395b16a57cc0eca8dd46cdc43ab7e596b">PR #1628</a>).</li>
+          <li>Refactored the implementation of <code>StatefulStatus</code> to eliminate a potential race condition, despite not
+              having evidence it ever caused a problem.</li>
+          <li>Ensure that if two threads call <code>setCompleted</code> concurrently on a <code>StatefulStatus</code>, the first thread will
+              be allowed to execute all the callbacks in order while the second thread blocks. (<a href="https://github.com/scalatest/scalatest/pull/1628/commits/a18a548cbd2bd4345d8cbc5d9dec471b31df6c71">PR #1628</a>)
+          <li>Changed <code>isCompleted</code> from parameterless to empty parens form, because it can observe a side effect. (<a href="https://github.com/scalatest/scalatest/pull/1628/commits/15b1e7fa96180980df78b03e8b2fdab0d6033f42">PR #1628</a>)
+          <li>Clarified and improved Scaladoc for <code>BeforeAndAfter</code>, <code>BeforeAndAfterEach</code>, and
+              <code>BeforeAndAfterEachTestData</code> traits, and the <code>setCompleted</code> method of <code>StatefulStatus</code>.
         </ul>
 
         <a name="scalatest_deprecations"></a>
@@ -471,31 +487,6 @@ the upper case versions that have always been shown in our reports.</li>
   </tr>
 </table>
             </li>
-
-
-@*
-Add: Tweaked Scaladoc for BeforeAndAfter traits.
-- Serialize execution of branches as well as tests within branches. 
-  https://github.com/scalatest/scalatest/pull/1628/commits/d59a0d7a003a036aa637702636d44b582210065f
-- Send infoProvided events in order in async-style tests even if a non-default execution context.
-  https://github.com/scalatest/scalatest/pull/1628/commits/9dcd8e3395b16a57cc0eca8dd46cdc43ab7e596b
-- Bug fix: closed race condition causing the concurrency bug
-  https://github.com/scalatest/scalatest/pull/1628/commits/c08f188ec877df7836bdf8784208508fe4a310d4
-- Fixed another bug: is pending (three commits in a row) AsyncFreeSpec, AsyncFlatSpec, AsyncWordSpec.
-  https://github.com/scalatest/scalatest/pull/1628/commits/78fb078cafc42a8ff19a03826f7f8bb750afec02
-- Refactored implementation of StatefulStatus to eliminate a potential race condition, despite not
-  having evidence it ever caused a problem.
-- Refactored implementation of CompositeStatus to eliminate a leak of the this ref in the constructor.
-- Ensure that if two threads call setCompleted on a StatefulStatus.
-  https://github.com/scalatest/scalatest/pull/1628/commits/a18a548cbd2bd4345d8cbc5d9dec471b31df6c71
-- Changed isCompleted from parameterless to empty parens form, because it can observe a side effect.
-  https://github.com/scalatest/scalatest/pull/1628/commits/15b1e7fa96180980df78b03e8b2fdab0d6033f42
-- Added to Scaladoc on StatefulStatus.setCompleted. Corrected typos in Scaladoc for the BeforeAndAfter traits.
-  https://github.com/scalatest/scalatest/pull/1628/commits/285c6b87fa2b13c10f82d4789e2a6c2094d38e8f
-  https://github.com/scalatest/scalatest/pull/1628/commits/f4aade25c0bfaf6c8dafa264c3f412324179b873
-
-*@
-
         </ul>
 
         <a name="scalatest_deprecations"></a>
@@ -532,32 +523,27 @@ Add: Tweaked Scaladoc for BeforeAndAfter traits.
               Removed <code>Interruptor</code> <code>SelectorInterruptor</code> <code>SocketInterruptor</code> <code>ThreadInterruptor</code>
               in the <code>org.scalatest.concurrent</code> package.
               </li>
-<li>
-deprecated Please use org.scalatest.concurrent.TimeLimits instead trait Timeouts
-</li>
-<li>
-Removed <code>DeprecatedTimeLimitedTests</code>
-</li>
-<li>
-TODO: In org.scalatest, Please use PendingStatement instead
-  type PendingNothing = PendingStatement
-</li>
-<li>
-TODO: In org.scalatest, 
-
-type SpecLike = refspec.RefSpecLike
-type Spec = refspec.RefSpec
-</li>
-<li>
-Removed fixture.Spec and fixture.SpecLike that have been deprecated for a long time. Use FunSpec instead.
-</li>
-<li>
-Dropped a long deprecated PendingNothing that was used probably only internally, but it was public.
-  Please use PendingStatement instead
-  type PendingNothing = PendingStatement
-</li>
-
-
+              <li>
+              Removed the deprecated <code>org.scalatest.concurrent.Timeouts</code> trait. Please use <code>org.scalatest.concurrent.TimeLimits</code> instead.
+              </li>
+              <li>
+              Removed <code>org.scalatest.cocurrent.DeprecatedTimeLimitedTests</code>.
+              </li>
+              <li>
+              Removed deprecated name <code>org.scalatest.PendingNothing</code>. Use <code>org.scalatest.PendingStatement</code> instead.
+              </li>
+              <li>
+              Removed deprecated <code>org.scalatest.SpecLike</code> type alias. Please use <code>org.scalatest.refspec.RefSpecLike</code> instead.
+              </li>
+              <li>
+              Removed deprecated <code>org.scalatest.Spec</code> type alias. Please use <code>org.scalatest.refspec.RefSpec</code> instead.
+              </li>
+              <li>
+              Removed deprecated <code>org.scalatest.fixture.Spec</code> class. Please use <code>org.scalatest.funspec.FixtureFunSpec</code> instead.
+              </li>
+              <li>
+              Removed deprecated <code>org.scalatest.fixture.SpecLike</code> trait. Plesae use <code>org.scalatest.funspec.FixtureFunSpecLike</code> instead.
+              </li>
         </ul>
 
 	<br/>
@@ -862,9 +848,6 @@ Made changes to support Dotty, like explicit implicits.
 
   Added analysis field to TestFailed event, and display the analysis in StringReporter.
 
-
-Moved implementation code in Eventually to Retrying type class.
-Wonder why we did the above. Ah, may e for sharing code with Ultimately.
 
 
  Changed Framework and ScalaTestFramework to set spanScaleFactor for Runner object instance for different Runner using different class loader.
