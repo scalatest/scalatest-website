@@ -547,6 +547,35 @@ the upper case versions that have always been shown in our reports.</li>
 
         </ul>
 
+        <ul>
+            <li>Moved and renamed matchers and diagrammed assertions traits and objects so that we can modularize ScalaTest by assertion style. All
+                The old names still work but have been deprecated. Here are the details:
+ <br/>
+ <br/>
+<table class="stTableOverall">
+  <tr>
+    <th colspan="2" class="stTableHeader">Assertion style</td>
+  </tr>
+  <tr>
+    <th class="stTableHeader">old name</th>
+    <th class="stTableHeader">new name</th> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.Matchers</code></td>
+    <td class="stTableData"><code>org.scalatest.matchers.should.Matchers</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.MustMatchers</code></td>
+    <td class="stTableData"><code>org.scalatest.matchers.must.Matchers</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.DiagrammedAssertions</code></td>
+    <td class="stTableData"><code>org.scalatest.diagrams.Diagrams</code></td> 
+  </tr>
+</table>
+        </li>
+        </ul>
+
         <a name="scalatest_breaking_change"></a>
         <h2>One breaking change</h2>
 
@@ -1293,8 +1322,6 @@ conversionCheckedConstraint[A, B](implicit equivalenceOfA: Equivalence[A], cnv: 
 def convertEquivalenceToBToAConversionConstraint[A, B](equivalenceOfA: Equivalence[A])(implicit ev: B => A): A CanEqual B = new BToAEquivalenceConstraint[A, B](equivalenceOfA, ev)
 
 These were used to support ConversionCheckedTripleEquals, and so are no longer needed.
-
-Changed styleName to reflect new names, and allow finer granularity:
 
 *@
 }
