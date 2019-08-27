@@ -27,6 +27,10 @@
             No source code using ScalaTest/Scalactic 3.0.8 should break, other than expired deprecations, but
             because this release is not binary compatible with 3.0.8), you will likely need to do a clean build to upgrade.
         </p>
+        <p>
+            Note that as of 3.1.0 we will no longer build ScalaTest for Scala 2.10 and 2.11 on JDK6. Instead all of the JVM releases will be
+            built on JDK8.
+        </p>
 
         <p>
             There is one potential breaking change to your build. If you are using ScalaTest's chosen styles feature by 
