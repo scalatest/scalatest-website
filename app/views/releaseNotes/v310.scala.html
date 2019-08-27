@@ -29,6 +29,12 @@
         </p>
 
         <p>
+            There is one potential breaking change to your build. If you are using ScalaTest's chosen styles feature by 
+            specifying <code>-y</code> parameters, you will likely need to change that part of your build, as described
+            in the <a href="#scalatest_breaking_change">one breaking change</a> section.
+        </p>
+
+        <p>
             For information on how to include ScalaTest in your project, see the <a href="/install">install page</a>.
             For information on how to use <a href="http://www.scalactic.org/">Scalactic</a> in your production code,
             see its <a href="http://www.scalactic.org/install">install page</a>.
@@ -86,6 +92,14 @@
         providing a ScalaFix tool that will rewrite all the names across your test code.
         </p>
 
+        <p>
+        The previous mechanism for encouraging style consistency across a codebase, "chosen styles," will continue to exist and can
+        now be used to fine tune within a focused module. For example, if you depend on <code>scalatest-funspec</code> to your build,
+        you can specify that <code>AnyFunSpec</code> and <code>AsyncFunSpec</code> styles are chosen styles with the <code>-y</code>
+        parameter. If someone tried to use <code>PathFunSpec</code> in that project, it would compile, but the suite would abort
+        as soon as it is executed, because <code>PathFunSpec</code> isn't one of the chosen styles for the project.
+        </p>
+
         <a name="scalatest_bugfixes"></a>
         <h2>Bug Fixes</h2>
 
@@ -129,6 +143,9 @@ the upper case versions that have always been shown in our reports.</li>
           <li>Changed <code>isCompleted</code> from parameterless to empty parens form, because it can observe a side effect. (<a href="https://github.com/scalatest/scalatest/pull/1628/commits/15b1e7fa96180980df78b03e8b2fdab0d6033f42">PR #1628</a>)
           <li>Clarified and improved Scaladoc for <code>BeforeAndAfter</code>, <code>BeforeAndAfterEach</code>, and
               <code>BeforeAndAfterEachTestData</code> traits, and the <code>setCompleted</code> method of <code>StatefulStatus</code>.
+          <li>Added <code>org.scalatest.TestsBeforeNestedSuites</code>, which overrides <code>run</code> to invoke <code>runTests</code> before
+              it invokes <code>runNestedSuites</code>. (The default behavior of <code>run</code> in <code>Suite</code> invokes
+              <code>runNestedSuites</code> before invoking <code>runTests</code>.</li>
         </ul>
 
         <a name="scalatest_deprecations"></a>
@@ -138,11 +155,9 @@ the upper case versions that have always been shown in our reports.</li>
             <li>Deprecated <code>feature</code> in favor of <code>Feature</code> in the <code>FeatureSpec</code> family of traits and classes.</li>
             <li>Deprecated <code>scenario</code> in favor of <code>Scenario</code> in the <code>FeatureSpec</code> family of traits and classes.</li>
             <li>Deprecated <code>scenariosFor</code> in favor of <code>ScenariosFor</code> in the <code>FeatureSpec</code> family of traits and classes.</li>
-            <li>Moved and renamed all of ScalaTest's style traits and classes so that in a future release we can modularize ScalaTest by style. All
+            <li>Moved and renamed all of ScalaTest's style traits and classes so that we can modularize ScalaTest by style. All
                 style traits and classes for the <code>FunSuite</code> style, for example, have been moved to package <code>org.scalatest.funsuite</code>.
-                The old names still work but have been deprecated. In a future version of ScalaTest, after the deprecation cycle for the old names is
-                complete, we will modularize the library such that you can just depend on, for example, <code>scalatest-funsuite</code> in your build.
-                This would make only the <code>FunSuite</code> style classes and traits avaiable to your project.
+                The old names still work but have been deprecated. 
 
                 <p>
                 We also slightly renamed some of the
@@ -150,7 +165,8 @@ the upper case versions that have always been shown in our reports.</li>
                 &ldquo;<code>Any</code>&rdquo; prefixed to their former simple names. For example, <code>FunSuite</code> becomes <code>AnyFunSuite</code>.
                 The <code>Any</code> styles will be backwards compatible with ScalaTest's original style traits, and allow you to use any assertions
                 from any other testing library no matter the result type of those assertions. The reason for this name change is that later we plan
-                to add a new set of style traits and classes with the original names, such as <code>FunSuite</code>, whose test bodies will have a
+                to add a new set of style traits and classes with the original names, such as <code>FunSuite</code> (but
+                in the <code>org.scalatest.funsuite</code> package), whose test bodies will have a
                 result type of <code>Assertion</code>.
                 </p>
                 <p>
@@ -486,7 +502,69 @@ the upper case versions that have always been shown in our reports.</li>
     <td class="stTableData"><code>org.scalatest.featurespec.FixtureAsyncFeatureSpecLike</code></td> 
   </tr>
 </table>
+<br/>
             </li>
+
+
+        <li>
+        We also renamed a few top level traits that previously lived in the <code>org.scalatest.fixture</code> package. Given the
+        actual fixture styles were moved from this package, it makes more sense for these to live in <code>org.scalatest</code>.
+        Here are the details:
+
+<br/>
+<br/>
+
+<table class="stTableOverall">
+  <tr>
+    <th colspan="2" class="stTableHeader">top-level <code>fixture</code> traits</td>
+  </tr>
+  <tr>
+    <th class="stTableHeader">old name</th>
+    <th class="stTableHeader">new name</th> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.fixture.Suite</code></td>
+    <td class="stTableData"><code>org.scalatest.FixtureSuite</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.fixture.TestSuite</code></td>
+    <td class="stTableData"><code>org.scalatest.FixtureTestSuite</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.fixture.AsyncTestSuite</code></td>
+    <td class="stTableData"><code>org.scalatest.FixtureAsyncTestSuite</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.fixture.TestRegistration</code></td>
+    <td class="stTableData"><code>org.scalatest.FixtureTestRegistration</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.fixture.AsyncTestRegistration</code></td>
+    <td class="stTableData"><code>org.scalatest.FixtureAsyncTestRegistration</code></td> 
+  </tr>
+</table>
+        </li>
+
+        </ul>
+
+        <a name="scalatest_breaking_change"></a>
+        <h2>One breaking change</h2>
+
+        <ul>
+          <li>Made the names returned by <code>styleName</code> more fine grained, given the rough selection of chosen styles can
+              now be done by selecting a focused module, such as <code>scalatest-flatspec</code>. For example, previously any
+              style whose name ended in <code>"FlatSpec"</code> had the <code>styleName</code> <code>org.scalatest.FlatSpec</code>.
+              The name <code>org.scalatest.FlatSpec</code> is now deprecated. Because we had no way to deprecate the string returned
+              by <code>styleName</code>, we just changed these result strings. In the process, made them more fine grained.
+              For example, in the <code>org.scalatest.flatspec</code> package, <code>AnyFlatSpec</code> and <code>AnyFlatSpecLike</code> have
+              <code>styleName</code> <code>org.scalatest.flatspec.AnyFlatSpec</code>. 
+              <code>FixtureAnyFlatSpec</code> and <code>FixtureAnyFlatSpecLike</code> have
+              <code>styleName</code> <code>org.scalatest.flatspec.FixtureAnyFlatSpec</code>. 
+              <code>AsyncFlatSpec</code> and <code>AsyncFlatSpecLike</code> have
+              <code>styleName</code> <code>org.scalatest.flatspec.AsyncFlatSpec</code>. And so on.
+              Anyone who is currently using ScalaTest's <code>-y</code> parameter in their build will likely need to modify their build
+              to either remove <code>-y</code> or change the string names being passed to <code>-y</code>.
+           </li>
         </ul>
 
         <a name="scalatest_deprecations"></a>
@@ -503,13 +581,14 @@ the upper case versions that have always been shown in our reports.</li>
                   class in the <code>Assertions</code> companion object.
               </li>
               <li>
-              Removed the parameterless execute method that has been deprecated since ???. Use execute() instead. 
+              Removed the parameterless <code>execute</code><!-- method that has been deprecated since ???-->. Please use the no-arg
+              form, <code>execute()</code>, instead. 
               </li>
               <li>
-              Removed a deprecated implicit conversion was added in ScalaTest 3.0.0 because the inheritance relationship
-              between Filter and Function2[Set[String], Map[String, Set[String]], List[(String, Boolean)]] was dropped. Please use
-              the apply method that takes a suiteId instead, the one with this
-              signature: def apply(testNames: Set[String], testTags: Map[String, Set[String]], suiteId: String): List[(String, Boolean)].")
+              Removed a deprecated implicit conversion that was added in ScalaTest 3.0.0 because the inheritance relationship
+              between <code>Filter</code> and <code>Function2[Set[String], Map[String, Set[String]], List[(String, Boolean)]]</code> was dropped. Please
+              use the apply method that takes a <code>suiteId</code> instead, the one with this
+              signature: <code>def apply(testNames: Set[String], testTags: Map[String, Set[String]], suiteId: String): List[(String, Boolean)]</code>.
               </li>
               <li>
               Removed the overloaded <code>thread</code> method in <code>Conductors</code> and <code>ConductorMethods</code>
@@ -527,7 +606,7 @@ the upper case versions that have always been shown in our reports.</li>
               Removed the deprecated <code>org.scalatest.concurrent.Timeouts</code> trait. Please use <code>org.scalatest.concurrent.TimeLimits</code> instead.
               </li>
               <li>
-              Removed <code>org.scalatest.cocurrent.DeprecatedTimeLimitedTests</code>.
+              Removed deprecated <code>org.scalatest.concurrent.DeprecatedTimeLimitedTests</code>.
               </li>
               <li>
               Removed deprecated name <code>org.scalatest.PendingNothing</code>. Use <code>org.scalatest.PendingStatement</code> instead.
@@ -653,10 +732,6 @@ TODO: add an explanation of why we widen non-injectively to Float and Double typ
           <li>Added implicit <code>widenToNonZeroFloat</code> method to the companion object for <code>PosLong</code>. This method is included
               despite the potential for loss of precision for consistency with Scala's implicit <code>Long</code> to <code>Float</code> conversion.</li>
           <li>Added implicit <code>widenToNonZeroLong</code> method to the companion object for <code>PosLong</code>.</li>
-@*          TODO: Changed result type of the <code>round</code> method in <code>PosDouble</code> from <code>PosZLong</code> to <code>PosZDouble</code>.
-Oh but that's wrong. The round method returns Long not Double. So need to put that back.
-Broken in PosFloat too. PosZFloat and surely PosZDouble too.
-*@
           <li>Added the following new classes to the <code>org.scalactic.anyvals</code> package:
             <ul>
               <li><code>FiniteDouble</code> - An <code>AnyVal</code> backed by a <code>Double</code> that can take any value except
@@ -743,7 +818,6 @@ Broken in PosFloat too. PosZFloat and surely PosZDouble too.
         <ul>
             <li>Deprecated <code>org.scalactic.Chain</code>, because it has been renamed to <code>org.scalactic.anyvals.NonEmptyList</code> to
                 have consistent naming with the other newly added <code>NonEmpty*</code> <code>anyvals</code> types.</li>
-            </li>Deprecated <code>styleName</code> in the style traits. TODO make sure we did this everywhere, including in Suite and SuiteMixin.</li>
         </ul>
 
 	<br/>
@@ -780,50 +854,19 @@ Changed the *Macro objects from private[scalactic] to private[anyvals], because 
     package anyway.
 
 
-  Implemented Future version of forAtLeast in InspectorAsserting.
-
-This is interesting:
- Changed some of async methods implementation to run in serial to have consistent behaviour with the blocking cousin.
-
- Completed asynchronous support for Inspectors.
-
-
-Initial version of asynchronous TableAsserting.
-
-Moved org.scalactic.Chain as org.scalactic.anyvals.NonEmptyList, create a deprecated Chain alias in org.scalactic.
-
  Made ScreenshotCapturer public.
 
- Added TestsBeforeNestedSuiteSpec.
-(did I add a  Added TestsBeforeNestedSuite trait somewhere hidden in an earlier commit?)
+Did we add support for Scala Native in  3.1.x? Yes, I think so. o
 
+Made ScreenshotCapturer public.
 
- Avoid race condition in Timed.scala as described in https://github.com/scalatest/scalatest/issues/1147
-
-
-Check RegexString to make sure it is good enough to release.
-
-
-    Initial version of ultimately, which is an async eventually.
-
-
-Ah, async eventually named ultimately.
-
-DId we add support for Scala Native in  3.1.x? Yes, I think so. o
-
- Made ScreenshotCapturer public.
-
-We removed Suite (which become RefSpec) from any of our test classes.
-
- Added JSON support to events and StringReporter What was that used for? Apparently for
+Added JSON support to events and StringReporter What was that used for? Apparently for
 things like: 
 
  describe("TestFailed event") {
 +
 +    it("should return correct JSON in its toJson method") {
 
-
- Made MessageRecorder thread-safe.
 
 This: Merge branch 'feature-cherry-pick-from-pr1246-to-3.1.x' into 3.1.x
 May be about extracting default prettifier so it can be extended: https://github.com/scalatest/scalatest/pull/1246/commits
@@ -834,9 +877,7 @@ Extends special handle of Predef string printing to scala 2.13 in RequirementsSp
    
     * Extends special handle of Predef string printing to scala 2.13 in AssertionsSpec.scala.
 
-Made changes to support Dotty, like explicit implicits.
-
- Added an apply method to Prettifier that takes two Any arguments and returns
+Added an apply method to Prettifier that takes two Any arguments and returns
     a PrettyPair, which I also just added. PrettyPair has two prettifier objects, which
     were found to be unequal, so the idea is that this new apply method on Prettifier
     will use the differences to help decide how to prettify them. For example in strings
@@ -845,19 +886,15 @@ Made changes to support Dotty, like explicit implicits.
     there's also a hint string in PrettyPair, that can be used to give info about
     the difference.
 
-
   Added analysis field to TestFailed event, and display the analysis in StringReporter.
 
-
-
- Changed Framework and ScalaTestFramework to set spanScaleFactor for Runner object instance for different Runner using different class loader.
+Changed Framework and ScalaTestFramework to set spanScaleFactor for Runner object instance for different Runner using different class loader.
 I think the above was a bug fix?
 
-
-    Removed SeveredStackTraces from scala-js, as it won't work in node-js due to lack of original stack trace after linked.
+Removed SeveredStackTraces from scala-js, as it won't work in node-js due to lack of original stack trace after linked.
 Was SeveredStackTraces in 3.0.x?
 
- Changed 'extends Element with ValueElement' to just 'extends ValueElement' in WebBrowser.scala.
+Changed 'extends Element with ValueElement' to just 'extends ValueElement' in WebBrowser.scala.
 The previous one may not need to be mentioned.
 
 Added -P support to Framework, which allows specifying number of threads to use for thread pool used to run ParallelTestExecution suites.
@@ -867,16 +904,13 @@ Changed -P option to accept C appended to it, and reject negative thread number 
 Added support of skipping JDK check with scalatest.skip.jdk.check java property.
 What was the above one for?
 
-Moved style traits, and prepended Any to plain old styles.
-
- Adjusted styleName handling for FunSuite style trait
+Adjusted styleName handling for FunSuite style trait
 I wonder what above was.
 
- Deprecated styleName and chosen style, stating chosen style will be removed in future version of ScalaTest in favor of style trait modules.
+Deprecated styleName and chosen style, stating chosen style will be removed in future version of ScalaTest in favor of style trait modules.
 
-    Ported test count fix in scala-js to scala-native.
+Ported test count fix in scala-js to scala-native.
 Might be a bug fix worth mentioning in Scala.js.
-
 
 Wrap <script> sections of HtmlReporter in <![CDATA[]]>
 
@@ -943,6 +977,7 @@ Moved classes in org.scalatest.junit to org.scalatestplus.junit, leaving depreca
 
 Moved classes in org.scalatest.testng to org.scalatestplus.testng, leaving deprecated type alias in the original package.
 
+XXX
 
     Go in other direction with Collected. Make it public, which a is non-breaking change.
     It had bled out into the public previously anyway, and this way it is non-breaking.
