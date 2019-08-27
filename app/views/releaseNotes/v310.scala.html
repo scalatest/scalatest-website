@@ -563,7 +563,268 @@ the upper case versions that have always been shown in our reports.</li>
               <code>AsyncFlatSpec</code> and <code>AsyncFlatSpecLike</code> have
               <code>styleName</code> <code>org.scalatest.flatspec.AsyncFlatSpec</code>. And so on.
               Anyone who is currently using ScalaTest's <code>-y</code> parameter in their build will likely need to modify their build
-              to either remove <code>-y</code> or change the string names being passed to <code>-y</code>.
+              to either remove <code>-y</code> or change the string names being passed to <code>-y</code>. Here are the
+              details of the <code>styleName</code> changes:
+ 
+              <br/>
+              <br/>
+
+<table class="stTableOverall">
+  <tr>
+    <th colspan="2" class="stTableHeader">(new) trait name</td>
+  </tr>
+  <tr>
+    <th class="stTableHeader">old <code>styleName</code></th> 
+    <th class="stTableHeader">new <code>styleName</code></th> 
+  </tr>
+  <tr>
+    <td colspan="2" class="stTableData"><code><strong>org.scalatest.FixtureSuite</strong></code></td>
+  </tr>
+  <tr>
+    <td class="stTableData"><code>"org.scalatest.fixture.Suite"</code></td>
+    <td class="stTableData"><code>"org.scalatest.FixtureSuite"</code></td>
+  </tr>
+
+  <tr>
+    <td colspan="2" class="stTableData"><code><strong>org.scalatest.featurespec.AnyFeatureSpecLike</strong></code></td>
+  </tr>
+  <tr>
+    <td class="stTableData"><code>"org.scalatest.FeatureSpec"</code></td>
+    <td class="stTableData"><code>"org.scalatest.featurespec.AnyFeatureSpec"</code></td>
+  </tr>
+     
+  <tr>
+    <td colspan="2" class="stTableData"><code><strong>org.scalatest.featurespec.AsyncFeatureSpecLike</strong></code></td>
+  </tr>
+  <tr>
+    <td class="stTableData"><code>"org.scalatest.FeatureSpec"</code></td>
+    <td class="stTableData"><code>"org.scalatest.featurespec.AsyncFeatureSpec"</code></td>
+  </tr>
+ 
+  <tr>
+    <td colspan="2" class="stTableData"><code><strong>org.scalatest.featurespec.FixtureAnyFeatureSpecLike</strong></code></td>
+  </tr>
+  <tr>
+    <td class="stTableData"><code>"org.scalatest.fixture.FeatureSpec"</code></td>
+    <td class="stTableData"><code>"org.scalatest.featurespec.FixtureAnyFeatureSpec"</code></td>
+  </tr>
+ 
+  <tr>
+    <td colspan="2" class="stTableData"><code><strong>org.scalatest.featurespec.FixtureAsyncFeatureSpecLike</strong></code></td>
+  </tr>
+  <tr>
+    <td class="stTableData"><code>"org.scalatest.fixture.FeatureSpec"</code></td>
+    <td class="stTableData"><code>"org.scalatest.featurespec.FixtureAsyncFeatureSpec"</code></td>
+  </tr>
+
+  <tr>
+    <td colspan="2" class="stTableData"><code><strong>org.scalatest.flatspec.AnyFlatSpecLike</strong></code></td>
+  </tr>
+  <tr>
+    <td class="stTableData"><code>"org.scalatest.FlatSpec"</code></td>
+    <td class="stTableData"><code>"org.scalatest.flatspec.AnyFlatSpec"</code></td>
+  </tr>
+     
+  <tr>
+    <td colspan="2" class="stTableData"><code><strong>org.scalatest.flatspec.AsyncFlatSpecLike</strong></code></td>
+  </tr>
+  <tr>
+    <td class="stTableData"><code>"org.scalatest.FlatSpec"</code></td>
+    <td class="stTableData"><code>"org.scalatest.flatspec.AsyncFlatSpec"</code></td>
+  </tr>
+ 
+  <tr>
+    <td colspan="2" class="stTableData"><code><strong>org.scalatest.flatspec.FixtureAnyFlatSpecLike</strong></code></td>
+  </tr>
+  <tr>
+    <td class="stTableData"><code>"org.scalatest.fixture.FlatSpec"</code></td>
+    <td class="stTableData"><code>"org.scalatest.flatspec.FixtureAnyFlatSpec"</code></td>
+  </tr>
+ 
+  <tr>
+    <td colspan="2" class="stTableData"><code><strong>org.scalatest.flatspec.FixtureAsyncFlatSpecLike</strong></code></td>
+  </tr>
+  <tr>
+    <td class="stTableData"><code>"org.scalatest.fixture.FlatSpec"</code></td>
+    <td class="stTableData"><code>"org.scalatest.flatspec.FixtureAsyncFlatSpec"</code></td>
+  </tr>
+ 
+  <tr>
+    <td colspan="2" class="stTableData"><code><strong>org.scalatest.freespec.AnyFreeSpecLike</strong></code></td>
+  </tr>
+  <tr>
+    <td class="stTableData"><code>"org.scalatest.FreeSpec"</code></td>
+    <td class="stTableData"><code>"org.scalatest.freespec.AnyFreeSpec"</code></td>
+  </tr>
+     
+  <tr>
+    <td colspan="2" class="stTableData"><code><strong>org.scalatest.freespec.AsyncFreeSpecLike</strong></code></td>
+  </tr>
+  <tr>
+    <td class="stTableData"><code>"org.scalatest.FreeSpec"</code></td>
+    <td class="stTableData"><code>"org.scalatest.freespec.AsyncFreeSpec"</code></td>
+  </tr>
+ 
+  <tr>
+    <td colspan="2" class="stTableData"><code><strong>org.scalatest.freespec.FixtureAnyFreeSpecLike</strong></code></td>
+  </tr>
+  <tr>
+    <td class="stTableData"><code>"org.scalatest.fixture.FreeSpec"</code></td>
+    <td class="stTableData"><code>"org.scalatest.freespec.FixtureAnyFreeSpec"</code></td>
+  </tr>
+ 
+  <tr>
+    <td colspan="2" class="stTableData"><code><strong>org.scalatest.freespec.FixtureAsyncFreeSpecLike</strong></code></td>
+  </tr>
+  <tr>
+    <td class="stTableData"><code>"org.scalatest.fixture.FreeSpec"</code></td>
+    <td class="stTableData"><code>"org.scalatest.freespec.FixtureAsyncFreeSpec"</code></td>
+  </tr>
+ 
+  <tr>
+    <td colspan="2" class="stTableData"><code><strong>org.scalatest.freespec.PathAnyFreeSpecLike</strong></code></td>
+  </tr>
+  <tr>
+    <td class="stTableData"><code>"org.scalatest.path.FreeSpec"</code></td>
+    <td class="stTableData"><code>"org.scalatest.freespec.PathAnyFreeSpec"</code></td>
+  </tr>
+     
+  <tr>
+    <td colspan="2" class="stTableData"><code><strong>org.scalatest.funspec.AnyFunSpecLike</strong></code></td>
+  </tr>
+  <tr>
+    <td class="stTableData"><code>"org.scalatest.FunSpec"</code></td>
+    <td class="stTableData"><code>"org.scalatest.funspec.AnyFunSpec"</code></td>
+  </tr>
+     
+  <tr>
+    <td colspan="2" class="stTableData"><code><strong>org.scalatest.funspec.AsyncFunSpecLike</strong></code></td>
+  </tr>
+  <tr>
+    <td class="stTableData"><code>"org.scalatest.FunSpec"</code></td>
+    <td class="stTableData"><code>"org.scalatest.funspec.AsyncFunSpec"</code></td>
+  </tr>
+ 
+  <tr>
+    <td colspan="2" class="stTableData"><code><strong>org.scalatest.funspec.FixtureAnyFunSpecLike</strong></code></td>
+  </tr>
+  <tr>
+    <td class="stTableData"><code>"org.scalatest.fixture.FunSpec"</code></td>
+    <td class="stTableData"><code>"org.scalatest.funspec.FixtureAnyFunSpec"</code></td>
+  </tr>
+ 
+  <tr>
+    <td colspan="2" class="stTableData"><code><strong>org.scalatest.funspec.FixtureAsyncFunSpecLike</strong></code></td>
+  </tr>
+  <tr>
+    <td class="stTableData"><code>"org.scalatest.fixture.FunSpec"</code></td>
+    <td class="stTableData"><code>"org.scalatest.funspec.FixtureAsyncFunSpec"</code></td>
+  </tr>
+ 
+  <tr>
+    <td colspan="2" class="stTableData"><code><strong>org.scalatest.funspec.PathAnyFunSpecLike</strong></code></td>
+  </tr>
+  <tr>
+    <td class="stTableData"><code>"org.scalatest.path.FunSpec"</code></td>
+    <td class="stTableData"><code>"org.scalatest.funspec.PathAnyFunSpec"</code></td>
+  </tr>
+     
+  <tr>
+    <td colspan="2" class="stTableData"><code><strong>org.scalatest.funsuite.AnyFunSuiteLike</strong></code></td>
+  </tr>
+  <tr>
+    <td class="stTableData"><code>"org.scalatest.FunSuite"</code></td>
+    <td class="stTableData"><code>"org.scalatest.funsuite.AnyFunSuite"</code></td>
+  </tr>
+ 
+  <tr>
+    <td colspan="2" class="stTableData"><code><strong>org.scalatest.funsuite.AsyncFunSuiteLike</strong></code></td>
+  </tr>
+  <tr>
+    <td class="stTableData"><code>"org.scalatest.FunSuite"</code></td>
+    <td class="stTableData"><code>"org.scalatest.funsuite.AsyncFunSuite"</code></td>
+  </tr>
+ 
+  <tr>
+    <td colspan="2" class="stTableData"><code><strong>org.scalatest.funsuite.FixtureAnyFunSuiteLike</strong></code></td>
+  </tr>
+  <tr>
+    <td class="stTableData"><code>"org.scalatest.fixture.FunSuite"</code></td>
+    <td class="stTableData"><code>"org.scalatest.funsuite.FixtureAnyFunSuite"</code></td>
+  </tr>
+ 
+  <tr>
+    <td colspan="2" class="stTableData"><code><strong>org.scalatest.funsuite.FixtureAsyncFunSuiteLike</strong></code></td>
+  </tr>
+  <tr>
+    <td class="stTableData"><code>"org.scalatest.fixture.FunSuite"</code></td>
+    <td class="stTableData"><code>"org.scalatest.funsuite.FixtureAsyncFunSuite"</code></td>
+  </tr>
+ 
+  <tr>
+    <td colspan="2" class="stTableData"><code><strong>org.scalatest.propspec.AnyPropSpecLike</strong></code></td>
+  </tr>
+  <tr>
+    <td class="stTableData"><code>"org.scalatest.PropSpec"</code></td>
+    <td class="stTableData"><code>"org.scalatest.propspec.AnyPropSpec"</code></td>
+  </tr>
+   
+  <tr>
+    <td colspan="2" class="stTableData"><code><strong>org.scalatest.propspec.AsyncPropSpecLike</strong></code></td>
+  </tr>
+  <tr>
+    <td class="stTableData"><code>"org.scalatest.PropSpec"</code></td>
+    <td class="stTableData"><code>"org.scalatest.propspec.AsyncPropSpec"</code></td>
+  </tr>
+ 
+  <tr>
+    <td colspan="2" class="stTableData"><code><strong>org.scalatest.propspec.FixtureAnyPropSpecLike</strong></code></td>
+  </tr>
+  <tr>
+    <td class="stTableData"><code>"org.scalatest.fixture.PropSpec"</code></td>
+    <td class="stTableData"><code>"org.scalatest.propspec.FixtureAnyPropSpec"</code></td>
+  </tr>
+ 
+  <tr>
+    <td colspan="2" class="stTableData"><code><strong>org.scalatest.propspec.FixtureAsyncPropSpecLike</strong></code></td>
+  </tr>
+  <tr>
+    <td class="stTableData"><code>"org.scalatest.fixture.PropSpec"</code></td>
+    <td class="stTableData"><code>"org.scalatest.propspec.FixtureAsyncPropSpec"</code></td>
+  </tr>
+ 
+  <tr>
+    <td colspan="2" class="stTableData"><code><strong>org.scalatest.wordspec.AnyWordSpecLike</strong></code></td>
+  </tr>
+  <tr>
+    <td class="stTableData"><code>"org.scalatest.WordSpec"</code></td>
+    <td class="stTableData"><code>"org.scalatest.wordspec.AnyWordSpec"</code></td>
+  </tr>
+     
+  <tr>
+    <td colspan="2" class="stTableData"><code><strong>org.scalatest.wordspec.AsyncWordSpecLike</strong></code></td>
+  </tr>
+  <tr>
+    <td class="stTableData"><code>"org.scalatest.WordSpec"</code></td>
+    <td class="stTableData"><code>"org.scalatest.wordspec.AsyncWordSpec"</code></td>
+  </tr>
+ 
+  <tr>
+    <td colspan="2" class="stTableData"><code><strong>org.scalatest.wordspec.FixtureAnyWordSpecLike</strong></code></td>
+  </tr>
+  <tr>
+    <td class="stTableData"><code>"org.scalatest.fixture.WordSpec"</code></td>
+    <td class="stTableData"><code>"org.scalatest.wordspec.FixtureAnyWordSpec"</code></td>
+  </tr>
+ 
+  <tr>
+    <td colspan="2" class="stTableData"><code><strong>org.scalatest.wordspec.FixtureAsyncWordSpecLike</strong></code></td>
+  </tr>
+  <tr>
+    <td class="stTableData"><code>"org.scalatest.fixture.WordSpec"</code></td>
+    <td class="stTableData"><code>"org.scalatest.wordspec.FixtureAsyncWordSpec"</code></td>
+  </tr>
+</table>
            </li>
         </ul>
 
@@ -1035,128 +1296,5 @@ These were used to support ConversionCheckedTripleEquals, and so are no longer n
 
 Changed styleName to reflect new names, and allow finer granularity:
 
-org.scalatest.FixtureSuite
-    org.scalatest.fixture.Suite
-    org.scalatest.FixtureSuite
-
-org.scalatest.featurespec.AnyFeatureSpecLike
-  org.scalatest.FeatureSpec
-  org.scalatest.featurespec.AnyFeatureSpec
-     
-org.scalatest.featurespec.AsyncFeatureSpecLike
-  org.scalatest.FeatureSpec
-  org.scalatest.featurespec.AsyncFeatureSpec
- 
-org.scalatest.featurespec.FixtureAnyFeatureSpecLike
-  org.scalatest.fixture.FeatureSpec
-  org.scalatest.featurespec.FixtureAnyFeatureSpec
- 
-org.scalatest.featurespec.FixtureAsyncFeatureSpecLike
-  org.scalatest.fixture.FeatureSpec
-  org.scalatest.featurespec.FixtureAsyncFeatureSpec
-
-org.scalatest.flatspec.AnyFlatSpecLike
-  org.scalatest.FlatSpec
-  org.scalatest.flatspec.AnyFlatSpec
-     
-org.scalatest.flatspec.AsyncFlatSpecLike
-  org.scalatest.FlatSpec
-  org.scalatest.flatspec.AsyncFlatSpec
- 
-org.scalatest.flatspec.FixtureAnyFlatSpecLike
-  org.scalatest.fixture.FlatSpec
-  org.scalatest.flatspec.FixtureAnyFlatSpec
- 
-org.scalatest.flatspec.FixtureAsyncFlatSpecLike
-  org.scalatest.fixture.FlatSpec
-  org.scalatest.flatspec.FixtureAsyncFlatSpec
- 
-org.scalatest.freespec.AnyFreeSpecLike
-  org.scalatest.FreeSpec
-  org.scalatest.freespec.AnyFreeSpec
-     
-org.scalatest.freespec.AsyncFreeSpecLike
-  org.scalatest.FreeSpec
-  org.scalatest.freespec.AsyncFreeSpec
- 
-org.scalatest.freespec.FixtureAnyFreeSpecLike
-  org.scalatest.fixture.FreeSpec
-  org.scalatest.freespec.FixtureAnyFreeSpec
- 
-org.scalatest.freespec.FixtureAsyncFreeSpecLike
-  org.scalatest.fixture.FreeSpec
-  org.scalatest.freespec.FixtureAsyncFreeSpec
- 
-org.scalatest.freespec.PathAnyFreeSpecLike
-  org.scalatest.path.FreeSpec
-  org.scalatest.freespec.PathAnyFreeSpec
-     
-org.scalatest.funspec.AnyFunSpecLike
-  org.scalatest.FunSpec
-  org.scalatest.funspec.AnyFunSpec
-     
-org.scalatest.funspec.AsyncFunSpecLike
-  org.scalatest.FunSpec
-  org.scalatest.funspec.AsyncFunSpec
- 
-org.scalatest.funspec.FixtureAnyFunSpecLike
-  org.scalatest.fixture.FunSpec
-  org.scalatest.funspec.FixtureAnyFunSpec
- 
-org.scalatest.funspec.FixtureAsyncFunSpecLike
-  org.scalatest.fixture.FunSpec
-  org.scalatest.funspec.FixtureAsyncFunSpec
- 
-org.scalatest.funspec.PathAnyFunSpecLike
-  org.scalatest.path.FunSpec
-  org.scalatest.funspec.PathAnyFunSpec
-     
-org.scalatest.funsuite.AnyFunSuiteLike
-  org.scalatest.FunSuite
-  org.scalatest.funsuite.AnyFunSuite
- 
-org.scalatest.funsuite.AsyncFunSuiteLike
-  org.scalatest.FunSuite
-  org.scalatest.funsuite.AsyncFunSuite
- 
-org.scalatest.funsuite.FixtureAnyFunSuiteLike
-  org.scalatest.fixture.FunSuite
-  org.scalatest.funsuite.FixtureAnyFunSuite
- 
-org.scalatest.funsuite.FixtureAsyncFunSuiteLike
-  org.scalatest.fixture.FunSuite
-  org.scalatest.funsuite.FixtureAsyncFunSuite
- 
-org.scalatest.propspec.AnyPropSpecLike
-  org.scalatest.PropSpec
-  org.scalatest.propspec.AnyPropSpec
-   
-org.scalatest.propspec.AsyncPropSpecLike
-  org.scalatest.PropSpec
-  org.scalatest.propspec.AsyncPropSpec
- 
-org.scalatest.propspec.FixtureAnyPropSpecLike
-  org.scalatest.fixture.PropSpec
-  org.scalatest.propspec.FixtureAnyPropSpec
- 
-org.scalatest.propspec.FixtureAsyncPropSpecLike
-  org.scalatest.fixture.PropSpec
-  org.scalatest.propspec.FixtureAsyncPropSpec
- 
-org.scalatest.wordspec.AnyWordSpecLike
-  org.scalatest.WordSpec
-  org.scalatest.wordspec.AnyWordSpec
-     
-org.scalatest.wordspec.AsyncWordSpecLike
-  org.scalatest.WordSpec
-  org.scalatest.wordspec.AsyncWordSpec
- 
-org.scalatest.wordspec.FixtureAnyWordSpecLike
-  org.scalatest.fixture.WordSpec
-  org.scalatest.wordspec.FixtureAnyWordSpec
- 
-org.scalatest.wordspec.FixtureAsyncWordSpecLike
-  org.scalatest.fixture.WordSpec
-  org.scalatest.wordspec.FixtureAsyncWordSpec
 *@
 }
