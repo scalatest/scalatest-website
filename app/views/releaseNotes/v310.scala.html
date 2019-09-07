@@ -60,8 +60,8 @@
         </p>
 
         <p>
-        We have also modularized ScalaTest internally in 3.1.0. In
-        addition to releasing the customary monolithic <code>scalatest</code> artifact that contains everything in the library, as of 3.1.0
+        We have also performed deprecations in ScalaTest 3.1.0 to prepare to modularize internally in our next release, 3.2.0. In
+        addition to releasing the customary monolithic <code>scalatest</code> artifact that contains everything in the library, as of 3.2.0
         we will also release more focused artifacts, such as <code>scalatest-funsuite</code>. If you add a dependency on
         <code>scalatest-funsuite</code> in your project's build, members of your team will only be able to use the <code>FunSuite</code> style. Any attempts
         to use other styles, such as <code>FlatSpec</code> or <code>FeatureSpec</code>, will not compile in that project unless the build file is changed.
@@ -74,18 +74,19 @@
         </p>
 
         <p>
-        We also are releasing modules for assertion styles. All artifacts include ScalaTest's basic assertions, but if you use a focused module like
+        We also performed deprecations in 3.1.0 to prepare the way to release modules for assertion styles in 3.2.0. All artifacts in 3.2.0 will include
+        ScalaTest's basic assertions, but if you use a focused module like
         <code>scalatest-funsuite</code>, your team will only be able to use ScalaTest's basic assertions unless you add another dependency. If you want to
         use matchers, for example, you would add either <code>scalatest-shouldmatchers</code> (if you prefer <code>should</code>) or
         <code>scalatest-mustmatchers</code> (if you prefer <code>must</code>). If you add the
         former, your team will be able to write matcher expressions with <code>should</code>, but not <code>must</code>, unless the build is changed.
-        Similarly, if you want to use diagrammed assertions on your project, you would add a dependency to <code>scalatest-diagrams</code>.
+        Similarly, if you want to use diagrammed assertions (now called <code>Diagrams</code>) on your project, you would add a dependency to <code>scalatest-diagrams</code>.
         </p>
 
         <p>
         Modularization required that we rename many traits, classes, and objects so that all the members of each package would belong
         to a single module. In the monolithic ScalaTest artifact, which everyone is currently using in their build, the old names are
-        deprecated and will continue to work for a very long time to come (at least two years). To upgrade to 3.1.0, we recommend that
+        deprecated and will continue to work in 3.1.0. To upgrade to 3.1.0, we recommend that
         you first upgrade to 3.0.8 and clear all deprecation warnings. We offer a <a href="https://github.com/scalatest/autofix/tree/master/3.0.x"><strong>ScalaFix tool to help you fix the 3.0.8 deprecation warnings</strong></a>.
         Then, just change the version to 3.1.0. Your project should compile as before, but you'll get deprecation warnings about the name
         changes. To help you with all the renames, we are
@@ -94,10 +95,10 @@
 
         <p>
         The previous mechanism for encouraging style consistency across a codebase, "chosen styles," will continue to exist and can
-        now be used to fine tune within a focused module. For example, if you depend on <code>scalatest-funspec</code> to your build,
-        you can specify that <code>AnyFunSpec</code> and <code>AsyncFunSpec</code> styles are chosen styles with the <code>-y</code>
-        parameter. If someone tried to use <code>PathFunSpec</code> in that project, it would compile, but the suite would abort
-        as soon as it is executed, because <code>PathFunSpec</code> isn't one of the chosen styles for the project.
+        now be used to fine tune within a focused module. For example, if after 3.2.0 you depend on <code>scalatest-funspec</code> to your build,
+        you will be able to specify that <code>AnyFunSpec</code> and <code>AsyncFunSpec</code> styles are chosen styles with the <code>-y</code>
+        parameter. If someone tries to use <code>PathAnyFunSpec</code> in that project, it would compile, but the suite would abort
+        as soon as it is executed, because <code>PathAnyFunSpec</code> isn't one of the chosen styles for the project.
         </p>
 
         <a name="scalatest_bugfixes"></a>
@@ -124,16 +125,16 @@ the upper case versions that have always been shown in our reports.</li>
               the result type of the entire expression will be <code>Future[Assertion]</code>.</li>
           <li>Added asynchronous support to <code>WheneverAsserting</code>. If the result type of the body is <code>Future[Assertion]</code>,
               the result type of the entire expression will be <code>Future[Assertion]</code>.</li>
-          <li>Added JSON support to events and StringReporter.</li>
-          <li>Added asynchronous support <code>Eventually</code>, by factoring out the rety behavior to a <code>Retrying</code> typeclass. If the result type of the body is <code>Future[Assertion]</code>,
+          <li>Added JSON support to events and <code>StringReporter</code>.</li>
+          <li>Added asynchronous support to <code>Eventually</code>, by factoring out the retry behavior to a <code>Retrying</code> typeclass. If the result type of the body is <code>Future[Assertion]</code>,
               the result type of the entire expression will be <code>Future[Assertion]</code>.</li>
           <li>Enhanced <code>WebBrowser's</code> <code>isInputField</code> method to handle element has attribute <code>'type'</code> value returns <code>null</code> as <code>'text'</code> type.</li>
-          <li>Enhanced <code>WebBrowser</code>'s <code>value_=</code> method to execute javascript to set value when the driver being used is <code>JavascriptExecutor</code>.</li>
-          <li>Added <code>toDir</code> method to <code>WebBrowser</code>.</li>
-          <li>No longer use <code>.toLowerCase</code> when looking at the value of the environment variable for filling file pathnames, and it now looks for the value <code>"yes"</code>, not <code>"true"</code>.</li>
+          <li>Enhanced <code>WebBrowser</code>'s <code>value_=</code> method to execute javascript to set the value when the driver being used is <code>JavascriptExecutor</code>.</li>
+          <li>Added a <code>toDir</code> method to <code>WebBrowser</code>.</li>
+          <li>No longer use <code>.toLowerCase</code> when looking at the value of the environment variable for filling file pathnames. It now looks for the value <code>"yes"</code>, not <code>"true"</code>.</li>
           <li>Removed an unnecessary nested synchronized call in <code>SuiteSortingReporter</code>.</li>
           <li>Made <code>MessageRecorder</code> thread-safe.</li>
-          <li>Serialize the execution of scopes as well as tests within scopes when executing async styles. (<a href="https://github.com/scalatest/scalatest/pull/1628/commits/d59a0d7a003a036aa637702636d44b582210065f">PR #1628</a>)</li>
+          <li>Serialized the execution of scopes as well as tests within scopes when executing async styles. (<a href="https://github.com/scalatest/scalatest/pull/1628/commits/d59a0d7a003a036aa637702636d44b582210065f">PR #1628</a>)</li>
 
 <li>Send <code>TestIgnored</code> events in order in async-style tests even under a non-default execution context (<a href="https://github.com/scalatest/scalatest/pull/1628/commits/9dcd8e3395b16a57cc0eca8dd46cdc43ab7e596b">PR #1628</a>).</li>
           <li>Refactored the implementation of <code>StatefulStatus</code> to eliminate a potential race condition, despite not
@@ -155,7 +156,7 @@ the upper case versions that have always been shown in our reports.</li>
             <li>Deprecated <code>feature</code> in favor of <code>Feature</code> in the <code>FeatureSpec</code> family of traits and classes.</li>
             <li>Deprecated <code>scenario</code> in favor of <code>Scenario</code> in the <code>FeatureSpec</code> family of traits and classes.</li>
             <li>Deprecated <code>scenariosFor</code> in favor of <code>ScenariosFor</code> in the <code>FeatureSpec</code> family of traits and classes.</li>
-            <li>Moved and renamed all of ScalaTest's style traits and classes so that we can modularize ScalaTest by style. All
+            <li>Moved and renamed all of ScalaTest's style traits and classes so that we can modularize ScalaTest by style in 3.2.0. All
                 style traits and classes for the <code>FunSuite</code> style, for example, have been moved to package <code>org.scalatest.funsuite</code>.
                 The old names still work but have been deprecated. 
 
@@ -593,8 +594,8 @@ the upper case versions that have always been shown in our reports.</li>
         <h2>One breaking change: -y</h2>
 
         <ul>
-          <li>Made the names returned by <code>styleName</code> more fine grained, given the rough selection of chosen styles can
-              now be done by selecting a focused module, such as <code>scalatest-flatspec</code>. For example, previously any
+          <li>Made the names returned by <code>styleName</code> more fine grained, given the rough selection of chosen styles will
+              in 3.2.0 be done by selecting a focused module, such as <code>scalatest-flatspec</code>. For example, previously any
               style whose name ended in <code>"FlatSpec"</code> had the <code>styleName</code> <code>org.scalatest.FlatSpec</code>.
               The name <code>org.scalatest.FlatSpec</code> is now deprecated. Because we had no way to deprecate the string returned
               by <code>styleName</code>, we just changed these result strings. In the process, made them more fine grained.
@@ -880,12 +881,12 @@ the upper case versions that have always been shown in our reports.</li>
                 ScalaTest artifact, with the <code>org.scalatestplus.scalacheck</code> package name. In 3.1.0, we are removing the deprecated
                 name and the actual implementation in the new package from the ScalaTest artifact. From now on these will be released as a 
                 separate, optional module to allow ScalaTest and its ScalaCheck integration library to evolve more independently.
-                See http://xyz for the details on how to add the ScalaTest+ScalaCheck integration library to your build.</li>
+                <!--See for the details on how to add the ScalaTest+ScalaCheck integration library to your build.--></li>
               <li>Removed the <code>trap</code> method from trait <code>Assertions</code>, and with it, the <code>NormalResult</code> case
                   class in the <code>Assertions</code> companion object.
               </li>
               <li>
-              Removed the parameterless <code>execute</code><!-- method that has been deprecated since ???-->. Please use the no-arg
+              Removed the parameterless <code>execute</code> method<!-- that has been deprecated since ???-->. Please use the no-arg
               form, <code>execute()</code>, instead. 
               </li>
               <li>
@@ -896,7 +897,7 @@ the upper case versions that have always been shown in our reports.</li>
               </li>
               <li>
               Removed the overloaded <code>thread</code> method in <code>Conductors</code> and <code>ConductorMethods</code>
-              in package <code>org.scalatest.concurrent</code> that takes a string name. Please use threadNamed instead.
+              in package <code>org.scalatest.concurrent</code> that takes a string name. Please use <code>threadNamed</code> instead.
               </li>
               <li>
               Removed deprecated type alias in <code>org.scalatest.concurrent</code> for the old name
@@ -925,7 +926,7 @@ the upper case versions that have always been shown in our reports.</li>
               Removed deprecated <code>org.scalatest.fixture.Spec</code> class. Please use <code>org.scalatest.funspec.FixtureFunSpec</code> instead.
               </li>
               <li>
-              Removed deprecated <code>org.scalatest.fixture.SpecLike</code> trait. Plesae use <code>org.scalatest.funspec.FixtureFunSpecLike</code> instead.
+              Removed deprecated <code>org.scalatest.fixture.SpecLike</code> trait. Please use <code>org.scalatest.funspec.FixtureFunSpecLike</code> instead.
               </li>
         </ul>
 
