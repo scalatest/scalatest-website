@@ -23,15 +23,10 @@
         <h1>ScalaTest/Scalactic 3.1.0 Draft Release Notes</h1>
 
         <p>
-            ScalaTest/Scalactic 3.1.0 (for Scala 2.10, 2.11, 2.12, and 2.13; on the JVM, JavaScript, native, and Dotty) includes the enhancements and bug fixes listed below.
+            ScalaTest/Scalactic 3.1.0 (for Scala 2.10, 2.11, 2.12, and 2.13; on the JVM, JavaScript, native, and Dotty)
+            includes the enhancements and bug fixes listed below.
             No source code using ScalaTest/Scalactic 3.0.8 should break, other than expired deprecations, but
-            because this release is not binary compatible with 3.0.8), you will likely need to do a clean build to upgrade.
-        </p>
-
-        <p>
-            There is one potential breaking change to your build. If you are using ScalaTest's chosen styles feature by 
-            specifying <code>-y</code> parameters, you will likely need to change that part of your build, as described
-            in the <a href="#scalatest_breaking_change">one breaking change</a> section.
+            because this release is not binary compatible with 3.0.8, you will likely need to do a clean build to upgrade.
         </p>
 
         <p>
@@ -69,12 +64,12 @@
 
         <p>
         The purpose of the internal modularization is to help teams maintain style consistency across a project when using ScalaTest. Although
-        the original intent and expectation was that one or more or specific ScalaTest styles would be chosen for individual projects, it was easy
-        for an individual developer to use a different style.
+        the user guide recommends that testing styles be chosen on a per-project or per-team basis, it has been easy
+        for individual developers to use different styles in the same project.
         </p>
 
         <p>
-        We also performed deprecations in 3.1.0 to prepare the way to release modules for assertion styles in 3.2.0. All artifacts in 3.2.0 will include
+        We also performed deprecations in 3.1.0 to prepare to modularize assertion styles in 3.2.0. All artifacts in 3.2.0 will include
         ScalaTest's basic assertions, but if you use a focused module like
         <code>scalatest-funsuite</code>, your team will only be able to use ScalaTest's basic assertions unless you add another dependency. If you want to
         use matchers, for example, you would add either <code>scalatest-shouldmatchers</code> (if you prefer <code>should</code>) or
@@ -94,19 +89,17 @@
         </p>
 
         <p>
-        The previous mechanism for encouraging style consistency across a codebase, "chosen styles," will continue to exist and can
-        now be used to fine tune within a focused module. For example, if after 3.2.0 you depend on <code>scalatest-funspec</code> to your build,
-        you will be able to specify that <code>AnyFunSpec</code> and <code>AsyncFunSpec</code> styles are chosen styles with the <code>-y</code>
-        parameter. If someone tries to use <code>PathAnyFunSpec</code> in that project, it would compile, but the suite would abort
-        as soon as it is executed, because <code>PathAnyFunSpec</code> isn't one of the chosen styles for the project.
+        The previous mechanism for encouraging style consistency across a codebase, "chosen styles," has been deactivated in 3.1.0.
+        ScalaTest will continue to accept chosen styles configuration (given
+        with <code>-y</code>) during a long deprecation period, but such configuration will no longer have any effect.
         </p>
 
         <a name="scalatest_bugfixes"></a>
         <h2>Bug Fixes</h2>
 
         <ul>
-          <li>Fixed macro-based assertion that has problem when used directly with package name without mixin in/import the trait.</li>
-          <li>Fixed race condition causing occasional <code>ConcurrentModificationException</code> when executing async styles with a non-default execution context on the JVM. (<a href="https://github.com/scalatest/scalatest/pull/1628/commits/c08f188ec877df7836bdf8784208508fe4a310d4">PR #1628</a>)</li>
+          <li>Fixed a macro-based assertion problem when it was used directly with the package name without mixing in or import the trait.</li>
+          <li>Fixed a race condition causing occasional <code>ConcurrentModificationException</code> when executing async styles with a non-default execution context on the JVM. (<a href="https://github.com/scalatest/scalatest/pull/1628/commits/c08f188ec877df7836bdf8784208508fe4a310d4">PR #1628</a>)</li>
           <li>Made <code>is pending</code> work in AsyncFreeSpec, AsyncFlatSpec, AsyncWordSpec. (<a href="https://github.com/scalatest/scalatest/pull/1628/commits/78fb078cafc42a8ff19a03826f7f8bb750afec02">PR #1628</a>)</li>
           <li>Refactored the implementation of <code>CompositeStatus</code> to eliminate a leak of the <code>this</code> reference in the constructor.</li>
         </ul>
@@ -115,10 +108,17 @@
         <h2>Improvements</h2>
 
         <ul>
-                <li>Changed <code>feature</code> to <code>Feature</code> and <code>scenario</code> to <code>Scenario</code> in <code>FeatureSpec</code>. Deprecated the lower case versions. This makes
-<code>FeatureSpec</code> syntax more consistent internally, now that <code>Given</code>, <code>When</code>, and <code>Then</code> are upper cased (which was forced upon us by <code>then</code> being
-reclaimed to be used a Scala keyword) and also externally consistent with Cucumber and Gherkin, and internally consistent with 
-the upper case versions that have always been shown in our reports.</li>
+                <li>Changed <code>feature</code> to <code>Feature</code> and <code>scenario</code> to <code>Scenario</code>
+                in <code>FeatureSpec</code>. Deprecated the lowercase versions. This change will make
+                <code>FeatureSpec</code> syntax more consistent internally.
+                Originally the <code>GivenWhenThen</code> trait offered <code>given</code>,
+                <code>when</code>, and <code>then</code> methods (<em>i.e.</em>, with lowercase names). When Scala deprecated <code>then</code>,
+                to reclaim <code>then</code> as a potential future Scala language keyword, we capitalized <code>GivenWhenThen</code>'s method
+                names. Capitalizing <code>Feature</code> and <code>Scenario</code> makes these method names more consistent
+                with the previously capitalized <code>Given</code>, <code>When</code>, and <code>Then</code> methods.
+                In addition, capitalizing <code>Feature</code> and <code>Scenario</code> makes <code>FeatureSpec</code> consistent with
+                Cucumber and Gherkin, and internally consistent with the capitalized form of these words that have always been shown
+                in ScalaTest's reports.</li>
           <li>Added asynchronous support to <code>Inspectors</code>. If the result type of the body is <code>Future[Assertion]</code>,
               the result type of the entire expression will be <code>Future[Assertion]</code>.</li>
           <li>Added asynchronous support to <code>TableAsserting</code>. If the result type of the body is <code>Future[Assertion]</code>,
@@ -129,17 +129,17 @@ the upper case versions that have always been shown in our reports.</li>
           <li>Added asynchronous support to <code>Eventually</code>, by factoring out the retry behavior to a <code>Retrying</code> typeclass. If the result type of the body is <code>Future[Assertion]</code>,
               the result type of the entire expression will be <code>Future[Assertion]</code>.</li>
           <li>Enhanced <code>WebBrowser's</code> <code>isInputField</code> method to handle element has attribute <code>'type'</code> value returns <code>null</code> as <code>'text'</code> type.</li>
-          <li>Enhanced <code>WebBrowser</code>'s <code>value_=</code> method to execute javascript to set the value when the driver being used is <code>JavascriptExecutor</code>.</li>
+          <li>Enhanced <code>WebBrowser</code>'s <code>value_=</code> method to execute JavaScript to set the value when the driver being used is <code>JavaScriptExecutor</code>.</li>
           <li>Added a <code>toDir</code> method to <code>WebBrowser</code>.</li>
-          <li>No longer use <code>.toLowerCase</code> when looking at the value of the environment variable for filling file pathnames. It now looks for the value <code>"yes"</code>, not <code>"true"</code>.</li>
+          <li>Stopped using <code>.toLowerCase</code> when looking at the value of the environment variable for filling file pathnames. It now looks for the value <code>"yes"</code>, not <code>"true"</code>.</li>
           <li>Removed an unnecessary nested synchronized call in <code>SuiteSortingReporter</code>.</li>
           <li>Made <code>MessageRecorder</code> thread-safe.</li>
           <li>Serialized the execution of scopes as well as tests within scopes when executing async styles. (<a href="https://github.com/scalatest/scalatest/pull/1628/commits/d59a0d7a003a036aa637702636d44b582210065f">PR #1628</a>)</li>
 
-<li>Send <code>TestIgnored</code> events in order in async-style tests even under a non-default execution context (<a href="https://github.com/scalatest/scalatest/pull/1628/commits/9dcd8e3395b16a57cc0eca8dd46cdc43ab7e596b">PR #1628</a>).</li>
+          <li>Changed how <code>TestIgnored</code> events are sent in async-style tests so that they are sent in order even under a non-default execution context (<a href="https://github.com/scalatest/scalatest/pull/1628/commits/9dcd8e3395b16a57cc0eca8dd46cdc43ab7e596b">PR #1628</a>).</li>
           <li>Refactored the implementation of <code>StatefulStatus</code> to eliminate a potential race condition, despite not
               having evidence it ever caused a problem.</li>
-          <li>Ensure that if two threads call <code>setCompleted</code> concurrently on a <code>StatefulStatus</code>, the first thread will
+          <li>Ensured that if two threads call <code>setCompleted</code> concurrently on a <code>StatefulStatus</code>, the first thread will
               be allowed to execute all the callbacks in order while the second thread blocks. (<a href="https://github.com/scalatest/scalatest/pull/1628/commits/a18a548cbd2bd4345d8cbc5d9dec471b31df6c71">PR #1628</a>)
           <li>Changed <code>isCompleted</code> from parameterless to empty parens form, because it can observe a side effect. (<a href="https://github.com/scalatest/scalatest/pull/1628/commits/15b1e7fa96180980df78b03e8b2fdab0d6033f42">PR #1628</a>)
           <li>Clarified and improved Scaladoc for <code>BeforeAndAfter</code>, <code>BeforeAndAfterEach</code>, and
@@ -158,25 +158,29 @@ the upper case versions that have always been shown in our reports.</li>
             <li>Deprecated <code>scenariosFor</code> in favor of <code>ScenariosFor</code> in the <code>FeatureSpec</code> family of traits and classes.</li>
             <li>Moved and renamed all of ScalaTest's style traits and classes so that we can modularize ScalaTest by style in 3.2.0. All
                 style traits and classes for the <code>FunSuite</code> style, for example, have been moved to package <code>org.scalatest.funsuite</code>.
-                The old names still work but have been deprecated. 
+                The old names still work in 3.1.0, but have been deprecated. 
 
                 <p>
                 We also slightly renamed some of the
                 traits and classes when we moved them. The main style traits and classes, whose test bodies have a result type of <code>Any</code>, have
-                &ldquo;<code>Any</code>&rdquo; prefixed to their former simple names. For example, <code>FunSuite</code> becomes <code>AnyFunSuite</code>.
-                The <code>Any</code> styles will be backwards compatible with ScalaTest's original style traits, and allow you to use any assertions
-                from any other testing library no matter the result type of those assertions. The reason for this name change is that later we plan
-                to add a new set of style traits and classes with the original names, such as <code>FunSuite</code> (but
+                &ldquo;<code>Any</code>&rdquo; prefixed to their former simple names. For example, <code>FunSuite</code> has been renamed to
+                <code>AnyFunSuite</code> in 3.1.0.
+                </p>
+
+                <p>
+                The <code>Any</code> styles will be backwards compatible with ScalaTest's original style traits, which allow you to use assertions
+                from any other testing library no matter the result type of those assertions. The reason for this name change is that in a future
+                version of ScalaTest we plan to add a new set of style traits and classes with the original names, such as <code>FunSuite</code> (but
                 in the <code>org.scalatest.funsuite</code> package), whose test bodies will have a
                 result type of <code>Assertion</code>.
                 </p>
                 <p>
                 In addition, the traits and classes in package <code>org.scalatest.fixture</code> have &ldquo;<code>Fixture</code>&rdquo; prefixed to their
                 former simple names in their new location.
-                For example, <code>org.scalatest.fixture.FunSuite</code> becomes <code>org.scalatest.funsuite.FixtureAnyFunSuite</code>.
+                For example, <code>org.scalatest.fixture.FunSuite</code> has been renamed to <code>org.scalatest.funsuite.FixtureAnyFunSuite</code>.
                 Similarly, the traits and classes in package <code>org.scalatest.path</code> have &ldquo;<code>Path</code>&rdquo; prefixed to their
                 former simple names in their new location.
-                For example, <code>org.scalatest.path.FunSpec</code> becomes <code>org.scalatest.funsuite.PathAnyFunSpec</code>.
+                For example, <code>org.scalatest.path.FunSpec</code> has been renamed to <code>org.scalatest.funsuite.PathAnyFunSpec</code>.
                 </p>
                 <p>
                 Here are the details:
@@ -508,8 +512,8 @@ the upper case versions that have always been shown in our reports.</li>
 
 
         <li>
-        We also renamed a few top level traits that previously lived in the <code>org.scalatest.fixture</code> package. Given the
-        actual fixture styles were moved from this package, it makes more sense for these to live in <code>org.scalatest</code>.
+        Renamed a few top level traits that previously resided in the <code>org.scalatest.fixture</code> package. Given the
+        actual fixture styles were moved from this package, it made more sense for these to reside in <code>org.scalatest</code>.
         Here are the details:
 
 <br/>
@@ -549,8 +553,9 @@ the upper case versions that have always been shown in our reports.</li>
         </ul>
 
         <ul>
-            <li>Moved and renamed matchers and diagrammed assertions traits and objects so that we can modularize ScalaTest by assertion style. All
-                The old names still work but have been deprecated. Here are the details:
+            <li>Moved and renamed matchers and diagrammed assertions traits and objects in 3.1.0 so that we can modularize ScalaTest by assertion style in
+                3.2.0. All
+                of the old names still work but have been deprecated. Here are the details:
  <br/>
  <br/>
 <table class="stTableOverall">
@@ -583,9 +588,9 @@ the upper case versions that have always been shown in our reports.</li>
         <p>
         These types were used internally to support DSLs, so most likely these name changes will not affect many users (if any).
         One other goal besides moving code that is only needed by matchers into the matchers module was to eliminate a competing
-        package name (i.e., <code>words</code>) that starts the same as <code>wordspec</code>, which is a new package name in 3.1.0.
+        package name (<em>i.e.</em>, <code>words</code>) that starts the same as <code>wordspec</code>, which is a new package name in 3.1.0.
         Someone using <code>wordspec</code> would otherwise
-        need to type more letters before the code completion would give them <code>wordspec</code>.
+        need to type more letters before code completion would give them <code>wordspec</code>.
         </p>
         </li>
         </ul>
