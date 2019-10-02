@@ -677,23 +677,23 @@
             <code>anyvals</code> added in 3.1.0). The &ldquo;existing <code>anyvals</code>&rdquo; are those that appeared in the
             <code>org.scalactic.anyvals</code> package in version 3.0.0: <code>PosInt</code>, <code>PosZInt</code>, <code>PosLong</code>, <code>PosZLong</code>, <code>PosFloat</code>, <code>PosZFloat</code>, <code>PosDouble</code>, and <code>PosZDouble</code>:
             <ul>
-            <li><code>ensuringValid</code> - wraps a given underlying type value with a narrower <code>anyvals</code> type value if it is
+            <li><code>ensuringValid</code> - wraps a given value of the underlying type with an instance of a narrower <code>anyvals</code> type if it is
 valid, else throws <code>AssertionError</code>.
                  <code>ensuringValid</code> factory methods is given in Bill Venners' in <a href="https://youtu.be/keTId618iOs"><em>Hope, Faith, and Proof</em></a> talk.</li>
-            <li><code>fromOrElse</code> - wraps a given underlying type value with a narrower <code>anyvals</code> type value if it is valid, else
+            <li><code>fromOrElse</code> - wraps a given value of the underlying type with an instance of a narrower <code>anyvals</code> type if it is valid, else
                  returns a given default.</li>
-            <li><code>goodOrElse</code> - wraps a given underlying type value with a narrower <code>anyvals</code> type value if it is valid, and returns that wrapped in
+            <li><code>goodOrElse</code> - wraps a given value of the underlying type with an instance of a narrower <code>anyvals</code> type if it is valid, and returns that wrapped in
                  a <code>Good</code>, else returns a <code>Bad</code> produced by passing the invalid value to a given function.</li>
-            <li><code>passOrElse</code> - wraps a given underlying type value with a narrower <code>anyvals</code> type value if it is valid, and returns that wrapped in
+            <li><code>passOrElse</code> - wraps a given value of the underlying type with an instance of a narrower <code>anyvals</code> type if it is valid, and returns that wrapped in
                  a <code>Pass</code>, else returns a <code>Fail</code> produced by passing the invalid value to a given function.</li>
-            <li><code>rightOrElse</code> - wraps a given underlying type value with a narrower <code>anyvals</code> type value if it is valid, and returns that wrapped in
+            <li><code>rightOrElse</code> - wraps a given value of the underlying type with an instance of a narrower <code>anyvals</code> type if it is valid, and returns that wrapped in
                  a <code>Right</code>, else returns a <code>Left</code> produced by passing the invalid value to a given function.</li>
-            <li><code>tryingValid</code> - wraps a given underlying type value with a narrower <code>anyvals</code> type value if it is valid, and returns that wrapped in
+            <li><code>tryingValid</code> - wraps a given value of the underlying type with an instance of a narrower <code>anyvals</code> type if it is valid, and returns that wrapped in
                  a <code>Success</code>, else returns a <code>Failure</code> containing an <code>AssertionError</code>.</li>
             </ul>
           </li>
 
-          <li>Added an <code>isValid</code> predicate method to the companion objects of existing <code>anyvals</code> (which also appears in the companions of new anyvals added in 3.1.0) that returns true if a given underlying type value is valid.</li>
+          <li>Added an <code>isValid</code> predicate method to the companion objects of existing <code>anyvals</code> (which also appears in the companions of new <code>anyvals</code> added in 3.1.0) that returns true if a given value of the underlying type is valid.</li>
 @*
     Clarified for Double and Float types that NaN and NegativeInfinity are
     not valid, wherewas PositiveInfinity is. Added a PositiveInfinity constant in the
@@ -714,7 +714,7 @@ valid, else throws <code>AssertionError</code>.
               the sum as a <code>PosDouble</code>. (The <code>+</code> methods on <code>PosDouble</code> return <code>Double</code>.)</li>
           <li>Added a <code>plus</code> method to class <code>PosZDouble</code>, which takes a <code>PosZDouble</code> and returns
               the sum as a <code>PosZDouble</code>. (The <code>+</code> methods on <code>PosZDouble</code> return <code>Double</code>.)</li>
-          <li>Thanks to Erik Osheim for pointing out that these plus methods are possible.</li>
+          <li>Thanks to Erik Osheim for pointing out that these <code>plus</code> methods are possible.</li>
 @*
           <li>Added a <code>sumOf</code> method to the <code>PosFloat</code> companion object, which takes a <code>PosFloat</code> and a
               <code>PosZFloat</code> and returns their sum as a <code>PosFloat</code>. This method can be called with <code>Float</code> literals
