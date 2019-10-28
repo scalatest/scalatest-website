@@ -81,7 +81,7 @@ passed as <code>n</code> and <code>d</code>. (This property specifies how the nu
 constructor should be normalized.) The <code>whenever</code> clause indicates invalid
 values for <code>n</code> and <code>d</code>.
 Any other values are valid. When run, ScalaCheck generators will be passed implicitly to <code>forAll</code> and supply integer values for
-<code>n</code> and <code>d</code>. By default the property will be checked against 100 valid pairs of <code>n</code> and <code>d</code>.
+<code>n</code> and <code>d</code>. By default the property will be checked against 10 valid pairs of <code>n</code> and <code>d</code>. Note that this is different from ScalaCheck's default of 100.
 </p>
 
 <p>
