@@ -23,19 +23,10 @@
         <h1>ScalaTest/Scalactic 3.1.0 Draft Release Notes</h1>
 
         <p>
-            ScalaTest/Scalactic 3.1.0 (for Scala 2.10, 2.11, 2.12, and 2.13; on the JVM, JavaScript, native, and Dotty) includes the enhancements and bug fixes listed below.
+            ScalaTest/Scalactic 3.1.0 (for Scala 2.10, 2.11, 2.12, and 2.13; on the JVM, JavaScript, native, and Dotty)
+            includes the enhancements and bug fixes listed below.
             No source code using ScalaTest/Scalactic 3.0.8 should break, other than expired deprecations, but
-            because this release is not binary compatible with 3.0.8), you will likely need to do a clean build to upgrade.
-        </p>
-        <p>
-            Note that as of 3.1.0 we will no longer build ScalaTest for Scala 2.10 and 2.11 on JDK6. Instead all of the JVM releases will be
-            built on JDK8.
-        </p>
-
-        <p>
-            There is one potential breaking change to your build. If you are using ScalaTest's chosen styles feature by 
-            specifying <code>-y</code> parameters, you will likely need to change that part of your build, as described
-            in the <a href="#scalatest_breaking_change">one breaking change</a> section.
+            because this release is not binary compatible with 3.0.8, you will likely need to do a clean build to upgrade.
         </p>
 
         <p>
@@ -64,8 +55,8 @@
         </p>
 
         <p>
-        We have also modularized ScalaTest internally in 3.1.0. In
-        addition to releasing the customary monolithic <code>scalatest</code> artifact that contains everything in the library, as of 3.1.0
+        We have also performed deprecations in ScalaTest 3.1.0 to prepare to modularize internally in our next release, 3.2.0. In
+        addition to releasing the customary monolithic <code>scalatest</code> artifact that contains everything in the library, as of 3.2.0
         we will also release more focused artifacts, such as <code>scalatest-funsuite</code>. If you add a dependency on
         <code>scalatest-funsuite</code> in your project's build, members of your team will only be able to use the <code>FunSuite</code> style. Any attempts
         to use other styles, such as <code>FlatSpec</code> or <code>FeatureSpec</code>, will not compile in that project unless the build file is changed.
@@ -73,23 +64,24 @@
 
         <p>
         The purpose of the internal modularization is to help teams maintain style consistency across a project when using ScalaTest. Although
-        the original intent and expectation was that one or more or specific ScalaTest styles would be chosen for individual projects, it was easy
-        for an individual developer to use a different style.
+        the user guide recommends that testing styles be chosen on a per-project or per-team basis, it has been easy
+        for individual developers to use different styles in the same project.
         </p>
 
         <p>
-        We also are releasing modules for assertion styles. All artifacts include ScalaTest's basic assertions, but if you use a focused module like
+        We also performed deprecations in 3.1.0 to prepare to modularize assertion styles in 3.2.0. All artifacts in 3.2.0 will include
+        ScalaTest's basic assertions, but if you use a focused module like
         <code>scalatest-funsuite</code>, your team will only be able to use ScalaTest's basic assertions unless you add another dependency. If you want to
         use matchers, for example, you would add either <code>scalatest-shouldmatchers</code> (if you prefer <code>should</code>) or
         <code>scalatest-mustmatchers</code> (if you prefer <code>must</code>). If you add the
         former, your team will be able to write matcher expressions with <code>should</code>, but not <code>must</code>, unless the build is changed.
-        Similarly, if you want to use diagrammed assertions on your project, you would add a dependency to <code>scalatest-diagrams</code>.
+        Similarly, if you want to use diagrammed assertions (now called <code>Diagrams</code>) on your project, you would add a dependency to <code>scalatest-diagrams</code>.
         </p>
 
         <p>
         Modularization required that we rename many traits, classes, and objects so that all the members of each package would belong
         to a single module. In the monolithic ScalaTest artifact, which everyone is currently using in their build, the old names are
-        deprecated and will continue to work for a very long time to come (at least two years). To upgrade to 3.1.0, we recommend that
+        deprecated and will continue to work in 3.1.0. To upgrade to 3.1.0, we recommend that
         you first upgrade to 3.0.8 and clear all deprecation warnings. We offer a <a href="https://github.com/scalatest/autofix/tree/master/3.0.x"><strong>ScalaFix tool to help you fix the 3.0.8 deprecation warnings</strong></a>.
         Then, just change the version to 3.1.0. Your project should compile as before, but you'll get deprecation warnings about the name
         changes. To help you with all the renames, we are
@@ -97,19 +89,17 @@
         </p>
 
         <p>
-        The previous mechanism for encouraging style consistency across a codebase, "chosen styles," will continue to exist and can
-        now be used to fine tune within a focused module. For example, if you depend on <code>scalatest-funspec</code> to your build,
-        you can specify that <code>AnyFunSpec</code> and <code>AsyncFunSpec</code> styles are chosen styles with the <code>-y</code>
-        parameter. If someone tried to use <code>PathFunSpec</code> in that project, it would compile, but the suite would abort
-        as soon as it is executed, because <code>PathFunSpec</code> isn't one of the chosen styles for the project.
+        The previous mechanism for encouraging style consistency across a codebase, "chosen styles," has been deactivated in 3.1.0.
+        ScalaTest will continue to accept chosen styles configuration (given
+        with <code>-y</code>) during a long deprecation period, but such configuration will no longer have any effect.
         </p>
 
         <a name="scalatest_bugfixes"></a>
         <h2>Bug Fixes</h2>
 
         <ul>
-          <li>Fixed macro-based assertion that has problem when used directly with package name without mixin in/import the trait.</li>
-          <li>Fixed race condition causing occasional <code>ConcurrentModificationException</code> when executing async styles with a non-default execution context on the JVM. (<a href="https://github.com/scalatest/scalatest/pull/1628/commits/c08f188ec877df7836bdf8784208508fe4a310d4">PR #1628</a>)</li>
+          <li>Fixed a macro-based assertion problem when it was used directly with the package name without mixing in or import the trait.</li>
+          <li>Fixed a race condition causing occasional <code>ConcurrentModificationException</code> when executing async styles with a non-default execution context on the JVM. (<a href="https://github.com/scalatest/scalatest/pull/1628/commits/c08f188ec877df7836bdf8784208508fe4a310d4">PR #1628</a>)</li>
           <li>Made <code>is pending</code> work in AsyncFreeSpec, AsyncFlatSpec, AsyncWordSpec. (<a href="https://github.com/scalatest/scalatest/pull/1628/commits/78fb078cafc42a8ff19a03826f7f8bb750afec02">PR #1628</a>)</li>
           <li>Refactored the implementation of <code>CompositeStatus</code> to eliminate a leak of the <code>this</code> reference in the constructor.</li>
         </ul>
@@ -118,31 +108,38 @@
         <h2>Improvements</h2>
 
         <ul>
-                <li>Changed <code>feature</code> to <code>Feature</code> and <code>scenario</code> to <code>Scenario</code> in <code>FeatureSpec</code>. Deprecated the lower case versions. This makes
-<code>FeatureSpec</code> syntax more consistent internally, now that <code>Given</code>, <code>When</code>, and <code>Then</code> are upper cased (which was forced upon us by <code>then</code> being
-reclaimed to be used a Scala keyword) and also externally consistent with Cucumber and Gherkin, and internally consistent with 
-the upper case versions that have always been shown in our reports.</li>
+                <li>Changed <code>feature</code> to <code>Feature</code> and <code>scenario</code> to <code>Scenario</code>
+                in <code>FeatureSpec</code>. Deprecated the lowercase versions. This change will make
+                <code>FeatureSpec</code> syntax more consistent internally.
+                Originally the <code>GivenWhenThen</code> trait offered <code>given</code>,
+                <code>when</code>, and <code>then</code> methods (<em>i.e.</em>, with lowercase names). When Scala deprecated <code>then</code>,
+                to reclaim <code>then</code> as a potential future Scala language keyword, we capitalized <code>GivenWhenThen</code>'s method
+                names. Capitalizing <code>Feature</code> and <code>Scenario</code> makes these method names more consistent
+                with the previously capitalized <code>Given</code>, <code>When</code>, and <code>Then</code> methods.
+                In addition, capitalizing <code>Feature</code> and <code>Scenario</code> makes <code>FeatureSpec</code> consistent with
+                Cucumber and Gherkin, and internally consistent with the capitalized form of these words that have always been shown
+                in ScalaTest's reports.</li>
           <li>Added asynchronous support to <code>Inspectors</code>. If the result type of the body is <code>Future[Assertion]</code>,
               the result type of the entire expression will be <code>Future[Assertion]</code>.</li>
           <li>Added asynchronous support to <code>TableAsserting</code>. If the result type of the body is <code>Future[Assertion]</code>,
               the result type of the entire expression will be <code>Future[Assertion]</code>.</li>
           <li>Added asynchronous support to <code>WheneverAsserting</code>. If the result type of the body is <code>Future[Assertion]</code>,
               the result type of the entire expression will be <code>Future[Assertion]</code>.</li>
-          <li>Added JSON support to events and StringReporter.</li>
-          <li>Added asynchronous support <code>Eventually</code>, by factoring out the rety behavior to a <code>Retrying</code> typeclass. If the result type of the body is <code>Future[Assertion]</code>,
+          <li>Added JSON support to events and <code>StringReporter</code>.</li>
+          <li>Added asynchronous support to <code>Eventually</code>, by factoring out the retry behavior to a <code>Retrying</code> typeclass. If the result type of the body is <code>Future[Assertion]</code>,
               the result type of the entire expression will be <code>Future[Assertion]</code>.</li>
           <li>Enhanced <code>WebBrowser's</code> <code>isInputField</code> method to handle element has attribute <code>'type'</code> value returns <code>null</code> as <code>'text'</code> type.</li>
-          <li>Enhanced <code>WebBrowser</code>'s <code>value_=</code> method to execute javascript to set value when the driver being used is <code>JavascriptExecutor</code>.</li>
-          <li>Added <code>toDir</code> method to <code>WebBrowser</code>.</li>
-          <li>No longer use <code>.toLowerCase</code> when looking at the value of the environment variable for filling file pathnames, and it now looks for the value <code>"yes"</code>, not <code>"true"</code>.</li>
+          <li>Enhanced <code>WebBrowser</code>'s <code>value_=</code> method to execute JavaScript to set the value when the driver being used is <code>JavaScriptExecutor</code>.</li>
+          <li>Added a <code>toDir</code> method to <code>WebBrowser</code>.</li>
+          <li>Stopped using <code>.toLowerCase</code> when looking at the value of the environment variable for filling file pathnames. It now looks for the value <code>"yes"</code>, not <code>"true"</code>.</li>
           <li>Removed an unnecessary nested synchronized call in <code>SuiteSortingReporter</code>.</li>
           <li>Made <code>MessageRecorder</code> thread-safe.</li>
-          <li>Serialize the execution of scopes as well as tests within scopes when executing async styles. (<a href="https://github.com/scalatest/scalatest/pull/1628/commits/d59a0d7a003a036aa637702636d44b582210065f">PR #1628</a>)</li>
+          <li>Serialized the execution of scopes as well as tests within scopes when executing async styles. (<a href="https://github.com/scalatest/scalatest/pull/1628/commits/d59a0d7a003a036aa637702636d44b582210065f">PR #1628</a>)</li>
 
-<li>Send <code>TestIgnored</code> events in order in async-style tests even under a non-default execution context (<a href="https://github.com/scalatest/scalatest/pull/1628/commits/9dcd8e3395b16a57cc0eca8dd46cdc43ab7e596b">PR #1628</a>).</li>
+          <li>Changed how <code>TestIgnored</code> events are sent in async-style tests so that they are sent in order even under a non-default execution context (<a href="https://github.com/scalatest/scalatest/pull/1628/commits/9dcd8e3395b16a57cc0eca8dd46cdc43ab7e596b">PR #1628</a>).</li>
           <li>Refactored the implementation of <code>StatefulStatus</code> to eliminate a potential race condition, despite not
               having evidence it ever caused a problem.</li>
-          <li>Ensure that if two threads call <code>setCompleted</code> concurrently on a <code>StatefulStatus</code>, the first thread will
+          <li>Ensured that if two threads call <code>setCompleted</code> concurrently on a <code>StatefulStatus</code>, the first thread will
               be allowed to execute all the callbacks in order while the second thread blocks. (<a href="https://github.com/scalatest/scalatest/pull/1628/commits/a18a548cbd2bd4345d8cbc5d9dec471b31df6c71">PR #1628</a>)
           <li>Changed <code>isCompleted</code> from parameterless to empty parens form, because it can observe a side effect. (<a href="https://github.com/scalatest/scalatest/pull/1628/commits/15b1e7fa96180980df78b03e8b2fdab0d6033f42">PR #1628</a>)
           <li>Clarified and improved Scaladoc for <code>BeforeAndAfter</code>, <code>BeforeAndAfterEach</code>, and
@@ -159,27 +156,31 @@ the upper case versions that have always been shown in our reports.</li>
             <li>Deprecated <code>feature</code> in favor of <code>Feature</code> in the <code>FeatureSpec</code> family of traits and classes.</li>
             <li>Deprecated <code>scenario</code> in favor of <code>Scenario</code> in the <code>FeatureSpec</code> family of traits and classes.</li>
             <li>Deprecated <code>scenariosFor</code> in favor of <code>ScenariosFor</code> in the <code>FeatureSpec</code> family of traits and classes.</li>
-            <li>Moved and renamed all of ScalaTest's style traits and classes so that we can modularize ScalaTest by style. All
+            <li>Moved and renamed all of ScalaTest's style traits and classes so that we can modularize ScalaTest by style in 3.2.0. All
                 style traits and classes for the <code>FunSuite</code> style, for example, have been moved to package <code>org.scalatest.funsuite</code>.
-                The old names still work but have been deprecated. 
+                The old names still work in 3.1.0, but have been deprecated. 
 
                 <p>
                 We also slightly renamed some of the
                 traits and classes when we moved them. The main style traits and classes, whose test bodies have a result type of <code>Any</code>, have
-                &ldquo;<code>Any</code>&rdquo; prefixed to their former simple names. For example, <code>FunSuite</code> becomes <code>AnyFunSuite</code>.
-                The <code>Any</code> styles will be backwards compatible with ScalaTest's original style traits, and allow you to use any assertions
-                from any other testing library no matter the result type of those assertions. The reason for this name change is that later we plan
-                to add a new set of style traits and classes with the original names, such as <code>FunSuite</code> (but
+                &ldquo;<code>Any</code>&rdquo; prefixed to their former simple names. For example, <code>FunSuite</code> has been renamed to
+                <code>AnyFunSuite</code> in 3.1.0.
+                </p>
+
+                <p>
+                The <code>Any</code> styles will be backwards compatible with ScalaTest's original style traits, which allow you to use assertions
+                from any other testing library no matter the result type of those assertions. The reason for this name change is that in a future
+                version of ScalaTest we plan to add a new set of style traits and classes with the original names, such as <code>FunSuite</code> (but
                 in the <code>org.scalatest.funsuite</code> package), whose test bodies will have a
                 result type of <code>Assertion</code>.
                 </p>
                 <p>
                 In addition, the traits and classes in package <code>org.scalatest.fixture</code> have &ldquo;<code>Fixture</code>&rdquo; prefixed to their
                 former simple names in their new location.
-                For example, <code>org.scalatest.fixture.FunSuite</code> becomes <code>org.scalatest.funsuite.FixtureAnyFunSuite</code>.
+                For example, <code>org.scalatest.fixture.FunSuite</code> has been renamed to <code>org.scalatest.funsuite.FixtureAnyFunSuite</code>.
                 Similarly, the traits and classes in package <code>org.scalatest.path</code> have &ldquo;<code>Path</code>&rdquo; prefixed to their
                 former simple names in their new location.
-                For example, <code>org.scalatest.path.FunSpec</code> becomes <code>org.scalatest.funsuite.PathAnyFunSpec</code>.
+                For example, <code>org.scalatest.path.FunSpec</code> has been renamed to <code>org.scalatest.funsuite.PathAnyFunSpec</code>.
                 </p>
                 <p>
                 Here are the details:
@@ -511,8 +512,8 @@ the upper case versions that have always been shown in our reports.</li>
 
 
         <li>
-        We also renamed a few top level traits that previously lived in the <code>org.scalatest.fixture</code> package. Given the
-        actual fixture styles were moved from this package, it makes more sense for these to live in <code>org.scalatest</code>.
+        Renamed a few top level traits that previously resided in the <code>org.scalatest.fixture</code> package. Given the
+        actual fixture styles were moved from this package, it made more sense for these to reside in <code>org.scalatest</code>.
         Here are the details:
 
 <br/>
@@ -552,8 +553,9 @@ the upper case versions that have always been shown in our reports.</li>
         </ul>
 
         <ul>
-            <li>Moved and renamed matchers and diagrammed assertions traits and objects so that we can modularize ScalaTest by assertion style. All
-                The old names still work but have been deprecated. Here are the details:
+            <li>Moved and renamed matchers and diagrammed assertions traits and objects in 3.1.0 so that we can modularize ScalaTest by assertion style in
+                3.2.0. All
+                of the old names still work but have been deprecated. Here are the details:
  <br/>
  <br/>
 <table class="stTableOverall">
@@ -586,293 +588,11 @@ the upper case versions that have always been shown in our reports.</li>
         <p>
         These types were used internally to support DSLs, so most likely these name changes will not affect many users (if any).
         One other goal besides moving code that is only needed by matchers into the matchers module was to eliminate a competing
-        package name (i.e., <code>words</code>) that starts the same as <code>wordspec</code>, which is a new package name in 3.1.0.
+        package name (<em>i.e.</em>, <code>words</code>) that starts the same as <code>wordspec</code>, which is a new package name in 3.1.0.
         Someone using <code>wordspec</code> would otherwise
-        need to type more letters before the code completion would give them <code>wordspec</code>.
+        need to type more letters before code completion would give them <code>wordspec</code>.
         </p>
         </li>
-        </ul>
-
-        <a name="scalatest_breaking_change"></a>
-        <h2>One breaking change: -y</h2>
-
-        <ul>
-          <li>Made the names returned by <code>styleName</code> more fine grained, given the rough selection of chosen styles can
-              now be done by selecting a focused module, such as <code>scalatest-flatspec</code>. For example, previously any
-              style whose name ended in <code>"FlatSpec"</code> had the <code>styleName</code> <code>org.scalatest.FlatSpec</code>.
-              The name <code>org.scalatest.FlatSpec</code> is now deprecated. Because we had no way to deprecate the string returned
-              by <code>styleName</code>, we just changed these result strings. In the process, made them more fine grained.
-              <p>
-              For example, in the <code>org.scalatest.flatspec</code> package, <code>AnyFlatSpec</code> and <code>AnyFlatSpecLike</code> have
-              <code>styleName</code> <code>org.scalatest.flatspec.AnyFlatSpec</code>. 
-              <code>FixtureAnyFlatSpec</code> and <code>FixtureAnyFlatSpecLike</code> have
-              <code>styleName</code> <code>org.scalatest.flatspec.FixtureAnyFlatSpec</code>. 
-              <code>AsyncFlatSpec</code> and <code>AsyncFlatSpecLike</code> have
-              <code>styleName</code> <code>org.scalatest.flatspec.AsyncFlatSpec</code>. And so on.
-              </p>
-              <p>
-              Anyone who is currently using ScalaTest's <code>-y</code> parameter in their build will likely need to modify their build
-              to either remove <code>-y</code> or change the string names being passed to <code>-y</code>. Here are the
-              details of the <code>styleName</code> changes:
-              </p>
- 
-<table class="stTableOverall">
-  <tr>
-    <th colspan="2" class="stTableHeader">(new) trait name</td>
-  </tr>
-  <tr>
-    <th class="stTableHeader">old <code>styleName</code></th> 
-    <th class="stTableHeader">new <code>styleName</code></th> 
-  </tr>
-  <tr>
-    <td colspan="2" class="stTableData"><code><strong>org.scalatest.FixtureSuite</strong></code></td>
-  </tr>
-  <tr>
-    <td class="stTableData"><code>"org.scalatest.fixture.Suite"</code></td>
-    <td class="stTableData"><code>"org.scalatest.FixtureSuite"</code></td>
-  </tr>
-
-  <tr>
-    <td colspan="2" class="stTableData"><code><strong>org.scalatest.featurespec.AnyFeatureSpecLike</strong></code></td>
-  </tr>
-  <tr>
-    <td class="stTableData"><code>"org.scalatest.FeatureSpec"</code></td>
-    <td class="stTableData"><code>"org.scalatest.featurespec.AnyFeatureSpec"</code></td>
-  </tr>
-     
-  <tr>
-    <td colspan="2" class="stTableData"><code><strong>org.scalatest.featurespec.AsyncFeatureSpecLike</strong></code></td>
-  </tr>
-  <tr>
-    <td class="stTableData"><code>"org.scalatest.FeatureSpec"</code></td>
-    <td class="stTableData"><code>"org.scalatest.featurespec.AsyncFeatureSpec"</code></td>
-  </tr>
- 
-  <tr>
-    <td colspan="2" class="stTableData"><code><strong>org.scalatest.featurespec.FixtureAnyFeatureSpecLike</strong></code></td>
-  </tr>
-  <tr>
-    <td class="stTableData"><code>"org.scalatest.fixture.FeatureSpec"</code></td>
-    <td class="stTableData"><code>"org.scalatest.featurespec.FixtureAnyFeatureSpec"</code></td>
-  </tr>
- 
-  <tr>
-    <td colspan="2" class="stTableData"><code><strong>org.scalatest.featurespec.FixtureAsyncFeatureSpecLike</strong></code></td>
-  </tr>
-  <tr>
-    <td class="stTableData"><code>"org.scalatest.fixture.FeatureSpec"</code></td>
-    <td class="stTableData"><code>"org.scalatest.featurespec.FixtureAsyncFeatureSpec"</code></td>
-  </tr>
-
-  <tr>
-    <td colspan="2" class="stTableData"><code><strong>org.scalatest.flatspec.AnyFlatSpecLike</strong></code></td>
-  </tr>
-  <tr>
-    <td class="stTableData"><code>"org.scalatest.FlatSpec"</code></td>
-    <td class="stTableData"><code>"org.scalatest.flatspec.AnyFlatSpec"</code></td>
-  </tr>
-     
-  <tr>
-    <td colspan="2" class="stTableData"><code><strong>org.scalatest.flatspec.AsyncFlatSpecLike</strong></code></td>
-  </tr>
-  <tr>
-    <td class="stTableData"><code>"org.scalatest.FlatSpec"</code></td>
-    <td class="stTableData"><code>"org.scalatest.flatspec.AsyncFlatSpec"</code></td>
-  </tr>
- 
-  <tr>
-    <td colspan="2" class="stTableData"><code><strong>org.scalatest.flatspec.FixtureAnyFlatSpecLike</strong></code></td>
-  </tr>
-  <tr>
-    <td class="stTableData"><code>"org.scalatest.fixture.FlatSpec"</code></td>
-    <td class="stTableData"><code>"org.scalatest.flatspec.FixtureAnyFlatSpec"</code></td>
-  </tr>
- 
-  <tr>
-    <td colspan="2" class="stTableData"><code><strong>org.scalatest.flatspec.FixtureAsyncFlatSpecLike</strong></code></td>
-  </tr>
-  <tr>
-    <td class="stTableData"><code>"org.scalatest.fixture.FlatSpec"</code></td>
-    <td class="stTableData"><code>"org.scalatest.flatspec.FixtureAsyncFlatSpec"</code></td>
-  </tr>
- 
-  <tr>
-    <td colspan="2" class="stTableData"><code><strong>org.scalatest.freespec.AnyFreeSpecLike</strong></code></td>
-  </tr>
-  <tr>
-    <td class="stTableData"><code>"org.scalatest.FreeSpec"</code></td>
-    <td class="stTableData"><code>"org.scalatest.freespec.AnyFreeSpec"</code></td>
-  </tr>
-     
-  <tr>
-    <td colspan="2" class="stTableData"><code><strong>org.scalatest.freespec.AsyncFreeSpecLike</strong></code></td>
-  </tr>
-  <tr>
-    <td class="stTableData"><code>"org.scalatest.FreeSpec"</code></td>
-    <td class="stTableData"><code>"org.scalatest.freespec.AsyncFreeSpec"</code></td>
-  </tr>
- 
-  <tr>
-    <td colspan="2" class="stTableData"><code><strong>org.scalatest.freespec.FixtureAnyFreeSpecLike</strong></code></td>
-  </tr>
-  <tr>
-    <td class="stTableData"><code>"org.scalatest.fixture.FreeSpec"</code></td>
-    <td class="stTableData"><code>"org.scalatest.freespec.FixtureAnyFreeSpec"</code></td>
-  </tr>
- 
-  <tr>
-    <td colspan="2" class="stTableData"><code><strong>org.scalatest.freespec.FixtureAsyncFreeSpecLike</strong></code></td>
-  </tr>
-  <tr>
-    <td class="stTableData"><code>"org.scalatest.fixture.FreeSpec"</code></td>
-    <td class="stTableData"><code>"org.scalatest.freespec.FixtureAsyncFreeSpec"</code></td>
-  </tr>
- 
-  <tr>
-    <td colspan="2" class="stTableData"><code><strong>org.scalatest.freespec.PathAnyFreeSpecLike</strong></code></td>
-  </tr>
-  <tr>
-    <td class="stTableData"><code>"org.scalatest.path.FreeSpec"</code></td>
-    <td class="stTableData"><code>"org.scalatest.freespec.PathAnyFreeSpec"</code></td>
-  </tr>
-     
-  <tr>
-    <td colspan="2" class="stTableData"><code><strong>org.scalatest.funspec.AnyFunSpecLike</strong></code></td>
-  </tr>
-  <tr>
-    <td class="stTableData"><code>"org.scalatest.FunSpec"</code></td>
-    <td class="stTableData"><code>"org.scalatest.funspec.AnyFunSpec"</code></td>
-  </tr>
-     
-  <tr>
-    <td colspan="2" class="stTableData"><code><strong>org.scalatest.funspec.AsyncFunSpecLike</strong></code></td>
-  </tr>
-  <tr>
-    <td class="stTableData"><code>"org.scalatest.FunSpec"</code></td>
-    <td class="stTableData"><code>"org.scalatest.funspec.AsyncFunSpec"</code></td>
-  </tr>
- 
-  <tr>
-    <td colspan="2" class="stTableData"><code><strong>org.scalatest.funspec.FixtureAnyFunSpecLike</strong></code></td>
-  </tr>
-  <tr>
-    <td class="stTableData"><code>"org.scalatest.fixture.FunSpec"</code></td>
-    <td class="stTableData"><code>"org.scalatest.funspec.FixtureAnyFunSpec"</code></td>
-  </tr>
- 
-  <tr>
-    <td colspan="2" class="stTableData"><code><strong>org.scalatest.funspec.FixtureAsyncFunSpecLike</strong></code></td>
-  </tr>
-  <tr>
-    <td class="stTableData"><code>"org.scalatest.fixture.FunSpec"</code></td>
-    <td class="stTableData"><code>"org.scalatest.funspec.FixtureAsyncFunSpec"</code></td>
-  </tr>
- 
-  <tr>
-    <td colspan="2" class="stTableData"><code><strong>org.scalatest.funspec.PathAnyFunSpecLike</strong></code></td>
-  </tr>
-  <tr>
-    <td class="stTableData"><code>"org.scalatest.path.FunSpec"</code></td>
-    <td class="stTableData"><code>"org.scalatest.funspec.PathAnyFunSpec"</code></td>
-  </tr>
-     
-  <tr>
-    <td colspan="2" class="stTableData"><code><strong>org.scalatest.funsuite.AnyFunSuiteLike</strong></code></td>
-  </tr>
-  <tr>
-    <td class="stTableData"><code>"org.scalatest.FunSuite"</code></td>
-    <td class="stTableData"><code>"org.scalatest.funsuite.AnyFunSuite"</code></td>
-  </tr>
- 
-  <tr>
-    <td colspan="2" class="stTableData"><code><strong>org.scalatest.funsuite.AsyncFunSuiteLike</strong></code></td>
-  </tr>
-  <tr>
-    <td class="stTableData"><code>"org.scalatest.FunSuite"</code></td>
-    <td class="stTableData"><code>"org.scalatest.funsuite.AsyncFunSuite"</code></td>
-  </tr>
- 
-  <tr>
-    <td colspan="2" class="stTableData"><code><strong>org.scalatest.funsuite.FixtureAnyFunSuiteLike</strong></code></td>
-  </tr>
-  <tr>
-    <td class="stTableData"><code>"org.scalatest.fixture.FunSuite"</code></td>
-    <td class="stTableData"><code>"org.scalatest.funsuite.FixtureAnyFunSuite"</code></td>
-  </tr>
- 
-  <tr>
-    <td colspan="2" class="stTableData"><code><strong>org.scalatest.funsuite.FixtureAsyncFunSuiteLike</strong></code></td>
-  </tr>
-  <tr>
-    <td class="stTableData"><code>"org.scalatest.fixture.FunSuite"</code></td>
-    <td class="stTableData"><code>"org.scalatest.funsuite.FixtureAsyncFunSuite"</code></td>
-  </tr>
- 
-  <tr>
-    <td colspan="2" class="stTableData"><code><strong>org.scalatest.propspec.AnyPropSpecLike</strong></code></td>
-  </tr>
-  <tr>
-    <td class="stTableData"><code>"org.scalatest.PropSpec"</code></td>
-    <td class="stTableData"><code>"org.scalatest.propspec.AnyPropSpec"</code></td>
-  </tr>
-   
-  <tr>
-    <td colspan="2" class="stTableData"><code><strong>org.scalatest.propspec.AsyncPropSpecLike</strong></code></td>
-  </tr>
-  <tr>
-    <td class="stTableData"><code>"org.scalatest.PropSpec"</code></td>
-    <td class="stTableData"><code>"org.scalatest.propspec.AsyncPropSpec"</code></td>
-  </tr>
- 
-  <tr>
-    <td colspan="2" class="stTableData"><code><strong>org.scalatest.propspec.FixtureAnyPropSpecLike</strong></code></td>
-  </tr>
-  <tr>
-    <td class="stTableData"><code>"org.scalatest.fixture.PropSpec"</code></td>
-    <td class="stTableData"><code>"org.scalatest.propspec.FixtureAnyPropSpec"</code></td>
-  </tr>
- 
-  <tr>
-    <td colspan="2" class="stTableData"><code><strong>org.scalatest.propspec.FixtureAsyncPropSpecLike</strong></code></td>
-  </tr>
-  <tr>
-    <td class="stTableData"><code>"org.scalatest.fixture.PropSpec"</code></td>
-    <td class="stTableData"><code>"org.scalatest.propspec.FixtureAsyncPropSpec"</code></td>
-  </tr>
- 
-  <tr>
-    <td colspan="2" class="stTableData"><code><strong>org.scalatest.wordspec.AnyWordSpecLike</strong></code></td>
-  </tr>
-  <tr>
-    <td class="stTableData"><code>"org.scalatest.WordSpec"</code></td>
-    <td class="stTableData"><code>"org.scalatest.wordspec.AnyWordSpec"</code></td>
-  </tr>
-     
-  <tr>
-    <td colspan="2" class="stTableData"><code><strong>org.scalatest.wordspec.AsyncWordSpecLike</strong></code></td>
-  </tr>
-  <tr>
-    <td class="stTableData"><code>"org.scalatest.WordSpec"</code></td>
-    <td class="stTableData"><code>"org.scalatest.wordspec.AsyncWordSpec"</code></td>
-  </tr>
- 
-  <tr>
-    <td colspan="2" class="stTableData"><code><strong>org.scalatest.wordspec.FixtureAnyWordSpecLike</strong></code></td>
-  </tr>
-  <tr>
-    <td class="stTableData"><code>"org.scalatest.fixture.WordSpec"</code></td>
-    <td class="stTableData"><code>"org.scalatest.wordspec.FixtureAnyWordSpec"</code></td>
-  </tr>
- 
-  <tr>
-    <td colspan="2" class="stTableData"><code><strong>org.scalatest.wordspec.FixtureAsyncWordSpecLike</strong></code></td>
-  </tr>
-  <tr>
-    <td class="stTableData"><code>"org.scalatest.fixture.WordSpec"</code></td>
-    <td class="stTableData"><code>"org.scalatest.wordspec.FixtureAsyncWordSpec"</code></td>
-  </tr>
-</table>
-           </li>
         </ul>
 
         <a name="scalatest_deprecations"></a>
@@ -883,32 +603,34 @@ the upper case versions that have always been shown in our reports.</li>
                 and deprecated <code>Checkers</code> under <code>org.scalatest.prop</code>. <code>Checkers</code> was still released in the
                 ScalaTest artifact, with the <code>org.scalatestplus.scalacheck</code> package name. In 3.1.0, we are removing the deprecated
                 name and the actual implementation in the new package from the ScalaTest artifact. From now on these will be released as a 
-                separate, optional module to allow ScalaTest and its ScalaCheck integration library to evolve more independently.
-                See http://xyz for the details on how to add the ScalaTest+ScalaCheck integration library to your build.</li>
-              <li>Removed the <code>trap</code> method from trait <code>Assertions</code>, and with it, the <code>NormalResult</code> case
+                separate, optional module to allow ScalaTest and its
+                <a href="https://github.com/scalatest/scalatestplus-scalacheck">ScalaCheck integration library</a> to evolve more independently.
+                <!--See for the details on how to add the ScalaTest+ScalaCheck integration library to your build.--></li>
+              <li>Removed the deprecated <code>trap</code> method from trait <code>Assertions</code>, and with it, the <code>NormalResult</code> case
                   class in the <code>Assertions</code> companion object.
               </li>
               <li>
-              Removed the parameterless <code>execute</code><!-- method that has been deprecated since ???-->. Please use the no-arg
+              Removed the deprecated, parameterless <code>execute</code> method. Please use the no-arg
               form, <code>execute()</code>, instead. 
               </li>
               <li>
               Removed a deprecated implicit conversion that was added in ScalaTest 3.0.0 because the inheritance relationship
-              between <code>Filter</code> and <code>Function2[Set[String], Map[String, Set[String]], List[(String, Boolean)]]</code> was dropped. Please
-              use the apply method that takes a <code>suiteId</code> instead, the one with this
+              between <code>Filter</code> and <code>Function2[Set[String], Map[String, Set[String]], List[(String, Boolean)]]</code> had been dropped.
+              Please use the <code>apply</code> method that takes a <code>suiteId</code> instead, the one with this
               signature: <code>def apply(testNames: Set[String], testTags: Map[String, Set[String]], suiteId: String): List[(String, Boolean)]</code>.
               </li>
               <li>
-              Removed the overloaded <code>thread</code> method in <code>Conductors</code> and <code>ConductorMethods</code>
-              in package <code>org.scalatest.concurrent</code> that takes a string name. Please use threadNamed instead.
+              Removed the deprecated, overloaded <code>thread</code> method in <code>Conductors</code> and <code>ConductorMethods</code>
+              in package <code>org.scalatest.concurrent</code> that takes a string name. Please use <code>threadNamed</code> instead.
               </li>
               <li>
-              Removed deprecated type alias in <code>org.scalatest.concurrent</code> for the old name
-              of <code>AsyncAssertions</code> to the new name, <code>Waiters</code>. And the entire package object goes away.
+              Removed the deprecated type alias in <code>org.scalatest.concurrent</code> for the old name
+              of <code>AsyncAssertions</code> to the new name, <code>Waiters</code>. Also removed the entire package object, which
+              would otherwise now be empty.
               </li>
               <li>
-              Removed <code>Interruptor</code> <code>SelectorInterruptor</code> <code>SocketInterruptor</code> <code>ThreadInterruptor</code>
-              in the <code>org.scalatest.concurrent</code> package.
+              Removed the deprecated <code>Interruptor</code>, <code>SelectorInterruptor</code>, <code>SocketInterruptor</code>, and
+              <code>ThreadInterruptor</code> classes and objects in the <code>org.scalatest.concurrent</code> package.
               </li>
               <li>
               Removed the deprecated <code>org.scalatest.concurrent.Timeouts</code> trait. Please use <code>org.scalatest.concurrent.TimeLimits</code> instead.
@@ -917,19 +639,19 @@ the upper case versions that have always been shown in our reports.</li>
               Removed deprecated <code>org.scalatest.concurrent.DeprecatedTimeLimitedTests</code>.
               </li>
               <li>
-              Removed deprecated name <code>org.scalatest.PendingNothing</code>. Use <code>org.scalatest.PendingStatement</code> instead.
+              Removed the deprecated name <code>org.scalatest.PendingNothing</code>. Use <code>org.scalatest.PendingStatement</code> instead.
               </li>
               <li>
-              Removed deprecated <code>org.scalatest.SpecLike</code> type alias. Please use <code>org.scalatest.refspec.RefSpecLike</code> instead.
+              Removed the deprecated <code>org.scalatest.SpecLike</code> type alias. Please use <code>org.scalatest.refspec.RefSpecLike</code> instead.
               </li>
               <li>
-              Removed deprecated <code>org.scalatest.Spec</code> type alias. Please use <code>org.scalatest.refspec.RefSpec</code> instead.
+              Removed the deprecated <code>org.scalatest.Spec</code> type alias. Please use <code>org.scalatest.refspec.RefSpec</code> instead.
               </li>
               <li>
-              Removed deprecated <code>org.scalatest.fixture.Spec</code> class. Please use <code>org.scalatest.funspec.FixtureFunSpec</code> instead.
+              Removed the deprecated <code>org.scalatest.fixture.Spec</code> class. Please use <code>org.scalatest.funspec.FixtureFunSpec</code> instead.
               </li>
               <li>
-              Removed deprecated <code>org.scalatest.fixture.SpecLike</code> trait. Plesae use <code>org.scalatest.funspec.FixtureFunSpecLike</code> instead.
+              Removed the deprecated <code>org.scalatest.fixture.SpecLike</code> trait. Please use <code>org.scalatest.funspec.FixtureFunSpecLike</code> instead.
               </li>
         </ul>
 
@@ -955,23 +677,23 @@ the upper case versions that have always been shown in our reports.</li>
             <code>anyvals</code> added in 3.1.0). The &ldquo;existing <code>anyvals</code>&rdquo; are those that appeared in the
             <code>org.scalactic.anyvals</code> package in version 3.0.0: <code>PosInt</code>, <code>PosZInt</code>, <code>PosLong</code>, <code>PosZLong</code>, <code>PosFloat</code>, <code>PosZFloat</code>, <code>PosDouble</code>, and <code>PosZDouble</code>:
             <ul>
-            <li><code>ensuringValid</code> - wraps a given underlying type value with a narrower <code>anyvals</code> type value if it is
+            <li><code>ensuringValid</code> - wraps a given value of the underlying type with an instance of a narrower <code>anyvals</code> type if it is
 valid, else throws <code>AssertionError</code>.
                  <code>ensuringValid</code> factory methods is given in Bill Venners' in <a href="https://youtu.be/keTId618iOs"><em>Hope, Faith, and Proof</em></a> talk.</li>
-            <li><code>fromOrElse</code> - wraps a given underlying type value with a narrower <code>anyvals</code> type value if it is valid, else
+            <li><code>fromOrElse</code> - wraps a given value of the underlying type with an instance of a narrower <code>anyvals</code> type if it is valid, else
                  returns a given default.</li>
-            <li><code>goodOrElse</code> - wraps a given underlying type value with a narrower <code>anyvals</code> type value if it is valid, and returns that wrapped in
+            <li><code>goodOrElse</code> - wraps a given value of the underlying type with an instance of a narrower <code>anyvals</code> type if it is valid, and returns that wrapped in
                  a <code>Good</code>, else returns a <code>Bad</code> produced by passing the invalid value to a given function.</li>
-            <li><code>passOrElse</code> - wraps a given underlying type value with a narrower <code>anyvals</code> type value if it is valid, and returns that wrapped in
+            <li><code>passOrElse</code> - wraps a given value of the underlying type with an instance of a narrower <code>anyvals</code> type if it is valid, and returns that wrapped in
                  a <code>Pass</code>, else returns a <code>Fail</code> produced by passing the invalid value to a given function.</li>
-            <li><code>rightOrElse</code> - wraps a given underlying type value with a narrower <code>anyvals</code> type value if it is valid, and returns that wrapped in
+            <li><code>rightOrElse</code> - wraps a given value of the underlying type with an instance of a narrower <code>anyvals</code> type if it is valid, and returns that wrapped in
                  a <code>Right</code>, else returns a <code>Left</code> produced by passing the invalid value to a given function.</li>
-            <li><code>tryingValid</code> - wraps a given underlying type value with a narrower <code>anyvals</code> type value if it is valid, and returns that wrapped in
+            <li><code>tryingValid</code> - wraps a given value of the underlying type with an instance of a narrower <code>anyvals</code> type if it is valid, and returns that wrapped in
                  a <code>Success</code>, else returns a <code>Failure</code> containing an <code>AssertionError</code>.</li>
             </ul>
           </li>
 
-          <li>Added an <code>isValid</code> predicate method to the companion objects of existing <code>anyvals</code> (which also appears in the companions of new anyvals added in 3.1.0) that returns true if a given underlying type value is valid.</li>
+          <li>Added an <code>isValid</code> predicate method to the companion objects of existing <code>anyvals</code> (which also appears in the companions of new <code>anyvals</code> added in 3.1.0) that returns true if a given value of the underlying type is valid.</li>
 @*
     Clarified for Double and Float types that NaN and NegativeInfinity are
     not valid, wherewas PositiveInfinity is. Added a PositiveInfinity constant in the
@@ -992,7 +714,7 @@ valid, else throws <code>AssertionError</code>.
               the sum as a <code>PosDouble</code>. (The <code>+</code> methods on <code>PosDouble</code> return <code>Double</code>.)</li>
           <li>Added a <code>plus</code> method to class <code>PosZDouble</code>, which takes a <code>PosZDouble</code> and returns
               the sum as a <code>PosZDouble</code>. (The <code>+</code> methods on <code>PosZDouble</code> return <code>Double</code>.)</li>
-          <li>Thanks to Erik Osheim for pointing out that these plus methods are possible.</li>
+          <li>Thanks to Erik Osheim for pointing out that these <code>plus</code> methods are possible.</li>
 @*
           <li>Added a <code>sumOf</code> method to the <code>PosFloat</code> companion object, which takes a <code>PosFloat</code> and a
               <code>PosZFloat</code> and returns their sum as a <code>PosFloat</code>. This method can be called with <code>Float</code> literals
