@@ -22,15 +22,15 @@ import examples.StyleTraitExamples
 
 object Application extends Controller {
 
-  val latestScaladoc =          "http://doc.scalatest.org/3.0.1"
-  val latestScalacticScaladoc = "http://doc.scalactic.org/3.0.1"
-  val latestVersion = "3.0.8"
+  val latestScaladoc =          "http://doc.scalatest.org/3.1.0"
+  val latestScalacticScaladoc = "http://doc.scalactic.org/3.1.0"
+  val latestVersion = "3.1.0"
   val latestSuperSafeVersion = "1.1.3"				// updated per BV request -- 170130 PL  and now, per Chee Seng concurrence 171115 to 1.1.3
-  val milestoneVersion = "3.1.0-RC3"
-  val milestoneJar = "https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest_2.11/3.0.1-RC4/scalatest_2.11-3.0.1-RC4.jar"
-  val latestJar = "https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest-app_2.13/3.0.8/scalatest-app_2.13-3.0.8.jar"
-  val milestoneScaladoc = "http://www.artima.com/docs-scalatest-3.0.1-RC4"
-  val milestoneScalacticScaladoc = "http://www.artima.com/docs-scalactic-3.0.1-RC4"
+  val milestoneVersion = "3.1.0"
+  val milestoneJar = "https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest_2.11/3.1.0-RC3/scalatest_2.11-3.1.0-RC3.jar"
+  val latestJar = "https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest-app_2.13/3.1.0/scalatest-app_2.13-3.1.0.jar"
+  val milestoneScaladoc = "http://www.artima.com/docs-scalatest-3.1.0-RC3"
+  val milestoneScalacticScaladoc = "http://www.artima.com/docs-scalactic-3.1.0-RC3"
   val scaladocsLocation = "http://doc.scalatest.org"
   val releasesLocation = "http://www.artima.com/downloadScalaTest"
   val baseScalaVersion = "2.13.0"				// updated per Chee Seng 171115 PL
