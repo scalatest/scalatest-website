@@ -20,23 +20,9 @@ import play.api.mvc._
 import examples.StyleTraitExamples
 
 
-object Application extends Controller {
+class Application extends Controller {
 
-  val latestScaladoc =          "http://doc.scalatest.org/3.1.1"
-  val latestScalacticScaladoc = "http://doc.scalactic.org/3.1.1"
-  val latestVersion = "3.1.1"
-  val latestSuperSafeVersion = "1.1.3"
-  val milestoneVersion = "3.1.0"
-  val milestoneJar = "https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest_2.11/3.1.0-RC3/scalatest_2.11-3.1.0-RC3.jar"
-  val latestJar = "https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest-app_2.13/3.1.1/scalatest-app_2.13-3.1.1.jar"
-  val milestoneScaladoc = "http://www.artima.com/docs-scalatest-3.1.0-RC3"
-  val milestoneScalacticScaladoc = "http://www.artima.com/docs-scalactic-3.1.0-RC3"
-  val scaladocsLocation = "http://doc.scalatest.org"
-  val releasesLocation = "http://www.artima.com/downloadScalaTest"
-  val baseScalaVersion = "2.13.1"
-  val majorMinorScalaVersion = "2.13"
-  val latestScaladocFor192 = "http://doc.scalatest.org/1.9.2"
-  val latestSeleniumVersion = "2.45.0"
+  import Application._
 
   def index = Action {
     Ok(views.html.index())
@@ -147,3 +133,22 @@ object Application extends Controller {
   }
 }
 
+object Application {
+
+  val latestScaladoc =          "http://doc.scalatest.org/3.1.1"
+  val latestScalacticScaladoc = "http://doc.scalactic.org/3.1.1"
+  val latestVersion = "3.1.1"
+  val latestSuperSafeVersion = "1.1.3"
+  val milestoneVersion = "3.1.0"
+  val milestoneJar = "https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest_2.11/3.1.0-RC3/scalatest_2.11-3.1.0-RC3.jar"
+  val latestJar = "https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest-app_2.13/3.1.1/scalatest-app_2.13-3.1.1.jar"
+  val milestoneScaladoc = "http://www.artima.com/docs-scalatest-3.1.0-RC3"
+  val milestoneScalacticScaladoc = "http://www.artima.com/docs-scalactic-3.1.0-RC3"
+  val scaladocsLocation = "http://doc.scalatest.org"
+  val releasesLocation = "http://www.artima.com/downloadScalaTest"
+  val baseScalaVersion = "2.13.1"
+  val majorMinorScalaVersion = "2.13"
+  val latestScaladocFor192 = "http://doc.scalatest.org/1.9.2"
+  val latestSeleniumVersion = "2.45.0"  
+
+}

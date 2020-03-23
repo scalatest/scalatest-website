@@ -3,7 +3,7 @@ package controllers
 import play.api._
 import play.api.mvc._
 
-object UserGuide192 extends Controller {
+class UserGuide192 extends Controller {
 
   def userGuideIndex = Action {
     Ok(views.html.userGuide_1_9_2.userGuideIndex())
