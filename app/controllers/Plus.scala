@@ -18,7 +18,7 @@ package controllers
 import play.api._
 import play.api.mvc._
 
-object Plus extends Controller {
+class Plus extends Controller {
 
   def plusIndex = Action {
     Ok(views.html.plus.plusIndex())
