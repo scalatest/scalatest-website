@@ -24,6 +24,10 @@ class ReleaseNotes extends Controller {
     Ok(views.html.releaseNotes.releaseNotesIndex())
   }
 
+  def v312 = Action {
+    Ok(views.html.releaseNotes.v312())
+  }
+
   def v311 = Action {
     Ok(views.html.releaseNotes.v311())
   }
