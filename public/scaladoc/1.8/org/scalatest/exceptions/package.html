@@ -1,0 +1,276 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+        <head>
+          <title>org.scalatest.exceptions</title>
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link type="text/css" media="screen" rel="stylesheet" href="../../../lib/template.css" />
+      <script type="text/javascript" src="../../../lib/jquery.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../lib/tools.tooltip.js"></script>
+    
+
+<script>
+ (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+ })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ 
+ ga('create', 'UA-71294502-3', 'auto');
+ ga('send', 'pageview');
+ 
+</script>
+        </head>
+        <body class="value">
+
+<!-- Top of doc.scalatest.org [javascript] -->
+
+<script type="text/javascript">
+
+var rnd = window.rnd || Math.floor(Math.random()*10e6);
+
+var pid204546 = window.pid204546 || rnd;
+
+var plc204546 = window.plc204546 || 0;
+
+var abkw = window.abkw || '';
+
+var absrc = 'http://ab167933.adbutler-ikon.com/adserve/;ID=167933;size=468x60;setID=204546;type=js;sw='+screen.width+';sh='+screen.height+';spr='+window.devicePixelRatio+';kw='+abkw+';pid='+pid204546+';place='+(plc204546++)+';rnd='+rnd+';click=CLICK_MACRO_PLACEHOLDER';
+
+document.write('<scr'+'ipt src="'+absrc+'" type="text/javascript"></scr'+'ipt>');
+
+</script>
+
+      <div id="definition">
+        <img src="../../../lib/package_big.png" />
+        <p id="owner"><a name="org" class="extype" href="../../package.html">org</a>.<a name="org.scalatest" class="extype" href="../package.html">scalatest</a></p>
+        <h1>exceptions</h1>
+      </div>
+
+      <h4 class="signature" id="signature">
+      <span class="kind">package</span>
+      <span class="symbol"> 
+        <span class="name">exceptions</span>
+        
+        
+      </span>
+      </h4>
+      
+          <div class="fullcommenttop" id="comment"></div>
+        
+
+      <div id="template">
+
+        <div id="mbrsel">
+          <div id="textfilter"><span class="pre"></span><span class="input"><input accesskey="/" type="text" /></span><span class="post"></span></div>
+          
+          
+          <div id="visbl">
+              <span class="filtertype">Visibility</span>
+              <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+            </div>
+        </div>
+
+        
+
+        <div class="types members" id="types">
+              <h3>Type Members</h3>
+              <ol><li visbl="pub" name="org.scalatest.exceptions.DiscardedEvaluationException" data-isabs="false">
+      <a id="DiscardedEvaluationException:DiscardedEvaluationException"></a>
+      <h4 class="signature">
+      <span class="kind">class</span>
+      <span class="symbol"> 
+        <a href="DiscardedEvaluationException.html"><span class="name">DiscardedEvaluationException</span></a>
+        
+        <span class="result"> extends RuntimeException</span>
+      </span>
+      </h4>
+      <p class="comment cmt">Exception that indicates an evaluation of a property should be discarded, because a condition
+required by a property was not met by the passed values.</p>
+    </li><li visbl="pub" name="org.scalatest.exceptions.DuplicateTestNameException" data-isabs="false">
+      <a id="DuplicateTestNameException:DuplicateTestNameException"></a>
+      <h4 class="signature">
+      <span class="kind">class</span>
+      <span class="symbol"> 
+        <a href="DuplicateTestNameException.html"><span class="name">DuplicateTestNameException</span></a>
+        
+        <span class="result"> extends StackDepthException</span>
+      </span>
+      </h4>
+      <p class="comment cmt">Exception that indicates an attempt was made to register a test that had the same name as a test
+already registered in the same suite.</p>
+    </li><li visbl="pub" name="org.scalatest.exceptions.GeneratorDrivenPropertyCheckFailedException" data-isabs="false">
+      <a id="GeneratorDrivenPropertyCheckFailedException:GeneratorDrivenPropertyCheckFailedException"></a>
+      <h4 class="signature">
+      <span class="kind">class</span>
+      <span class="symbol"> 
+        <a href="GeneratorDrivenPropertyCheckFailedException.html"><span class="name">GeneratorDrivenPropertyCheckFailedException</span></a>
+        
+        <span class="result"> extends PropertyCheckFailedException</span>
+      </span>
+      </h4>
+      <p class="comment cmt">Exception that indicates a ScalaCheck property check failed.</p>
+    </li><li visbl="pub" name="org.scalatest.exceptions.ModifiableMessage" data-isabs="true">
+      <a id="ModifiableMessage:ModifiableMessage[T]"></a>
+      <h4 class="signature">
+      <span class="kind">trait</span>
+      <span class="symbol"> 
+        <a href="ModifiableMessage.html"><span class="name">ModifiableMessage</span></a>
+        <span class="tparams">[<span name="T">T &lt;: Throwable</span>]</span>
+        <span class="result"> extends AnyRef</span>
+      </span>
+      </h4>
+      <p class="comment cmt">Trait implemented by exception types that can modify their detail message.</p>
+    </li><li visbl="pub" name="org.scalatest.exceptions.ModifiablePayload" data-isabs="true">
+      <a id="ModifiablePayload:ModifiablePayload[T]"></a>
+      <h4 class="signature">
+      <span class="kind">trait</span>
+      <span class="symbol"> 
+        <a href="ModifiablePayload.html"><span class="name">ModifiablePayload</span></a>
+        <span class="tparams">[<span name="T">T &lt;: Throwable</span>]</span>
+        <span class="result"> extends AnyRef</span>
+      </span>
+      </h4>
+      <p class="comment cmt">Trait implemented by <code>PayloadField</code> exception types that can modify their payload.</p>
+    </li><li visbl="pub" name="org.scalatest.exceptions.NotAllowedException" data-isabs="false">
+      <a id="NotAllowedException:NotAllowedException"></a>
+      <h4 class="signature">
+      <span class="kind">class</span>
+      <span class="symbol"> 
+        <a href="NotAllowedException.html"><span class="name">NotAllowedException</span></a>
+        
+        <span class="result"> extends StackDepthException</span>
+      </span>
+      </h4>
+      <p class="comment cmt">Exception that indicates something was attempted in test code that is not allowed.</p>
+    </li><li visbl="pub" name="org.scalatest.exceptions.PayloadField" data-isabs="true">
+      <a id="PayloadField:PayloadField"></a>
+      <h4 class="signature">
+      <span class="kind">trait</span>
+      <span class="symbol"> 
+        <a href="PayloadField.html"><span class="name">PayloadField</span></a>
+        
+        <span class="result"> extends AnyRef</span>
+      </span>
+      </h4>
+      <p class="comment cmt">Trait implemented by exception types that carry an optional payload.</p>
+    </li><li visbl="pub" name="org.scalatest.exceptions.PropertyCheckFailedException" data-isabs="true">
+      <a id="PropertyCheckFailedException:PropertyCheckFailedException"></a>
+      <h4 class="signature">
+      <span class="kind">class</span>
+      <span class="symbol"> 
+        <a href="PropertyCheckFailedException.html"><span class="name">PropertyCheckFailedException</span></a>
+        
+        <span class="result"> extends TestFailedException</span>
+      </span>
+      </h4>
+      <p class="comment cmt">Exception that indicates a property check failed.</p>
+    </li><li visbl="pub" name="org.scalatest.exceptions.StackDepth" data-isabs="true">
+      <a id="StackDepth:StackDepth"></a>
+      <h4 class="signature">
+      <span class="kind">trait</span>
+      <span class="symbol"> 
+        <a href="StackDepth.html"><span class="name">StackDepth</span></a>
+        
+        <span class="result"> extends AnyRef</span>
+      </span>
+      </h4>
+      <p class="comment cmt">Trait that encapsulates the information required of an exception thrown by ScalaTest's assertions
+and matchers, which includes a stack depth at which the failing line of test code resides.</p>
+    </li><li visbl="pub" name="org.scalatest.exceptions.StackDepthException" data-isabs="true">
+      <a id="StackDepthException:StackDepthException"></a>
+      <h4 class="signature">
+      <span class="kind">class</span>
+      <span class="symbol"> 
+        <a href="StackDepthException.html"><span class="name">StackDepthException</span></a>
+        
+        <span class="result"> extends RuntimeException with StackDepth</span>
+      </span>
+      </h4>
+      <p class="comment cmt">Exception class that encapsulates information about the stack depth at which the line of code that failed resides,
+so that information can be presented to the user that makes it quick to find the failing line of code.</p>
+    </li><li visbl="pub" name="org.scalatest.exceptions.TableDrivenPropertyCheckFailedException" data-isabs="false">
+      <a id="TableDrivenPropertyCheckFailedException:TableDrivenPropertyCheckFailedException"></a>
+      <h4 class="signature">
+      <span class="kind">class</span>
+      <span class="symbol"> 
+        <a href="TableDrivenPropertyCheckFailedException.html"><span class="name">TableDrivenPropertyCheckFailedException</span></a>
+        
+        <span class="result"> extends PropertyCheckFailedException</span>
+      </span>
+      </h4>
+      <p class="comment cmt">Exception that indicates a table-driven property check failed.</p>
+    </li><li visbl="pub" name="org.scalatest.exceptions.TestFailedDueToTimeoutException" data-isabs="false">
+      <a id="TestFailedDueToTimeoutException:TestFailedDueToTimeoutException"></a>
+      <h4 class="signature">
+      <span class="kind">class</span>
+      <span class="symbol"> 
+        <a href="TestFailedDueToTimeoutException.html"><span class="name">TestFailedDueToTimeoutException</span></a>
+        
+        <span class="result"> extends TestFailedException with TimeoutField</span>
+      </span>
+      </h4>
+      <p class="comment cmt">Subclass of <a href="../TestFailedException.html"><code>TestFailedException</code></a> representing tests that faile because of a timeout.</a href="../TestFailedException.html"></p>
+    </li><li visbl="pub" name="org.scalatest.exceptions.TestFailedException" data-isabs="false">
+      <a id="TestFailedException:TestFailedException"></a>
+      <h4 class="signature">
+      <span class="kind">class</span>
+      <span class="symbol"> 
+        <a href="TestFailedException.html"><span class="name">TestFailedException</span></a>
+        
+        <span class="result"> extends StackDepthException with ModifiableMessage[TestFailedException] with PayloadField with ModifiablePayload[TestFailedException]</span>
+      </span>
+      </h4>
+      <p class="comment cmt">Exception that indicates a test failed.</p>
+    </li><li visbl="pub" name="org.scalatest.exceptions.TestPendingException" data-isabs="false">
+      <a id="TestPendingException:TestPendingException"></a>
+      <h4 class="signature">
+      <span class="kind">class</span>
+      <span class="symbol"> 
+        <a href="TestPendingException.html"><span class="name">TestPendingException</span></a>
+        
+        <span class="result"> extends RuntimeException</span>
+      </span>
+      </h4>
+      <p class="comment cmt">Exception thrown to indicate a test is pending.</p>
+    </li><li visbl="pub" name="org.scalatest.exceptions.TestRegistrationClosedException" data-isabs="false">
+      <a id="TestRegistrationClosedException:TestRegistrationClosedException"></a>
+      <h4 class="signature">
+      <span class="kind">class</span>
+      <span class="symbol"> 
+        <a href="TestRegistrationClosedException.html"><span class="name">TestRegistrationClosedException</span></a>
+        
+        <span class="result"> extends StackDepthException</span>
+      </span>
+      </h4>
+      <p class="comment cmt">Exception that indicates an action that is only allowed during a suite's test registration phase,
+such as registering a test to run or ignore, was attempted after registration had already closed.</p>
+    </li><li visbl="pub" name="org.scalatest.exceptions.TimeoutField" data-isabs="true">
+      <a id="TimeoutField:TimeoutField"></a>
+      <h4 class="signature">
+      <span class="kind">trait</span>
+      <span class="symbol"> 
+        <a href="TimeoutField.html"><span class="name">TimeoutField</span></a>
+        
+        <span class="result"> extends AnyRef</span>
+      </span>
+      </h4>
+      <p class="comment cmt">Trait mixed into exceptions thrown due to a timeout, which offers
+a <code>timeout</code> field providing a <a href="../time/Span.html"><code>Span</code></a> representing the timeout that expired.</a href="../time/Span.html"></p>
+    </li></ol>
+            </div>
+        
+        
+
+        
+
+        
+
+      </div>
+      
+      <div id="tooltip"></div>
+      
+    </body>
+      </html>

@@ -1,0 +1,566 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+        <head>
+          <title>NoArg - ScalaTest 2.1.3 - org.scalatest.fixture.NoArg</title>
+          <meta name="description" content="NoArg - ScalaTest 2.1.3 - org.scalatest.fixture.NoArg" />
+          <meta name="keywords" content="NoArg ScalaTest 2.1.3 org.scalatest.fixture.NoArg" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../../../lib/jquery.js" id="jquery-js"></script>
+      <script type="text/javascript" src="../../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../lib/tools.tooltip.js"></script>
+      
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../../index.html';
+            var hash = 'org.scalatest.fixture.NoArg';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+
+<script>
+ (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+ })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ 
+ ga('create', 'UA-71294502-3', 'auto');
+ ga('send', 'pageview');
+ 
+</script>
+        </head>
+        <body class="type">
+
+<!-- Top of doc.scalatest.org [javascript] -->
+
+<script type="text/javascript">
+
+var rnd = window.rnd || Math.floor(Math.random()*10e6);
+
+var pid204546 = window.pid204546 || rnd;
+
+var plc204546 = window.plc204546 || 0;
+
+var abkw = window.abkw || '';
+
+var absrc = 'http://ab167933.adbutler-ikon.com/adserve/;ID=167933;size=468x60;setID=204546;type=js;sw='+screen.width+';sh='+screen.height+';spr='+window.devicePixelRatio+';kw='+abkw+';pid='+pid204546+';place='+(plc204546++)+';rnd='+rnd+';click=CLICK_MACRO_PLACEHOLDER';
+
+document.write('<scr'+'ipt src="'+absrc+'" type="text/javascript"></scr'+'ipt>');
+
+</script>
+
+      <div id="definition">
+        <img src="../../../lib/trait_big.png" />
+        <p id="owner"><a href="../../package.html" class="extype" name="org">org</a>.<a href="../package.html" class="extype" name="org.scalatest">scalatest</a>.<a href="package.html" class="extype" name="org.scalatest.fixture">fixture</a></p>
+        <h1>NoArg</h1>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <span class="name">NoArg</span><span class="result"> extends <span class="extype" name="scala.DelayedInit">DelayedInit</span> with () ⇒ <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A function that takes no parameters (<em>i.e.</em>, a <code>Function0</code> or &quot;no-arg&quot; function) and results in <code>Unit</code>, which when
+invoked executes the body of the constructor of the class into which this trait is mixed.</p><p>This trait extends <code>DelayedInit</code> and defines a <code>delayedInit</code> method that
+saves the body of the constructor (passed to <code>delayedInit</code>) for later execution when <code>apply</code> is invoked.</p><p>This trait is somewhat magical and therefore may be challenging for your collegues to understand, so please use it as a last resort only when the
+simpler options described in the &quot;<a href="../FlatSpec.html#sharedFixtures">shared fixtures</a>&quot; section of your chosen style trait won't do
+the job. <code>NoArg</code> is
+intended to address a specific use case that will likely be rare, and is unlikely to be useful outside of its intended use case, but
+it is quite handy for its intended use case (described in the next paragraph).
+One potential gotcha, for example, is that a subclass's constructor body could in theory be executed multiple times by simply invoking <code>apply</code> multiple
+times. In the intended use case for this trait, however, the body will be executed only once.
+In addition, the <code>NoArg</code> method is not thread safe, as it is intended to be used by just one thread, which is
+executing a test.</p><p>The intended use case for this method is (relatively rare) situations in which you want to extend a different instance of the same class
+for each test, with the body of the test inheriting the members of that class, and with code executed before and/or after
+the body of the test.</p><p>For example, Akka's <code>TestKit</code> class takes an <code>ActorSystem</code>,
+which must have a unique name. To run a suite of tests in parallel, each test must get its own <code>ActorSystem</code>, to
+ensure the tests run in isolation. At the end of each test, the <code>ActorSystem</code> must be shutdown. With <code>NoArg</code>,
+you can achieve this by first defining a class that extends <code>TestKit</code> and mixes in <code>NoArg</code>.
+Here's an example taken with permission from the book <a href="http://www.artima.com/shop/akka_concurrency"><em>Akka Concurrency</em></a>, by Derek Wyatt:</p><p><pre class="stHighlighted">
+<span class="stReserved">import</span> akka.actor.ActorSystem
+<span class="stReserved">import</span> akka.testkit.{<span class="stType">TestKit</span>, <span class="stType">ImplicitSender</span>}
+<span class="stReserved">import</span> java.util.concurrent.atomic.AtomicInteger
+<span class="stReserved">import</span> org.scalatest.fixture.NoArg
+<br /><span class="stReserved">object</span> <span class="stType">ActorSys</span> {
+  <span class="stReserved">val</span> uniqueId = <span class="stReserved">new</span> <span class="stType">AtomicInteger</span>(<span class="stLiteral">0</span>)
+}
+<br /><span class="stReserved">class</span> <span class="stType">ActorSys</span>(name: <span class="stType">String</span>) <span class="stReserved">extends</span>
+        <span class="stType">TestKit</span>(<span class="stType">ActorSystem</span>(name))
+        <span class="stReserved">with</span> <span class="stType">ImplicitSender</span>
+        <span class="stReserved">with</span> <span class="stType">NoArg</span> {
+<br />  <span class="stReserved">def</span> <span class="stReserved">this</span>() = <span class="stReserved">this</span>(
+    <span class="stQuotedString">&quot;TestSystem%05d&quot;</span>.format(
+       ActorSys.uniqueId.getAndIncrement()))
+<br />  <span class="stReserved">def</span> shutdown(): <span class="stType">Unit</span> = system.shutdown()
+<br />  <span class="stReserved">override</span> <span class="stReserved">def</span> apply() {
+    <span class="stReserved">try</span> <span class="stReserved">super</span>.apply()
+    <span class="stReserved">finally</span> shutdown()
+  }
+}
+</pre></p><p>Given this implementation of <code>ActorSys</code>, which will invoke <code>shutdown</code> after the constructor code
+is executed, you can run each test in a suite in a subclass of <code>TestKit</code>, giving each test's <code>TestKit</code>
+an <code>ActorSystem</code> with a unique name, allowing you to safely run those tests in parallel. Here's an example
+from <em>Akka Concurrency</em>:</p><p><pre class="stHighlighted">
+<span class="stReserved">class</span> <span class="stType">MyActorSpec</span> <span class="stReserved">extends</span> <span class="stType">fixture.WordSpec</span>
+        <span class="stReserved">with</span> <span class="stType">Matchers</span>
+        <span class="stReserved">with</span> <span class="stType">UnitFixture</span>
+        <span class="stReserved">with</span> <span class="stType">ParallelTestExecution</span> {
+<br />  <span class="stReserved">def</span> makeActor(): <span class="stType">ActorRef</span> =
+    system.actorOf(<span class="stType">Props[MyActor]</span>, <span class="stQuotedString">&quot;MyActor&quot;</span>)
+<br />  <span class="stQuotedString">&quot;My Actor&quot;</span> should {
+    <span class="stQuotedString">&quot;throw when made with the wrong name&quot;</span> in <span class="stReserved">new</span> <span class="stType">ActorSys</span> {
+      evaluating {
+        <span class="stLineComment">// use a generated name</span>
+        <span class="stReserved">val</span> a = system.actorOf(<span class="stType">Props[MyActor]</span>)
+      } should produce [<span class="stType">Exception</span>]
+    }
+    <span class="stQuotedString">&quot;construct without exception&quot;</span> in <span class="stReserved">new</span> <span class="stType">ActorSys</span> {
+      <span class="stReserved">val</span> a = makeActor()
+      <span class="stLineComment">// The throw will cause the test to fail</span>
+    }
+    <span class="stQuotedString">&quot;respond with a Pong to a Ping&quot;</span> in <span class="stReserved">new</span> <span class="stType">ActorSys</span> {
+      <span class="stReserved">val</span> a = makeActor()
+      a ! <span class="stType">Ping</span>
+      expectMsg(<span class="stType">Pong</span>)
+    }
+  }
+}
+</pre></p><p><a href="UnitFixture.html"><code>UnitFixture</code></a> is used in this example, because in this case, the <code>fixture.WordSpec</code> feature enabling tests to be defined as
+functions from fixture objects of type <code>FixtureParam</code> to <code>Unit</code> is not being used. Rather, only the secondary feature that enables
+tests to be defined as functions from <em>no parameters</em> to <code>Unit</code> is being used. This secondary feature is described in the second-to-last
+paragraph on the main Scaladoc documentation of <a href="WordSpec.html"><code>fixture.WordSpec</code></a>, which says:</p><p><blockquote>
+If a test doesn't need the fixture, you can indicate that by providing a no-arg instead of a one-arg function, ...
+In other words, instead of starting your function literal
+with something like &ldquo;<code>db =&gt;</code>&rdquo;, you'd start it with &ldquo;<code>() =&gt;</code>&rdquo;. For such tests, <code>runTest</code>
+will not invoke <code>withFixture(OneArgTest)</code>. It will instead directly invoke <code>withFixture(NoArgTest)</code>.
+</blockquote></p><p>Since <code>FixtureParam</code> is unused in this use case, it could
+be anything. Making it <code>Unit</code> will hopefully help readers more easily recognize that it is not being used.</p></div><dl class="attributes block"> <dt>Source</dt><dd><a href="https://github.com/scalatest/scalatest/tree/release-2.1.3-for-scala-2.10/src/main/scala/org/scalatest/fixture/NoArg.scala" target="_blank">NoArg.scala</a></dd></dl><div class="toggleContainer block">
+          <span class="toggle">Linear Supertypes</span>
+          <div class="superTypes hiddenContent">() ⇒ <span class="extype" name="scala.Unit">Unit</span>, <span class="extype" name="scala.DelayedInit">DelayedInit</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+        </div></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        <div id="order">
+              <span class="filtertype">Ordering</span>
+              <ol>
+                
+                <li class="alpha in"><span>Alphabetic</span></li>
+                <li class="inherit out"><span>By inheritance</span></li>
+              </ol>
+            </div>
+        <div id="ancestors">
+                <span class="filtertype">Inherited<br />
+                </span>
+                <ol id="linearization">
+                  <li class="in" name="org.scalatest.fixture.NoArg"><span>NoArg</span></li><li class="in" name="scala.Function0"><span>Function0</span></li><li class="in" name="scala.DelayedInit"><span>DelayedInit</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                </ol>
+              </div><div id="ancestors">
+            <span class="filtertype"></span>
+            <ol>
+              <li class="hideall out"><span>Hide All</span></li>
+              <li class="showall in"><span>Show all</span></li>
+            </ol>
+            <a href="http://docs.scala-lang.org/overviews/scaladoc/usage.html#members" target="_blank">Learn more about member selection</a>
+          </div>
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="scala.AnyRef#!=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="!=(x$1:AnyRef):Boolean"></a>
+      <a id="!=(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.Any#!=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="!=(x$1:Any):Boolean"></a>
+      <a id="!=(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="scala.AnyRef###" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="##():Int"></a>
+      <a id="##():Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $hash$hash" class="name">##</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#==" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="==(x$1:AnyRef):Boolean"></a>
+      <a id="==(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.Any#==" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="==(x$1:Any):Boolean"></a>
+      <a id="==(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="org.scalatest.fixture.NoArg#apply" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="apply():Unit"></a>
+      <a id="apply():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">apply</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Executes the body of the constructor that was passed to <code>delayedInit</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Executes the body of the constructor that was passed to <code>delayedInit</code>.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.scalatest.fixture.NoArg">NoArg</a> → Function0</dd></dl></div>
+    </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="asInstanceOf[T0]:T0"></a>
+      <a id="asInstanceOf[T0]:T0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">asInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Any.asInstanceOf.T0">T0</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="scala.AnyRef#clone" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="clone():Object"></a>
+      <a id="clone():AnyRef"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">clone</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="org.scalatest.fixture.NoArg#delayedInit" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="delayedInit(body:=&gt;Unit):Unit"></a>
+      <a id="delayedInit(⇒Unit):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">delayedInit</span><span class="params">(<span name="body">body: ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Saves the body of the constructor, passed as <code>body</code>, for later execution by <code>apply</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Saves the body of the constructor, passed as <code>body</code>, for later execution by <code>apply</code>.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.scalatest.fixture.NoArg">NoArg</a> → DelayedInit</dd></dl></div>
+    </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="eq(x$1:AnyRef):Boolean"></a>
+      <a id="eq(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#equals" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="equals(x$1:Any):Boolean"></a>
+      <a id="equals(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">equals</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#finalize" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="finalize():Unit"></a>
+      <a id="finalize():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">finalize</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#getClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getClass():Class[_]"></a>
+      <a id="getClass():Class[_]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getClass</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.Class">Class</span>[_]</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#hashCode" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="hashCode():Int"></a>
+      <a id="hashCode():Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">hashCode</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">isInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ne(x$1:AnyRef):Boolean"></a>
+      <a id="ne(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#notify" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notify():Unit"></a>
+      <a id="notify():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notify</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#notifyAll" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notifyAll():Unit"></a>
+      <a id="notifyAll():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notifyAll</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="org.scalatest.fixture.NoArg#styleName" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="styleName:Int"></a>
+      <a id="styleName:Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">styleName</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">This method exists to cause a compile-time type error if someone accidentally
+tries to mix this trait into a <code>Suite</code>.</p><div class="fullcomment"><div class="comment cmt"><p>This method exists to cause a compile-time type error if someone accidentally
+tries to mix this trait into a <code>Suite</code>.</p><p>This trait is intended to be mixed
+into classes that are constructed within the body (or as the body) of tests, not mixed into <code>Suite</code>s themselves. For an example,
+the the main Scaladoc comment for this trait.</p></div></div>
+    </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
+      <a id="synchronized[T0](⇒T0):T0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">synchronized</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="params">(<span name="arg0">arg0: ⇒ <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>)</span><span class="result">: <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.Function0#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="toString():String"></a>
+      <a id="toString():String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">toString</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Function0 → AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait():Unit"></a>
+      <a id="wait():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long,x$2:Int):Unit"></a>
+      <a id="wait(Long,Int):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>, <span name="arg1">arg1: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long):Unit"></a>
+      <a id="wait(Long):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        <div class="parent" name="scala.Function0">
+              <h3>Inherited from () ⇒ <span class="extype" name="scala.Unit">Unit</span></h3>
+            </div><div class="parent" name="scala.DelayedInit">
+              <h3>Inherited from <span class="extype" name="scala.DelayedInit">DelayedInit</span></h3>
+            </div><div class="parent" name="scala.AnyRef">
+              <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
+            </div><div class="parent" name="scala.Any">
+              <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
+            </div>
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+
+
+    </body>
+      </html>

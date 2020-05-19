@@ -1,0 +1,657 @@
+<!DOCTYPE html >
+<html>
+        <head>
+          <title>InspectorAsserting - ScalaTest 3.0.3 - org.scalatest.enablers.InspectorAsserting</title>
+          <meta name="description" content="InspectorAsserting - ScalaTest 3.0.3 - org.scalatest.enablers.InspectorAsserting" />
+          <meta name="keywords" content="InspectorAsserting ScalaTest 3.0.3 org.scalatest.enablers.InspectorAsserting" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../../../lib/jquery.js" id="jquery-js"></script>
+      <script type="text/javascript" src="../../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../lib/tools.tooltip.js"></script>
+      
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../../index.html';
+            var hash = 'org.scalatest.enablers.InspectorAsserting';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="type">
+
+<!-- Top of doc.scalatest.org [javascript] -->
+
+<script type="text/javascript">
+
+var rnd = window.rnd || Math.floor(Math.random()*10e6);
+
+var pid204546 = window.pid204546 || rnd;
+
+var plc204546 = window.plc204546 || 0;
+
+var abkw = window.abkw || '';
+
+var absrc = 'http://ab167933.adbutler-ikon.com/adserve/;ID=167933;size=468x60;setID=204546;type=js;sw='+screen.width+';sh='+screen.height+';spr='+window.devicePixelRatio+';kw='+abkw+';pid='+pid204546+';place='+(plc204546++)+';rnd='+rnd+';click=CLICK_MACRO_PLACEHOLDER';
+
+document.write('<scr'+'ipt src="'+absrc+'" type="text/javascript"></scr'+'ipt>');
+
+</script>
+
+      <div id="definition">
+        <a href="InspectorAsserting$.html" title="See companion object"><img alt="Trait/Object" src="../../../lib/trait_to_object_big.png" /></a>
+        <p id="owner"><a href="../../package.html" class="extype" name="org">org</a>.<a href="../package.html" class="extype" name="org.scalatest">scalatest</a>.<a href="package.html" class="extype" name="org.scalatest.enablers">enablers</a></p>
+        <h1><a href="InspectorAsserting$.html" title="See companion object">InspectorAsserting</a></h1><h3><span class="morelinks"><div>
+            Related Docs:
+            <a href="InspectorAsserting$.html" title="See companion object">object InspectorAsserting</a>
+            | <a href="package.html" class="extype" name="org.scalatest.enablers">package enablers</a>
+          </div></span></h3><span class="permalink">
+      <a href="../../../index.html#org.scalatest.enablers.InspectorAsserting" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <span class="name">InspectorAsserting</span><span class="tparams">[<span name="T">T</span>]</span><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Supertrait for <code>InspectorAsserting</code> typeclasses, which are used to implement and determine the result
+type of <a href="../Inspectors.html"><code>Inspectors</code></a> methods such as <code>forAll</code>, <code>forBetween</code>, <em>etc</em>.</p><p>Currently, an inspector expression will have result type <code>Assertion</code>, if the function passed has result type <code>Assertion</code>,
+else it will have result type <code>Unit</code>.</p></div><dl class="attributes block"> <dt>Source</dt><dd><a href="https://github.com/scalatest/scalatest/tree/release-3.0.3/scalatest//src/main/scala/org/scalatest/enablers/InspectorAsserting.scala" target="_blank">InspectorAsserting.scala</a></dd></dl><div class="toggleContainer block">
+          <span class="toggle">Linear Supertypes</span>
+          <div class="superTypes hiddenContent"><span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+        </div><div class="toggleContainer block">
+            <span class="toggle">Known Subclasses</span>
+            <div class="subClasses hiddenContent"><a href="UnitInspectorAsserting$InspectorAssertingImpl.html" class="extype" name="org.scalatest.enablers.UnitInspectorAsserting.InspectorAssertingImpl">InspectorAssertingImpl</a></div>
+          </div></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        <div id="order">
+              <span class="filtertype">Ordering</span>
+              <ol>
+                
+                <li class="alpha in"><span>Alphabetic</span></li>
+                <li class="inherit out"><span>By Inheritance</span></li>
+              </ol>
+            </div>
+        <div id="ancestors">
+                <span class="filtertype">Inherited<br />
+                </span>
+                <ol id="linearization">
+                  <li class="in" name="org.scalatest.enablers.InspectorAsserting"><span>InspectorAsserting</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                </ol>
+              </div><div id="ancestors">
+            <span class="filtertype"></span>
+            <ol>
+              <li class="hideall out"><span>Hide All</span></li>
+              <li class="showall in"><span>Show All</span></li>
+            </ol>
+          </div>
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        <div id="types" class="types members">
+              <h3>Type Members</h3>
+              <ol><li name="org.scalatest.enablers.InspectorAsserting.Result" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="Result"></a>
+      <a id="Result:Result"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Result</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.enablers.InspectorAsserting@Result" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li></ol>
+            </div>
+
+        <div id="values" class="values members">
+              <h3>Abstract Value Members</h3>
+              <ol><li name="org.scalatest.enablers.InspectorAsserting#forAll" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="forAll[E](xs:scala.collection.GenTraversable[E],original:Any,shorthand:Boolean,prettifier:org.scalactic.Prettifier,pos:org.scalactic.source.Position)(fun:E=&gt;T):InspectorAsserting.this.Result"></a>
+      <a id="forAll[E](GenTraversable[E],Any,Boolean,Prettifier,Position)((E)⇒T):Result"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">forAll</span><span class="tparams">[<span name="E">E</span>]</span><span class="params">(<span name="xs">xs: <span class="extype" name="scala.collection.GenTraversable">GenTraversable</span>[<span class="extype" name="org.scalatest.enablers.InspectorAsserting.forAll.E">E</span>]</span>, <span name="original">original: <span class="extype" name="scala.Any">Any</span></span>, <span name="shorthand">shorthand: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="prettifier">prettifier: <span class="extype" name="org.scalactic.Prettifier">Prettifier</span></span>, <span name="pos">pos: <span class="extype" name="org.scalactic.source.Position">Position</span></span>)</span><span class="params">(<span name="fun">fun: (<span class="extype" name="org.scalatest.enablers.InspectorAsserting.forAll.E">E</span>) ⇒ <span class="extype" name="org.scalatest.enablers.InspectorAsserting.T">T</span></span>)</span><span class="result">: <a href="#Result" class="extmbr" name="org.scalatest.enablers.InspectorAsserting.Result">Result</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.enablers.InspectorAsserting@forAll[E](xs:scala.collection.GenTraversable[E],original:Any,shorthand:Boolean,prettifier:org.scalactic.Prettifier,pos:org.scalactic.source.Position)(fun:E=&gt;T):InspectorAsserting.this.Result" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Implementation method for <code>Inspectors</code> <code>forAll</code> syntax.</code></code></p><div class="fullcomment"><div class="comment cmt"><p>Implementation method for <code>Inspectors</code> <code>forAll</code> syntax.
+</p></div></div>
+    </li><li name="org.scalatest.enablers.InspectorAsserting#forAtLeast" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="forAtLeast[E](min:Int,xs:scala.collection.GenTraversable[E],original:Any,shorthand:Boolean,prettifier:org.scalactic.Prettifier,pos:org.scalactic.source.Position)(fun:E=&gt;T):InspectorAsserting.this.Result"></a>
+      <a id="forAtLeast[E](Int,GenTraversable[E],Any,Boolean,Prettifier,Position)((E)⇒T):Result"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">forAtLeast</span><span class="tparams">[<span name="E">E</span>]</span><span class="params">(<span name="min">min: <span class="extype" name="scala.Int">Int</span></span>, <span name="xs">xs: <span class="extype" name="scala.collection.GenTraversable">GenTraversable</span>[<span class="extype" name="org.scalatest.enablers.InspectorAsserting.forAtLeast.E">E</span>]</span>, <span name="original">original: <span class="extype" name="scala.Any">Any</span></span>, <span name="shorthand">shorthand: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="prettifier">prettifier: <span class="extype" name="org.scalactic.Prettifier">Prettifier</span></span>, <span name="pos">pos: <span class="extype" name="org.scalactic.source.Position">Position</span></span>)</span><span class="params">(<span name="fun">fun: (<span class="extype" name="org.scalatest.enablers.InspectorAsserting.forAtLeast.E">E</span>) ⇒ <span class="extype" name="org.scalatest.enablers.InspectorAsserting.T">T</span></span>)</span><span class="result">: <a href="#Result" class="extmbr" name="org.scalatest.enablers.InspectorAsserting.Result">Result</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.enablers.InspectorAsserting@forAtLeast[E](min:Int,xs:scala.collection.GenTraversable[E],original:Any,shorthand:Boolean,prettifier:org.scalactic.Prettifier,pos:org.scalactic.source.Position)(fun:E=&gt;T):InspectorAsserting.this.Result" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Implementation method for <code>Inspectors</code> <code>forAtLeast</code> syntax.</code></code></p><div class="fullcomment"><div class="comment cmt"><p>Implementation method for <code>Inspectors</code> <code>forAtLeast</code> syntax.
+</p></div></div>
+    </li><li name="org.scalatest.enablers.InspectorAsserting#forAtMost" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="forAtMost[E](max:Int,xs:scala.collection.GenTraversable[E],original:Any,shorthand:Boolean,prettifier:org.scalactic.Prettifier,pos:org.scalactic.source.Position)(fun:E=&gt;T):InspectorAsserting.this.Result"></a>
+      <a id="forAtMost[E](Int,GenTraversable[E],Any,Boolean,Prettifier,Position)((E)⇒T):Result"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">forAtMost</span><span class="tparams">[<span name="E">E</span>]</span><span class="params">(<span name="max">max: <span class="extype" name="scala.Int">Int</span></span>, <span name="xs">xs: <span class="extype" name="scala.collection.GenTraversable">GenTraversable</span>[<span class="extype" name="org.scalatest.enablers.InspectorAsserting.forAtMost.E">E</span>]</span>, <span name="original">original: <span class="extype" name="scala.Any">Any</span></span>, <span name="shorthand">shorthand: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="prettifier">prettifier: <span class="extype" name="org.scalactic.Prettifier">Prettifier</span></span>, <span name="pos">pos: <span class="extype" name="org.scalactic.source.Position">Position</span></span>)</span><span class="params">(<span name="fun">fun: (<span class="extype" name="org.scalatest.enablers.InspectorAsserting.forAtMost.E">E</span>) ⇒ <span class="extype" name="org.scalatest.enablers.InspectorAsserting.T">T</span></span>)</span><span class="result">: <a href="#Result" class="extmbr" name="org.scalatest.enablers.InspectorAsserting.Result">Result</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.enablers.InspectorAsserting@forAtMost[E](max:Int,xs:scala.collection.GenTraversable[E],original:Any,shorthand:Boolean,prettifier:org.scalactic.Prettifier,pos:org.scalactic.source.Position)(fun:E=&gt;T):InspectorAsserting.this.Result" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Implementation method for <code>Inspectors</code> <code>forAtMost</code> syntax.</code></code></p><div class="fullcomment"><div class="comment cmt"><p>Implementation method for <code>Inspectors</code> <code>forAtMost</code> syntax.
+</p></div></div>
+    </li><li name="org.scalatest.enablers.InspectorAsserting#forBetween" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="forBetween[E](from:Int,upTo:Int,xs:scala.collection.GenTraversable[E],original:Any,shorthand:Boolean,prettifier:org.scalactic.Prettifier,pos:org.scalactic.source.Position)(fun:E=&gt;T):InspectorAsserting.this.Result"></a>
+      <a id="forBetween[E](Int,Int,GenTraversable[E],Any,Boolean,Prettifier,Position)((E)⇒T):Result"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">forBetween</span><span class="tparams">[<span name="E">E</span>]</span><span class="params">(<span name="from">from: <span class="extype" name="scala.Int">Int</span></span>, <span name="upTo">upTo: <span class="extype" name="scala.Int">Int</span></span>, <span name="xs">xs: <span class="extype" name="scala.collection.GenTraversable">GenTraversable</span>[<span class="extype" name="org.scalatest.enablers.InspectorAsserting.forBetween.E">E</span>]</span>, <span name="original">original: <span class="extype" name="scala.Any">Any</span></span>, <span name="shorthand">shorthand: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="prettifier">prettifier: <span class="extype" name="org.scalactic.Prettifier">Prettifier</span></span>, <span name="pos">pos: <span class="extype" name="org.scalactic.source.Position">Position</span></span>)</span><span class="params">(<span name="fun">fun: (<span class="extype" name="org.scalatest.enablers.InspectorAsserting.forBetween.E">E</span>) ⇒ <span class="extype" name="org.scalatest.enablers.InspectorAsserting.T">T</span></span>)</span><span class="result">: <a href="#Result" class="extmbr" name="org.scalatest.enablers.InspectorAsserting.Result">Result</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.enablers.InspectorAsserting@forBetween[E](from:Int,upTo:Int,xs:scala.collection.GenTraversable[E],original:Any,shorthand:Boolean,prettifier:org.scalactic.Prettifier,pos:org.scalactic.source.Position)(fun:E=&gt;T):InspectorAsserting.this.Result" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Implementation method for <code>Inspectors</code> <code>forBetween</code> syntax.</code></code></p><div class="fullcomment"><div class="comment cmt"><p>Implementation method for <code>Inspectors</code> <code>forBetween</code> syntax.
+</p></div></div>
+    </li><li name="org.scalatest.enablers.InspectorAsserting#forEvery" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="forEvery[E](xs:scala.collection.GenTraversable[E],original:Any,shorthand:Boolean,prettifier:org.scalactic.Prettifier,pos:org.scalactic.source.Position)(fun:E=&gt;T):InspectorAsserting.this.Result"></a>
+      <a id="forEvery[E](GenTraversable[E],Any,Boolean,Prettifier,Position)((E)⇒T):Result"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">forEvery</span><span class="tparams">[<span name="E">E</span>]</span><span class="params">(<span name="xs">xs: <span class="extype" name="scala.collection.GenTraversable">GenTraversable</span>[<span class="extype" name="org.scalatest.enablers.InspectorAsserting.forEvery.E">E</span>]</span>, <span name="original">original: <span class="extype" name="scala.Any">Any</span></span>, <span name="shorthand">shorthand: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="prettifier">prettifier: <span class="extype" name="org.scalactic.Prettifier">Prettifier</span></span>, <span name="pos">pos: <span class="extype" name="org.scalactic.source.Position">Position</span></span>)</span><span class="params">(<span name="fun">fun: (<span class="extype" name="org.scalatest.enablers.InspectorAsserting.forEvery.E">E</span>) ⇒ <span class="extype" name="org.scalatest.enablers.InspectorAsserting.T">T</span></span>)</span><span class="result">: <a href="#Result" class="extmbr" name="org.scalatest.enablers.InspectorAsserting.Result">Result</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.enablers.InspectorAsserting@forEvery[E](xs:scala.collection.GenTraversable[E],original:Any,shorthand:Boolean,prettifier:org.scalactic.Prettifier,pos:org.scalactic.source.Position)(fun:E=&gt;T):InspectorAsserting.this.Result" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Implementation method for <code>Inspectors</code> <code>forEvery</code> syntax.</code></code></p><div class="fullcomment"><div class="comment cmt"><p>Implementation method for <code>Inspectors</code> <code>forEvery</code> syntax.
+</p></div></div>
+    </li><li name="org.scalatest.enablers.InspectorAsserting#forExactly" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="forExactly[E](succeededCount:Int,xs:scala.collection.GenTraversable[E],original:Any,shorthand:Boolean,prettifier:org.scalactic.Prettifier,pos:org.scalactic.source.Position)(fun:E=&gt;T):InspectorAsserting.this.Result"></a>
+      <a id="forExactly[E](Int,GenTraversable[E],Any,Boolean,Prettifier,Position)((E)⇒T):Result"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">forExactly</span><span class="tparams">[<span name="E">E</span>]</span><span class="params">(<span name="succeededCount">succeededCount: <span class="extype" name="scala.Int">Int</span></span>, <span name="xs">xs: <span class="extype" name="scala.collection.GenTraversable">GenTraversable</span>[<span class="extype" name="org.scalatest.enablers.InspectorAsserting.forExactly.E">E</span>]</span>, <span name="original">original: <span class="extype" name="scala.Any">Any</span></span>, <span name="shorthand">shorthand: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="prettifier">prettifier: <span class="extype" name="org.scalactic.Prettifier">Prettifier</span></span>, <span name="pos">pos: <span class="extype" name="org.scalactic.source.Position">Position</span></span>)</span><span class="params">(<span name="fun">fun: (<span class="extype" name="org.scalatest.enablers.InspectorAsserting.forExactly.E">E</span>) ⇒ <span class="extype" name="org.scalatest.enablers.InspectorAsserting.T">T</span></span>)</span><span class="result">: <a href="#Result" class="extmbr" name="org.scalatest.enablers.InspectorAsserting.Result">Result</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.enablers.InspectorAsserting@forExactly[E](succeededCount:Int,xs:scala.collection.GenTraversable[E],original:Any,shorthand:Boolean,prettifier:org.scalactic.Prettifier,pos:org.scalactic.source.Position)(fun:E=&gt;T):InspectorAsserting.this.Result" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Implementation method for <code>Inspectors</code> <code>forExactly</code> syntax.</code></code></p><div class="fullcomment"><div class="comment cmt"><p>Implementation method for <code>Inspectors</code> <code>forExactly</code> syntax.
+</p></div></div>
+    </li><li name="org.scalatest.enablers.InspectorAsserting#forNo" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="forNo[E](xs:scala.collection.GenTraversable[E],original:Any,shorthand:Boolean,prettifier:org.scalactic.Prettifier,pos:org.scalactic.source.Position)(fun:E=&gt;T):InspectorAsserting.this.Result"></a>
+      <a id="forNo[E](GenTraversable[E],Any,Boolean,Prettifier,Position)((E)⇒T):Result"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">forNo</span><span class="tparams">[<span name="E">E</span>]</span><span class="params">(<span name="xs">xs: <span class="extype" name="scala.collection.GenTraversable">GenTraversable</span>[<span class="extype" name="org.scalatest.enablers.InspectorAsserting.forNo.E">E</span>]</span>, <span name="original">original: <span class="extype" name="scala.Any">Any</span></span>, <span name="shorthand">shorthand: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="prettifier">prettifier: <span class="extype" name="org.scalactic.Prettifier">Prettifier</span></span>, <span name="pos">pos: <span class="extype" name="org.scalactic.source.Position">Position</span></span>)</span><span class="params">(<span name="fun">fun: (<span class="extype" name="org.scalatest.enablers.InspectorAsserting.forNo.E">E</span>) ⇒ <span class="extype" name="org.scalatest.enablers.InspectorAsserting.T">T</span></span>)</span><span class="result">: <a href="#Result" class="extmbr" name="org.scalatest.enablers.InspectorAsserting.Result">Result</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.enablers.InspectorAsserting@forNo[E](xs:scala.collection.GenTraversable[E],original:Any,shorthand:Boolean,prettifier:org.scalactic.Prettifier,pos:org.scalactic.source.Position)(fun:E=&gt;T):InspectorAsserting.this.Result" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Implementation method for <code>Inspectors</code> <code>forNo</code> syntax.</code></code></p><div class="fullcomment"><div class="comment cmt"><p>Implementation method for <code>Inspectors</code> <code>forNo</code> syntax.
+</p></div></div>
+    </li></ol>
+            </div>
+
+        <div id="values" class="values members">
+              <h3>Concrete Value Members</h3>
+              <ol><li name="scala.AnyRef#!=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="!=(x$1:Any):Boolean"></a>
+      <a id="!=(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.enablers.InspectorAsserting@!=(x$1:Any):Boolean" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef###" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="##():Int"></a>
+      <a id="##():Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $hash$hash" class="name">##</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.enablers.InspectorAsserting@##():Int" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#==" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="==(x$1:Any):Boolean"></a>
+      <a id="==(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.enablers.InspectorAsserting@==(x$1:Any):Boolean" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="asInstanceOf[T0]:T0"></a>
+      <a id="asInstanceOf[T0]:T0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">asInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Any.asInstanceOf.T0">T0</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.enablers.InspectorAsserting@asInstanceOf[T0]:T0" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="scala.AnyRef#clone" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="clone():Object"></a>
+      <a id="clone():AnyRef"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">clone</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.enablers.InspectorAsserting@clone():Object" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.CloneNotSupportedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="eq(x$1:AnyRef):Boolean"></a>
+      <a id="eq(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.enablers.InspectorAsserting@eq(x$1:AnyRef):Boolean" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#equals" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="equals(x$1:Any):Boolean"></a>
+      <a id="equals(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">equals</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.enablers.InspectorAsserting@equals(x$1:Any):Boolean" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#finalize" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="finalize():Unit"></a>
+      <a id="finalize():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">finalize</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.enablers.InspectorAsserting@finalize():Unit" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="symbol">classOf[java.lang.Throwable]</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#getClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getClass():Class[_]"></a>
+      <a id="getClass():Class[_]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getClass</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.Class">Class</span>[_]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.enablers.InspectorAsserting@getClass():Class[_]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#hashCode" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="hashCode():Int"></a>
+      <a id="hashCode():Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">hashCode</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.enablers.InspectorAsserting@hashCode():Int" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">isInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.enablers.InspectorAsserting@isInstanceOf[T0]:Boolean" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ne(x$1:AnyRef):Boolean"></a>
+      <a id="ne(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.enablers.InspectorAsserting@ne(x$1:AnyRef):Boolean" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#notify" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notify():Unit"></a>
+      <a id="notify():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notify</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.enablers.InspectorAsserting@notify():Unit" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#notifyAll" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notifyAll():Unit"></a>
+      <a id="notifyAll():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notifyAll</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.enablers.InspectorAsserting@notifyAll():Unit" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
+      <a id="synchronized[T0](⇒T0):T0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">synchronized</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="params">(<span name="arg0">arg0: ⇒ <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>)</span><span class="result">: <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.enablers.InspectorAsserting@synchronized[T0](x$1:=&gt;T0):T0" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="toString():String"></a>
+      <a id="toString():String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">toString</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.enablers.InspectorAsserting@toString():String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait():Unit"></a>
+      <a id="wait():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.enablers.InspectorAsserting@wait():Unit" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long,x$2:Int):Unit"></a>
+      <a id="wait(Long,Int):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>, <span name="arg1">arg1: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.enablers.InspectorAsserting@wait(x$1:Long,x$2:Int):Unit" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long):Unit"></a>
+      <a id="wait(Long):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.enablers.InspectorAsserting@wait(x$1:Long):Unit" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        <div class="parent" name="scala.AnyRef">
+              <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
+            </div><div class="parent" name="scala.Any">
+              <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
+            </div>
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+
+
+    </body>
+      </html>

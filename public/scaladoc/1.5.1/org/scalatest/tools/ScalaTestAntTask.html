@@ -1,0 +1,1755 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+        <head>
+          <title>org.scalatest.tools.ScalaTestAntTask</title>
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../lib/template.css" rel="stylesheet" type="text/css" media="screen" />
+      <script type="text/javascript" src="../../../lib/jquery.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../lib/tools.tooltip.js"></script>
+    
+
+<script>
+ (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+ })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ 
+ ga('create', 'UA-71294502-3', 'auto');
+ ga('send', 'pageview');
+ 
+</script>
+        </head>
+        <body class="type" onload="windowTitle();">
+
+      <p id="owner"><a href="../../package.html" class="extype" name="org">org</a>.<a href="../package.html" class="extype" name="org.scalatest">scalatest</a>.<a href="package.html" class="extype" name="org.scalatest.tools">tools</a></p>
+
+      <div id="definition">
+        <img src="../../../lib/class_big.png" />
+        <h1>ScalaTestAntTask</h1>
+      </div>
+
+      <h4 class="signature" id="signature">
+      <span class="kind">class</span>
+      <span class="symbol">
+        <span class="name">ScalaTestAntTask</span>
+        
+        
+        <span class="result"> extends <span class="extype" name="org.apache.tools.ant.Task">Task</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment" id="comment"><div class="comment cmt"><p>An ant task to run ScalaTest.  Instructions on how to specify various
+options are below.  See the scaladocs for the <code>Runner</code> class for a description
+of what each of the options does.</p><p>To use the ScalaTest ant task, you must first define it in your ant file using <code>taskdef</code>.
+Here's an example:</p><p><pre class="stExamples"> &amp;lt;path id=&quot;scalatest.classpath&quot;&amp;gt;
+   &amp;lt;pathelement location=&quot;${lib}/scalatest.jar&quot;/&amp;gt;
+   &amp;lt;pathelement location=&quot;${lib}/scala-library.jar&quot;/&amp;gt;
+ &amp;lt;/path&amp;gt;</p><p> &amp;lt;target name=&quot;main&quot; depends=&quot;dist&quot;&amp;gt;
+   &amp;lt;taskdef name=&quot;scalatest&quot; classname=&quot;org.scalatest.tools.ScalaTestAntTask&quot;&amp;gt;
+     &amp;lt;classpath refid=&quot;scalatest.classpath&quot;/&amp;gt;
+   &amp;lt;/taskdef&amp;gt;</p><p>   &amp;lt;scalatest ...
+ &amp;lt;/target&amp;gt;</pre></p><p>Once defined, you use the task by specifying information in a <code>scalatest</code> element:</p><p><pre class="stExamples">  &amp;lt;scalatest ...&amp;gt;
+    ...
+  &amp;lt;/scalatest&amp;gt;</pre></p><p>You can place key value pairs into the <code>configMap</code> using nested <code>&lt;config&gt;</code> elements,
+like this:</p><p><pre class="stExamples">  &amp;lt;scalatest&amp;gt;
+    &amp;lt;config name=&quot;dbname&quot; value=&quot;testdb&quot;/&amp;gt;
+    &amp;lt;config name=&quot;server&quot; value=&quot;192.168.1.188&quot;/&amp;gt;</pre></p><p>You can specify a runpath using either a <code>runpath</code> attribute and/or nested<code>&lt;runpath&gt;</code> elements, using standard ant path notation:</p><p><pre class="stExamples">  &amp;lt;scalatest runpath=&quot;serviceuitest-1.1beta4.jar:myjini&quot;&amp;gt;</pre></p><p>or</p><p><pre class="stExamples">  &amp;lt;scalatest&amp;gt;
+    &amp;lt;runpath&amp;gt;
+      &amp;lt;pathelement location=&quot;serviceuitest-1.1beta4.jar&quot;/&amp;gt;
+      &amp;lt;pathelement location=&quot;myjini&quot;/&amp;gt;
+    &amp;lt;/runpath&amp;gt;</pre></p><p>To add a URL to your runpath, use a <code>&lt;runpathurl&gt;</code> element
+(since ant paths don't support URLs):</p><p><pre class="stExamples">  &amp;lt;scalatest&amp;gt;
+    &amp;lt;runpathurl url=&quot;http://foo.com/bar.jar&quot;/&amp;gt;</pre></p><p>You can specify reporters using nested <code>&lt;reporter&gt;</code> elements, where the <code>type</code>attribute must be one of the following:</p><ul><li>  <code>graphic</code></li><li>  <code>file</code></li><li>  <code>junitxml</code></li><li>  <code>stdout</code></li><li>  <code>stderr</code></li><li>  <code>reporterclass</code></li></ul><p>Each may include a <code>config</code> attribute to specify the reporter configuration.
+Types <code>file</code>, <code>junitxml</code> and <code>reporterclass</code> require additional attributes<code>filename</code>, <code>directory</code>, and <code>classname</code>, respectively:</p><p><pre class="stExamples">  &amp;lt;scalatest&amp;gt;
+    &amp;lt;reporter type=&quot;stdout&quot;        config=&quot;FAB&quot;/&amp;gt;
+    &amp;lt;reporter type=&quot;file&quot;          filename=&quot;test.out&quot;/&amp;gt;
+    &amp;lt;reporter type=&quot;junitxml&quot;      directory=&quot;target&quot;/&amp;gt;
+    &amp;lt;reporter type=&quot;reporterclass&quot; classname=&quot;my.ReporterClass&quot;/&amp;gt;</pre></p><p>Specify tags to include and/or exclude using <code>&lt;tagsToInclude&gt;</code> and<code>&lt;tagsToExclude&gt;</code> elements, like this:</p><p><pre class="stExamples">  &amp;lt;scalatest&amp;gt;
+    &amp;lt;tagsToInclude&amp;gt;
+        CheckinTests
+        FunctionalTests
+    &amp;lt;/tagsToInclude&amp;gt;</p><p>    &amp;lt;tagsToExclude&amp;gt;
+        SlowTests
+        NetworkTests
+    &amp;lt;/tagsToExclude&amp;gt;</pre></p><p>To specify suites to run, use either a <code>suite</code> attribute or nested<code>&lt;suite&gt;</code> elements:</p><p><pre class="stExamples">  &amp;lt;scalatest suite=&quot;com.artima.serviceuitest.ServiceUITestkit&quot;&amp;gt;</pre></p><p>or</p><p><pre class="stExamples">  &amp;lt;scalatest&amp;gt;
+    &amp;lt;suite classname=&quot;com.artima.serviceuitest.ServiceUITestkit&quot;/&amp;gt;</pre></p><p>To specify suites using members-only or wildcard package names, use
+either the <code>membersonly</code> or <code>wildcard</code> attributes, or nested<code>&lt;membersonly&gt;</code> or <code>&lt;wildcard&gt;</code> elements:</p><p><pre class="stExamples">  &amp;lt;scalatest membersonly=&quot;com.artima.serviceuitest&quot;&amp;gt;</pre></p><p>or</p><p><pre class="stExamples">  &amp;lt;scalatest wildcard=&quot;com.artima.joker&quot;&amp;gt;</pre></p><p>or</p><p><pre class="stExamples">  &amp;lt;scalatest&amp;gt;
+    &amp;lt;membersonly package=&quot;com.artima.serviceuitest&quot;/&amp;gt;
+    &amp;lt;wildcard package=&quot;com.artima.joker&quot;/&amp;gt;</pre></p><p>Use attribute <code>parallel="true"</code> to specify parallel execution of suites.
+(If the <code>parallel</code> attribute is left out or set to false, suites will be executed sequentially by one thread.)
+When <code>parallel</code> is true, you can include an optional <code>numthreads</code> attribute to specify the number
+of threads to be created in thread pool (<em>e.g.</em>, <code>numthreads="10"</code>).</p><p>Use attribute <code>haltonfailure="true"</code> to cause ant to fail the
+build if there's a test failure.</p><p>Use attribute <code>fork="true"</code> to cause ant to run the tests in
+a separate process.</p><p>When <code>fork</code> is <code>true</code>, attribute <code>maxmemory</code> may be used to specify
+the maximum memory size that will be passed to the forked jvm.&amp;nbsp; For example, the following setting
+will cause <code>"-Xmx1280M"</code> to be passed to the java command used to
+run the tests.</p><p><pre class="stExamples">  &amp;lt;scalatest maxmemory=&quot;1280M&quot;&amp;gt;</pre></p><p>When <code>fork</code> is true, nested <code>&lt;jvmarg&gt;</code> elements may be used
+to pass additional arguments to the forked jvm.
+For example, if you are running into 'PermGen space' memory errors,
+you could add the following <code>jvmarg</code> to bump up the JVM's <code>MaxPermSize</code> value:</p><p><pre class="stExamples">  &amp;lt;jvmarg value=&quot;-XX:MaxPermSize=128m&quot;/&amp;gt;</pre></p></div><div class="block">
+            linear super types: <span class="extype" name="org.apache.tools.ant.Task">Task</span>, <span class="extype" name="org.apache.tools.ant.ProjectComponent">ProjectComponent</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, AnyRef, <span class="extype" name="scala.Any">Any</span>
+          </div>
+            
+            
+            
+          </div>
+
+      <div id="template">
+
+        <div id="mbrsel">
+          <div id="textfilter"><span class="pre"></span><span class="input"><input accesskey="/" type="text" /></span><span class="post"></span></div>
+          <div id="order">
+                <span class="filtertype">Ordering</span>
+                <ol><li class="alpha in">Alphabetic</li><li class="inherit out">By inheritance</li></ol>
+              </div>
+          <div id="ancestors">
+                <span class="filtertype">Inherited</span>
+                <ol><li class="hideall">Hide All</li><li class="showall">Show all</li></ol>
+                <ol id="linearization"><li class="in" name="org.scalatest.tools.ScalaTestAntTask">ScalaTestAntTask</li><li class="in" name="org.apache.tools.ant.Task">Task</li><li class="in" name="org.apache.tools.ant.ProjectComponent">ProjectComponent</li><li class="in" name="java.lang.Cloneable">Cloneable</li><li class="in" name="scala.AnyRef">AnyRef</li><li class="in" name="scala.Any">Any</li></ol>
+              </div>
+          <div id="visbl">
+              <span class="filtertype">Visibility</span>
+              <ol><li class="public in">Public</li><li class="all out">All</li></ol>
+            </div>
+          <div id="impl">
+              <span class="filtertype">Impl.</span>
+              <ol><li class="concrete in">Concrete</li><li class="abstract in">Abstract</li></ol>
+            </div>
+        </div>
+
+        <div class="members" id="constructors">
+              <h3>Instance constructors</h3>
+              <ol><li visbl="pub" data-isabs="false" name="org.scalatest.tools.ScalaTestAntTask#this">
+      <a id="this:ScalaTestAntTask"></a>
+      <h4 class="signature">
+      <span class="kind">new</span>
+      <span class="symbol">
+        <span class="name">ScalaTestAntTask</span>
+        
+        <span class="params">()</span>
+        
+      </span>
+      </h4>
+      
+    </li></ol>
+            </div>
+
+        
+
+        <div class="values members" id="values">
+              <h3>Value Members</h3>
+              <ol><li visbl="pub" data-isabs="false" name="scala.AnyRef#!=">
+      <a id="!=(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">!=</span>
+        
+        <span class="params">(<span name="arg0">arg0: AnyRef</span>)</span>
+        <span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          attributes: final 
+        </div><div class="block">
+          definition classes: AnyRef
+        </div></div>
+          
+    </li><li visbl="pub" data-isabs="false" name="scala.Any#!=">
+      <a id="!=(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">!=</span>
+        
+        <span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span>
+        <span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt"><code>o != arg0</code> is the same as <code>!(o == (arg0))</code>.</p>
+            <div class="fullcomment"><div class="comment cmt"><p><code>o != arg0</code> is the same as <code>!(o == (arg0))</code>.
+</p></div><dl class="paramcmts block"><dt class="param">arg0</dt><dd class="cmt"><p>the object to compare against this object for dis-equality.</p></dd><dt>returns</dt><dd class="cmt"><p><code>false</code> if the receiver object is equivalent to the argument; <code>true</code> otherwise.</p></dd></dl><div class="block">
+          attributes: final 
+        </div><div class="block">
+          definition classes: Any
+        </div>
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" data-isabs="false" name="scala.AnyRef###">
+      <a id="##():Int"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">##</span>
+        
+        <span class="params">()</span>
+        <span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          attributes: final 
+        </div><div class="block">
+          definition classes: AnyRef → Any
+        </div></div>
+          
+    </li><li visbl="pub" data-isabs="false" name="scala.AnyRef#$asInstanceOf">
+      <a id="$asInstanceOf[T0]():T0"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">$asInstanceOf</span>
+        <span class="tparams">[<span name="T0">T0</span>]</span>
+        <span class="params">()</span>
+        <span class="result">: T0</span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          attributes: final 
+        </div><div class="block">
+          definition classes: AnyRef
+        </div></div>
+          
+    </li><li visbl="pub" data-isabs="false" name="scala.AnyRef#$isInstanceOf">
+      <a id="$isInstanceOf[T0]():Boolean"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">$isInstanceOf</span>
+        <span class="tparams">[<span name="T0">T0</span>]</span>
+        <span class="params">()</span>
+        <span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          attributes: final 
+        </div><div class="block">
+          definition classes: AnyRef
+        </div></div>
+          
+    </li><li visbl="pub" data-isabs="false" name="scala.AnyRef#==">
+      <a id="==(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">==</span>
+        
+        <span class="params">(<span name="arg0">arg0: AnyRef</span>)</span>
+        <span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt"><code>o == arg0</code> is the same as <code>if (o eq null) arg0 eq null else o.equals(arg0)</code>.</p>
+            <div class="fullcomment"><div class="comment cmt"><p><code>o == arg0</code> is the same as <code>if (o eq null) arg0 eq null else o.equals(arg0)</code>.
+</p></div><dl class="paramcmts block"><dt class="param">arg0</dt><dd class="cmt"><p>the object to compare against this object for equality.</p></dd><dt>returns</dt><dd class="cmt"><p><code>true</code> if the receiver object is equivalent to the argument; <code>false</code> otherwise.</p></dd></dl><div class="block">
+          attributes: final 
+        </div><div class="block">
+          definition classes: AnyRef
+        </div>
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" data-isabs="false" name="scala.Any#==">
+      <a id="==(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">==</span>
+        
+        <span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span>
+        <span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt"><code>o == arg0</code> is the same as <code>o.equals(arg0)</code>.</p>
+            <div class="fullcomment"><div class="comment cmt"><p><code>o == arg0</code> is the same as <code>o.equals(arg0)</code>.
+</p></div><dl class="paramcmts block"><dt class="param">arg0</dt><dd class="cmt"><p>the object to compare against this object for equality.</p></dd><dt>returns</dt><dd class="cmt"><p><code>true</code> if the receiver object is equivalent to the argument; <code>false</code> otherwise.</p></dd></dl><div class="block">
+          attributes: final 
+        </div><div class="block">
+          definition classes: Any
+        </div>
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" data-isabs="false" name="org.scalatest.tools.ScalaTestAntTask#addConfiguredConfig">
+      <a id="addConfiguredConfig(NameValuePair):Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">addConfiguredConfig</span>
+        
+        <span class="params">(<span name="config">config: <span class="extype" name="org.scalatest.tools.NameValuePair">NameValuePair</span></span>)</span>
+        <span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Sets values from nested element <code>config</code>.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Sets values from nested element <code>config</code>.
+</p></div>
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" data-isabs="false" name="org.scalatest.tools.ScalaTestAntTask#addConfiguredExcludes">
+      <a id="addConfiguredExcludes(TextElement):Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name deprecated">addConfiguredExcludes</span>
+        
+        <span class="params">(<span name="excludes">excludes: <span class="extype" name="org.scalatest.tools.TextElement">TextElement</span></span>)</span>
+        <span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Sets value from nested element <code>excludes</code>.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Sets value from nested element <code>excludes</code>.<b>The <code>excludes</code> attribute has been deprecated and will be removed in a future version of ScalaTest.
+Please use the <code>tagsToExclude</code> attribute instead.</b></p></div><div class="block"><ol>deprecated:
+          <li><p>Please use tagsToExclude instead</p></li>
+        </ol></div>
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" data-isabs="false" name="org.scalatest.tools.ScalaTestAntTask#addConfiguredIncludes">
+      <a id="addConfiguredIncludes(TextElement):Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name deprecated">addConfiguredIncludes</span>
+        
+        <span class="params">(<span name="includes">includes: <span class="extype" name="org.scalatest.tools.TextElement">TextElement</span></span>)</span>
+        <span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Sets value from nested element <code>includes</code>.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Sets value from nested element <code>includes</code>.<b>The <code>includes</code> attribute has been deprecated and will be removed in a future version of ScalaTest.
+Please use the <code>tagsToInclude</code> attribute instead.</b></p></div><div class="block"><ol>deprecated:
+          <li><p>Please use tagsToInclude instead</p></li>
+        </ol></div>
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" data-isabs="false" name="org.scalatest.tools.ScalaTestAntTask#addConfiguredJvmArg">
+      <a id="addConfiguredJvmArg(JvmArg):Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">addConfiguredJvmArg</span>
+        
+        <span class="params">(<span name="arg">arg: <span class="extype" name="org.scalatest.tools.JvmArg">JvmArg</span></span>)</span>
+        <span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Sets value from nested element <code>jvmarg</code>.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Sets value from nested element <code>jvmarg</code>.
+</p></div>
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" data-isabs="false" name="org.scalatest.tools.ScalaTestAntTask#addConfiguredMembersOnly">
+      <a id="addConfiguredMembersOnly(PackageElement):Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">addConfiguredMembersOnly</span>
+        
+        <span class="params">(<span name="membersonly">membersonly: <span class="extype" name="org.scalatest.tools.PackageElement">PackageElement</span></span>)</span>
+        <span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Sets value from nested element <code>membersonly</code>.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Sets value from nested element <code>membersonly</code>.
+</p></div>
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" data-isabs="false" name="org.scalatest.tools.ScalaTestAntTask#addConfiguredProperty">
+      <a id="addConfiguredProperty(NameValuePair):Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name deprecated">addConfiguredProperty</span>
+        
+        <span class="params">(<span name="property">property: <span class="extype" name="org.scalatest.tools.NameValuePair">NameValuePair</span></span>)</span>
+        <span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Sets values from nested element <code>property</code>.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Sets values from nested element <code>property</code>.<b>The <code>property</code> attribute has been deprecated and will be removed in a future version of ScalaTest.
+Please use the <code>config</code> attribute instead.</b></p></div><div class="block"><ol>deprecated:
+          <li><p>Please use config instead</p></li>
+        </ol></div>
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" data-isabs="false" name="org.scalatest.tools.ScalaTestAntTask#addConfiguredReporter">
+      <a id="addConfiguredReporter(ReporterElement):Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">addConfiguredReporter</span>
+        
+        <span class="params">(<span name="reporter">reporter: <span class="extype" name="org.scalatest.tools.ReporterElement">ReporterElement</span></span>)</span>
+        <span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Sets value from nested element <code>reporter</code>.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Sets value from nested element <code>reporter</code>.
+</p></div>
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" data-isabs="false" name="org.scalatest.tools.ScalaTestAntTask#addConfiguredRunpath">
+      <a id="addConfiguredRunpath(Path):Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">addConfiguredRunpath</span>
+        
+        <span class="params">(<span name="runpath">runpath: <span class="extype" name="org.apache.tools.ant.types.Path">Path</span></span>)</span>
+        <span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Sets value from nested element <code>runpath</code>.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Sets value from nested element <code>runpath</code>.
+</p></div>
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" data-isabs="false" name="org.scalatest.tools.ScalaTestAntTask#addConfiguredRunpathUrl">
+      <a id="addConfiguredRunpathUrl(RunpathUrl):Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">addConfiguredRunpathUrl</span>
+        
+        <span class="params">(<span name="runpathurl">runpathurl: <span class="extype" name="org.scalatest.tools.RunpathUrl">RunpathUrl</span></span>)</span>
+        <span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Sets value from nested element <code>runpathurl</code>.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Sets value from nested element <code>runpathurl</code>.
+</p></div>
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" data-isabs="false" name="org.scalatest.tools.ScalaTestAntTask#addConfiguredSuite">
+      <a id="addConfiguredSuite(SuiteElement):Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">addConfiguredSuite</span>
+        
+        <span class="params">(<span name="suite">suite: <span class="extype" name="org.scalatest.tools.SuiteElement">SuiteElement</span></span>)</span>
+        <span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Sets value from nested element <code>suite</code>.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Sets value from nested element <code>suite</code>.
+</p></div>
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" data-isabs="false" name="org.scalatest.tools.ScalaTestAntTask#addConfiguredTagsToExclude">
+      <a id="addConfiguredTagsToExclude(TextElement):Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">addConfiguredTagsToExclude</span>
+        
+        <span class="params">(<span name="tagsToExclude">tagsToExclude: <span class="extype" name="org.scalatest.tools.TextElement">TextElement</span></span>)</span>
+        <span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Sets value from nested element <code>excludes</code>.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Sets value from nested element <code>excludes</code>.
+</p></div>
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" data-isabs="false" name="org.scalatest.tools.ScalaTestAntTask#addConfiguredTagsToInclude">
+      <a id="addConfiguredTagsToInclude(TextElement):Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">addConfiguredTagsToInclude</span>
+        
+        <span class="params">(<span name="tagsToInclude">tagsToInclude: <span class="extype" name="org.scalatest.tools.TextElement">TextElement</span></span>)</span>
+        <span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Sets value from nested element <code>tagsToInclude</code>.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Sets value from nested element <code>tagsToInclude</code>.
+</p></div>
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" data-isabs="false" name="org.scalatest.tools.ScalaTestAntTask#addConfiguredTestNGSuites">
+      <a id="addConfiguredTestNGSuites(Path):Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">addConfiguredTestNGSuites</span>
+        
+        <span class="params">(<span name="testNGSuitePath">testNGSuitePath: <span class="extype" name="org.apache.tools.ant.types.Path">Path</span></span>)</span>
+        <span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Sets value from nested element <code>testngsuites</code>.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Sets value from nested element <code>testngsuites</code>.
+</p></div>
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" data-isabs="false" name="org.scalatest.tools.ScalaTestAntTask#addConfiguredWildcard">
+      <a id="addConfiguredWildcard(PackageElement):Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">addConfiguredWildcard</span>
+        
+        <span class="params">(<span name="wildcard">wildcard: <span class="extype" name="org.scalatest.tools.PackageElement">PackageElement</span></span>)</span>
+        <span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Sets value from nested element <code>wildcard</code>.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Sets value from nested element <code>wildcard</code>.
+</p></div>
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" data-isabs="false" name="scala.Any#asInstanceOf">
+      <a id="asInstanceOf[T0]:T0"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">asInstanceOf</span>
+        <span class="tparams">[<span name="T0">T0</span>]</span>
+        
+        <span class="result">: T0</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">This method is used to cast the receiver object to be of type <code>T0</code>.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>This method is used to cast the receiver object to be of type <code>T0</code>.</p><p>Note that the success of a cast at runtime is modulo Scala's erasure semantics.  Therefore the expression<code>1.asInstanceOf[String]</code> will throw a <code>ClassCastException</code> at runtime, while the expression<code>List(1).asInstanceOf[List[String]]</code> will not.  In the latter example, because the type argument is erased as
+part of compilation it is not possible to check whether the contents of the list are of the requested typed.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>the receiver object.</p></dd></dl><div class="block">
+          attributes: final 
+        </div><div class="block">
+          definition classes: Any
+        </div>
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" data-isabs="false" name="org.apache.tools.ant.Task#bindToOwner">
+      <a id="bindToOwner(Task):Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">bindToOwner</span>
+        
+        <span class="params">(<span name="arg0">arg0: <span class="extype" name="org.apache.tools.ant.Task">Task</span></span>)</span>
+        <span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          attributes: final 
+        </div><div class="block">
+          definition classes: Task
+        </div></div>
+          
+    </li><li visbl="pub" data-isabs="false" name="org.apache.tools.ant.ProjectComponent#clone">
+      <a id="clone():AnyRef"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">clone</span>
+        
+        <span class="params">()</span>
+        <span class="result">: AnyRef</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">This method creates and returns a copy of the receiver object.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>This method creates and returns a copy of the receiver object.</p><p>The default implementation of the <code>clone</code> method is platform dependent.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>a copy of the receiver object.</p></dd></dl><div class="block">
+          definition classes: ProjectComponent → AnyRef
+        </div>
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" data-isabs="false" name="scala.AnyRef#eq">
+      <a id="eq(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">eq</span>
+        
+        <span class="params">(<span name="arg0">arg0: AnyRef</span>)</span>
+        <span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">This method is used to test whether the argument (<code>arg0</code>) is a reference to the
+receiver object (<code>this</code>).</p>
+            <div class="fullcomment"><div class="comment cmt"><p>This method is used to test whether the argument (<code>arg0</code>) is a reference to the
+receiver object (<code>this</code>).</p><p>The <code>eq</code> method implements an [http://en.wikipedia.org/wiki/Equivalence_relation equivalence relation] on
+non-null instances of <code>AnyRef</code>:
+ * It is reflexive: for any non-null instance <code>x</code> of type <code>AnyRef</code>, <code>x.eq(x)</code> returns <code>true</code>.
+ * It is symmetric: for any non-null instances <code>x</code> and <code>y</code> of type <code>AnyRef</code>, <code>x.eq(y)</code> returns <code>true</code> if and
+   only if <code>y.eq(x)</code> returns <code>true</code>.
+ * It is transitive: for any non-null instances <code>x</code>, <code>y</code>, and <code>z</code> of type <code>AnyRef</code> if <code>x.eq(y)</code> returns <code>true</code>   and <code>y.eq(z)</code> returns <code>true</code>, then <code>x.eq(z)</code> returns <code>true</code>.</p><p>Additionally, the <code>eq</code> method has three other properties.
+ * It is consistent: for any non-null instances <code>x</code> and <code>y</code> of type <code>AnyRef</code>, multiple invocations of
+   <code>x.eq(y)</code> consistently returns <code>true</code> or consistently returns <code>false</code>.
+ * For any non-null instance <code>x</code> of type <code>AnyRef</code>, <code>x.eq(null)</code> and <code>null.eq(x)</code> returns <code>false</code>.
+ * <code>null.eq(null)</code> returns <code>true</code>.</p><p>When overriding the <code>equals</code> or <code>hashCode</code> methods, it is important to ensure that their behavior is
+consistent with reference equality.  Therefore, if two objects are references to each other (<code>o1 eq o2</code>), they
+should be equal to each other (<code>o1 == o2</code>) and they should hash to the same value (<code>o1.hashCode == o2.hashCode</code>).
+</p></div><dl class="paramcmts block"><dt class="param">arg0</dt><dd class="cmt"><p>the object to compare against this object for reference equality.</p></dd><dt>returns</dt><dd class="cmt"><p><code>true</code> if the argument is a reference to the receiver object; <code>false</code> otherwise.</p></dd></dl><div class="block">
+          attributes: final 
+        </div><div class="block">
+          definition classes: AnyRef
+        </div>
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" data-isabs="false" name="scala.AnyRef#equals">
+      <a id="equals(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">equals</span>
+        
+        <span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span>
+        <span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">This method is used to compare the receiver object (<code>this</code>) with the argument object (<code>arg0</code>) for equivalence.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>This method is used to compare the receiver object (<code>this</code>) with the argument object (<code>arg0</code>) for equivalence.</p><p>The default implementations of this method is an [http://en.wikipedia.org/wiki/Equivalence_relation equivalence
+relation]:
+ * It is reflexive: for any instance <code>x</code> of type <code>Any</code>, <code>x.equals(x)</code> should return <code>true</code>.
+ * It is symmetric: for any instances <code>x</code> and <code>y</code> of type <code>Any</code>, <code>x.equals(y)</code> should return <code>true</code> if and
+   only if <code>y.equals(x)</code> returns <code>true</code>.
+ * It is transitive: for any instances <code>x</code>, <code>y</code>, and <code>z</code> of type <code>AnyRef</code> if <code>x.equals(y)</code> returns <code>true</code> and
+   <code>y.equals(z)</code> returns <code>true</code>, then <code>x.equals(z)</code> should return <code>true</code>.</p><p>If you override this method, you should verify that your implementation remains an equivalence relation.
+Additionally, when overriding this method it is often necessary to override <code>hashCode</code> to ensure that objects
+that are &quot;equal&quot; (<code>o1.equals(o2)</code> returns <code>true</code>) hash to the same 
+scala.Int
+(<code>o1.hashCode.equals(o2.hashCode)</code>).
+</p></div><dl class="paramcmts block"><dt class="param">arg0</dt><dd class="cmt"><p>the object to compare against this object for equality.</p></dd><dt>returns</dt><dd class="cmt"><p><code>true</code> if the receiver object is equivalent to the argument; <code>false</code> otherwise.</p></dd></dl><div class="block">
+          definition classes: AnyRef → Any
+        </div>
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" data-isabs="false" name="org.scalatest.tools.ScalaTestAntTask#execute">
+      <a id="execute():Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">execute</span>
+        
+        <span class="params">()</span>
+        <span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Executes the task.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Executes the task.
+</p></div><div class="block">
+          definition classes: <a href="" class="extype" name="org.scalatest.tools.ScalaTestAntTask">ScalaTestAntTask</a> → Task
+        </div>
+            
+            
+            
+          </div>
+          
+    </li><li visbl="prt" data-isabs="false" name="scala.AnyRef#finalize">
+      <a id="finalize():Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">finalize</span>
+        
+        <span class="params">()</span>
+        <span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">This method is called by the garbage collector on the receiver object when garbage collection determines that
+there are no more references to the object.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>This method is called by the garbage collector on the receiver object when garbage collection determines that
+there are no more references to the object.</p><p>The details of when and if the <code>finalize</code> method are invoked, as well as the interaction between <code>finalize</code>and non-local returns and exceptions, are all platform dependent.</p></div><div class="block">
+          attributes: protected 
+        </div><div class="block">
+          definition classes: AnyRef
+        </div>
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" data-isabs="false" name="scala.AnyRef#getClass">
+      <a id="getClass():java.lang.Class[_ &lt;: java.lang.Object]"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">getClass</span>
+        
+        <span class="params">()</span>
+        <span class="result">: java.lang.Class[_ &lt;: java.lang.Object]</span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Returns a representation that corresponds to the dynamic class of the receiver object.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Returns a representation that corresponds to the dynamic class of the receiver object.</p><p>The nature of the representation is platform dependent.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>a representation that corresponds to the dynamic class of the receiver object.</p></dd></dl><div class="block">
+          attributes: final 
+        </div><div class="block">
+          definition classes: AnyRef
+        </div>
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" data-isabs="false" name="org.apache.tools.ant.ProjectComponent#getDescription">
+      <a id="getDescription():String"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">getDescription</span>
+        
+        <span class="params">()</span>
+        <span class="result">: <span class="extype" name="java.lang.String">String</span></span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          definition classes: ProjectComponent
+        </div></div>
+          
+    </li><li visbl="pub" data-isabs="false" name="org.apache.tools.ant.ProjectComponent#getLocation">
+      <a id="getLocation():Location"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">getLocation</span>
+        
+        <span class="params">()</span>
+        <span class="result">: <span class="extype" name="org.apache.tools.ant.Location">Location</span></span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          definition classes: ProjectComponent
+        </div></div>
+          
+    </li><li visbl="pub" data-isabs="false" name="org.apache.tools.ant.Task#getOwningTarget">
+      <a id="getOwningTarget():Target"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">getOwningTarget</span>
+        
+        <span class="params">()</span>
+        <span class="result">: <span class="extype" name="org.apache.tools.ant.Target">Target</span></span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          definition classes: Task
+        </div></div>
+          
+    </li><li visbl="pub" data-isabs="false" name="org.apache.tools.ant.ProjectComponent#getProject">
+      <a id="getProject():Project"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">getProject</span>
+        
+        <span class="params">()</span>
+        <span class="result">: <span class="extype" name="org.apache.tools.ant.Project">Project</span></span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          definition classes: ProjectComponent
+        </div></div>
+          
+    </li><li visbl="pub" data-isabs="false" name="org.apache.tools.ant.Task#getRuntimeConfigurableWrapper">
+      <a id="getRuntimeConfigurableWrapper():RuntimeConfigurable"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">getRuntimeConfigurableWrapper</span>
+        
+        <span class="params">()</span>
+        <span class="result">: <span class="extype" name="org.apache.tools.ant.RuntimeConfigurable">RuntimeConfigurable</span></span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          definition classes: Task
+        </div></div>
+          
+    </li><li visbl="pub" data-isabs="false" name="org.apache.tools.ant.Task#getTaskName">
+      <a id="getTaskName():String"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">getTaskName</span>
+        
+        <span class="params">()</span>
+        <span class="result">: <span class="extype" name="java.lang.String">String</span></span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          definition classes: Task
+        </div></div>
+          
+    </li><li visbl="pub" data-isabs="false" name="org.apache.tools.ant.Task#getTaskType">
+      <a id="getTaskType():String"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">getTaskType</span>
+        
+        <span class="params">()</span>
+        <span class="result">: <span class="extype" name="java.lang.String">String</span></span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          definition classes: Task
+        </div></div>
+          
+    </li><li visbl="prt" data-isabs="false" name="org.apache.tools.ant.Task#getWrapper">
+      <a id="getWrapper():RuntimeConfigurable"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">getWrapper</span>
+        
+        <span class="params">()</span>
+        <span class="result">: <span class="extype" name="org.apache.tools.ant.RuntimeConfigurable">RuntimeConfigurable</span></span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          attributes: protected 
+        </div><div class="block">
+          definition classes: Task
+        </div></div>
+          
+    </li><li visbl="prt" data-isabs="false" name="org.apache.tools.ant.Task#handleErrorFlush">
+      <a id="handleErrorFlush(String):Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">handleErrorFlush</span>
+        
+        <span class="params">(<span name="arg0">arg0: <span class="extype" name="java.lang.String">String</span></span>)</span>
+        <span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          attributes: protected 
+        </div><div class="block">
+          definition classes: Task
+        </div></div>
+          
+    </li><li visbl="prt" data-isabs="false" name="org.apache.tools.ant.Task#handleErrorOutput">
+      <a id="handleErrorOutput(String):Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">handleErrorOutput</span>
+        
+        <span class="params">(<span name="arg0">arg0: <span class="extype" name="java.lang.String">String</span></span>)</span>
+        <span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          attributes: protected 
+        </div><div class="block">
+          definition classes: Task
+        </div></div>
+          
+    </li><li visbl="prt" data-isabs="false" name="org.apache.tools.ant.Task#handleFlush">
+      <a id="handleFlush(String):Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">handleFlush</span>
+        
+        <span class="params">(<span name="arg0">arg0: <span class="extype" name="java.lang.String">String</span></span>)</span>
+        <span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          attributes: protected 
+        </div><div class="block">
+          definition classes: Task
+        </div></div>
+          
+    </li><li visbl="prt" data-isabs="false" name="org.apache.tools.ant.Task#handleInput">
+      <a id="handleInput(Array[Byte],Int,Int):Int"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">handleInput</span>
+        
+        <span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Array">Array</span>[<span class="extype" name="scala.Byte">Byte</span>]</span>, <span name="arg1">arg1: <span class="extype" name="scala.Int">Int</span></span>, <span name="arg2">arg2: <span class="extype" name="scala.Int">Int</span></span>)</span>
+        <span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          attributes: protected 
+        </div><div class="block">
+          definition classes: Task
+        </div></div>
+          
+    </li><li visbl="prt" data-isabs="false" name="org.apache.tools.ant.Task#handleOutput">
+      <a id="handleOutput(String):Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">handleOutput</span>
+        
+        <span class="params">(<span name="arg0">arg0: <span class="extype" name="java.lang.String">String</span></span>)</span>
+        <span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          attributes: protected 
+        </div><div class="block">
+          definition classes: Task
+        </div></div>
+          
+    </li><li visbl="pub" data-isabs="false" name="scala.AnyRef#hashCode">
+      <a id="hashCode():Int"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">hashCode</span>
+        
+        <span class="params">()</span>
+        <span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Returns a hash code value for the object.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Returns a hash code value for the object.</p><p>The default hashing algorithm is platform dependent.</p><p>Note that it is allowed for two objects to have identical hash codes (<code>o1.hashCode.equals(o2.hashCode)</code>) yet
+not be equal (<code>o1.equals(o2)</code> returns <code>false</code>).  A degenerate implementation could always return <code>0</code>.
+However, it is required that if two objects are equal (<code>o1.equals(o2)</code> returns <code>true</code>) that they have
+identical hash codes (<code>o1.hashCode.equals(o2.hashCode)</code>).  Therefore, when overriding this method, be sure
+to verify that the behavior is consistent with the <code>equals</code> method.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>the hash code value for the object.</p></dd></dl><div class="block">
+          definition classes: AnyRef → Any
+        </div>
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" data-isabs="false" name="org.apache.tools.ant.Task#init">
+      <a id="init():Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">init</span>
+        
+        <span class="params">()</span>
+        <span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          definition classes: Task
+        </div></div>
+          
+    </li><li visbl="pub" data-isabs="false" name="scala.Any#isInstanceOf">
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">isInstanceOf</span>
+        <span class="tparams">[<span name="T0">T0</span>]</span>
+        
+        <span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">This method is used to test whether the dynamic type of the receiver object is <code>T0</code>.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>This method is used to test whether the dynamic type of the receiver object is <code>T0</code>.</p><p>Note that the test result of the test is modulo Scala's erasure semantics.  Therefore the expression<code>1.isInstanceOf[String]</code> will return <code>false</code>, while the expression <code>List(1).isInstanceOf[List[String]]</code> will
+return <code>true</code>.  In the latter example, because the type argument is erased as part of compilation it is not
+possible to check whether the contents of the list are of the requested typed.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p><code>true</code> if the receiver object is an instance of erasure of type <code>T0</code>; <code>false</code> otherwise.</p></dd></dl><div class="block">
+          attributes: final 
+        </div><div class="block">
+          definition classes: Any
+        </div>
+            
+            
+            
+          </div>
+          
+    </li><li visbl="prt" data-isabs="false" name="org.apache.tools.ant.Task#isInvalid">
+      <a id="isInvalid():Boolean"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">isInvalid</span>
+        
+        <span class="params">()</span>
+        <span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          attributes: protected final 
+        </div><div class="block">
+          definition classes: Task
+        </div></div>
+          
+    </li><li visbl="pub" data-isabs="false" name="org.apache.tools.ant.Task#log">
+      <a id="log(String,Throwable,Int):Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">log</span>
+        
+        <span class="params">(<span name="arg0">arg0: <span class="extype" name="java.lang.String">String</span></span>, <span name="arg1">arg1: <span class="extype" name="java.lang.Throwable">Throwable</span></span>, <span name="arg2">arg2: <span class="extype" name="scala.Int">Int</span></span>)</span>
+        <span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          definition classes: Task
+        </div></div>
+          
+    </li><li visbl="pub" data-isabs="false" name="org.apache.tools.ant.Task#log">
+      <a id="log(Throwable,Int):Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">log</span>
+        
+        <span class="params">(<span name="arg0">arg0: <span class="extype" name="java.lang.Throwable">Throwable</span></span>, <span name="arg1">arg1: <span class="extype" name="scala.Int">Int</span></span>)</span>
+        <span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          definition classes: Task
+        </div></div>
+          
+    </li><li visbl="pub" data-isabs="false" name="org.apache.tools.ant.Task#log">
+      <a id="log(String,Int):Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">log</span>
+        
+        <span class="params">(<span name="arg0">arg0: <span class="extype" name="java.lang.String">String</span></span>, <span name="arg1">arg1: <span class="extype" name="scala.Int">Int</span></span>)</span>
+        <span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          definition classes: Task → ProjectComponent
+        </div></div>
+          
+    </li><li visbl="pub" data-isabs="false" name="org.apache.tools.ant.Task#log">
+      <a id="log(String):Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">log</span>
+        
+        <span class="params">(<span name="arg0">arg0: <span class="extype" name="java.lang.String">String</span></span>)</span>
+        <span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          definition classes: Task → ProjectComponent
+        </div></div>
+          
+    </li><li visbl="pub" data-isabs="false" name="org.apache.tools.ant.Task#maybeConfigure">
+      <a id="maybeConfigure():Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">maybeConfigure</span>
+        
+        <span class="params">()</span>
+        <span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          definition classes: Task
+        </div></div>
+          
+    </li><li visbl="pub" data-isabs="false" name="scala.AnyRef#ne">
+      <a id="ne(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">ne</span>
+        
+        <span class="params">(<span name="arg0">arg0: AnyRef</span>)</span>
+        <span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt"><code>o.ne(arg0)</code> is the same as <code>!(o.eq(arg0))</code>.</p>
+            <div class="fullcomment"><div class="comment cmt"><p><code>o.ne(arg0)</code> is the same as <code>!(o.eq(arg0))</code>.
+</p></div><dl class="paramcmts block"><dt class="param">arg0</dt><dd class="cmt"><p>the object to compare against this object for reference dis-equality.</p></dd><dt>returns</dt><dd class="cmt"><p><code>false</code> if the argument is not a reference to the receiver object; <code>true</code> otherwise.</p></dd></dl><div class="block">
+          attributes: final 
+        </div><div class="block">
+          definition classes: AnyRef
+        </div>
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" data-isabs="false" name="scala.AnyRef#notify">
+      <a id="notify():Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">notify</span>
+        
+        <span class="params">()</span>
+        <span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Wakes up a single thread that is waiting on the receiver object's monitor.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Wakes up a single thread that is waiting on the receiver object's monitor.</p></div><div class="block">
+          attributes: final 
+        </div><div class="block">
+          definition classes: AnyRef
+        </div>
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" data-isabs="false" name="scala.AnyRef#notifyAll">
+      <a id="notifyAll():Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">notifyAll</span>
+        
+        <span class="params">()</span>
+        <span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Wakes up all threads that are waiting on the receiver object's monitor.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Wakes up all threads that are waiting on the receiver object's monitor.</p></div><div class="block">
+          attributes: final 
+        </div><div class="block">
+          definition classes: AnyRef
+        </div>
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" data-isabs="false" name="org.apache.tools.ant.Task#perform">
+      <a id="perform():Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">perform</span>
+        
+        <span class="params">()</span>
+        <span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          attributes: final 
+        </div><div class="block">
+          definition classes: Task
+        </div></div>
+          
+    </li><li visbl="pub" data-isabs="false" name="org.apache.tools.ant.Task#reconfigure">
+      <a id="reconfigure():Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">reconfigure</span>
+        
+        <span class="params">()</span>
+        <span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          definition classes: Task
+        </div></div>
+          
+    </li><li visbl="pub" data-isabs="false" name="org.scalatest.tools.ScalaTestAntTask#setConcurrent">
+      <a id="setConcurrent(Boolean):Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name deprecated">setConcurrent</span>
+        
+        <span class="params">(<span name="concurrent">concurrent: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span>
+        <span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Sets value of the <code>concurrent</code> attribute.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Sets value of the <code>concurrent</code> attribute.<b>Note: The <code>concurrent</code> attribute has been deprecated and will be removed in a future version of ScalaTest.
+Please use the <code>parallel</code> attribute instead.</b></p></div><div class="block"><ol>deprecated:
+          <li><p>Please use parallel instead</p></li>
+        </ol></div>
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" data-isabs="false" name="org.apache.tools.ant.ProjectComponent#setDescription">
+      <a id="setDescription(String):Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">setDescription</span>
+        
+        <span class="params">(<span name="arg0">arg0: <span class="extype" name="java.lang.String">String</span></span>)</span>
+        <span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          definition classes: ProjectComponent
+        </div></div>
+          
+    </li><li visbl="pub" data-isabs="false" name="org.scalatest.tools.ScalaTestAntTask#setFork">
+      <a id="setFork(Boolean):Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">setFork</span>
+        
+        <span class="params">(<span name="fork">fork: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span>
+        <span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Sets value of the <code>fork</code> attribute.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Sets value of the <code>fork</code> attribute.
+</p></div>
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" data-isabs="false" name="org.scalatest.tools.ScalaTestAntTask#setHaltonfailure">
+      <a id="setHaltonfailure(Boolean):Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">setHaltonfailure</span>
+        
+        <span class="params">(<span name="haltonfailure">haltonfailure: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span>
+        <span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Sets value of the <code>haltonfailure</code> attribute.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Sets value of the <code>haltonfailure</code> attribute.
+</p></div>
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" data-isabs="false" name="org.apache.tools.ant.ProjectComponent#setLocation">
+      <a id="setLocation(Location):Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">setLocation</span>
+        
+        <span class="params">(<span name="arg0">arg0: <span class="extype" name="org.apache.tools.ant.Location">Location</span></span>)</span>
+        <span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          definition classes: ProjectComponent
+        </div></div>
+          
+    </li><li visbl="pub" data-isabs="false" name="org.scalatest.tools.ScalaTestAntTask#setMaxmemory">
+      <a id="setMaxmemory(String):Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">setMaxmemory</span>
+        
+        <span class="params">(<span name="max">max: String</span>)</span>
+        <span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Sets value of the <code>maxmemory</code> attribute.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Sets value of the <code>maxmemory</code> attribute.
+</p></div>
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" data-isabs="false" name="org.scalatest.tools.ScalaTestAntTask#setMembersonly">
+      <a id="setMembersonly(String):Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">setMembersonly</span>
+        
+        <span class="params">(<span name="packageName">packageName: String</span>)</span>
+        <span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Sets value of <code>membersonly</code> attribute.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Sets value of <code>membersonly</code> attribute.
+</p></div>
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" data-isabs="false" name="org.scalatest.tools.ScalaTestAntTask#setNumthreads">
+      <a id="setNumthreads(Int):Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">setNumthreads</span>
+        
+        <span class="params">(<span name="numthreads">numthreads: <span class="extype" name="scala.Int">Int</span></span>)</span>
+        <span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Sets value of the <code>numthreads</code> attribute.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Sets value of the <code>numthreads</code> attribute.
+</p></div>
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" data-isabs="false" name="org.apache.tools.ant.Task#setOwningTarget">
+      <a id="setOwningTarget(Target):Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">setOwningTarget</span>
+        
+        <span class="params">(<span name="arg0">arg0: <span class="extype" name="org.apache.tools.ant.Target">Target</span></span>)</span>
+        <span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          definition classes: Task
+        </div></div>
+          
+    </li><li visbl="pub" data-isabs="false" name="org.scalatest.tools.ScalaTestAntTask#setParallel">
+      <a id="setParallel(Boolean):Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">setParallel</span>
+        
+        <span class="params">(<span name="parallel">parallel: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span>
+        <span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Sets value of the <code>parallel</code> attribute.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Sets value of the <code>parallel</code> attribute.
+</p></div>
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" data-isabs="false" name="org.apache.tools.ant.ProjectComponent#setProject">
+      <a id="setProject(Project):Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">setProject</span>
+        
+        <span class="params">(<span name="arg0">arg0: <span class="extype" name="org.apache.tools.ant.Project">Project</span></span>)</span>
+        <span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          definition classes: ProjectComponent
+        </div></div>
+          
+    </li><li visbl="pub" data-isabs="false" name="org.scalatest.tools.ScalaTestAntTask#setRunpath">
+      <a id="setRunpath(Path):Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">setRunpath</span>
+        
+        <span class="params">(<span name="runpath">runpath: <span class="extype" name="org.apache.tools.ant.types.Path">Path</span></span>)</span>
+        <span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Sets value of the <code>runpath</code> attribute.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Sets value of the <code>runpath</code> attribute.
+</p></div>
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" data-isabs="false" name="org.apache.tools.ant.Task#setRuntimeConfigurableWrapper">
+      <a id="setRuntimeConfigurableWrapper(RuntimeConfigurable):Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">setRuntimeConfigurableWrapper</span>
+        
+        <span class="params">(<span name="arg0">arg0: <span class="extype" name="org.apache.tools.ant.RuntimeConfigurable">RuntimeConfigurable</span></span>)</span>
+        <span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          definition classes: Task
+        </div></div>
+          
+    </li><li visbl="pub" data-isabs="false" name="org.scalatest.tools.ScalaTestAntTask#setSuite">
+      <a id="setSuite(String):Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">setSuite</span>
+        
+        <span class="params">(<span name="suite">suite: String</span>)</span>
+        <span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Sets value of <code>suite</code> attribute.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Sets value of <code>suite</code> attribute.
+</p></div>
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" data-isabs="false" name="org.apache.tools.ant.Task#setTaskName">
+      <a id="setTaskName(String):Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">setTaskName</span>
+        
+        <span class="params">(<span name="arg0">arg0: <span class="extype" name="java.lang.String">String</span></span>)</span>
+        <span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          definition classes: Task
+        </div></div>
+          
+    </li><li visbl="pub" data-isabs="false" name="org.apache.tools.ant.Task#setTaskType">
+      <a id="setTaskType(String):Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">setTaskType</span>
+        
+        <span class="params">(<span name="arg0">arg0: <span class="extype" name="java.lang.String">String</span></span>)</span>
+        <span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          definition classes: Task
+        </div></div>
+          
+    </li><li visbl="pub" data-isabs="false" name="org.scalatest.tools.ScalaTestAntTask#setTestNGSuites">
+      <a id="setTestNGSuites(Path):Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">setTestNGSuites</span>
+        
+        <span class="params">(<span name="testNGSuitePath">testNGSuitePath: <span class="extype" name="org.apache.tools.ant.types.Path">Path</span></span>)</span>
+        <span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Sets value of the <code>testngsuites</code> attribute.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Sets value of the <code>testngsuites</code> attribute.
+</p></div>
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" data-isabs="false" name="org.scalatest.tools.ScalaTestAntTask#setWildcard">
+      <a id="setWildcard(String):Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">setWildcard</span>
+        
+        <span class="params">(<span name="packageName">packageName: String</span>)</span>
+        <span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Sets value of <code>wildcard</code> attribute.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Sets value of <code>wildcard</code> attribute.
+</p></div>
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" data-isabs="false" name="scala.AnyRef#synchronized">
+      <a id="synchronized[T0](T0):T0"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">synchronized</span>
+        <span class="tparams">[<span name="T0">T0</span>]</span>
+        <span class="params">(<span name="arg0">arg0: T0</span>)</span>
+        <span class="result">: T0</span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          attributes: final 
+        </div><div class="block">
+          definition classes: AnyRef
+        </div></div>
+          
+    </li><li visbl="pub" data-isabs="false" name="scala.AnyRef#toString">
+      <a id="toString():String"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">toString</span>
+        
+        <span class="params">()</span>
+        <span class="result">: <span class="extype" name="java.lang.String">String</span></span>
+      </span>
+      </h4>
+      
+            <p class="shortcomment cmt">Returns a string representation of the object.</p>
+            <div class="fullcomment"><div class="comment cmt"><p>Returns a string representation of the object.</p><p>The default representation is platform dependent.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>a string representation of the object.</p></dd></dl><div class="block">
+          definition classes: AnyRef → Any
+        </div>
+            
+            
+            
+          </div>
+          
+    </li><li visbl="pub" data-isabs="false" name="scala.AnyRef#wait">
+      <a id="wait():Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">wait</span>
+        
+        <span class="params">()</span>
+        <span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          attributes: final 
+        </div><div class="block">
+          definition classes: AnyRef
+        </div></div>
+          
+    </li><li visbl="pub" data-isabs="false" name="scala.AnyRef#wait">
+      <a id="wait(Long,Int):Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">wait</span>
+        
+        <span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>, <span name="arg1">arg1: <span class="extype" name="scala.Int">Int</span></span>)</span>
+        <span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          attributes: final 
+        </div><div class="block">
+          definition classes: AnyRef
+        </div></div>
+          
+    </li><li visbl="pub" data-isabs="false" name="scala.AnyRef#wait">
+      <a id="wait(Long):Unit"></a>
+      <h4 class="signature">
+      <span class="kind">def</span>
+      <span class="symbol">
+        <span class="name">wait</span>
+        
+        <span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>)</span>
+        <span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      
+            
+            <div class="fullcomment"><div class="block">
+          attributes: final 
+        </div><div class="block">
+          definition classes: AnyRef
+        </div></div>
+          
+    </li></ol>
+            </div>
+
+        <div class="parent" name="org.apache.tools.ant.Task">
+              <h3>Inherited from <span class="extype" name="org.apache.tools.ant.Task">Task</span></h3>
+            </div><div class="parent" name="org.apache.tools.ant.ProjectComponent">
+              <h3>Inherited from <span class="extype" name="org.apache.tools.ant.ProjectComponent">ProjectComponent</span></h3>
+            </div><div class="parent" name="java.lang.Cloneable">
+              <h3>Inherited from <span class="extype" name="java.lang.Cloneable">Cloneable</span></h3>
+            </div><div class="parent" name="scala.AnyRef">
+              <h3>Inherited from AnyRef</h3>
+            </div><div class="parent" name="scala.Any">
+              <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
+            </div>
+
+      </div>
+      
+      <div id="tooltip"></div>
+      
+    </body>
+      </html>

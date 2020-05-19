@@ -1,0 +1,1075 @@
+<!DOCTYPE html >
+<html>
+        <head>
+          <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+          <title>ScalaTest 3.0.5  - org.scalatest.concurrent.DeprecatedTimeLimitedTests</title>
+          <meta name="description" content="ScalaTest 3.0.5 - org.scalatest.concurrent.DeprecatedTimeLimitedTests" />
+          <meta name="keywords" content="ScalaTest 3.0.5 org.scalatest.concurrent.DeprecatedTimeLimitedTests" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../lib/index.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../../../lib/jquery.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.panzoom.min.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.mousewheel.min.js"></script>
+      <script type="text/javascript" src="../../../lib/index.js"></script>
+      <script type="text/javascript" src="../../../index.js"></script>
+      <script type="text/javascript" src="../../../lib/scheduler.js"></script>
+      <script type="text/javascript" src="../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../lib/tools.tooltip.js"></script>
+      
+      <script type="text/javascript">
+        /* this variable can be used by the JS to determine the path to the root document */
+        var toRoot = '../../../';
+      </script>
+    
+        </head>
+        <body>
+      <div id="search">
+        <span id="doc-title">ScalaTest 3.0.5<span id="doc-version"></span></span>
+        <span class="close-results"><span class="left">&lt;</span> Back</span>
+        <div id="textfilter">
+          <span class="input">
+            <input autocapitalize="none" placeholder="Search" id="index-input" type="text" accesskey="/" />
+            <i class="clear material-icons"></i>
+            <i id="search-icon" class="material-icons"></i>
+          </span>
+        </div>
+    </div>
+      <div id="search-results">
+        <div id="search-progress">
+          <div id="progress-fill"></div>
+        </div>
+        <div id="results-content">
+          <div id="entity-results"></div>
+          <div id="member-results"></div>
+        </div>
+      </div>
+      <div id="content-scroll-container" style="-webkit-overflow-scrolling: touch;">
+        <div id="content-container" style="-webkit-overflow-scrolling: touch;">
+          <div id="subpackage-spacer">
+            <div id="packages">
+              <h1>Packages</h1>
+              <ul>
+                <li name="_root_.root" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="_root_"></a><a id="root:_root_"></a>
+      <span class="permalink">
+      <a href="index.html#_root_" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="../../../index.html"><span class="name">root</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../../../index.html" class="extype" name="_root_">root</a></dd></dl></div>
+    </li><li name="_root_.org" visbl="pub" class="indented1 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="org"></a><a id="org:org"></a>
+      <span class="permalink">
+      <a href="index.html#org" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="../../index.html"><span class="name">org</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../../../index.html" class="extype" name="_root_">root</a></dd></dl></div>
+    </li><li name="org.scalatest" visbl="pub" class="indented2 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="scalatest"></a><a id="scalatest:scalatest"></a>
+      <span class="permalink">
+      <a href="../org/index.html#scalatest" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="ScalaTest's main traits, classes, and other members, including members supporting ScalaTest's DSL for the Scala interpreter." href="../index.html"><span class="name">scalatest</span></a>
+      </span>
+      
+      <p class="shortcomment cmt">ScalaTest's main traits, classes, and other members, including members supporting ScalaTest's DSL for the Scala interpreter.</p><div class="fullcomment"><div class="comment cmt"><p>ScalaTest's main traits, classes, and other members, including members supporting ScalaTest's DSL for the Scala interpreter.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../../index.html" class="extype" name="org">org</a></dd></dl></div>
+    </li><li name="org.scalatest.concurrent" visbl="pub" class="indented3 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="concurrent"></a><a id="concurrent:concurrent"></a>
+      <span class="permalink">
+      <a href="../../org/scalatest/index.html#concurrent" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="ScalaTest's main traits, classes, and other members, including members supporting ScalaTest's DSL for the Scala interpreter." href="index.html"><span class="name">concurrent</span></a>
+      </span>
+      
+      <p class="shortcomment cmt">ScalaTest's main traits, classes, and other members, including members supporting ScalaTest's DSL for the Scala interpreter.</p><div class="fullcomment"><div class="comment cmt"><p>ScalaTest's main traits, classes, and other members, including members supporting ScalaTest's DSL for the Scala interpreter.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="org.scalatest">scalatest</a></dd></dl></div>
+    </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="trait" href="AbstractPatienceConfiguration.html" title="Trait that defines an abstract patienceConfig method that is implemented in PatienceConfiguration and can be overriden in stackable modification traits such as IntegrationPatience."></a>
+                        <a href="AbstractPatienceConfiguration.html" title="Trait that defines an abstract patienceConfig method that is implemented in PatienceConfiguration and can be overriden in stackable modification traits such as IntegrationPatience.">AbstractPatienceConfiguration</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="trait" href="AsyncCancelAfterFailure.html" title="Trait that when mixed into a AsyncTestSuite cancels any remaining tests in that AsyncTestSuite instance after a test fails."></a>
+                        <a href="AsyncCancelAfterFailure.html" title="Trait that when mixed into a AsyncTestSuite cancels any remaining tests in that AsyncTestSuite instance after a test fails.">AsyncCancelAfterFailure</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="trait" href="AsyncTimeLimitedTests.html" title="Trait that when mixed into an asynchronous suite class establishes a time limit for its tests."></a>
+                        <a href="AsyncTimeLimitedTests.html" title="Trait that when mixed into an asynchronous suite class establishes a time limit for its tests.">AsyncTimeLimitedTests</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="trait" href="ConductorFixture.html" title="Trait that can pass a new Conductor fixture into tests."></a>
+                        <a href="ConductorFixture.html" title="Trait that can pass a new Conductor fixture into tests.">ConductorFixture</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="trait" href="ConductorMethods.html" title="Trait that provides each test with access to a new Conductor via methods."></a>
+                        <a href="ConductorMethods.html" title="Trait that provides each test with access to a new Conductor via methods.">ConductorMethods</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="trait" href="Conductors.html" title="Trait whose Conductor member facilitates the testing of classes, traits, and libraries designed to be used by multiple threads concurrently."></a>
+                        <a href="Conductors.html" title="Trait whose Conductor member facilitates the testing of classes, traits, and libraries designed to be used by multiple threads concurrently.">Conductors</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="trait" href="" title="Trait that when mixed into a suite class establishes a time limit for its tests."></a>
+                        <a href="" title="Trait that when mixed into a suite class establishes a time limit for its tests.">DeprecatedTimeLimitedTests</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="object" href="DoNotInterrupt$.html" title="Interruption strategy in which nothing is done to try and interrupt an operation."></a>
+                        <a href="DoNotInterrupt$.html" title="Interruption strategy in which nothing is done to try and interrupt an operation.">DoNotInterrupt</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="object" href="DoNotSignal$.html" title="Signaling strategy in which nothing is done to try and signal or interrupt an operation."></a>
+                        <a href="DoNotSignal$.html" title="Signaling strategy in which nothing is done to try and signal or interrupt an operation.">DoNotSignal</a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="Eventually$.html" title="Companion object that facilitates the importing of Eventually members as an alternative to mixing in the trait."></a>
+                        <a class="trait" href="Eventually.html" title="Trait that provides the eventually construct, which periodically retries executing a passed by-name parameter, until it either succeeds or the configured timeout has been surpassed."></a>
+                        <a href="Eventually.html" title="Trait that provides the eventually construct, which periodically retries executing a passed by-name parameter, until it either succeeds or the configured timeout has been surpassed.">Eventually</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="trait" href="Futures.html" title="Trait that facilitates testing with futures."></a>
+                        <a href="Futures.html" title="Trait that facilitates testing with futures.">Futures</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="trait" href="IntegrationPatience.html" title="Stackable modification trait for PatienceConfiguration that provides default timeout and interval values appropriate for integration testing."></a>
+                        <a href="IntegrationPatience.html" title="Stackable modification trait for PatienceConfiguration that provides default timeout and interval values appropriate for integration testing.">IntegrationPatience</a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="Interruptor$.html" title="Companion object that provides a factory method for an Interruptor defined in terms of a function from a function of type Thread to Unit."></a>
+                        <a class="trait" href="Interruptor.html" title="Strategy for interrupting an operation after a timeout expires."></a>
+                        <a href="Interruptor.html" title="Strategy for interrupting an operation after a timeout expires.">Interruptor</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="trait" href="JavaFutures.html" title="Provides an implicit conversion from java.util.concurrent.Future[T] to FutureConcept[T]."></a>
+                        <a href="JavaFutures.html" title="Provides an implicit conversion from java.util.concurrent.Future[T] to FutureConcept[T].">JavaFutures</a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="PatienceConfiguration$.html" title=""></a>
+                        <a class="trait" href="PatienceConfiguration.html" title="Trait providing methods and classes used to configure timeouts and, where relevant, the interval between retries."></a>
+                        <a href="PatienceConfiguration.html" title="Trait providing methods and classes used to configure timeouts and, where relevant, the interval between retries.">PatienceConfiguration</a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="ScalaFutures$.html" title="Companion object that facilitates the importing of ScalaFutures members as an alternative to mixing in the trait."></a>
+                        <a class="trait" href="ScalaFutures.html" title="Provides an implicit conversion from scala.concurrent.Future[T] to FutureConcept[T]."></a>
+                        <a href="ScalaFutures.html" title="Provides an implicit conversion from scala.concurrent.Future[T] to FutureConcept[T].">ScalaFutures</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="trait" href="ScaledTimeSpans.html" title="Trait providing a scaled method that can be used to scale time Spans used during the testing of asynchronous operations."></a>
+                        <a href="ScaledTimeSpans.html" title="Trait providing a scaled method that can be used to scale time Spans used during the testing of asynchronous operations.">ScaledTimeSpans</a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="SelectorInterruptor$.html" title="Companion object that provides a factory method for a SelectorInterruptor."></a>
+                        <a class="class" href="SelectorInterruptor.html" title="Strategy for interrupting an operation in which wakeup is called on the java.nio.channels.Selector passed to the constructor."></a>
+                        <a href="SelectorInterruptor.html" title="Strategy for interrupting an operation in which wakeup is called on the java.nio.channels.Selector passed to the constructor.">SelectorInterruptor</a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="SelectorSignaler$.html" title="Companion object that provides a factory method for a SelectorSignaler."></a>
+                        <a class="class" href="SelectorSignaler.html" title="Strategy for signaling an operation in which wakeup is called on the java.nio.channels.Selector passed to the constructor."></a>
+                        <a href="SelectorSignaler.html" title="Strategy for signaling an operation in which wakeup is called on the java.nio.channels.Selector passed to the constructor.">SelectorSignaler</a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="Signaler$.html" title="Companion object that provides a factory method for a Singlaer defined in terms of a function from a function of type Thread to Unit."></a>
+                        <a class="trait" href="Signaler.html" title="Strategy for signaling an operation after a timeout expires."></a>
+                        <a href="Signaler.html" title="Strategy for signaling an operation after a timeout expires.">Signaler</a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="SocketInterruptor$.html" title="Companion object that provides a factory method for a SocketInterruptor."></a>
+                        <a class="class" href="SocketInterruptor.html" title="Strategy for interrupting an operation in which close is called on the java.net.Socket passed to the constructor."></a>
+                        <a href="SocketInterruptor.html" title="Strategy for interrupting an operation in which close is called on the java.net.Socket passed to the constructor.">SocketInterruptor</a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="SocketSignaler$.html" title="Companion object that provides a factory method for a SocketSignaler."></a>
+                        <a class="class" href="SocketSignaler.html" title="Strategy for signaling an operation in which close is called on the java.net.Socket passed to the constructor."></a>
+                        <a href="SocketSignaler.html" title="Strategy for signaling an operation in which close is called on the java.net.Socket passed to the constructor.">SocketSignaler</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="object" href="ThreadInterruptor$.html" title="Strategy for interrupting an operation in which interrupt is called on the Thread passed to apply."></a>
+                        <a href="ThreadInterruptor$.html" title="Strategy for interrupting an operation in which interrupt is called on the Thread passed to apply.">ThreadInterruptor</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="object" href="ThreadSignaler$.html" title="Strategy for signaling an operation in which interrupt is called on the Thread passed to apply."></a>
+                        <a href="ThreadSignaler$.html" title="Strategy for signaling an operation in which interrupt is called on the Thread passed to apply.">ThreadSignaler</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="trait" href="TimeLimitedTests.html" title="Trait that when mixed into a suite class establishes a time limit for its tests."></a>
+                        <a href="TimeLimitedTests.html" title="Trait that when mixed into a suite class establishes a time limit for its tests.">TimeLimitedTests</a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="TimeLimits$.html" title="Companion object that facilitates the importing of Timeouts members as an alternative to mixing in the trait."></a>
+                        <a class="trait" href="TimeLimits.html" title="Trait that provides failAfter and cancelAfter methods, which allow you to specify a time limit for an operation passed as a by-name parameter, as well as a way to signal it if the operation exceeds its time limit."></a>
+                        <a href="TimeLimits.html" title="Trait that provides failAfter and cancelAfter methods, which allow you to specify a time limit for an operation passed as a by-name parameter, as well as a way to signal it if the operation exceeds its time limit.">TimeLimits</a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="Timeouts$.html" title="Companion object that facilitates the importing of Timeouts members as an alternative to mixing in the trait."></a>
+                        <a class="trait" href="Timeouts.html" title="This trait has been deprecated and will be removed in a later version of ScalaTest. Please use trait TimeLimits instead."></a>
+                        <a href="Timeouts.html" title="This trait has been deprecated and will be removed in a later version of ScalaTest. Please use trait TimeLimits instead.">Timeouts</a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="Waiters$.html" title="Companion object that facilitates the importing of Waiters members as an alternative to mixing in the trait."></a>
+                        <a class="trait" href="Waiters.html" title="Trait that facilitates performing assertions outside the main test thread, such as assertions in callback methods that are invoked asynchronously."></a>
+                        <a href="Waiters.html" title="Trait that facilitates performing assertions outside the main test thread, such as assertions in callback methods that are invoked asynchronously.">Waiters</a>
+                      </li>
+              </ul>
+            </div>
+          </div>
+          <div id="content">
+            <body class="trait type">
+
+<!-- Top of doc.scalatest.org [javascript] -->
+
+<script type="text/javascript">
+
+var rnd = window.rnd || Math.floor(Math.random()*10e6);
+
+var pid204546 = window.pid204546 || rnd;
+
+var plc204546 = window.plc204546 || 0;
+
+var abkw = window.abkw || '';
+
+var absrc = 'http://ab167933.adbutler-ikon.com/adserve/;ID=167933;size=468x60;setID=204546;type=js;sw='+screen.width+';sh='+screen.height+';spr='+window.devicePixelRatio+';kw='+abkw+';pid='+pid204546+';place='+(plc204546++)+';rnd='+rnd+';click=CLICK_MACRO_PLACEHOLDER';
+
+document.write('<scr'+'ipt src="'+absrc+'" type="text/javascript"></scr'+'ipt>');
+
+</script>
+
+      <div id="definition">
+        <div class="big-circle trait">t</div>
+        <p id="owner"><a href="../../index.html" class="extype" name="org">org</a>.<a href="../index.html" class="extype" name="org.scalatest">scalatest</a>.<a href="index.html" class="extype" name="org.scalatest.concurrent">concurrent</a></p>
+        <h1>DeprecatedTimeLimitedTests<span class="permalink">
+      <a href="../../../org/scalatest/concurrent/DeprecatedTimeLimitedTests.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span></h1>
+        <h3><span class="morelinks"></span></h3>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <span class="name deprecated" title="Deprecated: DeprecatedTimeLimitedTests is deprecated and will be removed in a future version of ScalaTest. Please use TimeLimitedTests instead.">DeprecatedTimeLimitedTests</span><span class="result"> extends <a href="../TestSuiteMixin.html" class="extype" name="org.scalatest.TestSuiteMixin">TestSuiteMixin</a></span>
+      </span>
+      </h4>
+
+      
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Trait that when mixed into a suite class establishes a time limit for its tests.</p><p>This trait overrides <code>withFixture</code>, wrapping a <code>super.withFixture(test)</code> call
+in a <code>failAfter</code> invocation, specifying a timeout obtained by invoking <code>timeLimit</code>
+and an <a href="Interruptor.html"><code>Interruptor</code></a> by invoking <code>defaultTestInterruptor</code>:</p><p><pre class="stHighlighted">
+failAfter(timeLimit) {
+  <span class="stReserved">super</span>.withFixture(test)
+} (defaultTestInterruptor)
+</pre></p><p>Note that the <code>failAfter</code> method executes the body of the by-name passed to it using the same
+thread that invoked <code>failAfter</code>. This means that the same thread will run the <code>withFixture</code> method
+as well as each test, so no extra synchronization is required. A second thread is used to run a timer, and if the timeout
+expires, that second thread will attempt to interrupt the main test thread via the <code>defaultTestInterruptor</code>.</p><p>The <code>timeLimit</code> field is abstract in this trait. Thus you must specify a time limit when you use it.
+For example, the following code specifies that each test must complete within 200 milliseconds:</p><p><pre class="stHighlighted">
+<span class="stReserved">import</span> org.scalatest.FunSpec
+<span class="stReserved">import</span> org.scalatest.concurrent.DeprecatedTimeLimitedTests
+<span class="stReserved">import</span> org.scalatest.time.SpanSugar._
+<br/><span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">FunSpec</span> <span class="stReserved">with</span> <span class="stType">DeprecatedTimeLimitedTests</span> {
+<br/>  <span class="stLineComment">// Note: You may need to either write 200.millis or (200 millis), or</span>
+  <span class="stLineComment">// place a semicolon or blank line after plain old 200 millis, to</span>
+  <span class="stLineComment">// avoid the semicolon inference problems of postfix operator notation.</span>
+  <span class="stReserved">val</span> timeLimit = <span class="stLiteral">200</span> millis
+<br/>  describe(<span class="stQuotedString">"A time-limited test"</span>) {
+    it(<span class="stQuotedString">"should succeed if it completes within the time limit"</span>) {
+      Thread.sleep(<span class="stLiteral">100</span>)
+    }
+    it(<span class="stQuotedString">"should fail if it is taking too darn long"</span>) {
+      Thread.sleep(<span class="stLiteral">300</span>)
+    }
+  }
+}
+</pre></p><p>If you run the above <code>ExampleSpec</code>, the second test will fail with the error message:</p><p><code>The test did not complete within the specified 200 millisecond time limit.</code></p><p>The <code>failAfter</code> method uses an <code>Interruptor</code> to attempt to interrupt the main test thread if the timeout
+expires. The default <code>Interruptor</code> returned by the <code>defaultTestInterruptor</code> method is a
+<a href="ThreadInterruptor$.html"><code>ThreadInterruptor</code></a>, which calls <code>interrupt</code> on the main test thread. If you wish to change this
+interruption strategy, override <code>defaultTestInterruptor</code> to return a different <code>Interruptor</code>. For example,
+here's how you'd change the default to <a href="DoNotInterrupt$.html"><code>DoNotInterrupt</code></a>, a very patient interruption strategy that does nothing to
+interrupt the main test thread:</p><p><pre class="stHighlighted">
+<span class="stReserved">import</span> org.scalatest.FunSpec
+<span class="stReserved">import</span> org.scalatest.concurrent.DeprecatedTimeLimitedTests
+<span class="stReserved">import</span> org.scalatest.time.SpanSugar._
+<br/><span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">FunSpec</span> <span class="stReserved">with</span> <span class="stType">DeprecatedTimeLimitedTests</span> {
+<br/>  <span class="stReserved">val</span> timeLimit = <span class="stLiteral">200</span> millis
+<br/>  <span class="stReserved">override</span> <span class="stReserved">val</span> defaultTestInterruptor = <span class="stType">DoNotInterrupt</span>
+<br/>  describe(<span class="stQuotedString">"A time-limited test"</span>) {
+    it(<span class="stQuotedString">"should succeed if it completes within the time limit"</span>) {
+      Thread.sleep(<span class="stLiteral">100</span>)
+    }
+    it(<span class="stQuotedString">"should fail if it is taking too darn long"</span>) {
+      Thread.sleep(<span class="stLiteral">300</span>)
+    }
+  }
+}
+</pre></p><p>Like the previous incarnation of <code>ExampleSuite</code>, the second test will fail with an error message that indicates
+a timeout expired. But whereas in the previous case, the <code>Thread.sleep</code> would be interrupted after 200 milliseconds,
+in this case it is never interrupted. In the previous case, the failed test requires a little over 200 milliseconds to run.
+In this case, because the <code>sleep(300)</code> is never interrupted, the failed test requires a little over 300 milliseconds
+to run.</p></div><dl class="attributes block"> <dt>Self Type</dt><dd><a href="" class="extype" name="org.scalatest.concurrent.DeprecatedTimeLimitedTests">DeprecatedTimeLimitedTests</a> with <a href="../TestSuite.html" class="extype" name="org.scalatest.TestSuite">TestSuite</a></dd><dt>Annotations</dt><dd>
+                <span class="name">@deprecated</span>
+              
+        </dd><dt>Deprecated</dt><dd class="cmt"><p>DeprecatedTimeLimitedTests is deprecated and will be removed in a future version of ScalaTest. Please use TimeLimitedTests instead.</p></dd><dt>Source</dt><dd><a href="https://github.com/scalatest/scalatest/tree/release-3.0.5/scalatest//src/main/scala/org/scalatest/concurrent/DeprecatedTimeLimitedTests.scala" target="_blank">DeprecatedTimeLimitedTests.scala</a></dd></dl><div class="toggleContainer block">
+          <span class="toggle">
+            Linear Supertypes
+          </span>
+          <div class="superTypes hiddenContent"><a href="../TestSuiteMixin.html" class="extype" name="org.scalatest.TestSuiteMixin">TestSuiteMixin</a>, <a href="../SuiteMixin.html" class="extype" name="org.scalatest.SuiteMixin">SuiteMixin</a>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+        </div></div>
+        
+
+      <div id="mbrsel">
+        <div class="toggle"></div>
+        <div id="memberfilter">
+          <i class="material-icons arrow"></i>
+          <span class="input">
+            <input id="mbrsel-input" placeholder="Filter all members" type="text" accesskey="/" />
+          </span>
+          <i class="clear material-icons"></i>
+        </div>
+        <div id="filterby">
+          <div id="order">
+            <span class="filtertype">Ordering</span>
+            <ol>
+              
+              <li class="alpha in"><span>Alphabetic</span></li>
+              <li class="inherit out"><span>By Inheritance</span></li>
+            </ol>
+          </div>
+          <div class="ancestors">
+                  <span class="filtertype">Inherited<br />
+                  </span>
+                  <ol id="linearization">
+                    <li class="in" name="org.scalatest.concurrent.DeprecatedTimeLimitedTests"><span>DeprecatedTimeLimitedTests</span></li><li class="in" name="org.scalatest.TestSuiteMixin"><span>TestSuiteMixin</span></li><li class="in" name="org.scalatest.SuiteMixin"><span>SuiteMixin</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                  </ol>
+                </div><div class="ancestors">
+              <span class="filtertype"></span>
+              <ol>
+                <li class="hideall out"><span>Hide All</span></li>
+                <li class="showall in"><span>Show All</span></li>
+              </ol>
+            </div>
+          <div id="visbl">
+              <span class="filtertype">Visibility</span>
+              <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+            </div>
+        </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        
+
+        <div class="values members">
+              <h3>Abstract Value Members</h3>
+              <ol><li name="org.scalatest.SuiteMixin#expectedTestCount" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="expectedTestCount(filter:org.scalatest.Filter):Int"></a><a id="expectedTestCount(Filter):Int"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/concurrent/DeprecatedTimeLimitedTests.html#expectedTestCount(filter:org.scalatest.Filter):Int" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">expectedTestCount</span><span class="params">(<span name="filter">filter: <a href="../Filter.html" class="extype" name="org.scalatest.Filter">Filter</a></span>)</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">The total number of tests that are expected to run when this <code>Suite</code>'s <code>run</code> method is invoked.</p><div class="fullcomment"><div class="comment cmt"><p>The total number of tests that are expected to run when this <code>Suite</code>'s <code>run</code> method is invoked.
+</p></div><dl class="paramcmts block"><dt class="param">filter</dt><dd class="cmt"><p>a <code>Filter</code> with which to filter tests to count based on their tags</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../SuiteMixin.html" class="extype" name="org.scalatest.SuiteMixin">SuiteMixin</a></dd></dl></div>
+    </li><li name="org.scalatest.SuiteMixin#nestedSuites" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="nestedSuites:scala.collection.immutable.IndexedSeq[org.scalatest.Suite]"></a><a id="nestedSuites:IndexedSeq[Suite]"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/concurrent/DeprecatedTimeLimitedTests.html#nestedSuites:scala.collection.immutable.IndexedSeq[org.scalatest.Suite]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">nestedSuites</span><span class="result">: <span class="extype" name="scala.collection.immutable.IndexedSeq">IndexedSeq</span>[<a href="../Suite.html" class="extype" name="org.scalatest.Suite">Suite</a>]</span>
+      </span>
+      
+      <p class="shortcomment cmt">An immutable <code>IndexedSeq</code> of this <code>SuiteMixin</code> object's nested <code>Suite</code>s.</p><div class="fullcomment"><div class="comment cmt"><p>An immutable <code>IndexedSeq</code> of this <code>SuiteMixin</code> object's nested <code>Suite</code>s. If this <code>SuiteMixin</code> contains no nested <code>Suite</code>s,
+this method returns an empty <code>IndexedSeq</code>.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../SuiteMixin.html" class="extype" name="org.scalatest.SuiteMixin">SuiteMixin</a></dd></dl></div>
+    </li><li name="org.scalatest.SuiteMixin#rerunner" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="rerunner:Option[String]"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/concurrent/DeprecatedTimeLimitedTests.html#rerunner:Option[String]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">rerunner</span><span class="result">: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      
+      <p class="shortcomment cmt">The fully qualified name of the class that can be used to rerun this suite.</p><div class="fullcomment"><div class="comment cmt"><p>The fully qualified name of the class that can be used to rerun this suite.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../SuiteMixin.html" class="extype" name="org.scalatest.SuiteMixin">SuiteMixin</a></dd></dl></div>
+    </li><li name="org.scalatest.SuiteMixin#run" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="run(testName:Option[String],args:org.scalatest.Args):org.scalatest.Status"></a><a id="run(Option[String],Args):Status"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/concurrent/DeprecatedTimeLimitedTests.html#run(testName:Option[String],args:org.scalatest.Args):org.scalatest.Status" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">run</span><span class="params">(<span name="testName">testName: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="args">args: <a href="../Args.html" class="extype" name="org.scalatest.Args">Args</a></span>)</span><span class="result">: <a href="../Status.html" class="extype" name="org.scalatest.Status">Status</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">Runs this suite of tests.</p><div class="fullcomment"><div class="comment cmt"><p>Runs this suite of tests.
+</p></div><dl class="paramcmts block"><dt class="param">testName</dt><dd class="cmt"><p>an optional name of one test to execute. If <code>None</code>, all relevant tests should be executed.
+                I.e., <code>None</code> acts like a wildcard that means execute all relevant tests in this <code>Suite</code>.</p></dd><dt class="param">args</dt><dd class="cmt"><p>the <code>Args</code> for this run</p></dd><dt>returns</dt><dd class="cmt"><p>a <code>Status</code> object that indicates when all tests and nested suites started by this method have completed, and whether or not a failure occurred.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../SuiteMixin.html" class="extype" name="org.scalatest.SuiteMixin">SuiteMixin</a></dd><dt>Exceptions thrown</dt><dd><span class="cmt"><p><span class="extype" name="NullArgumentException"><code>NullArgumentException</code></span> if any passed parameter is <code>null</code>.</p></span></dd></dl></div>
+    </li><li name="org.scalatest.SuiteMixin#runNestedSuites" visbl="prt" class="indented0 " data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="runNestedSuites(args:org.scalatest.Args):org.scalatest.Status"></a><a id="runNestedSuites(Args):Status"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/concurrent/DeprecatedTimeLimitedTests.html#runNestedSuites(args:org.scalatest.Args):org.scalatest.Status" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">runNestedSuites</span><span class="params">(<span name="args">args: <a href="../Args.html" class="extype" name="org.scalatest.Args">Args</a></span>)</span><span class="result">: <a href="../Status.html" class="extype" name="org.scalatest.Status">Status</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">Runs zero to many of this suite's nested suites.</p><div class="fullcomment"><div class="comment cmt"><p>Runs zero to many of this suite's nested suites.
+</p></div><dl class="paramcmts block"><dt class="param">args</dt><dd class="cmt"><p>the <code>Args</code> for this run</p></dd><dt>returns</dt><dd class="cmt"><p>a <code>Status</code> object that indicates when all nested suites started by this method have completed, and whether or not a failure occurred.</p></dd></dl><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="../SuiteMixin.html" class="extype" name="org.scalatest.SuiteMixin">SuiteMixin</a></dd><dt>Exceptions thrown</dt><dd><span class="cmt"><p><span class="extype" name="NullArgumentException"><code>NullArgumentException</code></span> if <code>args</code> is <code>null</code>.</p></span></dd></dl></div>
+    </li><li name="org.scalatest.SuiteMixin#runTest" visbl="prt" class="indented0 " data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="runTest(testName:String,args:org.scalatest.Args):org.scalatest.Status"></a><a id="runTest(String,Args):Status"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/concurrent/DeprecatedTimeLimitedTests.html#runTest(testName:String,args:org.scalatest.Args):org.scalatest.Status" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">runTest</span><span class="params">(<span name="testName">testName: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="args">args: <a href="../Args.html" class="extype" name="org.scalatest.Args">Args</a></span>)</span><span class="result">: <a href="../Status.html" class="extype" name="org.scalatest.Status">Status</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">Runs a test.</p><div class="fullcomment"><div class="comment cmt"><p>Runs a test.
+</p></div><dl class="paramcmts block"><dt class="param">testName</dt><dd class="cmt"><p>the name of one test to execute.</p></dd><dt class="param">args</dt><dd class="cmt"><p>the <code>Args</code> for this run</p></dd><dt>returns</dt><dd class="cmt"><p>a <code>Status</code> object that indicates when the test started by this method has completed, and whether or not it failed .</p></dd></dl><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="../SuiteMixin.html" class="extype" name="org.scalatest.SuiteMixin">SuiteMixin</a></dd><dt>Exceptions thrown</dt><dd><span class="cmt"><p><span class="extype" name="NullArgumentException"><code>NullArgumentException</code></span> if any of <code>testName</code> or <code>args</code> is <code>null</code>.</p></span></dd></dl></div>
+    </li><li name="org.scalatest.SuiteMixin#runTests" visbl="prt" class="indented0 " data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="runTests(testName:Option[String],args:org.scalatest.Args):org.scalatest.Status"></a><a id="runTests(Option[String],Args):Status"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/concurrent/DeprecatedTimeLimitedTests.html#runTests(testName:Option[String],args:org.scalatest.Args):org.scalatest.Status" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">runTests</span><span class="params">(<span name="testName">testName: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="args">args: <a href="../Args.html" class="extype" name="org.scalatest.Args">Args</a></span>)</span><span class="result">: <a href="../Status.html" class="extype" name="org.scalatest.Status">Status</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">Runs zero to many of this suite's tests.</p><div class="fullcomment"><div class="comment cmt"><p>Runs zero to many of this suite's tests.
+</p></div><dl class="paramcmts block"><dt class="param">testName</dt><dd class="cmt"><p>an optional name of one test to run. If <code>None</code>, all relevant tests should be run.
+                I.e., <code>None</code> acts like a wildcard that means run all relevant tests in this <code>Suite</code>.</p></dd><dt class="param">args</dt><dd class="cmt"><p>the <code>Args</code> for this run</p></dd><dt>returns</dt><dd class="cmt"><p>a <code>Status</code> object that indicates when all tests started by this method have completed, and whether or not a failure occurred.</p></dd></dl><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="../SuiteMixin.html" class="extype" name="org.scalatest.SuiteMixin">SuiteMixin</a></dd><dt>Exceptions thrown</dt><dd><span class="cmt"><p><span class="extype" name="NullArgumentException"><code>NullArgumentException</code></span> if either <code>testName</code> or <code>args</code> is <code>null</code>.</p></span></dd></dl></div>
+    </li><li name="org.scalatest.SuiteMixin#styleName" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="styleName:String"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/concurrent/DeprecatedTimeLimitedTests.html#styleName:String" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">styleName</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">This suite's style name.</p><div class="fullcomment"><div class="comment cmt"><p>This suite's style name.</p><p>This lifecycle method provides a string that is used to determine whether this suite object's
+style is one of the <a href="tools/Runner$.html#specifyingChosenStyles">chosen styles</a> for
+the project.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../SuiteMixin.html" class="extype" name="org.scalatest.SuiteMixin">SuiteMixin</a></dd></dl></div>
+    </li><li name="org.scalatest.SuiteMixin#suiteId" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="suiteId:String"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/concurrent/DeprecatedTimeLimitedTests.html#suiteId:String" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">suiteId</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">A string ID for this <code>Suite</code> that is intended to be unique among all suites reported during a run.</p><div class="fullcomment"><div class="comment cmt"><p>A string ID for this <code>Suite</code> that is intended to be unique among all suites reported during a run.</p><p>The suite ID is <em>intended</em> to be unique, because ScalaTest does not enforce that it is unique. If it is not
+unique, then you may not be able to uniquely identify a particular test of a particular suite. This ability is used,
+for example, to dynamically tag tests as having failed in the previous run when rerunning only failed tests.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>this <code>Suite</code> object's ID.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../SuiteMixin.html" class="extype" name="org.scalatest.SuiteMixin">SuiteMixin</a></dd></dl></div>
+    </li><li name="org.scalatest.SuiteMixin#suiteName" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="suiteName:String"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/concurrent/DeprecatedTimeLimitedTests.html#suiteName:String" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">suiteName</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">A user-friendly suite name for this <code>Suite</code>.</p><div class="fullcomment"><div class="comment cmt"><p>A user-friendly suite name for this <code>Suite</code>.</p><p>This trait's
+implementation of this method returns the simple name of this object's class. This
+trait's implementation of <code>runNestedSuites</code> calls this method to obtain a
+name for <code>Report</code>s to pass to the <code>suiteStarting</code>, <code>suiteCompleted</code>,
+and <code>suiteAborted</code> methods of the <code>Reporter</code>.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>this <code>Suite</code> object's suite name.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../SuiteMixin.html" class="extype" name="org.scalatest.SuiteMixin">SuiteMixin</a></dd></dl></div>
+    </li><li name="org.scalatest.SuiteMixin#tags" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="tags:Map[String,Set[String]]"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/concurrent/DeprecatedTimeLimitedTests.html#tags:Map[String,Set[String]]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">tags</span><span class="result">: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Predef.Set">Set</span>[<span class="extype" name="scala.Predef.String">String</span>]]</span>
+      </span>
+      
+      <p class="shortcomment cmt">A <code>Map</code> whose keys are <code>String</code> names of tagged tests and
+whose associated values are the <code>Set</code> of tag names for the test.</p><div class="fullcomment"><div class="comment cmt"><p>A <code>Map</code> whose keys are <code>String</code> names of tagged tests and
+whose associated values are the <code>Set</code> of tag names for the test. If a test has no associated tags, its name
+does not appear as a key in the returned <code>Map</code>. If this <code>Suite</code> contains no tests with tags, this
+method returns an empty <code>Map</code>.</p><p>Subclasses may override this method to define and/or discover tags in a custom manner, but overriding method implementations
+should never return an empty <code>Set</code> as a value. If a test has no tags, its name should not appear as a key in the
+returned <code>Map</code>.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../SuiteMixin.html" class="extype" name="org.scalatest.SuiteMixin">SuiteMixin</a></dd></dl></div>
+    </li><li name="org.scalatest.SuiteMixin#testDataFor" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="testDataFor(testName:String,theConfigMap:org.scalatest.ConfigMap):org.scalatest.TestData"></a><a id="testDataFor(String,ConfigMap):TestData"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/concurrent/DeprecatedTimeLimitedTests.html#testDataFor(testName:String,theConfigMap:org.scalatest.ConfigMap):org.scalatest.TestData" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">testDataFor</span><span class="params">(<span name="testName">testName: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="theConfigMap">theConfigMap: <a href="../ConfigMap.html" class="extype" name="org.scalatest.ConfigMap">ConfigMap</a></span>)</span><span class="result">: <a href="../TestData.html" class="extype" name="org.scalatest.TestData">TestData</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">Provides a <code>TestData</code> instance for the passed test name, given the passed config map.</p><div class="fullcomment"><div class="comment cmt"><p>Provides a <code>TestData</code> instance for the passed test name, given the passed config map.</p><p>This method is used to obtain a <code>TestData</code> instance to pass to <code>withFixture(NoArgTest)</code>
+and <code>withFixture(OneArgTest)</code> and the <code>beforeEach</code> and <code>afterEach</code> methods
+of trait <code>BeforeAndAfterEach</code>.</p></div><dl class="paramcmts block"><dt class="param">testName</dt><dd class="cmt"><p>the name of the test for which to return a <code>TestData</code> instance</p></dd><dt class="param">theConfigMap</dt><dd class="cmt"><p>the config map to include in the returned <code>TestData</code></p></dd><dt>returns</dt><dd class="cmt"><p>a <code>TestData</code> instance for the specified test, which includes the specified config map</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../SuiteMixin.html" class="extype" name="org.scalatest.SuiteMixin">SuiteMixin</a></dd></dl></div>
+    </li><li name="org.scalatest.SuiteMixin#testNames" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="testNames:Set[String]"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/concurrent/DeprecatedTimeLimitedTests.html#testNames:Set[String]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">testNames</span><span class="result">: <span class="extype" name="scala.Predef.Set">Set</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      
+      <p class="shortcomment cmt">A <code>Set</code> of test names.</p><div class="fullcomment"><div class="comment cmt"><p>A <code>Set</code> of test names. If this <code>Suite</code> contains no tests, this method returns an empty <code>Set</code>.</p><p>Although subclass and subtrait implementations of this method may return a <code>Set</code> whose iterator produces <code>String</code>
+test names in a well-defined order, the contract of this method does not required a defined order. Subclasses are free to
+implement this method and return test names in either a defined or undefined order.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../SuiteMixin.html" class="extype" name="org.scalatest.SuiteMixin">SuiteMixin</a></dd></dl></div>
+    </li><li name="org.scalatest.concurrent.DeprecatedTimeLimitedTests#timeLimit" visbl="pub" class="indented0 " data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="timeLimit:org.scalatest.time.Span"></a><a id="timeLimit:Span"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/concurrent/DeprecatedTimeLimitedTests.html#timeLimit:org.scalatest.time.Span" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">timeLimit</span><span class="result">: <a href="../time/Span.html" class="extype" name="org.scalatest.time.Span">Span</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">The time limit, in milliseconds, in which each test in a <code>Suite</code> that mixes in
+<code>DeprecatedTimeLimitedTests</code> must complete.</p>
+    </li></ol>
+            </div>
+
+        <div class="values members">
+              <h3>Concrete Value Members</h3>
+              <ol>
+                <li name="scala.AnyRef#!=" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="!=(x$1:Any):Boolean"></a><a id="!=(Any):Boolean"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/concurrent/DeprecatedTimeLimitedTests.html#!=(x$1:Any):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef###" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="##():Int"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/concurrent/DeprecatedTimeLimitedTests.html###():Int" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $hash$hash" class="name">##</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#==" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="==(x$1:Any):Boolean"></a><a id="==(Any):Boolean"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/concurrent/DeprecatedTimeLimitedTests.html#==(x$1:Any):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.Any#asInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="asInstanceOf[T0]:T0"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/concurrent/DeprecatedTimeLimitedTests.html#asInstanceOf[T0]:T0" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">asInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Any.asInstanceOf.T0">T0</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="scala.AnyRef#clone" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="clone():Object"></a><a id="clone():AnyRef"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/concurrent/DeprecatedTimeLimitedTests.html#clone():Object" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">clone</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../java/lang/index.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@native</span><span class="args">()</span>
+              
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.CloneNotSupportedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="org.scalatest.concurrent.DeprecatedTimeLimitedTests#defaultTestInterruptor" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="defaultTestInterruptor:org.scalatest.concurrent.Interruptor"></a><a id="defaultTestInterruptor:Interruptor"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/concurrent/DeprecatedTimeLimitedTests.html#defaultTestInterruptor:org.scalatest.concurrent.Interruptor" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">defaultTestInterruptor</span><span class="result">: <a href="Interruptor.html" class="extype" name="org.scalatest.concurrent.Interruptor">Interruptor</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">The default <a href="Interruptor.html"><code>Interruptor</code></a> strategy used to interrupt tests that exceed their time limit.</p><div class="fullcomment"><div class="comment cmt"><p>The default <a href="Interruptor.html"><code>Interruptor</code></a> strategy used to interrupt tests that exceed their time limit.</p><p>This trait's implementation of this method returns <a href="ThreadInterruptor$.html"><code>ThreadInterruptor</code></a>, which invokes <code>interrupt</code>
+on the main test thread. Override this method to change the test interruption strategy.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>a <code>ThreadInterruptor</code></p></dd></dl></div>
+    </li><li name="scala.AnyRef#eq" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="eq(x$1:AnyRef):Boolean"></a><a id="eq(AnyRef):Boolean"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/concurrent/DeprecatedTimeLimitedTests.html#eq(x$1:AnyRef):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#equals" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="equals(x$1:Any):Boolean"></a><a id="equals(Any):Boolean"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/concurrent/DeprecatedTimeLimitedTests.html#equals(x$1:Any):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">equals</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#finalize" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="finalize():Unit"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/concurrent/DeprecatedTimeLimitedTests.html#finalize():Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">finalize</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../java/lang/index.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="symbol">classOf[java.lang.Throwable]</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#getClass" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getClass():Class[_]"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/concurrent/DeprecatedTimeLimitedTests.html#getClass():Class[_]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getClass</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.Class">Class</span>[_]</span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd><dt>Annotations</dt><dd>
+                <span class="name">@native</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#hashCode" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="hashCode():Int"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/concurrent/DeprecatedTimeLimitedTests.html#hashCode():Int" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">hashCode</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd><dt>Annotations</dt><dd>
+                <span class="name">@native</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.Any#isInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/concurrent/DeprecatedTimeLimitedTests.html#isInstanceOf[T0]:Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">isInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="scala.AnyRef#ne" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ne(x$1:AnyRef):Boolean"></a><a id="ne(AnyRef):Boolean"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/concurrent/DeprecatedTimeLimitedTests.html#ne(x$1:AnyRef):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#notify" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notify():Unit"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/concurrent/DeprecatedTimeLimitedTests.html#notify():Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notify</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@native</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#notifyAll" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notifyAll():Unit"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/concurrent/DeprecatedTimeLimitedTests.html#notifyAll():Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notifyAll</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@native</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#synchronized" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="synchronized[T0](x$1:=&gt;T0):T0"></a><a id="synchronized[T0](⇒T0):T0"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/concurrent/DeprecatedTimeLimitedTests.html#synchronized[T0](x$1:=&gt;T0):T0" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">synchronized</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="params">(<span name="arg0">arg0: ⇒ <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>)</span><span class="result">: <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#toString" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="toString():String"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/concurrent/DeprecatedTimeLimitedTests.html#toString():String" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">toString</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait():Unit"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/concurrent/DeprecatedTimeLimitedTests.html#wait():Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long,x$2:Int):Unit"></a><a id="wait(Long,Int):Unit"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/concurrent/DeprecatedTimeLimitedTests.html#wait(x$1:Long,x$2:Int):Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>, <span name="arg1">arg1: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long):Unit"></a><a id="wait(Long):Unit"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/concurrent/DeprecatedTimeLimitedTests.html#wait(x$1:Long):Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@native</span><span class="args">()</span>
+              
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="org.scalatest.concurrent.DeprecatedTimeLimitedTests#withFixture" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="withFixture(test:DeprecatedTimeLimitedTests.this.NoArgTest):org.scalatest.Outcome"></a><a id="withFixture((DeprecatedTimeLimitedTests.this)#NoArgTest):Outcome"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/concurrent/DeprecatedTimeLimitedTests.html#withFixture(test:DeprecatedTimeLimitedTests.this.NoArgTest):org.scalatest.Outcome" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">withFixture</span><span class="params">(<span name="test">test: (<a href="" class="extype" name="org.scalatest.concurrent.DeprecatedTimeLimitedTests">DeprecatedTimeLimitedTests</a>.this)#<span class="extype" name="org.scalatest.TestSuite.NoArgTest">NoArgTest</span></span>)</span><span class="result">: <a href="../Outcome.html" class="extype" name="org.scalatest.Outcome">Outcome</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">A stackable implementation of <code>withFixture</code> that wraps a call to <code>super.withFixture</code> in a
+<code>failAfter</code> invocation.</p><div class="fullcomment"><div class="comment cmt"><p>A stackable implementation of <code>withFixture</code> that wraps a call to <code>super.withFixture</code> in a
+<code>failAfter</code> invocation.
+</p></div><dl class="paramcmts block"><dt class="param">test</dt><dd class="cmt"><p>the test on which to enforce a time limit</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.scalatest.concurrent.DeprecatedTimeLimitedTests">DeprecatedTimeLimitedTests</a> → <a href="../TestSuiteMixin.html" class="extype" name="org.scalatest.TestSuiteMixin">TestSuiteMixin</a></dd></dl></div>
+    </li>
+              </ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        <div class="parent" name="org.scalatest.TestSuiteMixin">
+              <h3>Inherited from <a href="../TestSuiteMixin.html" class="extype" name="org.scalatest.TestSuiteMixin">TestSuiteMixin</a></h3>
+            </div><div class="parent" name="org.scalatest.SuiteMixin">
+              <h3>Inherited from <a href="../SuiteMixin.html" class="extype" name="org.scalatest.SuiteMixin">SuiteMixin</a></h3>
+            </div><div class="parent" name="scala.AnyRef">
+              <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
+            </div><div class="parent" name="scala.Any">
+              <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
+            </div>
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+    </body>
+          </div>
+        </div>
+      </div>
+    </body>
+      </html>

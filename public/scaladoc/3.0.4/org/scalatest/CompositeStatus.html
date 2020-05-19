@@ -1,0 +1,730 @@
+<!DOCTYPE html >
+<html>
+        <head>
+          <title>CompositeStatus - ScalaTest 3.0.4 - org.scalatest.CompositeStatus</title>
+          <meta name="description" content="CompositeStatus - ScalaTest 3.0.4 - org.scalatest.CompositeStatus" />
+          <meta name="keywords" content="CompositeStatus ScalaTest 3.0.4 org.scalatest.CompositeStatus" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../../lib/jquery.js" id="jquery-js"></script>
+      <script type="text/javascript" src="../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../lib/template.js"></script>
+      <script type="text/javascript" src="../../lib/tools.tooltip.js"></script>
+      
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../index.html';
+            var hash = 'org.scalatest.CompositeStatus';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="type">
+
+<!-- Top of doc.scalatest.org [javascript] -->
+
+<script type="text/javascript">
+
+var rnd = window.rnd || Math.floor(Math.random()*10e6);
+
+var pid204546 = window.pid204546 || rnd;
+
+var plc204546 = window.plc204546 || 0;
+
+var abkw = window.abkw || '';
+
+var absrc = 'http://ab167933.adbutler-ikon.com/adserve/;ID=167933;size=468x60;setID=204546;type=js;sw='+screen.width+';sh='+screen.height+';spr='+window.devicePixelRatio+';kw='+abkw+';pid='+pid204546+';place='+(plc204546++)+';rnd='+rnd+';click=CLICK_MACRO_PLACEHOLDER';
+
+document.write('<scr'+'ipt src="'+absrc+'" type="text/javascript"></scr'+'ipt>');
+
+</script>
+
+      <div id="definition">
+        <img alt="Class" src="../../lib/class_big.png" />
+        <p id="owner"><a href="../package.html" class="extype" name="org">org</a>.<a href="package.html" class="extype" name="org.scalatest">scalatest</a></p>
+        <h1>CompositeStatus</h1><h3><span class="morelinks"><div>Related Doc:
+            <a href="package.html" class="extype" name="org.scalatest">package scalatest</a>
+          </div></span></h3><span class="permalink">
+      <a href="../../index.html#org.scalatest.CompositeStatus" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CompositeStatus</span><span class="result"> extends <a href="Status.html" class="extype" name="org.scalatest.Status">Status</a> with <span class="extype" name="java.io.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Composite <code>Status</code> that aggregates its completion and failed states of set of other <code>Status</code>es passed to its constructor.
+</p></div><dl class="attributes block"> <dt>Source</dt><dd><a href="https://github.com/scalatest/scalatest/tree/release-3.0.4/scalatest//src/main/scala/org/scalatest/Status.scala" target="_blank">Status.scala</a></dd></dl><div class="toggleContainer block">
+          <span class="toggle">Linear Supertypes</span>
+          <div class="superTypes hiddenContent"><span class="extype" name="java.io.Serializable">Serializable</span>, <a href="Status.html" class="extype" name="org.scalatest.Status">Status</a>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+        </div></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        <div id="order">
+              <span class="filtertype">Ordering</span>
+              <ol>
+                
+                <li class="alpha in"><span>Alphabetic</span></li>
+                <li class="inherit out"><span>By Inheritance</span></li>
+              </ol>
+            </div>
+        <div id="ancestors">
+                <span class="filtertype">Inherited<br />
+                </span>
+                <ol id="linearization">
+                  <li class="in" name="org.scalatest.CompositeStatus"><span>CompositeStatus</span></li><li class="in" name="java.io.Serializable"><span>Serializable</span></li><li class="in" name="org.scalatest.Status"><span>Status</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                </ol>
+              </div><div id="ancestors">
+            <span class="filtertype"></span>
+            <ol>
+              <li class="hideall out"><span>Hide All</span></li>
+              <li class="showall in"><span>Show All</span></li>
+            </ol>
+          </div>
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        <div id="constructors" class="members">
+              <h3>Instance Constructors</h3>
+              <ol><li name="org.scalatest.CompositeStatus#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="&lt;init&gt;(statuses:Set[org.scalatest.Status]):org.scalatest.CompositeStatus"></a>
+      <a id="&lt;init&gt;:CompositeStatus"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">new</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CompositeStatus</span><span class="params">(<span name="statuses">statuses: <span class="extype" name="scala.Predef.Set">Set</span>[<a href="Status.html" class="extype" name="org.scalatest.Status">Status</a>]</span>)</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.CompositeStatus@&lt;init&gt;(statuses:Set[org.scalatest.Status]):org.scalatest.CompositeStatus" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"></p>
+    </li></ol>
+            </div>
+
+        
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="scala.AnyRef#!=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="!=(x$1:Any):Boolean"></a>
+      <a id="!=(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.CompositeStatus@!=(x$1:Any):Boolean" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef###" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="##():Int"></a>
+      <a id="##():Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $hash$hash" class="name">##</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.CompositeStatus@##():Int" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#==" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="==(x$1:Any):Boolean"></a>
+      <a id="==(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.CompositeStatus@==(x$1:Any):Boolean" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="asInstanceOf[T0]:T0"></a>
+      <a id="asInstanceOf[T0]:T0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">asInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Any.asInstanceOf.T0">T0</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.CompositeStatus@asInstanceOf[T0]:T0" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="scala.AnyRef#clone" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="clone():Object"></a>
+      <a id="clone():AnyRef"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">clone</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.CompositeStatus@clone():Object" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.CloneNotSupportedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="eq(x$1:AnyRef):Boolean"></a>
+      <a id="eq(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.CompositeStatus@eq(x$1:AnyRef):Boolean" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#equals" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="equals(x$1:Any):Boolean"></a>
+      <a id="equals(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">equals</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.CompositeStatus@equals(x$1:Any):Boolean" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#finalize" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="finalize():Unit"></a>
+      <a id="finalize():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">finalize</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.CompositeStatus@finalize():Unit" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="symbol">classOf[java.lang.Throwable]</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#getClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getClass():Class[_]"></a>
+      <a id="getClass():Class[_]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getClass</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.Class">Class</span>[_]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.CompositeStatus@getClass():Class[_]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#hashCode" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="hashCode():Int"></a>
+      <a id="hashCode():Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">hashCode</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.CompositeStatus@hashCode():Int" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="org.scalatest.CompositeStatus#isCompleted" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="isCompleted:Boolean"></a>
+      <a id="isCompleted:Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">isCompleted</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.CompositeStatus@isCompleted:Boolean" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Non-blocking call to check if the test or suite run is completed, returns <code>true</code> if all composite <code>Status</code>es have completed,
+<code>false</code> otherwise.</code></code></code></p><div class="fullcomment"><div class="comment cmt"><p>Non-blocking call to check if the test or suite run is completed, returns <code>true</code> if all composite <code>Status</code>es have completed,
+<code>false</code> otherwise.  You can use this to poll the run status.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p><code>true</code> if all composite <code>Status</code>es have completed, <code>false</code> otherwise.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.scalatest.CompositeStatus">CompositeStatus</a> → <a href="Status.html" class="extype" name="org.scalatest.Status">Status</a></dd></dl></div>
+    </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">isInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.CompositeStatus@isInstanceOf[T0]:Boolean" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ne(x$1:AnyRef):Boolean"></a>
+      <a id="ne(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.CompositeStatus@ne(x$1:AnyRef):Boolean" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#notify" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notify():Unit"></a>
+      <a id="notify():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notify</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.CompositeStatus@notify():Unit" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#notifyAll" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notifyAll():Unit"></a>
+      <a id="notifyAll():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notifyAll</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.CompositeStatus@notifyAll():Unit" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="org.scalatest.CompositeStatus#succeeds" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="succeeds():Boolean"></a>
+      <a id="succeeds():Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">succeeds</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.CompositeStatus@succeeds():Boolean" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Blocking call that waits until all composite <code>Status</code>es have completed, then returns
+<code>true</code> only if all of the composite <code>Status</code>es succeeded.</code></code></code></p><div class="fullcomment"><div class="comment cmt"><p>Blocking call that waits until all composite <code>Status</code>es have completed, then returns
+<code>true</code> only if all of the composite <code>Status</code>es succeeded. If any <code>Status</code> passed in the <code>statuses</code> set fails, this method
+will return <code>false</code>.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p><code>true</code> if all composite <code>Status</code>es succeed, <code>false</code> otherwise.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.scalatest.CompositeStatus">CompositeStatus</a> → <a href="Status.html" class="extype" name="org.scalatest.Status">Status</a></dd></dl></div>
+    </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
+      <a id="synchronized[T0](⇒T0):T0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">synchronized</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="params">(<span name="arg0">arg0: ⇒ <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>)</span><span class="result">: <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.CompositeStatus@synchronized[T0](x$1:=&gt;T0):T0" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="org.scalatest.Status#thenRun" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="thenRun(f:=&gt;org.scalatest.Status):org.scalatest.Status"></a>
+      <a id="thenRun(⇒Status):Status"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">thenRun</span><span class="params">(<span name="f">f: ⇒ <a href="Status.html" class="extype" name="org.scalatest.Status">Status</a></span>)</span><span class="result">: <a href="Status.html" class="extype" name="org.scalatest.Status">Status</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.CompositeStatus@thenRun(f:=&gt;org.scalatest.Status):org.scalatest.Status" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Registers a <code>Status</code>-producing by-name function to execute after this
+<code>Status</code> completes, returning a <code>Status</code> that mirrors the <code>Status</code>
+returned by the by-name.</code></code></code></code></p><div class="fullcomment"><div class="comment cmt"><p>Registers a <code>Status</code>-producing by-name function to execute after this
+<code>Status</code> completes, returning a <code>Status</code> that mirrors the <code>Status</code>
+returned by the by-name.</p><p>The <code>Status</code> returned by this method will complete when the status produced by the
+<code>Status</code> produced by the passed-by name completes. The returned <code>Status</code>
+will complete with the same <code>succeeds</code> and <code>unreportedException</code> values.
+But unlike the <code>Status</code> produced by the by-name, the returned <code>Status</code> will
+be available immediately.</p><p>If the by-name function passed to this method completes abruptly with a <em>non-run-aborting</em> exception,
+that exception will be caught and installed as the <code>unreportedException</code> on the
+<code>Status</code> returned by this method. The <code>Status</code> returned by this method
+will then complete. The thread that attempted to evaluate the by-name function will be allowed
+to continue (<code>i.e.</code>, the non-run-aborting exception will <em>not</em> be rethrown
+on that thread).</p><p>If the by-name function passed to this method completes abruptly with a <em>run-aborting</em> exception,
+such as <code>StackOverflowError</code>, that exception will be caught and a new
+<code>java.util.concurrent.ExecutionException</code> that contains the run-aborting exception as its
+cause will be installed as the <code>unreportedException</code> on the
+<code>Status</code> returned by this method. The <code>Status</code> returned by this method
+will then complete. The original run-aborting exception will then be rethrown on the
+thread that attempted to evaluate the by-name function.</p><p>If an unreported exception is installed on this <code>Status</code>, the passed by-name function will
+<em>not</em> be executed. Instead, the same unreported exception will be installed on the <code>Status</code>
+returned by this method.</p><p>Internally, ScalaTest uses this method in async styles to ensure that by default, each subsequent test in an async-style
+suite begins execution only after the previous test has completed. This method is <em>not</em> used if
+<code>ParallelTestExection</code> is mixed into an async style. Instead, tests are allowed to begin
+execution concurrently.</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>a <code>Status </code> that represents the status of executing the by-name function passed to this method.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Status.html" class="extype" name="org.scalatest.Status">Status</a></dd></dl></div>
+    </li><li name="org.scalatest.Status#toFuture" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="toFuture:scala.concurrent.Future[Boolean]"></a>
+      <a id="toFuture:Future[Boolean]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">toFuture</span><span class="result">: <span class="extype" name="scala.concurrent.Future">Future</span>[<span class="extype" name="scala.Boolean">Boolean</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.CompositeStatus@toFuture:scala.concurrent.Future[Boolean]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Converts this <code>Status</code> to a <code>Future[Boolean]</code> where <code>Success(true)</code> means
+no tests failed and suites aborted, <code>Success(false)</code>, means at least one test failed or one
+suite aborted and any thrown exception was was reported to the <code>Reporter</code> via a ScalaTest
+event, <code>Failure(unreportedException)</code> means
+an exception, <code>unreportedException</code>, was thrown that was not reported to the <code>Reporter</code>
+via a ScalaTest event.</code></code></code></code></code></code></code></code></p><div class="fullcomment"><div class="comment cmt"><p>Converts this <code>Status</code> to a <code>Future[Boolean]</code> where <code>Success(true)</code> means
+no tests failed and suites aborted, <code>Success(false)</code>, means at least one test failed or one
+suite aborted and any thrown exception was was reported to the <code>Reporter</code> via a ScalaTest
+event, <code>Failure(unreportedException)</code> means
+an exception, <code>unreportedException</code>, was thrown that was not reported to the <code>Reporter</code>
+via a ScalaTest event.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>a <code>Future[Boolean]</code> representing this <code>Status</code>.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Status.html" class="extype" name="org.scalatest.Status">Status</a></dd></dl></div>
+    </li><li name="scala.AnyRef#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="toString():String"></a>
+      <a id="toString():String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">toString</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.CompositeStatus@toString():String" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="org.scalatest.CompositeStatus#unreportedException" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="unreportedException:Option[Throwable]"></a>
+      <a id="unreportedException:Option[Throwable]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">unreportedException</span><span class="result">: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Throwable">Throwable</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.CompositeStatus@unreportedException:Option[Throwable]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">An optional exception that has not been reported to the reporter for this run.</p><div class="fullcomment"><div class="comment cmt"><p>An optional exception that has not been reported to the reporter for this run.</p><p>This will be defined if any of the composite <code>Status</code>s (passed to this <code>Status</code>'s
+constructor) has a defined <code>unreportedException</code>. If more than one composite <code>Status</code>
+has a defined <code>unreportedException</code>, one of them (not specified) will be reported by this method
+and the others will have their stack traces printed to standard output.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>a optional unreported <code>Throwable</code></p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.scalatest.CompositeStatus">CompositeStatus</a> → <a href="Status.html" class="extype" name="org.scalatest.Status">Status</a></dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait():Unit"></a>
+      <a id="wait():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.CompositeStatus@wait():Unit" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long,x$2:Int):Unit"></a>
+      <a id="wait(Long,Int):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>, <span name="arg1">arg1: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.CompositeStatus@wait(x$1:Long,x$2:Int):Unit" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long):Unit"></a>
+      <a id="wait(Long):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.CompositeStatus@wait(x$1:Long):Unit" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="org.scalatest.CompositeStatus#waitUntilCompleted" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="waitUntilCompleted():Unit"></a>
+      <a id="waitUntilCompleted():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">waitUntilCompleted</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.CompositeStatus@waitUntilCompleted():Unit" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Blocking call that returns only after all composite <code>Status</code>s have completed.</code></p><div class="fullcomment"><div class="comment cmt"><p>Blocking call that returns only after all composite <code>Status</code>s have completed.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.scalatest.CompositeStatus">CompositeStatus</a> → <a href="Status.html" class="extype" name="org.scalatest.Status">Status</a></dd></dl></div>
+    </li><li name="org.scalatest.CompositeStatus#whenCompleted" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="whenCompleted(f:scala.util.Try[Boolean]=&gt;Unit):Unit"></a>
+      <a id="whenCompleted((Try[Boolean])⇒Unit):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">whenCompleted</span><span class="params">(<span name="f">f: (<span class="extype" name="scala.util.Try">Try</span>[<span class="extype" name="scala.Boolean">Boolean</span>]) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.CompositeStatus@whenCompleted(f:scala.util.Try[Boolean]=&gt;Unit):Unit" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Registers the passed function to be executed when this status completes.</p><div class="fullcomment"><div class="comment cmt"><p>Registers the passed function to be executed when this status completes.</p><p>You may register multiple functions, which on completion will be executed in an undefined
+order.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.scalatest.CompositeStatus">CompositeStatus</a> → <a href="Status.html" class="extype" name="org.scalatest.Status">Status</a></dd></dl></div>
+    </li><li name="org.scalatest.Status#withAfterEffect" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="withAfterEffect(f:=&gt;Unit):org.scalatest.Status"></a>
+      <a id="withAfterEffect(⇒Unit):Status"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">withAfterEffect</span><span class="params">(<span name="f">f: ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <a href="Status.html" class="extype" name="org.scalatest.Status">Status</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.CompositeStatus@withAfterEffect(f:=&gt;Unit):org.scalatest.Status" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Registers a by-name function (producing an optional exception) to execute
+after this <code>Status</code> completes.</code></p><div class="fullcomment"><div class="comment cmt"><p>Registers a by-name function (producing an optional exception) to execute
+after this <code>Status</code> completes.</p><p>If the by-name function passed to this method completes abruptly with a <em>non-run-aborting</em> exception,
+that exception will be caught and installed as the <code>unreportedException</code> on the
+<code>Status</code> returned by this method. The <code>Status</code> returned by this method
+will then complete. The thread that attempted to evaluate the by-name function will be allowed
+to continue (<code>i.e.</code>, the non-run-aborting exception will <em>not</em> be rethrown
+on that thread).</p><p>If the by-name function passed to this method completes abruptly with a <em>run-aborting</em> exception,
+such as <code>StackOverflowError</code>, that exception will be caught and a new
+<code>java.util.concurrent.ExecutionException</code> that contains the run-aborting exception as its
+cause will be installed as the <code>unreportedException</code> on the
+<code>Status</code> returned by this method. The <code>Status</code> returned by this method
+will then complete. The original run-aborting exception will then be rethrown on the
+thread that attempted to evaluate the by-name function.</p><p>If an unreported exception is installed on this <code>Status</code>, the passed by-name function will
+<em>not</em> be executed. Instead, the same unreported exception will be installed on the <code>Status</code>
+returned by this method.</p><p>Internally, ScalaTest uses this method in traits <code>BeforeAndAfter</code>,
+<code>BeforeAndAfterEach</code>, and <code>BeforeAndAfterEachTestData</code> to ensure &quot;after&quot; code is
+executed after the relevant test has completed, and in traits <code>BeforeAndAfterAll</code> and
+<code>BeforeAndAfterAllConfigMap</code> to ensure &quot;after&quot; code is executed after the
+relevant tests and nested suites have completed.</p></div><dl class="paramcmts block"><dt class="param">f</dt><dd class="cmt"><p>A by-name function to invoke after this <code>Status</code> has completed.</p></dd><dt>returns</dt><dd class="cmt"><p>a <code>Status</code> that represents this <code>Status</code>,
+        modified by any exception thrown by the passed by-name function.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Status.html" class="extype" name="org.scalatest.Status">Status</a></dd></dl></div>
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        <div class="parent" name="java.io.Serializable">
+              <h3>Inherited from <span class="extype" name="java.io.Serializable">Serializable</span></h3>
+            </div><div class="parent" name="org.scalatest.Status">
+              <h3>Inherited from <a href="Status.html" class="extype" name="org.scalatest.Status">Status</a></h3>
+            </div><div class="parent" name="scala.AnyRef">
+              <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
+            </div><div class="parent" name="scala.Any">
+              <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
+            </div>
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+
+
+    </body>
+      </html>

@@ -1,0 +1,810 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+        <head>
+          <title>MatcherWords - ScalaTest 2.2.2-SNAPSHOT - org.scalatest.words.MatcherWords</title>
+          <meta name="description" content="MatcherWords - ScalaTest 2.2.2 - SNAPSHOT - org.scalatest.words.MatcherWords" />
+          <meta name="keywords" content="MatcherWords ScalaTest 2.2.2 SNAPSHOT org.scalatest.words.MatcherWords" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../../../lib/jquery.js" id="jquery-js"></script>
+      <script type="text/javascript" src="../../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../lib/tools.tooltip.js"></script>
+      
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../../index.html';
+            var hash = 'org.scalatest.words.MatcherWords$';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+
+<script>
+ (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+ })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ 
+ ga('create', 'UA-71294502-3', 'auto');
+ ga('send', 'pageview');
+ 
+</script>
+        </head>
+        <body class="value">
+
+<!-- Top of doc.scalatest.org [javascript] -->
+
+<script type="text/javascript">
+
+var rnd = window.rnd || Math.floor(Math.random()*10e6);
+
+var pid204546 = window.pid204546 || rnd;
+
+var plc204546 = window.plc204546 || 0;
+
+var abkw = window.abkw || '';
+
+var absrc = 'http://ab167933.adbutler-ikon.com/adserve/;ID=167933;size=468x60;setID=204546;type=js;sw='+screen.width+';sh='+screen.height+';spr='+window.devicePixelRatio+';kw='+abkw+';pid='+pid204546+';place='+(plc204546++)+';rnd='+rnd+';click=CLICK_MACRO_PLACEHOLDER';
+
+document.write('<scr'+'ipt src="'+absrc+'" type="text/javascript"></scr'+'ipt>');
+
+</script>
+
+      <div id="definition">
+        <a href="MatcherWords.html" title="Go to companion"><img src="../../../lib/object_to_trait_big.png" /></a>
+        <p id="owner"><a href="../../package.html" class="extype" name="org">org</a>.<a href="../package.html" class="extype" name="org.scalatest">scalatest</a>.<a href="package.html" class="extype" name="org.scalatest.words">words</a></p>
+        <h1><a href="MatcherWords.html" title="Go to companion">MatcherWords</a></h1>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <span class="name">MatcherWords</span><span class="result"> extends <a href="MatcherWords.html" class="extype" name="org.scalatest.words.MatcherWords">MatcherWords</a></span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"><dl class="attributes block"> <dt>Source</dt><dd><a href="https://github.com/scalatest/scalatest/tree/release-2.2.2-for-scala-2.11-and-2.10/src/main/scala/org/scalatest/words/MatcherWords.scala" target="_blank">MatcherWords.scala</a></dd></dl><div class="toggleContainer block">
+          <span class="toggle">Linear Supertypes</span>
+          <div class="superTypes hiddenContent"><a href="MatcherWords.html" class="extype" name="org.scalatest.words.MatcherWords">MatcherWords</a>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+        </div></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        <div id="order">
+              <span class="filtertype">Ordering</span>
+              <ol>
+                
+                <li class="alpha in"><span>Alphabetic</span></li>
+                <li class="inherit out"><span>By inheritance</span></li>
+              </ol>
+            </div>
+        <div id="ancestors">
+                <span class="filtertype">Inherited<br />
+                </span>
+                <ol id="linearization">
+                  <li class="in" name="org.scalatest.words.MatcherWords"><span>MatcherWords</span></li><li class="in" name="org.scalatest.words.MatcherWords"><span>MatcherWords</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                </ol>
+              </div><div id="ancestors">
+            <span class="filtertype"></span>
+            <ol>
+              <li class="hideall out"><span>Hide All</span></li>
+              <li class="showall in"><span>Show all</span></li>
+            </ol>
+            <a href="http://docs.scala-lang.org/overviews/scaladoc/usage.html#members" target="_blank">Learn more about member selection</a>
+          </div>
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="scala.AnyRef#!=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="!=(x$1:AnyRef):Boolean"></a>
+      <a id="!=(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.Any#!=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="!=(x$1:Any):Boolean"></a>
+      <a id="!=(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="scala.AnyRef###" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="##():Int"></a>
+      <a id="##():Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $hash$hash" class="name">##</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#==" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="==(x$1:AnyRef):Boolean"></a>
+      <a id="==(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.Any#==" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="==(x$1:Any):Boolean"></a>
+      <a id="==(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="asInstanceOf[T0]:T0"></a>
+      <a id="asInstanceOf[T0]:T0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">asInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Any.asInstanceOf.T0">T0</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="org.scalatest.words.MatcherWords#be" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="be:org.scalatest.words.BeWord"></a>
+      <a id="be:BeWord"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">be</span><span class="result">: <a href="BeWord.html" class="extype" name="org.scalatest.words.BeWord">BeWord</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">This field enables syntax such as the following:</p><div class="fullcomment"><div class="comment cmt"><p>This field enables syntax such as the following:</p><p><pre class="stHighlighted">
+obj should (be theSameInstanceAs (string) and be theSameInstanceAs (string))
+            ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="MatcherWords.html" class="extype" name="org.scalatest.words.MatcherWords">MatcherWords</a></dd></dl></div>
+    </li><li name="scala.AnyRef#clone" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="clone():Object"></a>
+      <a id="clone():AnyRef"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">clone</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="org.scalatest.words.MatcherWords#compile" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="compile:org.scalatest.words.CompileWord"></a>
+      <a id="compile:CompileWord"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">compile</span><span class="result">: <a href="CompileWord.html" class="extype" name="org.scalatest.words.CompileWord">CompileWord</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">This field enables the following syntax:</p><div class="fullcomment"><div class="comment cmt"><p>This field enables the following syntax:</p><p><pre class="stHighlighted">
+<span class="stQuotedString">&quot;val a: String = 1&quot;</span> shouldNot compile
+                              ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="MatcherWords.html" class="extype" name="org.scalatest.words.MatcherWords">MatcherWords</a></dd></dl></div>
+    </li><li name="org.scalatest.words.MatcherWords#contain" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="contain:org.scalatest.words.ContainWord"></a>
+      <a id="contain:ContainWord"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">contain</span><span class="result">: <a href="ContainWord.html" class="extype" name="org.scalatest.words.ContainWord">ContainWord</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">This field enables syntax such as the following:</p><div class="fullcomment"><div class="comment cmt"><p>This field enables syntax such as the following:</p><p><pre class="stHighlighted">
+list should (contain (<span class="stQuotedString">'a'</span>) and have length (<span class="stLiteral">7</span>))
+             ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="MatcherWords.html" class="extype" name="org.scalatest.words.MatcherWords">MatcherWords</a></dd></dl></div>
+    </li><li name="org.scalatest.words.MatcherWords#defined" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="defined:org.scalatest.words.DefinedWord"></a>
+      <a id="defined:DefinedWord"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">defined</span><span class="result">: <a href="DefinedWord.html" class="extype" name="org.scalatest.words.DefinedWord">DefinedWord</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">This field enables the following syntax:</p><div class="fullcomment"><div class="comment cmt"><p>This field enables the following syntax:</p><p><pre class="stHighlighted">
+seq should be (defined)
+              ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="MatcherWords.html" class="extype" name="org.scalatest.words.MatcherWords">MatcherWords</a></dd></dl></div>
+    </li><li name="org.scalatest.words.MatcherWords#empty" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="empty:org.scalatest.words.EmptyWord"></a>
+      <a id="empty:EmptyWord"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">empty</span><span class="result">: <a href="EmptyWord.html" class="extype" name="org.scalatest.words.EmptyWord">EmptyWord</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">This field enables the following syntax:</p><div class="fullcomment"><div class="comment cmt"><p>This field enables the following syntax:</p><p><pre class="stHighlighted">
+list should be (empty)
+                ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="MatcherWords.html" class="extype" name="org.scalatest.words.MatcherWords">MatcherWords</a></dd></dl></div>
+    </li><li name="org.scalatest.words.MatcherWords#endWith" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="endWith:org.scalatest.words.EndWithWord"></a>
+      <a id="endWith:EndWithWord"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">endWith</span><span class="result">: <a href="EndWithWord.html" class="extype" name="org.scalatest.words.EndWithWord">EndWithWord</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">This field enables syntax such as the following:</p><div class="fullcomment"><div class="comment cmt"><p>This field enables syntax such as the following:</p><p><pre class="stHighlighted">
+string should (endWith (<span class="stQuotedString">&quot;ago&quot;</span>) and include (<span class="stQuotedString">&quot;score&quot;</span>))
+               ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="MatcherWords.html" class="extype" name="org.scalatest.words.MatcherWords">MatcherWords</a></dd></dl></div>
+    </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="eq(x$1:AnyRef):Boolean"></a>
+      <a id="eq(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="org.scalatest.words.MatcherWords#equal" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="equal(right:Any):org.scalatest.matchers.MatcherFactory1[Any,org.scalactic.Equality]"></a>
+      <a id="equal(Any):MatcherFactory1[Any,Equality]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">equal</span><span class="params">(<span name="right">right: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <a href="../matchers/MatcherFactory1.html" class="extype" name="org.scalatest.matchers.MatcherFactory1">MatcherFactory1</a>[<span class="extype" name="scala.Any">Any</span>, <a href="../../scalactic/Equality.html" class="extype" name="org.scalactic.Equality">Equality</a>]</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">This method enables the following syntax:</p><div class="fullcomment"><div class="comment cmt"><p>This method enables the following syntax:</p><p><pre class="stHighlighted">
+result should equal (<span class="stLiteral">7</span>)
+              ^
+</pre></p><p>The <code>left should equal (right)</code> syntax works by calling <code>==</code> on the <code>left</code>
+value, passing in the <code>right</code> value, on every type except arrays. If both <code>left</code> and right are arrays, <code>deep</code>
+will be invoked on both <code>left</code> and <code>right</code> before comparing them with <em>==</em>. Thus, even though this expression
+will yield false, because <code>Array</code>'s <code>equals</code> method compares object identity:</p><p><pre class="stHighlighted">
+<span class="stType">Array</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>) == <span class="stType">Array</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>) <span class="stLineComment">// yields false</span>
+</pre></p><p>The following expression will <em>not</em> result in a <code>TestFailedException</code>, because ScalaTest will compare
+the two arrays structurally, taking into consideration the equality of the array's contents:</p><p><pre class="stHighlighted">
+<span class="stType">Array</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>) should equal (<span class="stType">Array</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>)) <span class="stLineComment">// succeeds (i.e., does not throw TestFailedException)</span>
+</pre></p><p>If you ever do want to verify that two arrays are actually the same object (have the same identity), you can use the
+<code>be theSameInstanceAs</code> syntax.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="MatcherWords.html" class="extype" name="org.scalatest.words.MatcherWords">MatcherWords</a></dd></dl></div>
+    </li><li name="scala.AnyRef#equals" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="equals(x$1:Any):Boolean"></a>
+      <a id="equals(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">equals</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="org.scalatest.words.MatcherWords#exist" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="exist:org.scalatest.words.ExistWord"></a>
+      <a id="exist:ExistWord"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">exist</span><span class="result">: <a href="ExistWord.html" class="extype" name="org.scalatest.words.ExistWord">ExistWord</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">This field enables the following syntax:</p><div class="fullcomment"><div class="comment cmt"><p>This field enables the following syntax:</p><p><pre class="stHighlighted">
+file should exist
+            ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="MatcherWords.html" class="extype" name="org.scalatest.words.MatcherWords">MatcherWords</a></dd></dl></div>
+    </li><li name="scala.AnyRef#finalize" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="finalize():Unit"></a>
+      <a id="finalize():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">finalize</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="org.scalatest.words.MatcherWords#fullyMatch" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="fullyMatch:org.scalatest.words.FullyMatchWord"></a>
+      <a id="fullyMatch:FullyMatchWord"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">fullyMatch</span><span class="result">: <a href="FullyMatchWord.html" class="extype" name="org.scalatest.words.FullyMatchWord">FullyMatchWord</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">This field enables syntax such as the following:</p><div class="fullcomment"><div class="comment cmt"><p>This field enables syntax such as the following:</p><p><pre class="stHighlighted">
+string should (fullyMatch regex (<span class="stQuotedString">&quot;Hel*o, wor.d&quot;</span>) and not have length (<span class="stLiteral">99</span>))
+               ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="MatcherWords.html" class="extype" name="org.scalatest.words.MatcherWords">MatcherWords</a></dd></dl></div>
+    </li><li name="scala.AnyRef#getClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getClass():Class[_]"></a>
+      <a id="getClass():Class[_]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getClass</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.Class">Class</span>[_]</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#hashCode" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="hashCode():Int"></a>
+      <a id="hashCode():Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">hashCode</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="org.scalatest.words.MatcherWords#have" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="have:org.scalatest.words.HaveWord"></a>
+      <a id="have:HaveWord"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">have</span><span class="result">: <a href="HaveWord.html" class="extype" name="org.scalatest.words.HaveWord">HaveWord</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">This field enables syntax such as the following:</p><div class="fullcomment"><div class="comment cmt"><p>This field enables syntax such as the following:</p><p><pre class="stHighlighted">
+list should (have length (<span class="stLiteral">3</span>) and not contain (<span class="stQuotedString">'a'</span>))
+             ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="MatcherWords.html" class="extype" name="org.scalatest.words.MatcherWords">MatcherWords</a></dd></dl></div>
+    </li><li name="org.scalatest.words.MatcherWords#include" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="include:org.scalatest.words.IncludeWord"></a>
+      <a id="include:IncludeWord"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">include</span><span class="result">: <a href="IncludeWord.html" class="extype" name="org.scalatest.words.IncludeWord">IncludeWord</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">This field enables syntax such as the following:</p><div class="fullcomment"><div class="comment cmt"><p>This field enables syntax such as the following:</p><p><pre class="stHighlighted">
+string should (include (<span class="stQuotedString">&quot;hope&quot;</span>) and not startWith (<span class="stQuotedString">&quot;no&quot;</span>))
+               ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="MatcherWords.html" class="extype" name="org.scalatest.words.MatcherWords">MatcherWords</a></dd></dl></div>
+    </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">isInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="org.scalatest.words.MatcherWords#length" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="length:org.scalatest.words.LengthWord"></a>
+      <a id="length:LengthWord"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">length</span><span class="result">: <a href="LengthWord.html" class="extype" name="org.scalatest.words.LengthWord">LengthWord</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">This field enables the following syntax:</p><div class="fullcomment"><div class="comment cmt"><p>This field enables the following syntax:</p><p><pre class="stHighlighted">
+<span class="stQuotedString">&quot;hi&quot;</span> should not have length (<span class="stLiteral">3</span>)
+                     ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="MatcherWords.html" class="extype" name="org.scalatest.words.MatcherWords">MatcherWords</a></dd></dl></div>
+    </li><li name="org.scalatest.words.MatcherWords#matchPattern" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="matchPattern:org.scalatest.words.MatchPatternWord"></a>
+      <a id="matchPattern:MatchPatternWord"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">matchPattern</span><span class="result">: <a href="MatchPatternWord.html" class="extype" name="org.scalatest.words.MatchPatternWord">MatchPatternWord</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">This field enables the following syntax:</p><div class="fullcomment"><div class="comment cmt"><p>This field enables the following syntax:</p><p><pre class="stHighlighted">
+result should matchPattern { <span class="stReserved">case</span> <span class="stType">Person</span>(<span class="stQuotedString">&quot;Bob&quot;</span>, _) =&gt; }
+              ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="MatcherWords.html" class="extype" name="org.scalatest.words.MatcherWords">MatcherWords</a></dd></dl></div>
+    </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ne(x$1:AnyRef):Boolean"></a>
+      <a id="ne(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="org.scalatest.words.MatcherWords#noException" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="noException:org.scalatest.words.NoExceptionWord"></a>
+      <a id="noException:NoExceptionWord"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">noException</span><span class="result">: <a href="NoExceptionWord.html" class="extype" name="org.scalatest.words.NoExceptionWord">NoExceptionWord</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">This field enables the following syntax:</p><div class="fullcomment"><div class="comment cmt"><p>This field enables the following syntax:</p><p><pre class="stHighlighted">
+noException should be thrownBy
+^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="MatcherWords.html" class="extype" name="org.scalatest.words.MatcherWords">MatcherWords</a></dd></dl></div>
+    </li><li name="org.scalatest.words.MatcherWords#not" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="not:org.scalatest.words.NotWord"></a>
+      <a id="not:NotWord"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">not</span><span class="result">: <a href="NotWord.html" class="extype" name="org.scalatest.words.NotWord">NotWord</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">This field enables syntax like the following:</p><div class="fullcomment"><div class="comment cmt"><p>This field enables syntax like the following:</p><p><pre class="stHighlighted">
+myFile should (not be an (directory) and not have (<span class="stQuotedString">'name</span> (<span class="stQuotedString">&quot;foo.bar&quot;</span>)))
+               ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="MatcherWords.html" class="extype" name="org.scalatest.words.MatcherWords">MatcherWords</a></dd></dl></div>
+    </li><li name="scala.AnyRef#notify" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notify():Unit"></a>
+      <a id="notify():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notify</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#notifyAll" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notifyAll():Unit"></a>
+      <a id="notifyAll():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notifyAll</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="org.scalatest.words.MatcherWords#readable" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="readable:org.scalatest.words.ReadableWord"></a>
+      <a id="readable:ReadableWord"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">readable</span><span class="result">: <a href="ReadableWord.html" class="extype" name="org.scalatest.words.ReadableWord">ReadableWord</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">This field enables the following syntax:</p><div class="fullcomment"><div class="comment cmt"><p>This field enables the following syntax:</p><p><pre class="stHighlighted">
+file should be (readable)
+                ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="MatcherWords.html" class="extype" name="org.scalatest.words.MatcherWords">MatcherWords</a></dd></dl></div>
+    </li><li name="org.scalatest.words.MatcherWords#size" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="size:org.scalatest.words.SizeWord"></a>
+      <a id="size:SizeWord"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">size</span><span class="result">: <a href="SizeWord.html" class="extype" name="org.scalatest.words.SizeWord">SizeWord</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">This field enables the following syntax:</p><div class="fullcomment"><div class="comment cmt"><p>This field enables the following syntax:</p><p><pre class="stHighlighted">
+set should not have size (<span class="stLiteral">3</span>)
+                    ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="MatcherWords.html" class="extype" name="org.scalatest.words.MatcherWords">MatcherWords</a></dd></dl></div>
+    </li><li name="org.scalatest.words.MatcherWords#sorted" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="sorted:org.scalatest.words.SortedWord"></a>
+      <a id="sorted:SortedWord"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">sorted</span><span class="result">: <a href="SortedWord.html" class="extype" name="org.scalatest.words.SortedWord">SortedWord</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">This field enables the following syntax:</p><div class="fullcomment"><div class="comment cmt"><p>This field enables the following syntax:</p><p><pre class="stHighlighted">
+seq should be (sorted)
+              ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="MatcherWords.html" class="extype" name="org.scalatest.words.MatcherWords">MatcherWords</a></dd></dl></div>
+    </li><li name="org.scalatest.words.MatcherWords#startWith" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="startWith:org.scalatest.words.StartWithWord"></a>
+      <a id="startWith:StartWithWord"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">startWith</span><span class="result">: <a href="StartWithWord.html" class="extype" name="org.scalatest.words.StartWithWord">StartWithWord</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">This field enables syntax such as the following:</p><div class="fullcomment"><div class="comment cmt"><p>This field enables syntax such as the following:</p><p><pre class="stHighlighted">
+string should (startWith (<span class="stQuotedString">&quot;Four&quot;</span>) and include (<span class="stQuotedString">&quot;year&quot;</span>))
+               ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="MatcherWords.html" class="extype" name="org.scalatest.words.MatcherWords">MatcherWords</a></dd></dl></div>
+    </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
+      <a id="synchronized[T0](⇒T0):T0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">synchronized</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="params">(<span name="arg0">arg0: ⇒ <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>)</span><span class="result">: <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="toString():String"></a>
+      <a id="toString():String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">toString</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="org.scalatest.words.MatcherWords#typeCheck" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="typeCheck:org.scalatest.words.TypeCheckWord"></a>
+      <a id="typeCheck:TypeCheckWord"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">typeCheck</span><span class="result">: <a href="TypeCheckWord.html" class="extype" name="org.scalatest.words.TypeCheckWord">TypeCheckWord</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">This field enables the following syntax:</p><div class="fullcomment"><div class="comment cmt"><p>This field enables the following syntax:</p><p><pre class="stHighlighted">
+<span class="stQuotedString">&quot;val a: String = 1&quot;</span> shouldNot typeCheck
+                              ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="MatcherWords.html" class="extype" name="org.scalatest.words.MatcherWords">MatcherWords</a></dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait():Unit"></a>
+      <a id="wait():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long,x$2:Int):Unit"></a>
+      <a id="wait(Long,Int):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>, <span name="arg1">arg1: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long):Unit"></a>
+      <a id="wait(Long):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="org.scalatest.words.MatcherWords#writable" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="writable:org.scalatest.words.WritableWord"></a>
+      <a id="writable:WritableWord"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">writable</span><span class="result">: <a href="WritableWord.html" class="extype" name="org.scalatest.words.WritableWord">WritableWord</a></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">This field enables the following syntax:</p><div class="fullcomment"><div class="comment cmt"><p>This field enables the following syntax:</p><p><pre class="stHighlighted">
+file should be (writable)
+                ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="MatcherWords.html" class="extype" name="org.scalatest.words.MatcherWords">MatcherWords</a></dd></dl></div>
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        <div class="parent" name="org.scalatest.words.MatcherWords">
+              <h3>Inherited from <a href="MatcherWords.html" class="extype" name="org.scalatest.words.MatcherWords">MatcherWords</a></h3>
+            </div><div class="parent" name="scala.AnyRef">
+              <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
+            </div><div class="parent" name="scala.Any">
+              <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
+            </div>
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+
+
+    </body>
+      </html>

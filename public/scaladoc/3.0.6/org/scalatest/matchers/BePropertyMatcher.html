@@ -1,0 +1,817 @@
+<!DOCTYPE html >
+<html>
+        <head>
+          <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+          <title>ScalaTest 3.0.6  - org.scalatest.matchers.BePropertyMatcher</title>
+          <meta name="description" content="ScalaTest 3.0.6 - org.scalatest.matchers.BePropertyMatcher" />
+          <meta name="keywords" content="ScalaTest 3.0.6 org.scalatest.matchers.BePropertyMatcher" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../lib/index.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../../../lib/jquery.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.panzoom.min.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.mousewheel.min.js"></script>
+      <script type="text/javascript" src="../../../lib/index.js"></script>
+      <script type="text/javascript" src="../../../index.js"></script>
+      <script type="text/javascript" src="../../../lib/scheduler.js"></script>
+      <script type="text/javascript" src="../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../lib/tools.tooltip.js"></script>
+      
+      <script type="text/javascript">
+        /* this variable can be used by the JS to determine the path to the root document */
+        var toRoot = '../../../';
+      </script>
+    
+        </head>
+        <body>
+      <div id="search">
+        <span id="doc-title">ScalaTest 3.0.6<span id="doc-version"></span></span>
+        <span class="close-results"><span class="left">&lt;</span> Back</span>
+        <div id="textfilter">
+          <span class="input">
+            <input autocapitalize="none" placeholder="Search" id="index-input" type="text" accesskey="/" />
+            <i class="clear material-icons"></i>
+            <i id="search-icon" class="material-icons"></i>
+          </span>
+        </div>
+    </div>
+      <div id="search-results">
+        <div id="search-progress">
+          <div id="progress-fill"></div>
+        </div>
+        <div id="results-content">
+          <div id="entity-results"></div>
+          <div id="member-results"></div>
+        </div>
+      </div>
+      <div id="content-scroll-container" style="-webkit-overflow-scrolling: touch;">
+        <div id="content-container" style="-webkit-overflow-scrolling: touch;">
+          <div id="subpackage-spacer">
+            <div id="packages">
+              <h1>Packages</h1>
+              <ul>
+                <li name="_root_.root" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="_root_"></a><a id="root:_root_"></a>
+      <span class="permalink">
+      <a href="index.html#_root_" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="../../../index.html"><span class="name">root</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../../../index.html" class="extype" name="_root_">root</a></dd></dl></div>
+    </li><li name="_root_.org" visbl="pub" class="indented1 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="org"></a><a id="org:org"></a>
+      <span class="permalink">
+      <a href="index.html#org" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="../../index.html"><span class="name">org</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../../../index.html" class="extype" name="_root_">root</a></dd></dl></div>
+    </li><li name="org.scalatest" visbl="pub" class="indented2 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="scalatest"></a><a id="scalatest:scalatest"></a>
+      <span class="permalink">
+      <a href="../org/index.html#scalatest" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="ScalaTest's main traits, classes, and other members, including members supporting ScalaTest's DSL for the Scala interpreter." href="../index.html"><span class="name">scalatest</span></a>
+      </span>
+      
+      <p class="shortcomment cmt">ScalaTest's main traits, classes, and other members, including members supporting ScalaTest's DSL for the Scala interpreter.</p><div class="fullcomment"><div class="comment cmt"><p>ScalaTest's main traits, classes, and other members, including members supporting ScalaTest's DSL for the Scala interpreter.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../../index.html" class="extype" name="org">org</a></dd></dl></div>
+    </li><li name="org.scalatest.matchers" visbl="pub" class="indented3 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="matchers"></a><a id="matchers:matchers"></a>
+      <span class="permalink">
+      <a href="../../org/scalatest/index.html#matchers" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="index.html"><span class="name">matchers</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="org.scalatest">scalatest</a></dd></dl></div>
+    </li><li class="current-entities indented3">
+                        <a class="object" href="BeMatcher$.html" title="Companion object for trait BeMatcher that provides a factory method that creates a BeMatcher[T] from a passed function of type (T =&amp;gt; MatchResult)."></a>
+                        <a class="trait" href="BeMatcher.html" title="Trait extended by matcher objects, which may appear after the word be, that can match a value of the specified type."></a>
+                        <a href="BeMatcher.html" title="Trait extended by matcher objects, which may appear after the word be, that can match a value of the specified type.">BeMatcher</a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="BePropertyMatchResult$.html" title="Companion object for the BePropertyMatchResult case class."></a>
+                        <a class="class" href="BePropertyMatchResult.html" title="The result of a Boolean property match operation, such as one performed by a BePropertyMatcher, which contains one field that indicates whether the match succeeded (i.e., the Boolean property was true) and one field that provides the name of the property."></a>
+                        <a href="BePropertyMatchResult.html" title="The result of a Boolean property match operation, such as one performed by a BePropertyMatcher, which contains one field that indicates whether the match succeeded (i.e., the Boolean property was true) and one field that provides the name of the property.">BePropertyMatchResult</a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="BePropertyMatcher$.html" title="Companion object for trait BePropertyMatcher that provides a factory method that creates a BePropertyMatcher[T] from a passed function of type (T =&gt; BePropertyMatchResult)."></a>
+                        <a class="trait" href="" title="Trait extended by matcher objects, which may appear after the word be, that can match against a Boolean property."></a>
+                        <a href="" title="Trait extended by matcher objects, which may appear after the word be, that can match against a Boolean property.">BePropertyMatcher</a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="HavePropertyMatchResult$.html" title="Companion object for the HavePropertyMatchResult case class."></a>
+                        <a class="class" href="HavePropertyMatchResult.html" title="The result of a property match operation such as one performed by a HavePropertyMatcher, which contains one field that indicates whether the match succeeded (i.e., the property had its expected value), one field that provides the name of the property, and two fields giving the expected and actual values."></a>
+                        <a href="HavePropertyMatchResult.html" title="The result of a property match operation such as one performed by a HavePropertyMatcher, which contains one field that indicates whether the match succeeded (i.e., the property had its expected value), one field that provides the name of the property, and two fields giving the expected and actual values.">HavePropertyMatchResult</a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="HavePropertyMatcher$.html" title="Companion object for trait HavePropertyMatcher that provides a factory method that creates a HavePropertyMatcher[T] from a passed function of type (T =&amp;gt; HavePropertyMatchResult)."></a>
+                        <a class="trait" href="HavePropertyMatcher.html" title="Trait extended by matcher objects, which may appear after the word have, that can match against a property of the type specified by the HavePropertyMatcher's second type parameter P."></a>
+                        <a href="HavePropertyMatcher.html" title="Trait extended by matcher objects, which may appear after the word have, that can match against a property of the type specified by the HavePropertyMatcher's second type parameter P.">HavePropertyMatcher</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="class" href="LazyArg.html" title="Transforms a given object's toString with a given function lazily."></a>
+                        <a href="LazyArg.html" title="Transforms a given object's toString with a given function lazily.">LazyArg</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="object" href="MatchFailed$.html" title="Singleton object that provides unapply method to extract failure message from MatchResult having matches property value of false."></a>
+                        <a href="MatchFailed$.html" title="Singleton object that provides unapply method to extract failure message from MatchResult having matches property value of false.">MatchFailed</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="object" href="MatchPatternHelper$.html" title="MatchPatternHelper is called by MatchPatternMacro to support matchPattern syntax."></a>
+                        <a href="MatchPatternHelper$.html" title="MatchPatternHelper is called by MatchPatternMacro to support matchPattern syntax.">MatchPatternHelper</a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="MatchResult$.html" title="Companion object for the MatchResult case class."></a>
+                        <a class="class" href="MatchResult.html" title="The result of a match operation, such as one performed by a Matcher or BeMatcher, which contains one field that indicates whether the match succeeded, four fields that provide raw failure messages to report under different circumstances, four fields providing arguments used to construct the final failure messages using raw failure messages and a Prettifier."></a>
+                        <a href="MatchResult.html" title="The result of a match operation, such as one performed by a Matcher or BeMatcher, which contains one field that indicates whether the match succeeded, four fields that provide raw failure messages to report under different circumstances, four fields providing arguments used to construct the final failure messages using raw failure messages and a Prettifier.">MatchResult</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="object" href="MatchSucceeded$.html" title="Singleton object that provides unapply method to extract negated failure message from MatchResult having matches property value of true."></a>
+                        <a href="MatchSucceeded$.html" title="Singleton object that provides unapply method to extract negated failure message from MatchResult having matches property value of true.">MatchSucceeded</a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="Matcher$.html" title="Companion object for trait Matcher that provides a factory method that creates a Matcher[T] from a passed function of type (T =&amp;gt; MatchResult)."></a>
+                        <a class="trait" href="Matcher.html" title="Trait extended by objects that can match a value of the specified type."></a>
+                        <a href="Matcher.html" title="Trait extended by objects that can match a value of the specified type.">Matcher</a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="MatcherFactory1$.html" title="Companion object containing an implicit method that converts a MatcherFactory1 to a Matcher."></a>
+                        <a class="class" href="MatcherFactory1.html" title="A matcher factory that can produce a matcher given one typeclass instance."></a>
+                        <a href="MatcherFactory1.html" title="A matcher factory that can produce a matcher given one typeclass instance.">MatcherFactory1</a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="MatcherFactory2$.html" title="Companion object containing an implicit method that converts a MatcherFactory2 to a Matcher."></a>
+                        <a class="class" href="MatcherFactory2.html" title="A matcher factory that can produce a matcher given two typeclass instances."></a>
+                        <a href="MatcherFactory2.html" title="A matcher factory that can produce a matcher given two typeclass instances.">MatcherFactory2</a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="MatcherFactory3$.html" title="Companion object containing an implicit method that converts a MatcherFactory3 to a Matcher."></a>
+                        <a class="class" href="MatcherFactory3.html" title="A matcher factory that can produce a matcher given three typeclass instances."></a>
+                        <a href="MatcherFactory3.html" title="A matcher factory that can produce a matcher given three typeclass instances.">MatcherFactory3</a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="MatcherFactory4$.html" title="Companion object containing an implicit method that converts a MatcherFactory4 to a Matcher."></a>
+                        <a class="class" href="MatcherFactory4.html" title="A matcher factory that can produce a matcher given four typeclass instances."></a>
+                        <a href="MatcherFactory4.html" title="A matcher factory that can produce a matcher given four typeclass instances.">MatcherFactory4</a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="MatcherFactory5$.html" title="Companion object containing an implicit method that converts a MatcherFactory5 to a Matcher."></a>
+                        <a class="class" href="MatcherFactory5.html" title="A matcher factory that can produce a matcher given five typeclass instances."></a>
+                        <a href="MatcherFactory5.html" title="A matcher factory that can produce a matcher given five typeclass instances.">MatcherFactory5</a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="MatcherFactory6$.html" title="Companion object containing an implicit method that converts a MatcherFactory6 to a Matcher."></a>
+                        <a class="class" href="MatcherFactory6.html" title="A matcher factory that can produce a matcher given six typeclass instances."></a>
+                        <a href="MatcherFactory6.html" title="A matcher factory that can produce a matcher given six typeclass instances.">MatcherFactory6</a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="MatcherFactory7$.html" title="Companion object containing an implicit method that converts a MatcherFactory7 to a Matcher."></a>
+                        <a class="class" href="MatcherFactory7.html" title="A matcher factory that can produce a matcher given seven typeclass instances."></a>
+                        <a href="MatcherFactory7.html" title="A matcher factory that can produce a matcher given seven typeclass instances.">MatcherFactory7</a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="MatcherFactory8$.html" title="Companion object containing an implicit method that converts a MatcherFactory8 to a Matcher."></a>
+                        <a class="class" href="MatcherFactory8.html" title="A matcher factory that can produce a matcher given eight typeclass instances."></a>
+                        <a href="MatcherFactory8.html" title="A matcher factory that can produce a matcher given eight typeclass instances.">MatcherFactory8</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="class" href="MatcherFactory9.html" title="A matcher factory that can produce a matcher given nine typeclass instances."></a>
+                        <a href="MatcherFactory9.html" title="A matcher factory that can produce a matcher given nine typeclass instances.">MatcherFactory9</a>
+                      </li><li class="current-entities indented3">
+                        <a class="object" href="MatcherProducers$.html" title="Companion object that facilitates the importing of MatcherProducers members as an alternative to mixing it in."></a>
+                        <a class="trait" href="MatcherProducers.html" title="Provides an implicit conversion on functions that produce Matchers, i.e., T =&amp;gt; Matcher[T] that enables you to modify error messages when composing Matchers."></a>
+                        <a href="MatcherProducers.html" title="Provides an implicit conversion on functions that produce Matchers, i.e., T =&amp;gt; Matcher[T] that enables you to modify error messages when composing Matchers.">MatcherProducers</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="object" href="TypeMatcherHelper$.html" title="TypeMatcherHelper is called by TypeMatcherMacro to support a [Type] and an [Type] syntax."></a>
+                        <a href="TypeMatcherHelper$.html" title="TypeMatcherHelper is called by TypeMatcherMacro to support a [Type] and an [Type] syntax.">TypeMatcherHelper</a>
+                      </li>
+              </ul>
+            </div>
+          </div>
+          <div id="content">
+            <body class="trait type">
+
+<!-- Top of doc.scalatest.org [javascript] -->
+
+<script type="text/javascript">
+
+var rnd = window.rnd || Math.floor(Math.random()*10e6);
+
+var pid204546 = window.pid204546 || rnd;
+
+var plc204546 = window.plc204546 || 0;
+
+var abkw = window.abkw || '';
+
+var absrc = 'http://ab167933.adbutler-ikon.com/adserve/;ID=167933;size=468x60;setID=204546;type=js;sw='+screen.width+';sh='+screen.height+';spr='+window.devicePixelRatio+';kw='+abkw+';pid='+pid204546+';place='+(plc204546++)+';rnd='+rnd+';click=CLICK_MACRO_PLACEHOLDER';
+
+document.write('<scr'+'ipt src="'+absrc+'" type="text/javascript"></scr'+'ipt>');
+
+</script>
+
+      <div id="definition">
+        <a href="BePropertyMatcher$.html" title="See companion object"><div class="big-circle trait-companion-object">t</div></a>
+        <p id="owner"><a href="../../index.html" class="extype" name="org">org</a>.<a href="../index.html" class="extype" name="org.scalatest">scalatest</a>.<a href="index.html" class="extype" name="org.scalatest.matchers">matchers</a></p>
+        <h1><a href="BePropertyMatcher$.html" title="See companion object">BePropertyMatcher</a><span class="permalink">
+      <a href="../../../org/scalatest/matchers/BePropertyMatcher.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span></h1>
+        <h3><span class="morelinks"><div>
+            Companion <a href="BePropertyMatcher$.html" title="See companion object">object BePropertyMatcher</a>
+          </div></span></h3>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <span class="name">BePropertyMatcher</span><span class="tparams">[<span name="T">-T</span>]</span><span class="result"> extends (<span class="extype" name="org.scalatest.matchers.BePropertyMatcher.T">T</span>) ⇒ <a href="BePropertyMatchResult.html" class="extype" name="org.scalatest.matchers.BePropertyMatchResult">BePropertyMatchResult</a></span>
+      </span>
+      </h4>
+
+      
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Trait extended by matcher objects, which may appear after the word <code>be</code>, that can match against a <code>Boolean</code>
+property. The match will succeed if and only if the <code>Boolean</code> property equals <code>true</code>.
+The object containing the property, which must be of the type specified by the <code>BePropertyMatcher</code>'s type
+parameter <code>T</code>, is passed to the <code>BePropertyMatcher</code>'s
+<code>apply</code> method. The result is a <code>BePropertyMatchResult</code>.
+A <code>BePropertyMatcher</code> is, therefore, a function from the specified type, <code>T</code>, to
+a <code>BePropertyMatchResult</code>.</p><p>Although <code>BePropertyMatcher</code>
+and <code>Matcher</code> represent similar concepts, they have no inheritance relationship
+because <code>Matcher</code> is intended for use right after <code>should</code> or <code>must</code>
+whereas <code>BePropertyMatcher</code> is intended for use right after <code>be</code>.</p><p>A <code>BePropertyMatcher</code> essentially allows you to write statically typed <code>Boolean</code>
+property assertions similar to the dynamic ones that use symbols:</p><p><pre class="stHighlighted">
+tempFile should be a (<span class="stQuotedString">'file</span>) <span class="stLineComment">// dynamic: uses reflection</span>
+tempFile should be a (file)  <span class="stLineComment">// type safe: only works on Files; no reflection used</span>
+</pre></p><p>One good way to organize custom matchers is to place them inside one or more traits that
+you can then mix into the suites or specs that need them. Here's an example that
+includes two <code>BePropertyMatcher</code>s:</p><p><pre class="stHighlighted">
+<span class="stReserved">trait</span> <span class="stType">CustomMatchers</span> {
+<br/>  <span class="stReserved">class</span> <span class="stType">FileBePropertyMatcher</span> <span class="stReserved">extends</span> <span class="stType">BePropertyMatcher[java.io.File]</span> {
+    <span class="stReserved">def</span> apply(left: <span class="stType">java.io.File</span>) = <span class="stType">BePropertyMatchResult</span>(left.isFile, <span class="stQuotedString">"file"</span>)
+  }
+<br/>  <span class="stReserved">class</span> <span class="stType">DirectoryBePropertyMatcher</span> <span class="stReserved">extends</span> <span class="stType">BePropertyMatcher[java.io.File]</span> {
+    <span class="stReserved">def</span> apply(left: <span class="stType">java.io.File</span>) = <span class="stType">BePropertyMatchResult</span>(left.isDirectory, <span class="stQuotedString">"directory"</span>)
+  }
+<br/>  <span class="stReserved">val</span> file = <span class="stReserved">new</span> <span class="stType">FileBePropertyMatcher</span>
+  <span class="stReserved">val</span> directory = <span class="stReserved">new</span> <span class="stType">DirectoryBePropertyMatcher</span>
+}
+</pre></p><p>Because the type parameter of these two <code>BePropertyMatcher</code>s is <code>java.io.File</code>, they
+can only be used with instances of that type. (The compiler will enforce this.) All they do is create a
+<code>BePropertyMatchResult</code> whose <code>matches</code> field is <code>true</code> if and only if the <code>Boolean</code> property
+is <code>true</code>. The second field, <code>propertyName</code>, is simply the string name of the property.
+The <code>file</code> and <code>directory</code> <code>val</code>s create variables that can be used in
+matcher expressions that test whether a <code>java.io.File</code> is a file or a directory. Here's an example:</p><p><pre class="stHighlighted">
+<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">RefSpec</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> <span class="stReserved">with</span> <span class="stType">CustomMatchers</span> {
+<br/>  describe(<span class="stQuotedString">"A temp file"</span>) {
+<br/>    it(<span class="stQuotedString">"should be a file, not a directory"</span>) {
+<br/>      <span class="stReserved">val</span> tempFile = java.io.File.createTempFile(<span class="stQuotedString">"delete"</span>, <span class="stQuotedString">"me"</span>)
+<br/>      <span class="stReserved">try</span> {
+        tempFile should be a (file)
+        tempFile should not be a (directory)
+      }
+      <span class="stReserved">finally</span> {
+        tempFile.delete()
+      }
+    }
+  }
+}
+</pre></p><p>These matches should succeed, but if for example the first match, <code>tempFile should be a (file)</code>, were to fail, you would get an error message like:</p><p><pre class="stExamples">
+/tmp/delme1234me was not a file
+</pre></p><p>For more information on <code>BePropertyMatchResult</code> and the meaning of its fields, please
+see the documentation for <a href="BePropertyMatchResult.html"><code>BePropertyMatchResult</code></a>. To understand why <code>BePropertyMatcher</code>
+is contravariant in its type parameter, see the section entitled &quot;Matcher's variance&quot; in the
+documentation for <a href="../Matcher.html"><code>Matcher</code></a>.</p></div><dl class="attributes block"> <dt>Self Type</dt><dd><a href="" class="extype" name="org.scalatest.matchers.BePropertyMatcher">BePropertyMatcher</a>[<span class="extype" name="org.scalatest.matchers.BePropertyMatcher.T">T</span>]</dd><dt>Source</dt><dd><a href="https://github.com/scalatest/scalatest/tree/release-3.0.6/scalatest//src/main/scala/org/scalatest/matchers/BePropertyMatcher.scala" target="_blank">BePropertyMatcher.scala</a></dd></dl><div class="toggleContainer block">
+          <span class="toggle">
+            Linear Supertypes
+          </span>
+          <div class="superTypes hiddenContent">(<span class="extype" name="org.scalatest.matchers.BePropertyMatcher.T">T</span>) ⇒ <a href="BePropertyMatchResult.html" class="extype" name="org.scalatest.matchers.BePropertyMatchResult">BePropertyMatchResult</a>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+        </div></div>
+        
+
+      <div id="mbrsel">
+        <div class="toggle"></div>
+        <div id="memberfilter">
+          <i class="material-icons arrow"></i>
+          <span class="input">
+            <input id="mbrsel-input" placeholder="Filter all members" type="text" accesskey="/" />
+          </span>
+          <i class="clear material-icons"></i>
+        </div>
+        <div id="filterby">
+          <div id="order">
+            <span class="filtertype">Ordering</span>
+            <ol>
+              
+              <li class="alpha in"><span>Alphabetic</span></li>
+              <li class="inherit out"><span>By Inheritance</span></li>
+            </ol>
+          </div>
+          <div class="ancestors">
+                  <span class="filtertype">Inherited<br />
+                  </span>
+                  <ol id="linearization">
+                    <li class="in" name="org.scalatest.matchers.BePropertyMatcher"><span>BePropertyMatcher</span></li><li class="in" name="scala.Function1"><span>Function1</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                  </ol>
+                </div><div class="ancestors">
+              <span class="filtertype"></span>
+              <ol>
+                <li class="hideall out"><span>Hide All</span></li>
+                <li class="showall in"><span>Show All</span></li>
+              </ol>
+            </div>
+          <div id="visbl">
+              <span class="filtertype">Visibility</span>
+              <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+            </div>
+        </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        
+
+        <div class="values members">
+              <h3>Abstract Value Members</h3>
+              <ol><li name="org.scalatest.matchers.BePropertyMatcher#apply" visbl="pub" class="indented0 " data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="apply(objectWithProperty:T):org.scalatest.matchers.BePropertyMatchResult"></a><a id="apply(T):BePropertyMatchResult"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/matchers/BePropertyMatcher.html#apply(objectWithProperty:T):org.scalatest.matchers.BePropertyMatchResult" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">apply</span><span class="params">(<span name="objectWithProperty">objectWithProperty: <span class="extype" name="org.scalatest.matchers.BePropertyMatcher.T">T</span></span>)</span><span class="result">: <a href="BePropertyMatchResult.html" class="extype" name="org.scalatest.matchers.BePropertyMatchResult">BePropertyMatchResult</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">Check to see if a <code>Boolean</code> property on the specified object, <code>objectWithProperty</code>, matches its
+expected value, and report the result in
+the returned <code>BePropertyMatchResult</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Check to see if a <code>Boolean</code> property on the specified object, <code>objectWithProperty</code>, matches its
+expected value, and report the result in
+the returned <code>BePropertyMatchResult</code>. The <code>objectWithProperty</code> is
+usually the value to the left of a <code>should</code> or <code>must</code> invocation. For example, <code>tempFile</code>
+would be passed as the <code>objectWithProperty</code> in:</p><p><pre class="stHighlighted">
+tempFile should be a (file)
+</pre>
+</p></div><dl class="paramcmts block"><dt class="param">objectWithProperty</dt><dd class="cmt"><p>the object with the <code>Boolean</code> property against which to match</p></dd><dt>returns</dt><dd class="cmt"><p>the <code>BePropertyMatchResult</code> that represents the result of the match</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.scalatest.matchers.BePropertyMatcher">BePropertyMatcher</a> → Function1</dd></dl></div>
+    </li></ol>
+            </div>
+
+        <div class="values members">
+              <h3>Concrete Value Members</h3>
+              <ol>
+                <li name="scala.AnyRef#!=" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="!=(x$1:Any):Boolean"></a><a id="!=(Any):Boolean"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/matchers/BePropertyMatcher.html#!=(x$1:Any):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef###" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="##():Int"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/matchers/BePropertyMatcher.html###():Int" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $hash$hash" class="name">##</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#==" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="==(x$1:Any):Boolean"></a><a id="==(Any):Boolean"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/matchers/BePropertyMatcher.html#==(x$1:Any):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.Function1#andThen" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="andThen[A](g:R=&gt;A):T1=&gt;A"></a><a id="andThen[A]((BePropertyMatchResult)⇒A):(T)⇒A"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/matchers/BePropertyMatcher.html#andThen[A](g:R=&gt;A):T1=&gt;A" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">andThen</span><span class="tparams">[<span name="A">A</span>]</span><span class="params">(<span name="g">g: (<a href="BePropertyMatchResult.html" class="extype" name="org.scalatest.matchers.BePropertyMatchResult">BePropertyMatchResult</a>) ⇒ <span class="extype" name="scala.Function1.andThen.A">A</span></span>)</span><span class="result">: (<span class="extype" name="org.scalatest.matchers.BePropertyMatcher.T">T</span>) ⇒ <span class="extype" name="scala.Function1.andThen.A">A</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Function1</dd><dt>Annotations</dt><dd>
+                <span class="name">@unspecialized</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.Any#asInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="asInstanceOf[T0]:T0"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/matchers/BePropertyMatcher.html#asInstanceOf[T0]:T0" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">asInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Any.asInstanceOf.T0">T0</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="scala.AnyRef#clone" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="clone():Object"></a><a id="clone():AnyRef"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/matchers/BePropertyMatcher.html#clone():Object" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">clone</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../java/lang/index.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@native</span><span class="args">()</span>
+              
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.CloneNotSupportedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="org.scalatest.matchers.BePropertyMatcher#compose" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="compose[U](g:U=&gt;T):org.scalatest.matchers.BePropertyMatcher[U]"></a><a id="compose[U]((U)⇒T):BePropertyMatcher[U]"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/matchers/BePropertyMatcher.html#compose[U](g:U=&gt;T):org.scalatest.matchers.BePropertyMatcher[U]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">compose</span><span class="tparams">[<span name="U">U</span>]</span><span class="params">(<span name="g">g: (<span class="extype" name="org.scalatest.matchers.BePropertyMatcher.compose.U">U</span>) ⇒ <span class="extype" name="org.scalatest.matchers.BePropertyMatcher.T">T</span></span>)</span><span class="result">: <a href="" class="extype" name="org.scalatest.matchers.BePropertyMatcher">BePropertyMatcher</a>[<span class="extype" name="org.scalatest.matchers.BePropertyMatcher.compose.U">U</span>]</span>
+      </span>
+      
+      <p class="shortcomment cmt">Compose this <code>BePropertyMatcher</code> with the passed function, returning a new <code>BePropertyMatcher</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Compose this <code>BePropertyMatcher</code> with the passed function, returning a new <code>BePropertyMatcher</code>.</p><p>This method overrides <code>compose</code> on <code>Function1</code> to
+return a more specific function type of <code>BePropertyMatcher</code>.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.scalatest.matchers.BePropertyMatcher">BePropertyMatcher</a> → Function1</dd></dl></div>
+    </li><li name="scala.AnyRef#eq" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="eq(x$1:AnyRef):Boolean"></a><a id="eq(AnyRef):Boolean"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/matchers/BePropertyMatcher.html#eq(x$1:AnyRef):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#equals" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="equals(x$1:Any):Boolean"></a><a id="equals(Any):Boolean"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/matchers/BePropertyMatcher.html#equals(x$1:Any):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">equals</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#finalize" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="finalize():Unit"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/matchers/BePropertyMatcher.html#finalize():Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">finalize</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../java/lang/index.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="symbol">classOf[java.lang.Throwable]</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#getClass" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getClass():Class[_]"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/matchers/BePropertyMatcher.html#getClass():Class[_]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getClass</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.Class">Class</span>[_]</span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd><dt>Annotations</dt><dd>
+                <span class="name">@native</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#hashCode" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="hashCode():Int"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/matchers/BePropertyMatcher.html#hashCode():Int" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">hashCode</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd><dt>Annotations</dt><dd>
+                <span class="name">@native</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.Any#isInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/matchers/BePropertyMatcher.html#isInstanceOf[T0]:Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">isInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="scala.AnyRef#ne" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ne(x$1:AnyRef):Boolean"></a><a id="ne(AnyRef):Boolean"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/matchers/BePropertyMatcher.html#ne(x$1:AnyRef):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#notify" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notify():Unit"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/matchers/BePropertyMatcher.html#notify():Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notify</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@native</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#notifyAll" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notifyAll():Unit"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/matchers/BePropertyMatcher.html#notifyAll():Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notifyAll</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@native</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#synchronized" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="synchronized[T0](x$1:=&gt;T0):T0"></a><a id="synchronized[T0](⇒T0):T0"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/matchers/BePropertyMatcher.html#synchronized[T0](x$1:=&gt;T0):T0" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">synchronized</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="params">(<span name="arg0">arg0: ⇒ <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>)</span><span class="result">: <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.Function1#toString" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="toString():String"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/matchers/BePropertyMatcher.html#toString():String" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">toString</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Function1 → AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait():Unit"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/matchers/BePropertyMatcher.html#wait():Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long,x$2:Int):Unit"></a><a id="wait(Long,Int):Unit"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/matchers/BePropertyMatcher.html#wait(x$1:Long,x$2:Int):Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>, <span name="arg1">arg1: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long):Unit"></a><a id="wait(Long):Unit"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/matchers/BePropertyMatcher.html#wait(x$1:Long):Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@native</span><span class="args">()</span>
+              
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li>
+              </ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        <div class="parent" name="scala.Function1">
+              <h3>Inherited from (<span class="extype" name="org.scalatest.matchers.BePropertyMatcher.T">T</span>) ⇒ <a href="BePropertyMatchResult.html" class="extype" name="org.scalatest.matchers.BePropertyMatchResult">BePropertyMatchResult</a></h3>
+            </div><div class="parent" name="scala.AnyRef">
+              <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
+            </div><div class="parent" name="scala.Any">
+              <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
+            </div>
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+    </body>
+          </div>
+        </div>
+      </div>
+    </body>
+      </html>

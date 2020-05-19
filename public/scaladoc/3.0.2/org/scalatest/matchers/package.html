@@ -1,0 +1,1313 @@
+<!DOCTYPE html >
+<html>
+        <head>
+          <title>matchers - ScalaTest 3.0.2 - org.scalatest.matchers</title>
+          <meta name="description" content="matchers - ScalaTest 3.0.2 - org.scalatest.matchers" />
+          <meta name="keywords" content="matchers ScalaTest 3.0.2 org.scalatest.matchers" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../../../lib/jquery.js" id="jquery-js"></script>
+      <script type="text/javascript" src="../../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../lib/tools.tooltip.js"></script>
+      
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../../index.html';
+            var hash = 'org.scalatest.matchers.package';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="value">
+
+<!-- Top of doc.scalatest.org [javascript] -->
+
+<script type="text/javascript">
+
+var rnd = window.rnd || Math.floor(Math.random()*10e6);
+
+var pid204546 = window.pid204546 || rnd;
+
+var plc204546 = window.plc204546 || 0;
+
+var abkw = window.abkw || '';
+
+var absrc = 'http://ab167933.adbutler-ikon.com/adserve/;ID=167933;size=468x60;setID=204546;type=js;sw='+screen.width+';sh='+screen.height+';spr='+window.devicePixelRatio+';kw='+abkw+';pid='+pid204546+';place='+(plc204546++)+';rnd='+rnd+';click=CLICK_MACRO_PLACEHOLDER';
+
+document.write('<scr'+'ipt src="'+absrc+'" type="text/javascript"></scr'+'ipt>');
+
+</script>
+
+      <div id="definition">
+        <img alt="Package" src="../../../lib/package_big.png" />
+        <p id="owner"><a href="../../package.html" class="extype" name="org">org</a>.<a href="../package.html" class="extype" name="org.scalatest">scalatest</a></p>
+        <h1>matchers</h1><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.package" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <span class="name">matchers</span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        
+        
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        <div id="types" class="types members">
+              <h3>Type Members</h3>
+              <ol><li name="org.scalatest.matchers.BeMatcher" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="BeMatcher[-T]extendsT=&gt;org.scalatest.matchers.MatchResult"></a>
+      <a id="BeMatcher[-T]:BeMatcher[T]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="BeMatcher.html"><span class="name">BeMatcher</span></a><span class="tparams">[<span name="T">-T</span>]</span><span class="result"> extends (<span class="extype" name="org.scalatest.matchers.BeMatcher.T">T</span>) ⇒ <a href="MatchResult.html" class="extype" name="org.scalatest.matchers.MatchResult">MatchResult</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.package@BeMatcher[-T]extendsT=&gt;org.scalatest.matchers.MatchResult" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Trait extended by matcher objects, which may appear after the word <code>be</code>, that can match a value of the specified type.</code></p><div class="fullcomment"><div class="comment cmt"><p>Trait extended by matcher objects, which may appear after the word <code>be</code>, that can match a value of the specified type.
+The value to match is passed to the <code>BeMatcher</code>'s <code>apply</code> method. The result is a <code>MatchResult</code>.
+A <code>BeMatcher</code> is, therefore, a function from the specified type, <code>T</code>, to a <code>MatchResult</code>.</p><p>Although <code>BeMatcher</code>
+and <code>Matcher</code> represent very similar concepts, they have no inheritance relationship
+because <code>Matcher</code> is intended for use right after <code>should</code> or <code>must</code>
+whereas <code>BeMatcher</code> is intended for use right after <code>be</code>.</p><p>As an example, you could create <code>BeMatcher[Int]</code>
+called <code>odd</code> that would match any odd <code>Int</code>, and one called <code>even</code> that would match
+any even <code>Int</code>.
+Given this pair of <code>BeMatcher</code>s, you could check whether an <code>Int</code> was odd or even with expressions like:</p><p><pre class="stHighlighted">
+num should be (odd)
+num should not be (even)
+</pre></p><p>Here's is how you might define the odd and even <code>BeMatchers</code>:</p><p><pre class="stHighlighted">
+<span class="stReserved">trait</span> <span class="stType">CustomMatchers</span> {
+<br/>  <span class="stReserved">class</span> <span class="stType">OddMatcher</span> <span class="stReserved">extends</span> <span class="stType">BeMatcher[Int]</span> {
+    <span class="stReserved">def</span> apply(left: <span class="stType">Int</span>) =
+      <span class="stType">MatchResult</span>(
+        left % <span class="stLiteral">2</span> == <span class="stLiteral">1</span>,
+        left.toString + <span class="stQuotedString">" was even"</span>,
+        left.toString + <span class="stQuotedString">" was odd"</span>
+      )
+  }
+  <span class="stReserved">val</span> odd = <span class="stReserved">new</span> <span class="stType">OddMatcher</span>
+  <span class="stReserved">val</span> even = not (odd)
+}
+<br/><span class="stLineComment">// Make them easy to import with:</span>
+<span class="stLineComment">// import CustomMatchers._</span>
+<span class="stReserved">object</span> <span class="stType">CustomMatchers</span> <span class="stReserved">extends</span> <span class="stType">CustomMatchers</span>
+</pre></p><p>These <code>BeMatcher</code>s are defined inside a trait to make them easy to mix into any
+suite or spec that needs them.
+The <code>CustomMatchers</code> companion object exists to make it easy to bring the
+<code>BeMatcher</code>s defined in this trait into scope via importing, instead of mixing in the trait. The ability
+to import them is useful, for example, when you want to use the matchers defined in a trait in the Scala interpreter console.</p><p>Here's an rather contrived example of how you might use <code>odd</code> and <code>even</code>:</p><p><pre class="stHighlighted">
+<span class="stReserved">class</span> <span class="stType">DoubleYourPleasureSuite</span> <span class="stReserved">extends</span> <span class="stType">FunSuite</span> <span class="stReserved">with</span> <span class="stType">MustMatchers</span> <span class="stReserved">with</span> <span class="stType">CustomMatchers</span> {
+<br/>  <span class="stReserved">def</span> doubleYourPleasure(i: <span class="stType">Int</span>): <span class="stType">Int</span> = i * <span class="stLiteral">2</span>
+<br/>  test(<span class="stQuotedString">"The doubleYourPleasure method must return proper odd or even values"</span>)
+<br/>    <span class="stReserved">val</span> evenNum = <span class="stLiteral">2</span>
+    evenNum must be (even)
+    doubleYourPleasure(evenNum) must be (even)
+<br/>    <span class="stReserved">val</span> oddNum = <span class="stLiteral">3</span>
+    oddNum must be (odd)
+    doubleYourPleasure(oddNum) must be (odd) <span class="stLineComment">// This will fail</span>
+  }
+}
+</pre></p><p>The last assertion in the above test will fail with this failure message:</p><p><pre class="stHighlighted">
+<span class="stLiteral">6</span> was even
+</pre></p><p>For more information on <code>MatchResult</code> and the meaning of its fields, please
+see the documentation for <a href="MatchResult.html"><code>MatchResult</code></a>. To understand why <code>BeMatcher</code>
+is contravariant in its type parameter, see the section entitled &quot;Matcher's variance&quot; in the
+documentation for <a href="../Matcher.html"><code>Matcher</code></a>.</p></div></div>
+    </li><li name="org.scalatest.matchers.BePropertyMatchResult" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="BePropertyMatchResultextendsProductwithSerializable"></a>
+      <a id="BePropertyMatchResult:BePropertyMatchResult"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="BePropertyMatchResult.html"><span class="name">BePropertyMatchResult</span></a><span class="params">(<span name="matches">matches: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="propertyName">propertyName: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.package@BePropertyMatchResultextendsProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The result of a <code>Boolean</code> property match operation, such as one performed by a
+<a href="BePropertyMatcher.html"><code>BePropertyMatcher</code></a>,
+which contains one field that indicates whether the match succeeded (<em>i.e.</em>, the <code>Boolean</code>
+property was <code>true</code>) and one field that provides
+the name of the property.</code></code></em></a></code></p><div class="fullcomment"><div class="comment cmt"><p>The result of a <code>Boolean</code> property match operation, such as one performed by a
+<a href="BePropertyMatcher.html"><code>BePropertyMatcher</code></a>,
+which contains one field that indicates whether the match succeeded (<em>i.e.</em>, the <code>Boolean</code>
+property was <code>true</code>) and one field that provides
+the name of the property.</p><p>For an example of a <code>BePropertyMatchResult</code> in action, see the documentation for
+<a href="BePropertyMatcher.html"><code>BePropertyMatcher</code></a>.</p></div><dl class="paramcmts block"><dt class="param">matches</dt><dd class="cmt"><p>indicates whether or not the matcher matched (if the <code>Boolean</code> property was true, it was a match)</p></dd><dt class="param">propertyName</dt><dd class="cmt"><p>the name of the <code>Boolean</code> property that was matched against</p></dd></dl></div>
+    </li><li name="org.scalatest.matchers.BePropertyMatcher" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="BePropertyMatcher[-T]extendsT=&gt;org.scalatest.matchers.BePropertyMatchResult"></a>
+      <a id="BePropertyMatcher[-T]:BePropertyMatcher[T]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="BePropertyMatcher.html"><span class="name">BePropertyMatcher</span></a><span class="tparams">[<span name="T">-T</span>]</span><span class="result"> extends (<span class="extype" name="org.scalatest.matchers.BePropertyMatcher.T">T</span>) ⇒ <a href="BePropertyMatchResult.html" class="extype" name="org.scalatest.matchers.BePropertyMatchResult">BePropertyMatchResult</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.package@BePropertyMatcher[-T]extendsT=&gt;org.scalatest.matchers.BePropertyMatchResult" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Trait extended by matcher objects, which may appear after the word <code>be</code>, that can match against a <code>Boolean</code>
+property.</code></code></p><div class="fullcomment"><div class="comment cmt"><p>Trait extended by matcher objects, which may appear after the word <code>be</code>, that can match against a <code>Boolean</code>
+property. The match will succeed if and only if the <code>Boolean</code> property equals <code>true</code>.
+The object containing the property, which must be of the type specified by the <code>BePropertyMatcher</code>'s type
+parameter <code>T</code>, is passed to the <code>BePropertyMatcher</code>'s
+<code>apply</code> method. The result is a <code>BePropertyMatchResult</code>.
+A <code>BePropertyMatcher</code> is, therefore, a function from the specified type, <code>T</code>, to
+a <code>BePropertyMatchResult</code>.</p><p>Although <code>BePropertyMatcher</code>
+and <code>Matcher</code> represent similar concepts, they have no inheritance relationship
+because <code>Matcher</code> is intended for use right after <code>should</code> or <code>must</code>
+whereas <code>BePropertyMatcher</code> is intended for use right after <code>be</code>.</p><p>A <code>BePropertyMatcher</code> essentially allows you to write statically typed <code>Boolean</code>
+property assertions similar to the dynamic ones that use symbols:</p><p><pre class="stHighlighted">
+tempFile should be a (<span class="stQuotedString">'file</span>) <span class="stLineComment">// dynamic: uses reflection</span>
+tempFile should be a (file)  <span class="stLineComment">// type safe: only works on Files; no reflection used</span>
+</pre></p><p>One good way to organize custom matchers is to place them inside one or more traits that
+you can then mix into the suites or specs that need them. Here's an example that
+includes two <code>BePropertyMatcher</code>s:</p><p><pre class="stHighlighted">
+<span class="stReserved">trait</span> <span class="stType">CustomMatchers</span> {
+<br/>  <span class="stReserved">class</span> <span class="stType">FileBePropertyMatcher</span> <span class="stReserved">extends</span> <span class="stType">BePropertyMatcher[java.io.File]</span> {
+    <span class="stReserved">def</span> apply(left: <span class="stType">java.io.File</span>) = <span class="stType">BePropertyMatchResult</span>(left.isFile, <span class="stQuotedString">"file"</span>)
+  }
+<br/>  <span class="stReserved">class</span> <span class="stType">DirectoryBePropertyMatcher</span> <span class="stReserved">extends</span> <span class="stType">BePropertyMatcher[java.io.File]</span> {
+    <span class="stReserved">def</span> apply(left: <span class="stType">java.io.File</span>) = <span class="stType">BePropertyMatchResult</span>(left.isDirectory, <span class="stQuotedString">"directory"</span>)
+  }
+<br/>  <span class="stReserved">val</span> file = <span class="stReserved">new</span> <span class="stType">FileBePropertyMatcher</span>
+  <span class="stReserved">val</span> directory = <span class="stReserved">new</span> <span class="stType">DirectoryBePropertyMatcher</span>
+}
+</pre></p><p>Because the type parameter of these two <code>BePropertyMatcher</code>s is <code>java.io.File</code>, they
+can only be used with instances of that type. (The compiler will enforce this.) All they do is create a
+<code>BePropertyMatchResult</code> whose <code>matches</code> field is <code>true</code> if and only if the <code>Boolean</code> property
+is <code>true</code>. The second field, <code>propertyName</code>, is simply the string name of the property.
+The <code>file</code> and <code>directory</code> <code>val</code>s create variables that can be used in
+matcher expressions that test whether a <code>java.io.File</code> is a file or a directory. Here's an example:</p><p><pre class="stHighlighted">
+<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">RefSpec</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> <span class="stReserved">with</span> <span class="stType">CustomMatchers</span> {
+<br/>  describe(<span class="stQuotedString">"A temp file"</span>) {
+<br/>    it(<span class="stQuotedString">"should be a file, not a directory"</span>) {
+<br/>      <span class="stReserved">val</span> tempFile = java.io.File.createTempFile(<span class="stQuotedString">"delete"</span>, <span class="stQuotedString">"me"</span>)
+<br/>      <span class="stReserved">try</span> {
+        tempFile should be a (file)
+        tempFile should not be a (directory)
+      }
+      <span class="stReserved">finally</span> {
+        tempFile.delete()
+      }
+    }
+  }
+}
+</pre></p><p>These matches should succeed, but if for example the first match, <code>tempFile should be a (file)</code>, were to fail, you would get an error message like:</p><p><pre class="stExamples">
+/tmp/delme1234me was not a file
+</pre></p><p>For more information on <code>BePropertyMatchResult</code> and the meaning of its fields, please
+see the documentation for <a href="BePropertyMatchResult.html"><code>BePropertyMatchResult</code></a>. To understand why <code>BePropertyMatcher</code>
+is contravariant in its type parameter, see the section entitled &quot;Matcher's variance&quot; in the
+documentation for <a href="../Matcher.html"><code>Matcher</code></a>.</p></div></div>
+    </li><li name="org.scalatest.matchers.HavePropertyMatchResult" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="HavePropertyMatchResult[P]extendsProductwithSerializable"></a>
+      <a id="HavePropertyMatchResult[P]:HavePropertyMatchResult[P]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="HavePropertyMatchResult.html"><span class="name">HavePropertyMatchResult</span></a><span class="tparams">[<span name="P">P</span>]</span><span class="params">(<span name="matches">matches: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="propertyName">propertyName: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="expectedValue">expectedValue: <span class="extype" name="org.scalatest.matchers.HavePropertyMatchResult.P">P</span></span>, <span name="actualValue">actualValue: <span class="extype" name="org.scalatest.matchers.HavePropertyMatchResult.P">P</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.package@HavePropertyMatchResult[P]extendsProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The result of a property match operation such as one performed by a
+<a href="HavePropertyMatcher.html"><code>HavePropertyMatcher</code></a>,
+which contains one field that indicates whether the match succeeded (<em>i.e.</em>, the
+property had its expected value), one field that provides
+the name of the property, and two fields giving the expected and actual values.</em></a></p><div class="fullcomment"><div class="comment cmt"><p>The result of a property match operation such as one performed by a
+<a href="HavePropertyMatcher.html"><code>HavePropertyMatcher</code></a>,
+which contains one field that indicates whether the match succeeded (<em>i.e.</em>, the
+property had its expected value), one field that provides
+the name of the property, and two fields giving the expected and actual values.
+<code>HavePropertyMatchResult</code>'s type parameter, <code>P</code>, specifies the type of the property.</p><p>For an example of a <code>HavePropertyMatchResult</code> in action, see the documentation for
+<a href="HavePropertyMatcher.html"><code>HavePropertyMatcher</code></a>.</p></div><dl class="paramcmts block"><dt class="param">matches</dt><dd class="cmt"><p>indicates whether or not the matcher matched (if the property had its expected value, it was a match)</p></dd><dt class="param">propertyName</dt><dd class="cmt"><p>the name of the property (of type <code>P</code>) that was matched against</p></dd><dt class="param">expectedValue</dt><dd class="cmt"><p>the expected value of the property</p></dd><dt class="param">actualValue</dt><dd class="cmt"><p>the actual value of the property</p></dd></dl></div>
+    </li><li name="org.scalatest.matchers.HavePropertyMatcher" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="HavePropertyMatcher[-T,P]extendsT=&gt;org.scalatest.matchers.HavePropertyMatchResult[P]"></a>
+      <a id="HavePropertyMatcher[-T,P]:HavePropertyMatcher[T,P]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="HavePropertyMatcher.html"><span class="name">HavePropertyMatcher</span></a><span class="tparams">[<span name="T">-T</span>, <span name="P">P</span>]</span><span class="result"> extends (<span class="extype" name="org.scalatest.matchers.HavePropertyMatcher.T">T</span>) ⇒ <a href="HavePropertyMatchResult.html" class="extype" name="org.scalatest.matchers.HavePropertyMatchResult">HavePropertyMatchResult</a>[<span class="extype" name="org.scalatest.matchers.HavePropertyMatcher.P">P</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.package@HavePropertyMatcher[-T,P]extendsT=&gt;org.scalatest.matchers.HavePropertyMatchResult[P]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Trait extended by matcher objects, which may appear after the word <code>have</code>, that can match against a
+property of the type specified by the <code>HavePropertyMatcher</code>'s second type parameter <code>P</code>.</code></code></code></p><div class="fullcomment"><div class="comment cmt"><p>Trait extended by matcher objects, which may appear after the word <code>have</code>, that can match against a
+property of the type specified by the <code>HavePropertyMatcher</code>'s second type parameter <code>P</code>.
+<code>HavePropertyMatcher</code>'s first type parameter, <code>T</code>, specifies the type that declares the property. The match will succeed if and
+only if the value of the property equals the specified value.
+The object containing the property
+is passed to the <code>HavePropertyMatcher</code>'s
+<code>apply</code> method. The result is a <code>HavePropertyMatchResult[P]</code>.
+A <code>HavePropertyMatcher</code> is, therefore, a function from the specified type, <code>T</code>, to
+a <code>HavePropertyMatchResult[P]</code>.</p><p>Although <code>HavePropertyMatcher</code>
+and <code>Matcher</code> represent similar concepts, they have no inheritance relationship
+because <code>Matcher</code> is intended for use right after <code>should</code> or <code>must</code>
+whereas <code>HavePropertyMatcher</code> is intended for use right after <code>have</code>.</p><p>A <code>HavePropertyMatcher</code> essentially allows you to write statically typed
+property assertions similar to the dynamic ones that use symbols:</p><p><pre class="stHighlighted">
+book should have (<span class="stQuotedString">'title</span> (<span class="stQuotedString">"Moby Dick"</span>)) <span class="stLineComment">// dynamic: uses reflection</span>
+book should have (title (<span class="stQuotedString">"Moby Dick"</span>))  <span class="stLineComment">// type safe: only works on Books; no reflection used</span>
+</pre></p><p>One good way to organize custom matchers is to place them inside one or more traits that
+you can then mix into the suites or specs that need them. Here's an example that
+includes two methods that produce <code>HavePropertyMatcher</code>s:</p><p><pre class="stHighlighted">
+<span class="stReserved">case</span> <span class="stReserved">class</span> <span class="stType">Book</span>(<span class="stReserved">val</span> title: <span class="stType">String</span>, <span class="stReserved">val</span> author: <span class="stType">String</span>)
+<br/><span class="stReserved">trait</span> <span class="stType">CustomMatchers</span> {
+<br/>  <span class="stReserved">def</span> title(expectedValue: <span class="stType">String</span>) =
+    <span class="stReserved">new</span> <span class="stType">HavePropertyMatcher[Book, String]</span> {
+      <span class="stReserved">def</span> apply(book: <span class="stType">Book</span>) =
+        <span class="stType">HavePropertyMatchResult</span>(
+          book.title == expectedValue,
+          <span class="stQuotedString">"title"</span>,
+          expectedValue,
+          book.title
+        )
+    }
+<br/>  <span class="stReserved">def</span> author(expectedValue: <span class="stType">String</span>) =
+    <span class="stReserved">new</span> <span class="stType">HavePropertyMatcher[Book, String]</span> {
+      <span class="stReserved">def</span> apply(book: <span class="stType">Book</span>) =
+        <span class="stType">HavePropertyMatchResult</span>(
+          book.author == expectedValue,
+          <span class="stQuotedString">"author"</span>,
+          expectedValue,
+          book.author
+        )
+    }
+}
+</pre></p><p>Each time the <code>title</code> method is called, it returns a new <code>HavePropertyMatcher[Book, String]</code> that
+can be used to match against the <code>title</code> property of the <code>Book</code> passed to its <code>apply</code>
+method. Because the type parameter of these two <code>HavePropertyMatcher</code>s is <code>Book</code>, they
+can only be used with instances of that type. (The compiler will enforce this.) The match will succeed if the
+<code>title</code> property equals the value passed as <code>expectedValue</code>.
+If the match succeeds, the <code>matches</code> field of the returned <code>HavePropertyMatchResult</code> will be <code>true</code>.
+The second field, <code>propertyName</code>, is simply the string name of the property.
+The third and fourth fields, <code>expectedValue</code> and <code>actualValue</code> indicate the expected and actual
+values, respectively, for the property.
+Here's an example that uses these <code>HavePropertyMatchers</code>:</p><p><pre class="stHighlighted">
+<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">RefSpec</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> <span class="stReserved">with</span> <span class="stType">CustomMatchers</span> {
+<br/>  describe(<span class="stQuotedString">"A book"</span>) {
+<br/>    it(<span class="stQuotedString">"should have the correct title and author"</span>) {
+<br/>      <span class="stReserved">val</span> book = <span class="stType">Book</span>(<span class="stQuotedString">"Moby Dick"</span>, <span class="stQuotedString">"Melville"</span>)
+<br/>      book should have (
+        title (<span class="stQuotedString">"Moby Dick"</span>),
+        author (<span class="stQuotedString">"Melville"</span>)
+      )
+    }
+  }
+}
+</pre></p><p>These matches should succeed, but if for example the first property, <code>title ("Moby Dick")</code>, were to fail, you would get an error message like:</p><p><pre class="stExamples">
+The title property had value "A Tale of Two Cities", instead of its expected value "Moby Dick",
+on object Book(A Tale of Two Cities,Dickens)
+</pre></p><p>For more information on <code>HavePropertyMatchResult</code> and the meaning of its fields, please
+see the documentation for <a href="HavePropertyMatchResult.html"><code>HavePropertyMatchResult</code></a>. To understand why <code>HavePropertyMatcher</code>
+is contravariant in its type parameter, see the section entitled &quot;Matcher's variance&quot; in the
+documentation for <a href="../Matcher.html"><code>Matcher</code></a>.</p></div></div>
+    </li><li name="org.scalatest.matchers.LazyArg" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="LazyArgextendsProductwithSerializable"></a>
+      <a id="LazyArg:LazyArg"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="LazyArg.html"><span class="name">LazyArg</span></a><span class="params">(<span name="arg">arg: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="params">(<span name="f">f: (<span class="extype" name="scala.Any">Any</span>) ⇒ <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.package@LazyArgextendsProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Transforms a given object's <code>toString</code> with a given function lazily.</code></p><div class="fullcomment"><div class="comment cmt"><p>Transforms a given object's <code>toString</code> with a given function lazily.</p><p>This class is intended to be used with the <code>mapResult</code> method of
+<a href="MatcherProducers.html"><code>MatcherProducers</code></a>, which you can use to
+modify error messages when composing matchers. This class exists to enable those error messages
+to be modified <em>lazily</em>, so that <code>toString</code> is invoked on the given
+<code>arg</code>, and its result transformed by the given function <code>f</code>, <em>only when and if</em>
+the <code>toString</code> method is invoked on the <code>LazyArg</code>. As a performance optimization, ScalaTest's
+<a href="MatchResult.html"><code>MatchResult</code></a> avoids invoking <code>toString</code> on objects
+until and unless an error message is actually needed, to minimize unecessary creation and concatenation
+of strings. The <code>LazyArg</code> class enables this same performance optimization when composing
+matchers.</p><p>The other design goal of <code>LazyArg</code> is to make the internal <code>arg</code> available for inspection
+in an IDE. In a future version of ScalaTest, the <code>args</code> of <code>MatchResult</code> that were used
+to create the error message will be included in the <code>TestFailedException</code>, so they can be inspected
+in IDEs. This is why the <code>arg</code> field of <code>LazyArg</code> is public.</p><p>For an example of using <code>LazyArg</code>, see the <a href="Matcher.html#composingMatchers">Composing matchers</a>
+section in the main documentation for trait <code>Matcher</code>.</p></div><dl class="paramcmts block"><dt class="param">arg</dt><dd class="cmt"><p>the argument</p></dd><dt class="param">f</dt><dd class="cmt"><p>a function that given the <code>arg</code> will produce a <code>String</code></p></dd></dl></div>
+    </li><li name="org.scalatest.matchers.MatchResult" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="MatchResultextendsProductwithSerializable"></a>
+      <a id="MatchResult:MatchResult"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="MatchResult.html"><span class="name">MatchResult</span></a><span class="params">(<span name="matches">matches: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="rawFailureMessage">rawFailureMessage: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="rawNegatedFailureMessage">rawNegatedFailureMessage: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="rawMidSentenceFailureMessage">rawMidSentenceFailureMessage: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="rawMidSentenceNegatedFailureMessage">rawMidSentenceNegatedFailureMessage: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="failureMessageArgs">failureMessageArgs: <span class="extype" name="scala.IndexedSeq">IndexedSeq</span>[<span class="extype" name="scala.Any">Any</span>]</span>, <span name="negatedFailureMessageArgs">negatedFailureMessageArgs: <span class="extype" name="scala.IndexedSeq">IndexedSeq</span>[<span class="extype" name="scala.Any">Any</span>]</span>, <span name="midSentenceFailureMessageArgs">midSentenceFailureMessageArgs: <span class="extype" name="scala.IndexedSeq">IndexedSeq</span>[<span class="extype" name="scala.Any">Any</span>]</span>, <span name="midSentenceNegatedFailureMessageArgs">midSentenceNegatedFailureMessageArgs: <span class="extype" name="scala.IndexedSeq">IndexedSeq</span>[<span class="extype" name="scala.Any">Any</span>]</span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.package@MatchResultextendsProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The result of a match operation, such as one performed by a <a href="Matcher.html"><code>Matcher</code></a> or
+<a href="BeMatcher.html"><code>BeMatcher</code></a>, which
+contains one field that indicates whether the match succeeded, four fields that provide
+raw failure messages to report under different circumstances, four fields providing
+arguments used to construct the final failure messages using raw failure messages
+and a <a href="../../Prettifier.html"><code>Prettifier</code></a>.</a></a></a></p><div class="fullcomment"><div class="comment cmt"><p>The result of a match operation, such as one performed by a <a href="Matcher.html"><code>Matcher</code></a> or
+<a href="BeMatcher.html"><code>BeMatcher</code></a>, which
+contains one field that indicates whether the match succeeded, four fields that provide
+raw failure messages to report under different circumstances, four fields providing
+arguments used to construct the final failure messages using raw failure messages
+and a <a href="../../Prettifier.html"><code>Prettifier</code></a>.  Using the default constructor,
+failure messages will be constructed lazily (when required).</p><p>A <code>MatchResult</code>'s <code>matches</code> field indicates whether a match succeeded. If it succeeded,
+<code>matches</code> will be <code>true</code>.
+There are four methods, <code>failureMessage</code>, <code>negatedfailureMessage</code>, <code>midSentenceFailureMessage</code>
+and <code>negatedMidSentenceFailureMessage</code> that can be called to get final failure message strings, one of which will be
+presented to the user in case of a match failure. If a match succeeds, none of these strings will be used, because no failure
+message will be reported (<em>i.e.</em>, because there was no failure to report). If a match fails (<code>matches</code> is <code>false</code>),
+the <code>failureMessage</code> (or <code>midSentenceFailure</code>&#8212;more on that below) will be reported to help the user understand what went wrong.</p><h4> Understanding <code>negatedFailureMessage</code> </h4><p>The <code>negatedFailureMessage</code> exists so that it can become the <code>failureMessage</code> if the matcher is <em>inverted</em>,
+which happens, for instance, if it is passed to <code>not</code>. Here's an example:</p><p><pre class="stHighlighted">
+<span class="stReserved">val</span> equalSeven = equal (<span class="stLiteral">7</span>)
+<span class="stReserved">val</span> notEqualSeven = not (equalSeven)
+</pre></p><p>The <code>Matcher[Int]</code> that results from passing 7 to <code>equal</code>, which is assigned to the <code>equalSeven</code>
+variable, will compare <code>Int</code>s passed to its
+<code>apply</code> method with 7. If 7 is passed, the <code>equalSeven</code> match will succeed. If anything other than 7 is passed, it
+will fail. By contrast, the <code>notEqualSeven</code> matcher, which results from passing <code>equalSeven</code> to <code>not</code>, does
+just the opposite. If 7 is passed, the <code>notEqualSeven</code> match will fail. If anything other than 7 is passed, it will succeed.</p><p>For example, if 8 is passed, <code>equalSeven</code>'s <code>MatchResult</code> will contain:</p><p><pre class="stExamples">
+           expression: equalSeven(8)
+              matches: false
+       failureMessage: 8 did not equal 7
+negatedFailureMessage: 8 equaled 7
+</pre></p><p>Although the <code>negatedFailureMessage</code> is nonsensical, it will not be reported to the user. Only the <code>failureMessage</code>,
+which does actually explain what caused the failure, will be reported by the user. If you pass 8 to <code>notEqualSeven</code>'s <code>apply</code>
+method, by contrast, the <code>failureMessage</code> and <code>negatedFailureMessage</code> will be:</p><p><pre class="stExamples">
+           expression: notEqualSeven(8)
+              matches: true
+       failureMessage: 8 equaled 7
+negatedFailureMessage: 8 did not equal 7
+</pre></p><p>Note that the messages are swapped from the <code>equalSeven</code> messages. This swapping was effectively performed by the <code>not</code> matcher,
+which in addition to swapping the <code>failureMessage</code> and <code>negatedFailureMessage</code>, also inverted the
+<code>matches</code> value. Thus when you pass the same value to both <code>equalSeven</code> and <code>notEqualSeven</code> the <code>matches</code>
+field of one <code>MatchResult</code> will be <code>true</code> and the other <code>false</code>. Because the
+<code>matches</code> field of the <code>MatchResult</code> returned by <code>notEqualSeven(8)</code> is <code>true</code>,
+the nonsensical <code>failureMessage</code>, &quot;<code>8 equaled 7</code>&quot;, will <em>not</em> be reported to the user.</p><p>If 7 is passed, by contrast, the <code>failureMessage</code> and <code>negatedFailureMessage</code> of <code>equalSeven</code>
+will be:</p><p><pre class="stExamples">
+           expression: equalSeven(7)
+              matches: true
+       failureMessage: 7 did not equal 7
+negatedFailureMessage: 7 equaled 7
+</pre></p><p>In this case <code>equalSeven</code>'s <code>failureMessage</code> is nonsensical, but because the match succeeded, the nonsensical message will
+not be reported to the user.
+If you pass 7 to <code>notEqualSeven</code>'s <code>apply</code>
+method, you'll get:</p><p><pre class="stExamples">
+           expression: notEqualSeven(7)
+              matches: false
+       failureMessage: 7 equaled 7
+negatedFailureMessage: 7 did not equal 7
+</pre></p><p>Again the messages are swapped from the <code>equalSeven</code> messages, but this time, the <code>failureMessage</code> makes sense
+and explains what went wrong: the <code>notEqualSeven</code> match failed because the number passed did in fact equal 7. Since
+the match failed, this failure message, &quot;<code>7 equaled 7</code>&quot;, will be reported to the user.</p><h4> Understanding the &quot;<code>midSentence</code>&quot; messages </h4><p>When a ScalaTest matcher expression that involves <code>and</code> or <code>or</code> fails, the failure message that
+results is composed from the failure messages of the left and right matcher operatnds to <code>and</code> or </code>or</code>.
+For example:</p><p><pre class="stExamples">
+8 should (equal (7) or equal (9))
+</pre></p><p>This above expression would fail with the following failure message reported to the user:</p><p><pre class="stExamples">
+8 did not equal 7, and 8 did not equal 9
+</pre></p><p>This works fine, but what if the failure messages being combined begin with a capital letter, such as:</p><p><pre class="stExamples">
+The name property did not equal "Ricky"
+</pre></p><p>A combination of two such failure messages might result in an abomination of English punctuation, such as:</p><p><pre class="stExamples">
+The name property did not equal "Ricky", and The name property did not equal "Bobby"
+</pre></p><p>Because ScalaTest is an internationalized application, taking all of its strings from a property file
+enabling it to be localized, it isn't a good idea to force the first character to lower case. Besides,
+it might actually represent a String value which should stay upper case. The <code>midSentenceFailureMessage</code>
+exists for this situation. If the failure message is used at the beginning of the sentence, <code>failureMessage</code>
+will be used. But if it appears mid-sentence, or at the end of the sentence, <code>midSentenceFailureMessage</code>
+will be used. Given these failure message strings:</p><p><pre class="stExamples">
+           failureMessage: The name property did not equal "Bobby"
+midSentenceFailureMessage: the name property did not equal "Bobby"
+</pre></p><p>The resulting failure of the <code>or</code> expression involving to matchers would make any English teacher proud:</p><p><pre class="stExamples">
+The name property did not equal "Ricky", and the name property did not equal "Bobby"
+</pre>
+</p></div><dl class="paramcmts block"><dt class="param">matches</dt><dd class="cmt"><p>indicates whether or not the matcher matched</p></dd><dt class="param">rawFailureMessage</dt><dd class="cmt"><p>raw failure message to report if a match fails</p></dd><dt class="param">rawNegatedFailureMessage</dt><dd class="cmt"><p>raw message with a meaning opposite to that of the failure message</p></dd><dt class="param">rawMidSentenceFailureMessage</dt><dd class="cmt"><p>raw failure message suitable for appearing mid-sentence</p></dd><dt class="param">rawMidSentenceNegatedFailureMessage</dt><dd class="cmt"><p>raw negated failure message suitable for appearing mid-sentence</p></dd><dt class="param">failureMessageArgs</dt><dd class="cmt"><p>arguments for constructing failure message to report if a match fails</p></dd><dt class="param">negatedFailureMessageArgs</dt><dd class="cmt"><p>arguments for constructing message with a meaning opposite to that of the failure message</p></dd><dt class="param">midSentenceFailureMessageArgs</dt><dd class="cmt"><p>arguments for constructing failure message suitable for appearing mid-sentence</p></dd><dt class="param">midSentenceNegatedFailureMessageArgs</dt><dd class="cmt"><p>arguments for constructing negated failure message suitable for appearing mid-sentence</p></dd></dl></div>
+    </li><li name="org.scalatest.matchers.Matcher" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="Matcher[-T]extendsT=&gt;org.scalatest.matchers.MatchResult"></a>
+      <a id="Matcher[-T]:Matcher[T]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="Matcher.html"><span class="name">Matcher</span></a><span class="tparams">[<span name="T">-T</span>]</span><span class="result"> extends (<span class="extype" name="org.scalatest.matchers.Matcher.T">T</span>) ⇒ <a href="MatchResult.html" class="extype" name="org.scalatest.matchers.MatchResult">MatchResult</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.package@Matcher[-T]extendsT=&gt;org.scalatest.matchers.MatchResult" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Trait extended by objects that can match a value of the specified type.</p><div class="fullcomment"><div class="comment cmt"><p>Trait extended by objects that can match a value of the specified type. The value to match is
+passed to the matcher's <code>apply</code> method. The result is a <code>MatchResult</code>.
+A matcher is, therefore, a function from the specified type, <code>T</code>, to a <code>MatchResult</code>.</p><h4> Creating custom matchers </h4><p>If none of the built-in matcher syntax satisfies a particular need you have, you can create
+custom <code>Matcher</code>s that allow
+you to place your own syntax directly after <code>should</code>. For example, although you can ensure that a <code>java.io.File</code> has a name
+that ends with a particular extension like this:</p><p><pre class="stHighlighted">
+file.getName should endWith (<span class="stQuotedString">".txt"</span>)
+</pre></p><p>You might prefer
+to create a custom <code>Matcher[java.io.File]</code>
+named <code>endWithExtension</code>, so you could write expressions like:</p><p><pre class="stHighlighted">
+file should endWithExtension (<span class="stQuotedString">"txt"</span>)
+file should not endWithExtension <span class="stQuotedString">"txt"</span>
+file should (exist and endWithExtension (<span class="stQuotedString">"txt"</span>))
+</pre></p><p>One good way to organize custom matchers is to place them inside one or more
+traits that you can then mix into the suites that need them. Here's an example:</p><p><pre class="stHighlighted">
+<span class="stReserved">import</span> org.scalatest._
+<span class="stReserved">import</span> matchers._
+<br/><span class="stReserved">trait</span> <span class="stType">CustomMatchers</span> {
+<br/>  <span class="stReserved">class</span> <span class="stType">FileEndsWithExtensionMatcher</span>(expectedExtension: <span class="stType">String</span>) <span class="stReserved">extends</span> <span class="stType">Matcher[java.io.File]</span> {
+<br/>    <span class="stReserved">def</span> apply(left: <span class="stType">java.io.File</span>) = {
+      <span class="stReserved">val</span> name = left.getName
+      <span class="stType">MatchResult</span>(
+        name.endsWith(expectedExtension),
+        s<span class="stQuotedString">"""File $name did not end with extension "$expectedExtension""""</span>,
+        s<span class="stQuotedString">"""File $name ended with extension "$expectedExtension""""</span>
+      )
+    }
+  }
+<br/>  <span class="stReserved">def</span> endWithExtension(expectedExtension: <span class="stType">String</span>) = <span class="stReserved">new</span> <span class="stType">FileEndsWithExtensionMatcher</span>(expectedExtension)
+}
+<br/><span class="stLineComment">// Make them easy to import with:</span>
+<span class="stLineComment">// import CustomMatchers._</span>
+<span class="stReserved">object</span> <span class="stType">CustomMatchers</span> <span class="stReserved">extends</span> <span class="stType">CustomMatchers</span>
+</pre></p><p>Note: the <code>CustomMatchers</code> companion object exists to make it easy to bring the
+matchers defined in this trait into scope via importing, instead of mixing in the trait. The ability
+to import them is useful, for example, when you want to use the matchers defined in a trait in the Scala interpreter console.</p><p>This trait contains one matcher class, <code>FileEndsWithExtensionMatcher</code>, and a <code>def</code> named <code>endWithExtension</code> that returns a new
+instance of <code>FileEndsWithExtensionMatcher</code>. Because the class extends <code>Matcher[java.io.File]</code>,
+the compiler will only allow it be used to match against instances of <code>java.io.File</code>. A matcher must declare an
+<code>apply</code> method that takes the type decared in <code>Matcher</code>'s type parameter, in this case <code>java.io.File</code>.
+The apply method will return a <code>MatchResult</code> whose <code>matches</code> field will indicate whether the match succeeded.
+The <code>failureMessage</code> field will provide a programmer-friendly error message indicating, in the event of a match failure, what caused
+the match to fail.</p><p>The <code>FileEndsWithExtensionMatcher</code> matcher in this example determines success by determining if the passed <code>java.io.File</code> ends with
+the desired extension. It does this in the first argument passed to the <code>MatchResult</code> factory method:</p><p><pre class="stHighlighted">
+name.endsWith(expectedExtension)
+</pre></p><p>In other words, if the file name has the expected extension, this matcher matches.
+The next argument to <code>MatchResult</code>'s factory method produces the failure message string:</p><p><pre class="stHighlighted">
+s<span class="stQuotedString">"""File $name did not end with extension "$expectedExtension""""</span>,
+</pre></p><p>For example, consider this matcher expression:</p><p><pre class="stHighlighted">
+<span class="stReserved">import</span> org.scalatest._
+<span class="stReserved">import</span> Matchers._
+<span class="stReserved">import</span> java.io.File
+<span class="stReserved">import</span> CustomMatchers._
+<br/><span class="stReserved">new</span> <span class="stType">File</span>(<span class="stQuotedString">"essay.text"</span>) should endWithExtension (<span class="stQuotedString">"txt"</span>)
+</pre></p><p>Because the passed <code>java.io.File</code> has the name <code>essay.text</code>, but the expected extension is <code>"txt"</code>, the failure
+message would be:</p><p><pre>
+File essay.text did not have extension "txt"
+</pre></p><p>For more information on the fields in a <code>MatchResult</code>, including the subsequent field (or fields) that follow the failure message,
+please see the documentation for <a href="MatchResult.html"><code>MatchResult</code></a>.</p><p><a name="otherways"></a></p><h4> Creating dynamic matchers </h4><p>There are other ways to create new matchers besides defining one as shown above. For example, you might check that a file is hidden like this:</p><p><pre class="stHighlighted">
+<span class="stReserved">new</span> <span class="stType">File</span>(<span class="stQuotedString">"secret.txt"</span>) should be (<span class="stQuotedString">'hidden</span>)
+</pre></p><p>If you wanted to get rid of the tick mark, you could simply define <code>hidden</code> like this:</p><p><pre class="stHighlighted">
+<span class="stReserved">val</span> hidden = <span class="stQuotedString">'hidden</span>
+</pre></p><p>Now you can check that an file is hidden without the tick mark:</p><p><pre class="stHighlighted">
+<span class="stReserved">new</span> <span class="stType">File</span>(<span class="stQuotedString">"secret.txt"</span>) should be (hidden)
+</pre></p><p>You could get rid of the parens with by using <code>shouldBe</code>:</p><p><pre class="stHighlighted">
+<span class="stReserved">new</span> <span class="stType">File</span>(<span class="stQuotedString">"secret.txt"</span>) shouldBe hidden
+</pre></p><h4> Creating matchers using logical operators </h4><p>You can also use ScalaTest matchers' logical operators to combine existing matchers into new ones, like this:</p><p><pre class="stHighlighted">
+<span class="stReserved">val</span> beWithinTolerance = be &gt;= <span class="stLiteral">0</span> and be &lt;= <span class="stLiteral">10</span>
+</pre></p><p>Now you could check that a number is within the tolerance (in this case, between 0 and 10, inclusive), like this:</p><p><pre class="stHighlighted">
+num should beWithinTolerance
+</pre></p><p>When defining a full blown matcher, one shorthand is to use one of the factory methods in <code>Matcher</code>'s companion
+object. For example, instead of writing this:</p><p><pre class="stHighlighted">
+<span class="stReserved">val</span> beOdd =
+  <span class="stReserved">new</span> <span class="stType">Matcher[Int]</span> {
+    <span class="stReserved">def</span> apply(left: <span class="stType">Int</span>) =
+      <span class="stType">MatchResult</span>(
+        left % <span class="stLiteral">2</span> == <span class="stLiteral">1</span>,
+        left + <span class="stQuotedString">" was not odd"</span>,
+        left + <span class="stQuotedString">" was odd"</span>
+      )
+  }
+</pre></p><p>You could alternately write this:</p><p><pre class="stHighlighted">
+<span class="stReserved">val</span> beOdd =
+  <span class="stType">Matcher</span> { (left: <span class="stType">Int</span>) =&gt;
+    <span class="stType">MatchResult</span>(
+      left % <span class="stLiteral">2</span> == <span class="stLiteral">1</span>,
+      left + <span class="stQuotedString">" was not odd"</span>,
+      left + <span class="stQuotedString">" was odd"</span>
+    )
+  }
+</pre></p><p>Either way you define the <code>beOdd</code> matcher, you could use it like this:</p><p><pre class="stHighlighted">
+<span class="stLiteral">3</span> should beOdd
+<span class="stLiteral">4</span> should not (beOdd)
+</pre></p><p><a name="composingMatchers"></a></p><h4> Composing matchers </h4><p>You can also compose matchers. For example, the <code>endWithExtension</code> matcher from the example above
+can be more easily created by composing a function with the existing <code>endWith</code> matcher:</p><p><pre class="stREPL">
+scala&gt; import org.scalatest._
+import org.scalatest._
+
+scala&gt; import Matchers._
+import Matchers._
+
+scala&gt; import java.io.File
+import java.io.File
+
+scala&gt; def endWithExtension(ext: String) = endWith(ext) compose { (f: File) =&gt; f.getPath }
+endWithExtension: (ext: String)org.scalatest.matchers.Matcher[java.io.File]
+</pre></p><p>Now you have a <code>Matcher[File]</code> whose <code>apply</code> method first
+invokes the converter function to convert the passed <code>File</code> to a <code>String</code>,
+then passes the resulting <code>String</code> to <code>endWith</code>. Thus, you could use this version
+<code>endWithExtension</code> like the previous one:</p><p><pre class="stREPL">
+scala&gt; new File("output.txt") should endWithExtension("txt")
+</pre></p><p>In addition, by composing twice, you can modify the type of both sides of a match statement
+with the same function, like this:</p><p><pre class="stREPL">
+scala&gt; val f = be &gt; (_: Int)
+f: Int =&gt; org.scalatest.matchers.Matcher[Int] = &lt;function1&gt;
+
+scala&gt; val g = (_: String).toInt
+g: String =&gt; Int = &lt;function1&gt;
+
+scala&gt; val beAsIntsGreaterThan = (f compose g) andThen (_ compose g)
+beAsIntsGreaterThan: String =&gt; org.scalatest.matchers.Matcher[String] = &lt;function1&gt;
+
+scala&gt; "8" should beAsIntsGreaterThan ("7")
+</pre></p><p>At thsi point, however, the error message for the <code>beAsIntsGreaterThan</code>
+gives no hint that the <code>Int</code>s being compared were parsed from <code>String</code>s:</p><p><pre class="stREPL">
+scala&gt; "7" should beAsIntsGreaterThan ("8")
+org.scalatest.exceptions.TestFailedException: 7 was not greater than 8
+</pre></p><p>To modify error message, you can use trait <a href="MatcherProducers.html"><code>MatcherProducers</code></a>, which
+also provides a <code>composeTwice</code> method that performs the <code>compose</code> ...
+<code>andThen</code> ... <code>compose</code> operation:</p><p><pre class="stREPL">
+scala&gt; import matchers._
+import matchers._
+
+scala&gt; import MatcherProducers._
+import MatcherProducers._
+
+scala&gt; val beAsIntsGreaterThan = f composeTwice g // means: (f compose g) andThen (_ compose g)
+beAsIntsGreaterThan: String =&gt; org.scalatest.matchers.Matcher[String] = &lt;function1&gt;
+
+scala&gt; "8" should beAsIntsGreaterThan ("7")
+</pre></p><p>Of course, the error messages is still the same:</p><p><pre class="stREPL">
+scala&gt; "7" should beAsIntsGreaterThan ("8")
+org.scalatest.exceptions.TestFailedException: 7 was not greater than 8
+</pre></p><p>To modify the error messages, you can use <code>mapResult</code> from <code>MatcherProducers</code>. Here's an example:</p><p><pre class="stREPL">
+scala&gt; val beAsIntsGreaterThan =
+  f composeTwice g mapResult { mr =&gt;
+    mr.copy(
+      failureMessageArgs =
+        mr.failureMessageArgs.map((LazyArg(_) { "\"" + _.toString + "\".toInt"})),
+      negatedFailureMessageArgs =
+        mr.negatedFailureMessageArgs.map((LazyArg(_) { "\"" + _.toString + "\".toInt"})),
+      midSentenceFailureMessageArgs =
+        mr.midSentenceFailureMessageArgs.map((LazyArg(_) { "\"" + _.toString + "\".toInt"})),
+      midSentenceNegatedFailureMessageArgs =
+        mr.midSentenceNegatedFailureMessageArgs.map((LazyArg(_) { "\"" + _.toString + "\".toInt"}))
+    )
+  }
+beAsIntsGreaterThan: String =&gt; org.scalatest.matchers.Matcher[String] = &lt;function1&gt;
+</pre></p><p>The <code>mapResult</code> method takes a function that accepts a <code>MatchResult</code> and produces a new
+<code>MatchResult</code>, which can contain modified arguments and modified error messages. In this example,
+the error messages are being modified by wrapping the old arguments in <a href="LazyArg.html"><code>LazyArg</code></a>
+instances that lazily apply the given prettification functions to the <code>toString</code> result of the old args.
+Now the error message is clearer:</p><p><pre class="stREPL">
+scala&gt; "7" should beAsIntsGreaterThan ("8")
+org.scalatest.exceptions.TestFailedException: "7".toInt was not greater than "8".toInt
+</pre></p><h4> Matcher's variance </h4><p><code>Matcher</code> is contravariant in its type parameter, <code>T</code>, to make its use more flexible.
+As an example, consider the hierarchy:</p><p><pre class="stHighlighted">
+<span class="stReserved">class</span> <span class="stType">Fruit</span>
+<span class="stReserved">class</span> <span class="stType">Orange</span> <span class="stReserved">extends</span> <span class="stType">Fruit</span>
+<span class="stReserved">class</span> <span class="stType">ValenciaOrange</span> <span class="stReserved">extends</span> <span class="stType">Orange</span>
+</pre></p><p>Given an orange:</p><p><pre class="stHighlighted">
+<span class="stReserved">val</span> orange = <span class="stType">Orange</span>
+</pre></p><p>The expression &quot;<code>orange should</code>&quot; will, via an implicit conversion in <code>Matchers</code>,
+result in an object that has a <code>should</code>
+method that takes a <code>Matcher[Orange]</code>. If the static type of the matcher being passed to <code>should</code> is
+<code>Matcher[Valencia]</code> it shouldn't (and won't) compile. The reason it shouldn't compile is that
+the left value is an <code>Orange</code>, but not necessarily a <code>Valencia</code>, and a
+<code>Matcher[Valencia]</code> only knows how to match against a <code>Valencia</code>. The reason
+it won't compile is given that <code>Matcher</code> is contravariant in its type parameter, <code>T</code>, a
+<code>Matcher[Valencia]</code> is <em>not</em> a subtype of <code>Matcher[Orange]</code>.</p><p>By contrast, if the static type of the matcher being passed to <code>should</code> is <code>Matcher[Fruit]</code>,
+it should (and will) compile. The reason it <em>should</em> compile is that given the left value is an <code>Orange</code>,
+it is also a <code>Fruit</code>, and a <code>Matcher[Fruit]</code> knows how to match against <code>Fruit</code>s.
+The reason it <em>will</em> compile is that given  that <code>Matcher</code> is contravariant in its type parameter, <code>T</code>, a
+<code>Matcher[Fruit]</code> is indeed a subtype of <code>Matcher[Orange]</code>.</p></div></div>
+    </li><li name="org.scalatest.matchers.MatcherFactory1" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="MatcherFactory1[-SC,TC1[_]]extendsAnyRef"></a>
+      <a id="MatcherFactory1[-SC,TC1[_]]:MatcherFactory1[SC,TC1]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="MatcherFactory1.html"><span class="name">MatcherFactory1</span></a><span class="tparams">[<span name="SC">-SC</span>, <span name="TC1">TC1<span class="tparams">[<span name="_">_</span>]</span></span>]</span><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.package@MatcherFactory1[-SC,TC1[_]]extendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">A matcher factory that can produce a matcher given one typeclass instance.</p><div class="fullcomment"><div class="comment cmt"><p>A matcher factory that can produce a matcher given one typeclass instance.</p><p>In the type parameters for this class, &quot;<code>SC</code>&quot; means <em>superclass</em>; &quot;<code>TC</code>&quot;
+(in <code>TC1</code>, <code>TC2</code>, <em>etc.</em>) means <em>typeclass</em>.
+This class's <code>matcher</code> factory method will produce a <code>Matcher[T]</code>, where <code>T</code> is a subtype of (or the same type
+as) <code>SC</code>, given a typeclass instance for each <code>TC<em>n</em></code>
+implicit parameter (for example, a <code>TC1[T]</code>, <code>TC2[T]</code>, <em>etc.</em>).</p></div></div>
+    </li><li name="org.scalatest.matchers.MatcherFactory2" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="MatcherFactory2[-SC,TC1[_],TC2[_]]extendsAnyRef"></a>
+      <a id="MatcherFactory2[-SC,TC1[_],TC2[_]]:MatcherFactory2[SC,TC1,TC2]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="MatcherFactory2.html"><span class="name">MatcherFactory2</span></a><span class="tparams">[<span name="SC">-SC</span>, <span name="TC1">TC1<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC2">TC2<span class="tparams">[<span name="_">_</span>]</span></span>]</span><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.package@MatcherFactory2[-SC,TC1[_],TC2[_]]extendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">A matcher factory that can produce a matcher given two typeclass instances.</p><div class="fullcomment"><div class="comment cmt"><p>A matcher factory that can produce a matcher given two typeclass instances.</p><p>In the type parameters for this class, &quot;<code>SC</code>&quot; means <em>superclass</em>; &quot;<code>TC</code>&quot;
+(in <code>TC1</code>, <code>TC2</code>, <em>etc.</em>) means <em>typeclass</em>.
+This class's <code>matcher</code> factory method will produce a <code>Matcher[T]</code>, where <code>T</code> is a subtype of (or the same type
+as) <code>SC</code>, given a typeclass instance for each <code>TC<em>n</em></code>
+implicit parameter (for example, a <code>TC1[T]</code>, <code>TC2[T]</code>, <em>etc.</em>).</p></div></div>
+    </li><li name="org.scalatest.matchers.MatcherFactory3" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="MatcherFactory3[-SC,TC1[_],TC2[_],TC3[_]]extendsAnyRef"></a>
+      <a id="MatcherFactory3[-SC,TC1[_],TC2[_],TC3[_]]:MatcherFactory3[SC,TC1,TC2,TC3]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="MatcherFactory3.html"><span class="name">MatcherFactory3</span></a><span class="tparams">[<span name="SC">-SC</span>, <span name="TC1">TC1<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC2">TC2<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC3">TC3<span class="tparams">[<span name="_">_</span>]</span></span>]</span><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.package@MatcherFactory3[-SC,TC1[_],TC2[_],TC3[_]]extendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">A matcher factory that can produce a matcher given three typeclass instances.</p><div class="fullcomment"><div class="comment cmt"><p>A matcher factory that can produce a matcher given three typeclass instances.</p><p>In the type parameters for this class, &quot;<code>SC</code>&quot; means <em>superclass</em>; &quot;<code>TC</code>&quot;
+(in <code>TC1</code>, <code>TC2</code>, <em>etc.</em>) means <em>typeclass</em>.
+This class's <code>matcher</code> factory method will produce a <code>Matcher[T]</code>, where <code>T</code> is a subtype of (or the same type
+as) <code>SC</code>, given a typeclass instance for each <code>TC<em>n</em></code>
+implicit parameter (for example, a <code>TC1[T]</code>, <code>TC2[T]</code>, <em>etc.</em>).</p></div></div>
+    </li><li name="org.scalatest.matchers.MatcherFactory4" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="MatcherFactory4[-SC,TC1[_],TC2[_],TC3[_],TC4[_]]extendsAnyRef"></a>
+      <a id="MatcherFactory4[-SC,TC1[_],TC2[_],TC3[_],TC4[_]]:MatcherFactory4[SC,TC1,TC2,TC3,TC4]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="MatcherFactory4.html"><span class="name">MatcherFactory4</span></a><span class="tparams">[<span name="SC">-SC</span>, <span name="TC1">TC1<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC2">TC2<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC3">TC3<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC4">TC4<span class="tparams">[<span name="_">_</span>]</span></span>]</span><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.package@MatcherFactory4[-SC,TC1[_],TC2[_],TC3[_],TC4[_]]extendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">A matcher factory that can produce a matcher given four typeclass instances.</p><div class="fullcomment"><div class="comment cmt"><p>A matcher factory that can produce a matcher given four typeclass instances.</p><p>In the type parameters for this class, &quot;<code>SC</code>&quot; means <em>superclass</em>; &quot;<code>TC</code>&quot;
+(in <code>TC1</code>, <code>TC2</code>, <em>etc.</em>) means <em>typeclass</em>.
+This class's <code>matcher</code> factory method will produce a <code>Matcher[T]</code>, where <code>T</code> is a subtype of (or the same type
+as) <code>SC</code>, given a typeclass instance for each <code>TC<em>n</em></code>
+implicit parameter (for example, a <code>TC1[T]</code>, <code>TC2[T]</code>, <em>etc.</em>).</p></div></div>
+    </li><li name="org.scalatest.matchers.MatcherFactory5" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="MatcherFactory5[-SC,TC1[_],TC2[_],TC3[_],TC4[_],TC5[_]]extendsAnyRef"></a>
+      <a id="MatcherFactory5[-SC,TC1[_],TC2[_],TC3[_],TC4[_],TC5[_]]:MatcherFactory5[SC,TC1,TC2,TC3,TC4,TC5]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="MatcherFactory5.html"><span class="name">MatcherFactory5</span></a><span class="tparams">[<span name="SC">-SC</span>, <span name="TC1">TC1<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC2">TC2<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC3">TC3<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC4">TC4<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC5">TC5<span class="tparams">[<span name="_">_</span>]</span></span>]</span><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.package@MatcherFactory5[-SC,TC1[_],TC2[_],TC3[_],TC4[_],TC5[_]]extendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">A matcher factory that can produce a matcher given five typeclass instances.</p><div class="fullcomment"><div class="comment cmt"><p>A matcher factory that can produce a matcher given five typeclass instances.</p><p>In the type parameters for this class, &quot;<code>SC</code>&quot; means <em>superclass</em>; &quot;<code>TC</code>&quot;
+(in <code>TC1</code>, <code>TC2</code>, <em>etc.</em>) means <em>typeclass</em>.
+This class's <code>matcher</code> factory method will produce a <code>Matcher[T]</code>, where <code>T</code> is a subtype of (or the same type
+as) <code>SC</code>, given a typeclass instance for each <code>TC<em>n</em></code>
+implicit parameter (for example, a <code>TC1[T]</code>, <code>TC2[T]</code>, <em>etc.</em>).</p></div></div>
+    </li><li name="org.scalatest.matchers.MatcherFactory6" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="MatcherFactory6[-SC,TC1[_],TC2[_],TC3[_],TC4[_],TC5[_],TC6[_]]extendsAnyRef"></a>
+      <a id="MatcherFactory6[-SC,TC1[_],TC2[_],TC3[_],TC4[_],TC5[_],TC6[_]]:MatcherFactory6[SC,TC1,TC2,TC3,TC4,TC5,TC6]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="MatcherFactory6.html"><span class="name">MatcherFactory6</span></a><span class="tparams">[<span name="SC">-SC</span>, <span name="TC1">TC1<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC2">TC2<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC3">TC3<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC4">TC4<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC5">TC5<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC6">TC6<span class="tparams">[<span name="_">_</span>]</span></span>]</span><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.package@MatcherFactory6[-SC,TC1[_],TC2[_],TC3[_],TC4[_],TC5[_],TC6[_]]extendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">A matcher factory that can produce a matcher given six typeclass instances.</p><div class="fullcomment"><div class="comment cmt"><p>A matcher factory that can produce a matcher given six typeclass instances.</p><p>In the type parameters for this class, &quot;<code>SC</code>&quot; means <em>superclass</em>; &quot;<code>TC</code>&quot;
+(in <code>TC1</code>, <code>TC2</code>, <em>etc.</em>) means <em>typeclass</em>.
+This class's <code>matcher</code> factory method will produce a <code>Matcher[T]</code>, where <code>T</code> is a subtype of (or the same type
+as) <code>SC</code>, given a typeclass instance for each <code>TC<em>n</em></code>
+implicit parameter (for example, a <code>TC1[T]</code>, <code>TC2[T]</code>, <em>etc.</em>).</p></div></div>
+    </li><li name="org.scalatest.matchers.MatcherFactory7" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="MatcherFactory7[-SC,TC1[_],TC2[_],TC3[_],TC4[_],TC5[_],TC6[_],TC7[_]]extendsAnyRef"></a>
+      <a id="MatcherFactory7[-SC,TC1[_],TC2[_],TC3[_],TC4[_],TC5[_],TC6[_],TC7[_]]:MatcherFactory7[SC,TC1,TC2,TC3,TC4,TC5,TC6,TC7]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="MatcherFactory7.html"><span class="name">MatcherFactory7</span></a><span class="tparams">[<span name="SC">-SC</span>, <span name="TC1">TC1<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC2">TC2<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC3">TC3<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC4">TC4<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC5">TC5<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC6">TC6<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC7">TC7<span class="tparams">[<span name="_">_</span>]</span></span>]</span><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.package@MatcherFactory7[-SC,TC1[_],TC2[_],TC3[_],TC4[_],TC5[_],TC6[_],TC7[_]]extendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">A matcher factory that can produce a matcher given seven typeclass instances.</p><div class="fullcomment"><div class="comment cmt"><p>A matcher factory that can produce a matcher given seven typeclass instances.</p><p>In the type parameters for this class, &quot;<code>SC</code>&quot; means <em>superclass</em>; &quot;<code>TC</code>&quot;
+(in <code>TC1</code>, <code>TC2</code>, <em>etc.</em>) means <em>typeclass</em>.
+This class's <code>matcher</code> factory method will produce a <code>Matcher[T]</code>, where <code>T</code> is a subtype of (or the same type
+as) <code>SC</code>, given a typeclass instance for each <code>TC<em>n</em></code>
+implicit parameter (for example, a <code>TC1[T]</code>, <code>TC2[T]</code>, <em>etc.</em>).</p></div></div>
+    </li><li name="org.scalatest.matchers.MatcherFactory8" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="MatcherFactory8[-SC,TC1[_],TC2[_],TC3[_],TC4[_],TC5[_],TC6[_],TC7[_],TC8[_]]extendsAnyRef"></a>
+      <a id="MatcherFactory8[-SC,TC1[_],TC2[_],TC3[_],TC4[_],TC5[_],TC6[_],TC7[_],TC8[_]]:MatcherFactory8[SC,TC1,TC2,TC3,TC4,TC5,TC6,TC7,TC8]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="MatcherFactory8.html"><span class="name">MatcherFactory8</span></a><span class="tparams">[<span name="SC">-SC</span>, <span name="TC1">TC1<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC2">TC2<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC3">TC3<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC4">TC4<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC5">TC5<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC6">TC6<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC7">TC7<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC8">TC8<span class="tparams">[<span name="_">_</span>]</span></span>]</span><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.package@MatcherFactory8[-SC,TC1[_],TC2[_],TC3[_],TC4[_],TC5[_],TC6[_],TC7[_],TC8[_]]extendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">A matcher factory that can produce a matcher given eight typeclass instances.</p><div class="fullcomment"><div class="comment cmt"><p>A matcher factory that can produce a matcher given eight typeclass instances.</p><p>In the type parameters for this class, &quot;<code>SC</code>&quot; means <em>superclass</em>; &quot;<code>TC</code>&quot;
+(in <code>TC1</code>, <code>TC2</code>, <em>etc.</em>) means <em>typeclass</em>.
+This class's <code>matcher</code> factory method will produce a <code>Matcher[T]</code>, where <code>T</code> is a subtype of (or the same type
+as) <code>SC</code>, given a typeclass instance for each <code>TC<em>n</em></code>
+implicit parameter (for example, a <code>TC1[T]</code>, <code>TC2[T]</code>, <em>etc.</em>).</p></div></div>
+    </li><li name="org.scalatest.matchers.MatcherFactory9" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="MatcherFactory9[-SC,TC1[_],TC2[_],TC3[_],TC4[_],TC5[_],TC6[_],TC7[_],TC8[_],TC9[_]]extendsAnyRef"></a>
+      <a id="MatcherFactory9[-SC,TC1[_],TC2[_],TC3[_],TC4[_],TC5[_],TC6[_],TC7[_],TC8[_],TC9[_]]:MatcherFactory9[SC,TC1,TC2,TC3,TC4,TC5,TC6,TC7,TC8,TC9]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="MatcherFactory9.html"><span class="name">MatcherFactory9</span></a><span class="tparams">[<span name="SC">-SC</span>, <span name="TC1">TC1<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC2">TC2<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC3">TC3<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC4">TC4<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC5">TC5<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC6">TC6<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC7">TC7<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC8">TC8<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC9">TC9<span class="tparams">[<span name="_">_</span>]</span></span>]</span><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.package@MatcherFactory9[-SC,TC1[_],TC2[_],TC3[_],TC4[_],TC5[_],TC6[_],TC7[_],TC8[_],TC9[_]]extendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">A matcher factory that can produce a matcher given nine typeclass instances.</p><div class="fullcomment"><div class="comment cmt"><p>A matcher factory that can produce a matcher given nine typeclass instances.</p><p>In the type parameters for this class, &quot;<code>SC</code>&quot; means <em>superclass</em>; &quot;<code>TC</code>&quot;
+(in <code>TC1</code>, <code>TC2</code>, <em>etc.</em>) means <em>typeclass</em>.
+This class's <code>matcher</code> factory method will produce a <code>Matcher[T]</code>, where <code>T</code> is a subtype of (or the same type
+as) <code>SC</code>, given a typeclass instance for each <code>TC<em>n</em></code>
+implicit parameter (for example, a <code>TC1[T]</code>, <code>TC2[T]</code>, <em>etc.</em>).</p></div></div>
+    </li><li name="org.scalatest.matchers.MatcherProducers" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="MatcherProducersextendsAnyRef"></a>
+      <a id="MatcherProducers:MatcherProducers"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="MatcherProducers.html"><span class="name">MatcherProducers</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.package@MatcherProducersextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Provides an implicit conversion on functions that <em>produce</em> <code>Matcher</code>s, <em>i.e.</em>,
+<code>T =&gt; Matcher[T]</code> that enables you to modify error messages when composing <code>Matcher</code>s.</code></code></em></code></em></p><div class="fullcomment"><div class="comment cmt"><p>Provides an implicit conversion on functions that <em>produce</em> <code>Matcher</code>s, <em>i.e.</em>,
+<code>T =&gt; Matcher[T]</code> that enables you to modify error messages when composing <code>Matcher</code>s.</p><p>For an example of using <code>MatcherProducers</code>, see the <a href="Matcher.html#composingMatchers">Composing matchers</a>
+section in the main documentation for trait <code>Matcher</code>.</p></div></div>
+    </li></ol>
+            </div>
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="org.scalatest.matchers.BeMatcher" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="BeMatcher"></a>
+      <a id="BeMatcher:BeMatcher"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="BeMatcher$.html"><span class="name">BeMatcher</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.package@BeMatcher" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Companion object for trait <code>BeMatcher</code> that provides a
+factory method that creates a <code>BeMatcher[T]</code> from a
+passed function of type <code>(T =&gt; MatchResult)</code>.</code></code></code></p><div class="fullcomment"><div class="comment cmt"><p>Companion object for trait <code>BeMatcher</code> that provides a
+factory method that creates a <code>BeMatcher[T]</code> from a
+passed function of type <code>(T =&gt; MatchResult)</code>.
+</p></div></div>
+    </li><li name="org.scalatest.matchers.BePropertyMatchResult" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="BePropertyMatchResult"></a>
+      <a id="BePropertyMatchResult:BePropertyMatchResult"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="BePropertyMatchResult$.html"><span class="name">BePropertyMatchResult</span></a><span class="result"> extends <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.package@BePropertyMatchResult" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Companion object for the <code>BePropertyMatchResult</code> case class.</code></p><div class="fullcomment"><div class="comment cmt"><p>Companion object for the <code>BePropertyMatchResult</code> case class.
+</p></div></div>
+    </li><li name="org.scalatest.matchers.BePropertyMatcher" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="BePropertyMatcher"></a>
+      <a id="BePropertyMatcher:BePropertyMatcher"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="BePropertyMatcher$.html"><span class="name">BePropertyMatcher</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.package@BePropertyMatcher" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Companion object for trait <code>BePropertyMatcher</code> that provides a
+factory method that creates a <code>BePropertyMatcher[T]</code> from a
+passed function of type <code>(T => BePropertyMatchResult)</code>.</code></code></code></p><div class="fullcomment"><div class="comment cmt"><p>Companion object for trait <code>BePropertyMatcher</code> that provides a
+factory method that creates a <code>BePropertyMatcher[T]</code> from a
+passed function of type <code>(T => BePropertyMatchResult)</code>.
+</p></div></div>
+    </li><li name="org.scalatest.matchers.HavePropertyMatchResult" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="HavePropertyMatchResult"></a>
+      <a id="HavePropertyMatchResult:HavePropertyMatchResult"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="HavePropertyMatchResult$.html"><span class="name">HavePropertyMatchResult</span></a><span class="result"> extends <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.package@HavePropertyMatchResult" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Companion object for the <code>HavePropertyMatchResult</code> case class.</code></p><div class="fullcomment"><div class="comment cmt"><p>Companion object for the <code>HavePropertyMatchResult</code> case class.
+</p></div></div>
+    </li><li name="org.scalatest.matchers.HavePropertyMatcher" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="HavePropertyMatcher"></a>
+      <a id="HavePropertyMatcher:HavePropertyMatcher"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="HavePropertyMatcher$.html"><span class="name">HavePropertyMatcher</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.package@HavePropertyMatcher" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Companion object for trait <code>HavePropertyMatcher</code> that provides a
+factory method that creates a <code>HavePropertyMatcher[T]</code> from a
+passed function of type <code>(T =&gt; HavePropertyMatchResult)</code>.</code></code></code></p><div class="fullcomment"><div class="comment cmt"><p>Companion object for trait <code>HavePropertyMatcher</code> that provides a
+factory method that creates a <code>HavePropertyMatcher[T]</code> from a
+passed function of type <code>(T =&gt; HavePropertyMatchResult)</code>.
+</p></div></div>
+    </li><li name="org.scalatest.matchers.MatchFailed" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="MatchFailed"></a>
+      <a id="MatchFailed:MatchFailed"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="MatchFailed$.html"><span class="name">MatchFailed</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.package@MatchFailed" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Singleton object that provides <code>unapply</code> method to extract failure message from <code>MatchResult</code>
+having <code>matches</code> property value of <code>false</code>.</code></code></code></code></p><div class="fullcomment"><div class="comment cmt"><p>Singleton object that provides <code>unapply</code> method to extract failure message from <code>MatchResult</code>
+having <code>matches</code> property value of <code>false</code>.
+</p></div></div>
+    </li><li name="org.scalatest.matchers.MatchPatternHelper" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="MatchPatternHelper"></a>
+      <a id="MatchPatternHelper:MatchPatternHelper"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="MatchPatternHelper$.html"><span class="name">MatchPatternHelper</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.package@MatchPatternHelper" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><code>MatchPatternHelper</code> is called by <code>MatchPatternMacro</code> to support <code>matchPattern</code> syntax.</code></code></code></p><div class="fullcomment"><div class="comment cmt"><p><code>MatchPatternHelper</code> is called by <code>MatchPatternMacro</code> to support <code>matchPattern</code> syntax.
+</p></div></div>
+    </li><li name="org.scalatest.matchers.MatchResult" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="MatchResult"></a>
+      <a id="MatchResult:MatchResult"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="MatchResult$.html"><span class="name">MatchResult</span></a><span class="result"> extends <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.package@MatchResult" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Companion object for the <code>MatchResult</code> case class.</code></p><div class="fullcomment"><div class="comment cmt"><p>Companion object for the <code>MatchResult</code> case class.
+</p></div></div>
+    </li><li name="org.scalatest.matchers.MatchSucceeded" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="MatchSucceeded"></a>
+      <a id="MatchSucceeded:MatchSucceeded"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="MatchSucceeded$.html"><span class="name">MatchSucceeded</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.package@MatchSucceeded" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Singleton object that provides <code>unapply</code> method to extract negated failure message from <code>MatchResult</code>
+having <code>matches</code> property value of <code>true</code>.</code></code></code></code></p><div class="fullcomment"><div class="comment cmt"><p>Singleton object that provides <code>unapply</code> method to extract negated failure message from <code>MatchResult</code>
+having <code>matches</code> property value of <code>true</code>.
+</p></div></div>
+    </li><li name="org.scalatest.matchers.Matcher" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="Matcher"></a>
+      <a id="Matcher:Matcher"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Matcher$.html"><span class="name">Matcher</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.package@Matcher" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Companion object for trait <code>Matcher</code> that provides a
+factory method that creates a <code>Matcher[T]</code> from a
+passed function of type <code>(T =&gt; MatchResult)</code>.</code></code></code></p><div class="fullcomment"><div class="comment cmt"><p>Companion object for trait <code>Matcher</code> that provides a
+factory method that creates a <code>Matcher[T]</code> from a
+passed function of type <code>(T =&gt; MatchResult)</code>.
+</p></div></div>
+    </li><li name="org.scalatest.matchers.MatcherFactory1" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="MatcherFactory1"></a>
+      <a id="MatcherFactory1:MatcherFactory1"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="MatcherFactory1$.html"><span class="name">MatcherFactory1</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.package@MatcherFactory1" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Companion object containing an implicit method that converts a <code>MatcherFactory1</code> to a <code>Matcher</code>.</code></code></p><div class="fullcomment"><div class="comment cmt"><p>Companion object containing an implicit method that converts a <code>MatcherFactory1</code> to a <code>Matcher</code>.
+</p></div></div>
+    </li><li name="org.scalatest.matchers.MatcherFactory2" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="MatcherFactory2"></a>
+      <a id="MatcherFactory2:MatcherFactory2"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="MatcherFactory2$.html"><span class="name">MatcherFactory2</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.package@MatcherFactory2" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Companion object containing an implicit method that converts a <code>MatcherFactory2</code> to a <code>Matcher</code>.</code></code></p><div class="fullcomment"><div class="comment cmt"><p>Companion object containing an implicit method that converts a <code>MatcherFactory2</code> to a <code>Matcher</code>.
+</p></div></div>
+    </li><li name="org.scalatest.matchers.MatcherFactory3" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="MatcherFactory3"></a>
+      <a id="MatcherFactory3:MatcherFactory3"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="MatcherFactory3$.html"><span class="name">MatcherFactory3</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.package@MatcherFactory3" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Companion object containing an implicit method that converts a <code>MatcherFactory3</code> to a <code>Matcher</code>.</code></code></p><div class="fullcomment"><div class="comment cmt"><p>Companion object containing an implicit method that converts a <code>MatcherFactory3</code> to a <code>Matcher</code>.
+</p></div></div>
+    </li><li name="org.scalatest.matchers.MatcherFactory4" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="MatcherFactory4"></a>
+      <a id="MatcherFactory4:MatcherFactory4"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="MatcherFactory4$.html"><span class="name">MatcherFactory4</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.package@MatcherFactory4" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Companion object containing an implicit method that converts a <code>MatcherFactory4</code> to a <code>Matcher</code>.</code></code></p><div class="fullcomment"><div class="comment cmt"><p>Companion object containing an implicit method that converts a <code>MatcherFactory4</code> to a <code>Matcher</code>.
+</p></div></div>
+    </li><li name="org.scalatest.matchers.MatcherFactory5" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="MatcherFactory5"></a>
+      <a id="MatcherFactory5:MatcherFactory5"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="MatcherFactory5$.html"><span class="name">MatcherFactory5</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.package@MatcherFactory5" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Companion object containing an implicit method that converts a <code>MatcherFactory5</code> to a <code>Matcher</code>.</code></code></p><div class="fullcomment"><div class="comment cmt"><p>Companion object containing an implicit method that converts a <code>MatcherFactory5</code> to a <code>Matcher</code>.
+</p></div></div>
+    </li><li name="org.scalatest.matchers.MatcherFactory6" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="MatcherFactory6"></a>
+      <a id="MatcherFactory6:MatcherFactory6"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="MatcherFactory6$.html"><span class="name">MatcherFactory6</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.package@MatcherFactory6" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Companion object containing an implicit method that converts a <code>MatcherFactory6</code> to a <code>Matcher</code>.</code></code></p><div class="fullcomment"><div class="comment cmt"><p>Companion object containing an implicit method that converts a <code>MatcherFactory6</code> to a <code>Matcher</code>.
+</p></div></div>
+    </li><li name="org.scalatest.matchers.MatcherFactory7" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="MatcherFactory7"></a>
+      <a id="MatcherFactory7:MatcherFactory7"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="MatcherFactory7$.html"><span class="name">MatcherFactory7</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.package@MatcherFactory7" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Companion object containing an implicit method that converts a <code>MatcherFactory7</code> to a <code>Matcher</code>.</code></code></p><div class="fullcomment"><div class="comment cmt"><p>Companion object containing an implicit method that converts a <code>MatcherFactory7</code> to a <code>Matcher</code>.
+</p></div></div>
+    </li><li name="org.scalatest.matchers.MatcherFactory8" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="MatcherFactory8"></a>
+      <a id="MatcherFactory8:MatcherFactory8"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="MatcherFactory8$.html"><span class="name">MatcherFactory8</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.package@MatcherFactory8" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Companion object containing an implicit method that converts a <code>MatcherFactory8</code> to a <code>Matcher</code>.</code></code></p><div class="fullcomment"><div class="comment cmt"><p>Companion object containing an implicit method that converts a <code>MatcherFactory8</code> to a <code>Matcher</code>.
+</p></div></div>
+    </li><li name="org.scalatest.matchers.MatcherProducers" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="MatcherProducers"></a>
+      <a id="MatcherProducers:MatcherProducers"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="MatcherProducers$.html"><span class="name">MatcherProducers</span></a><span class="result"> extends <a href="MatcherProducers.html" class="extype" name="org.scalatest.matchers.MatcherProducers">MatcherProducers</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.package@MatcherProducers" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Companion object that facilitates the importing of <code>MatcherProducers</code> members as
+an alternative to mixing it in.</code></p><div class="fullcomment"><div class="comment cmt"><p>Companion object that facilitates the importing of <code>MatcherProducers</code> members as
+an alternative to mixing it in. One use case is to import <code>MatcherProducers</code>'s members so you can use
+<code>MatcherProducers</code> in the Scala interpreter.
+</p></div></div>
+    </li><li name="org.scalatest.matchers.TypeMatcherHelper" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="TypeMatcherHelper"></a>
+      <a id="TypeMatcherHelper:TypeMatcherHelper"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="TypeMatcherHelper$.html"><span class="name">TypeMatcherHelper</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.package@TypeMatcherHelper" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><code>TypeMatcherHelper</code> is called by <code>TypeMatcherMacro</code> to support <code>a [Type]</code> and <code>an [Type]</code> syntax.</code></code></code></code></p><div class="fullcomment"><div class="comment cmt"><p><code>TypeMatcherHelper</code> is called by <code>TypeMatcherMacro</code> to support <code>a [Type]</code> and <code>an [Type]</code> syntax.</p><p>This object needs to be public so that the macro-generated code can be compiled. It is expected that ScalaTest
+users would ever need to use <code>TypeMatcherHelper</code> directly.</p></div></div>
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+
+
+    </body>
+      </html>

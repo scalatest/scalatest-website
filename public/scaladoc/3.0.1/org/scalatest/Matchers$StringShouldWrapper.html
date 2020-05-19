@@ -1,0 +1,1859 @@
+<!DOCTYPE html >
+<html>
+        <head>
+          <title>StringShouldWrapper - ScalaTest 3.0.1 - org.scalatest.Matchers.StringShouldWrapper</title>
+          <meta name="description" content="StringShouldWrapper - ScalaTest 3.0.1 - org.scalatest.Matchers.StringShouldWrapper" />
+          <meta name="keywords" content="StringShouldWrapper ScalaTest 3.0.1 org.scalatest.Matchers.StringShouldWrapper" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../../lib/jquery.js" id="jquery-js"></script>
+      <script type="text/javascript" src="../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../lib/template.js"></script>
+      <script type="text/javascript" src="../../lib/tools.tooltip.js"></script>
+      
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../index.html';
+            var hash = 'org.scalatest.Matchers$StringShouldWrapper';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="type">
+
+<!-- Top of doc.scalatest.org [javascript] -->
+
+<script type="text/javascript">
+
+var rnd = window.rnd || Math.floor(Math.random()*10e6);
+
+var pid204546 = window.pid204546 || rnd;
+
+var plc204546 = window.plc204546 || 0;
+
+var abkw = window.abkw || '';
+
+var absrc = 'http://ab167933.adbutler-ikon.com/adserve/;ID=167933;size=468x60;setID=204546;type=js;sw='+screen.width+';sh='+screen.height+';spr='+window.devicePixelRatio+';kw='+abkw+';pid='+pid204546+';place='+(plc204546++)+';rnd='+rnd+';click=CLICK_MACRO_PLACEHOLDER';
+
+document.write('<scr'+'ipt src="'+absrc+'" type="text/javascript"></scr'+'ipt>');
+
+</script>
+
+      <div id="definition">
+        <img alt="Class" src="../../lib/class_big.png" />
+        <p id="owner"><a href="../package.html" class="extype" name="org">org</a>.<a href="package.html" class="extype" name="org.scalatest">scalatest</a>.<a href="Matchers.html" class="extype" name="org.scalatest.Matchers">Matchers</a></p>
+        <h1>StringShouldWrapper</h1><h3><span class="morelinks"><div>Related Doc:
+            <a href="Matchers.html" class="extype" name="org.scalatest.Matchers">package Matchers</a>
+          </div></span></h3><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <span class="name">StringShouldWrapper</span><span class="result"> extends <a href="Matchers$AnyShouldWrapper.html" class="extype" name="org.scalatest.Matchers.AnyShouldWrapper">AnyShouldWrapper</a>[<span class="extype" name="scala.Predef.String">String</span>] with <a href="Matchers.html#StringShouldWrapperForVerbextendsAnyRef" class="extmbr" name="org.scalatest.words.ShouldVerb.StringShouldWrapperForVerb">StringShouldWrapperForVerb</a></span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>This class is part of the ScalaTest matchers DSL. Please see the documentation for <a href="Matchers.html"><code>Matchers</code></a> for an overview of
+the matchers DSL.</p><p>This class is used in conjunction with an implicit conversion to enable <code>should</code> methods to
+be invoked on <code>String</code>s.</p></div><dl class="attributes block"> <dt>Source</dt><dd><a href="https://github.com/scalatest/scalatest/tree/release-3.0.1/scalatest//src/main/scala/org/scalatest/Matchers.scala" target="_blank">Matchers.scala</a></dd></dl><div class="toggleContainer block">
+          <span class="toggle">Linear Supertypes</span>
+          <div class="superTypes hiddenContent"><a href="Matchers.html#StringShouldWrapperForVerbextendsAnyRef" class="extmbr" name="org.scalatest.words.ShouldVerb.StringShouldWrapperForVerb">Matchers.StringShouldWrapperForVerb</a>, <a href="Matchers$AnyShouldWrapper.html" class="extype" name="org.scalatest.Matchers.AnyShouldWrapper">AnyShouldWrapper</a>[<span class="extype" name="scala.Predef.String">String</span>], <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+        </div></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        <div id="order">
+              <span class="filtertype">Ordering</span>
+              <ol>
+                
+                <li class="alpha in"><span>Alphabetic</span></li>
+                <li class="inherit out"><span>By Inheritance</span></li>
+              </ol>
+            </div>
+        <div id="ancestors">
+                <span class="filtertype">Inherited<br />
+                </span>
+                <ol id="linearization">
+                  <li class="in" name="org.scalatest.Matchers.StringShouldWrapper"><span>StringShouldWrapper</span></li><li class="in" name="org.scalatest.words.ShouldVerb.StringShouldWrapperForVerb"><span>StringShouldWrapperForVerb</span></li><li class="in" name="org.scalatest.Matchers.AnyShouldWrapper"><span>AnyShouldWrapper</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                </ol>
+              </div><div id="ancestors">
+            <span class="filtertype"></span>
+            <ol>
+              <li class="hideall out"><span>Hide All</span></li>
+              <li class="showall in"><span>Show All</span></li>
+            </ol>
+          </div>
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        <div id="constructors" class="members">
+              <h3>Instance Constructors</h3>
+              <ol><li name="org.scalatest.Matchers.StringShouldWrapper#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="&lt;init&gt;(leftSideString:String,pos:org.scalactic.source.Position,prettifier:org.scalactic.Prettifier):Matchers.this.StringShouldWrapper"></a>
+      <a id="&lt;init&gt;:StringShouldWrapper"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">new</span>
+      </span>
+      <span class="symbol">
+        <span class="name">StringShouldWrapper</span><span class="params">(<span name="leftSideString">leftSideString: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="pos">pos: <span class="extype" name="org.scalactic.source.Position">Position</span></span>, <span name="prettifier">prettifier: <span class="extype" name="org.scalactic.Prettifier">Prettifier</span></span>)</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@&lt;init&gt;(leftSideString:String,pos:org.scalactic.source.Position,prettifier:org.scalactic.Prettifier):Matchers.this.StringShouldWrapper" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li></ol>
+            </div>
+
+        
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="scala.AnyRef#!=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="!=(x$1:Any):Boolean"></a>
+      <a id="!=(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@!=(x$1:Any):Boolean" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef###" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="##():Int"></a>
+      <a id="##():Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $hash$hash" class="name">##</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@##():Int" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#==" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="==(x$1:Any):Boolean"></a>
+      <a id="==(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@==(x$1:Any):Boolean" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="asInstanceOf[T0]:T0"></a>
+      <a id="asInstanceOf[T0]:T0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">asInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Any.asInstanceOf.T0">T0</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@asInstanceOf[T0]:T0" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="scala.AnyRef#clone" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="clone():Object"></a>
+      <a id="clone():AnyRef"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">clone</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@clone():Object" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.CloneNotSupportedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="eq(x$1:AnyRef):Boolean"></a>
+      <a id="eq(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@eq(x$1:AnyRef):Boolean" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#equals" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="equals(x$1:Any):Boolean"></a>
+      <a id="equals(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">equals</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@equals(x$1:Any):Boolean" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#finalize" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="finalize():Unit"></a>
+      <a id="finalize():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">finalize</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@finalize():Unit" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="symbol">classOf[java.lang.Throwable]</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#getClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getClass():Class[_]"></a>
+      <a id="getClass():Class[_]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getClass</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.Class">Class</span>[_]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@getClass():Class[_]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#hashCode" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="hashCode():Int"></a>
+      <a id="hashCode():Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">hashCode</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@hashCode():Int" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">isInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@isInstanceOf[T0]:Boolean" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="org.scalatest.Matchers.StringShouldWrapper#leftSideString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="leftSideString:String"></a>
+      <a id="leftSideString:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">leftSideString</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@leftSideString:String" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.scalatest.Matchers.StringShouldWrapper">StringShouldWrapper</a> → <a href="words/ShouldVerb$StringShouldWrapperForVerb.html" class="extype" name="org.scalatest.words.ShouldVerb.StringShouldWrapperForVerb">StringShouldWrapperForVerb</a></dd></dl></div>
+    </li><li name="org.scalatest.Matchers.AnyShouldWrapper#leftSideValue" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="leftSideValue:T"></a>
+      <a id="leftSideValue:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">leftSideValue</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@leftSideValue:T" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Matchers$AnyShouldWrapper.html" class="extype" name="org.scalatest.Matchers.AnyShouldWrapper">AnyShouldWrapper</a></dd></dl></div>
+    </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ne(x$1:AnyRef):Boolean"></a>
+      <a id="ne(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@ne(x$1:AnyRef):Boolean" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#notify" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notify():Unit"></a>
+      <a id="notify():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notify</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@notify():Unit" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#notifyAll" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notifyAll():Unit"></a>
+      <a id="notifyAll():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notifyAll</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@notifyAll():Unit" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="org.scalatest.Matchers.AnyShouldWrapper#pos" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="pos:org.scalactic.source.Position"></a>
+      <a id="pos:Position"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">pos</span><span class="result">: <span class="extype" name="org.scalactic.source.Position">Position</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@pos:org.scalactic.source.Position" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Matchers$AnyShouldWrapper.html" class="extype" name="org.scalatest.Matchers.AnyShouldWrapper">AnyShouldWrapper</a></dd></dl></div>
+    </li><li name="org.scalatest.Matchers.AnyShouldWrapper#prettifier" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="prettifier:org.scalactic.Prettifier"></a>
+      <a id="prettifier:Prettifier"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">prettifier</span><span class="result">: <span class="extype" name="org.scalactic.Prettifier">Prettifier</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@prettifier:org.scalactic.Prettifier" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Matchers$AnyShouldWrapper.html" class="extype" name="org.scalatest.Matchers.AnyShouldWrapper">AnyShouldWrapper</a></dd></dl></div>
+    </li><li name="org.scalatest.Matchers.StringShouldWrapper#should" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="should(compileWord:org.scalatest.words.CompileWord)(implicitpos:org.scalactic.source.Position):org.scalatest.Assertion"></a>
+      <a id="should(CompileWord)(Position):Assertion"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">macro </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">should</span><span class="params">(<span name="compileWord">compileWord: <a href="words/CompileWord.html" class="extype" name="org.scalatest.words.CompileWord">CompileWord</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="pos">pos: <span class="extype" name="org.scalactic.source.Position">Position</span></span>)</span><span class="result">: <a href="package.html#Assertion=org.scalatest.compatible.Assertion" class="extmbr" name="org.scalatest.Assertion">Assertion</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@should(compileWord:org.scalatest.words.CompileWord)(implicitpos:org.scalactic.source.Position):org.scalatest.Assertion" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables syntax such as the following:</p><div class="fullcomment"><div class="comment cmt"><p>This method enables syntax such as the following:</p><p><pre class="stHighlighted">
+string should compile
+       ^
+</pre>
+</p></div></div>
+    </li><li name="org.scalatest.Matchers.StringShouldWrapper#should" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="should(fullyMatchWord:org.scalatest.words.FullyMatchWord):Matchers.this.ResultOfFullyMatchWordForString"></a>
+      <a id="should(FullyMatchWord):ResultOfFullyMatchWordForString"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">should</span><span class="params">(<span name="fullyMatchWord">fullyMatchWord: <a href="words/FullyMatchWord.html" class="extype" name="org.scalatest.words.FullyMatchWord">FullyMatchWord</a></span>)</span><span class="result">: <a href="Matchers$ResultOfFullyMatchWordForString.html" class="extype" name="org.scalatest.Matchers.ResultOfFullyMatchWordForString">ResultOfFullyMatchWordForString</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@should(fullyMatchWord:org.scalatest.words.FullyMatchWord):Matchers.this.ResultOfFullyMatchWordForString" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables syntax such as the following:</p><div class="fullcomment"><div class="comment cmt"><p>This method enables syntax such as the following:</p><p><pre class="stHighlighted">
+string should fullyMatch regex (<span class="stQuotedString">"""(-)?(\d+)(\.\d*)?"""</span>)
+       ^
+</pre>
+</p></div></div>
+    </li><li name="org.scalatest.words.ShouldVerb.StringShouldWrapperForVerb#should" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="should(resultOfAfterWordApplication:org.scalatest.words.ResultOfAfterWordApplication)(implicitswawr:org.scalatest.words.SubjectWithAfterWordRegistration):Unit"></a>
+      <a id="should(ResultOfAfterWordApplication)(SubjectWithAfterWordRegistration):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">should</span><span class="params">(<span name="resultOfAfterWordApplication">resultOfAfterWordApplication: <a href="words/ResultOfAfterWordApplication.html" class="extype" name="org.scalatest.words.ResultOfAfterWordApplication">ResultOfAfterWordApplication</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="swawr">swawr: <a href="words/SubjectWithAfterWordRegistration.html" class="extype" name="org.scalatest.words.SubjectWithAfterWordRegistration">SubjectWithAfterWordRegistration</a></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@should(resultOfAfterWordApplication:org.scalatest.words.ResultOfAfterWordApplication)(implicitswawr:org.scalatest.words.SubjectWithAfterWordRegistration):Unit" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Supports the registration of subject descriptions with after words
+in <code>WordSpec</code> and <code>fixture.WordSpec</code>.</code></code></p><div class="fullcomment"><div class="comment cmt"><p>Supports the registration of subject descriptions with after words
+in <code>WordSpec</code> and <code>fixture.WordSpec</code>.</p><p>For example, this method enables syntax such as the following in <code>WordSpec</code>
+and <code>fixture.WordSpec</code>:</p><p><pre class="stHighlighted">
+<span class="stReserved">def</span> provide = afterWord(<span class="stQuotedString">"provide"</span>)
+
+<span class="stQuotedString">"The ScalaTest Matchers DSL"</span> should provide {
+                             ^
+</pre></p><p><code>WordSpec</code> passes in a function via the implicit parameter that takes
+two strings and a <code>ResultOfAfterWordApplication</code> and results in <code>Unit</code>. This method
+simply invokes this function, passing in leftSideString, the verb string
+<code>"should"</code>, and the <code>ResultOfAfterWordApplication</code> passed to <code>should</code>.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="words/ShouldVerb$StringShouldWrapperForVerb.html" class="extype" name="org.scalatest.words.ShouldVerb.StringShouldWrapperForVerb">StringShouldWrapperForVerb</a></dd></dl></div>
+    </li><li name="org.scalatest.words.ShouldVerb.StringShouldWrapperForVerb#should" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="should(right:=&gt;Unit)(implicitfun:org.scalatest.words.StringVerbBlockRegistration):Unit"></a>
+      <a id="should(⇒Unit)(StringVerbBlockRegistration):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">should</span><span class="params">(<span name="right">right: ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="fun">fun: <a href="words/StringVerbBlockRegistration.html" class="extype" name="org.scalatest.words.StringVerbBlockRegistration">StringVerbBlockRegistration</a></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@should(right:=&gt;Unit)(implicitfun:org.scalatest.words.StringVerbBlockRegistration):Unit" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Supports the registration of subject descriptions in <code>WordSpec</code>
+and <code>fixture.WordSpec</code>.</code></code></p><div class="fullcomment"><div class="comment cmt"><p>Supports the registration of subject descriptions in <code>WordSpec</code>
+and <code>fixture.WordSpec</code>.</p><p>For example, this method enables syntax such as the following in <code>WordSpec</code>
+and <code>fixture.WordSpec</code>:</p><p><pre class="stHighlighted">
+<span class="stQuotedString">"A Stack (when empty)"</span> should { ...
+                       ^
+</pre></p><p><code>WordSpec</code> passes in a function via the implicit parameter of type <code>StringVerbBlockRegistration</code>,
+a function that takes two strings and a no-arg function and results in <code>Unit</code>. This method
+simply invokes this function, passing in leftSideString, the verb string
+<code>"should"</code>, and the right by-name parameter transformed into a
+no-arg function.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="words/ShouldVerb$StringShouldWrapperForVerb.html" class="extype" name="org.scalatest.words.ShouldVerb.StringShouldWrapperForVerb">StringShouldWrapperForVerb</a></dd></dl></div>
+    </li><li name="org.scalatest.words.ShouldVerb.StringShouldWrapperForVerb#should" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="should(right:org.scalatest.words.BehaveWord)(implicitsvbli:org.scalatest.words.StringVerbBehaveLikeInvocation):org.scalatest.words.BehaveWord"></a>
+      <a id="should(BehaveWord)(StringVerbBehaveLikeInvocation):BehaveWord"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">should</span><span class="params">(<span name="right">right: <a href="words/BehaveWord.html" class="extype" name="org.scalatest.words.BehaveWord">BehaveWord</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="svbli">svbli: <a href="words/StringVerbBehaveLikeInvocation.html" class="extype" name="org.scalatest.words.StringVerbBehaveLikeInvocation">StringVerbBehaveLikeInvocation</a></span>)</span><span class="result">: <a href="words/BehaveWord.html" class="extype" name="org.scalatest.words.BehaveWord">BehaveWord</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@should(right:org.scalatest.words.BehaveWord)(implicitsvbli:org.scalatest.words.StringVerbBehaveLikeInvocation):org.scalatest.words.BehaveWord" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Supports shared test registration in <code>FlatSpec</code> and <code>fixture.FlatSpec</code>.</code></code></p><div class="fullcomment"><div class="comment cmt"><p>Supports shared test registration in <code>FlatSpec</code> and <code>fixture.FlatSpec</code>.</p><p>For example, this method enables syntax such as the following in <code>FlatSpec</code>
+and <code>fixture.FlatSpec</code>:</p><p><pre class="stHighlighted">
+<span class="stQuotedString">"A Stack (with one item)"</span> should behave like nonEmptyStack(stackWithOneItem, lastValuePushed)
+                          ^
+</pre></p><p><code>FlatSpec</code> and <code>fixture.FlatSpec</code> passes in a function via the implicit parameter that takes
+a string and results in a <code>BehaveWord</code>. This method
+simply invokes this function, passing in leftSideString, and returns the result.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="words/ShouldVerb$StringShouldWrapperForVerb.html" class="extype" name="org.scalatest.words.ShouldVerb.StringShouldWrapperForVerb">StringShouldWrapperForVerb</a></dd></dl></div>
+    </li><li name="org.scalatest.words.ShouldVerb.StringShouldWrapperForVerb#should" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="should(right:String)(implicitsvsi:org.scalatest.words.StringVerbStringInvocation):org.scalatest.words.ResultOfStringPassedToVerb"></a>
+      <a id="should(String)(StringVerbStringInvocation):ResultOfStringPassedToVerb"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">should</span><span class="params">(<span name="right">right: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="svsi">svsi: <a href="words/StringVerbStringInvocation.html" class="extype" name="org.scalatest.words.StringVerbStringInvocation">StringVerbStringInvocation</a></span>)</span><span class="result">: <a href="words/ResultOfStringPassedToVerb.html" class="extype" name="org.scalatest.words.ResultOfStringPassedToVerb">ResultOfStringPassedToVerb</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@should(right:String)(implicitsvsi:org.scalatest.words.StringVerbStringInvocation):org.scalatest.words.ResultOfStringPassedToVerb" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Supports test registration in <code>FlatSpec</code> and <code>fixture.FlatSpec</code>.</code></code></p><div class="fullcomment"><div class="comment cmt"><p>Supports test registration in <code>FlatSpec</code> and <code>fixture.FlatSpec</code>.</p><p>For example, this method enables syntax such as the following in <code>FlatSpec</code>
+and <code>fixture.FlatSpec</code>:</p><p><pre class="stHighlighted">
+<span class="stQuotedString">"A Stack (when empty)"</span> should <span class="stQuotedString">"be empty"</span> in { ... }
+                       ^
+</pre></p><p><code>FlatSpec</code> passes in a StringVerbStringInvocation via the implicit parameter that takes
+three strings and results in a <code>ResultOfStringPassedToVerb</code>. This method
+simply invokes this function, passing in leftSideString, the verb string
+<code>"should"</code>, and right, and returns the result.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="words/ShouldVerb$StringShouldWrapperForVerb.html" class="extype" name="org.scalatest.words.ShouldVerb.StringShouldWrapperForVerb">StringShouldWrapperForVerb</a></dd></dl></div>
+    </li><li name="org.scalatest.Matchers.AnyShouldWrapper#should" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="should(endWithWord:org.scalatest.words.EndWithWord)(implicitev:&lt;:&lt;[T,String]):Matchers.this.ResultOfEndWithWordForString"></a>
+      <a id="should(EndWithWord)(&lt;:&lt;[String,String]):ResultOfEndWithWordForString"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">should</span><span class="params">(<span name="endWithWord">endWithWord: <a href="words/EndWithWord.html" class="extype" name="org.scalatest.words.EndWithWord">EndWithWord</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="ev">ev: <span class="extype" name="scala.Predef.&lt;:&lt;">&lt;:&lt;</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result">: <a href="Matchers$ResultOfEndWithWordForString.html" class="extype" name="org.scalatest.Matchers.ResultOfEndWithWordForString">ResultOfEndWithWordForString</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@should(endWithWord:org.scalatest.words.EndWithWord)(implicitev:&lt;:&lt;[T,String]):Matchers.this.ResultOfEndWithWordForString" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables syntax such as the following:</p><div class="fullcomment"><div class="comment cmt"><p>This method enables syntax such as the following:</p><p><pre class="stHighlighted">
+string should endWith regex (<span class="stQuotedString">"world"</span>)
+       ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Matchers$AnyShouldWrapper.html" class="extype" name="org.scalatest.Matchers.AnyShouldWrapper">AnyShouldWrapper</a></dd></dl></div>
+    </li><li name="org.scalatest.Matchers.AnyShouldWrapper#should" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="should(startWithWord:org.scalatest.words.StartWithWord)(implicitev:&lt;:&lt;[T,String]):Matchers.this.ResultOfStartWithWordForString"></a>
+      <a id="should(StartWithWord)(&lt;:&lt;[String,String]):ResultOfStartWithWordForString"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">should</span><span class="params">(<span name="startWithWord">startWithWord: <a href="words/StartWithWord.html" class="extype" name="org.scalatest.words.StartWithWord">StartWithWord</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="ev">ev: <span class="extype" name="scala.Predef.&lt;:&lt;">&lt;:&lt;</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result">: <a href="Matchers$ResultOfStartWithWordForString.html" class="extype" name="org.scalatest.Matchers.ResultOfStartWithWordForString">ResultOfStartWithWordForString</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@should(startWithWord:org.scalatest.words.StartWithWord)(implicitev:&lt;:&lt;[T,String]):Matchers.this.ResultOfStartWithWordForString" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables syntax such as the following:</p><div class="fullcomment"><div class="comment cmt"><p>This method enables syntax such as the following:</p><p><pre class="stHighlighted">
+string should startWith regex (<span class="stQuotedString">"hello"</span>)
+       ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Matchers$AnyShouldWrapper.html" class="extype" name="org.scalatest.Matchers.AnyShouldWrapper">AnyShouldWrapper</a></dd></dl></div>
+    </li><li name="org.scalatest.Matchers.AnyShouldWrapper#should" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="should(includeWord:org.scalatest.words.IncludeWord)(implicitev:&lt;:&lt;[T,String]):Matchers.this.ResultOfIncludeWordForString"></a>
+      <a id="should(IncludeWord)(&lt;:&lt;[String,String]):ResultOfIncludeWordForString"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">should</span><span class="params">(<span name="includeWord">includeWord: <a href="words/IncludeWord.html" class="extype" name="org.scalatest.words.IncludeWord">IncludeWord</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="ev">ev: <span class="extype" name="scala.Predef.&lt;:&lt;">&lt;:&lt;</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result">: <a href="Matchers$ResultOfIncludeWordForString.html" class="extype" name="org.scalatest.Matchers.ResultOfIncludeWordForString">ResultOfIncludeWordForString</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@should(includeWord:org.scalatest.words.IncludeWord)(implicitev:&lt;:&lt;[T,String]):Matchers.this.ResultOfIncludeWordForString" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables syntax such as the following:</p><div class="fullcomment"><div class="comment cmt"><p>This method enables syntax such as the following:</p><p><pre class="stHighlighted">
+string should include regex (<span class="stQuotedString">"hi"</span>)
+       ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Matchers$AnyShouldWrapper.html" class="extype" name="org.scalatest.Matchers.AnyShouldWrapper">AnyShouldWrapper</a></dd></dl></div>
+    </li><li name="org.scalatest.Matchers.AnyShouldWrapper#should" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="should(notExist:org.scalatest.words.ResultOfNotExist)(implicitexistence:org.scalatest.enablers.Existence[T]):org.scalatest.Assertion"></a>
+      <a id="should(ResultOfNotExist)(Existence[String]):Assertion"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">should</span><span class="params">(<span name="notExist">notExist: <a href="words/ResultOfNotExist.html" class="extype" name="org.scalatest.words.ResultOfNotExist">ResultOfNotExist</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="existence">existence: <a href="enablers/Existence.html" class="extype" name="org.scalatest.enablers.Existence">Existence</a>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result">: <a href="package.html#Assertion=org.scalatest.compatible.Assertion" class="extmbr" name="org.scalatest.Assertion">Assertion</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@should(notExist:org.scalatest.words.ResultOfNotExist)(implicitexistence:org.scalatest.enablers.Existence[T]):org.scalatest.Assertion" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables syntax such as the following:</p><div class="fullcomment"><div class="comment cmt"><p>This method enables syntax such as the following:</p><p><pre class="stHighlighted">
+file should not (exist)
+     ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Matchers$AnyShouldWrapper.html" class="extype" name="org.scalatest.Matchers.AnyShouldWrapper">AnyShouldWrapper</a></dd></dl></div>
+    </li><li name="org.scalatest.Matchers.AnyShouldWrapper#should" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="should(existWord:org.scalatest.words.ExistWord)(implicitexistence:org.scalatest.enablers.Existence[T]):org.scalatest.Assertion"></a>
+      <a id="should(ExistWord)(Existence[String]):Assertion"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">should</span><span class="params">(<span name="existWord">existWord: <a href="words/ExistWord.html" class="extype" name="org.scalatest.words.ExistWord">ExistWord</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="existence">existence: <a href="enablers/Existence.html" class="extype" name="org.scalatest.enablers.Existence">Existence</a>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result">: <a href="package.html#Assertion=org.scalatest.compatible.Assertion" class="extmbr" name="org.scalatest.Assertion">Assertion</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@should(existWord:org.scalatest.words.ExistWord)(implicitexistence:org.scalatest.enablers.Existence[T]):org.scalatest.Assertion" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables syntax such as the following:</p><div class="fullcomment"><div class="comment cmt"><p>This method enables syntax such as the following:</p><p><pre class="stHighlighted">
+file should exist
+     ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Matchers$AnyShouldWrapper.html" class="extype" name="org.scalatest.Matchers.AnyShouldWrapper">AnyShouldWrapper</a></dd></dl></div>
+    </li><li name="org.scalatest.Matchers.AnyShouldWrapper#should" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="should(containWord:org.scalatest.words.ContainWord):org.scalatest.words.ResultOfContainWord[T]"></a>
+      <a id="should(ContainWord):ResultOfContainWord[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">should</span><span class="params">(<span name="containWord">containWord: <a href="words/ContainWord.html" class="extype" name="org.scalatest.words.ContainWord">ContainWord</a></span>)</span><span class="result">: <a href="words/ResultOfContainWord.html" class="extype" name="org.scalatest.words.ResultOfContainWord">ResultOfContainWord</a>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@should(containWord:org.scalatest.words.ContainWord):org.scalatest.words.ResultOfContainWord[T]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables syntax such as the following:</p><div class="fullcomment"><div class="comment cmt"><p>This method enables syntax such as the following:</p><p><pre class="stHighlighted">
+xs should contain oneOf (<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>)
+   ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Matchers$AnyShouldWrapper.html" class="extype" name="org.scalatest.Matchers.AnyShouldWrapper">AnyShouldWrapper</a></dd></dl></div>
+    </li><li name="org.scalatest.Matchers.AnyShouldWrapper#should" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="should(haveWord:org.scalatest.words.HaveWord):Matchers.this.ResultOfHaveWordForExtent[T]"></a>
+      <a id="should(HaveWord):ResultOfHaveWordForExtent[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">should</span><span class="params">(<span name="haveWord">haveWord: <a href="words/HaveWord.html" class="extype" name="org.scalatest.words.HaveWord">HaveWord</a></span>)</span><span class="result">: <a href="Matchers$ResultOfHaveWordForExtent.html" class="extype" name="org.scalatest.Matchers.ResultOfHaveWordForExtent">ResultOfHaveWordForExtent</a>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@should(haveWord:org.scalatest.words.HaveWord):Matchers.this.ResultOfHaveWordForExtent[T]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables syntax such as the following:</p><div class="fullcomment"><div class="comment cmt"><p>This method enables syntax such as the following:</p><p><pre class="stHighlighted">
+result should have length (<span class="stLiteral">3</span>)
+       ^
+result should have size (<span class="stLiteral">3</span>)
+       ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Matchers$AnyShouldWrapper.html" class="extype" name="org.scalatest.Matchers.AnyShouldWrapper">AnyShouldWrapper</a></dd></dl></div>
+    </li><li name="org.scalatest.Matchers.AnyShouldWrapper#should" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="should(beWord:org.scalatest.words.BeWord):Matchers.this.ResultOfBeWordForAny[T]"></a>
+      <a id="should(BeWord):ResultOfBeWordForAny[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">should</span><span class="params">(<span name="beWord">beWord: <a href="words/BeWord.html" class="extype" name="org.scalatest.words.BeWord">BeWord</a></span>)</span><span class="result">: <a href="Matchers$ResultOfBeWordForAny.html" class="extype" name="org.scalatest.Matchers.ResultOfBeWordForAny">ResultOfBeWordForAny</a>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@should(beWord:org.scalatest.words.BeWord):Matchers.this.ResultOfBeWordForAny[T]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables syntax such as the following:</p><div class="fullcomment"><div class="comment cmt"><p>This method enables syntax such as the following:</p><p><pre class="stHighlighted">
+result should be a aMatcher
+       ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Matchers$AnyShouldWrapper.html" class="extype" name="org.scalatest.Matchers.AnyShouldWrapper">AnyShouldWrapper</a></dd></dl></div>
+    </li><li name="org.scalatest.Matchers.AnyShouldWrapper#should" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="should(inv:org.scalactic.TripleEqualsSupport.TripleEqualsInvocationOnSpread[T])(implicitev:Numeric[T]):org.scalatest.Assertion"></a>
+      <a id="should(TripleEqualsInvocationOnSpread[String])(Numeric[String]):Assertion"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">should</span><span class="params">(<span name="inv">inv: <span class="extype" name="org.scalactic.TripleEqualsSupport.TripleEqualsInvocationOnSpread">TripleEqualsInvocationOnSpread</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="params">(<span class="implicit">implicit </span><span name="ev">ev: <span class="extype" name="scala.Numeric">Numeric</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result">: <a href="package.html#Assertion=org.scalatest.compatible.Assertion" class="extmbr" name="org.scalatest.Assertion">Assertion</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@should(inv:org.scalactic.TripleEqualsSupport.TripleEqualsInvocationOnSpread[T])(implicitev:Numeric[T]):org.scalatest.Assertion" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables syntax such as the following:</p><div class="fullcomment"><div class="comment cmt"><p>This method enables syntax such as the following:</p><p><pre class="stHighlighted">
+result should === (<span class="stLiteral">100</span> +- <span class="stLiteral">1</span>)
+       ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Matchers$AnyShouldWrapper.html" class="extype" name="org.scalatest.Matchers.AnyShouldWrapper">AnyShouldWrapper</a></dd></dl></div>
+    </li><li name="org.scalatest.Matchers.AnyShouldWrapper#should" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="should[U](inv:org.scalactic.TripleEqualsSupport.TripleEqualsInvocation[U])(implicitconstraint:org.scalactic.CanEqual[T,U]):org.scalatest.Assertion"></a>
+      <a id="should[U](TripleEqualsInvocation[U])(CanEqual[String,U]):Assertion"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">should</span><span class="tparams">[<span name="U">U</span>]</span><span class="params">(<span name="inv">inv: <span class="extype" name="org.scalactic.TripleEqualsSupport.TripleEqualsInvocation">TripleEqualsInvocation</span>[<span class="extype" name="org.scalatest.Matchers.AnyShouldWrapper.should.U">U</span>]</span>)</span><span class="params">(<span class="implicit">implicit </span><span name="constraint">constraint: <span class="extype" name="org.scalactic.CanEqual">CanEqual</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="org.scalatest.Matchers.AnyShouldWrapper.should.U">U</span>]</span>)</span><span class="result">: <a href="package.html#Assertion=org.scalatest.compatible.Assertion" class="extmbr" name="org.scalatest.Assertion">Assertion</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@should[U](inv:org.scalactic.TripleEqualsSupport.TripleEqualsInvocation[U])(implicitconstraint:org.scalactic.CanEqual[T,U]):org.scalatest.Assertion" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables syntax such as the following:</p><div class="fullcomment"><div class="comment cmt"><p>This method enables syntax such as the following:</p><p><pre class="stHighlighted">
+a should === (b)
+       ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Matchers$AnyShouldWrapper.html" class="extype" name="org.scalatest.Matchers.AnyShouldWrapper">AnyShouldWrapper</a></dd></dl></div>
+    </li><li name="org.scalatest.Matchers.AnyShouldWrapper#should" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="should(notWord:org.scalatest.words.NotWord):org.scalatest.words.ResultOfNotWordForAny[T]"></a>
+      <a id="should(NotWord):ResultOfNotWordForAny[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">should</span><span class="params">(<span name="notWord">notWord: <a href="words/NotWord.html" class="extype" name="org.scalatest.words.NotWord">NotWord</a></span>)</span><span class="result">: <a href="words/ResultOfNotWordForAny.html" class="extype" name="org.scalatest.words.ResultOfNotWordForAny">ResultOfNotWordForAny</a>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@should(notWord:org.scalatest.words.NotWord):org.scalatest.words.ResultOfNotWordForAny[T]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables syntax such as the following:</p><div class="fullcomment"><div class="comment cmt"><p>This method enables syntax such as the following:</p><p><pre class="stHighlighted">
+result should not equal (<span class="stLiteral">3</span>)
+       ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Matchers$AnyShouldWrapper.html" class="extype" name="org.scalatest.Matchers.AnyShouldWrapper">AnyShouldWrapper</a></dd></dl></div>
+    </li><li name="org.scalatest.Matchers.AnyShouldWrapper#should" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="should[TYPECLASS1[_],TYPECLASS2[_]](rightMatcherFactory2:org.scalatest.matchers.MatcherFactory2[T,TYPECLASS1,TYPECLASS2])(implicittypeClass1:TYPECLASS1[T],implicittypeClass2:TYPECLASS2[T]):org.scalatest.Assertion"></a>
+      <a id="should[TYPECLASS1[_],TYPECLASS2[_]](MatcherFactory2[String,TYPECLASS1,TYPECLASS2])(TYPECLASS1[String],TYPECLASS2[String]):Assertion"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">should</span><span class="tparams">[<span name="TYPECLASS1">TYPECLASS1<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TYPECLASS2">TYPECLASS2<span class="tparams">[<span name="_">_</span>]</span></span>]</span><span class="params">(<span name="rightMatcherFactory2">rightMatcherFactory2: <a href="matchers/MatcherFactory2.html" class="extype" name="org.scalatest.matchers.MatcherFactory2">MatcherFactory2</a>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="org.scalatest.Matchers.AnyShouldWrapper.should.TYPECLASS1">TYPECLASS1</span>, <span class="extype" name="org.scalatest.Matchers.AnyShouldWrapper.should.TYPECLASS2">TYPECLASS2</span>]</span>)</span><span class="params">(<span class="implicit">implicit </span><span name="typeClass1">typeClass1: <span class="extype" name="org.scalatest.Matchers.AnyShouldWrapper.should.TYPECLASS1">TYPECLASS1</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="typeClass2">typeClass2: <span class="extype" name="org.scalatest.Matchers.AnyShouldWrapper.should.TYPECLASS2">TYPECLASS2</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result">: <a href="package.html#Assertion=org.scalatest.compatible.Assertion" class="extmbr" name="org.scalatest.Assertion">Assertion</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@should[TYPECLASS1[_],TYPECLASS2[_]](rightMatcherFactory2:org.scalatest.matchers.MatcherFactory2[T,TYPECLASS1,TYPECLASS2])(implicittypeClass1:TYPECLASS1[T],implicittypeClass2:TYPECLASS2[T]):org.scalatest.Assertion" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables syntax such as the following:</p><div class="fullcomment"><div class="comment cmt"><p>This method enables syntax such as the following:</p><p><pre class="stHighlighted">
+result should (equal (expected) and have length <span class="stLiteral">3</span>)
+       ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Matchers$AnyShouldWrapper.html" class="extype" name="org.scalatest.Matchers.AnyShouldWrapper">AnyShouldWrapper</a></dd></dl></div>
+    </li><li name="org.scalatest.Matchers.AnyShouldWrapper#should" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="should[TYPECLASS1[_]](rightMatcherFactory1:org.scalatest.matchers.MatcherFactory1[T,TYPECLASS1])(implicittypeClass1:TYPECLASS1[T]):org.scalatest.Assertion"></a>
+      <a id="should[TYPECLASS1[_]](MatcherFactory1[String,TYPECLASS1])(TYPECLASS1[String]):Assertion"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">should</span><span class="tparams">[<span name="TYPECLASS1">TYPECLASS1<span class="tparams">[<span name="_">_</span>]</span></span>]</span><span class="params">(<span name="rightMatcherFactory1">rightMatcherFactory1: <a href="matchers/MatcherFactory1.html" class="extype" name="org.scalatest.matchers.MatcherFactory1">MatcherFactory1</a>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="org.scalatest.Matchers.AnyShouldWrapper.should.TYPECLASS1">TYPECLASS1</span>]</span>)</span><span class="params">(<span class="implicit">implicit </span><span name="typeClass1">typeClass1: <span class="extype" name="org.scalatest.Matchers.AnyShouldWrapper.should.TYPECLASS1">TYPECLASS1</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result">: <a href="package.html#Assertion=org.scalatest.compatible.Assertion" class="extmbr" name="org.scalatest.Assertion">Assertion</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@should[TYPECLASS1[_]](rightMatcherFactory1:org.scalatest.matchers.MatcherFactory1[T,TYPECLASS1])(implicittypeClass1:TYPECLASS1[T]):org.scalatest.Assertion" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables syntax such as the following:</p><div class="fullcomment"><div class="comment cmt"><p>This method enables syntax such as the following:</p><p><pre class="stHighlighted">
+result should equal (<span class="stLiteral">3</span>)
+       ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Matchers$AnyShouldWrapper.html" class="extype" name="org.scalatest.Matchers.AnyShouldWrapper">AnyShouldWrapper</a></dd></dl></div>
+    </li><li name="org.scalatest.Matchers.AnyShouldWrapper#should" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="should(rightMatcherX1:org.scalatest.matchers.Matcher[T]):org.scalatest.Assertion"></a>
+      <a id="should(Matcher[String]):Assertion"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">should</span><span class="params">(<span name="rightMatcherX1">rightMatcherX1: <a href="matchers/Matcher.html" class="extype" name="org.scalatest.matchers.Matcher">Matcher</a>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result">: <a href="package.html#Assertion=org.scalatest.compatible.Assertion" class="extmbr" name="org.scalatest.Assertion">Assertion</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@should(rightMatcherX1:org.scalatest.matchers.Matcher[T]):org.scalatest.Assertion" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables syntax such as the following:</p><div class="fullcomment"><div class="comment cmt"><p>This method enables syntax such as the following:</p><p><pre class="stHighlighted">
+result should be (<span class="stLiteral">3</span>)
+       ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Matchers$AnyShouldWrapper.html" class="extype" name="org.scalatest.Matchers.AnyShouldWrapper">AnyShouldWrapper</a></dd></dl></div>
+    </li><li name="org.scalatest.Matchers.AnyShouldWrapper#shouldBe" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="shouldBe[U&gt;:T](resultOfAnWordApplication:org.scalatest.words.ResultOfAnWordToBePropertyMatcherApplication[U])(implicitev:&lt;:&lt;[T,AnyRef]):org.scalatest.Assertion"></a>
+      <a id="shouldBe[U&gt;:String](ResultOfAnWordToBePropertyMatcherApplication[U])(&lt;:&lt;[String,AnyRef]):Assertion"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">shouldBe</span><span class="tparams">[<span name="U">U &gt;: <span class="extype" name="scala.Predef.String">String</span></span>]</span><span class="params">(<span name="resultOfAnWordApplication">resultOfAnWordApplication: <a href="words/ResultOfAnWordToBePropertyMatcherApplication.html" class="extype" name="org.scalatest.words.ResultOfAnWordToBePropertyMatcherApplication">ResultOfAnWordToBePropertyMatcherApplication</a>[<span class="extype" name="org.scalatest.Matchers.AnyShouldWrapper.shouldBe.U">U</span>]</span>)</span><span class="params">(<span class="implicit">implicit </span><span name="ev">ev: <span class="extype" name="scala.Predef.&lt;:&lt;">&lt;:&lt;</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>]</span>)</span><span class="result">: <a href="package.html#Assertion=org.scalatest.compatible.Assertion" class="extmbr" name="org.scalatest.Assertion">Assertion</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@shouldBe[U&gt;:T](resultOfAnWordApplication:org.scalatest.words.ResultOfAnWordToBePropertyMatcherApplication[U])(implicitev:&lt;:&lt;[T,AnyRef]):org.scalatest.Assertion" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables the following syntax, where <code>excellentRead</code> refers to a <code>BePropertyMatcher[Book]</code>:</code></code></p><div class="fullcomment"><div class="comment cmt"><p>This method enables the following syntax, where <code>excellentRead</code> refers to a <code>BePropertyMatcher[Book]</code>:</p><p><pre class="stHighlighted">
+programmingInScala shouldBe an (excellentRead)
+                   ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Matchers$AnyShouldWrapper.html" class="extype" name="org.scalatest.Matchers.AnyShouldWrapper">AnyShouldWrapper</a></dd></dl></div>
+    </li><li name="org.scalatest.Matchers.AnyShouldWrapper#shouldBe" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="shouldBe[U&gt;:T](resultOfAWordApplication:org.scalatest.words.ResultOfAWordToBePropertyMatcherApplication[U])(implicitev:&lt;:&lt;[T,AnyRef]):org.scalatest.Assertion"></a>
+      <a id="shouldBe[U&gt;:String](ResultOfAWordToBePropertyMatcherApplication[U])(&lt;:&lt;[String,AnyRef]):Assertion"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">shouldBe</span><span class="tparams">[<span name="U">U &gt;: <span class="extype" name="scala.Predef.String">String</span></span>]</span><span class="params">(<span name="resultOfAWordApplication">resultOfAWordApplication: <a href="words/ResultOfAWordToBePropertyMatcherApplication.html" class="extype" name="org.scalatest.words.ResultOfAWordToBePropertyMatcherApplication">ResultOfAWordToBePropertyMatcherApplication</a>[<span class="extype" name="org.scalatest.Matchers.AnyShouldWrapper.shouldBe.U">U</span>]</span>)</span><span class="params">(<span class="implicit">implicit </span><span name="ev">ev: <span class="extype" name="scala.Predef.&lt;:&lt;">&lt;:&lt;</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>]</span>)</span><span class="result">: <a href="package.html#Assertion=org.scalatest.compatible.Assertion" class="extmbr" name="org.scalatest.Assertion">Assertion</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@shouldBe[U&gt;:T](resultOfAWordApplication:org.scalatest.words.ResultOfAWordToBePropertyMatcherApplication[U])(implicitev:&lt;:&lt;[T,AnyRef]):org.scalatest.Assertion" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables the following syntax, where <code>goodRead</code> refers to a <code>BePropertyMatcher[Book]</code>:</code></code></p><div class="fullcomment"><div class="comment cmt"><p>This method enables the following syntax, where <code>goodRead</code> refers to a <code>BePropertyMatcher[Book]</code>:</p><p><pre class="stHighlighted">
+programmingInScala shouldBe a (goodRead)
+                   ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Matchers$AnyShouldWrapper.html" class="extype" name="org.scalatest.Matchers.AnyShouldWrapper">AnyShouldWrapper</a></dd></dl></div>
+    </li><li name="org.scalatest.Matchers.AnyShouldWrapper#shouldBe" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="shouldBe(bePropertyMatcher:org.scalatest.matchers.BePropertyMatcher[T])(implicitev:&lt;:&lt;[T,AnyRef]):org.scalatest.Assertion"></a>
+      <a id="shouldBe(BePropertyMatcher[String])(&lt;:&lt;[String,AnyRef]):Assertion"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">shouldBe</span><span class="params">(<span name="bePropertyMatcher">bePropertyMatcher: <a href="matchers/BePropertyMatcher.html" class="extype" name="org.scalatest.matchers.BePropertyMatcher">BePropertyMatcher</a>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="params">(<span class="implicit">implicit </span><span name="ev">ev: <span class="extype" name="scala.Predef.&lt;:&lt;">&lt;:&lt;</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>]</span>)</span><span class="result">: <a href="package.html#Assertion=org.scalatest.compatible.Assertion" class="extmbr" name="org.scalatest.Assertion">Assertion</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@shouldBe(bePropertyMatcher:org.scalatest.matchers.BePropertyMatcher[T])(implicitev:&lt;:&lt;[T,AnyRef]):org.scalatest.Assertion" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables the following syntax, where <code>excellentRead</code> refers to a <code>BePropertyMatcher[Book]</code>:</code></code></p><div class="fullcomment"><div class="comment cmt"><p>This method enables the following syntax, where <code>excellentRead</code> refers to a <code>BePropertyMatcher[Book]</code>:</p><p><pre class="stHighlighted">
+programmingInScala shouldBe excellentRead
+                   ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Matchers$AnyShouldWrapper.html" class="extype" name="org.scalatest.Matchers.AnyShouldWrapper">AnyShouldWrapper</a></dd></dl></div>
+    </li><li name="org.scalatest.Matchers.AnyShouldWrapper#shouldBe" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="shouldBe(resultOfAnWordApplication:org.scalatest.words.ResultOfAnWordToSymbolApplication)(implicittoAnyRef:&lt;:&lt;[T,AnyRef]):org.scalatest.Assertion"></a>
+      <a id="shouldBe(ResultOfAnWordToSymbolApplication)(&lt;:&lt;[String,AnyRef]):Assertion"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">shouldBe</span><span class="params">(<span name="resultOfAnWordApplication">resultOfAnWordApplication: <a href="words/ResultOfAnWordToSymbolApplication.html" class="extype" name="org.scalatest.words.ResultOfAnWordToSymbolApplication">ResultOfAnWordToSymbolApplication</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="toAnyRef">toAnyRef: <span class="extype" name="scala.Predef.&lt;:&lt;">&lt;:&lt;</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>]</span>)</span><span class="result">: <a href="package.html#Assertion=org.scalatest.compatible.Assertion" class="extmbr" name="org.scalatest.Assertion">Assertion</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@shouldBe(resultOfAnWordApplication:org.scalatest.words.ResultOfAnWordToSymbolApplication)(implicittoAnyRef:&lt;:&lt;[T,AnyRef]):org.scalatest.Assertion" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables the following syntax:</p><div class="fullcomment"><div class="comment cmt"><p>This method enables the following syntax:</p><p><pre class="stHighlighted">
+list shouldBe an (<span class="stQuotedString">'empty</span>)
+     ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Matchers$AnyShouldWrapper.html" class="extype" name="org.scalatest.Matchers.AnyShouldWrapper">AnyShouldWrapper</a></dd></dl></div>
+    </li><li name="org.scalatest.Matchers.AnyShouldWrapper#shouldBe" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="shouldBe(resultOfAWordApplication:org.scalatest.words.ResultOfAWordToSymbolApplication)(implicittoAnyRef:&lt;:&lt;[T,AnyRef]):org.scalatest.Assertion"></a>
+      <a id="shouldBe(ResultOfAWordToSymbolApplication)(&lt;:&lt;[String,AnyRef]):Assertion"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">shouldBe</span><span class="params">(<span name="resultOfAWordApplication">resultOfAWordApplication: <a href="words/ResultOfAWordToSymbolApplication.html" class="extype" name="org.scalatest.words.ResultOfAWordToSymbolApplication">ResultOfAWordToSymbolApplication</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="toAnyRef">toAnyRef: <span class="extype" name="scala.Predef.&lt;:&lt;">&lt;:&lt;</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>]</span>)</span><span class="result">: <a href="package.html#Assertion=org.scalatest.compatible.Assertion" class="extmbr" name="org.scalatest.Assertion">Assertion</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@shouldBe(resultOfAWordApplication:org.scalatest.words.ResultOfAWordToSymbolApplication)(implicittoAnyRef:&lt;:&lt;[T,AnyRef]):org.scalatest.Assertion" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables the following syntax:</p><div class="fullcomment"><div class="comment cmt"><p>This method enables the following syntax:</p><p><pre class="stHighlighted">
+list shouldBe a (<span class="stQuotedString">'empty</span>)
+     ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Matchers$AnyShouldWrapper.html" class="extype" name="org.scalatest.Matchers.AnyShouldWrapper">AnyShouldWrapper</a></dd></dl></div>
+    </li><li name="org.scalatest.Matchers.AnyShouldWrapper#shouldBe" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="shouldBe(symbol:Symbol)(implicittoAnyRef:&lt;:&lt;[T,AnyRef]):org.scalatest.Assertion"></a>
+      <a id="shouldBe(Symbol)(&lt;:&lt;[String,AnyRef]):Assertion"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">shouldBe</span><span class="params">(<span name="symbol">symbol: <span class="extype" name="scala.Symbol">Symbol</span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="toAnyRef">toAnyRef: <span class="extype" name="scala.Predef.&lt;:&lt;">&lt;:&lt;</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>]</span>)</span><span class="result">: <a href="package.html#Assertion=org.scalatest.compatible.Assertion" class="extmbr" name="org.scalatest.Assertion">Assertion</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@shouldBe(symbol:Symbol)(implicittoAnyRef:&lt;:&lt;[T,AnyRef]):org.scalatest.Assertion" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables the following syntax:</p><div class="fullcomment"><div class="comment cmt"><p>This method enables the following syntax:</p><p><pre class="stHighlighted">
+list shouldBe <span class="stQuotedString">'empty</span>
+     ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Matchers$AnyShouldWrapper.html" class="extype" name="org.scalatest.Matchers.AnyShouldWrapper">AnyShouldWrapper</a></dd></dl></div>
+    </li><li name="org.scalatest.Matchers.AnyShouldWrapper#shouldBe" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="shouldBe(resultOfSameInstanceAsApplication:org.scalatest.words.ResultOfTheSameInstanceAsApplication)(implicittoAnyRef:&lt;:&lt;[T,AnyRef]):org.scalatest.Assertion"></a>
+      <a id="shouldBe(ResultOfTheSameInstanceAsApplication)(&lt;:&lt;[String,AnyRef]):Assertion"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">shouldBe</span><span class="params">(<span name="resultOfSameInstanceAsApplication">resultOfSameInstanceAsApplication: <a href="words/ResultOfTheSameInstanceAsApplication.html" class="extype" name="org.scalatest.words.ResultOfTheSameInstanceAsApplication">ResultOfTheSameInstanceAsApplication</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="toAnyRef">toAnyRef: <span class="extype" name="scala.Predef.&lt;:&lt;">&lt;:&lt;</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>]</span>)</span><span class="result">: <a href="package.html#Assertion=org.scalatest.compatible.Assertion" class="extmbr" name="org.scalatest.Assertion">Assertion</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@shouldBe(resultOfSameInstanceAsApplication:org.scalatest.words.ResultOfTheSameInstanceAsApplication)(implicittoAnyRef:&lt;:&lt;[T,AnyRef]):org.scalatest.Assertion" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables syntax such as the following:</p><div class="fullcomment"><div class="comment cmt"><p>This method enables syntax such as the following:</p><p><pre class="stHighlighted">
+result shouldBe theSameInstanceAs (anotherObject)
+       ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Matchers$AnyShouldWrapper.html" class="extype" name="org.scalatest.Matchers.AnyShouldWrapper">AnyShouldWrapper</a></dd></dl></div>
+    </li><li name="org.scalatest.Matchers.AnyShouldWrapper#shouldBe" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="shouldBe(right:Null)(implicitev:&lt;:&lt;[T,AnyRef]):org.scalatest.Assertion"></a>
+      <a id="shouldBe(Null)(&lt;:&lt;[String,AnyRef]):Assertion"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">shouldBe</span><span class="params">(<span name="right">right: <span class="extype" name="scala.Null">Null</span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="ev">ev: <span class="extype" name="scala.Predef.&lt;:&lt;">&lt;:&lt;</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>]</span>)</span><span class="result">: <a href="package.html#Assertion=org.scalatest.compatible.Assertion" class="extmbr" name="org.scalatest.Assertion">Assertion</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@shouldBe(right:Null)(implicitev:&lt;:&lt;[T,AnyRef]):org.scalatest.Assertion" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables syntax such as the following:</p><div class="fullcomment"><div class="comment cmt"><p>This method enables syntax such as the following:</p><p><pre class="stHighlighted">
+result shouldBe <span class="stReserved">null</span>
+       ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Matchers$AnyShouldWrapper.html" class="extype" name="org.scalatest.Matchers.AnyShouldWrapper">AnyShouldWrapper</a></dd></dl></div>
+    </li><li name="org.scalatest.Matchers.AnyShouldWrapper#shouldBe" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="shouldBe(right:org.scalatest.words.DefinedWord)(implicitdefinition:org.scalatest.enablers.Definition[T]):org.scalatest.Assertion"></a>
+      <a id="shouldBe(DefinedWord)(Definition[String]):Assertion"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">shouldBe</span><span class="params">(<span name="right">right: <a href="words/DefinedWord.html" class="extype" name="org.scalatest.words.DefinedWord">DefinedWord</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="definition">definition: <a href="enablers/Definition.html" class="extype" name="org.scalatest.enablers.Definition">Definition</a>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result">: <a href="package.html#Assertion=org.scalatest.compatible.Assertion" class="extmbr" name="org.scalatest.Assertion">Assertion</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@shouldBe(right:org.scalatest.words.DefinedWord)(implicitdefinition:org.scalatest.enablers.Definition[T]):org.scalatest.Assertion" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables syntax such as the following:</p><div class="fullcomment"><div class="comment cmt"><p>This method enables syntax such as the following:</p><p><pre class="stHighlighted">
+result shouldBe defined
+       ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Matchers$AnyShouldWrapper.html" class="extype" name="org.scalatest.Matchers.AnyShouldWrapper">AnyShouldWrapper</a></dd></dl></div>
+    </li><li name="org.scalatest.Matchers.AnyShouldWrapper#shouldBe" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="shouldBe(right:org.scalatest.words.EmptyWord)(implicitemptiness:org.scalatest.enablers.Emptiness[T]):org.scalatest.Assertion"></a>
+      <a id="shouldBe(EmptyWord)(Emptiness[String]):Assertion"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">shouldBe</span><span class="params">(<span name="right">right: <a href="words/EmptyWord.html" class="extype" name="org.scalatest.words.EmptyWord">EmptyWord</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="emptiness">emptiness: <a href="enablers/Emptiness.html" class="extype" name="org.scalatest.enablers.Emptiness">Emptiness</a>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result">: <a href="package.html#Assertion=org.scalatest.compatible.Assertion" class="extmbr" name="org.scalatest.Assertion">Assertion</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@shouldBe(right:org.scalatest.words.EmptyWord)(implicitemptiness:org.scalatest.enablers.Emptiness[T]):org.scalatest.Assertion" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables syntax such as the following:</p><div class="fullcomment"><div class="comment cmt"><p>This method enables syntax such as the following:</p><p><pre class="stHighlighted">
+result shouldBe empty
+       ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Matchers$AnyShouldWrapper.html" class="extype" name="org.scalatest.Matchers.AnyShouldWrapper">AnyShouldWrapper</a></dd></dl></div>
+    </li><li name="org.scalatest.Matchers.AnyShouldWrapper#shouldBe" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="shouldBe(right:org.scalatest.words.WritableWord)(implicitwritability:org.scalatest.enablers.Writability[T]):org.scalatest.Assertion"></a>
+      <a id="shouldBe(WritableWord)(Writability[String]):Assertion"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">shouldBe</span><span class="params">(<span name="right">right: <a href="words/WritableWord.html" class="extype" name="org.scalatest.words.WritableWord">WritableWord</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="writability">writability: <a href="enablers/Writability.html" class="extype" name="org.scalatest.enablers.Writability">Writability</a>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result">: <a href="package.html#Assertion=org.scalatest.compatible.Assertion" class="extmbr" name="org.scalatest.Assertion">Assertion</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@shouldBe(right:org.scalatest.words.WritableWord)(implicitwritability:org.scalatest.enablers.Writability[T]):org.scalatest.Assertion" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables syntax such as the following:</p><div class="fullcomment"><div class="comment cmt"><p>This method enables syntax such as the following:</p><p><pre class="stHighlighted">
+result shouldBe writable
+       ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Matchers$AnyShouldWrapper.html" class="extype" name="org.scalatest.Matchers.AnyShouldWrapper">AnyShouldWrapper</a></dd></dl></div>
+    </li><li name="org.scalatest.Matchers.AnyShouldWrapper#shouldBe" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="shouldBe(right:org.scalatest.words.ReadableWord)(implicitreadability:org.scalatest.enablers.Readability[T]):org.scalatest.Assertion"></a>
+      <a id="shouldBe(ReadableWord)(Readability[String]):Assertion"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">shouldBe</span><span class="params">(<span name="right">right: <a href="words/ReadableWord.html" class="extype" name="org.scalatest.words.ReadableWord">ReadableWord</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="readability">readability: <a href="enablers/Readability.html" class="extype" name="org.scalatest.enablers.Readability">Readability</a>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result">: <a href="package.html#Assertion=org.scalatest.compatible.Assertion" class="extmbr" name="org.scalatest.Assertion">Assertion</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@shouldBe(right:org.scalatest.words.ReadableWord)(implicitreadability:org.scalatest.enablers.Readability[T]):org.scalatest.Assertion" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables syntax such as the following:</p><div class="fullcomment"><div class="comment cmt"><p>This method enables syntax such as the following:</p><p><pre class="stHighlighted">
+result shouldBe readable
+       ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Matchers$AnyShouldWrapper.html" class="extype" name="org.scalatest.Matchers.AnyShouldWrapper">AnyShouldWrapper</a></dd></dl></div>
+    </li><li name="org.scalatest.Matchers.AnyShouldWrapper#shouldBe" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="shouldBe(anType:org.scalatest.words.ResultOfAnTypeInvocation[_]):org.scalatest.Assertion"></a>
+      <a id="shouldBe(ResultOfAnTypeInvocation[_]):Assertion"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">macro </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">shouldBe</span><span class="params">(<span name="anType">anType: <a href="words/ResultOfAnTypeInvocation.html" class="extype" name="org.scalatest.words.ResultOfAnTypeInvocation">ResultOfAnTypeInvocation</a>[_]</span>)</span><span class="result">: <a href="package.html#Assertion=org.scalatest.compatible.Assertion" class="extmbr" name="org.scalatest.Assertion">Assertion</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@shouldBe(anType:org.scalatest.words.ResultOfAnTypeInvocation[_]):org.scalatest.Assertion" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables syntax such as the following:</p><div class="fullcomment"><div class="comment cmt"><p>This method enables syntax such as the following:</p><p><pre class="stHighlighted">
+aDouble shouldBe an [<span class="stType">Book</span>]
+        ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Matchers$AnyShouldWrapper.html" class="extype" name="org.scalatest.Matchers.AnyShouldWrapper">AnyShouldWrapper</a></dd></dl></div>
+    </li><li name="org.scalatest.Matchers.AnyShouldWrapper#shouldBe" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="shouldBe(aType:org.scalatest.words.ResultOfATypeInvocation[_]):org.scalatest.Assertion"></a>
+      <a id="shouldBe(ResultOfATypeInvocation[_]):Assertion"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">macro </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">shouldBe</span><span class="params">(<span name="aType">aType: <a href="words/ResultOfATypeInvocation.html" class="extype" name="org.scalatest.words.ResultOfATypeInvocation">ResultOfATypeInvocation</a>[_]</span>)</span><span class="result">: <a href="package.html#Assertion=org.scalatest.compatible.Assertion" class="extmbr" name="org.scalatest.Assertion">Assertion</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@shouldBe(aType:org.scalatest.words.ResultOfATypeInvocation[_]):org.scalatest.Assertion" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables syntax such as the following:</p><div class="fullcomment"><div class="comment cmt"><p>This method enables syntax such as the following:</p><p><pre class="stHighlighted">
+aDouble shouldBe a [<span class="stType">Book</span>]
+        ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Matchers$AnyShouldWrapper.html" class="extype" name="org.scalatest.Matchers.AnyShouldWrapper">AnyShouldWrapper</a></dd></dl></div>
+    </li><li name="org.scalatest.Matchers.AnyShouldWrapper#shouldBe" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="shouldBe(right:org.scalatest.words.SortedWord)(implicitsortable:org.scalatest.enablers.Sortable[T]):org.scalatest.Assertion"></a>
+      <a id="shouldBe(SortedWord)(Sortable[String]):Assertion"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">shouldBe</span><span class="params">(<span name="right">right: <a href="words/SortedWord.html" class="extype" name="org.scalatest.words.SortedWord">SortedWord</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="sortable">sortable: <a href="enablers/Sortable.html" class="extype" name="org.scalatest.enablers.Sortable">Sortable</a>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result">: <a href="package.html#Assertion=org.scalatest.compatible.Assertion" class="extmbr" name="org.scalatest.Assertion">Assertion</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@shouldBe(right:org.scalatest.words.SortedWord)(implicitsortable:org.scalatest.enablers.Sortable[T]):org.scalatest.Assertion" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables syntax such as the following:</p><div class="fullcomment"><div class="comment cmt"><p>This method enables syntax such as the following:</p><p><pre class="stHighlighted">
+result shouldBe sorted
+       ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Matchers$AnyShouldWrapper.html" class="extype" name="org.scalatest.Matchers.AnyShouldWrapper">AnyShouldWrapper</a></dd></dl></div>
+    </li><li name="org.scalatest.Matchers.AnyShouldWrapper#shouldBe" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="shouldBe(spread:org.scalactic.TripleEqualsSupport.Spread[T]):org.scalatest.Assertion"></a>
+      <a id="shouldBe(Spread[String]):Assertion"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">shouldBe</span><span class="params">(<span name="spread">spread: <span class="extype" name="org.scalactic.TripleEqualsSupport.Spread">Spread</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result">: <a href="package.html#Assertion=org.scalatest.compatible.Assertion" class="extmbr" name="org.scalatest.Assertion">Assertion</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@shouldBe(spread:org.scalactic.TripleEqualsSupport.Spread[T]):org.scalatest.Assertion" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables syntax such as the following:</p><div class="fullcomment"><div class="comment cmt"><p>This method enables syntax such as the following:</p><p><pre class="stHighlighted">
+result shouldBe <span class="stLiteral">7.1</span> +- <span class="stLiteral">0.2</span>
+       ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Matchers$AnyShouldWrapper.html" class="extype" name="org.scalatest.Matchers.AnyShouldWrapper">AnyShouldWrapper</a></dd></dl></div>
+    </li><li name="org.scalatest.Matchers.AnyShouldWrapper#shouldBe" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="shouldBe(beMatcher:org.scalatest.matchers.BeMatcher[T]):org.scalatest.Assertion"></a>
+      <a id="shouldBe(BeMatcher[String]):Assertion"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">shouldBe</span><span class="params">(<span name="beMatcher">beMatcher: <a href="matchers/BeMatcher.html" class="extype" name="org.scalatest.matchers.BeMatcher">BeMatcher</a>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result">: <a href="package.html#Assertion=org.scalatest.compatible.Assertion" class="extmbr" name="org.scalatest.Assertion">Assertion</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@shouldBe(beMatcher:org.scalatest.matchers.BeMatcher[T]):org.scalatest.Assertion" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables the following syntax, where <code>odd</code> refers to a <code>BeMatcher[Int]</code>:</code></code></p><div class="fullcomment"><div class="comment cmt"><p>This method enables the following syntax, where <code>odd</code> refers to a <code>BeMatcher[Int]</code>:</p><p><pre class="stHighlighted">
+testing
+<span class="stLiteral">1</span> shouldBe odd
+  ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Matchers$AnyShouldWrapper.html" class="extype" name="org.scalatest.Matchers.AnyShouldWrapper">AnyShouldWrapper</a></dd></dl></div>
+    </li><li name="org.scalatest.Matchers.AnyShouldWrapper#shouldBe" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="shouldBe(comparison:org.scalatest.words.ResultOfGreaterThanOrEqualToComparison[T]):org.scalatest.Assertion"></a>
+      <a id="shouldBe(ResultOfGreaterThanOrEqualToComparison[String]):Assertion"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">shouldBe</span><span class="params">(<span name="comparison">comparison: <a href="words/ResultOfGreaterThanOrEqualToComparison.html" class="extype" name="org.scalatest.words.ResultOfGreaterThanOrEqualToComparison">ResultOfGreaterThanOrEqualToComparison</a>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result">: <a href="package.html#Assertion=org.scalatest.compatible.Assertion" class="extmbr" name="org.scalatest.Assertion">Assertion</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@shouldBe(comparison:org.scalatest.words.ResultOfGreaterThanOrEqualToComparison[T]):org.scalatest.Assertion" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables syntax such as the following:</p><div class="fullcomment"><div class="comment cmt"><p>This method enables syntax such as the following:</p><p><pre class="stHighlighted">
+<span class="stLiteral">8</span> shouldBe &gt;= (<span class="stLiteral">7</span>)
+  ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Matchers$AnyShouldWrapper.html" class="extype" name="org.scalatest.Matchers.AnyShouldWrapper">AnyShouldWrapper</a></dd></dl></div>
+    </li><li name="org.scalatest.Matchers.AnyShouldWrapper#shouldBe" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="shouldBe(comparison:org.scalatest.words.ResultOfLessThanOrEqualToComparison[T]):org.scalatest.Assertion"></a>
+      <a id="shouldBe(ResultOfLessThanOrEqualToComparison[String]):Assertion"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">shouldBe</span><span class="params">(<span name="comparison">comparison: <a href="words/ResultOfLessThanOrEqualToComparison.html" class="extype" name="org.scalatest.words.ResultOfLessThanOrEqualToComparison">ResultOfLessThanOrEqualToComparison</a>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result">: <a href="package.html#Assertion=org.scalatest.compatible.Assertion" class="extmbr" name="org.scalatest.Assertion">Assertion</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@shouldBe(comparison:org.scalatest.words.ResultOfLessThanOrEqualToComparison[T]):org.scalatest.Assertion" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables syntax such as the following:</p><div class="fullcomment"><div class="comment cmt"><p>This method enables syntax such as the following:</p><p><pre class="stHighlighted">
+<span class="stLiteral">5</span> shouldBe &lt;= (<span class="stLiteral">7</span>)
+  ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Matchers$AnyShouldWrapper.html" class="extype" name="org.scalatest.Matchers.AnyShouldWrapper">AnyShouldWrapper</a></dd></dl></div>
+    </li><li name="org.scalatest.Matchers.AnyShouldWrapper#shouldBe" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="shouldBe(comparison:org.scalatest.words.ResultOfGreaterThanComparison[T]):org.scalatest.Assertion"></a>
+      <a id="shouldBe(ResultOfGreaterThanComparison[String]):Assertion"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">shouldBe</span><span class="params">(<span name="comparison">comparison: <a href="words/ResultOfGreaterThanComparison.html" class="extype" name="org.scalatest.words.ResultOfGreaterThanComparison">ResultOfGreaterThanComparison</a>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result">: <a href="package.html#Assertion=org.scalatest.compatible.Assertion" class="extmbr" name="org.scalatest.Assertion">Assertion</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@shouldBe(comparison:org.scalatest.words.ResultOfGreaterThanComparison[T]):org.scalatest.Assertion" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables syntax such as the following:</p><div class="fullcomment"><div class="comment cmt"><p>This method enables syntax such as the following:</p><p><pre class="stHighlighted">
+<span class="stLiteral">8</span> shouldBe &gt; (<span class="stLiteral">7</span>)
+  ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Matchers$AnyShouldWrapper.html" class="extype" name="org.scalatest.Matchers.AnyShouldWrapper">AnyShouldWrapper</a></dd></dl></div>
+    </li><li name="org.scalatest.Matchers.AnyShouldWrapper#shouldBe" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="shouldBe(comparison:org.scalatest.words.ResultOfLessThanComparison[T]):org.scalatest.Assertion"></a>
+      <a id="shouldBe(ResultOfLessThanComparison[String]):Assertion"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">shouldBe</span><span class="params">(<span name="comparison">comparison: <a href="words/ResultOfLessThanComparison.html" class="extype" name="org.scalatest.words.ResultOfLessThanComparison">ResultOfLessThanComparison</a>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result">: <a href="package.html#Assertion=org.scalatest.compatible.Assertion" class="extmbr" name="org.scalatest.Assertion">Assertion</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@shouldBe(comparison:org.scalatest.words.ResultOfLessThanComparison[T]):org.scalatest.Assertion" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables syntax such as the following:</p><div class="fullcomment"><div class="comment cmt"><p>This method enables syntax such as the following:</p><p><pre class="stHighlighted">
+<span class="stLiteral">5</span> shouldBe &lt; (<span class="stLiteral">7</span>)
+  ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Matchers$AnyShouldWrapper.html" class="extype" name="org.scalatest.Matchers.AnyShouldWrapper">AnyShouldWrapper</a></dd></dl></div>
+    </li><li name="org.scalatest.Matchers.AnyShouldWrapper#shouldBe" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="shouldBe(right:Any):org.scalatest.Assertion"></a>
+      <a id="shouldBe(Any):Assertion"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">shouldBe</span><span class="params">(<span name="right">right: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <a href="package.html#Assertion=org.scalatest.compatible.Assertion" class="extmbr" name="org.scalatest.Assertion">Assertion</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@shouldBe(right:Any):org.scalatest.Assertion" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables syntax such as the following:</p><div class="fullcomment"><div class="comment cmt"><p>This method enables syntax such as the following:</p><p><pre class="stHighlighted">
+aDouble shouldBe <span class="stLiteral">8.8</span>
+        ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Matchers$AnyShouldWrapper.html" class="extype" name="org.scalatest.Matchers.AnyShouldWrapper">AnyShouldWrapper</a></dd></dl></div>
+    </li><li name="org.scalatest.Matchers.AnyShouldWrapper#shouldEqual" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="shouldEqual(right:Null)(implicitev:&lt;:&lt;[T,AnyRef]):org.scalatest.Assertion"></a>
+      <a id="shouldEqual(Null)(&lt;:&lt;[String,AnyRef]):Assertion"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">shouldEqual</span><span class="params">(<span name="right">right: <span class="extype" name="scala.Null">Null</span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="ev">ev: <span class="extype" name="scala.Predef.&lt;:&lt;">&lt;:&lt;</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>]</span>)</span><span class="result">: <a href="package.html#Assertion=org.scalatest.compatible.Assertion" class="extmbr" name="org.scalatest.Assertion">Assertion</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@shouldEqual(right:Null)(implicitev:&lt;:&lt;[T,AnyRef]):org.scalatest.Assertion" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables syntax such as the following:</p><div class="fullcomment"><div class="comment cmt"><p>This method enables syntax such as the following:</p><p><pre class="stHighlighted">
+result shouldEqual <span class="stReserved">null</span>
+       ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Matchers$AnyShouldWrapper.html" class="extype" name="org.scalatest.Matchers.AnyShouldWrapper">AnyShouldWrapper</a></dd></dl></div>
+    </li><li name="org.scalatest.Matchers.AnyShouldWrapper#shouldEqual" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="shouldEqual(spread:org.scalactic.TripleEqualsSupport.Spread[T]):org.scalatest.Assertion"></a>
+      <a id="shouldEqual(Spread[String]):Assertion"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">shouldEqual</span><span class="params">(<span name="spread">spread: <span class="extype" name="org.scalactic.TripleEqualsSupport.Spread">Spread</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result">: <a href="package.html#Assertion=org.scalatest.compatible.Assertion" class="extmbr" name="org.scalatest.Assertion">Assertion</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@shouldEqual(spread:org.scalactic.TripleEqualsSupport.Spread[T]):org.scalatest.Assertion" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables syntax such as the following:</p><div class="fullcomment"><div class="comment cmt"><p>This method enables syntax such as the following:</p><p><pre class="stHighlighted">
+result shouldEqual <span class="stLiteral">7.1</span> +- <span class="stLiteral">0.2</span>
+       ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Matchers$AnyShouldWrapper.html" class="extype" name="org.scalatest.Matchers.AnyShouldWrapper">AnyShouldWrapper</a></dd></dl></div>
+    </li><li name="org.scalatest.Matchers.AnyShouldWrapper#shouldEqual" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="shouldEqual(right:Any)(implicitequality:org.scalactic.Equality[T]):org.scalatest.Assertion"></a>
+      <a id="shouldEqual(Any)(Equality[String]):Assertion"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">shouldEqual</span><span class="params">(<span name="right">right: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="equality">equality: <span class="extype" name="org.scalactic.Equality">Equality</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result">: <a href="package.html#Assertion=org.scalatest.compatible.Assertion" class="extmbr" name="org.scalatest.Assertion">Assertion</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@shouldEqual(right:Any)(implicitequality:org.scalactic.Equality[T]):org.scalatest.Assertion" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables syntax such as the following:</p><div class="fullcomment"><div class="comment cmt"><p>This method enables syntax such as the following:</p><p><pre class="stHighlighted">
+a shouldEqual b
+  ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Matchers$AnyShouldWrapper.html" class="extype" name="org.scalatest.Matchers.AnyShouldWrapper">AnyShouldWrapper</a></dd></dl></div>
+    </li><li name="org.scalatest.Matchers.StringShouldWrapper#shouldNot" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="shouldNot(typeCheckWord:org.scalatest.words.TypeCheckWord)(implicitpos:org.scalactic.source.Position):org.scalatest.Assertion"></a>
+      <a id="shouldNot(TypeCheckWord)(Position):Assertion"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">macro </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">shouldNot</span><span class="params">(<span name="typeCheckWord">typeCheckWord: <a href="words/TypeCheckWord.html" class="extype" name="org.scalatest.words.TypeCheckWord">TypeCheckWord</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="pos">pos: <span class="extype" name="org.scalactic.source.Position">Position</span></span>)</span><span class="result">: <a href="package.html#Assertion=org.scalatest.compatible.Assertion" class="extmbr" name="org.scalatest.Assertion">Assertion</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@shouldNot(typeCheckWord:org.scalatest.words.TypeCheckWord)(implicitpos:org.scalactic.source.Position):org.scalatest.Assertion" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables syntax such as the following:</p><div class="fullcomment"><div class="comment cmt"><p>This method enables syntax such as the following:</p><p><pre class="stHighlighted">
+string shouldNot typeCheck
+       ^
+</pre>
+</p></div></div>
+    </li><li name="org.scalatest.Matchers.StringShouldWrapper#shouldNot" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="shouldNot(compileWord:org.scalatest.words.CompileWord)(implicitpos:org.scalactic.source.Position):org.scalatest.Assertion"></a>
+      <a id="shouldNot(CompileWord)(Position):Assertion"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">macro </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">shouldNot</span><span class="params">(<span name="compileWord">compileWord: <a href="words/CompileWord.html" class="extype" name="org.scalatest.words.CompileWord">CompileWord</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="pos">pos: <span class="extype" name="org.scalactic.source.Position">Position</span></span>)</span><span class="result">: <a href="package.html#Assertion=org.scalatest.compatible.Assertion" class="extmbr" name="org.scalatest.Assertion">Assertion</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@shouldNot(compileWord:org.scalatest.words.CompileWord)(implicitpos:org.scalactic.source.Position):org.scalatest.Assertion" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables syntax such as the following:</p><div class="fullcomment"><div class="comment cmt"><p>This method enables syntax such as the following:</p><p><pre class="stHighlighted">
+string shouldNot compile
+       ^
+</pre>
+</p></div></div>
+    </li><li name="org.scalatest.Matchers.StringShouldWrapper#shouldNot" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="shouldNot(fullyMatchWord:org.scalatest.words.FullyMatchWord):Matchers.this.ResultOfFullyMatchWordForString"></a>
+      <a id="shouldNot(FullyMatchWord):ResultOfFullyMatchWordForString"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">shouldNot</span><span class="params">(<span name="fullyMatchWord">fullyMatchWord: <a href="words/FullyMatchWord.html" class="extype" name="org.scalatest.words.FullyMatchWord">FullyMatchWord</a></span>)</span><span class="result">: <a href="Matchers$ResultOfFullyMatchWordForString.html" class="extype" name="org.scalatest.Matchers.ResultOfFullyMatchWordForString">ResultOfFullyMatchWordForString</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@shouldNot(fullyMatchWord:org.scalatest.words.FullyMatchWord):Matchers.this.ResultOfFullyMatchWordForString" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables syntax such as the following:</p><div class="fullcomment"><div class="comment cmt"><p>This method enables syntax such as the following:</p><p><pre class="stHighlighted">
+string shouldNot fullyMatch regex (<span class="stQuotedString">"""(-)?(\d+)(\.\d*)?"""</span>)
+       ^
+</pre>
+</p></div></div>
+    </li><li name="org.scalatest.Matchers.AnyShouldWrapper#shouldNot" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="shouldNot(includeWord:org.scalatest.words.IncludeWord)(implicitev:&lt;:&lt;[T,String]):Matchers.this.ResultOfIncludeWordForString"></a>
+      <a id="shouldNot(IncludeWord)(&lt;:&lt;[String,String]):ResultOfIncludeWordForString"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">shouldNot</span><span class="params">(<span name="includeWord">includeWord: <a href="words/IncludeWord.html" class="extype" name="org.scalatest.words.IncludeWord">IncludeWord</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="ev">ev: <span class="extype" name="scala.Predef.&lt;:&lt;">&lt;:&lt;</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result">: <a href="Matchers$ResultOfIncludeWordForString.html" class="extype" name="org.scalatest.Matchers.ResultOfIncludeWordForString">ResultOfIncludeWordForString</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@shouldNot(includeWord:org.scalatest.words.IncludeWord)(implicitev:&lt;:&lt;[T,String]):Matchers.this.ResultOfIncludeWordForString" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables syntax such as the following:</p><div class="fullcomment"><div class="comment cmt"><p>This method enables syntax such as the following:</p><p><pre class="stHighlighted">
+string shouldNot include regex (<span class="stQuotedString">"hi"</span>)
+       ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Matchers$AnyShouldWrapper.html" class="extype" name="org.scalatest.Matchers.AnyShouldWrapper">AnyShouldWrapper</a></dd></dl></div>
+    </li><li name="org.scalatest.Matchers.AnyShouldWrapper#shouldNot" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="shouldNot(endWithWord:org.scalatest.words.EndWithWord)(implicitev:&lt;:&lt;[T,String]):Matchers.this.ResultOfEndWithWordForString"></a>
+      <a id="shouldNot(EndWithWord)(&lt;:&lt;[String,String]):ResultOfEndWithWordForString"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">shouldNot</span><span class="params">(<span name="endWithWord">endWithWord: <a href="words/EndWithWord.html" class="extype" name="org.scalatest.words.EndWithWord">EndWithWord</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="ev">ev: <span class="extype" name="scala.Predef.&lt;:&lt;">&lt;:&lt;</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result">: <a href="Matchers$ResultOfEndWithWordForString.html" class="extype" name="org.scalatest.Matchers.ResultOfEndWithWordForString">ResultOfEndWithWordForString</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@shouldNot(endWithWord:org.scalatest.words.EndWithWord)(implicitev:&lt;:&lt;[T,String]):Matchers.this.ResultOfEndWithWordForString" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables syntax such as the following:</p><div class="fullcomment"><div class="comment cmt"><p>This method enables syntax such as the following:</p><p><pre class="stHighlighted">
+string shouldNot endWith regex (<span class="stQuotedString">"world"</span>)
+       ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Matchers$AnyShouldWrapper.html" class="extype" name="org.scalatest.Matchers.AnyShouldWrapper">AnyShouldWrapper</a></dd></dl></div>
+    </li><li name="org.scalatest.Matchers.AnyShouldWrapper#shouldNot" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="shouldNot(startWithWord:org.scalatest.words.StartWithWord)(implicitev:&lt;:&lt;[T,String]):Matchers.this.ResultOfStartWithWordForString"></a>
+      <a id="shouldNot(StartWithWord)(&lt;:&lt;[String,String]):ResultOfStartWithWordForString"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">shouldNot</span><span class="params">(<span name="startWithWord">startWithWord: <a href="words/StartWithWord.html" class="extype" name="org.scalatest.words.StartWithWord">StartWithWord</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="ev">ev: <span class="extype" name="scala.Predef.&lt;:&lt;">&lt;:&lt;</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result">: <a href="Matchers$ResultOfStartWithWordForString.html" class="extype" name="org.scalatest.Matchers.ResultOfStartWithWordForString">ResultOfStartWithWordForString</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@shouldNot(startWithWord:org.scalatest.words.StartWithWord)(implicitev:&lt;:&lt;[T,String]):Matchers.this.ResultOfStartWithWordForString" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables syntax such as the following:</p><div class="fullcomment"><div class="comment cmt"><p>This method enables syntax such as the following:</p><p><pre class="stHighlighted">
+string shouldNot startWith regex (<span class="stQuotedString">"hello"</span>)
+       ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Matchers$AnyShouldWrapper.html" class="extype" name="org.scalatest.Matchers.AnyShouldWrapper">AnyShouldWrapper</a></dd></dl></div>
+    </li><li name="org.scalatest.Matchers.AnyShouldWrapper#shouldNot" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="shouldNot(existWord:org.scalatest.words.ExistWord)(implicitexistence:org.scalatest.enablers.Existence[T]):org.scalatest.Assertion"></a>
+      <a id="shouldNot(ExistWord)(Existence[String]):Assertion"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">shouldNot</span><span class="params">(<span name="existWord">existWord: <a href="words/ExistWord.html" class="extype" name="org.scalatest.words.ExistWord">ExistWord</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="existence">existence: <a href="enablers/Existence.html" class="extype" name="org.scalatest.enablers.Existence">Existence</a>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result">: <a href="package.html#Assertion=org.scalatest.compatible.Assertion" class="extmbr" name="org.scalatest.Assertion">Assertion</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@shouldNot(existWord:org.scalatest.words.ExistWord)(implicitexistence:org.scalatest.enablers.Existence[T]):org.scalatest.Assertion" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables syntax such as the following:</p><div class="fullcomment"><div class="comment cmt"><p>This method enables syntax such as the following:</p><p><pre class="stHighlighted">
+file shouldNot exist
+     ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Matchers$AnyShouldWrapper.html" class="extype" name="org.scalatest.Matchers.AnyShouldWrapper">AnyShouldWrapper</a></dd></dl></div>
+    </li><li name="org.scalatest.Matchers.AnyShouldWrapper#shouldNot" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="shouldNot(contain:org.scalatest.words.ContainWord):org.scalatest.words.ResultOfContainWord[T]"></a>
+      <a id="shouldNot(ContainWord):ResultOfContainWord[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">shouldNot</span><span class="params">(<span name="contain">contain: <a href="words/ContainWord.html" class="extype" name="org.scalatest.words.ContainWord">ContainWord</a></span>)</span><span class="result">: <a href="words/ResultOfContainWord.html" class="extype" name="org.scalatest.words.ResultOfContainWord">ResultOfContainWord</a>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@shouldNot(contain:org.scalatest.words.ContainWord):org.scalatest.words.ResultOfContainWord[T]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables syntax such as the following:</p><div class="fullcomment"><div class="comment cmt"><p>This method enables syntax such as the following:</p><p><pre class="stHighlighted">
+xs shouldNot contain (oneOf (<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>))
+   ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Matchers$AnyShouldWrapper.html" class="extype" name="org.scalatest.Matchers.AnyShouldWrapper">AnyShouldWrapper</a></dd></dl></div>
+    </li><li name="org.scalatest.Matchers.AnyShouldWrapper#shouldNot" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="shouldNot(haveWord:org.scalatest.words.HaveWord):Matchers.this.ResultOfHaveWordForExtent[T]"></a>
+      <a id="shouldNot(HaveWord):ResultOfHaveWordForExtent[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">shouldNot</span><span class="params">(<span name="haveWord">haveWord: <a href="words/HaveWord.html" class="extype" name="org.scalatest.words.HaveWord">HaveWord</a></span>)</span><span class="result">: <a href="Matchers$ResultOfHaveWordForExtent.html" class="extype" name="org.scalatest.Matchers.ResultOfHaveWordForExtent">ResultOfHaveWordForExtent</a>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@shouldNot(haveWord:org.scalatest.words.HaveWord):Matchers.this.ResultOfHaveWordForExtent[T]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables syntax such as the following:</p><div class="fullcomment"><div class="comment cmt"><p>This method enables syntax such as the following:</p><p><pre class="stHighlighted">
+result shouldNot have length (<span class="stLiteral">3</span>)
+       ^
+result shouldNot have size (<span class="stLiteral">3</span>)
+       ^
+exception shouldNot have message (<span class="stQuotedString">"file not found"</span>)
+          ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Matchers$AnyShouldWrapper.html" class="extype" name="org.scalatest.Matchers.AnyShouldWrapper">AnyShouldWrapper</a></dd></dl></div>
+    </li><li name="org.scalatest.Matchers.AnyShouldWrapper#shouldNot" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="shouldNot[TYPECLASS1[_]](rightMatcherFactory1:org.scalatest.matchers.MatcherFactory1[T,TYPECLASS1])(implicittypeClass1:TYPECLASS1[T]):org.scalatest.Assertion"></a>
+      <a id="shouldNot[TYPECLASS1[_]](MatcherFactory1[String,TYPECLASS1])(TYPECLASS1[String]):Assertion"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">shouldNot</span><span class="tparams">[<span name="TYPECLASS1">TYPECLASS1<span class="tparams">[<span name="_">_</span>]</span></span>]</span><span class="params">(<span name="rightMatcherFactory1">rightMatcherFactory1: <a href="matchers/MatcherFactory1.html" class="extype" name="org.scalatest.matchers.MatcherFactory1">MatcherFactory1</a>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="org.scalatest.Matchers.AnyShouldWrapper.shouldNot.TYPECLASS1">TYPECLASS1</span>]</span>)</span><span class="params">(<span class="implicit">implicit </span><span name="typeClass1">typeClass1: <span class="extype" name="org.scalatest.Matchers.AnyShouldWrapper.shouldNot.TYPECLASS1">TYPECLASS1</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result">: <a href="package.html#Assertion=org.scalatest.compatible.Assertion" class="extmbr" name="org.scalatest.Assertion">Assertion</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@shouldNot[TYPECLASS1[_]](rightMatcherFactory1:org.scalatest.matchers.MatcherFactory1[T,TYPECLASS1])(implicittypeClass1:TYPECLASS1[T]):org.scalatest.Assertion" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables syntax such as the following:</p><div class="fullcomment"><div class="comment cmt"><p>This method enables syntax such as the following:</p><p><pre class="stHighlighted">
+result shouldNot (be readable)
+       ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Matchers$AnyShouldWrapper.html" class="extype" name="org.scalatest.Matchers.AnyShouldWrapper">AnyShouldWrapper</a></dd></dl></div>
+    </li><li name="org.scalatest.Matchers.AnyShouldWrapper#shouldNot" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="shouldNot(rightMatcherX1:org.scalatest.matchers.Matcher[T]):org.scalatest.Assertion"></a>
+      <a id="shouldNot(Matcher[String]):Assertion"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">shouldNot</span><span class="params">(<span name="rightMatcherX1">rightMatcherX1: <a href="matchers/Matcher.html" class="extype" name="org.scalatest.matchers.Matcher">Matcher</a>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result">: <a href="package.html#Assertion=org.scalatest.compatible.Assertion" class="extmbr" name="org.scalatest.Assertion">Assertion</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@shouldNot(rightMatcherX1:org.scalatest.matchers.Matcher[T]):org.scalatest.Assertion" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables syntax such as the following:</p><div class="fullcomment"><div class="comment cmt"><p>This method enables syntax such as the following:</p><p><pre class="stHighlighted">
+result shouldNot (be (<span class="stLiteral">3</span>))
+       ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Matchers$AnyShouldWrapper.html" class="extype" name="org.scalatest.Matchers.AnyShouldWrapper">AnyShouldWrapper</a></dd></dl></div>
+    </li><li name="org.scalatest.Matchers.AnyShouldWrapper#shouldNot" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="shouldNot(beWord:org.scalatest.words.BeWord):Matchers.this.ResultOfBeWordForAny[T]"></a>
+      <a id="shouldNot(BeWord):ResultOfBeWordForAny[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">shouldNot</span><span class="params">(<span name="beWord">beWord: <a href="words/BeWord.html" class="extype" name="org.scalatest.words.BeWord">BeWord</a></span>)</span><span class="result">: <a href="Matchers$ResultOfBeWordForAny.html" class="extype" name="org.scalatest.Matchers.ResultOfBeWordForAny">ResultOfBeWordForAny</a>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@shouldNot(beWord:org.scalatest.words.BeWord):Matchers.this.ResultOfBeWordForAny[T]" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables syntax such as the following:</p><div class="fullcomment"><div class="comment cmt"><p>This method enables syntax such as the following:</p><p><pre class="stHighlighted">
+result shouldNot be (<span class="stLiteral">3</span>)
+       ^
+</pre>
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Matchers$AnyShouldWrapper.html" class="extype" name="org.scalatest.Matchers.AnyShouldWrapper">AnyShouldWrapper</a></dd></dl></div>
+    </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
+      <a id="synchronized[T0](⇒T0):T0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">synchronized</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="params">(<span name="arg0">arg0: ⇒ <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>)</span><span class="result">: <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@synchronized[T0](x$1:=&gt;T0):T0" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="toString():String"></a>
+      <a id="toString():String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">toString</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@toString():String" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait():Unit"></a>
+      <a id="wait():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@wait():Unit" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long,x$2:Int):Unit"></a>
+      <a id="wait(Long,Int):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>, <span name="arg1">arg1: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@wait(x$1:Long,x$2:Int):Unit" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long):Unit"></a>
+      <a id="wait(Long):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@wait(x$1:Long):Unit" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="org.scalatest.Matchers.StringShouldWrapper#withGroup" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="withGroup(group:String):org.scalatest.words.RegexWithGroups"></a>
+      <a id="withGroup(String):RegexWithGroups"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">withGroup</span><span class="params">(<span name="group">group: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <a href="words/RegexWithGroups.html" class="extype" name="org.scalatest.words.RegexWithGroups">RegexWithGroups</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@withGroup(group:String):org.scalatest.words.RegexWithGroups" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables syntax such as the following:</p><div class="fullcomment"><div class="comment cmt"><p>This method enables syntax such as the following:</p><p><pre class="stHighlighted">
+string should fullyMatch regex (<span class="stQuotedString">"a(b*)c"</span> withGroup <span class="stQuotedString">"bb"</span>)
+                                         ^
+</pre>
+</p></div></div>
+    </li><li name="org.scalatest.Matchers.StringShouldWrapper#withGroups" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="withGroups(groups:String*):org.scalatest.words.RegexWithGroups"></a>
+      <a id="withGroups(String*):RegexWithGroups"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">withGroups</span><span class="params">(<span name="groups">groups: <span class="extype" name="scala.Predef.String">String</span>*</span>)</span><span class="result">: <a href="words/RegexWithGroups.html" class="extype" name="org.scalatest.words.RegexWithGroups">RegexWithGroups</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#org.scalatest.Matchers$StringShouldWrapper@withGroups(groups:String*):org.scalatest.words.RegexWithGroups" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables syntax such as the following:</p><div class="fullcomment"><div class="comment cmt"><p>This method enables syntax such as the following:</p><p><pre class="stHighlighted">
+string should fullyMatch regex (<span class="stQuotedString">"a(b*)(c*)"</span> withGroups (<span class="stQuotedString">"bb"</span>, <span class="stQuotedString">"cc"</span>))
+                                            ^
+</pre>
+</p></div></div>
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        <div class="parent" name="org.scalatest.words.ShouldVerb.StringShouldWrapperForVerb">
+              <h3>Inherited from <a href="Matchers.html#StringShouldWrapperForVerbextendsAnyRef" class="extmbr" name="org.scalatest.words.ShouldVerb.StringShouldWrapperForVerb">Matchers.StringShouldWrapperForVerb</a></h3>
+            </div><div class="parent" name="org.scalatest.Matchers.AnyShouldWrapper">
+              <h3>Inherited from <a href="Matchers$AnyShouldWrapper.html" class="extype" name="org.scalatest.Matchers.AnyShouldWrapper">AnyShouldWrapper</a>[<span class="extype" name="scala.Predef.String">String</span>]</h3>
+            </div><div class="parent" name="scala.AnyRef">
+              <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
+            </div><div class="parent" name="scala.Any">
+              <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
+            </div>
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+
+
+    </body>
+      </html>

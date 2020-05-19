@@ -1,0 +1,434 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+        <head>
+          <title>fixture - ScalaTest 2.2.0 - org.scalatest.fixture</title>
+          <meta name="description" content="fixture - ScalaTest 2.2.0 - org.scalatest.fixture" />
+          <meta name="keywords" content="fixture ScalaTest 2.2.0 org.scalatest.fixture" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../../../lib/jquery.js" id="jquery-js"></script>
+      <script type="text/javascript" src="../../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../lib/tools.tooltip.js"></script>
+      
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../../index.html';
+            var hash = 'org.scalatest.fixture.package';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+
+<script>
+ (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+ })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ 
+ ga('create', 'UA-71294502-3', 'auto');
+ ga('send', 'pageview');
+ 
+</script>
+        </head>
+        <body class="value">
+
+<!-- Top of doc.scalatest.org [javascript] -->
+
+<script type="text/javascript">
+
+var rnd = window.rnd || Math.floor(Math.random()*10e6);
+
+var pid204546 = window.pid204546 || rnd;
+
+var plc204546 = window.plc204546 || 0;
+
+var abkw = window.abkw || '';
+
+var absrc = 'http://ab167933.adbutler-ikon.com/adserve/;ID=167933;size=468x60;setID=204546;type=js;sw='+screen.width+';sh='+screen.height+';spr='+window.devicePixelRatio+';kw='+abkw+';pid='+pid204546+';place='+(plc204546++)+';rnd='+rnd+';click=CLICK_MACRO_PLACEHOLDER';
+
+document.write('<scr'+'ipt src="'+absrc+'" type="text/javascript"></scr'+'ipt>');
+
+</script>
+
+      <div id="definition">
+        <img src="../../../lib/package_big.png" />
+        <p id="owner"><a href="../../package.html" class="extype" name="org">org</a>.<a href="../package.html" class="extype" name="org.scalatest">scalatest</a></p>
+        <h1>fixture</h1>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <span class="name">fixture</span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        
+        
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        <div id="types" class="types members">
+              <h3>Type Members</h3>
+              <ol><li name="org.scalatest.fixture.ConfigMapFixture" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="ConfigMapFixtureextendsAnyRef"></a>
+      <a id="ConfigMapFixture:ConfigMapFixture"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="ConfigMapFixture.html"><span class="name">ConfigMapFixture</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Trait that when mixed into a <a href="Suite.html"><code>fixture.Suite</code></a> passes
+the config map passed to <code>runTest</code> as a fixture into each test.</a href="Suite.html"></p>
+    </li><li name="org.scalatest.fixture.FeatureSpec" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="FeatureSpecextendsFeatureSpecLike"></a>
+      <a id="FeatureSpec:FeatureSpec"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="FeatureSpec.html"><span class="name">FeatureSpec</span></a><span class="result"> extends <a href="FeatureSpecLike.html" class="extype" name="org.scalatest.fixture.FeatureSpecLike">FeatureSpecLike</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">A sister class to <code>org.scalatest.FeatureSpec</code> that can pass a fixture object into its tests.</p>
+    </li><li name="org.scalatest.fixture.FeatureSpecLike" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="FeatureSpecLikeextendsSuitewithInformingwithNotifyingwithAlertingwithDocumenting"></a>
+      <a id="FeatureSpecLike:FeatureSpecLike"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="FeatureSpecLike.html"><span class="name">FeatureSpecLike</span></a><span class="result"> extends <a href="Suite.html" class="extype" name="org.scalatest.fixture.Suite">Suite</a> with <a href="../Informing.html" class="extype" name="org.scalatest.Informing">Informing</a> with <a href="../Notifying.html" class="extype" name="org.scalatest.Notifying">Notifying</a> with <a href="../Alerting.html" class="extype" name="org.scalatest.Alerting">Alerting</a> with <a href="../Documenting.html" class="extype" name="org.scalatest.Documenting">Documenting</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Implementation trait for class <code>fixture.FeatureSpec</code>, which is
+a sister class to <a href="../FeatureSpec.html"><code>org.scalatest.FeatureSpec</code></a> that can pass a
+fixture object into its tests.</a href="../FeatureSpec.html"></p>
+    </li><li name="org.scalatest.fixture.FlatSpec" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="FlatSpecextendsFlatSpecLike"></a>
+      <a id="FlatSpec:FlatSpec"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="FlatSpec.html"><span class="name">FlatSpec</span></a><span class="result"> extends <a href="FlatSpecLike.html" class="extype" name="org.scalatest.fixture.FlatSpecLike">FlatSpecLike</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">A sister class to <code>org.scalatest.FlatSpec</code> that can pass a fixture object into its tests.</p>
+    </li><li name="org.scalatest.fixture.FlatSpecLike" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="FlatSpecLikeextendsSuitewithTestRegistrationwithShouldVerbwithMustVerbwithCanVerbwithInformingwithNotifyingwithAlertingwithDocumenting"></a>
+      <a id="FlatSpecLike:FlatSpecLike"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="FlatSpecLike.html"><span class="name">FlatSpecLike</span></a><span class="result"> extends <a href="Suite.html" class="extype" name="org.scalatest.fixture.Suite">Suite</a> with <a href="TestRegistration.html" class="extype" name="org.scalatest.fixture.TestRegistration">TestRegistration</a> with <a href="../words/ShouldVerb.html" class="extype" name="org.scalatest.words.ShouldVerb">ShouldVerb</a> with <a href="../words/MustVerb.html" class="extype" name="org.scalatest.words.MustVerb">MustVerb</a> with <a href="../words/CanVerb.html" class="extype" name="org.scalatest.words.CanVerb">CanVerb</a> with <a href="../Informing.html" class="extype" name="org.scalatest.Informing">Informing</a> with <a href="../Notifying.html" class="extype" name="org.scalatest.Notifying">Notifying</a> with <a href="../Alerting.html" class="extype" name="org.scalatest.Alerting">Alerting</a> with <a href="../Documenting.html" class="extype" name="org.scalatest.Documenting">Documenting</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Implementation trait for class <code>fixture.FlatSpec</code>, which is
+a sister class to <code>org.scalatest.FlatSpec</code> that can pass a
+fixture object into its tests.</p>
+    </li><li name="org.scalatest.fixture.FreeSpec" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="FreeSpecextendsFreeSpecLike"></a>
+      <a id="FreeSpec:FreeSpec"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="FreeSpec.html"><span class="name">FreeSpec</span></a><span class="result"> extends <a href="FreeSpecLike.html" class="extype" name="org.scalatest.fixture.FreeSpecLike">FreeSpecLike</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">A sister class to <code>org.scalatest.FreeSpec</code> that can pass a fixture object into its tests.</p>
+    </li><li name="org.scalatest.fixture.FreeSpecLike" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="FreeSpecLikeextendsSuitewithTestRegistrationwithInformingwithNotifyingwithAlertingwithDocumenting"></a>
+      <a id="FreeSpecLike:FreeSpecLike"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="FreeSpecLike.html"><span class="name">FreeSpecLike</span></a><span class="result"> extends <a href="Suite.html" class="extype" name="org.scalatest.fixture.Suite">Suite</a> with <a href="TestRegistration.html" class="extype" name="org.scalatest.fixture.TestRegistration">TestRegistration</a> with <a href="../Informing.html" class="extype" name="org.scalatest.Informing">Informing</a> with <a href="../Notifying.html" class="extype" name="org.scalatest.Notifying">Notifying</a> with <a href="../Alerting.html" class="extype" name="org.scalatest.Alerting">Alerting</a> with <a href="../Documenting.html" class="extype" name="org.scalatest.Documenting">Documenting</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Implementation trait for class <code>fixture.FreeSpec</code>, which is
+a sister class to <code>org.scalatest.FreeSpec</code> that can pass a
+fixture object into its tests.</p>
+    </li><li name="org.scalatest.fixture.FunSpec" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="FunSpecextendsFunSpecLike"></a>
+      <a id="FunSpec:FunSpec"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="FunSpec.html"><span class="name">FunSpec</span></a><span class="result"> extends <a href="FunSpecLike.html" class="extype" name="org.scalatest.fixture.FunSpecLike">FunSpecLike</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">A sister class to <code>org.scalatest.FunSpec</code> that can pass a fixture object into its tests.</p>
+    </li><li name="org.scalatest.fixture.FunSpecLike" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="FunSpecLikeextendsSuitewithTestRegistrationwithInformingwithNotifyingwithAlertingwithDocumenting"></a>
+      <a id="FunSpecLike:FunSpecLike"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="FunSpecLike.html"><span class="name">FunSpecLike</span></a><span class="result"> extends <a href="Suite.html" class="extype" name="org.scalatest.fixture.Suite">Suite</a> with <a href="TestRegistration.html" class="extype" name="org.scalatest.fixture.TestRegistration">TestRegistration</a> with <a href="../Informing.html" class="extype" name="org.scalatest.Informing">Informing</a> with <a href="../Notifying.html" class="extype" name="org.scalatest.Notifying">Notifying</a> with <a href="../Alerting.html" class="extype" name="org.scalatest.Alerting">Alerting</a> with <a href="../Documenting.html" class="extype" name="org.scalatest.Documenting">Documenting</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Implementation trait for class <code>fixture.FunSpec</code>, which is
+a sister class to <code>org.scalatest.FunSpec</code> that can pass a
+fixture object into its tests.</p>
+    </li><li name="org.scalatest.fixture.FunSuite" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="FunSuiteextendsFunSuiteLike"></a>
+      <a id="FunSuite:FunSuite"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="FunSuite.html"><span class="name">FunSuite</span></a><span class="result"> extends <a href="FunSuiteLike.html" class="extype" name="org.scalatest.fixture.FunSuiteLike">FunSuiteLike</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">A sister class to <code>org.scalatest.FunSuite</code> that can pass a fixture object into its tests.</p>
+    </li><li name="org.scalatest.fixture.FunSuiteLike" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="FunSuiteLikeextendsSuitewithTestRegistrationwithInformingwithNotifyingwithAlertingwithDocumenting"></a>
+      <a id="FunSuiteLike:FunSuiteLike"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="FunSuiteLike.html"><span class="name">FunSuiteLike</span></a><span class="result"> extends <a href="Suite.html" class="extype" name="org.scalatest.fixture.Suite">Suite</a> with <a href="TestRegistration.html" class="extype" name="org.scalatest.fixture.TestRegistration">TestRegistration</a> with <a href="../Informing.html" class="extype" name="org.scalatest.Informing">Informing</a> with <a href="../Notifying.html" class="extype" name="org.scalatest.Notifying">Notifying</a> with <a href="../Alerting.html" class="extype" name="org.scalatest.Alerting">Alerting</a> with <a href="../Documenting.html" class="extype" name="org.scalatest.Documenting">Documenting</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Implementation trait for class <code>fixture.FunSuite</code>, which is
+a sister class to <code>org.scalatest.FunSuite</code> that can pass a
+fixture object into its tests.</p>
+    </li><li name="org.scalatest.fixture.NoArg" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="NoArgextendsDelayedInitwith()=&gt;Unit"></a>
+      <a id="NoArg:NoArg"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="NoArg.html"><span class="name">NoArg</span></a><span class="result"> extends <span class="extype" name="scala.DelayedInit">DelayedInit</span> with () ⇒ <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">A function that takes no parameters (<em>i.e.</em>, a <code>Function0</code> or &quot;no-arg&quot; function) and results in <code>Unit</code>, which when
+invoked executes the body of the constructor of the class into which this trait is mixed.</p>
+    </li><li name="org.scalatest.fixture.PropSpec" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="PropSpecextendsPropSpecLike"></a>
+      <a id="PropSpec:PropSpec"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="PropSpec.html"><span class="name">PropSpec</span></a><span class="result"> extends <a href="PropSpecLike.html" class="extype" name="org.scalatest.fixture.PropSpecLike">PropSpecLike</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">A sister class to <code>org.scalatest.PropSpec</code> that can pass a fixture object into its tests.</p>
+    </li><li name="org.scalatest.fixture.PropSpecLike" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="PropSpecLikeextendsSuitewithTestRegistrationwithInformingwithNotifyingwithAlertingwithDocumenting"></a>
+      <a id="PropSpecLike:PropSpecLike"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="PropSpecLike.html"><span class="name">PropSpecLike</span></a><span class="result"> extends <a href="Suite.html" class="extype" name="org.scalatest.fixture.Suite">Suite</a> with <a href="TestRegistration.html" class="extype" name="org.scalatest.fixture.TestRegistration">TestRegistration</a> with <a href="../Informing.html" class="extype" name="org.scalatest.Informing">Informing</a> with <a href="../Notifying.html" class="extype" name="org.scalatest.Notifying">Notifying</a> with <a href="../Alerting.html" class="extype" name="org.scalatest.Alerting">Alerting</a> with <a href="../Documenting.html" class="extype" name="org.scalatest.Documenting">Documenting</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Implementation trait for class <code>fixture.PropSpec</code>, which is
+a sister class to <a href="../PropSpec.html"><code>org.scalatest.PropSpec</code></a> that can pass a
+fixture object into its tests.</a href="../PropSpec.html"></p>
+    </li><li name="org.scalatest.fixture.Spec" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="SpecextendsSpecLike"></a>
+      <a id="Spec:Spec"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="Spec.html"><span class="name">Spec</span></a><span class="result"> extends <a href="SpecLike.html" class="extype" name="org.scalatest.fixture.SpecLike">SpecLike</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">A sister class to <code>org.scalatest.Spec</code> that can pass a fixture object into its tests.</p>
+    </li><li name="org.scalatest.fixture.SpecLike" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="SpecLikeextendsSuitewithInformingwithNotifyingwithAlertingwithDocumenting"></a>
+      <a id="SpecLike:SpecLike"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="SpecLike.html"><span class="name">SpecLike</span></a><span class="result"> extends <a href="Suite.html" class="extype" name="org.scalatest.fixture.Suite">Suite</a> with <a href="../Informing.html" class="extype" name="org.scalatest.Informing">Informing</a> with <a href="../Notifying.html" class="extype" name="org.scalatest.Notifying">Notifying</a> with <a href="../Alerting.html" class="extype" name="org.scalatest.Alerting">Alerting</a> with <a href="../Documenting.html" class="extype" name="org.scalatest.Documenting">Documenting</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Implementation trait for class <code>fixture.Spec</code>, which is
+a sister class to <a href="../Spec.html"><code>org.scalatest.Spec</code></a> that can pass a
+fixture object into its tests.</a href="../Spec.html"></p>
+    </li><li name="org.scalatest.fixture.Suite" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="SuiteextendsSuite"></a>
+      <a id="Suite:Suite"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="Suite.html"><span class="name">Suite</span></a><span class="result"> extends <a href="../Suite.html" class="extype" name="org.scalatest.Suite">scalatest.Suite</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Base trait for a family of style traits that can pass a fixture object into tests.</p>
+    </li><li name="org.scalatest.fixture.TestDataFixture" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="TestDataFixtureextendsAnyRef"></a>
+      <a id="TestDataFixture:TestDataFixture"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="TestDataFixture.html"><span class="name">TestDataFixture</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Trait that when mixed into a <a href="Suite.html"><code>fixture.Suite</code></a> passes the
+<a href="../TestData.html"><code>TestData</code></a> passed to <code>withFixture</code> as a fixture into each test.</a href="../TestData.html"></a href="Suite.html"></p>
+    </li><li name="org.scalatest.fixture.TestRegistration" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="TestRegistrationextendsAnyRef"></a>
+      <a id="TestRegistration:TestRegistration"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="TestRegistration.html"><span class="name">TestRegistration</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="org.scalatest.fixture.UnitFixture" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="UnitFixtureextendsAnyRef"></a>
+      <a id="UnitFixture:UnitFixture"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="UnitFixture.html"><span class="name">UnitFixture</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Trait that when mixed into a <code>fixture.Suite</code> passes
+the unit value as a fixture into each test.</p>
+    </li><li name="org.scalatest.fixture.WordSpec" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="WordSpecextendsWordSpecLike"></a>
+      <a id="WordSpec:WordSpec"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="WordSpec.html"><span class="name">WordSpec</span></a><span class="result"> extends <a href="WordSpecLike.html" class="extype" name="org.scalatest.fixture.WordSpecLike">WordSpecLike</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">A sister class to <code>org.scalatest.WordSpec</code> that can pass a fixture object into its tests.</p>
+    </li><li name="org.scalatest.fixture.WordSpecLike" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="WordSpecLikeextendsSuitewithTestRegistrationwithShouldVerbwithMustVerbwithCanVerbwithInformingwithNotifyingwithAlertingwithDocumenting"></a>
+      <a id="WordSpecLike:WordSpecLike"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="WordSpecLike.html"><span class="name">WordSpecLike</span></a><span class="result"> extends <a href="Suite.html" class="extype" name="org.scalatest.fixture.Suite">Suite</a> with <a href="TestRegistration.html" class="extype" name="org.scalatest.fixture.TestRegistration">TestRegistration</a> with <a href="../words/ShouldVerb.html" class="extype" name="org.scalatest.words.ShouldVerb">ShouldVerb</a> with <a href="../words/MustVerb.html" class="extype" name="org.scalatest.words.MustVerb">MustVerb</a> with <a href="../words/CanVerb.html" class="extype" name="org.scalatest.words.CanVerb">CanVerb</a> with <a href="../Informing.html" class="extype" name="org.scalatest.Informing">Informing</a> with <a href="../Notifying.html" class="extype" name="org.scalatest.Notifying">Notifying</a> with <a href="../Alerting.html" class="extype" name="org.scalatest.Alerting">Alerting</a> with <a href="../Documenting.html" class="extype" name="org.scalatest.Documenting">Documenting</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Implementation trait for class <code>fixture.WordSpec</code>, which is
+a sister class to <a href="../WordSpec.html"><code>org.scalatest.WordSpec</code></a> that can pass a
+fixture object into its tests.</a href="../WordSpec.html"></p>
+    </li></ol>
+            </div>
+
+        
+
+        
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+
+
+    </body>
+      </html>

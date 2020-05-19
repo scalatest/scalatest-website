@@ -1,0 +1,531 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+        <head>
+          <title>concurrent - ScalaTest 2.2.0 - org.scalatest.concurrent</title>
+          <meta name="description" content="concurrent - ScalaTest 2.2.0 - org.scalatest.concurrent" />
+          <meta name="keywords" content="concurrent ScalaTest 2.2.0 org.scalatest.concurrent" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../../../lib/jquery.js" id="jquery-js"></script>
+      <script type="text/javascript" src="../../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../lib/tools.tooltip.js"></script>
+      
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../../index.html';
+            var hash = 'org.scalatest.concurrent.package';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+
+<script>
+ (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+ })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ 
+ ga('create', 'UA-71294502-3', 'auto');
+ ga('send', 'pageview');
+ 
+</script>
+        </head>
+        <body class="value">
+
+<!-- Top of doc.scalatest.org [javascript] -->
+
+<script type="text/javascript">
+
+var rnd = window.rnd || Math.floor(Math.random()*10e6);
+
+var pid204546 = window.pid204546 || rnd;
+
+var plc204546 = window.plc204546 || 0;
+
+var abkw = window.abkw || '';
+
+var absrc = 'http://ab167933.adbutler-ikon.com/adserve/;ID=167933;size=468x60;setID=204546;type=js;sw='+screen.width+';sh='+screen.height+';spr='+window.devicePixelRatio+';kw='+abkw+';pid='+pid204546+';place='+(plc204546++)+';rnd='+rnd+';click=CLICK_MACRO_PLACEHOLDER';
+
+document.write('<scr'+'ipt src="'+absrc+'" type="text/javascript"></scr'+'ipt>');
+
+</script>
+
+      <div id="definition">
+        <img src="../../../lib/package_big.png" />
+        <p id="owner"><a href="../../package.html" class="extype" name="org">org</a>.<a href="../package.html" class="extype" name="org.scalatest">scalatest</a></p>
+        <h1>concurrent</h1>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <span class="name">concurrent</span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        
+        
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        <div id="types" class="types members">
+              <h3>Type Members</h3>
+              <ol><li name="org.scalatest.concurrent.AbstractPatienceConfiguration" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="AbstractPatienceConfigurationextendsScaledTimeSpans"></a>
+      <a id="AbstractPatienceConfiguration:AbstractPatienceConfiguration"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="AbstractPatienceConfiguration.html"><span class="name">AbstractPatienceConfiguration</span></a><span class="result"> extends <a href="ScaledTimeSpans.html" class="extype" name="org.scalatest.concurrent.ScaledTimeSpans">ScaledTimeSpans</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Trait that defines an abstract <code>patienceConfig</code> method that is implemented in <a href="PatienceConfiguration.html"><code>PatienceConfiguration</code></a> and can
+be overriden in stackable modification traits such as <a href="IntegrationPatience.html"><code>IntegrationPatience</code></a>.</a href="IntegrationPatience.html"></a href="PatienceConfiguration.html"></p>
+    </li><li name="org.scalatest.concurrent.AsyncAssertions" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="AsyncAssertionsextendsPatienceConfiguration"></a>
+      <a id="AsyncAssertions:AsyncAssertions"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="AsyncAssertions.html"><span class="name">AsyncAssertions</span></a><span class="result"> extends <a href="PatienceConfiguration.html" class="extype" name="org.scalatest.concurrent.PatienceConfiguration">PatienceConfiguration</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Trait that facilitates performing assertions outside the main test thread, such as assertions in callback methods
+that are invoked asynchronously.</p>
+    </li><li name="org.scalatest.concurrent.ConductorFixture" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="ConductorFixtureextendsSuiteMixinwithConductors"></a>
+      <a id="ConductorFixture:ConductorFixture"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="ConductorFixture.html"><span class="name">ConductorFixture</span></a><span class="result"> extends <a href="../SuiteMixin.html" class="extype" name="org.scalatest.SuiteMixin">SuiteMixin</a> with <a href="Conductors.html" class="extype" name="org.scalatest.concurrent.Conductors">Conductors</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Trait that can pass a new <code>Conductor</code> fixture into tests.</p>
+    </li><li name="org.scalatest.concurrent.ConductorMethods" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="ConductorMethodsextendsSuiteMixinwithConductors"></a>
+      <a id="ConductorMethods:ConductorMethods"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="ConductorMethods.html"><span class="name">ConductorMethods</span></a><span class="result"> extends <a href="../SuiteMixin.html" class="extype" name="org.scalatest.SuiteMixin">SuiteMixin</a> with <a href="Conductors.html" class="extype" name="org.scalatest.concurrent.Conductors">Conductors</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Trait that provides each test with access to a new <code>Conductor</code>
+via methods.</p>
+    </li><li name="org.scalatest.concurrent.Conductors" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="ConductorsextendsPatienceConfiguration"></a>
+      <a id="Conductors:Conductors"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="Conductors.html"><span class="name">Conductors</span></a><span class="result"> extends <a href="PatienceConfiguration.html" class="extype" name="org.scalatest.concurrent.PatienceConfiguration">PatienceConfiguration</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Trait whose <code>Conductor</code> member facilitates the testing of classes, traits, and libraries designed
+to be used by multiple threads concurrently.</p>
+    </li><li name="org.scalatest.concurrent.Eventually" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="EventuallyextendsPatienceConfiguration"></a>
+      <a id="Eventually:Eventually"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="Eventually.html"><span class="name">Eventually</span></a><span class="result"> extends <a href="PatienceConfiguration.html" class="extype" name="org.scalatest.concurrent.PatienceConfiguration">PatienceConfiguration</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Trait that provides the <code>eventually</code> construct, which periodically retries executing
+a passed by-name parameter, until it either succeeds or the configured timeout has been surpassed.</p>
+    </li><li name="org.scalatest.concurrent.Futures" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="FuturesextendsPatienceConfiguration"></a>
+      <a id="Futures:Futures"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="Futures.html"><span class="name">Futures</span></a><span class="result"> extends <a href="PatienceConfiguration.html" class="extype" name="org.scalatest.concurrent.PatienceConfiguration">PatienceConfiguration</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Trait that facilitates testing with futures.</p>
+    </li><li name="org.scalatest.concurrent.IntegrationPatience" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="IntegrationPatienceextendsAbstractPatienceConfiguration"></a>
+      <a id="IntegrationPatience:IntegrationPatience"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="IntegrationPatience.html"><span class="name">IntegrationPatience</span></a><span class="result"> extends <a href="AbstractPatienceConfiguration.html" class="extype" name="org.scalatest.concurrent.AbstractPatienceConfiguration">AbstractPatienceConfiguration</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Stackable modification trait for <a href="PatienceConfiguration.html"><code>PatienceConfiguration</code></a> that provides default timeout and interval
+values appropriate for integration testing.</a href="PatienceConfiguration.html"></p>
+    </li><li name="org.scalatest.concurrent.Interruptor" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="InterruptorextendsThread=&gt;Unit"></a>
+      <a id="Interruptor:Interruptor"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="Interruptor.html"><span class="name">Interruptor</span></a><span class="result"> extends (<span class="extype" name="java.lang.Thread">Thread</span>) ⇒ <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Strategy for interrupting an operation after a timeout expires.</p>
+    </li><li name="org.scalatest.concurrent.JavaFutures" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="JavaFuturesextendsFutures"></a>
+      <a id="JavaFutures:JavaFutures"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="JavaFutures.html"><span class="name">JavaFutures</span></a><span class="result"> extends <a href="Futures.html" class="extype" name="org.scalatest.concurrent.Futures">Futures</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Provides an implicit conversion from <code>java.util.concurrent.Future[T]</code> to
+<a href="Futures$FutureConcept.html"><code>FutureConcept[T]</code></a>.</a href="Futures$FutureConcept.html"></p>
+    </li><li name="org.scalatest.concurrent.PatienceConfiguration" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="PatienceConfigurationextendsAbstractPatienceConfiguration"></a>
+      <a id="PatienceConfiguration:PatienceConfiguration"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="PatienceConfiguration.html"><span class="name">PatienceConfiguration</span></a><span class="result"> extends <a href="AbstractPatienceConfiguration.html" class="extype" name="org.scalatest.concurrent.AbstractPatienceConfiguration">AbstractPatienceConfiguration</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Trait providing methods and classes used to configure timeouts and, where relevant, the interval
+between retries.</p>
+    </li><li name="org.scalatest.concurrent.ScalaFutures" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="ScalaFuturesextendsFutures"></a>
+      <a id="ScalaFutures:ScalaFutures"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="ScalaFutures.html"><span class="name">ScalaFutures</span></a><span class="result"> extends <a href="Futures.html" class="extype" name="org.scalatest.concurrent.Futures">Futures</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Provides an implicit conversion from <code>scala.concurrent.Future[T]</code> to
+<a href="Futures$FutureConcept.html"><code>FutureConcept[T]</code></a>.</a href="Futures$FutureConcept.html"></p>
+    </li><li name="org.scalatest.concurrent.ScaledTimeSpans" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="ScaledTimeSpansextendsAnyRef"></a>
+      <a id="ScaledTimeSpans:ScaledTimeSpans"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="ScaledTimeSpans.html"><span class="name">ScaledTimeSpans</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Trait providing a <code>scaled</code> method that can be used to scale time
+<code>Span</code>s used during the testing of asynchronous operations.</p>
+    </li><li name="org.scalatest.concurrent.SelectorInterruptor" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="SelectorInterruptorextendsInterruptor"></a>
+      <a id="SelectorInterruptor:SelectorInterruptor"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="SelectorInterruptor.html"><span class="name">SelectorInterruptor</span></a><span class="result"> extends <a href="Interruptor.html" class="extype" name="org.scalatest.concurrent.Interruptor">Interruptor</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Strategy for interrupting an operation in which <code>wakeup</code> is called on the <code>java.nio.channels.Selector</code> passed to
+the constructor.</p>
+    </li><li name="org.scalatest.concurrent.SocketInterruptor" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="SocketInterruptorextendsInterruptor"></a>
+      <a id="SocketInterruptor:SocketInterruptor"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="SocketInterruptor.html"><span class="name">SocketInterruptor</span></a><span class="result"> extends <a href="Interruptor.html" class="extype" name="org.scalatest.concurrent.Interruptor">Interruptor</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Strategy for interrupting an operation in which <code>close</code> is called on the <code>java.net.Socket</code> passed to
+the constructor.</p>
+    </li><li name="org.scalatest.concurrent.TimeLimitedTests" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="TimeLimitedTestsextendsSuiteMixin"></a>
+      <a id="TimeLimitedTests:TimeLimitedTests"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="TimeLimitedTests.html"><span class="name">TimeLimitedTests</span></a><span class="result"> extends <a href="../SuiteMixin.html" class="extype" name="org.scalatest.SuiteMixin">SuiteMixin</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Trait that when mixed into a suite class establishes a time limit for its tests.</p>
+    </li><li name="org.scalatest.concurrent.Timeouts" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="TimeoutsextendsAnyRef"></a>
+      <a id="Timeouts:Timeouts"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="Timeouts.html"><span class="name">Timeouts</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Trait that provides a <code>failAfter</code> and <code>cancelAfter</code> construct, which allows you to specify a time limit for an
+operation passed as a by-name parameter, as well as a way to interrupt it if the operation exceeds its time limit.</p>
+    </li><li name="org.scalatest.concurrent.Conductor" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ConductorextendsAnyRef"></a>
+      <a id="Conductor:Conductor"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="Conductor.html"><span class="name deprecated" title="Deprecated: org.scalatest.concurrent.Conductor has been deprecated and will be removed in a future version of ScalaTest. Please mix in trait Conductors, which now defines Conductor, instead of using Conductor directly.">Conductor</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt"><strong><code>org.scalatest.concurrent.Conductor</code> has been deprecated and will
+be removed in a future version of ScalaTest. Please mix in or import the members
+of trait <a href="Conductors.html"><code>Conductors</code></a>, into which <code>Conductor</code> has been moved, instead
+of using this class directly.</strong></p>
+    </li><li name="org.scalatest.concurrent.ConductorMultiFixture" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="ConductorMultiFixtureextendsAnyRef"></a>
+      <a id="ConductorMultiFixture:ConductorMultiFixture"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="ConductorMultiFixture.html"><span class="name deprecated" title="Deprecated: Please copy the withConductorFixture method into your own trait instead.">ConductorMultiFixture</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt"><strong>ConductorMultiFixture has been deprecated and will be removed in a future version of ScalaTest. Please
+copy the withConductorFixture method into your own trait instead.</strong></p>
+    </li></ol>
+            </div>
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="org.scalatest.concurrent.AsyncAssertions" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="AsyncAssertions"></a>
+      <a id="AsyncAssertions:AsyncAssertions"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="AsyncAssertions$.html"><span class="name">AsyncAssertions</span></a><span class="result"> extends <a href="AsyncAssertions.html" class="extype" name="org.scalatest.concurrent.AsyncAssertions">AsyncAssertions</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Companion object that facilitates the importing of <code>AsyncAssertions</code> members as
+an alternative to mixing in the trait.</p>
+    </li><li name="org.scalatest.concurrent.DoNotInterrupt" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="DoNotInterrupt"></a>
+      <a id="DoNotInterrupt:DoNotInterrupt"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="DoNotInterrupt$.html"><span class="name">DoNotInterrupt</span></a><span class="result"> extends <a href="Interruptor.html" class="extype" name="org.scalatest.concurrent.Interruptor">Interruptor</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Interruption strategy in which nothing is done to try and interrupt an operation.</p>
+    </li><li name="org.scalatest.concurrent.Eventually" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Eventually"></a>
+      <a id="Eventually:Eventually"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Eventually$.html"><span class="name">Eventually</span></a><span class="result"> extends <a href="Eventually.html" class="extype" name="org.scalatest.concurrent.Eventually">Eventually</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Companion object that facilitates the importing of <code>Eventually</code> members as
+an alternative to mixing in the trait.</p>
+    </li><li name="org.scalatest.concurrent.Interruptor" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Interruptor"></a>
+      <a id="Interruptor:Interruptor"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Interruptor$.html"><span class="name">Interruptor</span></a>
+      </span>
+      </h4>
+      <p class="comment cmt">Companion object that provides a factory method for an <code>Interruptor</code> defined
+in terms of a function from a function of type <code>Thread</code> to </code>Unit</code>.</p>
+    </li><li name="org.scalatest.concurrent.PatienceConfiguration" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="PatienceConfiguration"></a>
+      <a id="PatienceConfiguration:PatienceConfiguration"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="PatienceConfiguration$.html"><span class="name">PatienceConfiguration</span></a>
+      </span>
+      </h4>
+      
+    </li><li name="org.scalatest.concurrent.ScalaFutures" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ScalaFutures"></a>
+      <a id="ScalaFutures:ScalaFutures"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="ScalaFutures$.html"><span class="name">ScalaFutures</span></a><span class="result"> extends <a href="ScalaFutures.html" class="extype" name="org.scalatest.concurrent.ScalaFutures">ScalaFutures</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Companion object that facilitates the importing of <code>ScalaFutures</code> members as
+an alternative to mixing in the trait.</p>
+    </li><li name="org.scalatest.concurrent.SelectorInterruptor" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="SelectorInterruptor"></a>
+      <a id="SelectorInterruptor:SelectorInterruptor"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="SelectorInterruptor$.html"><span class="name">SelectorInterruptor</span></a>
+      </span>
+      </h4>
+      <p class="comment cmt">Companion object that provides a factory method for a <code>SelectorInterruptor</code>.</p>
+    </li><li name="org.scalatest.concurrent.SocketInterruptor" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="SocketInterruptor"></a>
+      <a id="SocketInterruptor:SocketInterruptor"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="SocketInterruptor$.html"><span class="name">SocketInterruptor</span></a>
+      </span>
+      </h4>
+      <p class="comment cmt">Companion object that provides a factory method for a <code>SocketInterruptor</code>.</p>
+    </li><li name="org.scalatest.concurrent.ThreadInterruptor" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ThreadInterruptor"></a>
+      <a id="ThreadInterruptor:ThreadInterruptor"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="ThreadInterruptor$.html"><span class="name">ThreadInterruptor</span></a><span class="result"> extends <a href="Interruptor.html" class="extype" name="org.scalatest.concurrent.Interruptor">Interruptor</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Strategy for interrupting an operation in which <code>interrupt</code> is called on the <code>Thread</code> passed
+to <code>apply</code>.</p>
+    </li><li name="org.scalatest.concurrent.Timeouts" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Timeouts"></a>
+      <a id="Timeouts:Timeouts"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Timeouts$.html"><span class="name">Timeouts</span></a><span class="result"> extends <a href="Timeouts.html" class="extype" name="org.scalatest.concurrent.Timeouts">Timeouts</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Companion object that facilitates the importing of <code>Timeouts</code> members as
+an alternative to mixing in the trait.</p>
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+
+
+    </body>
+      </html>

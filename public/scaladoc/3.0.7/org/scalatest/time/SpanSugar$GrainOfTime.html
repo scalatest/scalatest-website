@@ -1,0 +1,1155 @@
+<!DOCTYPE html >
+<html>
+        <head>
+          <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+          <title>ScalaTest 3.0.7  - org.scalatest.time.SpanSugar.GrainOfTime</title>
+          <meta name="description" content="ScalaTest 3.0.7 - org.scalatest.time.SpanSugar.GrainOfTime" />
+          <meta name="keywords" content="ScalaTest 3.0.7 org.scalatest.time.SpanSugar.GrainOfTime" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../lib/index.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../../../lib/jquery.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.panzoom.min.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.mousewheel.min.js"></script>
+      <script type="text/javascript" src="../../../lib/index.js"></script>
+      <script type="text/javascript" src="../../../index.js"></script>
+      <script type="text/javascript" src="../../../lib/scheduler.js"></script>
+      <script type="text/javascript" src="../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../lib/tools.tooltip.js"></script>
+      
+      <script type="text/javascript">
+        /* this variable can be used by the JS to determine the path to the root document */
+        var toRoot = '../../../';
+      </script>
+    
+        </head>
+        <body>
+      <div id="search">
+        <span id="doc-title">ScalaTest 3.0.7<span id="doc-version"></span></span>
+        <span class="close-results"><span class="left">&lt;</span> Back</span>
+        <div id="textfilter">
+          <span class="input">
+            <input autocapitalize="none" placeholder="Search" id="index-input" type="text" accesskey="/" />
+            <i class="clear material-icons"></i>
+            <i id="search-icon" class="material-icons"></i>
+          </span>
+        </div>
+    </div>
+      <div id="search-results">
+        <div id="search-progress">
+          <div id="progress-fill"></div>
+        </div>
+        <div id="results-content">
+          <div id="entity-results"></div>
+          <div id="member-results"></div>
+        </div>
+      </div>
+      <div id="content-scroll-container" style="-webkit-overflow-scrolling: touch;">
+        <div id="content-container" style="-webkit-overflow-scrolling: touch;">
+          <div id="subpackage-spacer">
+            <div id="packages">
+              <h1>Packages</h1>
+              <ul>
+                <li name="_root_.root" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="_root_"></a><a id="root:_root_"></a>
+      <span class="permalink">
+      <a href="index.html#_root_" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="../../../index.html"><span class="name">root</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../../../index.html" class="extype" name="_root_">root</a></dd></dl></div>
+    </li><li name="_root_.org" visbl="pub" class="indented1 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="org"></a><a id="org:org"></a>
+      <span class="permalink">
+      <a href="index.html#org" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="../../index.html"><span class="name">org</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../../../index.html" class="extype" name="_root_">root</a></dd></dl></div>
+    </li><li name="org.scalatest" visbl="pub" class="indented2 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="scalatest"></a><a id="scalatest:scalatest"></a>
+      <span class="permalink">
+      <a href="../org/index.html#scalatest" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="ScalaTest's main traits, classes, and other members, including members supporting ScalaTest's DSL for the Scala interpreter." href="../index.html"><span class="name">scalatest</span></a>
+      </span>
+      
+      <p class="shortcomment cmt">ScalaTest's main traits, classes, and other members, including members supporting ScalaTest's DSL for the Scala interpreter.</p><div class="fullcomment"><div class="comment cmt"><p>ScalaTest's main traits, classes, and other members, including members supporting ScalaTest's DSL for the Scala interpreter.
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../../index.html" class="extype" name="org">org</a></dd></dl></div>
+    </li><li name="org.scalatest.time" visbl="pub" class="indented3 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="time"></a><a id="time:time"></a>
+      <span class="permalink">
+      <a href="../../org/scalatest/index.html#time" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="index.html"><span class="name">time</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="org.scalatest">scalatest</a></dd></dl></div>
+    </li><li name="org.scalatest.time.SpanSugar" visbl="pub" class="indented4 " data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="SpanSugarextendsAnyRef"></a><a id="SpanSugar:SpanSugar"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/time/index.html#SpanSugarextendsAnyRef" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a title="Trait providing four implicit conversions that allow you to specify spans of time by invoking &quot;units&quot; methods such as millis, seconds, and minutes on Int, Long, Float, and Double." href="SpanSugar.html"><span class="name">SpanSugar</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">Trait providing four implicit conversions that allow you to specify spans of time
+by invoking &quot;units&quot; methods such as <code>millis</code>, <code>seconds</code>, and <code>minutes</code>
+on <code>Int</code>, <code>Long</code>, <code>Float</code>, and <code>Double</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Trait providing four implicit conversions that allow you to specify spans of time
+by invoking &quot;units&quot; methods such as <code>millis</code>, <code>seconds</code>, and <code>minutes</code>
+on <code>Int</code>, <code>Long</code>, <code>Float</code>, and <code>Double</code>.</p><p>This trait enables you to specify a span of time in a clear, boilerplate-free way when you
+need to provide an instance of <a href="Span.html"><code>Span</code></a>. This
+can be used, for example, with the <code>failAfter</code> method of trait
+<a href="../concurrent/Timeouts.html"><code>Timeouts</code></a> or the <code>timeLimit</code> field of trait
+<a href="../concurrent/TimeLimitedTests.html"><code>TimeLimitedTests</code></a>. It can also be used to specify
+timeouts when using traits <a href="../concurrent/Eventually.html"><code>Eventually</code></a>,
+<a href="../concurrent/Futures.html"><code>Futures</code></a>,
+<a href="../concurrent/Waiter.html"><code>Waiter</code></a>. Here are examples of each unit enabled by this trait:</p><p><table style="border-collapse: collapse; border: 1px solid black">
+<tr>
+<th style="background-color: #CCCCCC; border-width: 1px; padding: 3px; text-align: center; border: 1px solid black">
+<strong><code>Int</code></strong>
+</th>
+<th style="background-color: #CCCCCC; border-width: 1px; padding: 3px; text-align: center; border: 1px solid black">
+<strong><code>Long</code></strong>
+</th>
+<th style="background-color: #CCCCCC; border-width: 1px; padding: 3px; text-align: center; border: 1px solid black">
+<strong><code>Float</code></strong>
+</th>
+<th style="background-color: #CCCCCC; border-width: 1px; padding: 3px; text-align: center; border: 1px solid black">
+<strong><code>Double</code></strong>
+</th>
+</tr>
+<tr>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: right">
+1 nanosecond
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: right">
+1L nanosecond
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: right">
+1.0F nanosecond
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: right">
+1.0 nanosecond
+</td>
+</tr>
+<tr>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: right">
+100 nanoseconds
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: right">
+100L nanoseconds
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: right">
+99.8F nanoseconds
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: right">
+99.8 nanoseconds
+</td>
+</tr>
+<tr>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: right">
+1 microsecond
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: right">
+1L microsecond
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: right">
+1.0F microsecond
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: right">
+1.0 microsecond
+</td>
+</tr>
+<tr>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: right">
+100 microseconds
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: right">
+100L microseconds
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: right">
+99.8F microseconds
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: right">
+99.8 microseconds
+</td>
+</tr>
+<tr>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: right">
+1 millisecond
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: right">
+1L millisecond
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: right">
+1.0F millisecond
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: right">
+1.0 millisecond
+</td>
+</tr>
+<tr>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: right">
+100 milliseconds
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: right">
+100L milliseconds
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: right">
+99.8F milliseconds
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: right">
+99.8 milliseconds
+</td>
+</tr>
+<tr>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: right">
+100 millis
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: right">
+100L millis
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: right">
+99.8F millis
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: right">
+99.8 millis
+</td>
+</tr>
+<tr>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: right">
+1 second
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: right">
+1L second
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: right">
+1.0F second
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: right">
+1.0 second
+</td>
+</tr>
+<tr>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: right">
+100 seconds
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: right">
+100L seconds
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: right">
+99.8F seconds
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: right">
+99.8 seconds
+</td>
+</tr>
+<tr>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: right">
+1 minute
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: right">
+1L minute
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: right">
+1.0F minute
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: right">
+1.0 minute
+</td>
+</tr>
+<tr>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: right">
+100 minutes
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: right">
+100L minutes
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: right">
+99.8F minutes
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: right">
+99.8 minutes
+</td>
+</tr>
+<tr>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: right">
+1 hour
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: right">
+1L hour
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: right">
+1.0F hour
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: right">
+1.0 hour
+</td>
+</tr>
+<tr>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: right">
+100 hours
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: right">
+100L hours
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: right">
+99.8F hours
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: right">
+99.8 hours
+</td>
+</tr>
+<tr>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: right">
+1 day
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: right">
+1L day
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: right">
+1.0F day
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: right">
+1.0 day
+</td>
+</tr>
+<tr>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: right">
+100 days
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: right">
+100L days
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: right">
+99.8F days
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: right">
+99.8 days
+</td>
+</tr>
+</table></p><p>This trait is not the default way to specify <code>Span</code>s for two reasons. First, it adds
+four implicits, which would give the compiler more work to do and may conflict with other implicits the
+user has in scope. Instead, <code>Span</code> provides a clear, concise default way to specify time
+spans that requires no implicits. Here's an example:</p><p><pre class="stHighlighted">
+<span class="stType">Span</span>(<span class="stLiteral">1</span>, <span class="stType">Second</span>)
+</pre></p><p>If you already have implicit conversions in scope that provide a similar syntax sugar for expression
+time spans, you can use that by providing an implicit conversion from the result of those expressions
+to <code>Span</code>. Note that because of implicit conversions in the <code>Span</code> companion object,
+you can use a <code>scala.concurrent.duration.Duration</code> (including in its &quot;sugary&quot; form) where
+a <code>Span</code> is needed, and vice versa.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="index.html" class="extype" name="org.scalatest.time">time</a></dd></dl></div>
+    </li><li class="current-entities indented4">
+                        <span class="separator"></span>
+                        <a class="class" href="SpanSugar$FloatingGrainOfTime.html" title="Class containing methods that return a Span time value calculated from the Double value passed to the FloatingGrainOfTime constructor."></a>
+                        <a href="SpanSugar$FloatingGrainOfTime.html" title="Class containing methods that return a Span time value calculated from the Double value passed to the FloatingGrainOfTime constructor.">FloatingGrainOfTime</a>
+                      </li><li class="current-entities indented4">
+                        <span class="separator"></span>
+                        <a class="class" href="" title="Class containing methods that return a Span time value calculated from the Long value passed to the GrainOfTime constructor."></a>
+                        <a href="" title="Class containing methods that return a Span time value calculated from the Long value passed to the GrainOfTime constructor.">GrainOfTime</a>
+                      </li>
+              </ul>
+            </div>
+          </div>
+          <div id="content">
+            <body class="class type">
+
+<!-- Top of doc.scalatest.org [javascript] -->
+
+<script type="text/javascript">
+
+var rnd = window.rnd || Math.floor(Math.random()*10e6);
+
+var pid204546 = window.pid204546 || rnd;
+
+var plc204546 = window.plc204546 || 0;
+
+var abkw = window.abkw || '';
+
+var absrc = 'http://ab167933.adbutler-ikon.com/adserve/;ID=167933;size=468x60;setID=204546;type=js;sw='+screen.width+';sh='+screen.height+';spr='+window.devicePixelRatio+';kw='+abkw+';pid='+pid204546+';place='+(plc204546++)+';rnd='+rnd+';click=CLICK_MACRO_PLACEHOLDER';
+
+document.write('<scr'+'ipt src="'+absrc+'" type="text/javascript"></scr'+'ipt>');
+
+</script>
+
+      <div id="definition">
+        <div class="big-circle class">c</div>
+        <p id="owner"><a href="../../index.html" class="extype" name="org">org</a>.<a href="../index.html" class="extype" name="org.scalatest">scalatest</a>.<a href="index.html" class="extype" name="org.scalatest.time">time</a>.<a href="SpanSugar.html" class="extype" name="org.scalatest.time.SpanSugar">SpanSugar</a></p>
+        <h1>GrainOfTime<span class="permalink">
+      <a href="../../../org/scalatest/time/SpanSugar$GrainOfTime.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span></h1>
+        <h3><span class="morelinks"></span></h3>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <span class="name">GrainOfTime</span><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+
+      
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Class containing methods that return a <code>Span</code> time value calculated from the
+<code>Long</code> value passed to the <code>GrainOfTime</code> constructor.
+</p></div><dl class="attributes block"> <dt>Source</dt><dd><a href="https://github.com/scalatest/scalatest/tree/release-3.0.7/scalatest//src/main/scala/org/scalatest/time/SpanSugar.scala" target="_blank">SpanSugar.scala</a></dd></dl><div class="toggleContainer block">
+          <span class="toggle">
+            Linear Supertypes
+          </span>
+          <div class="superTypes hiddenContent"><span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+        </div></div>
+        
+
+      <div id="mbrsel">
+        <div class="toggle"></div>
+        <div id="memberfilter">
+          <i class="material-icons arrow"></i>
+          <span class="input">
+            <input id="mbrsel-input" placeholder="Filter all members" type="text" accesskey="/" />
+          </span>
+          <i class="clear material-icons"></i>
+        </div>
+        <div id="filterby">
+          <div id="order">
+            <span class="filtertype">Ordering</span>
+            <ol>
+              
+              <li class="alpha in"><span>Alphabetic</span></li>
+              <li class="inherit out"><span>By Inheritance</span></li>
+            </ol>
+          </div>
+          <div class="ancestors">
+                  <span class="filtertype">Inherited<br />
+                  </span>
+                  <ol id="linearization">
+                    <li class="in" name="org.scalatest.time.SpanSugar.GrainOfTime"><span>GrainOfTime</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                  </ol>
+                </div><div class="ancestors">
+              <span class="filtertype"></span>
+              <ol>
+                <li class="hideall out"><span>Hide All</span></li>
+                <li class="showall in"><span>Show All</span></li>
+              </ol>
+            </div>
+          <div id="visbl">
+              <span class="filtertype">Visibility</span>
+              <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+            </div>
+        </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        <div id="constructors" class="members">
+              <h3>Instance Constructors</h3>
+              <ol><li name="org.scalatest.time.SpanSugar.GrainOfTime#&lt;init&gt;" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="&lt;init&gt;(value:Long):SpanSugar.this.GrainOfTime"></a><a id="&lt;init&gt;:GrainOfTime"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/time/SpanSugar$GrainOfTime.html#&lt;init&gt;(value:Long):SpanSugar.this.GrainOfTime" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">new</span>
+      </span>
+      <span class="symbol">
+        <span class="name">GrainOfTime</span><span class="params">(<span name="value">value: <span class="extype" name="scala.Long">Long</span></span>)</span>
+      </span>
+      
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">value</dt><dd class="cmt"><p>the value to be converted</p></dd></dl></div>
+    </li></ol>
+            </div>
+
+        
+
+        
+
+        <div class="values members">
+              <h3>Value Members</h3>
+              <ol>
+                <li name="scala.AnyRef#!=" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="!=(x$1:Any):Boolean"></a><a id="!=(Any):Boolean"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/time/SpanSugar$GrainOfTime.html#!=(x$1:Any):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef###" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="##():Int"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/time/SpanSugar$GrainOfTime.html###():Int" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $hash$hash" class="name">##</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#==" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="==(x$1:Any):Boolean"></a><a id="==(Any):Boolean"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/time/SpanSugar$GrainOfTime.html#==(x$1:Any):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.Any#asInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="asInstanceOf[T0]:T0"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/time/SpanSugar$GrainOfTime.html#asInstanceOf[T0]:T0" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">asInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Any.asInstanceOf.T0">T0</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="scala.AnyRef#clone" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="clone():Object"></a><a id="clone():AnyRef"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/time/SpanSugar$GrainOfTime.html#clone():Object" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">clone</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../java/lang/index.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@native</span><span class="args">()</span>
+              
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.CloneNotSupportedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="org.scalatest.time.SpanSugar.GrainOfTime#day" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="day:org.scalatest.time.Span"></a><a id="day:Span"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/time/SpanSugar$GrainOfTime.html#day:org.scalatest.time.Span" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">day</span><span class="result">: <a href="Span.html" class="extype" name="org.scalatest.time.Span">Span</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">A units method for one day.</p><div class="fullcomment"><div class="comment cmt"><p>A units method for one day.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>A <code>Span</code> representing the value passed to the constructor in days</p></dd></dl></div>
+    </li><li name="org.scalatest.time.SpanSugar.GrainOfTime#days" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="days:org.scalatest.time.Span"></a><a id="days:Span"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/time/SpanSugar$GrainOfTime.html#days:org.scalatest.time.Span" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">days</span><span class="result">: <a href="Span.html" class="extype" name="org.scalatest.time.Span">Span</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">A units method for days.</p><div class="fullcomment"><div class="comment cmt"><p>A units method for days.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>A <code>Span</code> representing the value passed to the constructor multiplied in days</p></dd></dl></div>
+    </li><li name="scala.AnyRef#eq" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="eq(x$1:AnyRef):Boolean"></a><a id="eq(AnyRef):Boolean"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/time/SpanSugar$GrainOfTime.html#eq(x$1:AnyRef):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#equals" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="equals(x$1:Any):Boolean"></a><a id="equals(Any):Boolean"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/time/SpanSugar$GrainOfTime.html#equals(x$1:Any):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">equals</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#finalize" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="finalize():Unit"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/time/SpanSugar$GrainOfTime.html#finalize():Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">finalize</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../java/lang/index.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="symbol">classOf[java.lang.Throwable]</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#getClass" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getClass():Class[_]"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/time/SpanSugar$GrainOfTime.html#getClass():Class[_]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getClass</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.Class">Class</span>[_]</span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd><dt>Annotations</dt><dd>
+                <span class="name">@native</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#hashCode" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="hashCode():Int"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/time/SpanSugar$GrainOfTime.html#hashCode():Int" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">hashCode</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd><dt>Annotations</dt><dd>
+                <span class="name">@native</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="org.scalatest.time.SpanSugar.GrainOfTime#hour" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="hour:org.scalatest.time.Span"></a><a id="hour:Span"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/time/SpanSugar$GrainOfTime.html#hour:org.scalatest.time.Span" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">hour</span><span class="result">: <a href="Span.html" class="extype" name="org.scalatest.time.Span">Span</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">A units method for one hour.</p><div class="fullcomment"><div class="comment cmt"><p>A units method for one hour.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>A <code>Span</code> representing the value passed to the constructor in hours</p></dd></dl></div>
+    </li><li name="org.scalatest.time.SpanSugar.GrainOfTime#hours" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="hours:org.scalatest.time.Span"></a><a id="hours:Span"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/time/SpanSugar$GrainOfTime.html#hours:org.scalatest.time.Span" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">hours</span><span class="result">: <a href="Span.html" class="extype" name="org.scalatest.time.Span">Span</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">A units method for hours.</p><div class="fullcomment"><div class="comment cmt"><p>A units method for hours.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>A <code>Span</code> representing the value passed to the constructor in hours</p></dd></dl></div>
+    </li><li name="scala.Any#isInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/time/SpanSugar$GrainOfTime.html#isInstanceOf[T0]:Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">isInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="org.scalatest.time.SpanSugar.GrainOfTime#microsecond" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="microsecond:org.scalatest.time.Span"></a><a id="microsecond:Span"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/time/SpanSugar$GrainOfTime.html#microsecond:org.scalatest.time.Span" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">microsecond</span><span class="result">: <a href="Span.html" class="extype" name="org.scalatest.time.Span">Span</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">A units method for one microsecond.</p><div class="fullcomment"><div class="comment cmt"><p>A units method for one microsecond.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>A <code>Span</code> representing the value passed to the constructor in microseconds</p></dd></dl></div>
+    </li><li name="org.scalatest.time.SpanSugar.GrainOfTime#microseconds" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="microseconds:org.scalatest.time.Span"></a><a id="microseconds:Span"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/time/SpanSugar$GrainOfTime.html#microseconds:org.scalatest.time.Span" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">microseconds</span><span class="result">: <a href="Span.html" class="extype" name="org.scalatest.time.Span">Span</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">A units method for microseconds.</p><div class="fullcomment"><div class="comment cmt"><p>A units method for microseconds.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>A <code>Span</code> representing the value passed to the constructor in microseconds</p></dd></dl></div>
+    </li><li name="org.scalatest.time.SpanSugar.GrainOfTime#millis" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="millis:org.scalatest.time.Span"></a><a id="millis:Span"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/time/SpanSugar$GrainOfTime.html#millis:org.scalatest.time.Span" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">millis</span><span class="result">: <a href="Span.html" class="extype" name="org.scalatest.time.Span">Span</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">A shorter units method for milliseconds.</p><div class="fullcomment"><div class="comment cmt"><p>A shorter units method for milliseconds.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>A <code>Span</code> representing the value passed to the constructor in milliseconds</p></dd></dl></div>
+    </li><li name="org.scalatest.time.SpanSugar.GrainOfTime#millisecond" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="millisecond:org.scalatest.time.Span"></a><a id="millisecond:Span"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/time/SpanSugar$GrainOfTime.html#millisecond:org.scalatest.time.Span" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">millisecond</span><span class="result">: <a href="Span.html" class="extype" name="org.scalatest.time.Span">Span</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">A units method for one millisecond.</p><div class="fullcomment"><div class="comment cmt"><p>A units method for one millisecond.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>A <code>Span</code> representing the value passed to the constructor in milliseconds</p></dd></dl></div>
+    </li><li name="org.scalatest.time.SpanSugar.GrainOfTime#milliseconds" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="milliseconds:org.scalatest.time.Span"></a><a id="milliseconds:Span"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/time/SpanSugar$GrainOfTime.html#milliseconds:org.scalatest.time.Span" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">milliseconds</span><span class="result">: <a href="Span.html" class="extype" name="org.scalatest.time.Span">Span</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">A units method for milliseconds.</p><div class="fullcomment"><div class="comment cmt"><p>A units method for milliseconds.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>A <code>Span</code> representing the value passed to the constructor in milliseconds</p></dd></dl></div>
+    </li><li name="org.scalatest.time.SpanSugar.GrainOfTime#minute" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="minute:org.scalatest.time.Span"></a><a id="minute:Span"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/time/SpanSugar$GrainOfTime.html#minute:org.scalatest.time.Span" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">minute</span><span class="result">: <a href="Span.html" class="extype" name="org.scalatest.time.Span">Span</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">A units method for one minute.</p><div class="fullcomment"><div class="comment cmt"><p>A units method for one minute.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>A <code>Span</code> representing the value passed to the constructor in minutes</p></dd></dl></div>
+    </li><li name="org.scalatest.time.SpanSugar.GrainOfTime#minutes" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="minutes:org.scalatest.time.Span"></a><a id="minutes:Span"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/time/SpanSugar$GrainOfTime.html#minutes:org.scalatest.time.Span" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">minutes</span><span class="result">: <a href="Span.html" class="extype" name="org.scalatest.time.Span">Span</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">A units method for minutes.</p><div class="fullcomment"><div class="comment cmt"><p>A units method for minutes.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>A <code>Span</code> representing the value passed to the constructor in minutes</p></dd></dl></div>
+    </li><li name="org.scalatest.time.SpanSugar.GrainOfTime#nanosecond" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="nanosecond:org.scalatest.time.Span"></a><a id="nanosecond:Span"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/time/SpanSugar$GrainOfTime.html#nanosecond:org.scalatest.time.Span" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">nanosecond</span><span class="result">: <a href="Span.html" class="extype" name="org.scalatest.time.Span">Span</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">A units method for one nanosecond.</p><div class="fullcomment"><div class="comment cmt"><p>A units method for one nanosecond.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>A <code>Span</code> representing the value passed to the constructor in nanoseconds</p></dd></dl></div>
+    </li><li name="org.scalatest.time.SpanSugar.GrainOfTime#nanoseconds" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="nanoseconds:org.scalatest.time.Span"></a><a id="nanoseconds:Span"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/time/SpanSugar$GrainOfTime.html#nanoseconds:org.scalatest.time.Span" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">nanoseconds</span><span class="result">: <a href="Span.html" class="extype" name="org.scalatest.time.Span">Span</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">A units method for nanoseconds.</p><div class="fullcomment"><div class="comment cmt"><p>A units method for nanoseconds.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>A <code>Span</code> representing the value passed to the constructor in nanoseconds</p></dd></dl></div>
+    </li><li name="scala.AnyRef#ne" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ne(x$1:AnyRef):Boolean"></a><a id="ne(AnyRef):Boolean"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/time/SpanSugar$GrainOfTime.html#ne(x$1:AnyRef):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#notify" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notify():Unit"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/time/SpanSugar$GrainOfTime.html#notify():Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notify</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@native</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#notifyAll" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notifyAll():Unit"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/time/SpanSugar$GrainOfTime.html#notifyAll():Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notifyAll</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@native</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="org.scalatest.time.SpanSugar.GrainOfTime#second" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="second:org.scalatest.time.Span"></a><a id="second:Span"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/time/SpanSugar$GrainOfTime.html#second:org.scalatest.time.Span" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">second</span><span class="result">: <a href="Span.html" class="extype" name="org.scalatest.time.Span">Span</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">A units method for one second.</p><div class="fullcomment"><div class="comment cmt"><p>A units method for one second.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>A <code>Span</code> representing the value passed to the constructor in seconds</p></dd></dl></div>
+    </li><li name="org.scalatest.time.SpanSugar.GrainOfTime#seconds" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="seconds:org.scalatest.time.Span"></a><a id="seconds:Span"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/time/SpanSugar$GrainOfTime.html#seconds:org.scalatest.time.Span" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">seconds</span><span class="result">: <a href="Span.html" class="extype" name="org.scalatest.time.Span">Span</a></span>
+      </span>
+      
+      <p class="shortcomment cmt">A units method for seconds.</p><div class="fullcomment"><div class="comment cmt"><p>A units method for seconds.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>A <code>Span</code> representing the value passed to the constructor in seconds</p></dd></dl></div>
+    </li><li name="scala.AnyRef#synchronized" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="synchronized[T0](x$1:=&gt;T0):T0"></a><a id="synchronized[T0](⇒T0):T0"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/time/SpanSugar$GrainOfTime.html#synchronized[T0](x$1:=&gt;T0):T0" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">synchronized</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="params">(<span name="arg0">arg0: ⇒ <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>)</span><span class="result">: <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#toString" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="toString():String"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/time/SpanSugar$GrainOfTime.html#toString():String" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">toString</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait():Unit"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/time/SpanSugar$GrainOfTime.html#wait():Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long,x$2:Int):Unit"></a><a id="wait(Long,Int):Unit"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/time/SpanSugar$GrainOfTime.html#wait(x$1:Long,x$2:Int):Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>, <span name="arg1">arg1: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long):Unit"></a><a id="wait(Long):Unit"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatest/time/SpanSugar$GrainOfTime.html#wait(x$1:Long):Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@native</span><span class="args">()</span>
+              
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li>
+              </ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        <div class="parent" name="scala.AnyRef">
+              <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
+            </div><div class="parent" name="scala.Any">
+              <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
+            </div>
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+    </body>
+          </div>
+        </div>
+      </div>
+    </body>
+      </html>

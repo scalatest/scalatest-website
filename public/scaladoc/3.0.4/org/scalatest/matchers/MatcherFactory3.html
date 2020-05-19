@@ -1,0 +1,1553 @@
+<!DOCTYPE html >
+<html>
+        <head>
+          <title>MatcherFactory3 - ScalaTest 3.0.4 - org.scalatest.matchers.MatcherFactory3</title>
+          <meta name="description" content="MatcherFactory3 - ScalaTest 3.0.4 - org.scalatest.matchers.MatcherFactory3" />
+          <meta name="keywords" content="MatcherFactory3 ScalaTest 3.0.4 org.scalatest.matchers.MatcherFactory3" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../../../lib/jquery.js" id="jquery-js"></script>
+      <script type="text/javascript" src="../../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../lib/tools.tooltip.js"></script>
+      
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../../index.html';
+            var hash = 'org.scalatest.matchers.MatcherFactory3';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="type">
+
+<!-- Top of doc.scalatest.org [javascript] -->
+
+<script type="text/javascript">
+
+var rnd = window.rnd || Math.floor(Math.random()*10e6);
+
+var pid204546 = window.pid204546 || rnd;
+
+var plc204546 = window.plc204546 || 0;
+
+var abkw = window.abkw || '';
+
+var absrc = 'http://ab167933.adbutler-ikon.com/adserve/;ID=167933;size=468x60;setID=204546;type=js;sw='+screen.width+';sh='+screen.height+';spr='+window.devicePixelRatio+';kw='+abkw+';pid='+pid204546+';place='+(plc204546++)+';rnd='+rnd+';click=CLICK_MACRO_PLACEHOLDER';
+
+document.write('<scr'+'ipt src="'+absrc+'" type="text/javascript"></scr'+'ipt>');
+
+</script>
+
+      <div id="definition">
+        <a href="MatcherFactory3$.html" title="See companion object"><img alt="Class/Object" src="../../../lib/class_to_object_big.png" /></a>
+        <p id="owner"><a href="../../package.html" class="extype" name="org">org</a>.<a href="../package.html" class="extype" name="org.scalatest">scalatest</a>.<a href="package.html" class="extype" name="org.scalatest.matchers">matchers</a></p>
+        <h1><a href="MatcherFactory3$.html" title="See companion object">MatcherFactory3</a></h1><h3><span class="morelinks"><div>
+            Related Docs:
+            <a href="MatcherFactory3$.html" title="See companion object">object MatcherFactory3</a>
+            | <a href="package.html" class="extype" name="org.scalatest.matchers">package matchers</a>
+          </div></span></h3><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <span class="name">MatcherFactory3</span><span class="tparams">[<span name="SC">-SC</span>, <span name="TC1">TC1<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC2">TC2<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC3">TC3<span class="tparams">[<span name="_">_</span>]</span></span>]</span><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A matcher factory that can produce a matcher given three typeclass instances.</p><p>In the type parameters for this class, &quot;<code>SC</code>&quot; means <em>superclass</em>; &quot;<code>TC</code>&quot;
+(in <code>TC1</code>, <code>TC2</code>, <em>etc.</em>) means <em>typeclass</em>.
+This class's <code>matcher</code> factory method will produce a <code>Matcher[T]</code>, where <code>T</code> is a subtype of (or the same type
+as) <code>SC</code>, given a typeclass instance for each <code>TC<em>n</em></code>
+implicit parameter (for example, a <code>TC1[T]</code>, <code>TC2[T]</code>, <em>etc.</em>).</p></div><dl class="attributes block"> <dt>Self Type</dt><dd><a href="" class="extype" name="org.scalatest.matchers.MatcherFactory3">MatcherFactory3</a>[<span class="extype" name="org.scalatest.matchers.MatcherFactory3.SC">SC</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC1">TC1</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC2">TC2</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC3">TC3</span>]</dd><dt>Source</dt><dd><a href="https://github.com/scalatest/scalatest/tree/release-3.0.4/scalatest//scala/genfactories/MatcherFactory3.scala" target="_blank">MatcherFactory3.scala</a></dd></dl><div class="toggleContainer block">
+          <span class="toggle">Linear Supertypes</span>
+          <div class="superTypes hiddenContent"><span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+        </div></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        <div id="order">
+              <span class="filtertype">Ordering</span>
+              <ol>
+                
+                <li class="alpha in"><span>Alphabetic</span></li>
+                <li class="inherit out"><span>By Inheritance</span></li>
+              </ol>
+            </div>
+        <div id="ancestors">
+                <span class="filtertype">Inherited<br />
+                </span>
+                <ol id="linearization">
+                  <li class="in" name="org.scalatest.matchers.MatcherFactory3"><span>MatcherFactory3</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                </ol>
+              </div><div id="ancestors">
+            <span class="filtertype"></span>
+            <ol>
+              <li class="hideall out"><span>Hide All</span></li>
+              <li class="showall in"><span>Show All</span></li>
+            </ol>
+          </div>
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        <div id="constructors" class="members">
+              <h3>Instance Constructors</h3>
+              <ol><li name="org.scalatest.matchers.MatcherFactory3#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="&lt;init&gt;():org.scalatest.matchers.MatcherFactory3[SC,TC1,TC2,TC3]"></a>
+      <a id="&lt;init&gt;:MatcherFactory3[SC,TC1,TC2,TC3]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">new</span>
+      </span>
+      <span class="symbol">
+        <span class="name">MatcherFactory3</span><span class="params">()</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@&lt;init&gt;():org.scalatest.matchers.MatcherFactory3[SC,TC1,TC2,TC3]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li></ol>
+            </div>
+
+        <div id="types" class="types members">
+              <h3>Type Members</h3>
+              <ol><li name="org.scalatest.matchers.MatcherFactory3.AndBeWord" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="AndBeWordextendsAnyRef"></a>
+      <a id="AndBeWord:AndBeWord"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="MatcherFactory3$AndBeWord.html"><span class="name">AndBeWord</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@AndBeWordextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This class is part of the ScalaTest matchers DSL.</p><div class="fullcomment"><div class="comment cmt"><p>This class is part of the ScalaTest matchers DSL. Please see the documentation for <a href="../Matchers.html"><code>Matchers</code></a> for an overview of
+the matchers DSL.
+</p></div></div>
+    </li><li name="org.scalatest.matchers.MatcherFactory3.AndContainWord" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="AndContainWordextendsAnyRef"></a>
+      <a id="AndContainWord:AndContainWord"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="MatcherFactory3$AndContainWord.html"><span class="name">AndContainWord</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@AndContainWordextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This class is part of the ScalaTest matchers DSL.</p><div class="fullcomment"><div class="comment cmt"><p>This class is part of the ScalaTest matchers DSL. Please see the documentation for <a href="../Matchers.html"><code>Matchers</code></a> for an overview of
+the matchers DSL.
+</p></div></div>
+    </li><li name="org.scalatest.matchers.MatcherFactory3.AndEndWithWord" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="AndEndWithWordextendsAnyRef"></a>
+      <a id="AndEndWithWord:AndEndWithWord"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="MatcherFactory3$AndEndWithWord.html"><span class="name">AndEndWithWord</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@AndEndWithWordextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This class is part of the ScalaTest matchers DSL.</p><div class="fullcomment"><div class="comment cmt"><p>This class is part of the ScalaTest matchers DSL. Please see the documentation for <a href="../Matchers.html"><code>Matchers</code></a> for an overview of
+the matchers DSL.
+</p></div></div>
+    </li><li name="org.scalatest.matchers.MatcherFactory3.AndFullyMatchWord" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="AndFullyMatchWordextendsAnyRef"></a>
+      <a id="AndFullyMatchWord:AndFullyMatchWord"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="MatcherFactory3$AndFullyMatchWord.html"><span class="name">AndFullyMatchWord</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@AndFullyMatchWordextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This class is part of the ScalaTest matchers DSL.</p><div class="fullcomment"><div class="comment cmt"><p>This class is part of the ScalaTest matchers DSL. Please see the documentation for <a href="../Matchers.html"><code>Matchers</code></a> for an overview of
+the matchers DSL.
+</p></div></div>
+    </li><li name="org.scalatest.matchers.MatcherFactory3.AndHaveWord" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="AndHaveWordextendsAnyRef"></a>
+      <a id="AndHaveWord:AndHaveWord"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="MatcherFactory3$AndHaveWord.html"><span class="name">AndHaveWord</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@AndHaveWordextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This class is part of the ScalaTest matchers DSL.</p><div class="fullcomment"><div class="comment cmt"><p>This class is part of the ScalaTest matchers DSL. Please see the documentation for <a href="../Matchers.html"><code>Matchers</code></a> for an overview of
+the matchers DSL.
+</p></div></div>
+    </li><li name="org.scalatest.matchers.MatcherFactory3.AndIncludeWord" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="AndIncludeWordextendsAnyRef"></a>
+      <a id="AndIncludeWord:AndIncludeWord"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="MatcherFactory3$AndIncludeWord.html"><span class="name">AndIncludeWord</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@AndIncludeWordextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This class is part of the ScalaTest matchers DSL.</p><div class="fullcomment"><div class="comment cmt"><p>This class is part of the ScalaTest matchers DSL. Please see the documentation for <a href="../Matchers.html"><code>Matchers</code></a> for an overview of
+the matchers DSL.
+</p></div></div>
+    </li><li name="org.scalatest.matchers.MatcherFactory3.AndNotWord" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="AndNotWordextendsAnyRef"></a>
+      <a id="AndNotWord:AndNotWord"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="MatcherFactory3$AndNotWord.html"><span class="name">AndNotWord</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@AndNotWordextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This class is part of the ScalaTest matchers DSL.</p><div class="fullcomment"><div class="comment cmt"><p>This class is part of the ScalaTest matchers DSL. Please see the documentation for <a href="../Matchers.html"><code>Matchers</code></a> for an overview of
+the matchers DSL.
+</p></div></div>
+    </li><li name="org.scalatest.matchers.MatcherFactory3.AndStartWithWord" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="AndStartWithWordextendsAnyRef"></a>
+      <a id="AndStartWithWord:AndStartWithWord"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="MatcherFactory3$AndStartWithWord.html"><span class="name">AndStartWithWord</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@AndStartWithWordextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This class is part of the ScalaTest matchers DSL.</p><div class="fullcomment"><div class="comment cmt"><p>This class is part of the ScalaTest matchers DSL. Please see the documentation for <a href="../Matchers.html"><code>Matchers</code></a> for an overview of
+the matchers DSL.
+</p></div></div>
+    </li><li name="org.scalatest.matchers.MatcherFactory3.OrBeWord" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="OrBeWordextendsAnyRef"></a>
+      <a id="OrBeWord:OrBeWord"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="MatcherFactory3$OrBeWord.html"><span class="name">OrBeWord</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@OrBeWordextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This class is part of the ScalaTest matchers DSL.</p><div class="fullcomment"><div class="comment cmt"><p>This class is part of the ScalaTest matchers DSL. Please see the documentation for <a href="../Matchers.html"><code>Matchers</code></a> for an overview of
+the matchers DSL.
+</p></div></div>
+    </li><li name="org.scalatest.matchers.MatcherFactory3.OrContainWord" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="OrContainWordextendsAnyRef"></a>
+      <a id="OrContainWord:OrContainWord"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="MatcherFactory3$OrContainWord.html"><span class="name">OrContainWord</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@OrContainWordextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This class is part of the ScalaTest matchers DSL.</p><div class="fullcomment"><div class="comment cmt"><p>This class is part of the ScalaTest matchers DSL. Please see the documentation for <a href="../Matchers.html"><code>Matchers</code></a> for an overview of
+the matchers DSL.
+</p></div></div>
+    </li><li name="org.scalatest.matchers.MatcherFactory3.OrEndWithWord" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="OrEndWithWordextendsAnyRef"></a>
+      <a id="OrEndWithWord:OrEndWithWord"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="MatcherFactory3$OrEndWithWord.html"><span class="name">OrEndWithWord</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@OrEndWithWordextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This class is part of the ScalaTest matchers DSL.</p><div class="fullcomment"><div class="comment cmt"><p>This class is part of the ScalaTest matchers DSL. Please see the documentation for <a href="../Matchers.html"><code>Matchers</code></a> for an overview of
+the matchers DSL.
+</p></div></div>
+    </li><li name="org.scalatest.matchers.MatcherFactory3.OrFullyMatchWord" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="OrFullyMatchWordextendsAnyRef"></a>
+      <a id="OrFullyMatchWord:OrFullyMatchWord"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="MatcherFactory3$OrFullyMatchWord.html"><span class="name">OrFullyMatchWord</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@OrFullyMatchWordextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This class is part of the ScalaTest matchers DSL.</p><div class="fullcomment"><div class="comment cmt"><p>This class is part of the ScalaTest matchers DSL. Please see the documentation for <a href="../Matchers.html"><code>Matchers</code></a> for an overview of
+the matchers DSL.
+</p></div></div>
+    </li><li name="org.scalatest.matchers.MatcherFactory3.OrHaveWord" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="OrHaveWordextendsAnyRef"></a>
+      <a id="OrHaveWord:OrHaveWord"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="MatcherFactory3$OrHaveWord.html"><span class="name">OrHaveWord</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@OrHaveWordextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This class is part of the ScalaTest matchers DSL.</p><div class="fullcomment"><div class="comment cmt"><p>This class is part of the ScalaTest matchers DSL. Please see the documentation for <a href="../Matchers.html"><code>Matchers</code></a> for an overview of
+the matchers DSL.
+</p></div></div>
+    </li><li name="org.scalatest.matchers.MatcherFactory3.OrIncludeWord" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="OrIncludeWordextendsAnyRef"></a>
+      <a id="OrIncludeWord:OrIncludeWord"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="MatcherFactory3$OrIncludeWord.html"><span class="name">OrIncludeWord</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@OrIncludeWordextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This class is part of the ScalaTest matchers DSL.</p><div class="fullcomment"><div class="comment cmt"><p>This class is part of the ScalaTest matchers DSL. Please see the documentation for <a href="../Matchers.html"><code>Matchers</code></a> for an overview of
+the matchers DSL.
+</p></div></div>
+    </li><li name="org.scalatest.matchers.MatcherFactory3.OrNotWord" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="OrNotWordextendsAnyRef"></a>
+      <a id="OrNotWord:OrNotWord"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="MatcherFactory3$OrNotWord.html"><span class="name">OrNotWord</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@OrNotWordextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This class is part of the ScalaTest matchers DSL.</p><div class="fullcomment"><div class="comment cmt"><p>This class is part of the ScalaTest matchers DSL. Please see the documentation for <a href="../Matchers.html"><code>Matchers</code></a> for an overview of
+the matchers DSL.
+</p></div></div>
+    </li><li name="org.scalatest.matchers.MatcherFactory3.OrStartWithWord" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="OrStartWithWordextendsAnyRef"></a>
+      <a id="OrStartWithWord:OrStartWithWord"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="MatcherFactory3$OrStartWithWord.html"><span class="name">OrStartWithWord</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@OrStartWithWordextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This class is part of the ScalaTest matchers DSL.</p><div class="fullcomment"><div class="comment cmt"><p>This class is part of the ScalaTest matchers DSL. Please see the documentation for <a href="../Matchers.html"><code>Matchers</code></a> for an overview of
+the matchers DSL.
+</p></div></div>
+    </li></ol>
+            </div>
+
+        <div id="values" class="values members">
+              <h3>Abstract Value Members</h3>
+              <ol><li name="org.scalatest.matchers.MatcherFactory3#matcher" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="matcher[T&lt;:SC](implicitevidence$1:TC1[T],implicitevidence$2:TC2[T],implicitevidence$3:TC3[T]):org.scalatest.matchers.Matcher[T]"></a>
+      <a id="matcher[T&lt;:SC](TC1[T],TC2[T],TC3[T]):Matcher[T]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">matcher</span><span class="tparams">[<span name="T">T &lt;: <span class="extype" name="org.scalatest.matchers.MatcherFactory3.SC">SC</span></span>]</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC1">TC1</span>[<span class="extype" name="org.scalatest.matchers.MatcherFactory3.matcher.T">T</span>]</span>, <span name="arg1">arg1: <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC2">TC2</span>[<span class="extype" name="org.scalatest.matchers.MatcherFactory3.matcher.T">T</span>]</span>, <span name="arg2">arg2: <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC3">TC3</span>[<span class="extype" name="org.scalatest.matchers.MatcherFactory3.matcher.T">T</span>]</span>)</span><span class="result">: <a href="Matcher.html" class="extype" name="org.scalatest.matchers.Matcher">Matcher</a>[<span class="extype" name="org.scalatest.matchers.MatcherFactory3.matcher.T">T</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@matcher[T&lt;:SC](implicitevidence$1:TC1[T],implicitevidence$2:TC2[T],implicitevidence$3:TC3[T]):org.scalatest.matchers.Matcher[T]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Factory method that will produce a <code>Matcher[T]</code>, where <code>T</code> is a subtype of (or the same type
+as) <code>SC</code>, given a typeclass instance for each <code>TC<em>n</em></code>
+implicit parameter (for example, a <code>TC1[T]</code>, <code>TC2[T]</code>, <em>etc.</em>).</em></code></code></code></code></code></code></p><div class="fullcomment"><div class="comment cmt"><p>Factory method that will produce a <code>Matcher[T]</code>, where <code>T</code> is a subtype of (or the same type
+as) <code>SC</code>, given a typeclass instance for each <code>TC<em>n</em></code>
+implicit parameter (for example, a <code>TC1[T]</code>, <code>TC2[T]</code>, <em>etc.</em>).
+</p></div></div>
+    </li></ol>
+            </div>
+
+        <div id="values" class="values members">
+              <h3>Concrete Value Members</h3>
+              <ol><li name="scala.AnyRef#!=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="!=(x$1:Any):Boolean"></a>
+      <a id="!=(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@!=(x$1:Any):Boolean" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef###" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="##():Int"></a>
+      <a id="##():Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $hash$hash" class="name">##</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@##():Int" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#==" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="==(x$1:Any):Boolean"></a>
+      <a id="==(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@==(x$1:Any):Boolean" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="org.scalatest.matchers.MatcherFactory3#and" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="and(notExist:org.scalatest.words.ResultOfNotExist):org.scalatest.matchers.MatcherFactory4[SC,TC1,TC2,TC3,org.scalatest.enablers.Existence]"></a>
+      <a id="and(ResultOfNotExist):MatcherFactory4[SC,TC1,TC2,TC3,Existence]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">and</span><span class="params">(<span name="notExist">notExist: <a href="../words/ResultOfNotExist.html" class="extype" name="org.scalatest.words.ResultOfNotExist">ResultOfNotExist</a></span>)</span><span class="result">: <a href="MatcherFactory4.html" class="extype" name="org.scalatest.matchers.MatcherFactory4">MatcherFactory4</a>[<span class="extype" name="org.scalatest.matchers.MatcherFactory3.SC">SC</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC1">TC1</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC2">TC2</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC3">TC3</span>, <a href="../enablers/Existence.html" class="extype" name="org.scalatest.enablers.Existence">Existence</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@and(notExist:org.scalatest.words.ResultOfNotExist):org.scalatest.matchers.MatcherFactory4[SC,TC1,TC2,TC3,org.scalatest.enablers.Existence]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables the following syntax:</p><div class="fullcomment"><div class="comment cmt"><p>This method enables the following syntax:</p><p><pre class="stHighlighted">
+aMatcherFactory and not (exist)
+                ^
+</pre>
+</p></div></div>
+    </li><li name="org.scalatest.matchers.MatcherFactory3#and" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="and(existWord:org.scalatest.words.ExistWord):org.scalatest.matchers.MatcherFactory4[SC,TC1,TC2,TC3,org.scalatest.enablers.Existence]"></a>
+      <a id="and(ExistWord):MatcherFactory4[SC,TC1,TC2,TC3,Existence]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">and</span><span class="params">(<span name="existWord">existWord: <a href="../words/ExistWord.html" class="extype" name="org.scalatest.words.ExistWord">ExistWord</a></span>)</span><span class="result">: <a href="MatcherFactory4.html" class="extype" name="org.scalatest.matchers.MatcherFactory4">MatcherFactory4</a>[<span class="extype" name="org.scalatest.matchers.MatcherFactory3.SC">SC</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC1">TC1</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC2">TC2</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC3">TC3</span>, <a href="../enablers/Existence.html" class="extype" name="org.scalatest.enablers.Existence">Existence</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@and(existWord:org.scalatest.words.ExistWord):org.scalatest.matchers.MatcherFactory4[SC,TC1,TC2,TC3,org.scalatest.enablers.Existence]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables the following syntax:</p><div class="fullcomment"><div class="comment cmt"><p>This method enables the following syntax:</p><p><pre class="stHighlighted">
+aMatcherFactory and exist
+                ^
+</pre>
+</p></div></div>
+    </li><li name="org.scalatest.matchers.MatcherFactory3#and" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="and(notWord:org.scalatest.words.NotWord)(implicitprettifier:org.scalactic.Prettifier,implicitpos:org.scalactic.source.Position):MatcherFactory3.this.AndNotWord"></a>
+      <a id="and(NotWord)(Prettifier,Position):AndNotWord"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">and</span><span class="params">(<span name="notWord">notWord: <a href="../words/NotWord.html" class="extype" name="org.scalatest.words.NotWord">NotWord</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="prettifier">prettifier: <span class="extype" name="org.scalactic.Prettifier">Prettifier</span></span>, <span name="pos">pos: <span class="extype" name="org.scalactic.source.Position">Position</span></span>)</span><span class="result">: <a href="MatcherFactory3$AndNotWord.html" class="extype" name="org.scalatest.matchers.MatcherFactory3.AndNotWord">AndNotWord</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@and(notWord:org.scalatest.words.NotWord)(implicitprettifier:org.scalactic.Prettifier,implicitpos:org.scalactic.source.Position):MatcherFactory3.this.AndNotWord" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables the following syntax given a <code>MatcherFactory3</code>:</code></p><div class="fullcomment"><div class="comment cmt"><p>This method enables the following syntax given a <code>MatcherFactory3</code>:</p><p><pre class="stHighlighted">
+aMatcherFactory and not contain value (<span class="stLiteral">3</span>)
+                ^
+</pre>
+</p></div></div>
+    </li><li name="org.scalatest.matchers.MatcherFactory3#and" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="and(endWithWord:org.scalatest.words.EndWithWord):MatcherFactory3.this.AndEndWithWord"></a>
+      <a id="and(EndWithWord):AndEndWithWord"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">and</span><span class="params">(<span name="endWithWord">endWithWord: <a href="../words/EndWithWord.html" class="extype" name="org.scalatest.words.EndWithWord">EndWithWord</a></span>)</span><span class="result">: <a href="MatcherFactory3$AndEndWithWord.html" class="extype" name="org.scalatest.matchers.MatcherFactory3.AndEndWithWord">AndEndWithWord</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@and(endWithWord:org.scalatest.words.EndWithWord):MatcherFactory3.this.AndEndWithWord" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables the following syntax given a <code>MatcherFactory3</code>:</code></p><div class="fullcomment"><div class="comment cmt"><p>This method enables the following syntax given a <code>MatcherFactory3</code>:</p><p><pre class="stHighlighted">
+aMatcherFactory and endWith regex (decimalRegex)
+                ^
+</pre>
+</p></div></div>
+    </li><li name="org.scalatest.matchers.MatcherFactory3#and" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="and(startWithWord:org.scalatest.words.StartWithWord):MatcherFactory3.this.AndStartWithWord"></a>
+      <a id="and(StartWithWord):AndStartWithWord"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">and</span><span class="params">(<span name="startWithWord">startWithWord: <a href="../words/StartWithWord.html" class="extype" name="org.scalatest.words.StartWithWord">StartWithWord</a></span>)</span><span class="result">: <a href="MatcherFactory3$AndStartWithWord.html" class="extype" name="org.scalatest.matchers.MatcherFactory3.AndStartWithWord">AndStartWithWord</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@and(startWithWord:org.scalatest.words.StartWithWord):MatcherFactory3.this.AndStartWithWord" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables the following syntax given a <code>MatcherFactory3</code>:</code></p><div class="fullcomment"><div class="comment cmt"><p>This method enables the following syntax given a <code>MatcherFactory3</code>:</p><p><pre class="stHighlighted">
+aMatcherFactory and startWith regex (<span class="stQuotedString">"1.7"</span>)
+                ^
+</pre>
+</p></div></div>
+    </li><li name="org.scalatest.matchers.MatcherFactory3#and" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="and(includeWord:org.scalatest.words.IncludeWord):MatcherFactory3.this.AndIncludeWord"></a>
+      <a id="and(IncludeWord):AndIncludeWord"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">and</span><span class="params">(<span name="includeWord">includeWord: <a href="../words/IncludeWord.html" class="extype" name="org.scalatest.words.IncludeWord">IncludeWord</a></span>)</span><span class="result">: <a href="MatcherFactory3$AndIncludeWord.html" class="extype" name="org.scalatest.matchers.MatcherFactory3.AndIncludeWord">AndIncludeWord</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@and(includeWord:org.scalatest.words.IncludeWord):MatcherFactory3.this.AndIncludeWord" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables the following syntax given a <code>MatcherFactory3</code>:</code></p><div class="fullcomment"><div class="comment cmt"><p>This method enables the following syntax given a <code>MatcherFactory3</code>:</p><p><pre class="stHighlighted">
+aMatcherFactory and include regex (<span class="stQuotedString">"wor.d"</span>)
+                ^
+</pre>
+</p></div></div>
+    </li><li name="org.scalatest.matchers.MatcherFactory3#and" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="and(fullyMatchWord:org.scalatest.words.FullyMatchWord):MatcherFactory3.this.AndFullyMatchWord"></a>
+      <a id="and(FullyMatchWord):AndFullyMatchWord"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">and</span><span class="params">(<span name="fullyMatchWord">fullyMatchWord: <a href="../words/FullyMatchWord.html" class="extype" name="org.scalatest.words.FullyMatchWord">FullyMatchWord</a></span>)</span><span class="result">: <a href="MatcherFactory3$AndFullyMatchWord.html" class="extype" name="org.scalatest.matchers.MatcherFactory3.AndFullyMatchWord">AndFullyMatchWord</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@and(fullyMatchWord:org.scalatest.words.FullyMatchWord):MatcherFactory3.this.AndFullyMatchWord" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables the following syntax given a <code>MatcherFactory3</code>:</code></p><div class="fullcomment"><div class="comment cmt"><p>This method enables the following syntax given a <code>MatcherFactory3</code>:</p><p><pre class="stHighlighted">
+aMatcherFactory and fullyMatch regex (decimalRegex)
+                ^
+</pre>
+</p></div></div>
+    </li><li name="org.scalatest.matchers.MatcherFactory3#and" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="and(beWord:org.scalatest.words.BeWord):MatcherFactory3.this.AndBeWord"></a>
+      <a id="and(BeWord):AndBeWord"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">and</span><span class="params">(<span name="beWord">beWord: <a href="../words/BeWord.html" class="extype" name="org.scalatest.words.BeWord">BeWord</a></span>)</span><span class="result">: <a href="MatcherFactory3$AndBeWord.html" class="extype" name="org.scalatest.matchers.MatcherFactory3.AndBeWord">AndBeWord</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@and(beWord:org.scalatest.words.BeWord):MatcherFactory3.this.AndBeWord" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables the following syntax given a <code>MatcherFactory3</code>:</code></p><div class="fullcomment"><div class="comment cmt"><p>This method enables the following syntax given a <code>MatcherFactory3</code>:</p><p><pre class="stHighlighted">
+aMatcherFactory and be a (<span class="stQuotedString">'file</span>)
+                ^
+</pre>
+</p></div></div>
+    </li><li name="org.scalatest.matchers.MatcherFactory3#and" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="and(containWord:org.scalatest.words.ContainWord)(implicitprettifier:org.scalactic.Prettifier,implicitpos:org.scalactic.source.Position):MatcherFactory3.this.AndContainWord"></a>
+      <a id="and(ContainWord)(Prettifier,Position):AndContainWord"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">and</span><span class="params">(<span name="containWord">containWord: <a href="../words/ContainWord.html" class="extype" name="org.scalatest.words.ContainWord">ContainWord</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="prettifier">prettifier: <span class="extype" name="org.scalactic.Prettifier">Prettifier</span></span>, <span name="pos">pos: <span class="extype" name="org.scalactic.source.Position">Position</span></span>)</span><span class="result">: <a href="MatcherFactory3$AndContainWord.html" class="extype" name="org.scalatest.matchers.MatcherFactory3.AndContainWord">AndContainWord</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@and(containWord:org.scalatest.words.ContainWord)(implicitprettifier:org.scalactic.Prettifier,implicitpos:org.scalactic.source.Position):MatcherFactory3.this.AndContainWord" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables the following syntax given a <code>MatcherFactory3</code>:</code></p><div class="fullcomment"><div class="comment cmt"><p>This method enables the following syntax given a <code>MatcherFactory3</code>:</p><p><pre class="stHighlighted">
+aMatcherFactory and contain key (<span class="stQuotedString">"one"</span>)
+                ^
+</pre>
+</p></div></div>
+    </li><li name="org.scalatest.matchers.MatcherFactory3#and" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="and(haveWord:org.scalatest.words.HaveWord):MatcherFactory3.this.AndHaveWord"></a>
+      <a id="and(HaveWord):AndHaveWord"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">and</span><span class="params">(<span name="haveWord">haveWord: <a href="../words/HaveWord.html" class="extype" name="org.scalatest.words.HaveWord">HaveWord</a></span>)</span><span class="result">: <a href="MatcherFactory3$AndHaveWord.html" class="extype" name="org.scalatest.matchers.MatcherFactory3.AndHaveWord">AndHaveWord</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@and(haveWord:org.scalatest.words.HaveWord):MatcherFactory3.this.AndHaveWord" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables the following syntax given a <code>MatcherFactory3</code>:</code></p><div class="fullcomment"><div class="comment cmt"><p>This method enables the following syntax given a <code>MatcherFactory3</code>:</p><p><pre class="stHighlighted">
+aMatcherFactory and have size (<span class="stLiteral">3</span> - <span class="stLiteral">1</span>)
+                    ^
+</pre>
+</p></div></div>
+    </li><li name="org.scalatest.matchers.MatcherFactory3#and" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="and[U&lt;:SC,TC4[_],TC5[_],TC6[_],TC7[_],TC8[_],TC9[_]](rightMatcherFactory:org.scalatest.matchers.MatcherFactory6[U,TC4,TC5,TC6,TC7,TC8,TC9]):org.scalatest.matchers.MatcherFactory9[U,TC1,TC2,TC3,TC4,TC5,TC6,TC7,TC8,TC9]"></a>
+      <a id="and[U&lt;:SC,TC4[_],TC5[_],TC6[_],TC7[_],TC8[_],TC9[_]](MatcherFactory6[U,TC4,TC5,TC6,TC7,TC8,TC9]):MatcherFactory9[U,TC1,TC2,TC3,TC4,TC5,TC6,TC7,TC8,TC9]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">and</span><span class="tparams">[<span name="U">U &lt;: <span class="extype" name="org.scalatest.matchers.MatcherFactory3.SC">SC</span></span>, <span name="TC4">TC4<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC5">TC5<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC6">TC6<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC7">TC7<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC8">TC8<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC9">TC9<span class="tparams">[<span name="_">_</span>]</span></span>]</span><span class="params">(<span name="rightMatcherFactory">rightMatcherFactory: <a href="MatcherFactory6.html" class="extype" name="org.scalatest.matchers.MatcherFactory6">MatcherFactory6</a>[<span class="extype" name="org.scalatest.matchers.MatcherFactory3.and.U">U</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.and.TC4">TC4</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.and.TC5">TC5</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.and.TC6">TC6</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.and.TC7">TC7</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.and.TC8">TC8</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.and.TC9">TC9</span>]</span>)</span><span class="result">: <a href="MatcherFactory9.html" class="extype" name="org.scalatest.matchers.MatcherFactory9">MatcherFactory9</a>[<span class="extype" name="org.scalatest.matchers.MatcherFactory3.and.U">U</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC1">TC1</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC2">TC2</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC3">TC3</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.and.TC4">TC4</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.and.TC5">TC5</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.and.TC6">TC6</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.and.TC7">TC7</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.and.TC8">TC8</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.and.TC9">TC9</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@and[U&lt;:SC,TC4[_],TC5[_],TC6[_],TC7[_],TC8[_],TC9[_]](rightMatcherFactory:org.scalatest.matchers.MatcherFactory6[U,TC4,TC5,TC6,TC7,TC8,TC9]):org.scalatest.matchers.MatcherFactory9[U,TC1,TC2,TC3,TC4,TC5,TC6,TC7,TC8,TC9]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Ands this matcher factory with the passed matcher factory.</p>
+    </li><li name="org.scalatest.matchers.MatcherFactory3#and" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="and[U&lt;:SC,TC4[_],TC5[_],TC6[_],TC7[_],TC8[_]](rightMatcherFactory:org.scalatest.matchers.MatcherFactory5[U,TC4,TC5,TC6,TC7,TC8]):org.scalatest.matchers.MatcherFactory8[U,TC1,TC2,TC3,TC4,TC5,TC6,TC7,TC8]"></a>
+      <a id="and[U&lt;:SC,TC4[_],TC5[_],TC6[_],TC7[_],TC8[_]](MatcherFactory5[U,TC4,TC5,TC6,TC7,TC8]):MatcherFactory8[U,TC1,TC2,TC3,TC4,TC5,TC6,TC7,TC8]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">and</span><span class="tparams">[<span name="U">U &lt;: <span class="extype" name="org.scalatest.matchers.MatcherFactory3.SC">SC</span></span>, <span name="TC4">TC4<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC5">TC5<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC6">TC6<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC7">TC7<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC8">TC8<span class="tparams">[<span name="_">_</span>]</span></span>]</span><span class="params">(<span name="rightMatcherFactory">rightMatcherFactory: <a href="MatcherFactory5.html" class="extype" name="org.scalatest.matchers.MatcherFactory5">MatcherFactory5</a>[<span class="extype" name="org.scalatest.matchers.MatcherFactory3.and.U">U</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.and.TC4">TC4</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.and.TC5">TC5</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.and.TC6">TC6</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.and.TC7">TC7</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.and.TC8">TC8</span>]</span>)</span><span class="result">: <a href="MatcherFactory8.html" class="extype" name="org.scalatest.matchers.MatcherFactory8">MatcherFactory8</a>[<span class="extype" name="org.scalatest.matchers.MatcherFactory3.and.U">U</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC1">TC1</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC2">TC2</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC3">TC3</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.and.TC4">TC4</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.and.TC5">TC5</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.and.TC6">TC6</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.and.TC7">TC7</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.and.TC8">TC8</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@and[U&lt;:SC,TC4[_],TC5[_],TC6[_],TC7[_],TC8[_]](rightMatcherFactory:org.scalatest.matchers.MatcherFactory5[U,TC4,TC5,TC6,TC7,TC8]):org.scalatest.matchers.MatcherFactory8[U,TC1,TC2,TC3,TC4,TC5,TC6,TC7,TC8]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Ands this matcher factory with the passed matcher factory.</p>
+    </li><li name="org.scalatest.matchers.MatcherFactory3#and" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="and[U&lt;:SC,TC4[_],TC5[_],TC6[_],TC7[_]](rightMatcherFactory:org.scalatest.matchers.MatcherFactory4[U,TC4,TC5,TC6,TC7]):org.scalatest.matchers.MatcherFactory7[U,TC1,TC2,TC3,TC4,TC5,TC6,TC7]"></a>
+      <a id="and[U&lt;:SC,TC4[_],TC5[_],TC6[_],TC7[_]](MatcherFactory4[U,TC4,TC5,TC6,TC7]):MatcherFactory7[U,TC1,TC2,TC3,TC4,TC5,TC6,TC7]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">and</span><span class="tparams">[<span name="U">U &lt;: <span class="extype" name="org.scalatest.matchers.MatcherFactory3.SC">SC</span></span>, <span name="TC4">TC4<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC5">TC5<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC6">TC6<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC7">TC7<span class="tparams">[<span name="_">_</span>]</span></span>]</span><span class="params">(<span name="rightMatcherFactory">rightMatcherFactory: <a href="MatcherFactory4.html" class="extype" name="org.scalatest.matchers.MatcherFactory4">MatcherFactory4</a>[<span class="extype" name="org.scalatest.matchers.MatcherFactory3.and.U">U</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.and.TC4">TC4</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.and.TC5">TC5</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.and.TC6">TC6</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.and.TC7">TC7</span>]</span>)</span><span class="result">: <a href="MatcherFactory7.html" class="extype" name="org.scalatest.matchers.MatcherFactory7">MatcherFactory7</a>[<span class="extype" name="org.scalatest.matchers.MatcherFactory3.and.U">U</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC1">TC1</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC2">TC2</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC3">TC3</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.and.TC4">TC4</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.and.TC5">TC5</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.and.TC6">TC6</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.and.TC7">TC7</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@and[U&lt;:SC,TC4[_],TC5[_],TC6[_],TC7[_]](rightMatcherFactory:org.scalatest.matchers.MatcherFactory4[U,TC4,TC5,TC6,TC7]):org.scalatest.matchers.MatcherFactory7[U,TC1,TC2,TC3,TC4,TC5,TC6,TC7]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Ands this matcher factory with the passed matcher factory.</p>
+    </li><li name="org.scalatest.matchers.MatcherFactory3#and" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="and[U&lt;:SC,TC4[_],TC5[_],TC6[_]](rightMatcherFactory:org.scalatest.matchers.MatcherFactory3[U,TC4,TC5,TC6]):org.scalatest.matchers.MatcherFactory6[U,TC1,TC2,TC3,TC4,TC5,TC6]"></a>
+      <a id="and[U&lt;:SC,TC4[_],TC5[_],TC6[_]](MatcherFactory3[U,TC4,TC5,TC6]):MatcherFactory6[U,TC1,TC2,TC3,TC4,TC5,TC6]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">and</span><span class="tparams">[<span name="U">U &lt;: <span class="extype" name="org.scalatest.matchers.MatcherFactory3.SC">SC</span></span>, <span name="TC4">TC4<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC5">TC5<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC6">TC6<span class="tparams">[<span name="_">_</span>]</span></span>]</span><span class="params">(<span name="rightMatcherFactory">rightMatcherFactory: <a href="" class="extype" name="org.scalatest.matchers.MatcherFactory3">MatcherFactory3</a>[<span class="extype" name="org.scalatest.matchers.MatcherFactory3.and.U">U</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.and.TC4">TC4</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.and.TC5">TC5</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.and.TC6">TC6</span>]</span>)</span><span class="result">: <a href="MatcherFactory6.html" class="extype" name="org.scalatest.matchers.MatcherFactory6">MatcherFactory6</a>[<span class="extype" name="org.scalatest.matchers.MatcherFactory3.and.U">U</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC1">TC1</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC2">TC2</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC3">TC3</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.and.TC4">TC4</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.and.TC5">TC5</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.and.TC6">TC6</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@and[U&lt;:SC,TC4[_],TC5[_],TC6[_]](rightMatcherFactory:org.scalatest.matchers.MatcherFactory3[U,TC4,TC5,TC6]):org.scalatest.matchers.MatcherFactory6[U,TC1,TC2,TC3,TC4,TC5,TC6]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Ands this matcher factory with the passed matcher factory.</p>
+    </li><li name="org.scalatest.matchers.MatcherFactory3#and" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="and[U&lt;:SC,TC4[_],TC5[_]](rightMatcherFactory:org.scalatest.matchers.MatcherFactory2[U,TC4,TC5]):org.scalatest.matchers.MatcherFactory5[U,TC1,TC2,TC3,TC4,TC5]"></a>
+      <a id="and[U&lt;:SC,TC4[_],TC5[_]](MatcherFactory2[U,TC4,TC5]):MatcherFactory5[U,TC1,TC2,TC3,TC4,TC5]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">and</span><span class="tparams">[<span name="U">U &lt;: <span class="extype" name="org.scalatest.matchers.MatcherFactory3.SC">SC</span></span>, <span name="TC4">TC4<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC5">TC5<span class="tparams">[<span name="_">_</span>]</span></span>]</span><span class="params">(<span name="rightMatcherFactory">rightMatcherFactory: <a href="MatcherFactory2.html" class="extype" name="org.scalatest.matchers.MatcherFactory2">MatcherFactory2</a>[<span class="extype" name="org.scalatest.matchers.MatcherFactory3.and.U">U</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.and.TC4">TC4</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.and.TC5">TC5</span>]</span>)</span><span class="result">: <a href="MatcherFactory5.html" class="extype" name="org.scalatest.matchers.MatcherFactory5">MatcherFactory5</a>[<span class="extype" name="org.scalatest.matchers.MatcherFactory3.and.U">U</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC1">TC1</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC2">TC2</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC3">TC3</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.and.TC4">TC4</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.and.TC5">TC5</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@and[U&lt;:SC,TC4[_],TC5[_]](rightMatcherFactory:org.scalatest.matchers.MatcherFactory2[U,TC4,TC5]):org.scalatest.matchers.MatcherFactory5[U,TC1,TC2,TC3,TC4,TC5]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Ands this matcher factory with the passed matcher factory.</p>
+    </li><li name="org.scalatest.matchers.MatcherFactory3#and" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="and[U&lt;:SC,TC4[_]](rightMatcherFactory:org.scalatest.matchers.MatcherFactory1[U,TC4]):org.scalatest.matchers.MatcherFactory4[U,TC1,TC2,TC3,TC4]"></a>
+      <a id="and[U&lt;:SC,TC4[_]](MatcherFactory1[U,TC4]):MatcherFactory4[U,TC1,TC2,TC3,TC4]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">and</span><span class="tparams">[<span name="U">U &lt;: <span class="extype" name="org.scalatest.matchers.MatcherFactory3.SC">SC</span></span>, <span name="TC4">TC4<span class="tparams">[<span name="_">_</span>]</span></span>]</span><span class="params">(<span name="rightMatcherFactory">rightMatcherFactory: <a href="MatcherFactory1.html" class="extype" name="org.scalatest.matchers.MatcherFactory1">MatcherFactory1</a>[<span class="extype" name="org.scalatest.matchers.MatcherFactory3.and.U">U</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.and.TC4">TC4</span>]</span>)</span><span class="result">: <a href="MatcherFactory4.html" class="extype" name="org.scalatest.matchers.MatcherFactory4">MatcherFactory4</a>[<span class="extype" name="org.scalatest.matchers.MatcherFactory3.and.U">U</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC1">TC1</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC2">TC2</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC3">TC3</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.and.TC4">TC4</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@and[U&lt;:SC,TC4[_]](rightMatcherFactory:org.scalatest.matchers.MatcherFactory1[U,TC4]):org.scalatest.matchers.MatcherFactory4[U,TC1,TC2,TC3,TC4]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Ands this matcher factory with the passed matcher factory.</p>
+    </li><li name="org.scalatest.matchers.MatcherFactory3#and" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="and[U&lt;:SC](rightMatcherFactory:org.scalatest.matchers.MatcherFactory1[U,TC3]):org.scalatest.matchers.MatcherFactory3[U,TC1,TC2,TC3]"></a>
+      <a id="and[U&lt;:SC](MatcherFactory1[U,TC3]):MatcherFactory3[U,TC1,TC2,TC3]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">and</span><span class="tparams">[<span name="U">U &lt;: <span class="extype" name="org.scalatest.matchers.MatcherFactory3.SC">SC</span></span>]</span><span class="params">(<span name="rightMatcherFactory">rightMatcherFactory: <a href="MatcherFactory1.html" class="extype" name="org.scalatest.matchers.MatcherFactory1">MatcherFactory1</a>[<span class="extype" name="org.scalatest.matchers.MatcherFactory3.and.U">U</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC3">TC3</span>]</span>)</span><span class="result">: <a href="" class="extype" name="org.scalatest.matchers.MatcherFactory3">MatcherFactory3</a>[<span class="extype" name="org.scalatest.matchers.MatcherFactory3.and.U">U</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC1">TC1</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC2">TC2</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC3">TC3</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@and[U&lt;:SC](rightMatcherFactory:org.scalatest.matchers.MatcherFactory1[U,TC3]):org.scalatest.matchers.MatcherFactory3[U,TC1,TC2,TC3]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Ands this matcher factory with the passed <code>MatcherFactory1</code> that has the same final typeclass as this one.</code></p><div class="fullcomment"><div class="comment cmt"><p>Ands this matcher factory with the passed <code>MatcherFactory1</code> that has the same final typeclass as this one.
+</p></div></div>
+    </li><li name="org.scalatest.matchers.MatcherFactory3#and" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="and[U&lt;:SC](rightMatcher:org.scalatest.matchers.Matcher[U]):org.scalatest.matchers.MatcherFactory3[U,TC1,TC2,TC3]"></a>
+      <a id="and[U&lt;:SC](Matcher[U]):MatcherFactory3[U,TC1,TC2,TC3]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">and</span><span class="tparams">[<span name="U">U &lt;: <span class="extype" name="org.scalatest.matchers.MatcherFactory3.SC">SC</span></span>]</span><span class="params">(<span name="rightMatcher">rightMatcher: <a href="Matcher.html" class="extype" name="org.scalatest.matchers.Matcher">Matcher</a>[<span class="extype" name="org.scalatest.matchers.MatcherFactory3.and.U">U</span>]</span>)</span><span class="result">: <a href="" class="extype" name="org.scalatest.matchers.MatcherFactory3">MatcherFactory3</a>[<span class="extype" name="org.scalatest.matchers.MatcherFactory3.and.U">U</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC1">TC1</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC2">TC2</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC3">TC3</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@and[U&lt;:SC](rightMatcher:org.scalatest.matchers.Matcher[U]):org.scalatest.matchers.MatcherFactory3[U,TC1,TC2,TC3]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Ands this matcher factory with the passed matcher.</p>
+    </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="asInstanceOf[T0]:T0"></a>
+      <a id="asInstanceOf[T0]:T0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">asInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Any.asInstanceOf.T0">T0</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@asInstanceOf[T0]:T0" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="scala.AnyRef#clone" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="clone():Object"></a>
+      <a id="clone():AnyRef"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">clone</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@clone():Object" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.CloneNotSupportedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="eq(x$1:AnyRef):Boolean"></a>
+      <a id="eq(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@eq(x$1:AnyRef):Boolean" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#equals" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="equals(x$1:Any):Boolean"></a>
+      <a id="equals(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">equals</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@equals(x$1:Any):Boolean" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#finalize" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="finalize():Unit"></a>
+      <a id="finalize():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">finalize</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@finalize():Unit" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="symbol">classOf[java.lang.Throwable]</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#getClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getClass():Class[_]"></a>
+      <a id="getClass():Class[_]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getClass</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.Class">Class</span>[_]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@getClass():Class[_]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#hashCode" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="hashCode():Int"></a>
+      <a id="hashCode():Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">hashCode</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@hashCode():Int" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">isInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@isInstanceOf[T0]:Boolean" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ne(x$1:AnyRef):Boolean"></a>
+      <a id="ne(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@ne(x$1:AnyRef):Boolean" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#notify" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notify():Unit"></a>
+      <a id="notify():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notify</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@notify():Unit" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#notifyAll" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notifyAll():Unit"></a>
+      <a id="notifyAll():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notifyAll</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@notifyAll():Unit" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="org.scalatest.matchers.MatcherFactory3#or" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="or(notExist:org.scalatest.words.ResultOfNotExist):org.scalatest.matchers.MatcherFactory4[SC,TC1,TC2,TC3,org.scalatest.enablers.Existence]"></a>
+      <a id="or(ResultOfNotExist):MatcherFactory4[SC,TC1,TC2,TC3,Existence]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">or</span><span class="params">(<span name="notExist">notExist: <a href="../words/ResultOfNotExist.html" class="extype" name="org.scalatest.words.ResultOfNotExist">ResultOfNotExist</a></span>)</span><span class="result">: <a href="MatcherFactory4.html" class="extype" name="org.scalatest.matchers.MatcherFactory4">MatcherFactory4</a>[<span class="extype" name="org.scalatest.matchers.MatcherFactory3.SC">SC</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC1">TC1</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC2">TC2</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC3">TC3</span>, <a href="../enablers/Existence.html" class="extype" name="org.scalatest.enablers.Existence">Existence</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@or(notExist:org.scalatest.words.ResultOfNotExist):org.scalatest.matchers.MatcherFactory4[SC,TC1,TC2,TC3,org.scalatest.enablers.Existence]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables the following syntax:</p><div class="fullcomment"><div class="comment cmt"><p>This method enables the following syntax:</p><p><pre class="stHighlighted">
+aMatcherFactory or not (exist)
+                ^
+</pre>
+</p></div></div>
+    </li><li name="org.scalatest.matchers.MatcherFactory3#or" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="or(existWord:org.scalatest.words.ExistWord):org.scalatest.matchers.MatcherFactory4[SC,TC1,TC2,TC3,org.scalatest.enablers.Existence]"></a>
+      <a id="or(ExistWord):MatcherFactory4[SC,TC1,TC2,TC3,Existence]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">or</span><span class="params">(<span name="existWord">existWord: <a href="../words/ExistWord.html" class="extype" name="org.scalatest.words.ExistWord">ExistWord</a></span>)</span><span class="result">: <a href="MatcherFactory4.html" class="extype" name="org.scalatest.matchers.MatcherFactory4">MatcherFactory4</a>[<span class="extype" name="org.scalatest.matchers.MatcherFactory3.SC">SC</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC1">TC1</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC2">TC2</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC3">TC3</span>, <a href="../enablers/Existence.html" class="extype" name="org.scalatest.enablers.Existence">Existence</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@or(existWord:org.scalatest.words.ExistWord):org.scalatest.matchers.MatcherFactory4[SC,TC1,TC2,TC3,org.scalatest.enablers.Existence]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables the following syntax:</p><div class="fullcomment"><div class="comment cmt"><p>This method enables the following syntax:</p><p><pre class="stHighlighted">
+aMatcherFactory or exist
+                ^
+</pre>
+</p></div></div>
+    </li><li name="org.scalatest.matchers.MatcherFactory3#or" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="or(notWord:org.scalatest.words.NotWord)(implicitprettifier:org.scalactic.Prettifier,implicitpos:org.scalactic.source.Position):MatcherFactory3.this.OrNotWord"></a>
+      <a id="or(NotWord)(Prettifier,Position):OrNotWord"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">or</span><span class="params">(<span name="notWord">notWord: <a href="../words/NotWord.html" class="extype" name="org.scalatest.words.NotWord">NotWord</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="prettifier">prettifier: <span class="extype" name="org.scalactic.Prettifier">Prettifier</span></span>, <span name="pos">pos: <span class="extype" name="org.scalactic.source.Position">Position</span></span>)</span><span class="result">: <a href="MatcherFactory3$OrNotWord.html" class="extype" name="org.scalatest.matchers.MatcherFactory3.OrNotWord">OrNotWord</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@or(notWord:org.scalatest.words.NotWord)(implicitprettifier:org.scalactic.Prettifier,implicitpos:org.scalactic.source.Position):MatcherFactory3.this.OrNotWord" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables the following syntax given a <code>MatcherFactory3</code>:</code></p><div class="fullcomment"><div class="comment cmt"><p>This method enables the following syntax given a <code>MatcherFactory3</code>:</p><p><pre class="stHighlighted">
+aMatcherFactory or not contain value (<span class="stLiteral">3</span>)
+                ^
+</pre>
+</p></div></div>
+    </li><li name="org.scalatest.matchers.MatcherFactory3#or" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="or(endWithWord:org.scalatest.words.EndWithWord):MatcherFactory3.this.OrEndWithWord"></a>
+      <a id="or(EndWithWord):OrEndWithWord"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">or</span><span class="params">(<span name="endWithWord">endWithWord: <a href="../words/EndWithWord.html" class="extype" name="org.scalatest.words.EndWithWord">EndWithWord</a></span>)</span><span class="result">: <a href="MatcherFactory3$OrEndWithWord.html" class="extype" name="org.scalatest.matchers.MatcherFactory3.OrEndWithWord">OrEndWithWord</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@or(endWithWord:org.scalatest.words.EndWithWord):MatcherFactory3.this.OrEndWithWord" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables the following syntax given a <code>MatcherFactory3</code>:</code></p><div class="fullcomment"><div class="comment cmt"><p>This method enables the following syntax given a <code>MatcherFactory3</code>:</p><p><pre class="stHighlighted">
+aMatcherFactory or endWith regex (<span class="stQuotedString">"7b"</span>)
+                ^
+</pre>
+</p></div></div>
+    </li><li name="org.scalatest.matchers.MatcherFactory3#or" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="or(startWithWord:org.scalatest.words.StartWithWord):MatcherFactory3.this.OrStartWithWord"></a>
+      <a id="or(StartWithWord):OrStartWithWord"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">or</span><span class="params">(<span name="startWithWord">startWithWord: <a href="../words/StartWithWord.html" class="extype" name="org.scalatest.words.StartWithWord">StartWithWord</a></span>)</span><span class="result">: <a href="MatcherFactory3$OrStartWithWord.html" class="extype" name="org.scalatest.matchers.MatcherFactory3.OrStartWithWord">OrStartWithWord</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@or(startWithWord:org.scalatest.words.StartWithWord):MatcherFactory3.this.OrStartWithWord" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables the following syntax given a <code>MatcherFactory3</code>:</code></p><div class="fullcomment"><div class="comment cmt"><p>This method enables the following syntax given a <code>MatcherFactory3</code>:</p><p><pre class="stHighlighted">
+aMatcherFactory or startWith regex (<span class="stQuotedString">"1.7"</span>)
+                ^
+</pre>
+</p></div></div>
+    </li><li name="org.scalatest.matchers.MatcherFactory3#or" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="or(includeWord:org.scalatest.words.IncludeWord):MatcherFactory3.this.OrIncludeWord"></a>
+      <a id="or(IncludeWord):OrIncludeWord"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">or</span><span class="params">(<span name="includeWord">includeWord: <a href="../words/IncludeWord.html" class="extype" name="org.scalatest.words.IncludeWord">IncludeWord</a></span>)</span><span class="result">: <a href="MatcherFactory3$OrIncludeWord.html" class="extype" name="org.scalatest.matchers.MatcherFactory3.OrIncludeWord">OrIncludeWord</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@or(includeWord:org.scalatest.words.IncludeWord):MatcherFactory3.this.OrIncludeWord" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables the following syntax given a <code>MatcherFactory3</code>:</code></p><div class="fullcomment"><div class="comment cmt"><p>This method enables the following syntax given a <code>MatcherFactory3</code>:</p><p><pre class="stHighlighted">
+aMatcherFactory or include regex (<span class="stQuotedString">"1.7"</span>)
+                ^
+</pre>
+</p></div></div>
+    </li><li name="org.scalatest.matchers.MatcherFactory3#or" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="or(fullyMatchWord:org.scalatest.words.FullyMatchWord):MatcherFactory3.this.OrFullyMatchWord"></a>
+      <a id="or(FullyMatchWord):OrFullyMatchWord"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">or</span><span class="params">(<span name="fullyMatchWord">fullyMatchWord: <a href="../words/FullyMatchWord.html" class="extype" name="org.scalatest.words.FullyMatchWord">FullyMatchWord</a></span>)</span><span class="result">: <a href="MatcherFactory3$OrFullyMatchWord.html" class="extype" name="org.scalatest.matchers.MatcherFactory3.OrFullyMatchWord">OrFullyMatchWord</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@or(fullyMatchWord:org.scalatest.words.FullyMatchWord):MatcherFactory3.this.OrFullyMatchWord" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables the following syntax given a <code>MatcherFactory3</code>:</code></p><div class="fullcomment"><div class="comment cmt"><p>This method enables the following syntax given a <code>MatcherFactory3</code>:</p><p><pre class="stHighlighted">
+aMatcherFactory or fullyMatch regex (decimal)
+                ^
+</pre>
+</p></div></div>
+    </li><li name="org.scalatest.matchers.MatcherFactory3#or" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="or(beWord:org.scalatest.words.BeWord):MatcherFactory3.this.OrBeWord"></a>
+      <a id="or(BeWord):OrBeWord"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">or</span><span class="params">(<span name="beWord">beWord: <a href="../words/BeWord.html" class="extype" name="org.scalatest.words.BeWord">BeWord</a></span>)</span><span class="result">: <a href="MatcherFactory3$OrBeWord.html" class="extype" name="org.scalatest.matchers.MatcherFactory3.OrBeWord">OrBeWord</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@or(beWord:org.scalatest.words.BeWord):MatcherFactory3.this.OrBeWord" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables the following syntax given a <code>MatcherFactory3</code>:</code></p><div class="fullcomment"><div class="comment cmt"><p>This method enables the following syntax given a <code>MatcherFactory3</code>:</p><p><pre class="stHighlighted">
+aMatcherFactory or be a (<span class="stQuotedString">'directory</span>)
+                ^
+</pre>
+</p></div></div>
+    </li><li name="org.scalatest.matchers.MatcherFactory3#or" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="or(containWord:org.scalatest.words.ContainWord)(implicitprettifier:org.scalactic.Prettifier,implicitpos:org.scalactic.source.Position):MatcherFactory3.this.OrContainWord"></a>
+      <a id="or(ContainWord)(Prettifier,Position):OrContainWord"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">or</span><span class="params">(<span name="containWord">containWord: <a href="../words/ContainWord.html" class="extype" name="org.scalatest.words.ContainWord">ContainWord</a></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="prettifier">prettifier: <span class="extype" name="org.scalactic.Prettifier">Prettifier</span></span>, <span name="pos">pos: <span class="extype" name="org.scalactic.source.Position">Position</span></span>)</span><span class="result">: <a href="MatcherFactory3$OrContainWord.html" class="extype" name="org.scalatest.matchers.MatcherFactory3.OrContainWord">OrContainWord</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@or(containWord:org.scalatest.words.ContainWord)(implicitprettifier:org.scalactic.Prettifier,implicitpos:org.scalactic.source.Position):MatcherFactory3.this.OrContainWord" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables the following syntax given a <code>MatcherFactory3</code>:</code></p><div class="fullcomment"><div class="comment cmt"><p>This method enables the following syntax given a <code>MatcherFactory3</code>:</p><p><pre class="stHighlighted">
+(aMatcherFactory or contain value (<span class="stLiteral">1</span>))
+                 ^
+</pre>
+</p></div></div>
+    </li><li name="org.scalatest.matchers.MatcherFactory3#or" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="or(haveWord:org.scalatest.words.HaveWord):MatcherFactory3.this.OrHaveWord"></a>
+      <a id="or(HaveWord):OrHaveWord"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">or</span><span class="params">(<span name="haveWord">haveWord: <a href="../words/HaveWord.html" class="extype" name="org.scalatest.words.HaveWord">HaveWord</a></span>)</span><span class="result">: <a href="MatcherFactory3$OrHaveWord.html" class="extype" name="org.scalatest.matchers.MatcherFactory3.OrHaveWord">OrHaveWord</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@or(haveWord:org.scalatest.words.HaveWord):MatcherFactory3.this.OrHaveWord" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This method enables the following syntax given a <code>MatcherFactory3</code>:</code></p><div class="fullcomment"><div class="comment cmt"><p>This method enables the following syntax given a <code>MatcherFactory3</code>:</p><p><pre class="stHighlighted">
+aMatcherFactory or have size (<span class="stLiteral">3</span> - <span class="stLiteral">1</span>)
+                ^
+</pre>
+</p></div></div>
+    </li><li name="org.scalatest.matchers.MatcherFactory3#or" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="or[U&lt;:SC,TC4[_],TC5[_],TC6[_],TC7[_],TC8[_],TC9[_]](rightMatcherFactory:org.scalatest.matchers.MatcherFactory6[U,TC4,TC5,TC6,TC7,TC8,TC9]):org.scalatest.matchers.MatcherFactory9[U,TC1,TC2,TC3,TC4,TC5,TC6,TC7,TC8,TC9]"></a>
+      <a id="or[U&lt;:SC,TC4[_],TC5[_],TC6[_],TC7[_],TC8[_],TC9[_]](MatcherFactory6[U,TC4,TC5,TC6,TC7,TC8,TC9]):MatcherFactory9[U,TC1,TC2,TC3,TC4,TC5,TC6,TC7,TC8,TC9]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">or</span><span class="tparams">[<span name="U">U &lt;: <span class="extype" name="org.scalatest.matchers.MatcherFactory3.SC">SC</span></span>, <span name="TC4">TC4<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC5">TC5<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC6">TC6<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC7">TC7<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC8">TC8<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC9">TC9<span class="tparams">[<span name="_">_</span>]</span></span>]</span><span class="params">(<span name="rightMatcherFactory">rightMatcherFactory: <a href="MatcherFactory6.html" class="extype" name="org.scalatest.matchers.MatcherFactory6">MatcherFactory6</a>[<span class="extype" name="org.scalatest.matchers.MatcherFactory3.or.U">U</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.or.TC4">TC4</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.or.TC5">TC5</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.or.TC6">TC6</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.or.TC7">TC7</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.or.TC8">TC8</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.or.TC9">TC9</span>]</span>)</span><span class="result">: <a href="MatcherFactory9.html" class="extype" name="org.scalatest.matchers.MatcherFactory9">MatcherFactory9</a>[<span class="extype" name="org.scalatest.matchers.MatcherFactory3.or.U">U</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC1">TC1</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC2">TC2</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC3">TC3</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.or.TC4">TC4</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.or.TC5">TC5</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.or.TC6">TC6</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.or.TC7">TC7</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.or.TC8">TC8</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.or.TC9">TC9</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@or[U&lt;:SC,TC4[_],TC5[_],TC6[_],TC7[_],TC8[_],TC9[_]](rightMatcherFactory:org.scalatest.matchers.MatcherFactory6[U,TC4,TC5,TC6,TC7,TC8,TC9]):org.scalatest.matchers.MatcherFactory9[U,TC1,TC2,TC3,TC4,TC5,TC6,TC7,TC8,TC9]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Ors this matcher factory with the passed matcher factory.</p>
+    </li><li name="org.scalatest.matchers.MatcherFactory3#or" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="or[U&lt;:SC,TC4[_],TC5[_],TC6[_],TC7[_],TC8[_]](rightMatcherFactory:org.scalatest.matchers.MatcherFactory5[U,TC4,TC5,TC6,TC7,TC8]):org.scalatest.matchers.MatcherFactory8[U,TC1,TC2,TC3,TC4,TC5,TC6,TC7,TC8]"></a>
+      <a id="or[U&lt;:SC,TC4[_],TC5[_],TC6[_],TC7[_],TC8[_]](MatcherFactory5[U,TC4,TC5,TC6,TC7,TC8]):MatcherFactory8[U,TC1,TC2,TC3,TC4,TC5,TC6,TC7,TC8]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">or</span><span class="tparams">[<span name="U">U &lt;: <span class="extype" name="org.scalatest.matchers.MatcherFactory3.SC">SC</span></span>, <span name="TC4">TC4<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC5">TC5<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC6">TC6<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC7">TC7<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC8">TC8<span class="tparams">[<span name="_">_</span>]</span></span>]</span><span class="params">(<span name="rightMatcherFactory">rightMatcherFactory: <a href="MatcherFactory5.html" class="extype" name="org.scalatest.matchers.MatcherFactory5">MatcherFactory5</a>[<span class="extype" name="org.scalatest.matchers.MatcherFactory3.or.U">U</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.or.TC4">TC4</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.or.TC5">TC5</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.or.TC6">TC6</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.or.TC7">TC7</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.or.TC8">TC8</span>]</span>)</span><span class="result">: <a href="MatcherFactory8.html" class="extype" name="org.scalatest.matchers.MatcherFactory8">MatcherFactory8</a>[<span class="extype" name="org.scalatest.matchers.MatcherFactory3.or.U">U</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC1">TC1</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC2">TC2</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC3">TC3</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.or.TC4">TC4</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.or.TC5">TC5</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.or.TC6">TC6</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.or.TC7">TC7</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.or.TC8">TC8</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@or[U&lt;:SC,TC4[_],TC5[_],TC6[_],TC7[_],TC8[_]](rightMatcherFactory:org.scalatest.matchers.MatcherFactory5[U,TC4,TC5,TC6,TC7,TC8]):org.scalatest.matchers.MatcherFactory8[U,TC1,TC2,TC3,TC4,TC5,TC6,TC7,TC8]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Ors this matcher factory with the passed matcher factory.</p>
+    </li><li name="org.scalatest.matchers.MatcherFactory3#or" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="or[U&lt;:SC,TC4[_],TC5[_],TC6[_],TC7[_]](rightMatcherFactory:org.scalatest.matchers.MatcherFactory4[U,TC4,TC5,TC6,TC7]):org.scalatest.matchers.MatcherFactory7[U,TC1,TC2,TC3,TC4,TC5,TC6,TC7]"></a>
+      <a id="or[U&lt;:SC,TC4[_],TC5[_],TC6[_],TC7[_]](MatcherFactory4[U,TC4,TC5,TC6,TC7]):MatcherFactory7[U,TC1,TC2,TC3,TC4,TC5,TC6,TC7]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">or</span><span class="tparams">[<span name="U">U &lt;: <span class="extype" name="org.scalatest.matchers.MatcherFactory3.SC">SC</span></span>, <span name="TC4">TC4<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC5">TC5<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC6">TC6<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC7">TC7<span class="tparams">[<span name="_">_</span>]</span></span>]</span><span class="params">(<span name="rightMatcherFactory">rightMatcherFactory: <a href="MatcherFactory4.html" class="extype" name="org.scalatest.matchers.MatcherFactory4">MatcherFactory4</a>[<span class="extype" name="org.scalatest.matchers.MatcherFactory3.or.U">U</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.or.TC4">TC4</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.or.TC5">TC5</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.or.TC6">TC6</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.or.TC7">TC7</span>]</span>)</span><span class="result">: <a href="MatcherFactory7.html" class="extype" name="org.scalatest.matchers.MatcherFactory7">MatcherFactory7</a>[<span class="extype" name="org.scalatest.matchers.MatcherFactory3.or.U">U</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC1">TC1</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC2">TC2</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC3">TC3</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.or.TC4">TC4</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.or.TC5">TC5</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.or.TC6">TC6</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.or.TC7">TC7</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@or[U&lt;:SC,TC4[_],TC5[_],TC6[_],TC7[_]](rightMatcherFactory:org.scalatest.matchers.MatcherFactory4[U,TC4,TC5,TC6,TC7]):org.scalatest.matchers.MatcherFactory7[U,TC1,TC2,TC3,TC4,TC5,TC6,TC7]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Ors this matcher factory with the passed matcher factory.</p>
+    </li><li name="org.scalatest.matchers.MatcherFactory3#or" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="or[U&lt;:SC,TC4[_],TC5[_],TC6[_]](rightMatcherFactory:org.scalatest.matchers.MatcherFactory3[U,TC4,TC5,TC6]):org.scalatest.matchers.MatcherFactory6[U,TC1,TC2,TC3,TC4,TC5,TC6]"></a>
+      <a id="or[U&lt;:SC,TC4[_],TC5[_],TC6[_]](MatcherFactory3[U,TC4,TC5,TC6]):MatcherFactory6[U,TC1,TC2,TC3,TC4,TC5,TC6]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">or</span><span class="tparams">[<span name="U">U &lt;: <span class="extype" name="org.scalatest.matchers.MatcherFactory3.SC">SC</span></span>, <span name="TC4">TC4<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC5">TC5<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC6">TC6<span class="tparams">[<span name="_">_</span>]</span></span>]</span><span class="params">(<span name="rightMatcherFactory">rightMatcherFactory: <a href="" class="extype" name="org.scalatest.matchers.MatcherFactory3">MatcherFactory3</a>[<span class="extype" name="org.scalatest.matchers.MatcherFactory3.or.U">U</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.or.TC4">TC4</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.or.TC5">TC5</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.or.TC6">TC6</span>]</span>)</span><span class="result">: <a href="MatcherFactory6.html" class="extype" name="org.scalatest.matchers.MatcherFactory6">MatcherFactory6</a>[<span class="extype" name="org.scalatest.matchers.MatcherFactory3.or.U">U</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC1">TC1</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC2">TC2</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC3">TC3</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.or.TC4">TC4</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.or.TC5">TC5</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.or.TC6">TC6</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@or[U&lt;:SC,TC4[_],TC5[_],TC6[_]](rightMatcherFactory:org.scalatest.matchers.MatcherFactory3[U,TC4,TC5,TC6]):org.scalatest.matchers.MatcherFactory6[U,TC1,TC2,TC3,TC4,TC5,TC6]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Ors this matcher factory with the passed matcher factory.</p>
+    </li><li name="org.scalatest.matchers.MatcherFactory3#or" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="or[U&lt;:SC,TC4[_],TC5[_]](rightMatcherFactory:org.scalatest.matchers.MatcherFactory2[U,TC4,TC5]):org.scalatest.matchers.MatcherFactory5[U,TC1,TC2,TC3,TC4,TC5]"></a>
+      <a id="or[U&lt;:SC,TC4[_],TC5[_]](MatcherFactory2[U,TC4,TC5]):MatcherFactory5[U,TC1,TC2,TC3,TC4,TC5]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">or</span><span class="tparams">[<span name="U">U &lt;: <span class="extype" name="org.scalatest.matchers.MatcherFactory3.SC">SC</span></span>, <span name="TC4">TC4<span class="tparams">[<span name="_">_</span>]</span></span>, <span name="TC5">TC5<span class="tparams">[<span name="_">_</span>]</span></span>]</span><span class="params">(<span name="rightMatcherFactory">rightMatcherFactory: <a href="MatcherFactory2.html" class="extype" name="org.scalatest.matchers.MatcherFactory2">MatcherFactory2</a>[<span class="extype" name="org.scalatest.matchers.MatcherFactory3.or.U">U</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.or.TC4">TC4</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.or.TC5">TC5</span>]</span>)</span><span class="result">: <a href="MatcherFactory5.html" class="extype" name="org.scalatest.matchers.MatcherFactory5">MatcherFactory5</a>[<span class="extype" name="org.scalatest.matchers.MatcherFactory3.or.U">U</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC1">TC1</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC2">TC2</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC3">TC3</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.or.TC4">TC4</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.or.TC5">TC5</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@or[U&lt;:SC,TC4[_],TC5[_]](rightMatcherFactory:org.scalatest.matchers.MatcherFactory2[U,TC4,TC5]):org.scalatest.matchers.MatcherFactory5[U,TC1,TC2,TC3,TC4,TC5]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Ors this matcher factory with the passed matcher factory.</p>
+    </li><li name="org.scalatest.matchers.MatcherFactory3#or" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="or[U&lt;:SC,TC4[_]](rightMatcherFactory:org.scalatest.matchers.MatcherFactory1[U,TC4]):org.scalatest.matchers.MatcherFactory4[U,TC1,TC2,TC3,TC4]"></a>
+      <a id="or[U&lt;:SC,TC4[_]](MatcherFactory1[U,TC4]):MatcherFactory4[U,TC1,TC2,TC3,TC4]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">or</span><span class="tparams">[<span name="U">U &lt;: <span class="extype" name="org.scalatest.matchers.MatcherFactory3.SC">SC</span></span>, <span name="TC4">TC4<span class="tparams">[<span name="_">_</span>]</span></span>]</span><span class="params">(<span name="rightMatcherFactory">rightMatcherFactory: <a href="MatcherFactory1.html" class="extype" name="org.scalatest.matchers.MatcherFactory1">MatcherFactory1</a>[<span class="extype" name="org.scalatest.matchers.MatcherFactory3.or.U">U</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.or.TC4">TC4</span>]</span>)</span><span class="result">: <a href="MatcherFactory4.html" class="extype" name="org.scalatest.matchers.MatcherFactory4">MatcherFactory4</a>[<span class="extype" name="org.scalatest.matchers.MatcherFactory3.or.U">U</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC1">TC1</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC2">TC2</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC3">TC3</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.or.TC4">TC4</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@or[U&lt;:SC,TC4[_]](rightMatcherFactory:org.scalatest.matchers.MatcherFactory1[U,TC4]):org.scalatest.matchers.MatcherFactory4[U,TC1,TC2,TC3,TC4]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Ors this matcher factory with the passed matcher factory.</p>
+    </li><li name="org.scalatest.matchers.MatcherFactory3#or" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="or[U&lt;:SC](rightMatcherFactory:org.scalatest.matchers.MatcherFactory1[U,TC3]):org.scalatest.matchers.MatcherFactory3[U,TC1,TC2,TC3]"></a>
+      <a id="or[U&lt;:SC](MatcherFactory1[U,TC3]):MatcherFactory3[U,TC1,TC2,TC3]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">or</span><span class="tparams">[<span name="U">U &lt;: <span class="extype" name="org.scalatest.matchers.MatcherFactory3.SC">SC</span></span>]</span><span class="params">(<span name="rightMatcherFactory">rightMatcherFactory: <a href="MatcherFactory1.html" class="extype" name="org.scalatest.matchers.MatcherFactory1">MatcherFactory1</a>[<span class="extype" name="org.scalatest.matchers.MatcherFactory3.or.U">U</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC3">TC3</span>]</span>)</span><span class="result">: <a href="" class="extype" name="org.scalatest.matchers.MatcherFactory3">MatcherFactory3</a>[<span class="extype" name="org.scalatest.matchers.MatcherFactory3.or.U">U</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC1">TC1</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC2">TC2</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC3">TC3</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@or[U&lt;:SC](rightMatcherFactory:org.scalatest.matchers.MatcherFactory1[U,TC3]):org.scalatest.matchers.MatcherFactory3[U,TC1,TC2,TC3]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Ors this matcher factory with the passed <code>MatcherFactory1</code> that has the same final typeclass as this one.</code></p><div class="fullcomment"><div class="comment cmt"><p>Ors this matcher factory with the passed <code>MatcherFactory1</code> that has the same final typeclass as this one.
+</p></div></div>
+    </li><li name="org.scalatest.matchers.MatcherFactory3#or" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="or[U&lt;:SC](rightMatcher:org.scalatest.matchers.Matcher[U]):org.scalatest.matchers.MatcherFactory3[U,TC1,TC2,TC3]"></a>
+      <a id="or[U&lt;:SC](Matcher[U]):MatcherFactory3[U,TC1,TC2,TC3]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">or</span><span class="tparams">[<span name="U">U &lt;: <span class="extype" name="org.scalatest.matchers.MatcherFactory3.SC">SC</span></span>]</span><span class="params">(<span name="rightMatcher">rightMatcher: <a href="Matcher.html" class="extype" name="org.scalatest.matchers.Matcher">Matcher</a>[<span class="extype" name="org.scalatest.matchers.MatcherFactory3.or.U">U</span>]</span>)</span><span class="result">: <a href="" class="extype" name="org.scalatest.matchers.MatcherFactory3">MatcherFactory3</a>[<span class="extype" name="org.scalatest.matchers.MatcherFactory3.or.U">U</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC1">TC1</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC2">TC2</span>, <span class="extype" name="org.scalatest.matchers.MatcherFactory3.TC3">TC3</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@or[U&lt;:SC](rightMatcher:org.scalatest.matchers.Matcher[U]):org.scalatest.matchers.MatcherFactory3[U,TC1,TC2,TC3]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Ors this matcher factory with the passed matcher.</p>
+    </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
+      <a id="synchronized[T0](⇒T0):T0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">synchronized</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="params">(<span name="arg0">arg0: ⇒ <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>)</span><span class="result">: <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@synchronized[T0](x$1:=&gt;T0):T0" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="toString():String"></a>
+      <a id="toString():String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">toString</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@toString():String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait():Unit"></a>
+      <a id="wait():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@wait():Unit" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long,x$2:Int):Unit"></a>
+      <a id="wait(Long,Int):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>, <span name="arg1">arg1: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@wait(x$1:Long,x$2:Int):Unit" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long):Unit"></a>
+      <a id="wait(Long):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.scalatest.matchers.MatcherFactory3@wait(x$1:Long):Unit" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        <div class="parent" name="scala.AnyRef">
+              <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
+            </div><div class="parent" name="scala.Any">
+              <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
+            </div>
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+
+
+    </body>
+      </html>

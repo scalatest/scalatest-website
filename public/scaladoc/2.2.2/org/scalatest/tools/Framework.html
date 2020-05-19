@@ -1,0 +1,551 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+        <head>
+          <title>Framework - ScalaTest 2.2.2-SNAPSHOT - org.scalatest.tools.Framework</title>
+          <meta name="description" content="Framework - ScalaTest 2.2.2 - SNAPSHOT - org.scalatest.tools.Framework" />
+          <meta name="keywords" content="Framework ScalaTest 2.2.2 SNAPSHOT org.scalatest.tools.Framework" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../../../lib/jquery.js" id="jquery-js"></script>
+      <script type="text/javascript" src="../../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../lib/tools.tooltip.js"></script>
+      
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../../index.html';
+            var hash = 'org.scalatest.tools.Framework';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+
+<script>
+ (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+ })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ 
+ ga('create', 'UA-71294502-3', 'auto');
+ ga('send', 'pageview');
+ 
+</script>
+        </head>
+        <body class="type">
+
+<!-- Top of doc.scalatest.org [javascript] -->
+
+<script type="text/javascript">
+
+var rnd = window.rnd || Math.floor(Math.random()*10e6);
+
+var pid204546 = window.pid204546 || rnd;
+
+var plc204546 = window.plc204546 || 0;
+
+var abkw = window.abkw || '';
+
+var absrc = 'http://ab167933.adbutler-ikon.com/adserve/;ID=167933;size=468x60;setID=204546;type=js;sw='+screen.width+';sh='+screen.height+';spr='+window.devicePixelRatio+';kw='+abkw+';pid='+pid204546+';place='+(plc204546++)+';rnd='+rnd+';click=CLICK_MACRO_PLACEHOLDER';
+
+document.write('<scr'+'ipt src="'+absrc+'" type="text/javascript"></scr'+'ipt>');
+
+</script>
+
+      <div id="definition">
+        <img src="../../../lib/class_big.png" />
+        <p id="owner"><a href="../../package.html" class="extype" name="org">org</a>.<a href="../package.html" class="extype" name="org.scalatest">scalatest</a>.<a href="package.html" class="extype" name="org.scalatest.tools">tools</a></p>
+        <h1>Framework</h1>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Framework</span><span class="result"> extends <span class="extype" name="sbt.testing.Framework">sbt.testing.Framework</span></span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>This class is ScalaTest's implementation of the new Framework API that is supported in sbt 0.13.</p><p>To use ScalaTest in sbt, you should add ScalaTest as dependency in your sbt build file, the following shows an example
+for using ScalaTest 2.0 with Scala 2.10.x project:</p><p><pre class="stHighlighted">
+<span class="stQuotedString">&quot;org.scalatest&quot;</span> % <span class="stQuotedString">&quot;scalatest_2.10&quot;</span> % <span class="stQuotedString">&quot;2.0&quot;</span> % <span class="stQuotedString">&quot;test&quot;</span>
+</pre></p><p>To pass argument to ScalaTest from sbt, you can use <code>testOptions</code>:</p><p><pre class="stHighlighted">
+testOptions in <span class="stType">Test</span> += <span class="stType">Tests.Argument</span>(<span class="stQuotedString">&quot;-h&quot;</span>, <span class="stQuotedString">&quot;target/html&quot;</span>)  <span class="stLineComment">// Use HtmlReporter</span>
+</pre></p><p>If you are using multiple testing frameworks, you can pass arguments specific to ScalaTest only:</p><p><pre class="stHighlighted">
+testOptions in <span class="stType">Test</span> += <span class="stType">Tests.Argument</span>(<span class="stType">TestFrameworks.ScalaTest</span>, <span class="stQuotedString">&quot;-h&quot;</span>, <span class="stQuotedString">&quot;target/html&quot;</span>) <span class="stLineComment">// Use HtmlReporter</span>
+</pre></p><h5> Supported arguments </h5><p>Integration in sbt 0.13 supports same argument format as <a href="Runner$.html" class="extype" name="org.scalatest.tools.Runner"><code>Runner</code></a>,
+except the following arguments:</p><ul><li><code>-p</code>, <code>-R</code> -- runpath is not supported because test path and discovery is handled by sbt</li><li><code>-s</code> -- suite is not supported because sbt's <code>test-only</code> serves the similar purpose</li><li><code>-A</code> -- again is not supported because sbt's <code>test-quick</code> serves the similar purpose</li><li><code>-j</code> -- junit is not supported because in sbt different test framework should be supported by its corresponding <code>Framework</code> implementation</li><li><code>-b</code> -- testng is not supported because in sbt different test framework should be supported by its corresponding <code>Framework</code> implementation</li><li><code>-c</code>, <code>-P</code> -- concurrent/parallel is not supported because parallel execution is controlled by sbt.</li><li><code>-q</code> is not supported because test discovery should be handled by sbt, and sbt's test-only or test filter serves the similar purpose</li><li><code>-T</code> is not supported because correct ordering of text output is handled by sbt</li><li><code>-g</code> is not supported because current Graphic Reporter implementation works differently than standard reporter</li></ul><h5> New Features of New Framework API </h5><p><a href="https://github.com/sbt/test-interface">New Framework API</a> supports a number of new features that ScalaTest has utilized to support a better testing
+experience in sbt.  The followings are summary of new features supported by the new Framework API:</p><ul><li>Specified behavior of single instance of <code>Runner</code> per project run (non-fork), and a new <code>done</code> method</li><li>API to return nested tasks</li><li>API to support test execution in <code>fork</code> mode</li><li>Selector API to selectively run tests</li><li>Added new <code>Ignored</code>, <code>Canceled</code> and <code>Pending</code> status</li><li>Added sbt Tagging support</li></ul><h5> Specified behavior of single instance of <code>Runner</code> per project run (non-fork), and a new <code>done</code> method </h5><p>In new Framework API, it is now a specified behavior that <code>Framework</code>'s <code>runner</code> method will be called
+to get a <code>Runner</code> instance once per project run.  Arguments will be passed when calling <code>Framework</code>'s <code>runner</code>
+and this gives ScalaTest a good place to perform setup tasks, such as initializing <code>Reporter</code>s.</p><p>There's also a new <code>done</code> on <code>Runner</code> interface, which in turns provide a good spot for ScalaTest to perform
+cleanup tasks, such as disposing the <code>Reporter</code>s.  <span class="extype" name="org.scalatest.tools.HtmlReporter"><code>HtmlReporter</code></span> depends
+on this behavior to generate its <code>index.html</code>.  In addition, <code>done</code> can return framework-specific summary text
+for sbt to render at the end of the project run, which allows ScalaTest to return its own summary text.</p><h5> API to return nested <code>Suite</code>s as sbt <code>Task</code>s </h5><p>In sbt versions before 0.13, ScalaTest's nested suites were always executed sequentially regardless of the <code>parallelExecution</code> value of the sbt build.
+In new Framework API, a new concept of <a href="https://github.com/sbt/test-interface/blob/master/src/main/java/sbt/testing/Task.java"><code>Task</code></a>
+was introduced. A <code>Task</code> has an <code>execute</code> method that can return more <code>Task</code>s for execution.  When <code>parallelExecution</code>
+is set to <code>true</code> (sbt's default), sbt will execute returned tasks in parallel.</p><p>Each <code>Suite</code> in ScalaTest maps to a <code>Task</code> in sbt. Any nested suites of a <code>Suite</code> executed by sbt are returned to sbt
+as <code>Task</code>s so that sbt can execute them using its own thread pool, either in parallel (sbt's default), or on a single thread if sequential execution
+was requested by the sbt build. The way <code>Framework</code> achieves this behavior is by inserting a <code>Distributor</code> that records any nested suites
+added to it, passing those <code>Suites</code> back to sbt as <code>Task</code>s.</p><p>Note that the way nested suites are executed sequentially is different when using sbt than when running directly with ScalaTest. The reason
+is that when ScalaTest executes sequentially, it passes in <code>None</code> for the <code>Option[Distributor]</code> parameter, where as <code>Framework</code> passes
+in <code>Some[Distributor]</code> to collect the nested suites so they can be returned to sbt as <code>Task</code>s. As a result, when ScalaTest executes a <code>Suite</code> sequentially,
+that <code>Suite</code>'s nested suites are executed <em>before</em> its tests. When sbt asks ScalaTest through this <code>Framework</code> class to execute a <code>Suite</code> sequentially,
+the <code>Suite</code>'s nested suites will be executed <em>after</em> its tests.
+To make nested suites run sequentially before the tests when using sbt, mix in trait <a href="../SequentialNestedSuiteExecution.html"><code>SequentialNestedSuiteExecution</code></a>,
+which overrides <code>runNestedSuites</code> to replace the <code>Some[Distributor]</code> passed in by <code>Framework</code> with <code>None</code>.</p><h5> API to support test execution in <code>fork</code> mode </h5><p>Forking was added to sbt since version 0.12, you can find documentation for forking support in sbt at <a href="http://www.scala-sbt.org/0.13.0/docs/Detailed-Topics/Forking.html">Forking in sbt</a>.</p><p>Although forking is already available in sbt since 0.12, there's no support in old Framework API, until it is added in new Framework API that is supported in
+sbt 0.13.  With API provided with new Framework API, ScalaTest creates real <code>Reporter</code>s in the main process, and uses <code>SocketReporter</code>
+in forked process to send events back to the main process, and get processed by real <code>Reporter</code>s at the main process.  All of this is transparent
+to any custom <code>Reporter</code> implementation, as only one instance of the custom <code>Reporter</code> will be created to process the events, regardless
+of whether the tests run in same or forked process.</p><h5> Selector API to selectively run tests </h5><p>New Framework API includes a set of comprehensive API to select tests for execution.  Though new Framework API supports fine-grained test selection, current
+sbt's <code>test-only</code> and <code>test-quick</code> supports up to suite level selection only, or <code>SuiteSelector</code> as defined in new Framework API.
+This <code>Framework</code> implementation already supports <code>SuiteSelector</code>, <code>NestedSuiteSelector</code>, <code>TestSelector</code> and
+<code>NestedTestSelector</code>, which should work once future sbt version supports them.</p><h5> Added new <code>Ignored</code>, <code>Canceled</code> and <code>Pending</code> status </h5><p>Status <code>Ignored</code>, <code>Canceled</code> and <code>Pending</code> are added to new Framework API, and they match perfectly with ScalaTest's ignored
+tests (now reported as <code>Ignored</code> instead of <code>Skipped</code>), as well as canceled and pending tests newly added in ScalaTest 2.0.</p><h5> Added sbt Tagging support </h5><p>Sbt supports <a href="http://www.scala-sbt.org/release/docs/Detailed-Topics/Parallel-Execution.html#tagging-tasks">task tagging</a>, but has no support in old
+Framework API for test frameworks to integrate it.  New Framework API supports it, and you can now use the following annotations to annotate your suite for sbt
+built-in resource tags:</p><ul><li><a href="../tags/CPU.html" class="extype" name="org.scalatest.tags.CPU"><code>CPU</code></a></li><li><a href="../tags/Disk.html" class="extype" name="org.scalatest.tags.Disk"><code>Disk</code></a></li><li><a href="../tags/Network.html" class="extype" name="org.scalatest.tags.Network"><code>Network</code></a></li></ul><p>They will be mapped to corresponding resource tag <code>CPU</code>, <code>Disk</code> and <code>Network</code> in sbt.</p><p>You can also define custom tag, which you'll need to write it as Java annotation:</p><p><pre class="stHighlighted">
+<span class="stReserved">import</span> java.lang.annotation.Target;
+<span class="stReserved">import</span> java.lang.annotation.Retention;
+<span class="stReserved">import</span> org.scalatest.TagAnnotation;
+<br />@<span class="stType">TagAnnotation</span>(<span class="stQuotedString">&quot;custom&quot;</span>)
+@<span class="stType">Retention</span>(RetentionPolicy.RUNTIME)
+@<span class="stType">Target</span>({ElementType.TYPE})
+public @interface <span class="stType">Custom</span> {}
+</pre></p><p>which will be translated to <code>Tags.Tag("custom")</code> in sbt.</p></div><dl class="attributes block"> <dt>Source</dt><dd><a href="https://github.com/scalatest/scalatest/tree/release-2.2.2-for-scala-2.11-and-2.10/src/main/scala/org/scalatest/tools/Framework.scala" target="_blank">Framework.scala</a></dd></dl><div class="toggleContainer block">
+          <span class="toggle">Linear Supertypes</span>
+          <div class="superTypes hiddenContent"><span class="extype" name="sbt.testing.Framework">sbt.testing.Framework</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+        </div></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        <div id="order">
+              <span class="filtertype">Ordering</span>
+              <ol>
+                
+                <li class="alpha in"><span>Alphabetic</span></li>
+                <li class="inherit out"><span>By inheritance</span></li>
+              </ol>
+            </div>
+        <div id="ancestors">
+                <span class="filtertype">Inherited<br />
+                </span>
+                <ol id="linearization">
+                  <li class="in" name="org.scalatest.tools.Framework"><span>Framework</span></li><li class="in" name="sbt.testing.Framework"><span>Framework</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                </ol>
+              </div><div id="ancestors">
+            <span class="filtertype"></span>
+            <ol>
+              <li class="hideall out"><span>Hide All</span></li>
+              <li class="showall in"><span>Show all</span></li>
+            </ol>
+            <a href="http://docs.scala-lang.org/overviews/scaladoc/usage.html#members" target="_blank">Learn more about member selection</a>
+          </div>
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        <div id="constructors" class="members">
+              <h3>Instance Constructors</h3>
+              <ol><li name="org.scalatest.tools.Framework#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="&lt;init&gt;():org.scalatest.tools.Framework"></a>
+      <a id="&lt;init&gt;:Framework"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">new</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Framework</span><span class="params">()</span>
+      </span>
+      </h4>
+      
+    </li></ol>
+            </div>
+
+        
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="scala.AnyRef#!=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="!=(x$1:AnyRef):Boolean"></a>
+      <a id="!=(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.Any#!=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="!=(x$1:Any):Boolean"></a>
+      <a id="!=(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="scala.AnyRef###" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="##():Int"></a>
+      <a id="##():Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $hash$hash" class="name">##</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#==" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="==(x$1:AnyRef):Boolean"></a>
+      <a id="==(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.Any#==" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="==(x$1:Any):Boolean"></a>
+      <a id="==(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="asInstanceOf[T0]:T0"></a>
+      <a id="asInstanceOf[T0]:T0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">asInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Any.asInstanceOf.T0">T0</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="scala.AnyRef#clone" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="clone():Object"></a>
+      <a id="clone():AnyRef"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">clone</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="eq(x$1:AnyRef):Boolean"></a>
+      <a id="eq(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#equals" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="equals(x$1:Any):Boolean"></a>
+      <a id="equals(Any):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">equals</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#finalize" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="finalize():Unit"></a>
+      <a id="finalize():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">finalize</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../java$lang.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="org.scalatest.tools.Framework#fingerprints" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="fingerprints():Array[sbt.testing.Fingerprint]"></a>
+      <a id="fingerprints():Array[Fingerprint]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">fingerprints</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Array">Array</span>[<span class="extype" name="sbt.testing.Fingerprint">Fingerprint</span>]</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">An array of <code>Fingerprint</code></a>s that specify how to identify ScalaTest's test classes during
+discovery.</p><div class="fullcomment"><div class="comment cmt"><p>An array of <code>Fingerprint</code></a>s that specify how to identify ScalaTest's test classes during
+discovery.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p><code>SubclassFingerprint</code> for <code>org.scalatest.Suite</code> and <code>AnnotatedFingerprint</code> for <code>org.scalatest.WrapWith</code></p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.scalatest.tools.Framework">Framework</a> → Framework</dd></dl></div>
+    </li><li name="scala.AnyRef#getClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getClass():Class[_]"></a>
+      <a id="getClass():Class[_]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getClass</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.Class">Class</span>[_]</span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#hashCode" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="hashCode():Int"></a>
+      <a id="hashCode():Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">hashCode</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">isInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="org.scalatest.tools.Framework#name" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="name():String"></a>
+      <a id="name():String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">name</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Test framework name.</p><div class="fullcomment"><div class="comment cmt"><p>Test framework name.
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p><code>ScalaTest</code>
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.scalatest.tools.Framework">Framework</a> → Framework</dd></dl></div>
+    </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ne(x$1:AnyRef):Boolean"></a>
+      <a id="ne(AnyRef):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#notify" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notify():Unit"></a>
+      <a id="notify():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notify</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#notifyAll" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notifyAll():Unit"></a>
+      <a id="notifyAll():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notifyAll</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="org.scalatest.tools.Framework#runner" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="runner(args:Array[String],remoteArgs:Array[String],testClassLoader:ClassLoader):sbt.testing.Runner"></a>
+      <a id="runner(Array[String],Array[String],ClassLoader):Runner"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">runner</span><span class="params">(<span name="args">args: <span class="extype" name="scala.Array">Array</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="remoteArgs">remoteArgs: <span class="extype" name="scala.Array">Array</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="testClassLoader">testClassLoader: <span class="extype" name="java.lang.ClassLoader">ClassLoader</span></span>)</span><span class="result">: <span class="extype" name="sbt.testing.Runner">Runner</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Initiates a ScalaTest run.</p><div class="fullcomment"><div class="comment cmt"><p>Initiates a ScalaTest run.
+</p></div><dl class="paramcmts block"><dt class="param">args</dt><dd class="cmt"><p>the ScalaTest arguments for the new run</p></dd><dt class="param">remoteArgs</dt><dd class="cmt"><p>the ScalaTest remote arguments for the run in a forked JVM</p></dd><dt class="param">testClassLoader</dt><dd class="cmt"><p>a class loader to use when loading test classes during the run</p></dd><dt>returns</dt><dd class="cmt"><p>a <code>Runner</code> implementation representing the newly started run to run ScalaTest's tests.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.scalatest.tools.Framework">Framework</a> → Framework</dd><dt>Exceptions thrown</dt><dd><span class="cmt">IllegalArgumentException<p>when invalid or unsupported argument is passed
+</p></span></dd></dl></div>
+    </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
+      <a id="synchronized[T0](⇒T0):T0"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">synchronized</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="params">(<span name="arg0">arg0: ⇒ <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>)</span><span class="result">: <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="toString():String"></a>
+      <a id="toString():String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">toString</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait():Unit"></a>
+      <a id="wait():Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long,x$2:Int):Unit"></a>
+      <a id="wait(Long,Int):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>, <span name="arg1">arg1: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long):Unit"></a>
+      <a id="wait(Long):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        <div class="parent" name="sbt.testing.Framework">
+              <h3>Inherited from <span class="extype" name="sbt.testing.Framework">sbt.testing.Framework</span></h3>
+            </div><div class="parent" name="scala.AnyRef">
+              <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
+            </div><div class="parent" name="scala.Any">
+              <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
+            </div>
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+
+
+    </body>
+      </html>

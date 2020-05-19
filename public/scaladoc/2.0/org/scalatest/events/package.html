@@ -1,0 +1,635 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+        <head>
+          <title>events - ScalaTest 2.0 - org.scalatest.events</title>
+          <meta name="description" content="events - ScalaTest 2.0 - org.scalatest.events" />
+          <meta name="keywords" content="events ScalaTest 2.0 org.scalatest.events" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../../../lib/jquery.js" id="jquery-js"></script>
+      <script type="text/javascript" src="../../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../lib/tools.tooltip.js"></script>
+      
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../../index.html';
+            var hash = 'org.scalatest.events.package';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+
+<script>
+ (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+ })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ 
+ ga('create', 'UA-71294502-3', 'auto');
+ ga('send', 'pageview');
+ 
+</script>
+        </head>
+        <body class="value">
+
+<!-- Top of doc.scalatest.org [javascript] -->
+
+<script type="text/javascript">
+
+var rnd = window.rnd || Math.floor(Math.random()*10e6);
+
+var pid204546 = window.pid204546 || rnd;
+
+var plc204546 = window.plc204546 || 0;
+
+var abkw = window.abkw || '';
+
+var absrc = 'http://ab167933.adbutler-ikon.com/adserve/;ID=167933;size=468x60;setID=204546;type=js;sw='+screen.width+';sh='+screen.height+';spr='+window.devicePixelRatio+';kw='+abkw+';pid='+pid204546+';place='+(plc204546++)+';rnd='+rnd+';click=CLICK_MACRO_PLACEHOLDER';
+
+document.write('<scr'+'ipt src="'+absrc+'" type="text/javascript"></scr'+'ipt>');
+
+</script>
+
+      <div id="definition">
+        <img src="../../../lib/package_big.png" />
+        <p id="owner"><a href="../../package.html" class="extype" name="org">org</a>.<a href="../package.html" class="extype" name="org.scalatest">scalatest</a></p>
+        <h1>events</h1>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <span class="name">events</span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        
+        
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        <div id="types" class="types members">
+              <h3>Type Members</h3>
+              <ol><li name="org.scalatest.events.AlertProvided" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="AlertProvidedextendsEventwithNotificationEventwithProductwithSerializable"></a>
+      <a id="AlertProvided:AlertProvided"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="AlertProvided.html"><span class="name">AlertProvided</span></a><span class="params">(<span name="ordinal">ordinal: <a href="Ordinal.html" class="extype" name="org.scalatest.events.Ordinal">Ordinal</a></span>, <span name="message">message: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="nameInfo">nameInfo: <span class="extype" name="scala.Option">Option</span>[<a href="NameInfo.html" class="extype" name="org.scalatest.events.NameInfo">NameInfo</a>]</span>, <span name="throwable">throwable: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Throwable">Throwable</span>] = <span class="symbol">scala.None</span></span>, <span name="formatter">formatter: <span class="extype" name="scala.Option">Option</span>[<a href="Formatter.html" class="extype" name="org.scalatest.events.Formatter">Formatter</a>] = <span class="symbol">scala.None</span></span>, <span name="location">location: <span class="extype" name="scala.Option">Option</span>[<a href="Location.html" class="extype" name="org.scalatest.events.Location">Location</a>] = <span class="symbol">scala.None</span></span>, <span name="payload">payload: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Any">Any</span>] = <span class="symbol">scala.None</span></span>, <span name="threadName">threadName: <span class="extype" name="scala.Predef.String">String</span> = <span class="defval" name="java.this.lang.Thread.currentThread().getName()">...</span></span>, <span name="timeStamp">timeStamp: <span class="extype" name="scala.Long">Long</span> = <span class="symbol">new java.util.Date().getTime()</span></span>)</span><span class="result"> extends <a href="Event.html" class="extype" name="org.scalatest.events.Event">Event</a> with <a href="NotificationEvent.html" class="extype" name="org.scalatest.events.NotificationEvent">NotificationEvent</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Event used to provide alert notifications.</p>
+    </li><li name="org.scalatest.events.DiscoveryCompleted" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="DiscoveryCompletedextendsEventwithProductwithSerializable"></a>
+      <a id="DiscoveryCompleted:DiscoveryCompleted"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="DiscoveryCompleted.html"><span class="name">DiscoveryCompleted</span></a><span class="params">(<span name="ordinal">ordinal: <a href="Ordinal.html" class="extype" name="org.scalatest.events.Ordinal">Ordinal</a></span>, <span name="duration">duration: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Long">Long</span>] = <span class="symbol">scala.None</span></span>, <span name="threadName">threadName: <span class="extype" name="scala.Predef.String">String</span> = <span class="defval" name="java.this.lang.Thread.currentThread().getName()">...</span></span>, <span name="timeStamp">timeStamp: <span class="extype" name="scala.Long">Long</span> = <span class="symbol">new java.util.Date().getTime()</span></span>)</span><span class="result"> extends <a href="Event.html" class="extype" name="org.scalatest.events.Event">Event</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Event that indicates a runner has completed searching for suites.</p>
+    </li><li name="org.scalatest.events.DiscoveryStarting" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="DiscoveryStartingextendsEventwithProductwithSerializable"></a>
+      <a id="DiscoveryStarting:DiscoveryStarting"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="DiscoveryStarting.html"><span class="name">DiscoveryStarting</span></a><span class="params">(<span name="ordinal">ordinal: <a href="Ordinal.html" class="extype" name="org.scalatest.events.Ordinal">Ordinal</a></span>, <span name="configMap">configMap: <a href="../ConfigMap.html" class="extype" name="org.scalatest.ConfigMap">ConfigMap</a></span>, <span name="threadName">threadName: <span class="extype" name="scala.Predef.String">String</span> = <span class="defval" name="java.this.lang.Thread.currentThread().getName()">...</span></span>, <span name="timeStamp">timeStamp: <span class="extype" name="scala.Long">Long</span> = <span class="symbol">new java.util.Date().getTime()</span></span>)</span><span class="result"> extends <a href="Event.html" class="extype" name="org.scalatest.events.Event">Event</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Event that indicates a runner is beginning search for suites to run.</p>
+    </li><li name="org.scalatest.events.Event" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="EventextendsOrdered[org.scalatest.events.Event]withSerializable"></a>
+      <a id="Event:Event"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">sealed abstract </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="Event.html"><span class="name">Event</span></a><span class="result"> extends <span class="extype" name="scala.Ordered">Ordered</span>[<a href="Event.html" class="extype" name="org.scalatest.events.Event">Event</a>] with <span class="extype" name="java.io.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">A base class for the events that can be passed to the report function passed
+to the <code>execute</code> method of a <code>Suite</code>.</p>
+    </li><li name="org.scalatest.events.ExceptionalEvent" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="ExceptionalEventextendsEvent"></a>
+      <a id="ExceptionalEvent:ExceptionalEvent"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">sealed </span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="ExceptionalEvent.html"><span class="name">ExceptionalEvent</span></a><span class="result"> extends <a href="Event.html" class="extype" name="org.scalatest.events.Event">Event</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Marker trait for test failed and test canceled events.</p>
+    </li><li name="org.scalatest.events.Formatter" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="FormatterextendsObject"></a>
+      <a id="Formatter:Formatter"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">sealed abstract </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="Formatter.html"><span class="name">Formatter</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Abstract class for the optional formatter objects that must be passed to the <code>Event</code>s reported
+during a ScalaTest run.</p>
+    </li><li name="org.scalatest.events.IndentedText" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="IndentedTextextendsFormatterwithProductwithSerializable"></a>
+      <a id="IndentedText:IndentedText"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="IndentedText.html"><span class="name">IndentedText</span></a><span class="params">(<span name="formattedText">formattedText: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="rawText">rawText: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="indentationLevel">indentationLevel: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result"> extends <a href="Formatter.html" class="extype" name="org.scalatest.events.Formatter">Formatter</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">A <a href="Formatter.html"><code>Formatter</code></a> providing information that enables reporters to create more stylized output.</a href="Formatter.html"></p>
+    </li><li name="org.scalatest.events.InfoProvided" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="InfoProvidedextendsEventwithRecordableEventwithProductwithSerializable"></a>
+      <a id="InfoProvided:InfoProvided"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="InfoProvided.html"><span class="name">InfoProvided</span></a><span class="params">(<span name="ordinal">ordinal: <a href="Ordinal.html" class="extype" name="org.scalatest.events.Ordinal">Ordinal</a></span>, <span name="message">message: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="nameInfo">nameInfo: <span class="extype" name="scala.Option">Option</span>[<a href="NameInfo.html" class="extype" name="org.scalatest.events.NameInfo">NameInfo</a>]</span>, <span name="throwable">throwable: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Throwable">Throwable</span>] = <span class="symbol">scala.None</span></span>, <span name="formatter">formatter: <span class="extype" name="scala.Option">Option</span>[<a href="Formatter.html" class="extype" name="org.scalatest.events.Formatter">Formatter</a>] = <span class="symbol">scala.None</span></span>, <span name="location">location: <span class="extype" name="scala.Option">Option</span>[<a href="Location.html" class="extype" name="org.scalatest.events.Location">Location</a>] = <span class="symbol">scala.None</span></span>, <span name="payload">payload: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Any">Any</span>] = <span class="symbol">scala.None</span></span>, <span name="threadName">threadName: <span class="extype" name="scala.Predef.String">String</span> = <span class="defval" name="java.this.lang.Thread.currentThread().getName()">...</span></span>, <span name="timeStamp">timeStamp: <span class="extype" name="scala.Long">Long</span> = <span class="symbol">new java.util.Date().getTime()</span></span>)</span><span class="result"> extends <a href="Event.html" class="extype" name="org.scalatest.events.Event">Event</a> with <a href="RecordableEvent.html" class="extype" name="org.scalatest.events.RecordableEvent">RecordableEvent</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Event used to provide information that is not appropriate to report via any other <code>Event</code>.</p>
+    </li><li name="org.scalatest.events.LineInFile" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="LineInFileextendsLocationwithProductwithSerializable"></a>
+      <a id="LineInFile:LineInFile"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="LineInFile.html"><span class="name">LineInFile</span></a><span class="params">(<span name="lineNumber">lineNumber: <span class="extype" name="scala.Int">Int</span></span>, <span name="fileName">fileName: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Location.html" class="extype" name="org.scalatest.events.Location">Location</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">An arbitrary line number in a named source file.</p>
+    </li><li name="org.scalatest.events.Location" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="LocationextendsObject"></a>
+      <a id="Location:Location"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">sealed abstract </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="Location.html"><span class="name">Location</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Location in source code indicating where in the source code an event originated.</p>
+    </li><li name="org.scalatest.events.MarkupProvided" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="MarkupProvidedextendsEventwithRecordableEventwithProductwithSerializable"></a>
+      <a id="MarkupProvided:MarkupProvided"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="MarkupProvided.html"><span class="name">MarkupProvided</span></a><span class="params">(<span name="ordinal">ordinal: <a href="Ordinal.html" class="extype" name="org.scalatest.events.Ordinal">Ordinal</a></span>, <span name="text">text: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="nameInfo">nameInfo: <span class="extype" name="scala.Option">Option</span>[<a href="NameInfo.html" class="extype" name="org.scalatest.events.NameInfo">NameInfo</a>]</span>, <span name="formatter">formatter: <span class="extype" name="scala.Option">Option</span>[<a href="Formatter.html" class="extype" name="org.scalatest.events.Formatter">Formatter</a>] = <span class="symbol">scala.None</span></span>, <span name="location">location: <span class="extype" name="scala.Option">Option</span>[<a href="Location.html" class="extype" name="org.scalatest.events.Location">Location</a>] = <span class="symbol">scala.None</span></span>, <span name="payload">payload: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Any">Any</span>] = <span class="symbol">scala.None</span></span>, <span name="threadName">threadName: <span class="extype" name="scala.Predef.String">String</span> = <span class="defval" name="java.this.lang.Thread.currentThread().getName()">...</span></span>, <span name="timeStamp">timeStamp: <span class="extype" name="scala.Long">Long</span> = <span class="symbol">new java.util.Date().getTime()</span></span>)</span><span class="result"> extends <a href="Event.html" class="extype" name="org.scalatest.events.Event">Event</a> with <a href="RecordableEvent.html" class="extype" name="org.scalatest.events.RecordableEvent">RecordableEvent</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Event used to provide markup text for document-style reports.</p>
+    </li><li name="org.scalatest.events.NameInfo" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="NameInfoextendsProductwithSerializable"></a>
+      <a id="NameInfo:NameInfo"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="NameInfo.html"><span class="name">NameInfo</span></a><span class="params">(<span name="suiteName">suiteName: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="suiteId">suiteId: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="suiteClassName">suiteClassName: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="testName">testName: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Class that holds information about names for the <em>information events</em> <a href="InfoProvided.html"><code>InfoProvided</code></a>, <a href="MarkupProvided.html"><code>MarkupProvided</code></a>,
+<a href="ScopeOpened.html"><code>ScopeOpened</code></a>, <a href="ScopeClosed.html"><code>ScopeClosed</code></a>, <a href="ScopePending.html"><code>ScopePending</code></a>, <a href="AlertProvided.html"><code>AlertProvided</code></a> and <a href="NoteProvided.html"><code>NoteProvided</code></a>.</a href="NoteProvided.html"></a href="AlertProvided.html"></a href="ScopePending.html"></a href="ScopeClosed.html"></a href="ScopeOpened.html"></a href="MarkupProvided.html"></a href="InfoProvided.html"></p>
+    </li><li name="org.scalatest.events.NoteProvided" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="NoteProvidedextendsEventwithNotificationEventwithProductwithSerializable"></a>
+      <a id="NoteProvided:NoteProvided"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="NoteProvided.html"><span class="name">NoteProvided</span></a><span class="params">(<span name="ordinal">ordinal: <a href="Ordinal.html" class="extype" name="org.scalatest.events.Ordinal">Ordinal</a></span>, <span name="message">message: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="nameInfo">nameInfo: <span class="extype" name="scala.Option">Option</span>[<a href="NameInfo.html" class="extype" name="org.scalatest.events.NameInfo">NameInfo</a>]</span>, <span name="throwable">throwable: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Throwable">Throwable</span>] = <span class="symbol">scala.None</span></span>, <span name="formatter">formatter: <span class="extype" name="scala.Option">Option</span>[<a href="Formatter.html" class="extype" name="org.scalatest.events.Formatter">Formatter</a>] = <span class="symbol">scala.None</span></span>, <span name="location">location: <span class="extype" name="scala.Option">Option</span>[<a href="Location.html" class="extype" name="org.scalatest.events.Location">Location</a>] = <span class="symbol">scala.None</span></span>, <span name="payload">payload: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Any">Any</span>] = <span class="symbol">scala.None</span></span>, <span name="threadName">threadName: <span class="extype" name="scala.Predef.String">String</span> = <span class="defval" name="java.this.lang.Thread.currentThread().getName()">...</span></span>, <span name="timeStamp">timeStamp: <span class="extype" name="scala.Long">Long</span> = <span class="symbol">new java.util.Date().getTime()</span></span>)</span><span class="result"> extends <a href="Event.html" class="extype" name="org.scalatest.events.Event">Event</a> with <a href="NotificationEvent.html" class="extype" name="org.scalatest.events.NotificationEvent">NotificationEvent</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Event used to provide notifications.</p>
+    </li><li name="org.scalatest.events.NotificationEvent" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="NotificationEventextendsEvent"></a>
+      <a id="NotificationEvent:NotificationEvent"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">sealed </span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="NotificationEvent.html"><span class="name">NotificationEvent</span></a><span class="result"> extends <a href="Event.html" class="extype" name="org.scalatest.events.Event">Event</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Marker trait for the &quot;notification&quot; events <a href="NoteProvided.html"><code>NoteProvided</code></a> and <a href="AlertProvided.html"><code>AlertProvided</code></a>.</a href="AlertProvided.html"></a href="NoteProvided.html"></p>
+    </li><li name="org.scalatest.events.Ordinal" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="OrdinalextendsOrdered[org.scalatest.events.Ordinal]withSerializable"></a>
+      <a id="Ordinal:Ordinal"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="Ordinal.html"><span class="name">Ordinal</span></a><span class="result"> extends <span class="extype" name="scala.Ordered">Ordered</span>[<a href="Ordinal.html" class="extype" name="org.scalatest.events.Ordinal">Ordinal</a>] with <span class="extype" name="java.io.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Class used to specify a sequential order for events reported during a test run, so they
+can be arranged in that order in a report even if the events were fired in some other order
+during concurrent or distributed execution.</p>
+    </li><li name="org.scalatest.events.RecordableEvent" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="RecordableEventextendsEvent"></a>
+      <a id="RecordableEvent:RecordableEvent"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">sealed </span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="RecordableEvent.html"><span class="name">RecordableEvent</span></a><span class="result"> extends <a href="Event.html" class="extype" name="org.scalatest.events.Event">Event</a></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Marker trait for test completed event's recordedEvents.</p>
+    </li><li name="org.scalatest.events.RunAborted" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="RunAbortedextendsEventwithProductwithSerializable"></a>
+      <a id="RunAborted:RunAborted"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="RunAborted.html"><span class="name">RunAborted</span></a><span class="params">(<span name="ordinal">ordinal: <a href="Ordinal.html" class="extype" name="org.scalatest.events.Ordinal">Ordinal</a></span>, <span name="message">message: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="throwable">throwable: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Throwable">Throwable</span>]</span>, <span name="duration">duration: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Long">Long</span>] = <span class="symbol">scala.None</span></span>, <span name="summary">summary: <span class="extype" name="scala.Option">Option</span>[<a href="Summary.html" class="extype" name="org.scalatest.events.Summary">Summary</a>] = <span class="symbol">scala.None</span></span>, <span name="formatter">formatter: <span class="extype" name="scala.Option">Option</span>[<a href="Formatter.html" class="extype" name="org.scalatest.events.Formatter">Formatter</a>] = <span class="symbol">scala.None</span></span>, <span name="location">location: <span class="extype" name="scala.Option">Option</span>[<a href="Location.html" class="extype" name="org.scalatest.events.Location">Location</a>] = <span class="symbol">scala.None</span></span>, <span name="payload">payload: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Any">Any</span>] = <span class="symbol">scala.None</span></span>, <span name="threadName">threadName: <span class="extype" name="scala.Predef.String">String</span> = <span class="defval" name="java.this.lang.Thread.currentThread().getName()">...</span></span>, <span name="timeStamp">timeStamp: <span class="extype" name="scala.Long">Long</span> = <span class="symbol">new java.util.Date().getTime()</span></span>)</span><span class="result"> extends <a href="Event.html" class="extype" name="org.scalatest.events.Event">Event</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Event that indicates a runner encountered an error while attempting to run a suite of tests.</p>
+    </li><li name="org.scalatest.events.RunCompleted" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="RunCompletedextendsEventwithProductwithSerializable"></a>
+      <a id="RunCompleted:RunCompleted"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="RunCompleted.html"><span class="name">RunCompleted</span></a><span class="params">(<span name="ordinal">ordinal: <a href="Ordinal.html" class="extype" name="org.scalatest.events.Ordinal">Ordinal</a></span>, <span name="duration">duration: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Long">Long</span>] = <span class="symbol">scala.None</span></span>, <span name="summary">summary: <span class="extype" name="scala.Option">Option</span>[<a href="Summary.html" class="extype" name="org.scalatest.events.Summary">Summary</a>] = <span class="symbol">scala.None</span></span>, <span name="formatter">formatter: <span class="extype" name="scala.Option">Option</span>[<a href="Formatter.html" class="extype" name="org.scalatest.events.Formatter">Formatter</a>] = <span class="symbol">scala.None</span></span>, <span name="location">location: <span class="extype" name="scala.Option">Option</span>[<a href="Location.html" class="extype" name="org.scalatest.events.Location">Location</a>] = <span class="symbol">scala.None</span></span>, <span name="payload">payload: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Any">Any</span>] = <span class="symbol">scala.None</span></span>, <span name="threadName">threadName: <span class="extype" name="scala.Predef.String">String</span> = <span class="defval" name="java.this.lang.Thread.currentThread().getName()">...</span></span>, <span name="timeStamp">timeStamp: <span class="extype" name="scala.Long">Long</span> = <span class="symbol">new java.util.Date().getTime()</span></span>)</span><span class="result"> extends <a href="Event.html" class="extype" name="org.scalatest.events.Event">Event</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Event that indicates a runner has completed running a suite of tests.</p>
+    </li><li name="org.scalatest.events.RunStarting" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="RunStartingextendsEventwithProductwithSerializable"></a>
+      <a id="RunStarting:RunStarting"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="RunStarting.html"><span class="name">RunStarting</span></a><span class="params">(<span name="ordinal">ordinal: <a href="Ordinal.html" class="extype" name="org.scalatest.events.Ordinal">Ordinal</a></span>, <span name="testCount">testCount: <span class="extype" name="scala.Int">Int</span></span>, <span name="configMap">configMap: <a href="../ConfigMap.html" class="extype" name="org.scalatest.ConfigMap">ConfigMap</a></span>, <span name="formatter">formatter: <span class="extype" name="scala.Option">Option</span>[<a href="Formatter.html" class="extype" name="org.scalatest.events.Formatter">Formatter</a>] = <span class="symbol">scala.None</span></span>, <span name="location">location: <span class="extype" name="scala.Option">Option</span>[<a href="Location.html" class="extype" name="org.scalatest.events.Location">Location</a>] = <span class="symbol">scala.None</span></span>, <span name="payload">payload: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Any">Any</span>] = <span class="symbol">scala.None</span></span>, <span name="threadName">threadName: <span class="extype" name="scala.Predef.String">String</span> = <span class="defval" name="java.this.lang.Thread.currentThread().getName()">...</span></span>, <span name="timeStamp">timeStamp: <span class="extype" name="scala.Long">Long</span> = <span class="symbol">new java.util.Date().getTime()</span></span>)</span><span class="result"> extends <a href="Event.html" class="extype" name="org.scalatest.events.Event">Event</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Event that indicates a runner is about run a suite of tests.</p>
+    </li><li name="org.scalatest.events.RunStopped" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="RunStoppedextendsEventwithProductwithSerializable"></a>
+      <a id="RunStopped:RunStopped"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="RunStopped.html"><span class="name">RunStopped</span></a><span class="params">(<span name="ordinal">ordinal: <a href="Ordinal.html" class="extype" name="org.scalatest.events.Ordinal">Ordinal</a></span>, <span name="duration">duration: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Long">Long</span>] = <span class="symbol">scala.None</span></span>, <span name="summary">summary: <span class="extype" name="scala.Option">Option</span>[<a href="Summary.html" class="extype" name="org.scalatest.events.Summary">Summary</a>] = <span class="symbol">scala.None</span></span>, <span name="formatter">formatter: <span class="extype" name="scala.Option">Option</span>[<a href="Formatter.html" class="extype" name="org.scalatest.events.Formatter">Formatter</a>] = <span class="symbol">scala.None</span></span>, <span name="location">location: <span class="extype" name="scala.Option">Option</span>[<a href="Location.html" class="extype" name="org.scalatest.events.Location">Location</a>] = <span class="symbol">scala.None</span></span>, <span name="payload">payload: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Any">Any</span>] = <span class="symbol">scala.None</span></span>, <span name="threadName">threadName: <span class="extype" name="scala.Predef.String">String</span> = <span class="defval" name="java.this.lang.Thread.currentThread().getName()">...</span></span>, <span name="timeStamp">timeStamp: <span class="extype" name="scala.Long">Long</span> = <span class="symbol">new java.util.Date().getTime()</span></span>)</span><span class="result"> extends <a href="Event.html" class="extype" name="org.scalatest.events.Event">Event</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Event that indicates a runner has stopped running a suite of tests prior to completion, likely
+because of a stop request.</p>
+    </li><li name="org.scalatest.events.ScopeClosed" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ScopeClosedextendsEventwithProductwithSerializable"></a>
+      <a id="ScopeClosed:ScopeClosed"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="ScopeClosed.html"><span class="name">ScopeClosed</span></a><span class="params">(<span name="ordinal">ordinal: <a href="Ordinal.html" class="extype" name="org.scalatest.events.Ordinal">Ordinal</a></span>, <span name="message">message: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="nameInfo">nameInfo: <a href="NameInfo.html" class="extype" name="org.scalatest.events.NameInfo">NameInfo</a></span>, <span name="formatter">formatter: <span class="extype" name="scala.Option">Option</span>[<a href="Formatter.html" class="extype" name="org.scalatest.events.Formatter">Formatter</a>] = <span class="symbol">scala.None</span></span>, <span name="location">location: <span class="extype" name="scala.Option">Option</span>[<a href="Location.html" class="extype" name="org.scalatest.events.Location">Location</a>] = <span class="symbol">scala.None</span></span>, <span name="payload">payload: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Any">Any</span>] = <span class="symbol">scala.None</span></span>, <span name="threadName">threadName: <span class="extype" name="scala.Predef.String">String</span> = <span class="defval" name="java.this.lang.Thread.currentThread().getName()">...</span></span>, <span name="timeStamp">timeStamp: <span class="extype" name="scala.Long">Long</span> = <span class="symbol">new java.util.Date().getTime()</span></span>)</span><span class="result"> extends <a href="Event.html" class="extype" name="org.scalatest.events.Event">Event</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Event that indicates a scope has been closed.</p>
+    </li><li name="org.scalatest.events.ScopeOpened" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ScopeOpenedextendsEventwithProductwithSerializable"></a>
+      <a id="ScopeOpened:ScopeOpened"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="ScopeOpened.html"><span class="name">ScopeOpened</span></a><span class="params">(<span name="ordinal">ordinal: <a href="Ordinal.html" class="extype" name="org.scalatest.events.Ordinal">Ordinal</a></span>, <span name="message">message: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="nameInfo">nameInfo: <a href="NameInfo.html" class="extype" name="org.scalatest.events.NameInfo">NameInfo</a></span>, <span name="formatter">formatter: <span class="extype" name="scala.Option">Option</span>[<a href="Formatter.html" class="extype" name="org.scalatest.events.Formatter">Formatter</a>] = <span class="symbol">scala.None</span></span>, <span name="location">location: <span class="extype" name="scala.Option">Option</span>[<a href="Location.html" class="extype" name="org.scalatest.events.Location">Location</a>] = <span class="symbol">scala.None</span></span>, <span name="payload">payload: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Any">Any</span>] = <span class="symbol">scala.None</span></span>, <span name="threadName">threadName: <span class="extype" name="scala.Predef.String">String</span> = <span class="defval" name="java.this.lang.Thread.currentThread().getName()">...</span></span>, <span name="timeStamp">timeStamp: <span class="extype" name="scala.Long">Long</span> = <span class="symbol">new java.util.Date().getTime()</span></span>)</span><span class="result"> extends <a href="Event.html" class="extype" name="org.scalatest.events.Event">Event</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Event that indicates a new scope has been opened.</p>
+    </li><li name="org.scalatest.events.ScopePending" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ScopePendingextendsEventwithProductwithSerializable"></a>
+      <a id="ScopePending:ScopePending"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="ScopePending.html"><span class="name">ScopePending</span></a><span class="params">(<span name="ordinal">ordinal: <a href="Ordinal.html" class="extype" name="org.scalatest.events.Ordinal">Ordinal</a></span>, <span name="message">message: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="nameInfo">nameInfo: <a href="NameInfo.html" class="extype" name="org.scalatest.events.NameInfo">NameInfo</a></span>, <span name="formatter">formatter: <span class="extype" name="scala.Option">Option</span>[<a href="Formatter.html" class="extype" name="org.scalatest.events.Formatter">Formatter</a>] = <span class="symbol">scala.None</span></span>, <span name="location">location: <span class="extype" name="scala.Option">Option</span>[<a href="Location.html" class="extype" name="org.scalatest.events.Location">Location</a>] = <span class="symbol">scala.None</span></span>, <span name="payload">payload: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Any">Any</span>] = <span class="symbol">scala.None</span></span>, <span name="threadName">threadName: <span class="extype" name="scala.Predef.String">String</span> = <span class="defval" name="java.this.lang.Thread.currentThread().getName()">...</span></span>, <span name="timeStamp">timeStamp: <span class="extype" name="scala.Long">Long</span> = <span class="symbol">new java.util.Date().getTime()</span></span>)</span><span class="result"> extends <a href="Event.html" class="extype" name="org.scalatest.events.Event">Event</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Event that indicates a scope is pending.</p>
+    </li><li name="org.scalatest.events.SuiteAborted" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="SuiteAbortedextendsEventwithProductwithSerializable"></a>
+      <a id="SuiteAborted:SuiteAborted"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="SuiteAborted.html"><span class="name">SuiteAborted</span></a><span class="params">(<span name="ordinal">ordinal: <a href="Ordinal.html" class="extype" name="org.scalatest.events.Ordinal">Ordinal</a></span>, <span name="message">message: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="suiteName">suiteName: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="suiteId">suiteId: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="suiteClassName">suiteClassName: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="throwable">throwable: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Throwable">Throwable</span>] = <span class="symbol">scala.None</span></span>, <span name="duration">duration: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Long">Long</span>] = <span class="symbol">scala.None</span></span>, <span name="formatter">formatter: <span class="extype" name="scala.Option">Option</span>[<a href="Formatter.html" class="extype" name="org.scalatest.events.Formatter">Formatter</a>] = <span class="symbol">scala.None</span></span>, <span name="location">location: <span class="extype" name="scala.Option">Option</span>[<a href="Location.html" class="extype" name="org.scalatest.events.Location">Location</a>] = <span class="symbol">scala.None</span></span>, <span name="rerunner">rerunner: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Predef.String">String</span>] = <span class="symbol">scala.None</span></span>, <span name="payload">payload: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Any">Any</span>] = <span class="symbol">scala.None</span></span>, <span name="threadName">threadName: <span class="extype" name="scala.Predef.String">String</span> = <span class="defval" name="java.this.lang.Thread.currentThread().getName()">...</span></span>, <span name="timeStamp">timeStamp: <span class="extype" name="scala.Long">Long</span> = <span class="symbol">new java.util.Date().getTime()</span></span>)</span><span class="result"> extends <a href="Event.html" class="extype" name="org.scalatest.events.Event">Event</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Event that indicates the execution of a suite of tests has aborted, likely because of an error, prior
+to completion.</p>
+    </li><li name="org.scalatest.events.SuiteCompleted" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="SuiteCompletedextendsEventwithProductwithSerializable"></a>
+      <a id="SuiteCompleted:SuiteCompleted"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="SuiteCompleted.html"><span class="name">SuiteCompleted</span></a><span class="params">(<span name="ordinal">ordinal: <a href="Ordinal.html" class="extype" name="org.scalatest.events.Ordinal">Ordinal</a></span>, <span name="suiteName">suiteName: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="suiteId">suiteId: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="suiteClassName">suiteClassName: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="duration">duration: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Long">Long</span>] = <span class="symbol">scala.None</span></span>, <span name="formatter">formatter: <span class="extype" name="scala.Option">Option</span>[<a href="Formatter.html" class="extype" name="org.scalatest.events.Formatter">Formatter</a>] = <span class="symbol">scala.None</span></span>, <span name="location">location: <span class="extype" name="scala.Option">Option</span>[<a href="Location.html" class="extype" name="org.scalatest.events.Location">Location</a>] = <span class="symbol">scala.None</span></span>, <span name="rerunner">rerunner: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Predef.String">String</span>] = <span class="symbol">scala.None</span></span>, <span name="payload">payload: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Any">Any</span>] = <span class="symbol">scala.None</span></span>, <span name="threadName">threadName: <span class="extype" name="scala.Predef.String">String</span> = <span class="defval" name="java.this.lang.Thread.currentThread().getName()">...</span></span>, <span name="timeStamp">timeStamp: <span class="extype" name="scala.Long">Long</span> = <span class="symbol">new java.util.Date().getTime()</span></span>)</span><span class="result"> extends <a href="Event.html" class="extype" name="org.scalatest.events.Event">Event</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Event that indicates a suite of tests has completed executing.</p>
+    </li><li name="org.scalatest.events.SuiteStarting" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="SuiteStartingextendsEventwithProductwithSerializable"></a>
+      <a id="SuiteStarting:SuiteStarting"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="SuiteStarting.html"><span class="name">SuiteStarting</span></a><span class="params">(<span name="ordinal">ordinal: <a href="Ordinal.html" class="extype" name="org.scalatest.events.Ordinal">Ordinal</a></span>, <span name="suiteName">suiteName: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="suiteId">suiteId: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="suiteClassName">suiteClassName: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="formatter">formatter: <span class="extype" name="scala.Option">Option</span>[<a href="Formatter.html" class="extype" name="org.scalatest.events.Formatter">Formatter</a>] = <span class="symbol">scala.None</span></span>, <span name="location">location: <span class="extype" name="scala.Option">Option</span>[<a href="Location.html" class="extype" name="org.scalatest.events.Location">Location</a>] = <span class="symbol">scala.None</span></span>, <span name="rerunner">rerunner: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Predef.String">String</span>] = <span class="symbol">scala.None</span></span>, <span name="payload">payload: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Any">Any</span>] = <span class="symbol">scala.None</span></span>, <span name="threadName">threadName: <span class="extype" name="scala.Predef.String">String</span> = <span class="defval" name="java.this.lang.Thread.currentThread().getName()">...</span></span>, <span name="timeStamp">timeStamp: <span class="extype" name="scala.Long">Long</span> = <span class="symbol">new java.util.Date().getTime()</span></span>)</span><span class="result"> extends <a href="Event.html" class="extype" name="org.scalatest.events.Event">Event</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Event that indicates a suite of tests is about to start executing.</p>
+    </li><li name="org.scalatest.events.Summary" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="SummaryextendsProductwithSerializable"></a>
+      <a id="Summary:Summary"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="Summary.html"><span class="name">Summary</span></a><span class="params">(<span name="testsSucceededCount">testsSucceededCount: <span class="extype" name="scala.Int">Int</span></span>, <span name="testsFailedCount">testsFailedCount: <span class="extype" name="scala.Int">Int</span></span>, <span name="testsIgnoredCount">testsIgnoredCount: <span class="extype" name="scala.Int">Int</span></span>, <span name="testsPendingCount">testsPendingCount: <span class="extype" name="scala.Int">Int</span></span>, <span name="testsCanceledCount">testsCanceledCount: <span class="extype" name="scala.Int">Int</span></span>, <span name="suitesCompletedCount">suitesCompletedCount: <span class="extype" name="scala.Int">Int</span></span>, <span name="suitesAbortedCount">suitesAbortedCount: <span class="extype" name="scala.Int">Int</span></span>, <span name="scopesPendingCount">scopesPendingCount: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Class each of whose instances hold summary information about one ScalaTest run.</p>
+    </li><li name="org.scalatest.events.TestCanceled" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TestCanceledextendsEventwithExceptionalEventwithProductwithSerializable"></a>
+      <a id="TestCanceled:TestCanceled"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="TestCanceled.html"><span class="name">TestCanceled</span></a><span class="params">(<span name="ordinal">ordinal: <a href="Ordinal.html" class="extype" name="org.scalatest.events.Ordinal">Ordinal</a></span>, <span name="message">message: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="suiteName">suiteName: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="suiteId">suiteId: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="suiteClassName">suiteClassName: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="testName">testName: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="testText">testText: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="recordedEvents">recordedEvents: <span class="extype" name="scala.collection.immutable.IndexedSeq">IndexedSeq</span>[<a href="RecordableEvent.html" class="extype" name="org.scalatest.events.RecordableEvent">RecordableEvent</a>]</span>, <span name="throwable">throwable: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Throwable">Throwable</span>] = <span class="symbol">scala.None</span></span>, <span name="duration">duration: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Long">Long</span>] = <span class="symbol">scala.None</span></span>, <span name="formatter">formatter: <span class="extype" name="scala.Option">Option</span>[<a href="Formatter.html" class="extype" name="org.scalatest.events.Formatter">Formatter</a>] = <span class="symbol">scala.None</span></span>, <span name="location">location: <span class="extype" name="scala.Option">Option</span>[<a href="Location.html" class="extype" name="org.scalatest.events.Location">Location</a>] = <span class="symbol">scala.None</span></span>, <span name="rerunner">rerunner: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Predef.String">String</span>] = <span class="symbol">scala.None</span></span>, <span name="payload">payload: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Any">Any</span>] = <span class="symbol">scala.None</span></span>, <span name="threadName">threadName: <span class="extype" name="scala.Predef.String">String</span> = <span class="defval" name="java.this.lang.Thread.currentThread().getName()">...</span></span>, <span name="timeStamp">timeStamp: <span class="extype" name="scala.Long">Long</span> = <span class="symbol">new java.util.Date().getTime()</span></span>)</span><span class="result"> extends <a href="Event.html" class="extype" name="org.scalatest.events.Event">Event</a> with <a href="ExceptionalEvent.html" class="extype" name="org.scalatest.events.ExceptionalEvent">ExceptionalEvent</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Event that indicates a test was canceled, <em>i.e.</em>, it couldn't run because some precondition was not met.</p>
+    </li><li name="org.scalatest.events.TestFailed" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TestFailedextendsEventwithExceptionalEventwithProductwithSerializable"></a>
+      <a id="TestFailed:TestFailed"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="TestFailed.html"><span class="name">TestFailed</span></a><span class="params">(<span name="ordinal">ordinal: <a href="Ordinal.html" class="extype" name="org.scalatest.events.Ordinal">Ordinal</a></span>, <span name="message">message: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="suiteName">suiteName: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="suiteId">suiteId: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="suiteClassName">suiteClassName: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="testName">testName: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="testText">testText: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="recordedEvents">recordedEvents: <span class="extype" name="scala.collection.immutable.IndexedSeq">IndexedSeq</span>[<a href="RecordableEvent.html" class="extype" name="org.scalatest.events.RecordableEvent">RecordableEvent</a>]</span>, <span name="throwable">throwable: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Throwable">Throwable</span>] = <span class="symbol">scala.None</span></span>, <span name="duration">duration: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Long">Long</span>] = <span class="symbol">scala.None</span></span>, <span name="formatter">formatter: <span class="extype" name="scala.Option">Option</span>[<a href="Formatter.html" class="extype" name="org.scalatest.events.Formatter">Formatter</a>] = <span class="symbol">scala.None</span></span>, <span name="location">location: <span class="extype" name="scala.Option">Option</span>[<a href="Location.html" class="extype" name="org.scalatest.events.Location">Location</a>] = <span class="symbol">scala.None</span></span>, <span name="rerunner">rerunner: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Predef.String">String</span>] = <span class="symbol">scala.None</span></span>, <span name="payload">payload: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Any">Any</span>] = <span class="symbol">scala.None</span></span>, <span name="threadName">threadName: <span class="extype" name="scala.Predef.String">String</span> = <span class="defval" name="java.this.lang.Thread.currentThread().getName()">...</span></span>, <span name="timeStamp">timeStamp: <span class="extype" name="scala.Long">Long</span> = <span class="symbol">new java.util.Date().getTime()</span></span>)</span><span class="result"> extends <a href="Event.html" class="extype" name="org.scalatest.events.Event">Event</a> with <a href="ExceptionalEvent.html" class="extype" name="org.scalatest.events.ExceptionalEvent">ExceptionalEvent</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Event that indicates a suite (or other entity) has completed running a test that failed.</p>
+    </li><li name="org.scalatest.events.TestIgnored" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TestIgnoredextendsEventwithProductwithSerializable"></a>
+      <a id="TestIgnored:TestIgnored"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="TestIgnored.html"><span class="name">TestIgnored</span></a><span class="params">(<span name="ordinal">ordinal: <a href="Ordinal.html" class="extype" name="org.scalatest.events.Ordinal">Ordinal</a></span>, <span name="suiteName">suiteName: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="suiteId">suiteId: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="suiteClassName">suiteClassName: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="testName">testName: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="testText">testText: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="formatter">formatter: <span class="extype" name="scala.Option">Option</span>[<a href="Formatter.html" class="extype" name="org.scalatest.events.Formatter">Formatter</a>] = <span class="symbol">scala.None</span></span>, <span name="location">location: <span class="extype" name="scala.Option">Option</span>[<a href="Location.html" class="extype" name="org.scalatest.events.Location">Location</a>] = <span class="symbol">scala.None</span></span>, <span name="payload">payload: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Any">Any</span>] = <span class="symbol">scala.None</span></span>, <span name="threadName">threadName: <span class="extype" name="scala.Predef.String">String</span> = <span class="defval" name="java.this.lang.Thread.currentThread().getName()">...</span></span>, <span name="timeStamp">timeStamp: <span class="extype" name="scala.Long">Long</span> = <span class="symbol">new java.util.Date().getTime()</span></span>)</span><span class="result"> extends <a href="Event.html" class="extype" name="org.scalatest.events.Event">Event</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Event that indicates a suite (or other entity) has ignored a test.</p>
+    </li><li name="org.scalatest.events.TestPending" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TestPendingextendsEventwithProductwithSerializable"></a>
+      <a id="TestPending:TestPending"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="TestPending.html"><span class="name">TestPending</span></a><span class="params">(<span name="ordinal">ordinal: <a href="Ordinal.html" class="extype" name="org.scalatest.events.Ordinal">Ordinal</a></span>, <span name="suiteName">suiteName: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="suiteId">suiteId: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="suiteClassName">suiteClassName: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="testName">testName: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="testText">testText: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="recordedEvents">recordedEvents: <span class="extype" name="scala.collection.immutable.IndexedSeq">IndexedSeq</span>[<a href="RecordableEvent.html" class="extype" name="org.scalatest.events.RecordableEvent">RecordableEvent</a>]</span>, <span name="duration">duration: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Long">Long</span>] = <span class="symbol">scala.None</span></span>, <span name="formatter">formatter: <span class="extype" name="scala.Option">Option</span>[<a href="Formatter.html" class="extype" name="org.scalatest.events.Formatter">Formatter</a>] = <span class="symbol">scala.None</span></span>, <span name="location">location: <span class="extype" name="scala.Option">Option</span>[<a href="Location.html" class="extype" name="org.scalatest.events.Location">Location</a>] = <span class="symbol">scala.None</span></span>, <span name="payload">payload: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Any">Any</span>] = <span class="symbol">scala.None</span></span>, <span name="threadName">threadName: <span class="extype" name="scala.Predef.String">String</span> = <span class="defval" name="java.this.lang.Thread.currentThread().getName()">...</span></span>, <span name="timeStamp">timeStamp: <span class="extype" name="scala.Long">Long</span> = <span class="symbol">new java.util.Date().getTime()</span></span>)</span><span class="result"> extends <a href="Event.html" class="extype" name="org.scalatest.events.Event">Event</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Event that indicates a test is pending, <em>i.e.</em>, it hasn't yet been implemented.</p>
+    </li><li name="org.scalatest.events.TestStarting" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TestStartingextendsEventwithProductwithSerializable"></a>
+      <a id="TestStarting:TestStarting"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="TestStarting.html"><span class="name">TestStarting</span></a><span class="params">(<span name="ordinal">ordinal: <a href="Ordinal.html" class="extype" name="org.scalatest.events.Ordinal">Ordinal</a></span>, <span name="suiteName">suiteName: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="suiteId">suiteId: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="suiteClassName">suiteClassName: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="testName">testName: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="testText">testText: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="formatter">formatter: <span class="extype" name="scala.Option">Option</span>[<a href="Formatter.html" class="extype" name="org.scalatest.events.Formatter">Formatter</a>] = <span class="symbol">scala.None</span></span>, <span name="location">location: <span class="extype" name="scala.Option">Option</span>[<a href="Location.html" class="extype" name="org.scalatest.events.Location">Location</a>] = <span class="symbol">scala.None</span></span>, <span name="rerunner">rerunner: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Predef.String">String</span>] = <span class="symbol">scala.None</span></span>, <span name="payload">payload: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Any">Any</span>] = <span class="symbol">scala.None</span></span>, <span name="threadName">threadName: <span class="extype" name="scala.Predef.String">String</span> = <span class="defval" name="java.this.lang.Thread.currentThread().getName()">...</span></span>, <span name="timeStamp">timeStamp: <span class="extype" name="scala.Long">Long</span> = <span class="symbol">new java.util.Date().getTime()</span></span>)</span><span class="result"> extends <a href="Event.html" class="extype" name="org.scalatest.events.Event">Event</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Event that indicates a suite (or other entity) is about to start running a test.</p>
+    </li><li name="org.scalatest.events.TestSucceeded" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TestSucceededextendsEventwithProductwithSerializable"></a>
+      <a id="TestSucceeded:TestSucceeded"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="TestSucceeded.html"><span class="name">TestSucceeded</span></a><span class="params">(<span name="ordinal">ordinal: <a href="Ordinal.html" class="extype" name="org.scalatest.events.Ordinal">Ordinal</a></span>, <span name="suiteName">suiteName: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="suiteId">suiteId: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="suiteClassName">suiteClassName: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="testName">testName: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="testText">testText: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="recordedEvents">recordedEvents: <span class="extype" name="scala.collection.immutable.IndexedSeq">IndexedSeq</span>[<a href="RecordableEvent.html" class="extype" name="org.scalatest.events.RecordableEvent">RecordableEvent</a>]</span>, <span name="duration">duration: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Long">Long</span>] = <span class="symbol">scala.None</span></span>, <span name="formatter">formatter: <span class="extype" name="scala.Option">Option</span>[<a href="Formatter.html" class="extype" name="org.scalatest.events.Formatter">Formatter</a>] = <span class="symbol">scala.None</span></span>, <span name="location">location: <span class="extype" name="scala.Option">Option</span>[<a href="Location.html" class="extype" name="org.scalatest.events.Location">Location</a>] = <span class="symbol">scala.None</span></span>, <span name="rerunner">rerunner: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Predef.String">String</span>] = <span class="symbol">scala.None</span></span>, <span name="payload">payload: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Any">Any</span>] = <span class="symbol">scala.None</span></span>, <span name="threadName">threadName: <span class="extype" name="scala.Predef.String">String</span> = <span class="defval" name="java.this.lang.Thread.currentThread().getName()">...</span></span>, <span name="timeStamp">timeStamp: <span class="extype" name="scala.Long">Long</span> = <span class="symbol">new java.util.Date().getTime()</span></span>)</span><span class="result"> extends <a href="Event.html" class="extype" name="org.scalatest.events.Event">Event</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Event that indicates a suite (or other entity) has completed running a test that succeeded.</p>
+    </li><li name="org.scalatest.events.TopOfClass" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TopOfClassextendsLocationwithProductwithSerializable"></a>
+      <a id="TopOfClass:TopOfClass"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="TopOfClass.html"><span class="name">TopOfClass</span></a><span class="params">(<span name="className">className: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Location.html" class="extype" name="org.scalatest.events.Location">Location</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">The location in a source file where the class whose by the fully qualified name
+is passed as <code>className</code> is declared.</p>
+    </li><li name="org.scalatest.events.TopOfMethod" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TopOfMethodextendsLocationwithProductwithSerializable"></a>
+      <a id="TopOfMethod:TopOfMethod"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="TopOfMethod.html"><span class="name">TopOfMethod</span></a><span class="params">(<span name="className">className: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="methodId">methodId: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Location.html" class="extype" name="org.scalatest.events.Location">Location</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">The location in a source file where the method identified by the passed <code>methodId</code>
+in the class whose fully qualified name is pased as <code>className</code> is declared.</p>
+    </li></ol>
+            </div>
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="org.scalatest.events.MotionToSuppress" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="MotionToSuppress"></a>
+      <a id="MotionToSuppress:MotionToSuppress"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="MotionToSuppress$.html"><span class="name">MotionToSuppress</span></a><span class="result"> extends <a href="Formatter.html" class="extype" name="org.scalatest.events.Formatter">Formatter</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">A <code>Formatter</code> that indicates reporters may wish to suppress reporting of an <code>Event</code>.</p>
+    </li><li name="org.scalatest.events.NameInfo" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="NameInfo"></a>
+      <a id="NameInfo:NameInfo"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="NameInfo$.html"><span class="name">NameInfo</span></a><span class="result"> extends <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Companion object for case class <a href="NameInfo.html"><code>NameInfo</code></a>.</a href="NameInfo.html"></p>
+    </li><li name="org.scalatest.events.SeeStackDepthException" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="SeeStackDepthException"></a>
+      <a id="SeeStackDepthException:SeeStackDepthException"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="SeeStackDepthException$.html"><span class="name">SeeStackDepthException</span></a><span class="result"> extends <a href="Location.html" class="extype" name="org.scalatest.events.Location">Location</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4>
+      <p class="comment cmt">Indicates the location should be taken from the stack depth exception, included elsewhere in
+the event that contained this location.</p>
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+
+
+    </body>
+      </html>
