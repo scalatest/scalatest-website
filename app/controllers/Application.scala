@@ -111,8 +111,12 @@ class Application extends Controller {
     Redirect(scaladocsLocation + "/" + release + "/index.html")
   }
 
+  private val oldScaladocStyle30Releases = List("3.0.0", "3.0.1", "3.0.2", "3.0.3", "3.0.4")
   def scaladocsFile(release: String, file: String) = Action {
-    Redirect(scaladocsLocation + "/" + release + "/index.html#" + file)
+    if (release.startsWith("1.") || release.startsWith("2.") || oldScaladocStyle30Releases.contains(release))
+      Redirect(scaladocsLocation + "/" + release + "/index.html#" + file)
+    else
+      Redirect(scaladocsLocation + "/" + release + "/" + file.replaceAll("\\.", "/") + ".html")
   }
 
   // Redirect legacy releases URLs (the are too big for free heroku,
@@ -135,13 +139,13 @@ class Application extends Controller {
 
 object Application {
 
-  val latestScaladoc =          "http://doc.scalatest.org/3.1.1"
-  val latestScalacticScaladoc = "http://doc.scalactic.org/3.1.1"
-  val latestVersion = "3.1.1"
+  val latestScaladoc =          "http://doc.scalatest.org/3.1.2"
+  val latestScalacticScaladoc = "http://doc.scalactic.org/3.1.2"
+  val latestVersion = "3.1.2"
   val latestSuperSafeVersion = "1.1.10"
   val milestoneVersion = "3.1.0"
   val milestoneJar = "https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest_2.11/3.1.0-RC3/scalatest_2.11-3.1.0-RC3.jar"
-  val latestJar = "https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest-app_2.13/3.1.1/scalatest-app_2.13-3.1.1.jar"
+  val latestJar = "https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest-app_2.13/3.1.2/scalatest-app_2.13-3.1.2.jar"
   val milestoneScaladoc = "http://www.artima.com/docs-scalatest-3.1.0-RC3"
   val milestoneScalacticScaladoc = "http://www.artima.com/docs-scalactic-3.1.0-RC3"
   val scaladocsLocation = "http://doc.scalatest.org"
