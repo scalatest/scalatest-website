@@ -48,9 +48,10 @@
 	<hr></hr>
 
         <p>
-        The main change in ScalaTest 3.2.0 is realizing the modularization that we prepared for in 3.1.0. As a result, many deprecated
+        The main change in ScalaTest 3.2.0 is carrying out the modularization that we prepared for in 3.1.0. As a result, many deprecated
         names have been removed, because the deprecations would cross module boundaries. Other than these deprecation expirations, 
-        the actual modularization, and some changes to support a more recent version of Dotty, ScalaTest 3.2.0 is identical with ScalaTest 3.1.2.
+        the actual modularization, and some changes to support more recent versions of Dotty and Scala.js, ScalaTest 3.2.0 is identical
+        with ScalaTest 3.1.2.
         </p>
 
         <a name="scalatest_improvements"></a>
@@ -59,7 +60,59 @@
         <ul>
             <li>Updates to support Scala.js 1.1.0.</li>
             <li>Updates to support Dotty 0.24.0</li>
+            <li>Modularization!</li>
         </ul>
+
+        <p>
+        If you upgrade to 3.2.0 by changing 3.1.2 to 3.2.0 in your build, everything should work exactly the same as before after a recompile, provided
+        you remove all deprecation warnings under 3.1.2 prior to upgrading. In 3.2.0, we are releasing the same artifacts as
+        before, and they contain the same software, even though behind the scenes they are composed of more artifacts in 3.2.0. In 3.1.0, we moved
+        third-party dependencies of ScalaTest to their own artifacts, so we could evolve them independently to match both ScalaTest and the third-party
+        dependencies. This organization of artifacts is shown in the following diagram:
+        </p>
+
+        <img src="@routes.Assets.at("/public", "images/ScalaTestModularizationIn310.png")"
+               width="650" alt="3.1.0 Modularization Diagram"/>
+
+        <p>
+        In 3.2.0, we modularized ScalaTest further into the organization shown in the following diagram:
+        </p>
+
+        <img src="@routes.Assets.at("/public", "images/ScalaTestModularizationIn320.png")"
+               width="650" alt="3.2.0 Modularization Diagram"/>
+
+        <p>
+        As the diagram illustrates, the <code>scalatest</code> artifact is now composed of more sub-artifacts than in 3.1.0. Nevertheless, through
+        its transitive dependencies, it still contains all the same software as it did in 3.1.0, except for the
+        <a href="#expiredDeprecations">deprecation exprirations</a> described below. As an example, this is how you add full ScalaTest 3.2.0 to
+        an sbt build:
+        </p>
+  
+ <pre class="stHighlighted">
+ libraryDependencies += <span class="stQuotedString">"org.scalatest"</span> %% <span class="stQuotedString">"scalatest"</span> % <span class="stQuotedString">"3.2.0"</span> % <span class="stQuotedString">"test"</span>
+ </pre>
+
+        <p>
+        Alternatively, as of 3.2.0 you can depend on a smaller subset of full ScalaTest, which can help you achieve consistent style
+        choices among team members, because only the modules you add to your build will be available to the project. First, each ScalaTest
+        style now has its own artifact. For example, the <code>FunSuite</code> style is distributed in the <code>scalatest-funsuite</code>
+        artifact. Here's how you would add this module to an sbt build:
+        </p>
+
+<pre class="stHighlighted">
+libraryDependencies += <span class="stQuotedString">"org.scalatest"</span> %% <span class="stQuotedString">"scalatest-funsuite"</span> % <span class="stQuotedString">"3.2.0"</span> % <span class="stQuotedString">"test"</span>
+</pre>
+
+        <p>
+        This dependency would enable you to use just ScalaTest's FunSuite style in your project, with ScalaTest's default assertions.
+        You would not be able to use any other ScalaTest style, matchers, or diagrammed assertions, unless you added more dependencies.
+        For example, if you wanted to use the <code>FunSuite</code> style with must matchers, you could add the following to an sbt build:
+        </p>
+
+<pre class="stHighlighted">
+libraryDependencies += <span class="stQuotedString">"org.scalatest"</span> %% <span class="stQuotedString">"scalatest-funsuite"</span> % <span class="stQuotedString">"3.2.0"</span> % <span class="stQuotedString">"test"</span>
+libraryDependencies += <span class="stQuotedString">"org.scalatest"</span> %% <span class="stQuotedString">"scalatest-mustmatchers"</span> % <span class="stQuotedString">"3.2.0"</span> % <span class="stQuotedString">"test"</span>
+</pre>
 
         <a name="scalatest_deprecations"></a>
         <h2>Deprecations</h2>
