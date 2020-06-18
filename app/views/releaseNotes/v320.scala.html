@@ -25,7 +25,7 @@
         <p>
             ScalaTest/Scalactic 3.2.0 (for Scala 2.10, 2.11, 2.12, and 2.13; on the JVM, JavaScript, native, and Dotty)
             includes the enhancements and bug fixes listed below.
-            No source code using ScalaTest/Scalactic 3.1.0 should break, so long as you fix all deprecation warnings
+            No source code using ScalaTest/Scalactic 3.1.2 should break, so long as you fix all deprecation warnings
             prior to upgrading, but this release is <em>not</em> binary compatible with 3.1.2.
         </p>
 
@@ -48,22 +48,470 @@
 	<hr></hr>
 
         <p>
-        ScalaTest 3.1.2 is a minor release of ScalaTest that makes a few changes, and supports Scala.js 1.0.1 and Dotty 0.23.
+        The main change in ScalaTest 3.2.0 is realizing the modularization that we prepared for in 3.1.0. As a result, many deprecated
+        names have been removed, because the deprecations would cross module boundaries. Other than these deprecation expirations, 
+        the actual modularization, and some changes to support a more recent version of Dotty, ScalaTest 3.2.0 is identical with ScalaTest 3.1.2.
         </p>
 
         <a name="scalatest_improvements"></a>
         <h2>Improvements</h2>
 
         <ul>
-            <li>Updates to support Scala.js 1.0.1.</li>
-            <li>Updates to support Dotty 0.23.</li>
+            <li>Updates to support Scala.js 1.1.0.</li>
+            <li>Updates to support Dotty 0.24.0</li>
         </ul>
 
         <a name="scalatest_deprecations"></a>
         <h2>Deprecations</h2>
 
-        <p>ScalaTest 3.1.2 contains no new deprecations.</p>
+        <p>ScalaTest 3.2.0 contains no new deprecations.</p>
 
+        <a name="expiredDeprecations"></a>
+        <h2>Deprecation Expirations</h2>
+
+        <ul>
+            <li>Removed the style traits and classes that were renamed and deprecated in 3.1.0 to prepare the way for modularization of
+                Scalatest. For example, in 3.1.0 we moved all
+                style traits and classes for the <code>FunSuite</code> style, to package <code>org.scalatest.funsuite</code>.
+                The old names still worked in 3.1.0, but gave a deprecation warning. These old names have now been removed in 3.2.0.
+
+                <p>
+                The reason we renamed and deprecated ScalaTest's style traits and classes in 3.1.0, and removed the old, deprecated names in 3.2.0,
+                was to enable modularization that we have implemented in 3.2.0. Modularization must be done on package boundaries, and prior to
+                3.1.0, ScalaTest's different style
+                traits and classes resided in common packages such as <code>org.scalatest</code>, <code>org.scalatest.fixture</code>, and
+                <code>org.scalatest.path</code>. Because we wanted to modularize along style boundaries, we needed to move the classes and traits
+                for each style into its own package. For example, we moved all traits related to the <code>FunSuite</code> style to package
+                <code>org.scalatest.funsuite</code>.
+                </p>
+
+                <p>
+                Note that we also slightly renamed some of the traits and classes when we moved them in 3.1.0. We prefixed &ldquo;<code>Any</code>&rdquo;
+                to the names of the main style traits and classes whose test bodies have a result type of <code>Any</code>. For example,
+                <code>org.scalatest.FunSuite</code> was renamed to <code>org.scalatest.funsuite.AnyFunSuite</code> in 3.1.0.
+                </p>
+
+                <p>
+                The <code>Any</code> styles are backwards compatible with ScalaTest's original style traits, which allow you to use assertions
+                from any other testing library no matter the result type of those assertions. The reason for this name change is that in a future
+                version of ScalaTest we plan to add a new set of style traits and classes with the original names, such as <code>FunSuite</code> (but
+                in the <code>org.scalatest.funsuite</code> package), whose test bodies will have a
+                result type of <code>Assertion</code>.
+                </p>
+                <p>
+                In addition, we prefixed &ldquo;<code>Fixture</code>&rdquo; to the simple names of the traits and classes in package
+                <code>org.scalatest.fixture</code> package.
+                For example, <code>org.scalatest.fixture.FunSuite</code> was renamed to <code>org.scalatest.funsuite.FixtureAnyFunSuite</code>.
+                Similarly, we prefixed  &ldquo;<code>Path</code>&rdquo; to the simple names of the traits and classes in package
+                <code>org.scalatest.path</code>.
+                For example, <code>org.scalatest.path.FunSpec</code> was renamed to <code>org.scalatest.funsuite.PathAnyFunSpec</code>.
+                </p>
+
+                <p>
+                Here are the details:
+                </p>
+
+<table class="stTableOverall">
+  <tr>
+    <th colspan="2" class="stTableHeader">FunSuite style (scalatest-funsuite module)</td>
+  </tr>
+  <tr>
+    <th class="stTableHeader">removed in 3.2.0</th>
+    <th class="stTableHeader">new name</th> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.FunSuite</code></td>
+    <td class="stTableData"><code>org.scalatest.funsuite.AnyFunSuite</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.FunSuiteLike</code></td>
+    <td class="stTableData"><code>org.scalatest.funsuite.AnyFunSuiteLike</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.AsyncFunSuite</code></td>
+    <td class="stTableData"><code>org.scalatest.funsuite.AsyncFunSuite</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.AsyncFunSuiteLike</code></td>
+    <td class="stTableData"><code>org.scalatest.funsuite.AsyncFunSuiteLike</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.fixture.FunSuite</code></td>
+    <td class="stTableData"><code>org.scalatest.funsuite.FixtureAnyFunSuite</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.fixture.FunSuiteLike</code></td>
+    <td class="stTableData"><code>org.scalatest.funsuite.FixtureAnyFunSuiteLike</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.fixture.AsyncFunSuite</code></td>
+    <td class="stTableData"><code>org.scalatest.funsuite.FixtureAsyncFunSuite</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.fixture.AsyncFunSuiteLike</code></td>
+    <td class="stTableData"><code>org.scalatest.funsuite.FixtureAsyncFunSuiteLike</code></td> 
+  </tr>
+</table>
+
+<br/>
+
+<table class="stTableOverall">
+  <tr>
+    <th colspan="2" class="stTableHeader">FlatSpec style (scalatest-flatspec module)</td>
+  </tr>
+  <tr>
+    <th class="stTableHeader">removed in 3.2.0</th>
+    <th class="stTableHeader">new name</th> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.FlatSpec</code></td>
+    <td class="stTableData"><code>org.scalatest.flatspec.AnyFlatSpec</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.FlatSpecLike</code></td>
+    <td class="stTableData"><code>org.scalatest.flatspec.AnyFlatSpecLike</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.AsyncFlatSpec</code></td>
+    <td class="stTableData"><code>org.scalatest.flatspec.AsyncFlatSpec</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.AsyncFlatSpecLike</code></td>
+    <td class="stTableData"><code>org.scalatest.flatspec.AsyncFlatSpecLike</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.fixture.FlatSpec</code></td>
+    <td class="stTableData"><code>org.scalatest.flatspec.FixtureAnyFlatSpec</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.fixture.FlatSpecLike</code></td>
+    <td class="stTableData"><code>org.scalatest.flatspec.FixtureAnyFlatSpecLike</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.fixture.AsyncFlatSpec</code></td>
+    <td class="stTableData"><code>org.scalatest.flatspec.FixtureAsyncFlatSpec</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.fixture.AsyncFlatSpecLike</code></td>
+    <td class="stTableData"><code>org.scalatest.flatspec.FixtureAsyncFlatSpecLike</code></td> 
+  </tr>
+</table>
+
+<br/>
+
+<table class="stTableOverall">
+  <tr>
+    <th colspan="2" class="stTableHeader">FunSpec style (scalatest-funspec module)</td>
+  </tr>
+  <tr>
+    <th class="stTableHeader">removed in 3.2.0</th>
+    <th class="stTableHeader">new name</th> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.FunSpec</code></td>
+    <td class="stTableData"><code>org.scalatest.funspec.AnyFunSpec</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.FunSpecLike</code></td>
+    <td class="stTableData"><code>org.scalatest.funspec.AnyFunSpecLike</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.AsyncFunSpec</code></td>
+    <td class="stTableData"><code>org.scalatest.funspec.AsyncFunSpec</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.AsyncFunSpecLike</code></td>
+    <td class="stTableData"><code>org.scalatest.funspec.AsyncFunSpecLike</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.fixture.FunSpec</code></td>
+    <td class="stTableData"><code>org.scalatest.funspec.FixtureAnyFunSpec</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.fixture.FunSpecLike</code></td>
+    <td class="stTableData"><code>org.scalatest.funspec.FixtureAnyFunSpecLike</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.fixture.AsyncFunSpec</code></td>
+    <td class="stTableData"><code>org.scalatest.funspec.FixtureAsyncFunSpec</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.fixture.AsyncFunSpecLike</code></td>
+    <td class="stTableData"><code>org.scalatest.funspec.FixtureAsyncFunSpecLike</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.path.FunSpec</code></td>
+    <td class="stTableData"><code>org.scalatest.funspec.PathAnyFunSpec</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.path.FunSpecLike</code></td>
+    <td class="stTableData"><code>org.scalatest.funspec.PathAnyFunSpecLike</code></td> 
+  </tr>
+</table>
+
+<br/>
+
+<table class="stTableOverall">
+  <tr>
+    <th colspan="2" class="stTableHeader">WordSpec style (scalatest-wordspec module)</td>
+  </tr>
+  <tr>
+    <th class="stTableHeader">removed in 3.2.0</th>
+    <th class="stTableHeader">new name</th> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.WordSpec</code></td>
+    <td class="stTableData"><code>org.scalatest.wordspec.AnyWordSpec</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.WordSpecLike</code></td>
+    <td class="stTableData"><code>org.scalatest.wordspec.AnyWordSpecLike</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.AsyncWordSpec</code></td>
+    <td class="stTableData"><code>org.scalatest.wordspec.AsyncWordSpec</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.AsyncWordSpecLike</code></td>
+    <td class="stTableData"><code>org.scalatest.wordspec.AsyncWordSpecLike</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.fixture.WordSpec</code></td>
+    <td class="stTableData"><code>org.scalatest.wordspec.FixtureAnyWordSpec</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.fixture.WordSpecLike</code></td>
+    <td class="stTableData"><code>org.scalatest.wordspec.FixtureAnyWordSpecLike</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.fixture.AsyncWordSpec</code></td>
+    <td class="stTableData"><code>org.scalatest.wordspec.FixtureAsyncWordSpec</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.fixture.AsyncWordSpecLike</code></td>
+    <td class="stTableData"><code>org.scalatest.wordspec.FixtureAsyncWordSpecLike</code></td> 
+  </tr>
+</table>
+
+<br/>
+
+<table class="stTableOverall">
+  <tr>
+    <th colspan="2" class="stTableHeader">FreeSpec style (scalatest-freespec module)</td>
+  </tr>
+  <tr>
+    <th class="stTableHeader">removed in 3.2.0</th>
+    <th class="stTableHeader">new name</th> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.FreeSpec</code></td>
+    <td class="stTableData"><code>org.scalatest.freespec.AnyFreeSpec</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.FreeSpecLike</code></td>
+    <td class="stTableData"><code>org.scalatest.freespec.AnyFreeSpecLike</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.AsyncFreeSpec</code></td>
+    <td class="stTableData"><code>org.scalatest.freespec.AsyncFreeSpec</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.AsyncFreeSpecLike</code></td>
+    <td class="stTableData"><code>org.scalatest.freespec.AsyncFreeSpecLike</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.fixture.FreeSpec</code></td>
+    <td class="stTableData"><code>org.scalatest.freespec.FixtureAnyFreeSpec</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.fixture.FreeSpecLike</code></td>
+    <td class="stTableData"><code>org.scalatest.freespec.FixtureAnyFreeSpecLike</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.fixture.AsyncFreeSpec</code></td>
+    <td class="stTableData"><code>org.scalatest.freespec.FixtureAsyncFreeSpec</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.fixture.AsyncFreeSpecLike</code></td>
+    <td class="stTableData"><code>org.scalatest.freespec.FixtureAsyncFreeSpecLike</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.path.FreeSpec</code></td>
+    <td class="stTableData"><code>org.scalatest.freespec.PathAnyFreeSpec</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.path.FreeSpecLike</code></td>
+    <td class="stTableData"><code>org.scalatest.freespec.PathAnyFreeSpecLike</code></td> 
+  </tr>
+</table>
+
+<br/>
+
+<table class="stTableOverall">
+  <tr>
+    <th colspan="2" class="stTableHeader">PropSpec style (scalatest-propspec module)</td>
+  </tr>
+  <tr>
+    <th class="stTableHeader">removed in 3.2.0</th>
+    <th class="stTableHeader">new name</th> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.PropSpec</code></td>
+    <td class="stTableData"><code>org.scalatest.propspec.AnyPropSpec</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.PropSpecLike</code></td>
+    <td class="stTableData"><code>org.scalatest.propspec.AnyPropSpecLike</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.AsyncPropSpec</code></td>
+    <td class="stTableData"><code>org.scalatest.propspec.AsyncPropSpec</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.AsyncPropSpecLike</code></td>
+    <td class="stTableData"><code>org.scalatest.propspec.AsyncPropSpecLike</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.fixture.PropSpec</code></td>
+    <td class="stTableData"><code>org.scalatest.propspec.FixtureAnyPropSpec</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.fixture.PropSpecLike</code></td>
+    <td class="stTableData"><code>org.scalatest.propspec.FixtureAnyPropSpecLike</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.fixture.AsyncPropSpec</code></td>
+    <td class="stTableData"><code>org.scalatest.propspec.FixtureAsyncPropSpec</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.fixture.AsyncPropSpecLike</code></td>
+    <td class="stTableData"><code>org.scalatest.propspec.FixtureAsyncPropSpecLike</code></td> 
+  </tr>
+</table>
+
+<br/>
+
+<table class="stTableOverall">
+  <tr>
+    <th colspan="2" class="stTableHeader">FeatureSpec style (scalatest-featurespec module)</td>
+  </tr>
+  <tr>
+    <th class="stTableHeader">removed in 3.2.0</th>
+    <th class="stTableHeader">new name</th> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.FeatureSpec</code></td>
+    <td class="stTableData"><code>org.scalatest.featurespec.AnyFeatureSpec</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.FeatureSpecLike</code></td>
+    <td class="stTableData"><code>org.scalatest.featurespec.AnyFeatureSpecLike</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.AsyncFeatureSpec</code></td>
+    <td class="stTableData"><code>org.scalatest.featurespec.AsyncFeatureSpec</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.AsyncFeatureSpecLike</code></td>
+    <td class="stTableData"><code>org.scalatest.featurespec.AsyncFeatureSpecLike</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.fixture.FeatureSpec</code></td>
+    <td class="stTableData"><code>org.scalatest.featurespec.FixtureAnyFeatureSpec</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.fixture.FeatureSpecLike</code></td>
+    <td class="stTableData"><code>org.scalatest.featurespec.FixtureAnyFeatureSpecLike</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.fixture.AsyncFeatureSpec</code></td>
+    <td class="stTableData"><code>org.scalatest.featurespec.FixtureAsyncFeatureSpec</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.fixture.AsyncFeatureSpecLike</code></td>
+    <td class="stTableData"><code>org.scalatest.featurespec.FixtureAsyncFeatureSpecLike</code></td> 
+  </tr>
+</table>
+<br/>
+            </li>
+
+
+        <li>
+        We also removed the handful of top level traits from the <code>org.scalatest.fixture</code> package that had been deprecated and renamed in 3.1.0.
+        Here are the details:
+
+<br/>
+<br/>
+
+<table class="stTableOverall">
+  <tr>
+    <th colspan="2" class="stTableHeader">top-level <code>fixture</code> traits</td>
+  </tr>
+  <tr>
+    <th class="stTableHeader">removed in 3.2.0</th>
+    <th class="stTableHeader">new name</th> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.fixture.Suite</code></td>
+    <td class="stTableData"><code>org.scalatest.FixtureSuite</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.fixture.TestSuite</code></td>
+    <td class="stTableData"><code>org.scalatest.FixtureTestSuite</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.fixture.AsyncTestSuite</code></td>
+    <td class="stTableData"><code>org.scalatest.FixtureAsyncTestSuite</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.fixture.TestRegistration</code></td>
+    <td class="stTableData"><code>org.scalatest.FixtureTestRegistration</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.fixture.AsyncTestRegistration</code></td>
+    <td class="stTableData"><code>org.scalatest.FixtureAsyncTestRegistration</code></td> 
+  </tr>
+</table>
+        </li>
+
+        </ul>
+
+        <ul>
+            <li>We also removed the old names for the matchers and diagrammed assertions traits and objects that were deprecated and renamed in 3.1.0
+                to support the modularization by assertion style that we've implemented in ScalaTest 3.2.0.
+                Here are the details:
+ <br/>
+ <br/>
+<table class="stTableOverall">
+  <tr>
+    <th colspan="2" class="stTableHeader">Assertion style</td>
+  </tr>
+  <tr>
+    <th class="stTableHeader">removed in 3.2.0</th>
+    <th class="stTableHeader">new name</th> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.Matchers</code></td>
+    <td class="stTableData"><code>org.scalatest.matchers.should.Matchers<br/>(scalatest-shouldmatchers module)</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.MustMatchers</code></td>
+    <td class="stTableData"><code>org.scalatest.matchers.must.Matchers<br/>(scalatest-mustmatchers module)</code></td> 
+  </tr>
+  <tr>
+    <td class="stTableData"><code>org.scalatest.DiagrammedAssertions</code></td>
+    <td class="stTableData"><code>org.scalatest.diagrams.Diagrams<br/>(scalatest-diagrams module)</code></td> 
+  </tr>
+</table>
+<br/>
+        </li>
+        <li>
+        To facilate modularization of matchers, we moved <code>org.scalatest.words</code> members that were only needed by matchers to
+        <code>org.scalatest.matchers.dsl</code> in 3.1.0. We moved the remaining members of <code>words</code> to <code>org.scalatest.verbs</code>
+        in 3.1.0, and deprecated the old names under <code>words</code>. In 3.2.0, we have removed the <code>words</code> package, which only
+        contained deprecated names as of 3.1.0.
+        </li>
+        </ul>
         <br/>
 
 	<!-- ====================================== SCALACTIC ==================================================== -->
@@ -82,14 +530,14 @@
         <h2>Improvements</h2>
 
         <ul>
-            <li>Updates to support Scala.js 1.0.1.</li>
-            <li>Updates to support Dotty 0.23.</li>
+            <li>Updates to support Scala.js 1.1.0.</li>
+            <li>Updates to support Dotty 0.24.0</li>
         </ul>
 
         <a name="scalatest_deprecations"></a>
         <h2>Deprecations</h2>
 
-        <p>Scalactic 3.1.2 contains no new deprecations.</p>
+        <p>Scalactic 3.2.0 contains no new deprecations.</p>
 
         <br/>
 
@@ -98,7 +546,7 @@
 
         <h2>ScalaTest/Scalactic Contributors</h2>
 
-        Thanks to the contributors for the ScalaTest/Scalactic 3.1.2 release:
+        Thanks to the contributors for the ScalaTest/Scalactic 3.2.0 release:
 
         <ul>
             <li><a href="https://github.com/SethTisue">Seth Tisue</a></li>
