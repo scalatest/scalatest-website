@@ -34,8 +34,10 @@ named <code>ExampleSpec.scala</code>:
 <pre class="stHighlighted">
 <span class="stReserved">import</span> collection.mutable.Stack
 <span class="stReserved">import</span> org.scalatest._
+<span class="stReserved">import</span> flatspec._
+<span class="stReserved">import</span> matchers._
 
-<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> {
+<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">AnyFlatSpec</span> <span class="stReserved">with</span> <span class="stType">should.Matchers</span> {
 
   <span class="stQuotedString">"A Stack"</span> should <span class="stQuotedString">"pop values in last-in-first-out order"</span> in {
     <span class="stReserved">val</span> stack = <span class="stReserved">new</span> <span class="stType">Stack[Int]</span>

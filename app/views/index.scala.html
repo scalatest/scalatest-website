@@ -22,8 +22,10 @@
 <pre class="scala">
 <span class="reserved">import</span> collection.mutable.Stack
 <span class="reserved">import</span> org.scalatest._
+<span class="reserved">import</span> flatspec._
+<span class="reserved">import</span> matchers._
 
-<span class="reserved">class</span> <span class="type">ExampleSpec</span> <span class="reserved">extends</span> <span class="type">FlatSpec</span> <span class="reserved">with</span> <span class="type">Matchers</span> {
+<span class="reserved">class</span> <span class="type">ExampleSpec</span> <span class="reserved">extends</span> <span class="type">AnyFlatSpec</span> <span class="reserved">with</span> <span class="type">should.Matchers</span> {
 
   <span class="quotedString">"A Stack"</span> should <span class="quotedString">"pop values in last-in-first-out order"</span> in {
     <span class="reserved">val</span> stack = <span class="reserved">new</span> <span class="type">Stack[Int]</span>
@@ -45,7 +47,7 @@
 <div style="text-align: left">
 <p>
 ScalaTest is the most flexible and most popular testing tool in the Scala ecosystem.
-With ScalaTest, <strong>you can test Scala, Scala.js (JavaScript), and Java code</strong>.
+With ScalaTest, <strong>you can test Scala, Scala.js (JavaScript), Scala Native, Dotty (Scala 3), and Java code</strong>.
 By offering deep integration with tools
 such as JUnit, TestNG, Ant, Maven, sbt, ScalaCheck, JMock, EasyMock, Mockito, ScalaMock, Selenium, Eclipse, NetBeans, and IntelliJ,
 ScalaTest makes it easy to take your testing to a higher, more productive level in new or existing Scala, Scala.js, or Java projects.
