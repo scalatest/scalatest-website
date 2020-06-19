@@ -48,10 +48,24 @@
 	<hr></hr>
 
         <p>
-        The main change in ScalaTest 3.2.0 is carrying out the modularization that we prepared for in 3.1.0. As a result, many deprecated
+        The main change in ScalaTest 3.2.0 is carrying out the modularization that we prepared for in 3.0.8 and 3.1.0. As a result, many deprecated
         names have been removed, because the deprecations would cross module boundaries. Other than these deprecation expirations, 
         the actual modularization, and some changes to support more recent versions of Dotty and Scala.js, ScalaTest 3.2.0 is identical
         with ScalaTest 3.1.2.
+        </p>
+
+        <p>
+        Modularization required that we rename many traits, classes, and objects so that all the members of each package would belong to a
+        single module. In the monolithic ScalaTest artifact, which everyone is currently using in their build, the old names were deprecated
+        in the 3.0.8 and 3.1.0 releases. To upgrade to 3.2.0, we recommend you first upgrade to 3.1.0 (3.1.1 or 3.1.2 is also fine). To upgrade to 3.1.0,
+        we recommend that you first upgrade to 3.0.8 and clear all deprecation warnings.
+        We offer a <a href="https://github.com/scalatest/autofix/tree/master/3.0.x"><strong>ScalaFix tool to help you fix the 3.0.8 deprecation warnings</strong></a>.
+        Then, just change the version to 3.1.0. Your project should compile as before, but you'll get deprecation warnings about the name changes
+        made in 3.1.0. To help you with all those renames, we provide a
+        <a href="https://github.com/scalatest/autofix/tree/master/3.1.x"><strong>ScalaFix tool to help you fix  the 3.1.0 deprecation warnings</strong></a>.
+        Once you've cleared all deprecation warnings in 3.1.0 (or 3.1.1 or 3.1.2, if you are already using either of those releases), you can just
+        change the ScalaTest and Scalactic versions in your build to 3.2.0 and recompile. Everything should work as before, there should be no
+        source-breaking changes in 3.2.0 compared to 3.1.0 so long a you clear deprecation warning prior to upgrading to 3.2.0 and do a full recompile.
         </p>
 
         <a name="scalatest_improvements"></a>
