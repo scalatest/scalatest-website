@@ -1,0 +1,306 @@
+@*
+ * Copyright 2010-2017 Artima, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *@
+
+@import controllers.Application.latestScaladoc
+
+@userGuidePage("Selecting testing styles") {
+<div style="text-align: left">
+
+<h1>Selecting testing styles for your project</h1>
+
+<p>
+ScalaTest supports different styles of testing, each designed to address a particular set of needs.
+To help you find the best-fit styles for your project, this page will describe the intended use cases for each option.
+</p>
+
+<p>
+We recommend you choose a set of testing styles for each project, then encourage everyone working on the project use the chosen styles. 
+This allows the testing styles to fit the team while maintaining uniformity in the project code base.
+We recommend you select one main style for unit testing and another for acceptance testing.
+Using a different style for unit and acceptance testing can help developers "switch gears" between 
+low-level unit testing to high-level acceptance testing. You may also want to select particular styles to be used in special situations, such as using
+<a href="@latestScaladoc/#org.scalatest.PropSpec@@testMatrix"><code>PropSpec</code> for test matrixes</a>. 
+We usually write integration tests&mdash;tests that involve subsystems such as a database&mdash;in the same style as the unit tests.
+</p>
+
+<p>
+In short, ScalaTest's flexibility is not intended to enable individual developers to use different testing styles on the same project. 
+Rather, it is intended to enable project leaders to select a best-fit style or styles for the team.
+If you have trouble enforcing chosen styles, you can <a href="@latestScaladoc/#org.scalatest.tools.Runner$@@specifyingChosenStyles">specify the chosen styles</a> in your build.
+</p>
+
+<p>
+The style you choose dictates only how the declarations of your tests will look. Everything else in ScalaTest&mdash;assertions, matchers,
+mixin traits, <em>etc.</em>&mdash;works consistently the same way no matter what style you chose.
+</p>
+
+<h2>If you don't enjoy shopping</h2>
+
+<p>
+If you would rather be told which approach to take rather than pick one yourself, we recommend you use
+<a href="@latestScaladoc/#org.scalatest.FlatSpec"><code>FlatSpec</code></a> for unit and integration testing and
+<a href="@latestScaladoc/#org.scalatest.FeatureSpec"><code>FeatureSpec</code></a> for acceptance testing.
+We recommend <code>FlatSpec</code> as the default choice, because it is flat (unnested) like the XUnit tests familiar to most developers, but
+guides you into writing focused tests with descriptive, specification-style names.
+</p>
+
+<a name="sStyleTraitUseCases"></a>
+<h2>Style trait use cases</h2>
+
+<p>
+If you would rather make your own choices, this table gives a quick overview of the advantages and disadvantages of each style trait. For more
+information and examples, click on the links:
+</p>
+
+<p>
+<table style="border-collapse: collapse; border: 1px solid black">
+<tr><th style="background-color: #CCCCCC; border-width: 1px; padding: 10px; text-align: center; border: 1px solid black">Style Trait Descriptions and Examples</th></tr>
+<tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+<h2>FunSuite</h2>
+<p class="stStyleDesc">For teams coming from xUnit, <a href="@latestScaladoc/#org.scalatest.FunSuite"><code>FunSuite</code></a> feels comfortable and familiar while still giving some of the benefits of BDD: <code>FunSuite</code> makes it easy to write descriptive test names, natural to write focused tests, and generates specification-like output that can facilitate communication among stakeholders.</p>
+<pre class="stStyleExamples">
+<span class="stReserved">import</span> org.scalatest.FunSuite
+<br /><span class="stReserved">class</span> <span class="stType">SetSuite</span> <span class="stReserved">extends</span> <span class="stType">FunSuite</span> {
+<br />  test(<span class="stQuotedString">&quot;An empty Set should have size 0&quot;</span>) {
+    assert(Set.empty.size == <span class="stLiteral">0</span>)
+  }
+<br />  test(<span class="stQuotedString">&quot;Invoking head on an empty Set should produce NoSuchElementException&quot;</span>) {
+    assertThrows[<span class="stType">NoSuchElementException</span>] {
+      Set.empty.head
+    }
+  }
+}
+</pre>
+</td>
+</tr>
+
+<tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+<h2>FlatSpec</h2>
+<p class="stStyleDesc">
+A good first step for teams wishing to move from xUnit to BDD, <a href="@latestScaladoc/#org.scalatest.FlatSpec"><code>FlatSpec</code></a>'s structure is
+flat like xUnit, so simple and familiar, but the test names must be written in a specification style: "X should Y," "A must B," <em>etc</em>.</p>
+<pre class="stStyleExamples">
+<span class="stReserved">import</span> org.scalatest.FlatSpec
+<br /><span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> {
+<br />  <span class="stQuotedString">&quot;An empty Set&quot;</span> should <span class="stQuotedString">&quot;have size 0&quot;</span> in {
+    assert(Set.empty.size == <span class="stLiteral">0</span>)
+  }
+<br />  it should <span class="stQuotedString">&quot;produce NoSuchElementException when head is invoked&quot;</span> in {
+    assertThrows[<span class="stType">NoSuchElementException</span>] {
+      Set.empty.head
+    }
+  }
+}
+</pre>
+</td>
+</tr>
+
+<tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+<h2>FunSpec</h2>
+<p class="stStyleDesc">
+For teams coming from Ruby's RSpec tool, <a href="@latestScaladoc/#org.scalatest.FunSpec"><code>FunSpec</code></a> will feel very familiar; More generally, for any team that prefers BDD,
+<code>FunSpec</code>'s nesting and gentle guide to structuring text (with <code>describe</code> and <code>it</code>) provides an excellent
+general-purpose choice for writing specification-style tests.
+</p>
+<pre class="stStyleExamples">
+<span class="stReserved">import</span> org.scalatest.FunSpec
+<br /><span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">FunSpec</span> {
+<br />  describe(<span class="stQuotedString">&quot;A Set&quot;</span>) {
+    describe(<span class="stQuotedString">&quot;when empty&quot;</span>) {
+      it(<span class="stQuotedString">&quot;should have size 0&quot;</span>) {
+        assert(Set.empty.size == <span class="stLiteral">0</span>)
+      }
+<br />      it(<span class="stQuotedString">&quot;should produce NoSuchElementException when head is invoked&quot;</span>) {
+        assertThrows[<span class="stType">NoSuchElementException</span>] {
+          Set.empty.head
+        }
+      }
+    }
+  }
+}
+</pre>
+</td>
+</tr>
+
+<tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+<h2>WordSpec</h2>
+<p class="stStyleDesc">
+For teams coming from specs or specs2, <a href="@latestScaladoc/#org.scalatest.WordSpec"><code>WordSpec</code></a> will feel familiar, and is often the most natural way to port specsN tests to ScalaTest. <code>WordSpec</code> is very prescriptive in how text must be written, so a good fit for teams who want a high degree of discipline enforced upon their specification text.
+</p>
+<pre class="stStyleExamples">
+<span class="stReserved">import</span> org.scalatest.WordSpec
+<br /><span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">WordSpec</span> {
+<br />  <span class="stQuotedString">&quot;A Set&quot;</span> when {
+    <span class="stQuotedString">&quot;empty&quot;</span> should {
+      <span class="stQuotedString">&quot;have size 0&quot;</span> in {
+        assert(Set.empty.size == <span class="stLiteral">0</span>)
+      }
+<br />      <span class="stQuotedString">&quot;produce NoSuchElementException when head is invoked&quot;</span> in {
+        assertThrows[<span class="stType">NoSuchElementException</span>] {
+          Set.empty.head
+        }
+      }
+    }
+  }
+}
+</pre>
+</td>
+</tr>
+
+<tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+<h2>FreeSpec</h2>
+<p class="stStyleDesc">
+Because it gives absolute freedom (and no guidance) on how specification text should be written, <a href="@latestScaladoc/#org.scalatest.FreeSpec"><code>FreeSpec</code></a> is a good choice for teams experienced with BDD and able to agree on how to structure the specification text.
+</p>
+<pre class="stStyleExamples">
+<span class="stReserved">import</span> org.scalatest.FreeSpec
+<br /><span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">FreeSpec</span> {
+<br />  <span class="stQuotedString">&quot;A Set&quot;</span> - {
+    <span class="stQuotedString">&quot;when empty&quot;</span> - {
+      <span class="stQuotedString">&quot;should have size 0&quot;</span> in {
+        assert(Set.empty.size == <span class="stLiteral">0</span>)
+      }
+<br />      <span class="stQuotedString">&quot;should produce NoSuchElementException when head is invoked&quot;</span> in {
+        assertThrows[<span class="stType">NoSuchElementException</span>] {
+          Set.empty.head
+        }
+      }
+    }
+  }
+}
+</pre>
+</td>
+</tr>
+
+<tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+<h2>PropSpec</h2>
+<p class="stStyleDesc">
+<a href="@latestScaladoc/#org.scalatest.PropSpec">PropSpec</a> is perfect for teams that want to write tests exclusively in terms of property checks; also a good
+choice for writing the occasional test matrix when a different style trait is chosen as the main unit testing style.
+</p>
+<pre class="stStyleExamples">
+<span class="stReserved">import</span> org.scalatest._
+<span class="stReserved">import</span> prop._
+<span class="stReserved">import</span> scala.collection.immutable._
+<br /><span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">PropSpec</span> <span class="stReserved">with</span> <span class="stType">TableDrivenPropertyChecks</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> {
+<br />  <span class="stReserved">val</span> examples =
+    <span class="stType">Table</span>(
+      <span class="stQuotedString">&quot;set&quot;</span>,
+      BitSet.empty,
+      HashSet.empty[<span class="stType">Int</span>],
+      TreeSet.empty[<span class="stType">Int</span>]
+    )
+<br />  property(<span class="stQuotedString">&quot;an empty Set should have size 0&quot;</span>) {
+    forAll(examples) { set =&gt;
+      set.size should be (<span class="stLiteral">0</span>)
+    }
+  }
+<br />  property(<span class="stQuotedString">&quot;invoking head on an empty set should produce NoSuchElementException&quot;</span>) {
+    forAll(examples) { set =&gt;
+       a [<span class="stType">NoSuchElementException</span>] should be thrownBy { set.head }
+    }
+  }
+}
+</pre>
+</td>
+</tr>
+
+<tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+<h2>FeatureSpec</h2>
+<p class="stStyleDesc">
+Trait <a href="@latestScaladoc/#org.scalatest.FeatureSpec"><code>FeatureSpec</code></a> is primarily intended for acceptance testing, including facilitating the process of programmers working alongside non-programmers to define the acceptance requirements.
+</p>
+<pre class="stStyleExamples">
+<span class="stReserved">import</span> org.scalatest._
+<br /><span class="stReserved">class</span> <span class="stType">TVSet</span> {
+  <span class="stReserved">private</span> <span class="stReserved">var</span> on: <span class="stType">Boolean</span> = <span class="stReserved">false</span>
+  <span class="stReserved">def</span> isOn: <span class="stType">Boolean</span> = on
+  <span class="stReserved">def</span> pressPowerButton() {
+    on = !on
+  }
+}
+<br /><span class="stReserved">class</span> <span class="stType">TVSetSpec</span> <span class="stReserved">extends</span> <span class="stType">FeatureSpec</span> <span class="stReserved">with</span> <span class="stType">GivenWhenThen</span> {
+<br />  info(<span class="stQuotedString">&quot;As a TV set owner&quot;</span>)
+  info(<span class="stQuotedString">&quot;I want to be able to turn the TV on and off&quot;</span>)
+  info(<span class="stQuotedString">&quot;So I can watch TV when I want&quot;</span>)
+  info(<span class="stQuotedString">&quot;And save energy when I'm not watching TV&quot;</span>)
+<br />  feature(<span class="stQuotedString">&quot;TV power button&quot;</span>) {
+    scenario(<span class="stQuotedString">&quot;User presses power button when TV is off&quot;</span>) {
+<br />      <span class="stType">Given</span>(<span class="stQuotedString">&quot;a TV set that is switched off&quot;</span>)
+      <span class="stReserved">val</span> tv = <span class="stReserved">new</span> <span class="stType">TVSet</span>
+      assert(!tv.isOn)
+<br />      <span class="stType">When</span>(<span class="stQuotedString">&quot;the power button is pressed&quot;</span>)
+      tv.pressPowerButton()
+<br />      <span class="stType">Then</span>(<span class="stQuotedString">&quot;the TV should switch on&quot;</span>)
+      assert(tv.isOn)
+    }
+<br />    scenario(<span class="stQuotedString">&quot;User presses power button when TV is on&quot;</span>) {
+<br />      <span class="stType">Given</span>(<span class="stQuotedString">&quot;a TV set that is switched on&quot;</span>)
+      <span class="stReserved">val</span> tv = <span class="stReserved">new</span> <span class="stType">TVSet</span>
+      tv.pressPowerButton()
+      assert(tv.isOn)
+<br />      <span class="stType">When</span>(<span class="stQuotedString">&quot;the power button is pressed&quot;</span>)
+      tv.pressPowerButton()
+<br />      <span class="stType">Then</span>(<span class="stQuotedString">&quot;the TV should switch off&quot;</span>)
+      assert(!tv.isOn)
+    }
+  }
+}
+</pre>
+</td>
+</tr>
+
+<tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+<h2>RefSpec (JVM only)</h2>
+<p class="stStyleDesc">
+<a href="@latestScaladoc/#org.scalatest.refspec.RefSpec"><code>RefSpec</code></a> allows you to define tests as methods, which saves one function literal per test
+compared to style classes that represent tests as functions. Fewer function literals translates into faster compile times and fewer generated class files, which
+can help minimize build times. As a result, using <code>Spec</code> can be a good choice in large projects where build times are a concern as well as when
+generating large numbers of tests programatically via static code generators.
+</p>
+<pre class="stStyleExamples">
+<span class="stReserved">import</span> org.scalatest.refspec.RefSpec
+<br /><span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">RefSpec</span> {
+<br />  <span class="stReserved">object</span> <span class="literalIdentifier">&#96;A Set&#96;</span> {
+    <span class="stReserved">object</span> <span class="literalIdentifier">&#96;when empty&#96;</span> {
+      <span class="stReserved">def</span> <span class="literalIdentifier">&#96;should have size 0&#96;</span> {
+        assert(Set.empty.size == <span class="stLiteral">0</span>)
+      }
+<br />      <span class="stReserved">def</span> <span class="literalIdentifier">&#96;should produce NoSuchElementException when head is invoked&#96;</span> {
+        assertThrows[<span class="stType">NoSuchElementException</span>] {
+          Set.empty.head
+        }
+      }
+    }
+  }
+}
+</pre>
+<p class="stStyleDesc">
+Note: The "<code>Ref</code>" in <code>RefSpec</code> stands for reflection, which <code>RefSpec</code> uses to discover tests. As reflection is not availble in Scala.js, this class is not available on Scala.js.
+</p>
+</td>
+</tr>
+
+</table>
+</p>
+
+<p>
+Next, <a href="defining_base_classes">define a base class</a> for unit testing.
+</p>
+
+</div>
+}
+

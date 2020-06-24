@@ -1,0 +1,235 @@
+@*
+ * Copyright 2010-2017 Artima, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *@
+
+@import controllers.Application.latestScaladoc
+
+@userGuidePage("Other goodies") {
+<div style="text-align: left">
+
+<h1>Other goodies</h1>
+
+<p>
+ScalaTest has many other traits and classes that can help you address specific problems.
+This page gives tutorials on just a few of them. 
+For the full list, see <a href="@routes.Assets.at("/public/scaladoc", "2.0/index.html#org.scalatest.FlatSpec")">ScalaTest's Scaladoc documentation</a>.
+</p>
+
+<p>
+Here are links to the <em>goodies</em> described on this page:
+</p>
+
+<ul>
+<li><a href="#inside"><code>Inside</code></a></li>
+<li><a href="#optionValues"><code>OptionValues</code></a></li>
+<li><a href="#eitherValues"><code>EitherValues</code></a></li>
+<li><a href="#partialFunctionValues"><code>PartialFunctionValues</code></a></li>
+<li><a href="#privateMethodTester"><code>PrivateMethodTester</code></a></li>
+<li><a href="#wrapWith"><code>WrapWith</code></a></li>
+</ul>
+
+<a name="inside"></a>
+<h2>Using <code>Inside</code></h2>
+
+<p>ScalaTest's <a href="@latestScaladoc/#org.scalatest.Inside"><code>Inside</code></a> trait contains an <code>inside</code> construct, which allows you to make statements about nested object graphs using pattern matching.</p><p>For example, given the following case classes:</p><p><pre class="stHighlighted">
+<span class="stReserved">case</span> <span class="stReserved">class</span> <span class="stType">Address</span>(street: <span class="stType">String</span>, city: <span class="stType">String</span>, state: <span class="stType">String</span>, zip: <span class="stType">String</span>)
+<span class="stReserved">case</span> <span class="stReserved">class</span> <span class="stType">Name</span>(first: <span class="stType">String</span>, middle: <span class="stType">String</span>, last: <span class="stType">String</span>)
+<span class="stReserved">case</span> <span class="stReserved">class</span> <span class="stType">Record</span>(name: <span class="stType">Name</span>, address: <span class="stType">Address</span>, age: <span class="stType">Int</span>)
+</pre></p><p>You could write:</p><p><pre class="stHighlighted">
+inside (rec) { <span class="stReserved">case</span> <span class="stType">Record</span>(name, address, age) =&gt;
+  inside (name) { <span class="stReserved">case</span> <span class="stType">Name</span>(first, middle, last) =&gt;
+    first should be (<span class="stQuotedString">&quot;Sally&quot;</span>)
+    middle should be (<span class="stQuotedString">&quot;Ann&quot;</span>)
+    last should be (<span class="stQuotedString">&quot;Jones&quot;</span>)
+  }
+  inside (address) { <span class="stReserved">case</span> <span class="stType">Address</span>(street, city, state, zip) =&gt;
+    street should startWith (<span class="stQuotedString">&quot;25&quot;</span>)
+    city should endWith (<span class="stQuotedString">&quot;Angeles&quot;</span>)
+    state should equal (<span class="stQuotedString">&quot;CA&quot;</span>)
+    zip should be (<span class="stQuotedString">&quot;12345&quot;</span>)
+  }
+  age should be &lt; <span class="stLiteral">99</span>
+}
+</pre></p><p>If an assertion fails, the error message will include the <code>toString</code> of each value passed
+to <code>inside</code> clauses enclosing the failed assertion. For example, if <code>rec</code> in
+the previous expression was defined like this:</p><p><pre class="stHighlighted">
+<span class="stReserved">val</span> rec = <span class="stType">Record</span>(
+  <span class="stType">Name</span>(<span class="stQuotedString">&quot;Sally&quot;</span>, <span class="stQuotedString">&quot;Anna&quot;</span>, <span class="stQuotedString">&quot;Jones&quot;</span>),
+  <span class="stType">Address</span>(<span class="stQuotedString">&quot;25 Main St&quot;</span>, <span class="stQuotedString">&quot;Los Angeles&quot;</span>, <span class="stQuotedString">&quot;CA&quot;</span>, <span class="stQuotedString">&quot;12345&quot;</span>),
+  <span class="stLiteral">38</span>
+)
+</pre></p><p>The error message will read:</p><p><pre>
+"Ann[a]" was not equal to "Ann[]", inside Name(Sally,Anna,Jones),
+inside Record(Name(Sally,Anna,Jones),Address(25 Main St,Los Angeles,CA,12345),38)
+</pre></p>
+
+<a name="optionValues"></a>
+<h2>Using <code>OptionValues</code></h2>
+
+<p>ScalaTest's <a href="@latestScaladoc/#org.scalatest.OptionValues"><code>OptionValues</code></a> trait provides an implicit conversion that adds a <code>value</code> method
+to <code>Option</code>, which will return the value of the option if it is defined,
+or throw <code>TestFailedException</code> if not.</p><p>This construct allows you to express in one statement that an option should be defined
+and that its value should meet some expectation. Here's an example:</p><p><pre class="stHighlighted">
+opt.value should be &gt; <span class="stLiteral">9</span>
+</pre></p><p>Or, using an assertion instead of a matcher expression:</p><p><pre class="stHighlighted">
+assert(opt.value &gt; <span class="stLiteral">9</span>)
+</pre></p><p>Were you to simply invoke <code>get</code> on the <code>Option</code>,
+if the option wasn't defined, it would throw a <code>NoSuchElementException</code>:</p><p><pre class="stHighlighted">
+<span class="stReserved">val</span> opt: <span class="stType">Option[Int]</span> = <span class="stType">None</span>
+<br />opt.get should be &gt; <span class="stLiteral">9</span> <span class="stLineComment">// opt.get throws NoSuchElementException</span>
+</pre></p><p>The <code>NoSuchElementException</code> would cause the test to fail, but without providing a <a href="@latestScaladoc/#org.scalatest.StackDepth">stack depth</a> pointing
+to the failing line of test code. This stack depth, provided by <a href="@latestScaladoc/#org.scalatest.TestFailedException"><code>TestFailedException</code></a> (and a
+few other ScalaTest exceptions), makes it quicker for
+users to navigate to the cause of the failure. Without <code>OptionValues</code>, to get
+a stack depth exception you would need to make two statements, like this:</p><p><pre class="stHighlighted">
+<span class="stReserved">val</span> opt: <span class="stType">Option[Int]</span> = <span class="stType">None</span>
+<br />opt should be (<span class="stQuotedString">'defined</span>) <span class="stLineComment">// throws TestFailedException</span>
+opt.get should be &gt; <span class="stLiteral">9</span>
+</pre></p><p>The <code>OptionValues</code> trait allows you to state that more concisely:</p><p><pre class="stHighlighted">
+<span class="stReserved">val</span> opt: <span class="stType">Option[Int]</span> = <span class="stType">None</span>
+<br />opt.value should be &gt; <span class="stLiteral">9</span> <span class="stLineComment">// opt.value throws TestFailedException</span>
+</pre>
+</p>
+
+<a name="eitherValues"></a>
+<h2>Using <code>EitherValues</code></h2>
+
+<p>ScalaTest's <a href="@latestScaladoc/#org.scalatest.EitherValues"><code>EitherValues</code></a> trait provides an implicit conversion that adds <code>left.value</code> and <code>right.value</code> methods
+to <code>Either</code>, which will return the selected value of the <code>Either</code> if defined,
+or throw <code>TestFailedException</code> if not.</p><p>This construct allows you to express in one statement that an <code>Either</code> should be <em>left</em> or <em>right</em>
+and that its value should meet some expectation. Here's are some examples:</p><p><pre class="stHighlighted">
+either1.right.value should be &gt; <span class="stLiteral">9</span>
+either2.left.value should be (<span class="stQuotedString">&quot;Muchas problemas&quot;</span>)
+</pre></p><p>Or, using assertions instead of matcher expressions:</p><p><pre class="stHighlighted">
+assert(either1.right.value &gt; <span class="stLiteral">9</span>)
+assert(either2.left.value === <span class="stQuotedString">&quot;Muchas problemas&quot;</span>)
+</pre></p><p>Were you to simply invoke <code>right.get</code> or <code>left.get</code> on the <code>Either</code>,
+if the <code>Either</code> wasn't defined as expected (<em>e.g.</em>, it was a <code>Left</code> when you expected a <code>Right</code>), it
+would throw a <code>NoSuchElementException</code>:</p><p><pre class="stHighlighted">
+<span class="stReserved">val</span> either: <span class="stType">Either[String, Int]</span> = <span class="stType">Left</span>(<span class="stQuotedString">&quot;Muchas problemas&quot;</span>)
+<br />either.right.get should be &gt; <span class="stLiteral">9</span> <span class="stLineComment">// either.right.get throws NoSuchElementException</span>
+</pre></p><p>The <code>NoSuchElementException</code> would cause the test to fail, but without providing a <a href="@latestScaladoc/#org.scalatest.StackDepth">stack depth</a> pointing
+to the failing line of test code. This stack depth, provided by <a href="@latestScaladoc/#org.scalatest.TestFailedException"><code>TestFailedException</code></a> (and a
+few other ScalaTest exceptions), makes it quicker for
+users to navigate to the cause of the failure. Without <code>EitherValues</code>, to get
+a stack depth exception you would need to make two statements, like this:</p><p><pre class="stHighlighted">
+<span class="stReserved">val</span> either: <span class="stType">Either[String, Int]</span> = <span class="stType">Left</span>(<span class="stQuotedString">&quot;Muchas problemas&quot;</span>)
+<br />either should be (<span class="stQuotedString">'right</span>) <span class="stLineComment">// throws TestFailedException</span>
+either.right.get should be &gt; <span class="stLiteral">9</span>
+</pre></p><p>The <code>EitherValues</code> trait allows you to state that more concisely:</p><p><pre class="stHighlighted">
+<span class="stReserved">val</span> either: <span class="stType">Either[String, Int]</span> = <span class="stType">Left</span>(<span class="stQuotedString">&quot;Muchas problemas&quot;</span>)
+<br />either.right.value should be &gt; <span class="stLiteral">9</span> <span class="stLineComment">// either.right.value throws TestFailedException</span>
+</pre>
+</p>
+
+<a name="partialFunctionValues"></a>
+<h2>Using <code>PartialFunctionValues</code></h2>
+
+<p>ScalaTest's <a href="@latestScaladoc/#org.scalatest.PartialFunctionValues"><code>PartialFunctionValues</code></a> trait provides an implicit conversion that adds a <code>valueAt</code> method
+to <code>PartialFunction</code>, which will return the value (result) of the function applied to the argument passed to <code>valueAt</code>,
+or throw <code>TestFailedException</code> if the partial function is not defined at the argument.</p><p>This construct allows you to express in one statement that a partial function should be defined for a particular input,
+and that its result value should meet some expectation. Here's an example:</p><p><pre class="stHighlighted">
+pf.valueAt(<span class="stQuotedString">&quot;IV&quot;</span>) should equal (<span class="stLiteral">4</span>)
+</pre></p><p>Or, using an assertion instead of a matcher expression:</p><p><pre class="stHighlighted">
+assert(pf.valueAt(<span class="stQuotedString">&quot;IV&quot;</span>) === <span class="stLiteral">4</span>)
+</pre></p><p>Were you to simply invoke <code>apply</code> on the <code>PartialFunction</code>, passing in an input value,
+if the partial function wasn't defined at that input, it would throw some exception, but likely not one
+that provides a <a href="@latestScaladoc/#org.scalatest.StackDepth">stack depth</a>:</p><p><pre class="stHighlighted">
+<span class="stLineComment">// Note: a Map[K, V] is a PartialFunction[K, V]</span>
+<span class="stReserved">val</span> pf: <span class="stType">PartialFunction[String, Int]</span> = <span class="stType">Map</span>(<span class="stQuotedString">&quot;I&quot;</span> -&gt; <span class="stLiteral">1</span>, <span class="stQuotedString">&quot;II&quot;</span> -&gt; <span class="stLiteral">2</span>, <span class="stQuotedString">&quot;III&quot;</span> -&gt; <span class="stLiteral">3</span>, <span class="stQuotedString">&quot;IV&quot;</span> -&gt; <span class="stLiteral">4</span>)
+<br />pf(<span class="stQuotedString">&quot;V&quot;</span>) should equal (<span class="stLiteral">5</span>) <span class="stLineComment">// pf(&quot;V&quot;) throws NoSuchElementException</span>
+</pre></p><p>The <code>NoSuchElementException</code> thrown in this situation would cause the test to fail, but without providing a stack depth pointing
+to the failing line of test code. This stack depth, provided by <a href="@latestScaladoc/#org.scalatest.TestFailedException"><code>TestFailedException</code></a> (and a
+few other ScalaTest exceptions), makes it quicker for
+users to navigate to the cause of the failure. Without <code>PartialFunctionValues</code>, to get
+a stack depth exception you would need to make two statements, like this:</p><p><pre class="stHighlighted">
+<span class="stReserved">val</span> pf: <span class="stType">PartialFunction[String, Int]</span> = <span class="stType">Map</span>(<span class="stQuotedString">&quot;I&quot;</span> -&gt; <span class="stLiteral">1</span>, <span class="stQuotedString">&quot;II&quot;</span> -&gt; <span class="stLiteral">2</span>, <span class="stQuotedString">&quot;III&quot;</span> -&gt; <span class="stLiteral">3</span>, <span class="stQuotedString">&quot;IV&quot;</span> -&gt; <span class="stLiteral">4</span>)
+<br />pf.isDefinedAt(<span class="stQuotedString">&quot;V&quot;</span>) should be (<span class="stReserved">true</span>) <span class="stLineComment">// throws TestFailedException</span>
+pf(<span class="stQuotedString">&quot;V&quot;</span>) should equal (<span class="stLiteral">5</span>)
+</pre></p><p>The <code>PartialFunctionValues</code> trait allows you to state that more concisely:</p><p><pre class="stHighlighted">
+<span class="stReserved">val</span> pf: <span class="stType">PartialFunction[String, Int]</span> = <span class="stType">Map</span>(<span class="stQuotedString">&quot;I&quot;</span> -&gt; <span class="stLiteral">1</span>, <span class="stQuotedString">&quot;II&quot;</span> -&gt; <span class="stLiteral">2</span>, <span class="stQuotedString">&quot;III&quot;</span> -&gt; <span class="stLiteral">3</span>, <span class="stQuotedString">&quot;IV&quot;</span> -&gt; <span class="stLiteral">4</span>)
+<br />pf.valueAt(<span class="stQuotedString">&quot;V&quot;</span>) should equal (<span class="stLiteral">5</span>) <span class="stLineComment">// pf.valueAt(&quot;V&quot;) throws TestFailedException</span>
+</pre>
+</p>
+
+<a name="privateMethodTester"></a>
+<h2>Using <code>PrivateMethodTester</code></h2>
+
+<p>ScalaTest's <a href="@latestScaladoc/#org.scalatest.PrivateMethodTester"><code>PrivateMethodTester</code></a> trait facilitates the testing of private methods.</p><p>To test a private method, mix in trait <code>PrivateMethodTester</code> and
+create a <code>PrivateMethod</code> object, like this:</p><p><pre class="stHighlighted">
+<span class="stReserved">val</span> decorateToStringValue = <span class="stType">PrivateMethod[String]</span>(<span class="stQuotedString">'decorateToStringValue</span>)
+</pre></p><p>The type parameter on <code>PrivateMethod</code>, in this case <code>String</code>, is the result type of the private method
+you wish to invoke. The symbol passed to the <code>PrivateMethod.apply</code> factory method, in this
+case <code>'decorateToStringValue</code>, is the name of the private method to invoke. To test
+the private method, use the <code>invokePrivate</code> operator, like this:</p><p><pre class="stHighlighted">
+targetObject invokePrivate decorateToStringValue(<span class="stLiteral">1</span>)
+</pre></p><p>Here, <code>targetObject</code> is a variable or singleton object name referring to the object whose
+private method you want to test. You pass the arguments to the private method in the parentheses after
+the <code>PrivateMethod</code> object.
+The result type of an <code>invokePrivate</code> operation will be the type parameter of the <code>PrivateMethod</code>
+object, thus you need not cast the result to use it. In other words, after creating a <code>PrivateMethod</code> object, the
+syntax to invoke the private method
+looks like a regular method invocation, but with the dot (<code>.</code>) replaced by <code>invokePrivate</code>.
+The private method is invoked dynamically via reflection, so if you have a typo in the method name symbol, specify the wrong result type,
+or pass invalid parameters, the <code>invokePrivate</code> operation will compile, but throw an exception at runtime.</p><p>One limitation to be aware of is that you can't use <code>PrivateMethodTester</code> to test a private method
+declared in a trait, because the class the trait gets mixed into will not declare that private method. Only the
+class generated to hold method implementations for the trait will have that private method. If you want to
+test a private method declared in a trait, and that method does not use any state of that trait, you can move
+the private method to a companion object for the trait and test it using <code>PrivateMethodTester</code> that
+way. If the private trait method you want to test uses the trait's state, your best options are to test it
+indirectly via a non-private trait method that calls the private method, or make the private method package access
+and test it directly via regular static method invocations.</p>
+
+<a name="wrapWith"></a>
+<h2>Using <code>WrapWith</code></h2>
+
+<p>
+You can use ScalaTest's <code>WrapWith</code> annotation to associate a <em>wrapper suite</em> with a non-<code>Suite</code> class, so
+it can be run via ScalaTest. The <code>WrapWith</code> annotation is similar in spirit to JUnit's <code>RunWith</code> annotation.
+</p>
+
+<p>
+A class will be considered annotated with <code>WrapWith</code> if it is annotated directly or one of its superclasses (but
+not supertraits) are annotated with <code>WrapWith</code>.
+The wrapper suite must have a public, one-arg constructor that takes a <code>Class</code> instance whose type parameter
+is compatible with the <em>class to wrap</em>: <em>i.e.</em>, the class being annotated with <code>WrapWith</code>.
+ScalaTest will load the class to wrap and construct a new instance of the wrapper suite, passing in the <code>Class</code>
+instance for the class to wrap.
+Here's an example:
+</p>
+
+<pre class="stHighlighted">
+@@WrapWith(classOf[Specs1Runner])
+<span class="stReserved">class</span> <span class="stType">LegacySpec</span> <span class="stReserved">extends</span> <span class="stType">Specification</span> {
+  // ...
+}
+</pre>
+
+<p>
+The <code>Specs1Runner</code> would need to have a public, no-arg constructor that accepts subclasses of <code>Specification</code>:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">class</span> <span class="stType">Specs1Runner</span>(clazz: Class[_ <: Specification]) {
+  // ...
+}
+</pre>
+
+<p>
+Next, learn about <a href="/user_guide/philosophy_and_design">ScalaTest's philosophy and design</a>.
+</p>
+
+</div>
+}

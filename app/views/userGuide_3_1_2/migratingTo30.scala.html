@@ -1,0 +1,193 @@
+@*
+ * Copyright 2010-2017 Artima, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *@
+
+@import controllers.Application.latestScaladoc
+@import controllers.Application.latestScalacticScaladoc
+@import controllers.Application.baseScalaVersion
+
+@userGuidePage("Migrating to 3.0") {
+<div style="text-align: left">
+
+<h1>Migrating from ScalaTest 2.x to 3.0</h1>
+
+<p>
+We have always worked very hard to maintain source compatibility from one release of ScalaTest to the next. Upgrading is usually simply a matter of bumping
+the ScalaTest version number in your build doing a full recompile, and over time cleaning up any deprecation warnings. With ScalaTest 3.0, however,
+we made some improvements for which it was not possible to deprecate, so some of your existing code may not compile. Neverthless, we expect the vast
+majority of existing ScalaTest user code to just recompile as is.
+</p>
+
+<p>
+To ensure the smoothest migration, first please eliminate any deprecation warnings
+being emitted by your current version of ScalaTest on your existing code. (For best results, upgrade to 2.2.6 first
+and clear any deprecation warnings, though many of those reported will still be deprecated and working in 3.0.) Then
+just bump the ScalaTest version number to 3.0 and do a full build.
+If you encounter compilation errors, check the list below for help in resolving them.
+</p>
+
+<p>
+These are the points of potential breakage in ScalaTest 3.0, which are described in the sections that follow:
+</p>
+
+<ol>
+<li><a href="#goodAndBadTypeParam"><code>Good</code> and <code>Bad</code> type parameters</a>
+<li><a href="#prettifierChanges"><code>Prettifier</code> changes</a>
+<li><a href="#timeLimitedTests"><code>TimeLimitedTests</code></a>
+<li><a href="#withFixtureMethods">Mixin traits that override <code>withFixture</code></a>
+<li><a href="#whenCompleted">Signature of <code>Status.whenCompleted</code></a>
+<li><a href="#fragileBaseClassProblem">The fragile base class problem</a>
+<li><a href="#inferredResultTypes">Inferred result types in <code>JUnitSuite</code>, <code>JUnit3Suite</code>, and <code>TestNGSuite</code></a>
+
+
+<h2></h2>
+</ol>
+
+<p>
+If you have any confusion about how to migrate your ScalaTest 2.x code to ScalaTest 3.0, or encounter other problems, please post your specific issues
+to <a href="http://groups.google.com/group/scalatest-users"><code>scalatest-users</code></a> and we'll be happy to help.
+</p>
+
+<a name="goodAndBadTypeParam"></a>
+<h2><code>Good</code> and <code>Bad</code> type parameters</h2>
+
+<p>The main breaking change in Scalactic in 3.0.0 is that we dropped an unnecessary type parameter in <a href="@{latestScalacticScaladoc}/index.html#org.scalactic.Good"><code>Good</code></a> and <a href="@{latestScalacticScaladoc}/index.html#org.scalactic.Bad"><code>Bad</code></a>, specifying
+<code>Nothing</code> for that now missing type parameter
+when extending <a href="@{latestScalacticScaladoc}/index.html#org.scalactic.Or"><code>Or</code></a>.
+This will only affect code in which the type parameters for <code>Good</code> or <code>Bad</code> were given explicitly,
+which we expect will be rare in practice. In situations where the type parameters for <code>Good</code> and <code>Bad</code> were being inferred, the
+code should continue to work as before.</p>
+
+<a name="prettifierChanges"></a>
+<h2><code>Prettifier</code> changes</h2>
+
+<p>
+Because we started using <a href="@{latestScalacticScaladoc}/index.html#org.scalactic.Prettifier"><code>Prettifier</code></a> as an implicit type in 3.0, we dropped its inheritance relationship with
+<code>Any =&gt; String</code> (so that an implicit <code>Prettifier</code> won't be usable as in implicit conversion from
+<code>Any</code> to <code>String</code>). It is unlikely anyone was actually using <code>Prettifier</code> as a <code>Function1</code>,
+but if so, that will no longer compile and you'll need to convert it to <code>Any =&gt; String</code> explicitly.)
+Furthermore, since <code>Prettifier</code> was now being used as an implicit itself, we changed <a href="@{latestScalacticScaladoc}/index.html#org.scalactic.PrettyMethods"><code>PrettyMethods</code></a> to 
+require an implicit <code>Prettifier</code> instead of a <a href="http://doc.scalatest.org/2.2.6/index.html#org.scalactic.PrettyMethods$PrettifierConfig"><code>PrettifierConfig</code></a>. Thus if you defined an overridden implicit <code>PrettifierConfig</code>, that will no longer compile, and you'll need to replace
+it with an implicit <code>Prettifier</code> instead. For a quick fix, we left the old <code>PrettyMethods</code> behavior in
+under the name <code>DeprecatedPrettyMethods</code>. If you just change <code>PrettyMethods</code> to <a href="@{latestScalacticScaladoc}/index.html#org.scalactic.DeprecatedPrettyMethods"><code>DeprecatedPrettyMethods</code></a>,
+that will get your <code>PrettifierConfig</code> code compiling and working again, but you'll receive a deprecation warning until you
+replace the <code>PrettifierConfig</code> with <code>Prettifier</code>, and <code>DeprecatedPrettyMethods</code> with <code>PrettyMethods</code>.
+</p>
+
+<a name="timeLimitedTests"></a>
+<h2><code>TimeLimitedTests</code></h2>
+
+<p>
+In ScalaTest, one potentially breaking change is in <a href="@{latestScaladoc}/index.html#org.scalatest.concurrent.TimeLimitedTests"><code>TimeLimitedTests</code></a>, which now uses an implicit <a href="@{latestScaladoc}/index.html#org.scalatest.concurrent.Signaler"><code>Signaler</code></a> instead
+of an implicit <a href="@{latestScaladoc}/index.html#org.scalatest.concurrent.Interruptor"><code>Interruptor</code></a>. Whereas the default <code>Interruptor</code> in <code>TimeLimitedTests</code> prior to 3.0 was
+a <a href="@{latestScaladoc}/index.html#org.scalatest.concurrent.ThreadInterruptor$"><code>ThreadInterruptor</code></a>, the default signaler is <a href="@{latestScaladoc}/index.html#org.scalatest.concurrent.DoNotSignal$"><code>DoNotSignal</code></a>. This default makes more sense with the advent of
+ScalaTest 3.0's support for Scala.js and async testing styles. If you were relying on the default behavior of interrupting a thread on
+the JVM in ScalaTest 2.2.x, you'll need to define an implicit <code>val</code> referring to a <a href="@{latestScaladoc}/index.html#org.scalatest.concurrent.ThreadSignaler$"><code>ThreadSignaler</code></a>. If you had alreday overriden
+the default <code>Interuptor</code> (referenced from <code>defaultInterruptor</code>) you'll need to define a corresponding <code>Signaler</code> instead
+(unless you had defined the <code>Interruptor</code> to be <code>DoNotInterrupt</code>, in which case you can just remove the
+<code>defaultInterruptor</code> override entirely and enjoy the default <code>Signaler</code>, <code>DoNotSignal</code>).
+</p>
+
+<a name="withFixtureMethods"></a>
+<h2>Mixin traits that override <code>withFixture</code></h2>
+
+<p>
+4) In 3.0.0, the <code>withFixture</code> method has been moved from
+<a href="@{latestScaladoc}/index.html#org.scalatest.Suite"><code>Suite</code></a> to a new trait, <a href="@{latestScaladoc}/index.html#org.scalatest.TestSuite"><code>TestSuite</code></a>. This was done to make room for a <code>withFixture</code> method with a different signature in
+<a href="@{latestScaladoc}/index.html#org.scalatest.AsyncTestSuite"><code>AsyncTestSuite</code></a>. If you factored out a <code>withFixture</code>
+method into a separate "suite mixin" trait, you'll need to change <code>"Suite"</code> to <code>"TestSuite"</code> and <code>"SuiteMixin"</code>
+to <code>"TestSuiteMixin"</code>. For example, given this trait from 2.2.6:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">trait</span> <span class="stType">YourMixinTrait</span> <span class="stReserved">extends</span> <span class="stType">SuiteMixin</span> { <span class="stReserved">this</span>: <span class="stType">Suite</span> =&gt;
+ <span class="stReserved">abstract override def</span> withFixture(test: <span class="stType">NoArgTest</span>): <span class="stType">Outcome</span> = {
+   // ...
+ }
+}
+</pre>
+
+<p>
+You will need to add the "Test" prefix, like this:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">trait</span> <span class="stType">YourMixinTrait</span> <span class="stReserved">extends</span> <span class="stType">TestSuiteMixin</span> { <span class="stReserved">this</span>: <span class="stType">TestSuite</span> =&gt;
+ <span class="stReserved">abstract override def</span> withFixture(test: <span class="stType">NoArgTest</span>): <span class="stType">Outcome</span> = {
+   // ...
+ }
+}
+</pre>
+
+<a name="whenCompleted"></a>
+<h2>Signature of <code>Status.whenCompleted</code></h2>
+
+<p>
+In ScalaTest we changed the signature of the <code>whenCompleted</code> method of trait <a href="@{latestScaladoc}/index.html#org.scalatest.Status"><code>Status</code></a> changed. Where it previously
+took a function of type <code>Boolean =&gt; Unit</code>, it now takes a function of type <code>Try[Boolean] =&gt; Unit</code>. This 
+breaking change should affect very few users.
+</p>
+
+<a name="inferredResultTypes"></a>
+<h2>Inferred result types in <code>JUnitSuite</code>, <code>JUnit3Suite</code>, and <code>TestNGSuite</code></h2>
+
+<p>
+Lastly, because the result type of assertions and matcher expressions has changed from <code>Unit</code> to <code>Assertion</code>, any tests
+in <code>JUnitSuite</code>, <code>JUnit3Suite</code>, and <code>TestNGSuite</code>s that ended with an assertion or matcher expression, and used
+neither the (now deprecated) procedure style <code>"...@@Test def theTestName() &#123;..."</code> nor an explicit type annotation,
+<code>"...@@Test def theTestName(): Unit = &#123;..."</code>, will no longer be recognized by those frameworks.
+These test frameworks require that the result type of test methods be <code>void</code> in Java, which equates to <code>Unit</code> in Scala.
+</p>
+
+<p>
+Only <code>JUnitSuite</code>, which is based on JUnit 4, will
+indicate with a test failure that a method annotated with <code>@@Test</code> did not have result type <code>void</code>.
+You will get a test failure with an error message like:
+</p>
+
+<pre>
+java.lang.Exception: Method verifySomething() should be void
+</pre>
+
+<p>
+By contrast, any such tests
+in <code>JUnit3Suite</code> and <code>TestNGSuite</code> will be silently ignored by JUnit 3 and TestNG.
+To get the tests running again in any of these styles, ensure an explicit result type is placed on each test method, like:
+</p>
+
+<pre class="stHighlighted">
+@@Test <span class="stReserved">def</span> verifySomething(): <span class="stType">Unit</span> = {
+  <span class="stReserved">val</span> x = <span class="stLiteral">1</span>
+  assert(x == <span class="stLiteral">1</span>)
+}
+</pre>
+
+<p>
+If this change has a significant impact on your project, please contact Artima by emailing Bill Venners at bill AT artima.com. We
+are happy to help you upgrade your <code>JUnitSuite</code>, <code>JUnit3Suite</code>, or <code>TestNGSuite</code>, tests to
+ScalaTest 3.0.
+</p>
+
+<a name="fragileBaseClassProblem"></a>
+<h2>The fragile base class problem</h2>
+
+<p>
+To our knowledge, the only other source of potential breakage in ScalaTest 2.0 is the fragile base class problem. We have added fields and methods to traits such as
+<code>Matchers</code> and <code>Suite</code> in 2.0 that may
+conflict with fields and methods in your existing classes and cause a compiler error. Such issues can usually be easily fixed locally with simple renames or refactors.
+</p>
+
+</div>
+}

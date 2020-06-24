@@ -1,0 +1,410 @@
+@*
+ * Copyright 2010-2017 Artima, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *@
+
+@import controllers.Application.latestScaladoc
+
+@userGuidePage("Generator-driven property checks") {
+<div style="text-align: left">
+
+<h1>Generator-driven property checks</h1>
+
+<p>
+To use generator-driven property checks, you must mix in trait <a href="@latestScaladoc/#org.scalatest.prop.GeneratorDrivenPropertyChecks"><code>GeneratorDrivenPropertyChecks</code></a> (or import the
+members of its companion object). If you are also using table-driven property checks, you can mix in
+trait <a href="@latestScaladoc/#org.scalatest.prop.PropertyChecks"><code>PropertyChecks</code></a>,
+which extends both <code>GeneratorDrivenPropertyChecks</code> and <a href="@latestScaladoc/#org.scalatest.prop.TableDrivenPropertyChecks"><code>TableDrivenPropertyChecks</code></a>. Generator-driven property checks uses <a href="http://code.google.com/p/scalacheck/">ScalaCheck</a>, so you must also include the ScalaCheck JAR file on your classpath when you compile and run your tests.
+</p>
+
+<p>
+Trait <code>GeneratorDrivenPropertyChecks</code> contains <code>forAll</code> methods that provide various ways to check properties using
+generated data.
+It also contains a <code>wherever</code> method that can be used to indicate a property need only hold whenever
+some condition is true.
+</p>
+
+<p>
+For an example of trait <code>GeneratorDrivenPropertyChecks</code> in action, imagine you want to test this <code>Fraction</code> class:
+</p>
+ 
+<pre class="stHighlighted">
+<span class="stReserved">class</span> <span class="stType">Fraction</span>(n: <span class="stType">Int</span>, d: <span class="stType">Int</span>) {
+<br />  require(d != <span class="stLiteral">0</span>)
+  require(d != Integer.MIN_VALUE)
+  require(n != Integer.MIN_VALUE)
+<br />  <span class="stReserved">val</span> numer = <span class="stReserved">if</span> (d < <span class="stLiteral">0</span>) -<span class="stLiteral">1</span> * n <span class="stReserved">else</span> n
+  <span class="stReserved">val</span> denom = d.abs
+<br />  <span class="stReserved">override</span> <span class="stReserved">def</span> toString = numer + <span class="stQuotedString">" / "</span> + denom
+}
+</pre>
+
+<p>
+To test the behavior of <code>Fraction</code>, you could mix in or import the members of <code>GeneratorDrivenPropertyChecks</code>
+(and <a href="@latestScaladoc/#org.scalatest.matchers.ShouldMatchers"><code>ShouldMatchers</code></a>) and check a property using a <code>forAll</code> method, like this:
+</p>
+
+<pre class="stHighlighted">
+forAll { (n: <span class="stType">Int</span>, d: <span class="stType">Int</span>) =>
+<br />  whenever (d != <span class="stLiteral">0</span> && d != Integer.MIN_VALUE
+      && n != Integer.MIN_VALUE) {
+<br />    <span class="stReserved">val</span> f = <span class="stReserved">new</span> <span class="stType">Fraction</span>(n, d)
+<br />    <span class="stReserved">if</span> (n < <span class="stLiteral">0</span> && d < <span class="stLiteral">0</span> || n > <span class="stLiteral">0</span> && d > <span class="stLiteral">0</span>)
+      f.numer should be > <span class="stLiteral">0</span>
+    <span class="stReserved">else</span> <span class="stReserved">if</span> (n != <span class="stLiteral">0</span>)
+      f.numer should be < <span class="stLiteral">0</span>
+    <span class="stReserved">else</span>
+      f.numer should be === <span class="stLiteral">0</span>
+<br />    f.denom should be > <span class="stLiteral">0</span>
+  }
+}
+</pre>
+
+<p>
+Trait <code>GeneratorDrivenPropertyChecks</code> provides overloaded <code>forAll</code> methods
+that allow you to check properties using the data provided by a ScalaCheck generator. The simplest form
+of <code>forAll</code> method takes two parameter lists, the second of which is implicit. The first parameter list
+is a "property" function with one to six parameters. An implicit <code>Arbitrary</code> generator and <code>Shrink</code> object needs to be supplied for
+The <code>forAll</code> method will pass each row of data to
+each parameter type. ScalaCheck provides many implicit <code>Arbitrary</code> generators for common types such as
+<code>Int</code>, <code>String</code>, <code>List[Float]</code>, <em>etc.</em>, in its <code>org.scalacheck.Arbitrary</code> companion
+object. So long as you use types for which ScalaCheck already provides implicit <code>Arbitrary</code> generators, you needn't
+worry about them. Same for <code>Shrink</code> objects, which are provided by ScalaCheck's <code>org.scalacheck.Shrink</code> companion
+object. Most often you can simply pass a property function to <code>forAll</code>, and the compiler will grab the implicit
+values provided by ScalaCheck.
+</p>
+
+<p>
+The <code>forAll</code> methods use the supplied <code>Arbitrary</code> generators to generate example
+arguments and pass them to the property function, and
+generate a <a href="@latestScaladoc/#org.scalatest.prop.GeneratorDrivenPropertyCheckFailedException"><code>GeneratorDrivenPropertyCheckFailedException</code></a> if the function
+completes abruptly for any exception that would <a href="@latestScaladoc/#org.scalatest.Suite&#64;errorHandling">normally cause</a> a test to
+fail in ScalaTest other than <code>DiscardedEvaluationException</code>. An
+<a href="@latestScaladoc/#org.scalatest.prop.DiscardedEvaluationException"><code>DiscardedEvaluationException</code></a>,
+which is thrown by the <code>whenever</code> method (defined in trait <code>Whenever</code>, which this trait extends) to indicate
+a condition required by the property function is not met by a row
+of passed data, will simply cause <code>forAll</code> to discard that row of data.
+</p>
+
+<a name="supplyingArgumentNames"></a><h2>Supplying argument names</h2>
+
+<p>
+You can optionally specify string names for the arguments passed to a property function, which will be used
+in any error message when describing the argument values that caused the failure. To supply the names, place them in a comma separated list
+in parentheses after <code>forAll</code> before the property function (a curried form of <code>forAll</code>). Here's
+an example:
+</p>
+
+<pre class="stHighlighted">
+forAll (<span class="stQuotedString">"a"</span>, <span class="stQuotedString">"b"</span>) { (a: <span class="stType">String</span>, b: <span class="stType">String</span>) =>
+  a.length + b.length should equal ((a + b).length + <span class="stLiteral">1</span>) <span class="stLineComment">// Should fail</span>
+}
+</pre>
+
+<p>
+When this fails, you'll see an error message that includes this:
+</p>
+
+<pre>
+Occurred when passed generated values (
+  a = "",
+  b = ""
+)
+</pre>
+
+<p>
+When you don't supply argument names, the error message will say <code>arg0</code>, <code>arg1</code>, <em>etc.</em>.
+For example, this property check:
+</p>
+
+<pre class="stHighlighted">
+forAll { (a: <span class="stType">String</span>, b: <span class="stType">String</span>) =>
+  a.length + b.length should equal ((a + b).length + <span class="stLiteral">1</span>) <span class="stLineComment">// Should fail</span>
+}
+</pre>
+
+<p>
+Will fail with an error message that includes:
+</p>
+
+<pre>
+Occurred when passed generated values (
+  arg0 = "",
+  arg1 = ""
+)
+</pre>
+
+<a name="supplyingGenerators"></a><h2>Supplying generators</h2>
+
+<p>
+ScalaCheck provides a nice library of compositors that makes it easy to create your own custom generators. If you
+want to supply custom generators to a property check, place them in parentheses after <code>forAll</code>, before
+the property check function (a curried form of <code>forAll</code>).
+</p>
+
+<p>
+For example, to create a generator of even integers between (and including) -2000 and 2000, you could write this:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">import</span> org.scalacheck.Gen
+<br /><span class="stReserved">val</span> evenInts = <span class="stReserved">for</span> (n <- Gen.choose(-<span class="stLiteral">1000</span>, <span class="stLiteral">1000</span>)) <span class="stReserved">yield</span> <span class="stLiteral">2</span> * n
+</pre>
+
+<p>
+Given this generator, you could use it on a property check like this:
+</p>
+
+<pre class="stHighlighted">
+forAll (evenInts) { (n) => n % <span class="stLiteral">2</span> should equal (<span class="stLiteral">0</span>) }
+</pre>
+
+<p>
+Custom generators are necessary when you want to pass data types not supported by ScalaCheck's arbitrary generators,
+but are also useful when some of the values in the full range for the passed types are not valid. For such values you
+would use a <code>whenever</code> clause. In the <code>Fraction</code> class shown above, neither the passed numerator or
+denominator can be <code>Integer.MIN_VALUE</code>, and the passed denominator cannot be zero. This shows up in the
+<code>whenever</code> clause like this:
+</p>
+
+<pre class="stHighlighted">
+whenever (d != <span class="stLiteral">0</span> && d != Integer.MIN_VALUE
+    && n != Integer.MIN_VALUE) &#123; ...
+</pre>
+
+<p>
+You could in addition define generators for the numerator and denominator that only produce valid values, like this:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">val</span> validNumers =
+  <span class="stReserved">for</span> (n <- Gen.choose(Integer.MIN_VALUE + <span class="stLiteral">1</span>, Integer.MAX_VALUE)) <span class="stReserved">yield</span> n
+<span class="stReserved">val</span> validDenoms =
+  <span class="stReserved">for</span> (d <- validNumers <span class="stReserved">if</span> d != <span class="stLiteral">0</span>) <span class="stReserved">yield</span> d
+</pre>
+
+<p>
+You could then use them in the property check like this:
+</p>
+
+<pre class="stHighlighted">
+forAll (validNumers, validDenoms) { (n: <span class="stType">Int</span>, d: <span class="stType">Int</span>) =>
+<br />  whenever (d != <span class="stLiteral">0</span> && d != Integer.MIN_VALUE
+      && n != Integer.MIN_VALUE) {
+<br />    <span class="stReserved">val</span> f = <span class="stReserved">new</span> <span class="stType">Fraction</span>(n, d)
+<br />    <span class="stReserved">if</span> (n < <span class="stLiteral">0</span> && d < <span class="stLiteral">0</span> || n > <span class="stLiteral">0</span> && d > <span class="stLiteral">0</span>)
+      f.numer should be > <span class="stLiteral">0</span>
+    <span class="stReserved">else</span> <span class="stReserved">if</span> (n != <span class="stLiteral">0</span>)
+      f.numer should be < <span class="stLiteral">0</span>
+    <span class="stReserved">else</span>
+      f.numer should be === <span class="stLiteral">0</span>
+<br />    f.denom should be > <span class="stLiteral">0</span>
+  }
+}
+</pre>
+
+<p>
+Note that even if you are use generators that don't produce the invalid values, you still need the
+<code>whenever</code> clause. The reason is that once a property fails, ScalaCheck will try and shrink
+the values to the smallest values that still cause the property to fail. During this shrinking process ScalaCheck
+may pass invalid values. The <code>whenever</code> clause is still needed to guard against those values. (The
+<code>whenever</code> clause also clarifies to readers of the code exactly what the property is in a succinct
+way, without requiring that they find and understand the generator definitions.)
+</p>
+
+<a name="supplyingGeneratorsAndArgNames"></a><h2>Supplying both generators and argument names</h2>
+
+<p>
+If you want to supply both generators and named arguments, you can do so by providing a list of <code>(&lt;generator&gt;, &lt;name&gt;)</code> pairs
+in parentheses after <code>forAll</code>, before the property function. Here's an example:
+</p>
+
+<pre class="stHighlighted">
+forAll ((validNumers, <span class="stQuotedString">"n"</span>), (validDenoms, <span class="stQuotedString">"d"</span>)) { (n: <span class="stType">Int</span>, d: <span class="stType">Int</span>) =>
+<br />  whenever (d != <span class="stLiteral">0</span> && d != Integer.MIN_VALUE
+      && n != Integer.MIN_VALUE) {
+<br />    <span class="stReserved">val</span> f = <span class="stReserved">new</span> <span class="stType">Fraction</span>(n, d)
+<br />    <span class="stReserved">if</span> (n < <span class="stLiteral">0</span> && d < <span class="stLiteral">0</span> || n > <span class="stLiteral">0</span> && d > <span class="stLiteral">0</span>)
+      f.numer should be > <span class="stLiteral">0</span>
+    <span class="stReserved">else</span> <span class="stReserved">if</span> (n != <span class="stLiteral">0</span>)
+      f.numer should be < <span class="stLiteral">0</span>
+    <span class="stReserved">else</span>
+      f.numer should be === <span class="stLiteral">0</span>
+<br />    f.denom should be > <span class="stLiteral">0</span>
+  }
+}
+</pre>
+
+<p>
+Were this property check to fail, it would mention the names n and d in the error message, like this:
+</p>
+
+<pre>
+Occurred when passed generated values (
+  n = 17,
+  d = 21
+)
+</pre>
+
+<a name="propCheckConfig"></a><h2>Property check configuration</h2>
+
+<p>
+The property checks performed by the <code>forAll</code> methods of this trait can be flexibly configured via the services
+provided by supertrait <code>Configuration</code>.  The five configuration parameters for property checks along with their 
+default values and meanings are described in the following table:
+</p>
+
+<table style="border-collapse: collapse; border: 1px solid black">
+<tr>
+<th style="background-color: #CCCCCC; border-width: 1px; padding: 3px; text-align: center; border: 1px solid black">
+<strong>Configuration Parameter</strong>
+</th>
+<th style="background-color: #CCCCCC; border-width: 1px; padding: 3px; text-align: center; border: 1px solid black">
+<strong>Default Value</strong>
+</th>
+<th style="background-color: #CCCCCC; border-width: 1px; padding: 3px; text-align: center; border: 1px solid black">
+<strong>Meaning</strong>
+</th>
+</tr>
+<tr>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+minSuccessful
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+100
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">
+the minimum number of successful property evaluations required for the property to pass
+</td>
+</tr>
+<tr>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+maxDiscarded
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+500
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">
+the maximum number of discarded property evaluations allowed during a property check
+</td>
+</tr>
+<tr>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+minSize
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+0
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">
+the minimum size parameter to provide to ScalaCheck, which it will use when generating objects for which size matters (such as strings or lists)
+</td>
+</tr>
+<tr>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+maxSize
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+100
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">
+the maximum size parameter to provide to ScalaCheck, which it will use when generating objects for which size matters (such as strings or lists)
+</td>
+</tr>
+<tr>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+workers
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+1
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">
+specifies the number of worker threads to use during property evaluation
+</td>
+</tr>
+</table>
+
+<p>
+The <code>forAll</code> methods of trait <code>GeneratorDrivenPropertyChecks</code> each take a <code>PropertyCheckConfig</code>
+object as an implicit parameter. This object provides values for each of the five configuration parameters. Trait <code>Configuration</code>
+provides an implicit <code>val</code> named <code>generatorDrivenConfig</code> with each configuration parameter set to its default value. 
+If you want to set one or more configuration parameters to a different value for all property checks in a suite you can override this
+val (or hide it, for example, if you are importing the members of the <code>GeneratorDrivenPropertyChecks</code> companion object rather
+than mixing in the trait.) For example, if
+you want all parameters at their defaults except for <code>minSize</code> and <code>maxSize</code>, you can override
+<code>generatorDrivenConfig</code>, like this:
+
+<pre class="stHighlighted">
+<span class="stReserved">implicit</span> <span class="stReserved">override</span> <span class="stReserved">val</span> generatorDrivenConfig =
+  <span class="stType">PropertyCheckConfig</span>(minSize = <span class="stLiteral">10</span>, maxSize = <span class="stLiteral">20</span>)
+</pre>
+
+<p>
+Or, if hide it by declaring a variable of the same name in whatever scope you want the changed values to be in effect:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">implicit</span> <span class="stReserved">val</span> generatorDrivenConfig =
+  <span class="stType">PropertyCheckConfig</span>(minSize = <span class="stLiteral">10</span>, maxSize = <span class="stLiteral">20</span>)
+</pre>
+
+<p>
+In addition to taking a <code>PropertyCheckConfig</code> object as an implicit parameter, the <code>forAll</code> methods of trait
+<code>GeneratorDrivenPropertyChecks</code> also take a variable length argument list of <code>PropertyCheckConfigParam</code>
+objects that you can use to override the values provided by the implicit <code>PropertyCheckConfig</code> for a single <code>forAll</code>
+invocation. For example, if you want to set <code>minSuccessful</code> to 500 for just one particular <code>forAll</code> invocation,
+you can do so like this:
+</p>
+
+<pre class="stHighlighted">
+forAll (minSuccessful(<span class="stLiteral">500</span>)) &#123; (n: <span class="stType">Int</span>, d: <span class="stType">Int</span>) => ...
+</pre>
+
+<p>
+This invocation of <code>forAll</code> will use 500 for <code>minSuccessful</code> and whatever values are specified by the 
+implicitly passed <code>PropertyCheckConfig</code> object for the other configuration parameters.
+If you want to set multiple configuration parameters in this way, just list them separated by commas:
+</p>
+
+<pre class="stHighlighted">
+forAll (minSuccessful(<span class="stLiteral">500</span>), maxDiscarded(<span class="stLiteral">300</span>)) &#123; (n: <span class="stType">Int</span>, d: <span class="stType">Int</span>) => ...
+</pre>
+
+<p>
+If you are using an overloaded form of <code>forAll</code> that already takes an initial parameter list, just
+add the configuration parameters after the list of generators, names, or generator/name pairs, as in:
+</p>
+
+<pre class="stHighlighted">
+<span class="stLineComment">// If providing argument names</span>
+forAll (<span class="stQuotedString">"n"</span>, <span class="stQuotedString">"d"</span>, minSuccessful(<span class="stLiteral">500</span>), maxDiscarded(<span class="stLiteral">300</span>)) &#123;
+  (n: <span class="stType">Int</span>, d: <span class="stType">Int</span>) => ...
+<br /><span class="stLineComment">// If providing generators</span>
+forAll (validNumers, validDenoms, minSuccessful(<span class="stLiteral">500</span>), maxDiscarded(<span class="stLiteral">300</span>)) &#123;
+  (n: <span class="stType">Int</span>, d: <span class="stType">Int</span>) => ...
+<br /><span class="stLineComment">// If providing (&lt;generators&gt;, &lt;name&gt;) pairs</span>
+forAll ((validNumers, <span class="stQuotedString">"n"</span>), (validDenoms, <span class="stQuotedString">"d"</span>), minSuccessful(<span class="stLiteral">500</span>), maxDiscarded(<span class="stLiteral">300</span>)) &#123;
+  (n: <span class="stType">Int</span>, d: <span class="stType">Int</span>) => ...
+</pre>
+
+<p>
+For more information, see the documentation for trait <a href="@latestScaladoc/#org.scalatest.prop.Configuration"><code>Configuration</code></a>,
+a supertrait of <code>GeneratorDrivenPropertyChecks</code>.
+</p>
+
+<p>
+Next, learn about <a href="/user_guide/philosophy_and_design">ScalaTest's philosophy and design</a>.
+</p>
+
+</div>
+}

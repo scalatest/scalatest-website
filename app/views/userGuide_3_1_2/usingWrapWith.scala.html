@@ -1,0 +1,61 @@
+@*
+ * Copyright 2010-2017 Artima, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *@
+
+@import controllers.Application.latestScaladoc
+
+@userGuidePage("Using WrapWith") {
+<div style="text-align: left">
+
+<h1>Using <code>WrapWith</code></h1>
+
+<p>
+You can use ScalaTest's <code>WrapWith</code> annotation to associate a <em>wrapper suite</em> with a non-<code>Suite</code> class, so
+it can be run via ScalaTest. The <code>WrapWith</code> annotation is similar in spirit to JUnit's <code>RunWith</code> annotation.
+</p>
+
+<p>
+A class will be considered annotated with <code>WrapWith</code> if it is annotated directly or one of its superclasses (but
+not supertraits) are annotated with <code>WrapWith</code>.
+The wrapper suite must have a public, one-arg constructor that takes a <code>Class</code> instance whose type parameter
+is compatible with the <em>class to wrap</em>: <em>i.e.</em>, the class being annotated with <code>WrapWith</code>.
+ScalaTest will load the class to wrap and construct a new instance of the wrapper suite, passing in the <code>Class</code>
+instance for the class to wrap.
+Here's an example:
+</p>
+
+<pre class="stHighlighted">
+@@WrapWith(classOf[Specs1Runner])
+<span class="stReserved">class</span> <span class="stType">LegacySpec</span> <span class="stReserved">extends</span> <span class="stType">Specification</span> {
+  // ...
+}
+</pre>
+
+<p>
+The <code>Specs1Runner</code> would need to have a public, no-arg constructor that accepts subclasses of <code>Specification</code>:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">class</span> <span class="stType">Specs1Runner</span>(clazz: Class[_ <: Specification]) {
+  // ...
+}
+</pre>
+
+<p>
+Next, we'll discuss <a href="/user_guide/philosophy_and_design">ScalaTest's philosophy and design</a>.
+</p>
+
+</div>
+}

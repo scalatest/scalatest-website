@@ -1,0 +1,291 @@
+@*
+ * Copyright 2010-2017 Artima, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *@
+
+@import controllers.Application.latestScaladoc
+@import controllers.Application.baseScalaVersion
+
+@userGuidePage("Migrating to 2.0") {
+<div style="text-align: left">
+
+<h1>Migrating from ScalaTest 1.x to 2.0</h1>
+
+<p>
+We have always worked very hard to maintain source compatibility from one release of ScalaTest to the next. Upgrading is usually simply a matter of bumping
+the ScalaTest version number in your build doing a full recompile, and over time cleaning up any deprecation warnings. With ScalaTest 2.0, however,
+we made some improvements for which it was not possible to deprecate, so some of your existing code may not compile. Neverthless, we expect the vast
+majority of existing ScalaTest user code to just recompile as is.
+</p>
+
+<p>
+To ensure the smoothest migration, first please eliminate any deprecation warnings
+being emitted by your current version of ScalaTest on your existing code. (For best results, upgrade to 1.9.2 first and clear any deprecation warnings, though
+many of those reported will still be deprecated and working in 2.0.) Then just bump the ScalaTest version number to 2.0 and do a full build.
+If you encounter compilation errors, check the list below for help in resolving them.
+</p>
+
+<p>
+These are the points of potential breakage in ScalaTest 2.0, which are described in the sections that follow:
+</p>
+
+<ol>
+<li><a href="#customReporters">Custom <code>Reporter</code>s</a> (rare, but requires some rewriting)
+<li><a href="#withFixtureMethods"><code>withFixture</code> methods</a> (common, but easy to fix)
+<li><a href="#runMethodSignatures"><code>run</code> method signatures</a> (rare and easy to fix)
+<li><a href="#listToImmutableSeq"><code>List</code> to <code>immutable.IndexedSeq</code></a> (extremely rare, easy to fix)
+<li><a href="#lengthSizeAndHavePropertyMatchers"><code>length</code>, <code>size</code> and  <code>HavePropertyMatcher</code>s</a> (extremely rare, easy to fix)
+<li><a href="#styleClasses">Style <em>classes</em></a> (rare, easy to fix)
+<li><a href="#fragileBaseClassProblem">The fragile base class problem</a> (occasional, usually easy to fix)
+</ol>
+
+<p>
+If you have any confusion about how to migrate your ScalaTest 1.x code to ScalaTest 2.0, or encounter other problems, please post your specific issues
+to <a href="http://groups.google.com/group/scalatest-users"><code>scalatest-users</code></a> and we'll be happy to help.
+</p>
+
+<a name="customReporters"></a>
+<h2>Custom <code>Reporter</code>s</h2>
+
+<p>
+We greatly enhanced ScalaTest's event model in 2.0 to improve tools integration and reporting. Because it is not possible in Scala to deprecate
+extractors, custom <a href="@latestScaladoc/#org.scalatest.Reporter"><code>Reporter</code></a>s written for ScalaTest 1.x will usually
+need to be migrated. You still write custom <code>Reporters</code> in 2.0 the same way as in 1.x: you implement
+<code>apply</code> and handle events, usually by pattern matching on them. In 2.0, however, more events exist, and several of the pre-existing events now have more fields in them
+(though all the old fields still exist and mean the same thing). So if an existing pattern match no longer compiles, look at the event (located in package
+<a href="@latestScaladoc/#org.scalatest.events.package"><code>org.scalatest.events</code></a>) and make necessary changes to your pattern to accomodate the
+new structure of the event. You may also want or need to handle events newly added in ScalaTest 2.0. For a nice list of all the 2.0 events, with links to the appropriate
+Scaladoc documentation, see the main documentation for <a href="@latestScaladoc/#org.scalatest.Reporter"><code>Reporter</code></a>.
+</p>
+
+<a name="withFixtureMethods"></a>
+<h2><code>withFixture</code> methods</h2>
+
+<p>
+In 2.0, the <code>withFixture</code> methods declared in
+<a href="@latestScaladoc/#org.scalatest.Suite"><code>Suite</code></a> and <a href="@latestScaladoc/#org.scalatest.fixture.Suite"><code>fixture.Suite</code></a>, and the
+<a href="@latestScaladoc/#org.scalatest.Suite$NoArgTest"><code>NoArgTest</code></a> and <a href="@latestScaladoc/#org.scalatest.fixture.Suite$OneArgTest"><code>OneArgTest</code></a> functions passed to them, now
+return an <a href="@{latestScaladoc}/#org.scalatest.Outcome"><code>Outcome</code></a>. Because <code>withFixture</code> previously
+returned <code>Unit</code>, you will need to insert an <code>=</code> before the open curly brace of your overridden <code>withFixture</code> implementations if you
+didn't already do so, and in some cases, <code>: Outcome =</code>.
+</p>
+
+<p>
+<em>I.e.</em>, change a <code>withFixture</code> like this:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">override</span> <span class="stReserved">def</span> withFixture(test: <span class="stType">NoArgTest</span>) { <span class="stLineComment">// before</span>
+  setupDb()
+  <span class="stReserved">try</span> <span class="stReserved">super</span>.withFixture(test)
+  <span class="stReserved">finally</span> cleanupDb()
+}
+</pre>
+
+<p>
+To this (by adding the <code>=</code> sign):
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">override</span> <span class="stReserved">def</span> withFixture(test: <span class="stType">NoArgTest</span>) = { <span class="stLineComment">// after</span>
+  setupDb()
+  <span class="stReserved">try</span> <span class="stReserved">super</span>.withFixture(test)
+  <span class="stReserved">finally</span> cleanupDb()
+}
+</pre>
+
+<p>
+That will most often be all that's required, but if you were catching exceptions in a
+<code>withFixture</code> implementation, you will likely also need to change your catch clauses to a corresponding pattern match
+on <code>Outcome</code> types.
+</p>
+
+<p>
+<em>I.e.</em>, change a catch clause like this one:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">override</span> <span class="stReserved">def</span> withFixture(test: <span class="stType">NoArgTest</span>) { <span class="stLineComment">// before</span>
+  <span class="stReserved">try</span> <span class="stReserved">super</span>.withFixture(test)
+  <span class="stReserved">catch</span> {
+    <span class="stReserved">case</span> ex: <span class="stType">Throwable</span> =&gt;
+      <span class="stLineComment">// log ex (the exception) and a screenshot</span>
+      <span class="stReserved">throw</span> ex
+  }
+}
+</pre>
+
+<p>
+To a corresponding pattern match on <a href="@{latestScaladoc}/#org.scalatest.Outcome"><code>Outcome</code></a>:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">override</span> <span class="stReserved">def</span> withFixture(test: <span class="stType">NoArgTest</span>) = { <span class="stLineComment">// after</span>
+  <span class="stReserved">val</span> outcome = <span class="stReserved">super</span>.withFixture(test)
+  outcome <span class="stReserved">match</span> {
+    <span class="stReserved">case</span> <span class="stType">Failed</span>(ex) =&gt;
+      <span class="stLineComment">// log ex (the exception) and a screenshot</span>
+  }
+  outcome
+}
+</pre>
+
+<a name="runMethodSignatures"></a>
+<h2><code>run</code> method signatures</h2>
+
+<p>
+We modified the signature of four of <a href="@latestScaladoc/#org.scalatest.Suite"><code>Suite</code></a>'s lifecycle methods: <code>run</code>,
+<code>runNestedSuites</code>, <code>runTests</code>, and <code>runTest</code>. First, to make these methods more pleasant to override, we gathered 
+the parameters common to these methods into an <code>Args</code> value object. If you have previously overridden them, you'll need to change
+the method signature. Because the parameters have the exact same name inside the <a href="@latestScaladoc/#org.scalatest.Args"><code>Args</code></a>
+object, however, you can simply import <code>args._</code>
+to get them back in scope in your existing code.
+</p>
+
+<p>
+For example, you'd change an overridden method like this:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">override</span> <span class="stReserved">def</span> runTests(testName: <span class="stType">Option</span>[<span class="stType">String</span>], reporter: <span class="stType">Reporter</span>, <span class="stLineComment">// before</span>
+    stopper: <span class="stType">Stopper</span>, filter: <span class="stType">Filter</span>, configMap: <span class="stType">Map</span>[<span class="stType">String</span>, <span class="stType">Any</span>],
+    distributor: <span class="stType">Option</span>[<span class="stType">Distributor</span>], tracker : <span class="stType">Tracker</span>) {
+
+  <span class="stLineComment">// Your existing code</span>
+}
+</pre>
+
+<p>
+To this:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">override</span> <span class="stReserved">def</span> runTests(testName: <span class="stType">Option</span>[<span class="stType">String</span>], args: <span class="stType">Args</span>): <span class="stType">Status</span> = { <span class="stLineComment">// after</span>
+
+  <span class="stReserved">import</span> args._
+
+  <span class="stLineComment">// Your existing code</span>
+}
+</pre>
+
+<p>
+By importing the members of <code>args</code>, all the parameter names in scope before&mdash;<code>reporter</code>, <code>stopper</code>, <em>etc.</em>&mdash;will
+again be in scope. Note that <em>invocations</em> of methods using the old signatures will also need to be changed to use the new signatures.
+</p>
+
+<p>
+In addition to collecting parameters in <code>Args</code>, we changed the result type from <code>Unit</code> to
+<a href="@latestScaladoc/#org.scalatest.Status"><code>Status</code></a>. A <code>Status</code> is
+like a <code>Future[Boolean]</code> that ultimately will indicate whether any failed test or aborted suite occurred. The <code>Status</code> ``completes'' 
+when the tests and/or nested suites started by that method have all completed. Thus you may also need change your code so that an appropriate
+<code>Status</code> is returned. If so, familiarize yourself with the convenience <code>Status</code> subclasses:
+<a href="@latestScaladoc/#org.scalatest.SucceededStatus$"><code>SuccceededStatus</code></a>,
+<a href="@latestScaladoc/#org.scalatest.FailedStatus$"><code>FailedStatus</code></a>,
+<a href="@latestScaladoc/#org.scalatest.StatefulStatus"><code>StatefulStatus</code></a>,
+and <a href="@latestScaladoc/#org.scalatest.CompositeStatus"><code>CompositeStatus</code></a>.
+</p>
+
+<p>
+Here's an example overriden <code>runTests</code> method that cancels an entire suite of tests if its Selenium
+driver is not supported. If the driver is supported, it just invokes <code>super.runTests</code> and returns the
+resulting <code>Status</code>. Otherwise it fires an alert message and returns <code>SucceededStatus</code>. (A succeeded <code>Status</code> doesn't necessarily mean
+that any tests ran, just that no test failed and no suite aborted.)
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">abstract</span> <span class="stReserved">override</span> <span class="stReserved">def</span> runTests(testName: <span class="stType">Option</span>[<span class="stType">String</span>], args: <span class="stType">Args</span>): <span class="stType">Status</span> = {
+  if (driverSupported)
+    <span class="stReserved">super</span>.runTests(testName, args)
+  else {
+    alert(<span class="stQuotedString">"Cancelling "</span> + this.suiteName + <span class="stQuotedString">" : "</span> + browserType + <span class="stQuotedString">" not installed"</span>)
+    <span class="stType">SucceededStatus</span>
+  }
+}
+</pre>
+
+<a name="listToImmutableSeq"></a>
+<h2><code>List</code> to <code>immutable.IndexedSeq</code></h2>
+
+<p>
+Where <code>List</code> appeared as a result type in ScalaTest 1.x, <code>immutable.IndexedSeq</code>
+is used instead in ScalaTest 2.0; for example, the result type of <code>Suite</code>'s <code>nestedSuites</code> lifecycle method.
+(Under the covers we return a <code>Vector</code>.) When ScalaTest 1.0 was initially released, <code>Vector</code> did
+not yet exist in the Scala library and <code>List</code> was considered by many to be the default <code>Seq</code> type to use. In practice, it was discovered that
+it is too easy to use <code>List</code> (and other <code>LinearSeq</code>'s) in a non-performant way. In 2.0 we wanted to take the opportunity to make the
+potentially breaking change of replacing <code>List</code> result types with <code>immutable.IndexedSeq</code>. This potentially breaking change is expected
+to affect very little, if any, user code, essentially only code that called <code>nestedSuites</code> then used <code>::</code> or <code>:::</code> operators
+on the result. To fix such a break, use <code>+:</code> instead of <code>::</code> and <code>++</code> instead of <code>:::</code>.
+</p>
+
+<a name="lengthSizeAndHavePropertyMatchers"></a>
+<h2><code>length</code>, <code>size</code> and  <code>HavePropertyMatcher</code>s</h2>
+
+<p>
+Although ScalaTest's matchers have undergone a major refactor in 2.0, all previously documented syntax for matchers should continue to work exactly
+the same with one potential exception, which should in practice be extremely rare. The potential breakage is that if you included <code>length</code> or <code>size</code>
+along with custom have-property matchers that you wrote, you'll get a compiler error. To fix such an error, add after
+your <code>length</code> or <code>size</code> invocation an <code>(of [&lt;type&gt;])</code> clause, as
+described in the main <a href="@latestScaladoc/#org.scalatest.Matchers@@lengthSizeHavePropertyMatchers">Scaladoc documentation for <code>Matchers</code></a>.
+</p>
+
+<a name="styleClasses"></a>
+<h2>Style <em>classes</em></h2>
+
+<p>
+In ScalaTest 1.9.2, we refactored each style trait into a style class/style trait pair, to obtain speedier compiles. For example, in ScalaTest 1.9.1 and prior
+versions, <code>FlatSpec</code> was
+a trait. In 1.9.2 and 2.0, <code>FlatSpec</code> is a class; <code>FlatSpecLike</code> is the trait. Same for <code>FunSuite</code> (now a class) <code>FunSuiteLike</code>
+(now the trait), and so on. Usages that directly extend a style trait will continue
+to work fine (but should compile slightly faster). For example, this will continue to compile as before:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">class</span> <span class="stType">MySpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> { <span class="stLineComment">// OK as is</span>
+  <span class="stLineComment">// ...</span>
+}
+</pre>
+
+<p>
+However, if you were mixing in a style trait after <code>with</code>, you'll need to add <code>Like</code>. For example, you'd need to change this:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">class</span> <span class="stType">MySpec</span> <span class="stReserved">extends</span> <span class="stType">TestKit(<span class="stType">ActorSystem</span>(<span class="stQuotedString">"my actors"</span>)) <span class="stLineComment">// before</span>
+    <span class="stReserved">with</span> <span class="stType">FlatSpec</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> {
+  <span class="stLineComment">// ...</span>
+}
+</pre>
+
+<p>
+To this (by adding &ldquo;<code>Like</code>&rdquo; to <code>FlatSpec</code>):
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">class</span> <span class="stType">MySpec</span> <span class="stReserved">extends</span> <span class="stType">TestKit(<span class="stType">ActorSystem</span>(<span class="stQuotedString">"my actors"</span>)) <span class="stLineComment">// after</span>
+    <span class="stReserved">with</span> <span class="stType">FlatSpecLike</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> {
+  <span class="stLineComment">// ...</span>
+}
+</pre>
+
+<a name="fragileBaseClassProblem"></a>
+<h2>The fragile base class problem</h2>
+
+<p>
+To our knowledge, the only other source of potential breakage in ScalaTest 2.0 is the fragile base class problem. We have added fields and methods to traits such as
+<code>Matchers</code> and <code>Suite</code> in 2.0 that may
+conflict with fields and methods in your existing classes and cause a compiler error. Such issues can usually be easily fixed locally with simple renames or refactors.
+</p>
+
+</div>
+}

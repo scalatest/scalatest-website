@@ -1,0 +1,64 @@
+@*
+ * Copyright 2010-2017 Artima, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *@
+
+@import controllers.Application.latestScaladoc
+
+@userGuidePage("Using Private Method Tester") {
+<div style="text-align: left">
+
+<h1>Using <code>PrivateMethodTester</code></h1>
+
+<p>ScalaTest's <a href="@latestScaladoc/#org.scalatest.PrivateMethodTester"><code>PrivateMethodTester</code></a> trait facilitates the testing of private methods.</p><p>To test a private method, mix in trait <code>PrivateMethodTester</code> and
+create a <code>PrivateMethod</code> object, like this:</p><p><pre class="stHighlighted">
+<span class="stReserved">val</span> decorateToStringValue = <span class="stType">PrivateMethod[String]</span>(<span class="stQuotedString">'decorateToStringValue</span>)
+</pre></p><p>The type parameter on <code>PrivateMethod</code>, in this case <code>String</code>, is the result type of the private method
+you wish to invoke. The symbol passed to the <code>PrivateMethod.apply</code> factory method, in this
+case <code>'decorateToStringValue</code>, is the name of the private method to invoke. To test
+the private method, use the <code>invokePrivate</code> operator, like this:</p><p><pre class="stHighlighted">
+targetObject invokePrivate decorateToStringValue(<span class="stLiteral">1</span>)
+</pre></p>
+
+<p>Here, <code>targetObject</code> is a variable or singleton object name referring to the object whose
+private method you want to test. You pass the arguments to the private method in the parentheses after
+the <code>PrivateMethod</code> object.
+The result type of an <code>invokePrivate</code> operation will be the type parameter of the <code>PrivateMethod</code>
+object, thus you need not cast the result to use it. In other words, after creating a <code>PrivateMethod</code> object, the
+syntax to invoke the private method
+looks like a regular method invocation, but with the dot (<code>.</code>) replaced by <code>invokePrivate</code>.
+The private method is invoked dynamically via reflection, so if you have a typo in the method name symbol, specify the wrong result type,
+or pass invalid parameters, the <code>invokePrivate</code> operation will compile, but throw an exception at runtime.</p>
+
+<p>One limitation to be aware of is that you can't use <code>PrivateMethodTester</code> to test a private method
+declared in a trait because the class the trait gets mixed into will not declare that private method. Only the
+class generated to hold method implementations for the trait will have that private method. If you want to
+test a private method declared in a trait, and that method does not use any state of that trait, you can move
+the private method to a companion object for the trait and test it using <code>PrivateMethodTester</code> that
+way. If the private trait method you want to test uses the trait's state, your best options are to test it
+indirectly via a non-private trait method that calls the private method, or make the private method package access
+and test it directly via regular static method invocations.</p>
+
+<p>Also, if you want to use <code>PrivateMethodTester</code> to invoke a parameterless private method, you'll need to use empty parens. Instead of:</p>
+<p><pre class="stHighlighted">targetObject invokePrivate privateParameterlessMethod</pre></p>
+<p>You'll need to write:</p>
+<p><pre class="stHighlighted">targetObject invokePrivate privateParameterlessMethod(<span class="stLiteral"></span>)
+</pre></p> 
+
+<p>
+Next we'll look at one last goodie, using <a href="/user_guide/using_WrapWith">WrapWith</a>.
+</p>
+
+</div>
+}

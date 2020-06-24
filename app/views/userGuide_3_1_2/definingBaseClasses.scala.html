@@ -1,0 +1,76 @@
+@*
+ * Copyright 2010-2017 Artima, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *@
+
+@userGuidePage("Defining base classes") {
+<div style="text-align: left">
+
+<h1>Defining base classes for your project</h1>
+
+<p>
+ScalaTest is a testing <em>toolkit</em>: it consists of focused, lightweight traits that you can mix 
+together to solve the problem at hand. This approach minimizes the potential for naming and implicit conflicts and
+helps speed compiles.
+</p>
+
+<p>
+Instead of duplicating code by mixing the same traits together repeatedly, we recommend you create abstract base
+classes for your project that mix together the features you use the most. For example, you might create
+a <code>UnitSpec</code> class (not trait, for speedier compiles) for unit tests that looks like:
+</p>
+
+
+<pre class="stHighlighted">
+<span class="stReserved">package</span> com.mycompany.myproject
+
+<span class="stReserved">import</span> org.scalatest._
+
+<span class="stReserved">abstract</span> <span class="stReserved">class</span> <span class="stType">UnitSpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> <span class="stReserved">with</span>
+  <span class="stType">OptionValues</span> <span class="stReserved">with</span> <span class="stType">Inside</span> <span class="stReserved">with</span> <span class="stType">Inspectors</span>
+</pre>
+
+<p>
+You can then write unit tests for your project using the custom base class, like this:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">package</span> com.mycompany.myproject
+
+<span class="stReserved">import</span> org.scalatest._
+
+<span class="stReserved">class</span> <span class="stType">MySpec</span> <span class="stReserved">extends</span> <span class="stType">UnitSpec</span> {
+  // Your tests here
+}
+</pre>
+
+<p>
+Most projects end up with multiple base classes, each focused on different kinds of tests. You might have a base class for integration tests
+that require a database (perhaps named <code>DbSpec</code>), another for integration tests that require an actor system (perhaps named <code>ActorSysSpec</code>),
+and another for integration test that require both a database and an actor system (perhaps named <code>DbActorSysSpec</code>), and so on.
+To get started, you can just create a base class for unit testing. 
+</p>
+
+<p>
+Note that in the rest of the user guide, we don't extend <code>UnitSpec</code>. Instead we show all traits involved to make it clear what is being used and make
+each example work independently.
+</p>
+
+<p>
+With that, it is time to <a href="writing_your_first_test">write your first test</a>.
+</p>
+
+</div>
+}
+
