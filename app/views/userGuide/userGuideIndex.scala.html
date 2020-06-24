@@ -43,7 +43,7 @@ To include ScalaTest in your sbt project, simply add this line:
 </p>
 
 <pre class="stHighlighted">
-libraryDependencies += <span class="stQuotedString">"org.scalatest"</span> % <span class="stQuotedString">"scalatest_@{majorMinorScalaVersion}"</span> % <span class="stQuotedString">"@{latestVersion}"</span> % <span class="stQuotedString">"test"</span>
+libraryDependencies += <span class="stQuotedString">"org.scalatest"</span> %% <span class="stQuotedString">"scalatest"</span> % <span class="stQuotedString">"@{latestVersion}"</span> % <span class="stQuotedString">"test"</span>
 </pre>
 
 <p>
@@ -53,7 +53,7 @@ To include ScalaTest in your Maven project, use:
 <pre class="stHighlighted">
 &lt;dependency&gt;
   &lt;groupId&gt;org.scalatest&lt;/groupId&gt;
-  &lt;artifactId&gt;scalatest_2.11&lt;/artifactId&gt;
+  &lt;artifactId&gt;scalatest_@{majorMinorScalaVersion}&lt;/artifactId&gt;
   &lt;version&gt;@{latestVersion}&lt;/version&gt;
   &lt;scope&gt;test&lt;/scope&gt;
 &lt;/dependency&gt;
