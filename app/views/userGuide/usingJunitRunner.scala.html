@@ -26,9 +26,9 @@ ScalaTest <code>Suite</code>. Here's an example:
 <pre class="stHighlighted">
 <span class="stReserved">import</span> org.junit.runner.RunWith
 <span class="stReserved">import</span> org.scalatest.junit.JUnitRunner
-<span class="stReserved">import</span> org.scalatest.FunSuite
+<span class="stReserved">import</span> org.scalatest.funsuite.AnyFunSuite
 <br />@@<span class="stType">RunWith</span>(classOf[<span class="stType">JUnitRunner</span>])
-<span class="stReserved">class</span> <span class="stType">ExampleSuite</span> <span class="stReserved">extends</span> <span class="stType">FunSuite</span> {
+<span class="stReserved">class</span> <span class="stType">ExampleSuite</span> <span class="stReserved">extends</span> <span class="stType">AnyFunSuite</span> {
   <span class="stLineComment">// ...</span>
 }
 </pre>

@@ -24,19 +24,19 @@
 <h1>Writing your first test</h1>
 
 <p>
-1. In ScalaTest, you define tests inside classes that extend a <em>style class</em> such as <a href="@latestScaladoc/#org.scalatest.FlatSpec"><code>FlatSpec</code></a>
+1. In ScalaTest, you define tests inside classes that extend a <em>style class</em> such as <a href="@latestScaladoc/#org.scalatest.flatspec.AnyFlatSpec"><code>AnyFlatSpec</code></a>
 (though in practice you'd usually directly extend a <a href="defining_base_classes">base class defined for your project</a>, which extends a ScalaTest style class):
 </p>
 
 <pre class="stHighlighted">
-<span class="stReserved">import</span> org.scalatest.FlatSpec
-<br /><span class="stReserved">class</span> <span class="stType">FirstSpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> {
+<span class="stReserved">import</span> org.scalatest.flatspec.AnyFlatSpec
+<br /><span class="stReserved">class</span> <span class="stType">FirstSpec</span> <span class="stReserved">extends</span> <span class="stType">AnyFlatSpec</span> {
   // tests go here...
 }
 </pre>
 
 <p>
-2. Each test in a <code>FlatSpec</code> is composed of a sentence that specifies a bit of required behavior and a block of code that tests it.
+2. Each test in a <code>AnyFlatSpec</code> is composed of a sentence that specifies a bit of required behavior and a block of code that tests it.
 The sentence needs a subject, such as <code>"A Stack"</code>; a verb, either <code>should</code>, <code>must</code>, or <code>can</code>; and 
 the rest of the sentence. Here's an example:
 </p>
@@ -60,7 +60,7 @@ After the sentence you put the word <code>in</code> followed by the body of the 
 <pre class="stHighlighted">
 <span class="stReserved">import</span> collection.mutable.Stack
 <span class="stReserved">import</span> org.scalatest._
-<br /><span class="stReserved">class</span> <span class="stType">StackSpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> {
+<br /><span class="stReserved">class</span> <span class="stType">StackSpec</span> <span class="stReserved">extends</span> <span class="stType">AnyFlatSpec</span> {
 <br />  <span class="stQuotedString">&quot;A Stack&quot;</span> should <span class="stQuotedString">&quot;pop values in last-in-first-out order&quot;</span> in {
     <span class="stReserved">val</span> stack = <span class="stReserved">new</span> <span class="stType">Stack[Int]</span>
     stack.push(<span class="stLiteral">1</span>)

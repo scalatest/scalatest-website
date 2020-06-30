@@ -36,7 +36,7 @@ using the word <code>should</code>. Just mix in <a href="@latestScaladoc/#org.sc
 <pre class="stHighlighted">
 <span class="stReserved">import</span> org.scalatest._
 
-<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> &#123; ...
+<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">AnyFlatSpec</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> &#123; ...
 </pre>
 
 <p>
@@ -48,7 +48,7 @@ Scala interpreter. Here's an example where the members of <code>Matchers</code> 
 <span class="stReserved">import</span> org.scalatest._
 <span class="stReserved">import</span> Matchers._
 
-<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> &#123; // Can use matchers here ...
+<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">AnyFlatSpec</span> &#123; // Can use matchers here ...
 </pre>
 
 <p>

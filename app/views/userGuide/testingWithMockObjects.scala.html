@@ -74,10 +74,10 @@ classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span
 as in:
 
 <pre class="stHighlighted">
-<span class="stReserved">import</span> org.scalatest.FlatSpec
+<span class="stReserved">import</span> org.scalatest.flatspec.AnyFlatSpec
 <span class="stReserved">import</span> org.scalamock.scalatest.MockFactory
 
-class <span class="stType">ExampleSpec</span> <span class="stReserved">extends<span> <span class="stType">FlatSpec</span> <span class="stReserved">with <span class="stType">MockFactory</span> <span class="stReserved">with ...
+class <span class="stType">ExampleSpec</span> <span class="stReserved">extends<span> <span class="stType">AnyFlatSpec</span> <span class="stReserved">with <span class="stType">MockFactory</span> <span class="stReserved">with ...
 </pre>
 
 <h2>Function mocks</h2>
@@ -391,7 +391,7 @@ one or both of the <code>org.scalamock.VerboseErrors</code> or <code>org.scalamo
 into your test suite:</p>
 
 <pre class="stHighlighted">
-<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends<span> <span class="stType">FlatSpec</span> <span class="stReserved">with</span> <span class="stType">MockFactory</span> <span class="stReserved">with</span>
+<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends<span> <span class="stType">AnyFlatSpec</span> <span class="stReserved">with</span> <span class="stType">MockFactory</span> <span class="stReserved">with</span>
     <span class="stType">VerboseErrors</span> <span class="stReserved">with</span> <span class="stType">CallLogging</span> ...
 </pre>
 
