@@ -193,9 +193,10 @@ choice for writing the occasional test matrix when a different style trait is ch
 </p>
 <pre class="stStyleExamples">
 <span class="stReserved">import</span> org.scalatest._
+<span class="stReserved">import</span> matchers._
 <span class="stReserved">import</span> prop._
 <span class="stReserved">import</span> scala.collection.immutable._
-<br /><span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">AnyPropSpec</span> <span class="stReserved">with</span> <span class="stType">TableDrivenPropertyChecks</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> {
+<br /><span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">AnyPropSpec</span> <span class="stReserved">with</span> <span class="stType">TableDrivenPropertyChecks</span> <span class="stReserved">with</span> <span class="stType">should.Matchers</span> {
 <br />  <span class="stReserved">val</span> examples =
     <span class="stType">Table</span>(
       <span class="stQuotedString">&quot;set&quot;</span>,

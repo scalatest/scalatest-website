@@ -30,23 +30,24 @@
 
 <p>
 ScalaTest provides a domain specific language (DSL) for expressing assertions in tests
-using the word <code>should</code>. Just mix in <a href="@latestScaladoc/#org.scalatest.Matchers"><code>Matchers</code></a>, like this:
+using the word <code>should</code>. Just mix in <a href="@latestScaladoc/#org.scalatest.matchers.should.Matchers"><code>should.Matchers</code></a>, like this:
 </p>
 
 <pre class="stHighlighted">
 <span class="stReserved">import</span> org.scalatest._
+<span class="stReserved">import</span> matchers.should._
 
 <span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">AnyFlatSpec</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> &#123; ...
 </pre>
 
 <p>
 You can alternatively import the members of the trait, a technique particularly useful when you want to try out matcher expressions in the 
-Scala interpreter. Here's an example where the members of <code>Matchers</code> are imported:
+Scala interpreter. Here's an example where the members of <code>should.Matchers</code> are imported:
 </p>
 
 <pre class="stHighlighted">
 <span class="stReserved">import</span> org.scalatest._
-<span class="stReserved">import</span> Matchers._
+<span class="stReserved">import</span> matchers.should.Matchers._
 
 <span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">AnyFlatSpec</span> &#123; // Can use matchers here ...
 </pre>
@@ -91,7 +92,7 @@ Here is a table of contents for this page:
 <li><a href="#thosePeskyParens">Those pesky parens</a></li>
 </ul>
 
-<p>If you mix <code>Matchers</code> into
+<p>If you mix <code>should.Matchers</code> into
 a suite class, you can write an equality assertion in that suite like this:</p>
 
 <p><pre class="stHighlighted">
@@ -105,7 +106,7 @@ will be thrown with a detail message that explains the problem, such as <code>"7
 This <code>TestFailedException</code> will cause the test to fail.</p>
 
 <p>
-Trait <a href="@latestScaladoc/#org.scalatest.MustMatchers"><code>MustMatchers</code></a> is an alternative to <a href="@latestScaladoc/#org.scalatest.Matchers"><code>Matchers</code></a> that provides the exact same meaning, syntax, and behavior as <code>Matchers</code>, but
+Trait <a href="@latestScaladoc/#org.scalatest.matchers.must.Matchers"><code>must.Matchers</code></a> is an alternative to <a href="@latestScaladoc/#org.scalatest.matchers.should.Matchers"><code>should.Matchers</code></a> that provides the exact same meaning, syntax, and behavior as <code>should.Matchers</code>, but
 uses the verb <code>must</code> instead of <code>should</code>. The two traits differ only in the English semantics of the verb: <code>should</code> is informal,
 making the code feel like conversation between the writer and the reader; <code>must</code> is more formal, making the code feel more like a written specification.
 </p>
@@ -162,8 +163,8 @@ simple &quot;explictly&quot; DSL. For example, here's how you could explicitly s
 sides (which must be strings), by transforming them to lowercase:</p>
 
 <pre class="stREPL">
-scala&gt; import org.scalatest.Matchers._
-import org.scalatest.Matchers._
+scala&gt; import org.scalatest.matchers.should.Matchers._
+import org.scalatest.matchers.should.Matchers._
 
 scala&gt; import org.scalactic.Explicitly._
 import org.scalactic.Explicitly._
@@ -187,8 +188,8 @@ an implicit <code>Equality[T]</code> each time.</p>
 constraints at compile-time between the left and right sides of the equality comparison. Here's an example:</p>
 
 <pre class="stREPL">
-scala&gt; import org.scalatest.Matchers._
-import org.scalatest.Matchers._
+scala&gt; import org.scalatest.matchers.should.Matchers._
+import org.scalatest.matchers.should.Matchers._
 
 scala&gt; import org.scalactic.TypeCheckedTripleEquals._
 import org.scalactic.TypeCheckedTripleEquals._
@@ -439,8 +440,8 @@ The <code>Emptiness</code> companion object provides implicits for <code>GenTrav
 returns a <code>Boolean</code>. Here are some examples:</p>
 
 <pre class="stREPL">
-scala&gt; import org.scalatest.Matchers._
-import org.scalatest.Matchers._
+scala&gt; import org.scalatest.matchers.should.Matchers._
+import org.scalatest.matchers.should.Matchers._
 
 scala&gt; List.empty shouldBe empty
 
@@ -474,8 +475,8 @@ companion object, implicits are provided for types <code>GenTraversable[E]</code
 Here are some examples:</p>
 
 <pre class="stREPL">
-scala&gt; import org.scalatest.Matchers._
-import org.scalatest.Matchers._
+scala&gt; import org.scalatest.matchers.should.Matchers._
+import org.scalatest.matchers.should.Matchers._
 
 scala&gt; List(1, 2, 3) should contain (2)
 
@@ -499,8 +500,8 @@ implicit conversions are provided in the <code>Containing</code> companion objec
 types of containers of <code>E</code>. Here's an example:</p>
 
 <pre class="stREPL">
-scala&gt; import org.scalatest.Matchers._
-import org.scalatest.Matchers._
+scala&gt; import org.scalatest.matchers.should.Matchers._
+import org.scalatest.matchers.should.Matchers._
 
 scala&gt; List(&quot;Hi&quot;, &quot;Di&quot;, &quot;Ho&quot;) should contain (&quot;ho&quot;)
 org.scalatest.exceptions.TestFailedException: List(Hi, Di, Ho) did not contain element &quot;ho&quot;
@@ -769,8 +770,8 @@ All of the inspectors have shorthands in matchers. Here is the full list:</p><ul
 <p>Here are some examples:</p>
 
 <pre class="stREPL">
-scala&gt; import org.scalatest.Matchers._
-import org.scalatest.Matchers._
+scala&gt; import org.scalatest.matchers.should.Matchers._
+import org.scalatest.matchers.should.Matchers._
 
 scala&gt; val xs = List(1, 2, 3, 4, 5)
 xs: List[Int] = List(1, 2, 3, 4, 5)
@@ -880,8 +881,8 @@ javaMap should contain value <span class="stQuotedString">&quot;Howdy&quot;</spa
 scala&gt; import org.scalatest._
 import org.scalatest._
 
-scala&gt; import Matchers._
-import Matchers._
+scala&gt; import matchers.should.Matchers._
+import matchers.should.Matchers._
 
 scala&gt; atLeast (2, Array(1, 2, 3)) should be &gt; 1
 
@@ -969,7 +970,7 @@ string should not startWith (<span class="stQuotedString">&quot;Hello&quot;</spa
 
 <p>Often when creating libraries you may wish to ensure that certain arrangements of code that
 represent potential &ldquo;user errors&rdquo; do not compile, so that your library is more error resistant.
-ScalaTest <code>Matchers</code> trait includes the following syntax for that purpose:</p>
+ScalaTest <code>should.Matchers</code> trait includes the following syntax for that purpose:</p>
 
 <pre class="stHighlighted">
 <span class="stQuotedString">&quot;val a: String = 1&quot;</span> shouldNot compile
@@ -1333,7 +1334,7 @@ s<span class="stQuotedString">&quot;&quot;&quot;File $name did not end with exte
 
 <p><pre class="stHighlighted">
 <span class="stReserved">import</span> org.scalatest._
-<span class="stReserved">import</span> Matchers._
+<span class="stReserved">import</span> matchers.should.Matchers._
 <span class="stReserved">import</span> java.io.File
 <span class="stReserved">import</span> CustomMatchers._
 <br /><span class="stReserved">new</span> <span class="stType">File</span>(<span class="stQuotedString">&quot;essay.text&quot;</span>) should endWithExtension (<span class="stQuotedString">&quot;txt&quot;</span>)
@@ -1440,8 +1441,8 @@ can be more easily created by composing a function with the existing <code>endWi
 scala&gt; import org.scalatest._
 import org.scalatest._
 
-scala&gt; import Matchers._
-import Matchers._
+scala&gt; import matchers.should.Matchers._
+import matchers.should.Matchers._
 
 scala&gt; import java.io.File
 import java.io.File
@@ -1542,7 +1543,7 @@ org.scalatest.exceptions.TestFailedException: &quot;7&quot;.toInt was not greate
 <h2> Checking for expected exceptions </h2>
 
 <p>Sometimes you need to test whether a method throws an expected exception under certain circumstances, such
-as when invalid arguments are passed to the method. With <code>Matchers</code> mixed in, you can
+as when invalid arguments are passed to the method. With <code>should.Matchers</code> mixed in, you can
 check for an expected exception like this:</p>
 
 <p><pre class="stHighlighted">
