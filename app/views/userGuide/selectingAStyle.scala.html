@@ -39,7 +39,8 @@ We usually write integration tests&mdash;tests that involve subsystems such as a
 <p>
 In short, ScalaTest's flexibility is not intended to enable individual developers to use different testing styles on the same project. 
 Rather, it is intended to enable project leaders to select a best-fit style or styles for the team.
-If you have trouble enforcing chosen styles, you can <a href="@latestScaladoc/#org.scalatest.tools.Runner$@@specifyingChosenStyles">specify the chosen styles</a> in your build.
+To help you maintain consistency of style across your project, you can depend on style-specific artifacts in your build instead of
+the general ScalaTest artifact. <!--If you have chosen the <code>FlatSpec</code> style, for example, you could-->
 </p>
 
 <p>
