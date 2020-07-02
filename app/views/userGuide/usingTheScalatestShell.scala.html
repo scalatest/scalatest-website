@@ -79,7 +79,7 @@ names, for example:
 </p>
 
 <pre style="background-color: #2c415c; padding: 10px">
-<span style="color: white">scala> class ArithmeticSuite extends FunSuite with matchers.ShouldMatchers {
+<span style="color: white">scala> class ArithmeticSuite extends AnyFunSuite with matchers.should.Matchers {
      |   test("addition works") { 
      |     1 + 1 should equal (2)
      |   } 
@@ -201,10 +201,10 @@ To enable short stack traces during a single run, use <code>shortstacks</code>:
   at line2$object$$iw$$iw$$iw$$iw$ArithmeticSuite$$anonfun$3.apply$mcV$sp(<console>:16)
   at line2$object$$iw$$iw$$iw$$iw$ArithmeticSuite$$anonfun$3.apply(<console>:16)
   at line2$object$$iw$$iw$$iw$$iw$ArithmeticSuite$$anonfun$3.apply(<console>:16)
-  at org.scalatest.FunSuite$$anon$1.apply(FunSuite.scala:992)
+  at org.scalatest.funsuite.AnyFunSuite$$anon$1.apply(AnyFunSuite.scala:992)
   at org.scalatest.Suite$class.withFixture(Suite.scala:1661)
   at line2$object$$iw$$iw$$iw$$iw$ArithmeticSuite.withFixture(<console>:8)
-  at org.scalatest.FunSuite$class.invokeWithFixture$1(FunSuite.scala:989)
+  at org.scalatest.funsuite.AnyFunSuite$class.invokeWithFixture$1(AnyFunSuite.scala:989)
   ...</span>
 <span style="color: #cfc923">- division works (pending)</span>
 </pre>

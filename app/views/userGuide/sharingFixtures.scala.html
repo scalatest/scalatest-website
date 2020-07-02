@@ -157,9 +157,9 @@ test that needs the fixture, storing the returned object or objects in local var
 
 <p><pre class="stHighlighted">
 <span class="stReserved">package</span> org.scalatest.examples.flatspec.getfixture
-<br /><span class="stReserved">import</span> org.scalatest.FlatSpec
+<br /><span class="stReserved">import</span> org.scalatest.flatspec.AnyFlatSpec
 <span class="stReserved">import</span> collection.mutable.ListBuffer
-<br /><span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> {
+<br /><span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">AnyFlatSpec</span> {
 <br />  <span class="stReserved">def</span> fixture =
     <span class="stReserved">new</span> {
       <span class="stReserved">val</span> builder = <span class="stReserved">new</span> <span class="stType">StringBuilder</span>(<span class="stQuotedString">&quot;ScalaTest is &quot;</span>)
@@ -201,8 +201,8 @@ and each test just mixes together the traits it needs:</p>
 <p><pre class="stHighlighted">
 <span class="stReserved">package</span> org.scalatest.examples.flatspec.fixturecontext
 <br /><span class="stReserved">import</span> collection.mutable.ListBuffer
-<span class="stReserved">import</span> org.scalatest.FlatSpec
-<br /><span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> {
+<span class="stReserved">import</span> org.scalatest.flatspec.AnyFlatSpec
+<br /><span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">AnyFlatSpec</span> {
 <br />  <span class="stReserved">trait</span> <span class="stType">Builder</span> {
     <span class="stReserved">val</span> builder = <span class="stReserved">new</span> <span class="stType">StringBuilder</span>(<span class="stQuotedString">&quot;ScalaTest is &quot;</span>)
   }
@@ -275,7 +275,7 @@ send that information to the reporter:</p>
 <span class="stReserved">package</span> org.scalatest.examples.flatspec.noargtest
 <br /><span class="stReserved">import</span> java.io.File
 <span class="stReserved">import</span> org.scalatest._
-<br /><span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> {
+<br /><span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">AnyFlatSpec</span> {
 <br />  <span class="stReserved">override</span> <span class="stReserved">def</span> withFixture(test: <span class="stType">NoArgTest</span>) = {
 <br />    <span class="stReserved">super</span>.withFixture(test) <span class="stReserved">match</span> {
       <span class="stReserved">case</span> failed: <span class="stType">Failed</span> =&gt;
@@ -338,11 +338,11 @@ loan-fixture method. (In this example, the database is simulated with a <code>St
     databases.remove(name)
   }
 }
-<br /><span class="stReserved">import</span> org.scalatest.FlatSpec
+<br /><span class="stReserved">import</span> org.scalatest.flatspec.AnyFlatSpec
 <span class="stReserved">import</span> DbServer._
 <span class="stReserved">import</span> java.util.UUID.randomUUID
 <span class="stReserved">import</span> java.io._
-<br /><span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> {
+<br /><span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">AnyFlatSpec</span> {
 <br />  <span class="stReserved">def</span> withDatabase(testCode: <span class="stType">Db</span> =&gt; <span class="stType">Any</span>) {
     <span class="stReserved">val</span> dbName = randomUUID.toString
     <span class="stReserved">val</span> db = createDb(dbName) <span class="stLineComment">// create the fixture</span>
@@ -395,9 +395,9 @@ done in this example. This keeps tests completely isolated, allowing you to run 
 <p></pre>
 <a name="withFixtureOneArgTest"></a></p><h4> Overriding <code>withFixture(OneArgTest)</code> </h4>
 
-<p>If all or most tests need the same fixture, you can avoid some of the boilerplate of the loan-fixture method approach by using a <code>fixture.FlatSpec</code>
+<p>If all or most tests need the same fixture, you can avoid some of the boilerplate of the loan-fixture method approach by using a <code>fixture.AnyFlatSpec</code>
 and overriding <code>withFixture(OneArgTest)</code>.
-Each test in a <code>fixture.FlatSpec</code> takes a fixture as a parameter, allowing you to pass the fixture into
+Each test in a <code>fixture.AnyFlatSpec</code> takes a fixture as a parameter, allowing you to pass the fixture into
 the test. You must indicate the type of the fixture parameter by specifying <code>FixtureParam</code>, and implement a
 <code>withFixture</code> method that takes a <code>OneArgTest</code>. This <code>withFixture</code> method is responsible for
 invoking the one-arg test function, so you can perform fixture set up before, and clean up after, invoking and passing
@@ -420,7 +420,7 @@ withFixture(test.toNoArgTest(theFixture))
 <span class="stReserved">package</span> org.scalatest.examples.flatspec.oneargtest
 <br /><span class="stReserved">import</span> org.scalatest.fixture
 <span class="stReserved">import</span> java.io._
-<br /><span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">fixture.FlatSpec</span> {
+<br /><span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">fixture.AnyFlatSpec</span> {
 <br />  <span class="stReserved">case</span> <span class="stReserved">class</span> <span class="stType">FixtureParam</span>(file: <span class="stType">File</span>, writer: <span class="stType">FileWriter</span>)
 <br />  <span class="stReserved">def</span> withFixture(test: <span class="stType">OneArgTest</span>) = {
     <span class="stReserved">val</span> file = File.createTempFile(<span class="stQuotedString">&quot;hello&quot;</span>, <span class="stQuotedString">&quot;world&quot;</span>) <span class="stLineComment">// create the fixture</span>
@@ -447,7 +447,7 @@ withFixture(test.toNoArgTest(theFixture))
 
 <p>In this example, the tests actually required two fixture objects, a <code>File</code> and a <code>FileWriter</code>. In such situations you can
 simply define the <code>FixtureParam</code> type to be a tuple containing the objects, or as is done in this example, a case class containing
-the objects.  For more information on the <code>withFixture(OneArgTest)</code> technique, see the <a href="@latestScaladoc/#org.scalatest.fixture.FlatSpec">documentation for <code>fixture.FlatSpec</code></a>.</p>
+the objects.  For more information on the <code>withFixture(OneArgTest)</code> technique, see the <a href="@latestScaladoc/#org.scalatest.fixture.AnyFlatSpec">documentation for <code>fixture.AnyFlatSpec</code></a>.</p>
 
 <p><a name="beforeAndAfter"> </a></p><h4> Mixing in <code>BeforeAndAfter</code> </h4>
 
@@ -462,7 +462,7 @@ with <code>before</code> and/or after each test each test with <code>after</code
 <span class="stReserved">package</span> org.scalatest.examples.flatspec.beforeandafter
 <br /><span class="stReserved">import</span> org.scalatest._
 <span class="stReserved">import</span> collection.mutable.ListBuffer
-<br /><span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> <span class="stReserved">with</span> <span class="stType">BeforeAndAfter</span> {
+<br /><span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">AnyFlatSpec</span> <span class="stReserved">with</span> <span class="stType">BeforeAndAfter</span> {
 <br />  <span class="stReserved">val</span> builder = <span class="stReserved">new</span> <span class="stType">StringBuilder</span>
   <span class="stReserved">val</span> buffer = <span class="stReserved">new</span> <span class="stType">ListBuffer[String]</span>
 <br />  before {
@@ -527,7 +527,7 @@ factored out into two <em>stackable fixture traits</em> named <code>Builder</cod
     <span class="stReserved">finally</span> buffer.clear()
   }
 }
-<br /><span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> <span class="stReserved">with</span> <span class="stType">Builder</span> <span class="stReserved">with</span> <span class="stType">Buffer</span> {
+<br /><span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">AnyFlatSpec</span> <span class="stReserved">with</span> <span class="stType">Builder</span> <span class="stReserved">with</span> <span class="stType">Buffer</span> {
 <br />  <span class="stQuotedString">&quot;Testing&quot;</span> should <span class="stQuotedString">&quot;be easy&quot;</span> in {
     builder.append(<span class="stQuotedString">&quot;easy!&quot;</span>)
     assert(builder.toString === <span class="stQuotedString">&quot;ScalaTest is easy!&quot;</span>)
@@ -588,7 +588,7 @@ were rewritten to use the <code>BeforeAndAfterEach</code> methods instead of <co
     <span class="stReserved">finally</span> buffer.clear()
   }
 }
-<br /><span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> <span class="stReserved">with</span> <span class="stType">Builder</span> <span class="stReserved">with</span> <span class="stType">Buffer</span> {
+<br /><span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">AnyFlatSpec</span> <span class="stReserved">with</span> <span class="stType">Builder</span> <span class="stReserved">with</span> <span class="stType">Buffer</span> {
 <br />  <span class="stQuotedString">&quot;Testing&quot;</span> should <span class="stQuotedString">&quot;be easy&quot;</span> in {
     builder.append(<span class="stQuotedString">&quot;easy!&quot;</span>)
     assert(builder.toString === <span class="stQuotedString">&quot;ScalaTest is easy!&quot;</span>)
