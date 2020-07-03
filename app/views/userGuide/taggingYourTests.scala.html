@@ -31,13 +31,13 @@ one tag by default: ignore. You can tag a test as ignored to "switch it off" tem
 <p>
 To support the common use case of &#8220;temporarily&#8221; disabling a test, with the
 good intention of resurrecting the test at a later time, each style trait provides a way to tag tests as ignored.
-For example, in a <code>FlatSpec</code> you can change an <code>it</code> or an <code>in</code> to <code>ignore</code>:
+For example, in a <code>AnyFlatSpec</code> you can change an <code>it</code> or an <code>in</code> to <code>ignore</code>:
 </p>
 
 <pre class="stHighlighted">
-<span class="stReserved">import</span> org.scalatest.FlatSpec
+<span class="stReserved">import</span> org.scalatest.flatspec.AnyFlatSpec
 <span class="stReserved">import</span> scala.collection.mutable.Stack
-<br /><span class="stReserved">class</span> <span class="stType">StackSpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> {
+<br /><span class="stReserved">class</span> <span class="stType">StackSpec</span> <span class="stReserved">extends</span> <span class="stType">AnyFlatSpec</span> {
 <br />  <span class="stQuotedString">&quot;A Stack&quot;</span> should <span class="stQuotedString">&quot;pop values in last-in-first-out order&quot;</span> in {
       <span class="stReserved">val</span> stack = <span class="stReserved">new</span> <span class="stType">Stack[Int]</span>
       stack.push(<span class="stLiteral">1</span>)
@@ -75,7 +75,7 @@ It will run only the first test and report that the second test was ignored:
 <h2>Defining and using your own tags</h2>
 
 <p>
-Each style trait provides a way to tag tests. To tag tests in a <code>FlatSpec</code>, for example,
+Each style trait provides a way to tag tests. To tag tests in a <code>AnyFlatSpec</code>, for example,
 you pass objects that extend abstract class <code>org.scalatest.Tag</code> to <code>taggedAs</code>
 just before the <code>in</code>. Class <code>Tag</code> takes one parameter, a string name.
 Here's how you might define tags to mark tests that require a database:
@@ -87,13 +87,13 @@ Here's how you might define tags to mark tests that require a database:
 </pre>
 
 <p>
-Given this definitions, you could tag <code>FlatSpec</code> tests like this:
+Given this definitions, you could tag <code>AnyFlatSpec</code> tests like this:
 </p>
 
 <pre class="stHighlighted">
-<span class="stReserved">import</span> org.scalatest.FlatSpec
+<span class="stReserved">import</span> org.scalatest.flatspec.AnyFlatSpec
 <span class="stReserved">import</span> org.scalatest.tagobjects.Slow
-<br /><span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> {
+<br /><span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">AnyFlatSpec</span> {
 <br />  <span class="stQuotedString">&quot;The Scala language&quot;</span> must <span class="stQuotedString">&quot;add correctly&quot;</span> taggedAs(<span class="stType">Slow</span>) in {
       <span class="stReserved">val</span> sum = <span class="stLiteral">1</span> + <span class="stLiteral">1</span>
       assert(sum === <span class="stLiteral">2</span>)

@@ -269,29 +269,29 @@ You can specify tag names of tests to include or exclude from a run. To specify 
 </p>
 
 <p>
- To facilitate the communication and enforcement of a team's style choices for a project, you can specify the chosen styles in your project build. If chosen styles is defined, ScalaTest style traits that are not among the chosen list will abort with a message complaining that the style trait is not one of the chosen styles. The style name for each ScalaTest style trait is its fully qualified name. For example, to specify that <code>org.scalatest.FunSpec</code> as your chosen style you'd pass this to ScalaTest in your sbt build file:
+ To facilitate the communication and enforcement of a team's style choices for a project, you can specify the chosen styles in your project build. If chosen styles is defined, ScalaTest style traits that are not among the chosen list will abort with a message complaining that the style trait is not one of the chosen styles. The style name for each ScalaTest style trait is its fully qualified name. For example, to specify that <code>org.scalatest.funspec.AnyFunSpec</code> as your chosen style you'd pass this to ScalaTest in your sbt build file:
 </p>
 
 <pre class="stGrayback">
-testOptions in Test += Tests.Argument(TestFrameworks.ScalaTest, "-y", "org.scalatest.FunSpec")
+testOptions in Test += Tests.Argument(TestFrameworks.ScalaTest, "-y", "org.scalatest.funspec.AnyFunSpec")
 </pre>
 
 <p>
-If you wanted <code>org.scalatest.FunSpec</code> as your main unit testing style, but also wanted to allow <code>PropSpec</code> for test matrixes and FeatureSpec for integration tests, you would write:
+If you wanted <code>org.scalatest.funspec.AnyFunSpec</code> as your main unit testing style, but also wanted to allow <code>AnyPropSpec</code> for test matrixes and AnyFeatureSpec for integration tests, you would write:
 </p>
 
 <pre class="stGrayback">
-testOptions in Test += Tests.Argument(TestFrameworks.ScalaTest, "-y", "org.scalatest.FunSpec",
-    "-y", "org.scalatest.PropSpec", "-y", "org.scalatest.FeatureSpec")
+testOptions in Test += Tests.Argument(TestFrameworks.ScalaTest, "-y", "org.scalatest.funspec.AnyFunSpec",
+    "-y", "org.scalatest.propspec.AnyPropSpec", "-y", "org.scalatest.featurespec.AnyFeatureSpec")
 </pre>
 
 <p>
- To select <code>org.scalatest.FlatSpec</code> as your main unit testing style, but allow <code>org.scalatest.fixture.FlatSpec</code> for multi-threaded unit tests, you'd write:
+ To select <code>org.scalatest.flatspec.AnyFlatSpec</code> as your main unit testing style, but allow <code>org.scalatest.fixture.AnyFlatSpec</code> for multi-threaded unit tests, you'd write:
 </p>
 
 <pre class="stGrayback">
-testOptions in Test += Tests.Argument(TestFrameworks.ScalaTest, "-y", "org.scalatest.FlatSpec",
-    "-y", "org.scalatest.fixture.FlatSpec")
+testOptions in Test += Tests.Argument(TestFrameworks.ScalaTest, "-y", "org.scalatest.flatspec.AnyFlatSpec",
+    "-y", "org.scalatest.fixture.AnyFlatSpec")
 </pre>
 
 <p>

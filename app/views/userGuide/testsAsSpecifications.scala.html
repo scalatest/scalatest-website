@@ -29,14 +29,14 @@ can be executed to verify that behavior. ScalaTest provides rich support for thi
 <p>
 In BDD, test names are sentences that specify a bit of desired behavior that the body of the test will ensure is working. This keeps tests focused
 on just one thing, making it easier to figure out what behavior has been broken when a test fails. To keep the focus on specifying behavior, the word
-&ldquo;test&rdquo; disappears from the source code and is replaced with words that make the code feel more like a specification. For example, in ScalaTest's <a href="@latestScaladoc/#org.scalatest.FunSpec"><code>FunSpec</code></a> trait, you use
-the word &ldquo;describe&rdquo; to name and qualify the subject under test, and &ldquo;it&rdquo; to mark the beginning of a sentence about a bit of the subject's behavior.  Here's an example <code>FunSpec</code>:
+&ldquo;test&rdquo; disappears from the source code and is replaced with words that make the code feel more like a specification. For example, in ScalaTest's <a href="@latestScaladoc/#org.scalatest.funspec.AnyFunSpec"><code>AnyFunSpec</code></a> trait, you use
+the word &ldquo;describe&rdquo; to name and qualify the subject under test, and &ldquo;it&rdquo; to mark the beginning of a sentence about a bit of the subject's behavior.  Here's an example <code>AnyFunSpec</code>:
 </p>
 
 <pre class="stHighlighted">
-<span class="stReserved">import</span> org.scalatest.FunSpec
+<span class="stReserved">import</span> org.scalatest.funspec.AnyFunSpec
 <span class="stReserved">import</span> scala.collection.mutable.Stack
-<br /><span class="stReserved">class</span> <span class="stType">StackSpec</span> <span class="stReserved">extends</span> <span class="stType">FunSpec</span> {
+<br /><span class="stReserved">class</span> <span class="stType">StackSpec</span> <span class="stReserved">extends</span> <span class="stType">AnyFunSpec</span> {
 <br />  describe(<span class="stQuotedString">"A Stack"</span>) {
 <br />    it(<span class="stQuotedString">"should pop values in last-in-first-out order"</span>) {
       <span class="stReserved">val</span> stack = <span class="stReserved">new</span> <span class="stType">Stack[Int]</span>
@@ -84,10 +84,10 @@ mixing in trait <code>GivenWhenThen</code> would enable you to write code like:
 </p>
 
 <pre class="stHighlighted">
-<span class="stReserved">import</span> org.scalatest.FunSpec
+<span class="stReserved">import</span> org.scalatest.funspec.AnyFunSpec
 <span class="stReserved">import</span> org.scalatest.GivenWhenThen
 <span class="stReserved">import</span> scala.collection.mutable.Stack
-<br /><span class="stReserved">class</span> <span class="stType">StackSpec</span> <span class="stReserved">extends</span> <span class="stType">FunSpec</span> <span class="stReserved">with</span> <span class="stType">GivenWhenThen</span> {
+<br /><span class="stReserved">class</span> <span class="stType">StackSpec</span> <span class="stReserved">extends</span> <span class="stType">AnyFunSpec</span> <span class="stReserved">with</span> <span class="stType">GivenWhenThen</span> {
 <br />  describe(<span class="stQuotedString">"A Stack"</span>) {
 <br />    it(<span class="stQuotedString">"should pop values in last-in-first-out-order"</span>) {
 <br />      given(<span class="stQuotedString">"a non-empty stack"</span>)
@@ -136,12 +136,12 @@ Were you to run this <code>StackSpec</code> in the Scala interpreter, you would 
 </pre>
 
 <p>
-ScalaTest provides many traits that facilitate BDD style: Compared to <a href="@latestScaladoc/#org.scalatest.FunSpec"><code>Spec</code></a>,
-<a href="@latestScaladoc/#org.scalatest.WordSpec"><code>WordSpec</code></a> and <a href="@latestScaladoc/#org.scalatest.FlatSpec"><code>FlatSpec</code></a> provide more gramatical structure (<em>e.g.</em>,
+ScalaTest provides many traits that facilitate BDD style: Compared to <a href="@latestScaladoc/#org.scalatest.funspec.AnyFunSpec"><code>Spec</code></a>,
+<a href="@latestScaladoc/#org.scalatest.wordspec.AnyWordSpec"><code>AnyWordSpec</code></a> and <a href="@latestScaladoc/#org.scalatest.flatspec.AnyFlatSpec"><code>AnyFlatSpec</code></a> provide more gramatical structure (<em>e.g.</em>,
 test names must include <code>should</code>, <code>can</code>, or <code>must</code>), whereas
-<a href="@latestScaladoc/#org.scalatest.FreeSpec"><code>FreeSpec</code></a> gives complete freedom to the writer. Other BDD traits facilitate specific kinds of
-testing: <a href="@latestScaladoc/#org.scalatest.FeatureSpec"><code>FeatureSpec</code></a>'s syntax
-is geared towards acceptance, integration, and functional testing, and <a href="@latestScaladoc/#org.scalatest.PropSpec"><code>PropSpec</code></a>
+<a href="@latestScaladoc/#org.scalatest.freespec.AnyFreeSpec"><code>AnyFreeSpec</code></a> gives complete freedom to the writer. Other BDD traits facilitate specific kinds of
+testing: <a href="@latestScaladoc/#org.scalatest.featurespec.AnyFeatureSpec"><code>AnyFeatureSpec</code></a>'s syntax
+is geared towards acceptance, integration, and functional testing, and <a href="@latestScaladoc/#org.scalatest.propspec.AnyPropSpec"><code>AnyPropSpec</code></a>
 is geared towards property-based testing.
 </p>
 

@@ -94,7 +94,7 @@ You could then check a property against each row of the table using a <code>forA
 </p>
 
 <pre class="stHighlighted">
-<span class="stReserved">import</span> org.scalatest.matchers.ShouldMatchers._
+<span class="stReserved">import</span> org.scalatest.matchers.should.Matchers._
 <br />forAll (fractions) { (n: <span class="stType">Int</span>, d: <span class="stType">Int</span>) =>
 <br />  whenever (d != <span class="stLiteral">0</span> && d != Integer.MIN_VALUE
       && n != Integer.MIN_VALUE) {

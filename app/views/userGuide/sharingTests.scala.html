@@ -20,9 +20,9 @@
 <h1>Sharing tests</h1>
 
 <p>Sometimes you may want to run the same test code on different fixture objects. In other words, you may want to write tests that are &quot;shared&quot;
-by different fixture objects.  To accomplish this in a <code>FlatSpec</code>, you first place shared tests in <em>behavior functions</em>.
-These behavior functions will be invoked during the construction phase of any <code>FlatSpec</code> that uses them, so that the tests they
-contain will be registered as tests in that <code>FlatSpec</code>.  For example, given this stack class:</p><p><pre class="stHighlighted">
+by different fixture objects.  To accomplish this in a <code>AnyFlatSpec</code>, you first place shared tests in <em>behavior functions</em>.
+These behavior functions will be invoked during the construction phase of any <code>AnyFlatSpec</code> that uses them, so that the tests they
+contain will be registered as tests in that <code>AnyFlatSpec</code>.  For example, given this stack class:</p><p><pre class="stHighlighted">
 <span class="stReserved">import</span> scala.collection.mutable.ListBuffer
 <br /><span class="stReserved">class</span> <span class="stType">Stack[T]</span> {
 <br />  <span class="stReserved">val</span> MAX = <span class="stLiteral">10</span>
@@ -54,13 +54,13 @@ contain will be registered as tests in that <code>FlatSpec</code>.  For example,
 <em>etc</em>. You may find you have several tests that make sense any time the stack is non-empty. Thus you'd ideally want to run
 those same tests for three stack fixture objects: a full stack, a stack with a one item, and a stack with one item less than
 capacity. With shared tests, you can factor these tests out into a behavior function, into which you pass the
-stack fixture to use when running the tests. So in your <code>FlatSpec</code> for stack, you'd invoke the
+stack fixture to use when running the tests. So in your <code>AnyFlatSpec</code> for stack, you'd invoke the
 behavior function three times, passing in each of the three stack fixtures so that the shared tests are run for all three fixtures. You
-can define a behavior function that encapsulates these shared tests inside the <code>FlatSpec</code> that uses them. If they are shared
-between different <code>FlatSpec</code>s, however, you could also define them in a separate trait that is mixed into each <code>FlatSpec</code>
+can define a behavior function that encapsulates these shared tests inside the <code>AnyFlatSpec</code> that uses them. If they are shared
+between different <code>AnyFlatSpec</code>s, however, you could also define them in a separate trait that is mixed into each <code>AnyFlatSpec</code>
 that uses them.</p><p><a name="StackBehaviors">For</a> example, here the <code>nonEmptyStack</code> behavior function (in this case, a behavior <em>method</em>) is
 defined in a trait along with another method containing shared tests for non-full stacks:</p><p><pre class="stHighlighted">
-<span class="stReserved">trait</span> <span class="stType">StackBehaviors</span> { <span class="stReserved">this</span>: <span class="stType">FlatSpec</span> =&gt;
+<span class="stReserved">trait</span> <span class="stType">StackBehaviors</span> { <span class="stReserved">this</span>: <span class="stType">AnyFlatSpec</span> =&gt;
 <br />  <span class="stReserved">def</span> nonEmptyStack(newStack: =&gt; <span class="stType">Stack[Int]</span>, lastItemAdded: <span class="stType">Int</span>) {
 <br />    it should <span class="stQuotedString">&quot;be non-empty&quot;</span> in {
       assert(!newStack.empty)
@@ -94,7 +94,7 @@ defined in a trait along with another method containing shared tests for non-ful
     }
   }
 }
-</pre></p><p>Given these behavior functions, you could invoke them directly, but <code>FlatSpec</code> offers a DSL for the purpose,
+</pre></p><p>Given these behavior functions, you could invoke them directly, but <code>AnyFlatSpec</code> offers a DSL for the purpose,
 which looks like this:</p><p><pre class="stHighlighted">
 it should behave like nonEmptyStack(stackWithOneItem, lastValuePushed)
 it should behave like nonFullStack(stackWithOneItem)
@@ -105,7 +105,7 @@ in scope already inside the behavior function. In that case, your code would loo
 it should behave like nonEmptyStack <span class="stLineComment">// assuming lastValuePushed is also in scope inside nonEmptyStack</span>
 it should behave like nonFullStack
 </pre></p><p>The recommended style, however, is the functional, pass-all-the-needed-values-in style. Here's an example:</p><p><pre class="stHighlighted">
-<span class="stReserved">class</span> <span class="stType">SharedTestExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> <span class="stReserved">with</span> <span class="stType">StackBehaviors</span> {
+<span class="stReserved">class</span> <span class="stType">SharedTestExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">AnyFlatSpec</span> <span class="stReserved">with</span> <span class="stType">StackBehaviors</span> {
 <br />  <span class="stLineComment">// Stack fixture creation methods</span>
   <span class="stReserved">def</span> emptyStack = <span class="stReserved">new</span> <span class="stType">Stack[Int]</span>
 <br />  <span class="stReserved">def</span> fullStack = {
@@ -184,10 +184,10 @@ A Stack (full)
 - should complain on a push</span>
 </pre></p><p>One thing to keep in mind when using shared tests is that in ScalaTest, each test in a suite must have a unique name.
 If you register the same tests repeatedly in the same suite, one problem you may encounter is an exception at runtime
-complaining that multiple tests are being registered with the same test name. A good way to solve this problem in a <code>FlatSpec</code> is to make sure
+complaining that multiple tests are being registered with the same test name. A good way to solve this problem in a <code>AnyFlatSpec</code> is to make sure
 each invocation of a behavior function is in the context of a different subject,
 which will prepend a string to each test name.
-For example, the following code in a <code>FlatSpec</code> would register a test with the name <code>"A Stack (when empty) should be empty"</code>:</p><p><pre class="stHighlighted">
+For example, the following code in a <code>AnyFlatSpec</code> would register a test with the name <code>"A Stack (when empty) should be empty"</code>:</p><p><pre class="stHighlighted">
 behavior of <span class="stQuotedString">&quot;A Stack (when empty)&quot;</span>
 <br />it should <span class="stQuotedString">&quot;be empty&quot;</span> in {
   assert(emptyStack.empty)
