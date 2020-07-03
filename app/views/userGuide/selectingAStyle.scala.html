@@ -15,6 +15,7 @@
  *@
 
 @import controllers.Application.latestScaladoc
+@import controllers.Application.latestVersion
 
 @userGuidePage("Selecting testing styles") {
 <div style="text-align: left">
@@ -32,15 +33,16 @@ This allows the testing styles to fit the team while maintaining uniformity in t
 We recommend you select one main style for unit testing and another for acceptance testing.
 Using a different style for unit and acceptance testing can help developers "switch gears" between 
 low-level unit testing to high-level acceptance testing. You may also want to select particular styles to be used in special situations, such as using
-<a href="@latestScaladoc/#org.scalatest.propspec.AnyPropSpec@@testMatrix"><code>AnyPropSpec</code> for test matrixes</a>. 
+<a href="@latestScaladoc/#org.scalatest.propspec.AnyPropSpec@@testMatrix"><code>PropSpec</code> for test matrixes</a>.
 We usually write integration tests&mdash;tests that involve subsystems such as a database&mdash;in the same style as the unit tests.
 </p>
 
 <p>
 In short, ScalaTest's flexibility is not intended to enable individual developers to use different testing styles on the same project. 
 Rather, it is intended to enable project leaders to select a best-fit style or styles for the team.
-To help you maintain consistency of style across your project, you can depend on style-specific artifacts in your build instead of
-the general ScalaTest artifact. <!--If you have chosen the <code>FlatSpec</code> style, for example, you could-->
+To help you maintain consistency of style across your project, you can specify style artifacts in your build dependencies instead of
+the general ScalaTest artifact. The general ScalaTest artifact (named <code>scalatest</code>) contains all testing styles,
+whereas the <code>scalatest-flatspec</code> artifact contains just the <code>FlatSpec</code> testing style.
 </p>
 
 <p>
@@ -51,15 +53,15 @@ mixin traits, <em>etc.</em>&mdash;works consistently the same way no matter what
 <h2>If you don't enjoy shopping</h2>
 
 <p>
-If you would rather be told which approach to take rather than pick one yourself, we recommend you use
-<a href="@latestScaladoc/#org.scalatest.flatspec.AnyFlatSpec"><code>AnyFlatSpec</code></a> for unit and integration testing and
-<a href="@latestScaladoc/#org.scalatest.featurespec.AnyFeatureSpec"><code>AnyFeatureSpec</code></a> for acceptance testing.
-We recommend <code>AnyFlatSpec</code> as the default choice, because it is flat (unnested) like the XUnit tests familiar to most developers, but
+If you would rather be told which approach to take rather than pick one yourself, we recommend you use the
+<a href="@latestScaladoc/#org.scalatest.flatspec.AnyFlatSpec"><code>FlatSpec</code></a> style for unit and integration testing and the
+<a href="@latestScaladoc/#org.scalatest.featurespec.AnyFeatureSpec"><code>FeatureSpec</code></a> style for acceptance testing.
+We recommend the <code>FlatSpec</code> style as the default choice, because it is flat (unnested) like the XUnit tests familiar to most developers, but
 guides you into writing focused tests with descriptive, specification-style names.
 </p>
 
 <a name="sStyleTraitUseCases"></a>
-<h2>Style trait use cases</h2>
+<h2>Testing style use cases</h2>
 
 <p>
 If you would rather make your own choices, this table gives a quick overview of the advantages and disadvantages of each style trait. For more
@@ -68,10 +70,10 @@ information and examples, click on the links:
 
 <p>
 <table style="border-collapse: collapse; border: 1px solid black">
-<tr><th style="background-color: #CCCCCC; border-width: 1px; padding: 10px; text-align: center; border: 1px solid black">Style Trait Descriptions and Examples</th></tr>
+<tr><th style="background-color: #CCCCCC; border-width: 1px; padding: 10px; text-align: center; border: 1px solid black">Testing Style Descriptions and Examples</th></tr>
 <tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
-<h2>AnyFunSuite</h2>
-<p class="stStyleDesc">For teams coming from xUnit, <a href="@latestScaladoc/#org.scalatest.funsuite.AnyFunSuite"><code>AnyFunSuite</code></a> feels comfortable and familiar while still giving some of the benefits of BDD: <code>AnyFunSuite</code> makes it easy to write descriptive test names, natural to write focused tests, and generates specification-like output that can facilitate communication among stakeholders.</p>
+<h2>The FunSuite style</h2>
+<p class="stStyleDesc">For teams coming from xUnit, the <a href="@latestScaladoc/#org.scalatest.funsuite.AnyFunSuite"><code>FunSuite</code></a> style feels comfortable and familiar while still giving some of the benefits of BDD: the <code>FunSuite</code> style makes it easy to write descriptive test names, natural to write focused tests, and generates specification-like output that can facilitate communication among stakeholders.</p>
 <pre class="stStyleExamples">
 <span class="stReserved">import</span> org.scalatest.funsuite.AnyFunSuite
 <br /><span class="stReserved">class</span> <span class="stType">SetSuite</span> <span class="stReserved">extends</span> <span class="stType">AnyFunSuite</span> {
@@ -85,13 +87,19 @@ information and examples, click on the links:
   }
 }
 </pre>
+
+<p class="stStyleDesc">To select just the <code>FunSuite</code> style in an sbt build, include this line:</p>
+
+<pre class="stStyleExamples">
+libraryDependencies += <span class="stQuotedString">"org.scalatest"</span> %% <span class="stQuotedString">"scalatest-funsuite"</span> % <span class="stQuotedString">"@{latestVersion}"</span> % <span class="stQuotedString">"test"</span>
+</pre>
 </td>
 </tr>
 
 <tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
-<h2>AnyFlatSpec</h2>
+<h2>The FlatSpec style</h2>
 <p class="stStyleDesc">
-A good first step for teams wishing to move from xUnit to BDD, <a href="@latestScaladoc/#org.scalatest.flatspec.AnyFlatSpec"><code>AnyFlatSpec</code></a>'s structure is
+A good first step for teams wishing to move from xUnit to BDD, the <a href="@latestScaladoc/#org.scalatest.flatspec.AnyFlatSpec"><code>FlatSpec</code></a> style's structure is
 flat like xUnit, so simple and familiar, but the test names must be written in a specification style: "X should Y," "A must B," <em>etc</em>.</p>
 <pre class="stStyleExamples">
 <span class="stReserved">import</span> org.scalatest.flatspec.AnyFlatSpec
@@ -106,14 +114,20 @@ flat like xUnit, so simple and familiar, but the test names must be written in a
   }
 }
 </pre>
+<p class="stStyleDesc">To select just the <code>FlatSpec</code> style in an sbt build, include this line:</p>
+
+<pre class="stStyleExamples">
+libraryDependencies += <span class="stQuotedString">"org.scalatest"</span> %% <span class="stQuotedString">"scalatest-flatspec"</span> % <span class="stQuotedString">"@{latestVersion}"</span> % <span class="stQuotedString">"test"</span>
+</pre>
+
 </td>
 </tr>
 
 <tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
-<h2>AnyFunSpec</h2>
+<h2>The FunSpec style</h2>
 <p class="stStyleDesc">
-For teams coming from Ruby's RSpec tool, <a href="@latestScaladoc/#org.scalatest.funspec.AnyFunSpec"><code>AnyFunSpec</code></a> will feel very familiar; More generally, for any team that prefers BDD,
-<code>AnyFunSpec</code>'s nesting and gentle guide to structuring text (with <code>describe</code> and <code>it</code>) provides an excellent
+For teams coming from Ruby's RSpec tool, the <a href="@latestScaladoc/#org.scalatest.funspec.AnyFunSpec"><code>FunSpec</code></a> style will feel very familiar; More generally, for any team that prefers BDD,
+<code>FunSpec</code>'s nesting and gentle guide to structuring text (with <code>describe</code> and <code>it</code>) provides an excellent
 general-purpose choice for writing specification-style tests.
 </p>
 <pre class="stStyleExamples">
@@ -133,13 +147,20 @@ general-purpose choice for writing specification-style tests.
   }
 }
 </pre>
+
+<p class="stStyleDesc">To select just the <code>FunSpec</code> style in an sbt build, include this line:</p>
+
+<pre class="stStyleExamples">
+libraryDependencies += <span class="stQuotedString">"org.scalatest"</span> %% <span class="stQuotedString">"scalatest-funspec"</span> % <span class="stQuotedString">"@{latestVersion}"</span> % <span class="stQuotedString">"test"</span>
+</pre>
+
 </td>
 </tr>
 
 <tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
-<h2>AnyWordSpec</h2>
+<h2>The WordSpec style</h2>
 <p class="stStyleDesc">
-For teams coming from specs or specs2, <a href="@latestScaladoc/#org.scalatest.wordspec.AnyWordSpec"><code>AnyWordSpec</code></a> will feel familiar, and is often the most natural way to port specsN tests to ScalaTest. <code>AnyWordSpec</code> is very prescriptive in how text must be written, so a good fit for teams who want a high degree of discipline enforced upon their specification text.
+For teams coming from specs or specs2, the <a href="@latestScaladoc/#org.scalatest.wordspec.AnyWordSpec"><code>WordSpec</code></a> style will feel familiar, and is often the most natural way to port specsN tests to ScalaTest. <code>AnyWordSpec</code> is very prescriptive in how text must be written, so a good fit for teams who want a high degree of discipline enforced upon their specification text.
 </p>
 <pre class="stStyleExamples">
 <span class="stReserved">import</span> org.scalatest.wordspec.AnyWordSpec
@@ -158,13 +179,19 @@ For teams coming from specs or specs2, <a href="@latestScaladoc/#org.scalatest.w
   }
 }
 </pre>
+
+<p class="stStyleDesc">To select just the <code>WordSpec</code> style in an sbt build, include this line:</p>
+
+<pre class="stStyleExamples">
+libraryDependencies += <span class="stQuotedString">"org.scalatest"</span> %% <span class="stQuotedString">"scalatest-wordspec"</span> % <span class="stQuotedString">"@{latestVersion}"</span> % <span class="stQuotedString">"test"</span>
+</pre>
 </td>
 </tr>
 
 <tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
-<h2>AnyFreeSpec</h2>
+<h2>The FreeSpec style</h2>
 <p class="stStyleDesc">
-Because it gives absolute freedom (and no guidance) on how specification text should be written, <a href="@latestScaladoc/#org.scalatest.freespec.AnyFreeSpec"><code>AnyFreeSpec</code></a> is a good choice for teams experienced with BDD and able to agree on how to structure the specification text.
+Because it gives absolute freedom (and no guidance) on how specification text should be written, the <a href="@latestScaladoc/#org.scalatest.freespec.AnyFreeSpec"><code>FreeSpec</code></a> style is a good choice for teams experienced with BDD and able to agree on how to structure the specification text.
 </p>
 <pre class="stStyleExamples">
 <span class="stReserved">import</span> org.scalatest.freespec.AnyFreeSpec
@@ -183,13 +210,19 @@ Because it gives absolute freedom (and no guidance) on how specification text sh
   }
 }
 </pre>
+<p class="stStyleDesc">To select just the <code>FreeSpec</code> style in an sbt build, include this line:</p>
+
+<pre class="stStyleExamples">
+libraryDependencies += <span class="stQuotedString">"org.scalatest"</span> %% <span class="stQuotedString">"scalatest-freespec"</span> % <span class="stQuotedString">"@{latestVersion}"</span> % <span class="stQuotedString">"test"</span>
+</pre>
+
 </td>
 </tr>
 
 <tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
-<h2>AnyPropSpec</h2>
+<h2>The PropSpec style</h2>
 <p class="stStyleDesc">
-<a href="@latestScaladoc/#org.scalatest.propspec.AnyPropSpec">AnyPropSpec</a> is perfect for teams that want to write tests exclusively in terms of property checks; also a good
+The <a href="@latestScaladoc/#org.scalatest.propspec.AnyPropSpec">AnyPropSpec</a> style is perfect for teams that want to write tests exclusively in terms of property checks; also a good
 choice for writing the occasional test matrix when a different style trait is chosen as the main unit testing style.
 </p>
 <pre class="stStyleExamples">
@@ -217,13 +250,19 @@ choice for writing the occasional test matrix when a different style trait is ch
   }
 }
 </pre>
+<p class="stStyleDesc">To select just the <code>PropSpec</code> style in an sbt build, include this line:</p>
+
+<pre class="stStyleExamples">
+libraryDependencies += <span class="stQuotedString">"org.scalatest"</span> %% <span class="stQuotedString">"scalatest-propspec"</span> % <span class="stQuotedString">"@{latestVersion}"</span> % <span class="stQuotedString">"test"</span>
+</pre>
+
 </td>
 </tr>
 
 <tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
-<h2>AnyFeatureSpec</h2>
+<h2>The FeatureSpec style</h2>
 <p class="stStyleDesc">
-Trait <a href="@latestScaladoc/#org.scalatest.featurespec.AnyFeatureSpec"><code>AnyFeatureSpec</code></a> is primarily intended for acceptance testing, including facilitating the process of programmers working alongside non-programmers to define the acceptance requirements.
+The <a href="@latestScaladoc/#org.scalatest.featurespec.AnyFeatureSpec"><code>FeatureSpec</code></a> style is primarily intended for acceptance testing, including facilitating the process of programmers working alongside non-programmers to define the acceptance requirements.
 </p>
 <pre class="stStyleExamples">
 <span class="stReserved">import</span> org.scalatest._
@@ -262,13 +301,19 @@ Trait <a href="@latestScaladoc/#org.scalatest.featurespec.AnyFeatureSpec"><code>
   }
 }
 </pre>
+<p class="stStyleDesc">To select just the <code>FreeSpec</code> style in an sbt build, include this line:</p>
+
+<pre class="stStyleExamples">
+libraryDependencies += <span class="stQuotedString">"org.scalatest"</span> %% <span class="stQuotedString">"scalatest-featurespec"</span> % <span class="stQuotedString">"@{latestVersion}"</span> % <span class="stQuotedString">"test"</span>
+</pre>
+
 </td>
 </tr>
 
 <tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
 <h2>RefSpec (JVM only)</h2>
 <p class="stStyleDesc">
-<a href="@latestScaladoc/#org.scalatest.refspec.RefSpec"><code>RefSpec</code></a> allows you to define tests as methods, which saves one function literal per test
+The <a href="@latestScaladoc/#org.scalatest.refspec.RefSpec"><code>RefSpec</code></a> style allows you to define tests as methods, which saves one function literal per test
 compared to style classes that represent tests as functions. Fewer function literals translates into faster compile times and fewer generated class files, which
 can help minimize build times. As a result, using <code>Spec</code> can be a good choice in large projects where build times are a concern as well as when
 generating large numbers of tests programatically via static code generators.
@@ -293,6 +338,12 @@ generating large numbers of tests programatically via static code generators.
 <p class="stStyleDesc">
 Note: The "<code>Ref</code>" in <code>RefSpec</code> stands for reflection, which <code>RefSpec</code> uses to discover tests. As reflection is not availble in Scala.js, this class is not available on Scala.js.
 </p>
+<p class="stStyleDesc">To select just the <code>FunSpec</code> style in an sbt build, include this line:</p>
+
+<pre class="stStyleExamples">
+libraryDependencies += <span class="stQuotedString">"org.scalatest"</span> %% <span class="stQuotedString">"scalatest-refspec"</span> % <span class="stQuotedString">"@{latestVersion}"</span> % <span class="stQuotedString">"test"</span>
+</pre>
+
 </td>
 </tr>
 
