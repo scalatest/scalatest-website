@@ -16,7 +16,7 @@
 
 @import controllers.Application.latestScaladoc
 @import controllers.Application.latestVersion
-@import controllers.Application.baseScalaVersion
+@import controllers.Application.majorMinorScalaVersion
 
 @userGuidePage("Writing your first test") {
 <div style="text-align: left">
@@ -78,11 +78,11 @@ After the sentence you put the word <code>in</code> followed by the body of the 
 </pre>
 
 <p>
-3. Place this in a file called <code>StackSpec.scala</code> and compile it using <a href="https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest_@{baseScalaVersion}/@{latestVersion}/scalatest_@{baseScalaVersion}-@{latestVersion}.jar">this Jar file</a>:
+3. Place this in a file called <code>StackSpec.scala</code> and compile it using <a href="https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest_@{majorMinorScalaVersion}/@{latestVersion}/scalatest_@{majorMinorScalaVersion}-@{latestVersion}.jar">this Jar file</a>:
 </p>
 
 <pre class="stExamples">
-$ scalac -cp scalatest-app_@{baseScalaVersion}-@{latestVersion}.jar StackSpec.scala
+$ scalac -cp scalatest-app_@{majorMinorScalaVersion}-@{latestVersion}.jar StackSpec.scala
 </pre>
 
 <p>
@@ -90,7 +90,9 @@ $ scalac -cp scalatest-app_@{baseScalaVersion}-@{latestVersion}.jar StackSpec.sc
 </p>
 
 <pre class="stExamples">
-$ scala -cp scalatest-app_@{baseScalaVersion}-@{latestVersion}.jar org.scalatest.run StackSpec
+$ CLASSPATH=scalatest-app_@{majorMinorScalaVersion}-@{latestVersion}.jar:scala-xml_2.13-1.2.0.jar
+
+$ scala -cp $CLASSPATH org.scalatest.run StackSpec
 <span class="stCyan">Run starting. Expected test count is: 2</span>
 <span class="stGreen">StackSpec:
 A Stack 
@@ -108,7 +110,7 @@ Tests: succeeded 2, failed 0, ignored 0, pending 0</span>
 </p>
 
 <pre class="stExamples">
-$ scala -cp scalatest_@{baseScalaVersion}-@{latestVersion}.jar
+$ scala -cp scalatest_@{majorMinorScalaVersion}-@{latestVersion}.jar
 
 scala&gt; import org.scalatest._
 import org.scalatest._
