@@ -138,7 +138,19 @@ error, see: http://www.artima.com/supersafe_user_guide.html#safer-equality
 <h2>Installation of SuperSafe Community Edition</h2>
 
 <p>
-If you are using sbt as your build tool, you can install the SuperSafe Community Edition by adding the following line to your project/plugins.sbt:
+If you are using sbt as your build tool, you can install the SuperSafe Community Edition in two easy steps.
+</p>
+
+<p>
+1. Add the <em>Artima Maven Repository</em> as a resolver in ~/.sbt/0.13/global.sbt, like this:
+</p>
+
+<pre class="stGrayback">
+resolvers += "Artima Maven Repository" at "http://repo.artima.com/releases"
+</pre>
+
+<p>
+2. Add the following line to your project/plugins.sbt:
 </p>
 
 <pre class="stGrayback">
