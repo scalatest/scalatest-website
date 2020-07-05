@@ -17,6 +17,8 @@
 @import controllers.Application.latestScaladoc
 @import controllers.Application.latestVersion
 @import controllers.Application.majorMinorScalaVersion
+@import controllers.Application.latestJar
+@import controllers.Application.quickStartXmlJar
 
 @userGuidePage("Writing your first test") {
 <div style="text-align: left">
@@ -59,7 +61,7 @@ After the sentence you put the word <code>in</code> followed by the body of the 
 
 <pre class="stHighlighted">
 <span class="stReserved">import</span> collection.mutable.Stack
-<span class="stReserved">import</span> org.scalatest._
+<span class="stReserved">import</span> org.scalatest.flatspec.AnyFlatSpec
 <br /><span class="stReserved">class</span> <span class="stType">StackSpec</span> <span class="stReserved">extends</span> <span class="stType">AnyFlatSpec</span> {
 <br />  <span class="stQuotedString">&quot;A Stack&quot;</span> should <span class="stQuotedString">&quot;pop values in last-in-first-out order&quot;</span> in {
     <span class="stReserved">val</span> stack = <span class="stReserved">new</span> <span class="stType">Stack[Int]</span>
@@ -78,7 +80,7 @@ After the sentence you put the word <code>in</code> followed by the body of the 
 </pre>
 
 <p>
-3. Place this in a file called <code>StackSpec.scala</code> and compile it using <a href="https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest_@{majorMinorScalaVersion}/@{latestVersion}/scalatest_@{majorMinorScalaVersion}-@{latestVersion}.jar">this Jar file</a>:
+3. Place this in a file called <code>StackSpec.scala</code> and compile it using <a href="@{latestJar}">this Jar file</a>:
 </p>
 
 <pre class="stExamples">
@@ -86,7 +88,9 @@ $ scalac -cp scalatest-app_@{majorMinorScalaVersion}-@{latestVersion}.jar StackS
 </pre>
 
 <p>
-4. You can run it from the command line by invoking ScalaTest's <a href="using_the_runner">simple Runner</a>:
+r. To run it, you will need one more artifact,
+<a href="@{quickStartXmlJar}">the Jar file for Scala's XML module</a>.
+Once you've downloaded that Jar file, you can run <code>StackSpec</code> using ScalaTest's <a href="using_the_runner">Runner</a> like this:
 </p>
 
 <pre class="stExamples">
@@ -110,7 +114,7 @@ Tests: succeeded 2, failed 0, ignored 0, pending 0</span>
 </p>
 
 <pre class="stExamples">
-$ scala -cp scalatest_@{majorMinorScalaVersion}-@{latestVersion}.jar
+$ scala -cp .:scalatest-app_@{majorMinorScalaVersion}-@{latestVersion}.jar:scala-xml_2.13-1.2.0.jar
 
 scala&gt; import org.scalatest._
 import org.scalatest._
