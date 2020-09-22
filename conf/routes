@@ -31,6 +31,7 @@ GET        /at_a_glance                                                 controll
 GET        /release_notes/3.2.2                                         controllers.ReleaseNotes.v322
 GET        /release_notes/3.2.1                                         controllers.ReleaseNotes.v321
 GET        /release_notes/3.2.0                                         controllers.ReleaseNotes.v320
+GET        /release_notes/3.1.3                                         controllers.ReleaseNotes.v313
 GET        /release_notes/3.1.2                                         controllers.ReleaseNotes.v312
 GET        /release_notes/3.1.1                                         controllers.ReleaseNotes.v311
 GET        /release_notes/3.1.0                                         controllers.ReleaseNotes.v310
