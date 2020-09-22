@@ -1,0 +1,126 @@
+@*
+* Copyright 2010-2020 Artima, Inc.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*@
+
+@import controllers.Application.latestScaladoc
+@import controllers.Application.milestoneScaladoc
+
+@combinedReleaseNotesPage("Scalactic/ScalaTest 3.1.4 Release Notes") {
+    <div style="text-align: left">
+
+        <h1>ScalaTest/Scalactic 3.1.4 Release Notes</h1>
+
+        <p>
+            ScalaTest/Scalactic 3.1.4 (for Scala 2.10, 2.11, 2.12, and 2.13; on the JVM, JavaScript, native, and Dotty)
+            includes the enhancements and bug fixes listed below.
+            No source code using ScalaTest/Scalactic 3.1.0 should break, and
+            this release is binary compatible with 3.1.3.
+        </p>
+
+        <p>
+            For information on how to include ScalaTest in your project, see the <a href="/install">install page</a>.
+            For information on how to use <a href="http://www.scalactic.org/">Scalactic</a> in your production code,
+            see its <a href="http://www.scalactic.org/install">install page</a>.
+        </p>
+
+	<br/>
+
+	<!-- ====================================== SCALA TEST ==================================================== -->
+
+        <hr style="height:3px;border:none;color:#333;background-color:#333;" /> <!-- ############################################### -->
+
+	<div align="center" style="padding-top:0.8rem">
+	<h1>ScalaTest</h1>
+	</div>
+
+	<hr></hr>
+
+        <p>
+        ScalaTest 3.1.4 is a minor release of ScalaTest that makes a few changes, and supports Scala.js 1.1.1 and Dotty 0.26.
+        </p>
+
+        <a name="scalatest_bug_fixes"></a>
+        <h2>Bug Fixes</h2>
+
+        <ul>
+            <li>Remove suite reporter only when the suite's tests are completed. (<a href="https://github.com/scalatest/scalatest/pull/1859">PR#1876</a>)</li>
+            <li>Changed SuiteRunner so that the behavior of handling fatal error in parallel execution is consistent with execution in serial. (<a href="https://github.com/scalatest/scalatest/pull/1859">PR#1870</a>)</li>
+            <li>Enhanced ObjectDiffer to handle diff-ing of objects with cyclic dependency. (<a href="https://github.com/scalatest/scalatest/pull/1859">PR#1871</a>)</li>
+        </ul>
+
+        <a name="scalatest_improvements"></a>
+        <h2>Improvements</h2>
+     
+        <ul>
+            <li>Skip Await.ready call overhead when the future is already completed at the call site.</li>
+            <li>Updated flexmark to 0.36.8.</li>
+        </ul>
+
+        <a name="scalatest_deprecations"></a>
+        <h2>Deprecations</h2>
+
+        <p>ScalaTest 3.1.4 contains no new deprecations.</p>
+
+        <br/>
+
+	<!-- ====================================== SCALACTIC ==================================================== -->
+
+        <hr style="height:3px;border:none;color:#333;background-color:#333;" /> <!-- ############################################### -->
+
+	<div align="center" style="padding-top:0.8rem">
+	<h1>Scalactic</h1>
+	</div>
+
+	<hr></hr>
+
+        <a name="scalactic_bugfixes"></a>
+
+        <a name="scalactic_improvements"></a>
+        <h2>Improvements</h2>
+
+        <p>Scalactic 3.1.4 contains no new improvements.</p>
+
+        <a name="scalatest_deprecations"></a>
+        <h2>Deprecations</h2>
+
+        <p>Scalactic 3.1.4 contains no new deprecations.</p>
+
+        <br/>
+
+        <hr style="height:3px;border:none;color:#333;background-color:#333;" />
+        <br/>
+
+        <h2>ScalaTest/Scalactic Contributors</h2>
+
+        Thanks to the contributors for the ScalaTest/Scalactic 3.1.4 release:
+
+        <ul>
+            <li><a href="https://github.com/cheeseng">Chua Chee Seng</a></li>
+            <li><a href="https://github.com/bvenners">Bill Venners</a></li>
+        </ul>
+
+        <br/>
+
+	<!-- ====================================== NOTES ==================================================== -->
+
+        <hr style="height:3px;border:none;color:#333;background-color:#333;" /> <!-- ############################################### -->
+
+        <p>
+            Visit <a href="@routes.ReleaseNotes.releaseNotesIndex">ScalaTest Release Notes</a> for links to the release notes of all previous versions, or
+            step back in time by visiting the <a href="@routes.ReleaseNotes.v313">release notes for the previous version</a>.
+        </p>
+
+    </div>
+}
