@@ -138,6 +138,7 @@ GET        /user_guide_1_9_2/using_scalatest_with_eclipse               controll
 GET        /plus/play                                                   controllers.Plus.playFramework
 GET        /plus/play/versions                                          controllers.Plus.playVersions
 GET        /plus/selenium                                               controllers.Plus.selenium
+GET        /plus/easymock                                               controllers.Plus.easymock
 
 GET        /releases/:zipFile                                           controllers.Application.releases(zipFile)
 

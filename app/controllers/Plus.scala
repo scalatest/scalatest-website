@@ -35,4 +35,8 @@ class Plus extends Controller {
   def selenium = Action {
     Ok(views.html.plus.selenium())
   }
+
+  def easymock = Action {
+    Ok(views.html.plus.easymock())
+  }
 }
