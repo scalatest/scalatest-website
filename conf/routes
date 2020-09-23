@@ -101,7 +101,6 @@ GET        /user_guide/matchers_quick_reference                         controll
 GET        /user_guide/using_the_scalatest_maven_plugin                 controllers.UserGuide.usingTheScalatestMavenPlugin
 GET        /user_guide/customizing_scalatest                            controllers.UserGuide.customizingScalatest
 GET        /user_guide/using_scalatest_with_eclipse                     controllers.UserGuide.usingScalatestWithEclipse
-GET        /user_guide/using_selenium                                   controllers.UserGuide.usingSelenium
 GET        /user_guide/migrating_to_20                                  controllers.UserGuide.migratingTo20
 GET        /user_guide/migrating_to_30                                  controllers.UserGuide.migratingTo30
 GET        /user_guide/using_scalatest_with_intellij                    controllers.UserGuide.usingScalatestWithIntelliJ
@@ -138,6 +137,7 @@ GET        /user_guide_1_9_2/using_scalatest_with_eclipse               controll
 
 GET        /plus/play                                                   controllers.Plus.playFramework
 GET        /plus/play/versions                                          controllers.Plus.playVersions
+GET        /plus/selenium                                               controllers.Plus.selenium
 
 GET        /releases/:zipFile                                           controllers.Application.releases(zipFile)
 

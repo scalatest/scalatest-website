@@ -31,4 +31,8 @@ class Plus extends Controller {
   def playVersions = Action {
     Ok(views.html.plus.playVersions())
   }
+
+  def selenium = Action {
+    Ok(views.html.plus.selenium())
+  }
 }
