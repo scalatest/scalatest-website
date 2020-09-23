@@ -47,4 +47,8 @@ class Plus extends Controller {
   def junit = Action {
     Ok(views.html.plus.junit())
   }
+
+  def mockito = Action {
+    Ok(views.html.plus.mockito())
+  }
 }

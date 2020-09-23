@@ -141,6 +141,7 @@ GET        /plus/selenium                                               controll
 GET        /plus/easymock                                               controllers.Plus.easymock
 GET        /plus/jmock                                                  controllers.Plus.jmock
 GET        /plus/junit                                                  controllers.Plus.junit
+GET        /plus/mockito                                                controllers.Plus.mockito
 
 GET        /releases/:zipFile                                           controllers.Application.releases(zipFile)
 
