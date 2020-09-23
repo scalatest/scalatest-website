@@ -31,7 +31,11 @@ in your sbt build you might add:</p>
 
 <pre class="stGrayback">
 libraryDependencies += "org.seleniumhq.selenium" % "selenium-java" % "@latestSeleniumVersion" % "test"
+libraryDependencies += "org.scalatestplus" %% "selenium-selenium-3-141" % "3.1.2.0" % "test"
 </pre>
+
+<p>Note, that the selected selenium version for the sclatestplus library should reflect the version you have used for selenium-java
+and the version itself is derived from the scalatest core library being used.</p>
 
 <p>Then mix trait <a href="@latestScaladoc/#org.scalatest.selenium.WebBrowser"><code>WebBrowser</code></a> into your test class. This trait provides the DSL in its
 entirety except for one missing piece: an implicit <code>org.openqa.selenium.WebDriver</code>. One way to provide the missing
