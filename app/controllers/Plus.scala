@@ -39,4 +39,8 @@ class Plus extends Controller {
   def easymock = Action {
     Ok(views.html.plus.easymock())
   }
+
+  def jmock = Action {
+    Ok(views.html.plus.jmock())
+  }
 }

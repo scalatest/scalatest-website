@@ -139,6 +139,7 @@ GET        /plus/play                                                   controll
 GET        /plus/play/versions                                          controllers.Plus.playVersions
 GET        /plus/selenium                                               controllers.Plus.selenium
 GET        /plus/easymock                                               controllers.Plus.easymock
+GET        /plus/jmock                                                  controllers.Plus.jmock
 
 GET        /releases/:zipFile                                           controllers.Application.releases(zipFile)
 
