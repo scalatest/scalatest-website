@@ -26,22 +26,34 @@
 <p>ScalaTest @latestVersion includes a domain specific language (DSL) for writing browser-based tests using <a href="http://seleniumhq.org" target="_blank">Selenium</a>.
 </p>
 
-<p>To use ScalaTest's Selenium DSL, you'll first need to add Selenium to your project dependencies. For example,
+<p>To use ScalaTest's Selenium DSL, you'll first need to add ScalaTest+Selenium to your project dependencies. For example,
 in your sbt build you might add:</p>
 
 <pre class="stGrayback">
-libraryDependencies += "org.seleniumhq.selenium" % "selenium-java" % "@latestSeleniumVersion" % "test"
-libraryDependencies += "org.scalatestplus" %% "selenium-selenium-3-141" % "3.1.2.0" % "test"
+libraryDependencies += "org.scalatestplus" %% "selenium-@latestSeleniumVersion" % "@{latestVersion}.0" % "test"
 </pre>
 
 <p>Note, that the selected selenium version for the sclatestplus library should reflect the version you have used for selenium-java
 and the version itself is derived from the scalatest core library being used.</p>
 
+For following examples illustration purpose, we'll add in another two scalatest dependencies for FlatSpec style trait and Should Matchers DSL: 
+
+<pre class="stGrayback">
+libraryDependencies += "org.scalatest" %% "scalatest-flatspec" % "@{latestVersion}" % "test"
+libraryDependencies += "org.scalatest" %% "scalatest-shouldmatchers" % "@{latestVersion}" % "test"
+</pre>
+
 <p>Then mix trait <a href="@latestScaladoc/#org.scalatest.selenium.WebBrowser"><code>WebBrowser</code></a> into your test class. This trait provides the DSL in its
 entirety except for one missing piece: an implicit <code>org.openqa.selenium.WebDriver</code>. One way to provide the missing
 implicit driver is to declare one as a member of your test class, like this:</p><p>
 <pre class="stHighlighted">
-<span class="stReserved">class</span> <span class="stType">BlogSpec</span> <span class="stReserved">extends</span> <span class="stType">AnyFlatSpec</span> <span class="stReserved">with</span> <span class="stType">should.Matchers</span> <span class="stReserved">with</span> <span class="stType">WebBrowser</span> {
+<span class="stReserved">import</span> org.scalatest._
+<span class="stReserved">import</span> org.scalatest.matchers._
+<span class="stReserved">import</span> org.scalatestplus.selenium._
+<span class="stReserved">import</span> org.openqa.selenium.WebDriver
+<span class="stReserved">import</span> org.openqa.selenium.htmlunit.HtmlUnitDriver
+
+<span class="stReserved">class</span> <span class="stType">BlogSpec</span> <span class="stReserved">extends</span> <span class="stType">flatspec.AnyFlatSpec</span> <span class="stReserved">with</span> <span class="stType">should.Matchers</span> <span class="stReserved">with</span> <span class="stType">WebBrowser</span> {
 
   <span class="stReserved">implicit</span> <span class="stReserved">val</span> webDriver: <span class="stType">WebDriver</span> = <span class="stReserved">new</span> <span class="stType">HtmlUnitDriver</span>
 
@@ -56,7 +68,11 @@ implicit driver is to declare one as a member of your test class, like this:</p>
 driver provided by Selenium.
 Thus a simpler way to use the <code>HtmlUnit</code> driver, for example, is to extend
 ScalaTest's <a href="@latestScaladoc/#org.scalatest.selenium.HtmlUnit"><code>HtmlUnit</code></a> trait, like this:</p><p><pre class="stHighlighted">
-<span class="stReserved">class</span> <span class="stType">BlogSpec</span> <span class="stReserved">extends</span> <span class="stType">AnyFlatSpec</span> <span class="stReserved">with</span> <span class="stType">should.Matchers</span> <span class="stReserved">with</span> <span class="stType">HtmlUnit</span> {
+<span class="stReserved">import</span> org.scalatest._
+<span class="stReserved">import</span> org.scalatest.matchers._
+<span class="stReserved">import</span> org.scalatestplus.selenium._  
+
+<span class="stReserved">class</span> <span class="stType">BlogSpec</span> <span class="stReserved">extends</span> <span class="stType">flatspec.AnyFlatSpec</span> <span class="stReserved">with</span> <span class="stType">should.Matchers</span> <span class="stReserved">with</span> <span class="stType">HtmlUnit</span> {
 
   <span class="stReserved">val</span> host = <span class="stQuotedString">"http://localhost:9000/"</span>
 
