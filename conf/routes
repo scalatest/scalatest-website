@@ -36,6 +36,7 @@ GET        /release_notes/3.1.3                                         controll
 GET        /release_notes/3.1.2                                         controllers.ReleaseNotes.v312
 GET        /release_notes/3.1.1                                         controllers.ReleaseNotes.v311
 GET        /release_notes/3.1.0                                         controllers.ReleaseNotes.v310
+GET        /release_notes/3.0.9                                         controllers.ReleaseNotes.v309
 GET        /release_notes/3.0.8                                         controllers.ReleaseNotes.v308
 GET        /release_notes/3.0.7                                         controllers.ReleaseNotes.v307
 GET        /release_notes/3.0.6                                         controllers.ReleaseNotes.v306

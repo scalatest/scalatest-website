@@ -1,0 +1,110 @@
+@*
+* Copyright 2010-2020 Artima, Inc.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*@
+
+@import controllers.Application.latestScaladoc
+@import controllers.Application.milestoneScaladoc
+
+@combinedReleaseNotesPage("Scalactic/ScalaTest 3.0.9 Release Notes") {
+    <div style="text-align: left">
+
+        <h1>ScalaTest/Scalactic 3.0.9 Release Notes</h1>
+
+        <p>
+            ScalaTest/Scalactic 3.0.9 (for Scala 2.10, 2.11, 2.12, and 2.13) includes the enhancements and bug fixes listed below. No source code using
+            ScalaTest/Scalactic 3.0 or higher should break, but from any version other than other 3.0.x releases (with which this release is binary
+            compatible), you will likely need to do a clean build to upgrade. Also, because 3.0.6 was accidentally not
+            binary compatible with 3.0.5, you may need to do a clean build to upgrade from 3.0.6.
+        </p>
+
+        <p>
+            For information on how to include ScalaTest in your project, see the <a href="/install">install page</a>.
+            For information on how to use <a href="http://www.scalactic.org/">Scalactic</a> in your production code,
+            see its <a href="http://www.scalactic.org/install">install page</a>.
+        </p>
+
+	<br/>
+
+	<!-- ====================================== SCALA TEST ==================================================== -->
+
+        <hr style="height:3px;border:none;color:#333;background-color:#333;" /> <!-- ############################################### -->
+
+	<div align="center" style="padding-top:0.8rem">
+	<h1>ScalaTest</h1>
+	</div>
+
+	<hr></hr>
+
+        <a name="scalatest_bugfixes"></a>
+        <h2>Bug Fixes</h2>
+
+        <ul>
+          <li>Only expect non-filtered Async tests to be reported as completed in AsyncEngine, ParallelTestExecution and RandomTestOrder, which causes incorrect test count reported.</li>
+          <li>In SuiteSortingReporter, only remove suite reporter after the SuiteCompleted event is reported correctly.</li>
+        </ul>
+
+
+        <a name="scalatest_improvements"></a>
+        <h2>Improvements</h2>
+
+        <ul>
+            <li>Updated scala-js version to 0.6.33.</li>
+            <li>Updated scalacheck version to 1.14.3.</li>
+            <li>Rewritten SuiteSortingReporter and TestSortingReporter to create timer instance only when required, avoiding creating the timer thread when it is not needed.</li>
+            <li>Changed SuiteRunner so that the behavior of handling fatal error in parallel execution is consistent with execution in serial.</li>
+        </ul>
+
+
+        <a name="scalatest_deprecations"></a>
+        <h2>Deprecations</h2>
+
+        <p>ScalaTest 3.0.9 contains no new deprecations.</p>
+
+	<br/>
+
+	<!-- ====================================== SCALACTIC ==================================================== -->
+
+        <hr style="height:3px;border:none;color:#333;background-color:#333;" /> <!-- ############################################### -->
+
+	<div align="center" style="padding-top:0.8rem">
+	<h1>Scalactic</h1>
+	</div>
+
+	<hr></hr>
+
+        <a name="scalactic_bugfixes"></a>
+
+        <a name="scalactic_improvements"></a>
+        <h2>Improvements</h2>
+
+        <ul>
+            <li>Improved support for Symbol in Prettifier and PrivateMethodTester.</li>
+            <li>Updated scala-js version to 0.6.33.</li>
+        </ul>
+
+	<br/>
+
+	<!-- ====================================== NOTES ==================================================== -->
+
+        <hr style="height:3px;border:none;color:#333;background-color:#333;" /> <!-- ############################################### -->
+
+
+        <p>
+            Visit <a href="@routes.ReleaseNotes.releaseNotesIndex">ScalaTest Release Notes</a> for links to the release notes of all previous versions, or
+            step back in time by visiting the <a href="@routes.ReleaseNotes.v308">release notes for the previous version</a>.
+        </p>
+
+    </div>
+}
