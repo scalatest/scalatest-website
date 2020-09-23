@@ -43,4 +43,8 @@ class Plus extends Controller {
   def jmock = Action {
     Ok(views.html.plus.jmock())
   }
+
+  def junit = Action {
+    Ok(views.html.plus.junit())
+  }
 }
