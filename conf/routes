@@ -143,6 +143,7 @@ GET        /plus/jmock                                                  controll
 GET        /plus/junit                                                  controllers.Plus.junit
 GET        /plus/mockito                                                controllers.Plus.mockito
 GET        /plus/scalacheck                                             controllers.Plus.scalacheck
+GET        /plus/testng                                                 controllers.Plus.testng
 
 GET        /releases/:zipFile                                           controllers.Application.releases(zipFile)
 
