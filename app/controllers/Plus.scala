@@ -51,4 +51,8 @@ class Plus extends Controller {
   def mockito = Action {
     Ok(views.html.plus.mockito())
   }
+
+  def scalacheck = Action {
+    Ok(views.html.plus.scalacheck())
+  }
 }
