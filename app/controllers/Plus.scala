@@ -31,4 +31,32 @@ class Plus extends Controller {
   def playVersions = Action {
     Ok(views.html.plus.playVersions())
   }
+
+  def selenium = Action {
+    Ok(views.html.plus.selenium())
+  }
+
+  def easymock = Action {
+    Ok(views.html.plus.easymock())
+  }
+
+  def jmock = Action {
+    Ok(views.html.plus.jmock())
+  }
+
+  def junit = Action {
+    Ok(views.html.plus.junit())
+  }
+
+  def mockito = Action {
+    Ok(views.html.plus.mockito())
+  }
+
+  def scalacheck = Action {
+    Ok(views.html.plus.scalacheck())
+  }
+
+  def testng = Action {
+    Ok(views.html.plus.testng())
+  }
 }

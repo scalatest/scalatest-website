@@ -153,6 +153,12 @@ object Application {
   val baseScalaVersion = "2.13.3"
   val majorMinorScalaVersion = "2.13"
   val latestScaladocFor192 = "http://doc.scalatest.org/1.9.2"
-  val latestSeleniumVersion = "2.45.0"  
+  val latestSeleniumVersion = "3-141"
+  val latestEasyMockVersion = "3-2" 
+  val latestJMockVersion = "2-8"
+  val latestJUnitVersion = "4-13"
+  val latestMockitoVersion = "3-4"
+  val latestScalaCheckVersion = "1-14"
+  val latestTestNGVersion = "6-7"  
   val quickStartXmlJar = "https://repo1.maven.org/maven2/org/scala-lang/modules/scala-xml_2.13/1.2.0/scala-xml_2.13-1.2.0.jar"
 }
