@@ -14,7 +14,7 @@
  * limitations under the License.
  *@
 
-@import controllers.Application.latestScaladoc
+@import controllers.Application._
 
 @userGuidePage("Property-based testing") {
 <div style="text-align: left">
@@ -37,10 +37,17 @@ result that should hold no matter what valid list is passed.
 
 <p>
 In ScalaTest, properties are specified as functions and the data points used to check properties can be supplied by either tables
-or generators. Generator-driven property checks are performed via integration with <a href="http://code.google.com/p/scalacheck/">ScalaCheck</a>.
-To use this style of testing, mix in trait <a href="@latestScaladoc/#org.scalatest.prop.PropertyChecks">PropertyChecks</a>, or import the
-members of its companion object. As an example property-based testing using both table- and generator-driven properties,
-imagine you want to test this <code>Fraction</code> class:
+or generators. Generator-driven property checks are performed via integration with <a href="http://www.scalacheck.org/">ScalaCheck</a>.
+To use this style of testing, mix in trait <code>org.scalatestplus.scalacheck.ScalaCheckPropertyChecks</code> (previously known as <code>org.scalatest.props.PropertyChecks</code>, deprecated in 3.0.6), or import the
+members of its companion object. You must also include scalatestplus:
+</p>
+
+<pre class="stHighlighted">
+libraryDependencies += <span class="stQuotedString">"org.scalatestplus"</span> %% <span class="stQuotedString">"scalacheck-@{latestScalaCheckVersion}"</span> % <span class="stQuotedString">"@{latestScalaCheckPlusVersion}"</span> % <span class="stQuotedString">"test"</span>
+</pre>
+
+<p>
+As an example property-based testing using both table- and generator-driven properties, imagine you want to test this <code>Fraction</code> class:
 </p>
 
 <pre class="stHighlighted">
