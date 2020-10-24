@@ -1,0 +1,972 @@
+<!DOCTYPE html >
+<html>
+        <head>
+          <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+          <title>ScalaTest + EasyMock 3.1.2.0  - org.scalatestplus.easymock.EasyMockSugar</title>
+          <meta name="description" content="ScalaTest EasyMock 3.1.2.0 - org.scalatestplus.easymock.EasyMockSugar" />
+          <meta name="keywords" content="ScalaTest EasyMock 3.1.2.0 org.scalatestplus.easymock.EasyMockSugar" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../lib/index.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../../../lib/jquery.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.panzoom.min.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.mousewheel.min.js"></script>
+      <script type="text/javascript" src="../../../lib/index.js"></script>
+      <script type="text/javascript" src="../../../index.js"></script>
+      <script type="text/javascript" src="../../../lib/scheduler.js"></script>
+      <script type="text/javascript" src="../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../lib/tools.tooltip.js"></script>
+      
+      <script type="text/javascript">
+        /* this variable can be used by the JS to determine the path to the root document */
+        var toRoot = '../../../';
+      </script>
+    
+        </head>
+        <body>
+      <div id="search">
+        <span id="doc-title">ScalaTest + EasyMock 3.1.2.0<span id="doc-version"></span></span>
+        <span class="close-results"><span class="left">&lt;</span> Back</span>
+        <div id="textfilter">
+          <span class="input">
+            <input autocapitalize="none" placeholder="Search" id="index-input" type="text" accesskey="/" />
+            <i class="clear material-icons"></i>
+            <i id="search-icon" class="material-icons"></i>
+          </span>
+        </div>
+    </div>
+      <div id="search-results">
+        <div id="search-progress">
+          <div id="progress-fill"></div>
+        </div>
+        <div id="results-content">
+          <div id="entity-results"></div>
+          <div id="member-results"></div>
+        </div>
+      </div>
+      <div id="content-scroll-container" style="-webkit-overflow-scrolling: touch;">
+        <div id="content-container" style="-webkit-overflow-scrolling: touch;">
+          <div id="subpackage-spacer">
+            <div id="packages">
+              <h1>Packages</h1>
+              <ul>
+                <li name="_root_.root" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="_root_"></a><a id="root:_root_"></a>
+      <span class="permalink">
+      <a href="index.html#_root_" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="../../../index.html"><span class="name">root</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../../../index.html" class="extype" name="_root_">root</a></dd></dl></div>
+    </li><li name="_root_.org" visbl="pub" class="indented1 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="org"></a><a id="org:org"></a>
+      <span class="permalink">
+      <a href="index.html#org" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="../../index.html"><span class="name">org</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../../../index.html" class="extype" name="_root_">root</a></dd></dl></div>
+    </li><li name="org.scalatestplus" visbl="pub" class="indented2 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="scalatestplus"></a><a id="scalatestplus:scalatestplus"></a>
+      <span class="permalink">
+      <a href="../org/index.html#scalatestplus" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="../index.html"><span class="name">scalatestplus</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../../index.html" class="extype" name="org">org</a></dd></dl></div>
+    </li><li name="org.scalatestplus.easymock" visbl="pub" class="indented3 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="easymock"></a><a id="easymock:easymock"></a>
+      <span class="permalink">
+      <a href="../../org/scalatestplus/index.html#easymock" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="index.html"><span class="name">easymock</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="org.scalatestplus">scalatestplus</a></dd></dl></div>
+    </li><li class="current-entities indented3">
+                        <a class="object" href="EasyMockSugar$.html" title="Companion object that facilitates the importing of EasyMockSugar members as an alternative to mixing it in."></a>
+                        <a class="trait" href="" title="Trait that provides some basic syntax sugar for EasyMock."></a>
+                        <a href="" title="Trait that provides some basic syntax sugar for EasyMock.">EasyMockSugar</a>
+                      </li>
+              </ul>
+            </div>
+          </div>
+          <div id="content">
+            <body class="trait type">
+
+<!-- Top of doc.scalatest.org [javascript] -->
+
+<script type="text/javascript">
+
+var rnd = window.rnd || Math.floor(Math.random()*10e6);
+
+var pid204546 = window.pid204546 || rnd;
+
+var plc204546 = window.plc204546 || 0;
+
+var abkw = window.abkw || '';
+
+var absrc = 'http://ab167933.adbutler-ikon.com/adserve/;ID=167933;size=468x60;setID=204546;type=js;sw='+screen.width+';sh='+screen.height+';spr='+window.devicePixelRatio+';kw='+abkw+';pid='+pid204546+';place='+(plc204546++)+';rnd='+rnd+';click=CLICK_MACRO_PLACEHOLDER';
+
+document.write('<scr'+'ipt src="'+absrc+'" type="text/javascript"></scr'+'ipt>');
+
+</script>
+
+      <div id="definition">
+        <a href="EasyMockSugar$.html" title="See companion object"><div class="big-circle trait-companion-object">t</div></a>
+        <p id="owner"><a href="../../index.html" class="extype" name="org">org</a>.<a href="../index.html" class="extype" name="org.scalatestplus">scalatestplus</a>.<a href="index.html" class="extype" name="org.scalatestplus.easymock">easymock</a></p>
+        <h1><a href="EasyMockSugar$.html" title="See companion object">EasyMockSugar</a><span class="permalink">
+      <a href="../../../org/scalatestplus/easymock/EasyMockSugar.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span></h1>
+        <h3><span class="morelinks"><div>
+            Companion <a href="EasyMockSugar$.html" title="See companion object">object EasyMockSugar</a>
+          </div></span></h3>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <span class="name">EasyMockSugar</span><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4>
+
+      
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Trait that provides some basic syntax sugar for <a href="http://easymock.org/" target="_blank">EasyMock</a>.</p><p>Using the EasyMock API directly, you create a mock with:</p><p><pre class="stHighlighted">
+<span class="stReserved">val</span> mockCollaborator = createMock(classOf[<span class="stType">Collaborator</span>])
+</pre></p><p>With this trait, you can shorten that to:</p><p><pre class="stHighlighted">
+<span class="stReserved">val</span> mockCollaborator = mock[<span class="stType">Collaborator</span>]
+</pre></p><p>After creating mocks, you set expectations on them, using syntax like this:</p><p><pre class="stHighlighted">
+mockCollaborator.documentAdded(<span class="stQuotedString">"Document"</span>)
+mockCollaborator.documentChanged(<span class="stQuotedString">"Document"</span>)
+expectLastCall().times(<span class="stLiteral">3</span>)
+</pre></p><p>If you wish to highlight which statements are setting expectations on the mock (versus
+which ones are actually using the mock), you can place them in an <code>expecting</code>
+clause, provided by this trait, like this:</p><p><pre class="stHighlighted">
+expecting {
+  mockCollaborator.documentAdded(<span class="stQuotedString">"Document"</span>)
+  mockCollaborator.documentChanged(<span class="stQuotedString">"Document"</span>)
+  lastCall.times(<span class="stLiteral">3</span>)
+}
+</pre></p><p>Using an <code>expecting</code> clause is optional, because it does nothing but visually indicate
+which statements are setting expectations on mocks. (Note: this trait also provides the <code>lastCall</code>
+method, which just calls <code>expectLastCall</code>.)</p><p>Once you've set expectations on the mock objects, you must invoke <code>replay</code> on
+the mocks to indicate you are done setting expectations, and will start using the mock.
+After using the mock, you must invoke <code>verify</code> to check to make sure the mock
+was used in accordance with the expectations you set on it. Here's how that looks when you
+use the EasyMock API directly:</p><p><pre class="stHighlighted">
+replay(mockCollaborator)
+classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+verify(mockCollaborator)
+</pre></p><p>This trait enables you to use the following, more declarative syntax instead:</p><p><pre class="stHighlighted">
+whenExecuting(mockCollaborator) {
+  classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+  classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+  classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+  classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+}
+</pre></p><p>The <code>whenExecuting</code> method will pass the <code>mockCollaborator</code> to
+<code>replay</code>, execute the passed function (your code that uses the mock), and
+call <code>verify</code>, passing in the <code>mockCollaborator</code>. If you want to
+use multiple mocks, you can pass multiple mocks to <code>whenExecuting</code>.</p><p>To summarize, here's what a typical test using <code>EasyMockSugar</code> looks like:</p><p><pre class="stHighlighted">
+<span class="stReserved">val</span> mockCollaborator = mock[<span class="stType">Collaborator</span>]
+<br/>expecting {
+  mockCollaborator.documentAdded(<span class="stQuotedString">"Document"</span>)
+  mockCollaborator.documentChanged(<span class="stQuotedString">"Document"</span>)
+  lastCall.times(<span class="stLiteral">3</span>)
+}
+<br/>whenExecuting(mockCollaborator) {
+  classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+  classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+  classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+  classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+}
+</pre></p><p>An alternative approach is to place your mock objects in a <code>MockObjects</code> holder object referenced
+from an implicit <code>val</code>, then use the overloaded variant of <code>whenExecuting</code> that
+takes an implicit <code>MockObjects</code> parameter. Here's how that would look:</p><p><pre class="stHighlighted">
+<span class="stReserved">implicit</span> <span class="stReserved">val</span> mocks = <span class="stType">MockObjects</span>(mock[<span class="stType">Collaborator</span>])
+<br/>expecting {
+  mockCollaborator.documentAdded(<span class="stQuotedString">"Document"</span>)
+  mockCollaborator.documentChanged(<span class="stQuotedString">"Document"</span>)
+  lastCall.times(<span class="stLiteral">3</span>)
+}
+<br/>whenExecuting {
+  classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+  classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+  classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+  classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+}
+</pre></p><p>Note: As of ScalaTest 1.3, this trait supports EasyMock 3, with no dependencies on EasyMock class extension.</p></div><div class="toggleContainer block">
+          <span class="toggle">
+            Linear Supertypes
+          </span>
+          <div class="superTypes hiddenContent"><span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+        </div><div class="toggleContainer block">
+            <span class="toggle">
+              Known Subclasses
+            </span>
+            <div class="subClasses hiddenContent"><a href="EasyMockSugar$.html" class="extype" name="org.scalatestplus.easymock.EasyMockSugar">EasyMockSugar</a></div>
+          </div></div>
+        
+
+      <div id="mbrsel">
+        <div class="toggle"></div>
+        <div id="memberfilter">
+          <i class="material-icons arrow"></i>
+          <span class="input">
+            <input id="mbrsel-input" placeholder="Filter all members" type="text" accesskey="/" />
+          </span>
+          <i class="clear material-icons"></i>
+        </div>
+        <div id="filterby">
+          <div id="order">
+            <span class="filtertype">Ordering</span>
+            <ol>
+              
+              <li class="alpha in"><span>Alphabetic</span></li>
+              <li class="inherit out"><span>By Inheritance</span></li>
+            </ol>
+          </div>
+          <div class="ancestors">
+                  <span class="filtertype">Inherited<br />
+                  </span>
+                  <ol id="linearization">
+                    <li class="in" name="org.scalatestplus.easymock.EasyMockSugar"><span>EasyMockSugar</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                  </ol>
+                </div><div class="ancestors">
+              <span class="filtertype"></span>
+              <ol>
+                <li class="hideall out"><span>Hide All</span></li>
+                <li class="showall in"><span>Show All</span></li>
+              </ol>
+            </div>
+          <div id="visbl">
+              <span class="filtertype">Visibility</span>
+              <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+            </div>
+        </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        <div id="types" class="types members">
+              <h3>Type Members</h3>
+              <ol><li name="org.scalatestplus.easymock.EasyMockSugar.MockObjects" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="MockObjectsextendsProductwithSerializable"></a><a id="MockObjects:MockObjects"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/easymock/EasyMockSugar.html#MockObjectsextendsProductwithSerializable" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a title="Holder class for a collection of mocks that can be passed implicitly to one form of the overloaded whenExecuting method." href="EasyMockSugar$MockObjects.html"><span class="name">MockObjects</span></a><span class="params">(<span name="mocks">mocks: <span class="extype" name="scala.AnyRef">AnyRef</span>*</span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">Holder class for a collection of mocks that can be passed implicitly to one form of the
+overloaded <code>whenExecuting</code> method.</p><div class="fullcomment"><div class="comment cmt"><p>Holder class for a collection of mocks that can be passed implicitly to one form of the
+overloaded <code>whenExecuting</code> method.
+</p></div><dl class="paramcmts block"><dt class="param">mocks</dt><dd class="cmt"><p>one or more mock objects that you intend to pass to <code>whenExecuting</code></p></dd></dl><dl class="attributes block"> <dt>Exceptions thrown</dt><dd><span class="cmt"><p><span class="extype" name="IllegalArgumentException"><code>IllegalArgumentException</code></span> if no mocks are passed</p></span></dd></dl></div>
+    </li></ol>
+            </div>
+
+        
+
+        <div class="values members">
+              <h3>Value Members</h3>
+              <ol>
+                <li name="scala.AnyRef#!=" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="!=(x$1:Any):Boolean"></a><a id="!=(Any):Boolean"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/easymock/EasyMockSugar.html#!=(x$1:Any):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef###" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="##():Int"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/easymock/EasyMockSugar.html###():Int" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $hash$hash" class="name">##</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#==" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="==(x$1:Any):Boolean"></a><a id="==(Any):Boolean"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/easymock/EasyMockSugar.html#==(x$1:Any):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.Any#asInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="asInstanceOf[T0]:T0"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/easymock/EasyMockSugar.html#asInstanceOf[T0]:T0" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">asInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Any.asInstanceOf.T0">T0</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="org.scalatestplus.easymock.EasyMockSugar#call" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="call[T](value:T):org.easymock.IExpectationSetters[T]"></a><a id="call[T](T):IExpectationSetters[T]"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/easymock/EasyMockSugar.html#call[T](value:T):org.easymock.IExpectationSetters[T]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">implicit </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">call</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="value">value: <span class="extype" name="org.scalatestplus.easymock.EasyMockSugar.call.T">T</span></span>)</span><span class="result">: <span class="extype" name="org.easymock.IExpectationSetters">IExpectationSetters</span>[<span class="extype" name="org.scalatestplus.easymock.EasyMockSugar.call.T">T</span>]</span>
+      </span>
+      
+      <p class="shortcomment cmt">Implicit conversion that invokes the <code>expect</code> method on the <code>EasyMock</code> companion object (<em>i.e.</em>, the
+static <code>expect</code> method in Java class <code>org.easymock.EasyMock</code>).</p><div class="fullcomment"><div class="comment cmt"><p>Implicit conversion that invokes the <code>expect</code> method on the <code>EasyMock</code> companion object (<em>i.e.</em>, the
+static <code>expect</code> method in Java class <code>org.easymock.EasyMock</code>).</p><p>In a ScalaTest <code>Suite</code>, the <code>expect</code> method defined in <code>Assertions</code>, and inherited by <code>Suite</code>,
+interferes with the <code>expect</code> method if imported from <code>EasyMock</code>. You can invoke it by qualifying it, <em>i.e.</em>,
+<code>EasyMock.expect</code>, or by changing its name on import, like this:</p><p><pre class="stHighlighted">
+<span class="stReserved">import</span> org.easymock.EasyMock.{expect => easyMockExpect, _}
+</pre></p><p>But if you mix in this trait, you can just invoke <code>call</code> instead.</p><p>You can use this method, for example, to chain expectations like this:</p><p><pre class="stHighlighted">
+expecting {
+  call(mock.getName).andReturn(<span class="stQuotedString">"Ben Franklin"</span>)
+}
+</pre></p><p>Note: the name of this methods is <code>call</code>, not <code>expectCall</code> because
+&quot;expect&quot; appears in the surrounding <code>expecting</code> clause provided by this trait.</p><p>Moreover, because this method is marked <code>implicit</code>, you will usually be able to simply
+leave it off. So long as the result of the method call you are expecting doesn't have
+a method that satisfies the subsequent invocation (such as <code>andReturn</code> in this
+example), the Scala compiler will invoke <code>call</code> for you
+implicitly. Here's how that looks:</p><p><pre class="stHighlighted">
+expecting {
+  mock.getName.andReturn(<span class="stQuotedString">"Ben Franklin"</span>)
+}
+</pre>
+</p></div><dl class="paramcmts block"><dt class="param">value</dt><dd class="cmt"><p>- the result of invoking a method on mock prior to invoking <code>replay</code>.</p></dd></dl></div>
+    </li><li name="scala.AnyRef#clone" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="clone():Object"></a><a id="clone():AnyRef"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/easymock/EasyMockSugar.html#clone():Object" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">clone</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../java/lang/index.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@native</span><span class="args">()</span>
+              
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.CloneNotSupportedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#eq" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="eq(x$1:AnyRef):Boolean"></a><a id="eq(AnyRef):Boolean"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/easymock/EasyMockSugar.html#eq(x$1:AnyRef):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#equals" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="equals(x$1:Any):Boolean"></a><a id="equals(Any):Boolean"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/easymock/EasyMockSugar.html#equals(x$1:Any):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">equals</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="org.scalatestplus.easymock.EasyMockSugar#expecting" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="expecting(unused:Any):Unit"></a><a id="expecting(Any):Unit"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/easymock/EasyMockSugar.html#expecting(unused:Any):Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">expecting</span><span class="params">(<span name="unused">unused: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">Provides a visual clue to readers of the code that a set of statements are expectations being
+set on mocks.</p><div class="fullcomment"><div class="comment cmt"><p>Provides a visual clue to readers of the code that a set of statements are expectations being
+set on mocks.</p><p>Using the EasyMock API directly, you set expectations on a mock object with syntax like:</p><p><pre class="stHighlighted">
+mockCollaborator.documentAdded(<span class="stQuotedString">"Document"</span>)
+mockCollaborator.documentChanged(<span class="stQuotedString">"Document"</span>)
+expectLastCall().times(<span class="stLiteral">3</span>)
+</pre></p><p>This <code>expecting</code> method can make it more obvious which portion of your test code
+is devoted to setting expectations on mock objects. For example:</p><p><pre class="stHighlighted">
+expecting {
+  mockCollaborator.documentAdded(<span class="stQuotedString">"Document"</span>)
+  mockCollaborator.documentChanged(<span class="stQuotedString">"Document"</span>)
+  lastCall.times(<span class="stLiteral">3</span>)
+}
+</pre></p><p>Using an <code>expecting</code> clause is optional, because it does nothing besides visually indicate
+which statements are setting expectations on mocks. Note: this trait also provides the <code>lastCall</code>
+method, which just calls <code>expectLastCall</code>. This allows you to avoid writing &quot;expect&quot; twice.
+Also, the reason <code>expecting</code> doesn't take a by-name parameter, execute that, then call
+<code>replay</code> is because you would then need to pass your mock object or objects into
+<code>expecting</code>. Since you already need to pass the mocks into <code>whenExecuting</code> so
+that <code>verify</code> can be invoked on them, it yields more concise client code to have
+<code>whenExecuting</code> invoke <code>replay</code> on the mocks first rather than having
+<code>expecting</code> invoke <code>replay</code> last.</p></div></div>
+    </li><li name="scala.AnyRef#finalize" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="finalize():Unit"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/easymock/EasyMockSugar.html#finalize():Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">finalize</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../java/lang/index.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="symbol">classOf[java.lang.Throwable]</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#getClass" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getClass():Class[_]"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/easymock/EasyMockSugar.html#getClass():Class[_]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getClass</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.Class">Class</span>[_]</span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd><dt>Annotations</dt><dd>
+                <span class="name">@native</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#hashCode" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="hashCode():Int"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/easymock/EasyMockSugar.html#hashCode():Int" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">hashCode</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd><dt>Annotations</dt><dd>
+                <span class="name">@native</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.Any#isInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/easymock/EasyMockSugar.html#isInstanceOf[T0]:Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">isInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="org.scalatestplus.easymock.EasyMockSugar#lastCall" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="lastCall[T]:org.easymock.IExpectationSetters[T]"></a><a id="lastCall[T]:IExpectationSetters[T]"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/easymock/EasyMockSugar.html#lastCall[T]:org.easymock.IExpectationSetters[T]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">lastCall</span><span class="tparams">[<span name="T">T</span>]</span><span class="result">: <span class="extype" name="org.easymock.IExpectationSetters">IExpectationSetters</span>[<span class="extype" name="org.scalatestplus.easymock.EasyMockSugar.lastCall.T">T</span>]</span>
+      </span>
+      
+      <p class="shortcomment cmt">Invokes the <code>expectLastCall</code> method on the <code>EasyMock</code> companion object (<em>i.e.</em>, the
+static <code>expect</code> method in Java class <code>org.easymock.EasyMock</code>).</p><div class="fullcomment"><div class="comment cmt"><p>Invokes the <code>expectLastCall</code> method on the <code>EasyMock</code> companion object (<em>i.e.</em>, the
+static <code>expect</code> method in Java class <code>org.easymock.EasyMock</code>).</p><p>This method is provided simply to allow you to avoid repeating &quot;expect&quot; inside an
+<code>expecting</code> clause. Here's an example that uses the <code>expectLastCall</code> directly
+to express the expectation that the <code>getName</code> method will be invoked three times
+on a mock, each time returning <code>"Ben Franklin"</code>:</p><p><pre class="stHighlighted">
+expecting {
+  mock.getName.andReturn(<span class="stQuotedString">"Ben Franklin"</span>)
+  expectLastCall.times(<span class="stLiteral">3</span>)
+}
+</pre></p><p>Using this method, you can compress this to:</p><p><pre class="stHighlighted">
+expecting {
+  mock.getName.andReturn(<span class="stQuotedString">"Ben Franklin"</span>)
+  lastCall.times(<span class="stLiteral">3</span>)
+}
+</pre>
+</p></div></div>
+    </li><li name="org.scalatestplus.easymock.EasyMockSugar#mock" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="mock[T&lt;:AnyRef](implicitclassTag:scala.reflect.ClassTag[T]):T"></a><a id="mock[T&lt;:AnyRef](ClassTag[T]):T"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/easymock/EasyMockSugar.html#mock[T&lt;:AnyRef](implicitclassTag:scala.reflect.ClassTag[T]):T" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">mock</span><span class="tparams">[<span name="T">T &lt;: <span class="extype" name="scala.AnyRef">AnyRef</span></span>]</span><span class="params">(<span class="implicit">implicit </span><span name="classTag">classTag: <span class="extype" name="scala.reflect.ClassTag">ClassTag</span>[<span class="extype" name="org.scalatestplus.easymock.EasyMockSugar.mock.T">T</span>]</span>)</span><span class="result">: <span class="extype" name="org.scalatestplus.easymock.EasyMockSugar.mock.T">T</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">Invokes the <code>createMock</code> method on the <code>EasyMock</code> companion object (<em>i.e.</em>, the
+static <code>createMock</code> method in Java class <code>org.easymock.classextension.EasyMock</code>).</p><div class="fullcomment"><div class="comment cmt"><p>Invokes the <code>createMock</code> method on the <code>EasyMock</code> companion object (<em>i.e.</em>, the
+static <code>createMock</code> method in Java class <code>org.easymock.classextension.EasyMock</code>).</p><p>Using the EasyMock API directly, you create a mock with:</p><p><pre class="stHighlighted">
+<span class="stReserved">val</span> mockCollaborator = createMock(classOf[<span class="stType">Collaborator</span>])
+</pre></p><p>Using this method, you can shorten that to:</p><p><pre class="stHighlighted">
+<span class="stReserved">val</span> mockCollaborator = mock[<span class="stType">Collaborator</span>]
+</pre>
+</p></div></div>
+    </li><li name="scala.AnyRef#ne" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ne(x$1:AnyRef):Boolean"></a><a id="ne(AnyRef):Boolean"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/easymock/EasyMockSugar.html#ne(x$1:AnyRef):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="org.scalatestplus.easymock.EasyMockSugar#niceMock" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="niceMock[T&lt;:AnyRef](implicitclassTag:scala.reflect.ClassTag[T]):T"></a><a id="niceMock[T&lt;:AnyRef](ClassTag[T]):T"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/easymock/EasyMockSugar.html#niceMock[T&lt;:AnyRef](implicitclassTag:scala.reflect.ClassTag[T]):T" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">niceMock</span><span class="tparams">[<span name="T">T &lt;: <span class="extype" name="scala.AnyRef">AnyRef</span></span>]</span><span class="params">(<span class="implicit">implicit </span><span name="classTag">classTag: <span class="extype" name="scala.reflect.ClassTag">ClassTag</span>[<span class="extype" name="org.scalatestplus.easymock.EasyMockSugar.niceMock.T">T</span>]</span>)</span><span class="result">: <span class="extype" name="org.scalatestplus.easymock.EasyMockSugar.niceMock.T">T</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">Invokes the <code>createNiceMock</code> method on the <code>EasyMock</code> companion object (<em>i.e.</em>, the
+static <code>createNiceMock</code> method in Java class <code>org.easymock.classextension.EasyMock</code>).</p><div class="fullcomment"><div class="comment cmt"><p>Invokes the <code>createNiceMock</code> method on the <code>EasyMock</code> companion object (<em>i.e.</em>, the
+static <code>createNiceMock</code> method in Java class <code>org.easymock.classextension.EasyMock</code>).</p><p>Using the EasyMock API directly, you create a nice mock with:</p><p><pre class="stHighlighted">
+<span class="stReserved">val</span> mockCollaborator = createNiceMock(classOf[<span class="stType">Collaborator</span>])
+</pre></p><p>Using this trait, you can shorten that to:</p><p><pre class="stHighlighted">
+<span class="stReserved">val</span> mockCollaborator = niceMock[<span class="stType">Collaborator</span>]
+</pre>
+</p></div></div>
+    </li><li name="scala.AnyRef#notify" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notify():Unit"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/easymock/EasyMockSugar.html#notify():Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notify</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@native</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#notifyAll" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notifyAll():Unit"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/easymock/EasyMockSugar.html#notifyAll():Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notifyAll</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@native</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="org.scalatestplus.easymock.EasyMockSugar#strictMock" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="strictMock[T&lt;:AnyRef](implicitclassTag:scala.reflect.ClassTag[T]):T"></a><a id="strictMock[T&lt;:AnyRef](ClassTag[T]):T"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/easymock/EasyMockSugar.html#strictMock[T&lt;:AnyRef](implicitclassTag:scala.reflect.ClassTag[T]):T" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">strictMock</span><span class="tparams">[<span name="T">T &lt;: <span class="extype" name="scala.AnyRef">AnyRef</span></span>]</span><span class="params">(<span class="implicit">implicit </span><span name="classTag">classTag: <span class="extype" name="scala.reflect.ClassTag">ClassTag</span>[<span class="extype" name="org.scalatestplus.easymock.EasyMockSugar.strictMock.T">T</span>]</span>)</span><span class="result">: <span class="extype" name="org.scalatestplus.easymock.EasyMockSugar.strictMock.T">T</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">Invokes the <code>createStrictMock</code> method on the <code>EasyMock</code> companion object (<em>i.e.</em>, the
+static <code>createStrictMock</code> method in Java class <code>org.easymock.classextension.EasyMock</code>).</p><div class="fullcomment"><div class="comment cmt"><p>Invokes the <code>createStrictMock</code> method on the <code>EasyMock</code> companion object (<em>i.e.</em>, the
+static <code>createStrictMock</code> method in Java class <code>org.easymock.classextension.EasyMock</code>).</p><p>Using the EasyMock API directly, you create a strict mock with:</p><p><pre class="stHighlighted">
+<span class="stReserved">val</span> mockCollaborator = createStrictMock(classOf[<span class="stType">Collaborator</span>])
+</pre></p><p>Using this trait, you can shorten that to:</p><p><pre class="stHighlighted">
+<span class="stReserved">val</span> mockCollaborator = strictMock[<span class="stType">Collaborator</span>]
+</pre>
+</p></div></div>
+    </li><li name="scala.AnyRef#synchronized" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="synchronized[T0](x$1:=&gt;T0):T0"></a><a id="synchronized[T0](⇒T0):T0"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/easymock/EasyMockSugar.html#synchronized[T0](x$1:=&gt;T0):T0" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">synchronized</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="params">(<span name="arg0">arg0: ⇒ <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>)</span><span class="result">: <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#toString" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="toString():String"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/easymock/EasyMockSugar.html#toString():String" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">toString</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait():Unit"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/easymock/EasyMockSugar.html#wait():Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long,x$2:Int):Unit"></a><a id="wait(Long,Int):Unit"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/easymock/EasyMockSugar.html#wait(x$1:Long,x$2:Int):Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>, <span name="arg1">arg1: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long):Unit"></a><a id="wait(Long):Unit"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/easymock/EasyMockSugar.html#wait(x$1:Long):Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@native</span><span class="args">()</span>
+              
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="org.scalatestplus.easymock.EasyMockSugar#whenExecuting" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="whenExecuting(fun:=&gt;Unit)(implicitmocks:EasyMockSugar.this.MockObjects):Unit"></a><a id="whenExecuting(⇒Unit)(MockObjects):Unit"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/easymock/EasyMockSugar.html#whenExecuting(fun:=&gt;Unit)(implicitmocks:EasyMockSugar.this.MockObjects):Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">whenExecuting</span><span class="params">(<span name="fun">fun: ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="mocks">mocks: <a href="EasyMockSugar$MockObjects.html" class="extype" name="org.scalatestplus.easymock.EasyMockSugar.MockObjects">MockObjects</a></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">Invokes <code>replay</code> on the mock object or objects passed via an implicit parameter,
+executes the passed function, then invokes <code>verify</code> on the passed mock object or objects.</p><div class="fullcomment"><div class="comment cmt"><p>Invokes <code>replay</code> on the mock object or objects passed via an implicit parameter,
+executes the passed function, then invokes <code>verify</code> on the passed mock object or objects.</p><p>Once you've set expectations on some mock objects, you must invoke <code>replay</code> on
+the mocks to indicate you are done setting expectations, and will start using the mocks.
+After using the mocks, you must invoke <code>verify</code> to check to make sure the mocks
+were used in accordance with the expectations you set on it. Here's how that looks when you
+use the EasyMock API directly:</p><p><pre class="stHighlighted">
+replay(mock)
+classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+verify(mock)
+</pre></p><p>This method enables you to use the following, more declarative syntax instead:</p><p><pre class="stHighlighted">
+<span class="stReserved">implicit</span> <span class="stReserved">val</span> mocks = <span class="stType">MockObjects</span>(mockCollaborator)
+<br/>whenExecuting {
+  classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+  classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+  classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+  classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+}
+</pre></p><p>If you are working with multiple mock objects at once, you simply pass
+them all to <code>MockObjects</code>, like this:</p><p><pre class="stHighlighted">
+<span class="stReserved">implicit</span> <span class="stReserved">val</span> mocks = <span class="stType">MockObjects</span>(mock1, mock2, mock3)
+</pre></p><p>The <code>whenExecuting</code> method will first invoke <code>EasyMock.reply</code>
+once for each mock you supplied, execute the passed function, then
+invoke <code>EasyMock.verify</code> once for each mock you supplied. If an exception
+is thrown by the passed function, <code>whenExecuting</code> will complete abruptly with
+that same exception without executing verify on any of the mocks.</p></div></div>
+    </li><li name="org.scalatestplus.easymock.EasyMockSugar#whenExecuting" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="whenExecuting(mocks:AnyRef*)(fun:=&gt;Unit):Unit"></a><a id="whenExecuting(AnyRef*)(⇒Unit):Unit"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/easymock/EasyMockSugar.html#whenExecuting(mocks:AnyRef*)(fun:=&gt;Unit):Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">whenExecuting</span><span class="params">(<span name="mocks">mocks: <span class="extype" name="scala.AnyRef">AnyRef</span>*</span>)</span><span class="params">(<span name="fun">fun: ⇒ <span class="extype" name="scala.Unit">Unit</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">Invokes <code>replay</code> on the passed mock object or objects, executes the passed function, then invokes
+<code>verify</code> on the passed mock object or objects.</p><div class="fullcomment"><div class="comment cmt"><p>Invokes <code>replay</code> on the passed mock object or objects, executes the passed function, then invokes
+<code>verify</code> on the passed mock object or objects.</p><p>Once you've set expectations on some mock objects, you must invoke <code>replay</code> on
+the mocks to indicate you are done setting expectations, and will start using the mocks.
+After using the mocks, you must invoke <code>verify</code> to check to make sure the mocks
+were used in accordance with the expectations you set on it. Here's how that looks when you
+use the EasyMock API directly:</p><p><pre class="stHighlighted">
+replay(mock)
+classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+verify(mock)
+</pre></p><p>This method enables you to use the following, more declarative syntax instead:</p><p><pre class="stHighlighted">
+whenExecuting(mockCollaborator) {
+  classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+  classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+  classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+  classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+}
+</pre></p><p>If you are working with multiple mock objects at once, you simply pass
+them all to <code>whenExecuting</code>, like this:</p><p><pre class="stHighlighted">
+whenExecuting(mock1, mock2, mock3) {
+  <span class="stLineComment">// ...</span>
+}
+</pre></p><p>The <code>whenExecuting</code> method will first invoke <code>EasyMock.reply</code>
+once for each mock you supplied, execute the passed function, then
+invoke <code>EasyMock.verify</code> once for each mock you supplied. If an exception
+is thrown by the passed function, <code>whenExecuting</code> will complete abruptly with
+that same exception without executing verify on any of the mocks.</p></div><dl class="paramcmts block"><dt class="param">mocks</dt><dd class="cmt"><p>one or more mock objects to invoke <code>replay</code> before using and <code>verify</code> after using.</p></dd></dl><dl class="attributes block"> <dt>Exceptions thrown</dt><dd><span class="cmt"><p><span class="extype" name="IllegalArgumentException"><code>IllegalArgumentException</code></span> if no mocks are passed</p></span></dd></dl></div>
+    </li>
+              </ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        <div class="parent" name="scala.AnyRef">
+              <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
+            </div><div class="parent" name="scala.Any">
+              <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
+            </div>
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+    </body>
+          </div>
+        </div>
+      </div>
+    </body>
+      </html>
