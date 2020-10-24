@@ -1,0 +1,1559 @@
+<!DOCTYPE html >
+<html>
+        <head>
+          <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+          <title>ScalaTest + JMock 3.1.2.0  - org.scalatestplus.jmock.JMockExpectations</title>
+          <meta name="description" content="ScalaTest JMock 3.1.2.0 - org.scalatestplus.jmock.JMockExpectations" />
+          <meta name="keywords" content="ScalaTest JMock 3.1.2.0 org.scalatestplus.jmock.JMockExpectations" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../lib/index.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../../../lib/jquery.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.panzoom.min.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.mousewheel.min.js"></script>
+      <script type="text/javascript" src="../../../lib/index.js"></script>
+      <script type="text/javascript" src="../../../index.js"></script>
+      <script type="text/javascript" src="../../../lib/scheduler.js"></script>
+      <script type="text/javascript" src="../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../lib/tools.tooltip.js"></script>
+      
+      <script type="text/javascript">
+        /* this variable can be used by the JS to determine the path to the root document */
+        var toRoot = '../../../';
+      </script>
+    
+        </head>
+        <body>
+      <div id="search">
+        <span id="doc-title">ScalaTest + JMock 3.1.2.0<span id="doc-version"></span></span>
+        <span class="close-results"><span class="left">&lt;</span> Back</span>
+        <div id="textfilter">
+          <span class="input">
+            <input autocapitalize="none" placeholder="Search" id="index-input" type="text" accesskey="/" />
+            <i class="clear material-icons"></i>
+            <i id="search-icon" class="material-icons"></i>
+          </span>
+        </div>
+    </div>
+      <div id="search-results">
+        <div id="search-progress">
+          <div id="progress-fill"></div>
+        </div>
+        <div id="results-content">
+          <div id="entity-results"></div>
+          <div id="member-results"></div>
+        </div>
+      </div>
+      <div id="content-scroll-container" style="-webkit-overflow-scrolling: touch;">
+        <div id="content-container" style="-webkit-overflow-scrolling: touch;">
+          <div id="subpackage-spacer">
+            <div id="packages">
+              <h1>Packages</h1>
+              <ul>
+                <li name="_root_.root" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="_root_"></a><a id="root:_root_"></a>
+      <span class="permalink">
+      <a href="index.html#_root_" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="../../../index.html"><span class="name">root</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../../../index.html" class="extype" name="_root_">root</a></dd></dl></div>
+    </li><li name="_root_.org" visbl="pub" class="indented1 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="org"></a><a id="org:org"></a>
+      <span class="permalink">
+      <a href="index.html#org" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="../../index.html"><span class="name">org</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../../../index.html" class="extype" name="_root_">root</a></dd></dl></div>
+    </li><li name="org.scalatestplus" visbl="pub" class="indented2 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="scalatestplus"></a><a id="scalatestplus:scalatestplus"></a>
+      <span class="permalink">
+      <a href="../org/index.html#scalatestplus" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="../index.html"><span class="name">scalatestplus</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../../index.html" class="extype" name="org">org</a></dd></dl></div>
+    </li><li name="org.scalatestplus.jmock" visbl="pub" class="indented3 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="jmock"></a><a id="jmock:jmock"></a>
+      <span class="permalink">
+      <a href="../../org/scalatestplus/index.html#jmock" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <a title="" href="index.html"><span class="name">jmock</span></a>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="../index.html" class="extype" name="org.scalatestplus">scalatestplus</a></dd></dl></div>
+    </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="trait" href="AsyncJMockCycleFixture.html" title="Trait that will pass a new JMockCycle into any test that needs one."></a>
+                        <a href="AsyncJMockCycleFixture.html" title="Trait that will pass a new JMockCycle into any test that needs one.">AsyncJMockCycleFixture</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="class" href="JMockCycle.html" title="Class that wraps and manages the lifecycle of a single org.jmock.Mockery context object, provides some basic syntax sugar for using JMock in Scala."></a>
+                        <a href="JMockCycle.html" title="Class that wraps and manages the lifecycle of a single org.jmock.Mockery context object, provides some basic syntax sugar for using JMock in Scala.">JMockCycle</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="trait" href="JMockCycleFixture.html" title="Trait that will pass a new JMockCycle into any test that needs one."></a>
+                        <a href="JMockCycleFixture.html" title="Trait that will pass a new JMockCycle into any test that needs one.">JMockCycleFixture</a>
+                      </li><li class="current-entities indented3">
+                        <span class="separator"></span>
+                        <a class="class" href="" title="Subclass of org.jmock.Expectations that provides withArg alternatives to the with methods defined in its superclass."></a>
+                        <a href="" title="Subclass of org.jmock.Expectations that provides withArg alternatives to the with methods defined in its superclass.">JMockExpectations</a>
+                      </li>
+              </ul>
+            </div>
+          </div>
+          <div id="content">
+            <body class="class type">
+
+<!-- Top of doc.scalatest.org [javascript] -->
+
+<script type="text/javascript">
+
+var rnd = window.rnd || Math.floor(Math.random()*10e6);
+
+var pid204546 = window.pid204546 || rnd;
+
+var plc204546 = window.plc204546 || 0;
+
+var abkw = window.abkw || '';
+
+var absrc = 'http://ab167933.adbutler-ikon.com/adserve/;ID=167933;size=468x60;setID=204546;type=js;sw='+screen.width+';sh='+screen.height+';spr='+window.devicePixelRatio+';kw='+abkw+';pid='+pid204546+';place='+(plc204546++)+';rnd='+rnd+';click=CLICK_MACRO_PLACEHOLDER';
+
+document.write('<scr'+'ipt src="'+absrc+'" type="text/javascript"></scr'+'ipt>');
+
+</script>
+
+      <div id="definition">
+        <div class="big-circle class">c</div>
+        <p id="owner"><a href="../../index.html" class="extype" name="org">org</a>.<a href="../index.html" class="extype" name="org.scalatestplus">scalatestplus</a>.<a href="index.html" class="extype" name="org.scalatestplus.jmock">jmock</a></p>
+        <h1>JMockExpectations<span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span></h1>
+        <h3><span class="morelinks"></span></h3>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <span class="name">JMockExpectations</span><span class="result"> extends <span class="extype" name="org.jmock.Expectations">Expectations</span></span>
+      </span>
+      </h4>
+
+      
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Subclass of <code>org.jmock.Expectations</code> that provides <code>withArg</code>
+alternatives to the <code>with</code> methods defined in its superclass.</p><p><code>JMockCycle</code>'s <code>expecting</code> method of passes an instance of this class
+to the function passed into <code>expectations</code>. Because <code>JMockExpectations</code>
+extends <code>org.jmock.Expectations</code>, all of the <code>Expectations</code> methods are
+available to be invoked on instances of this class, in addition to
+several overloaded <code>withArg</code> methods defined in this class. These <code>withArg</code> methods simply
+invoke corresponding <code>with</code> methods on <code>this</code>. Because <code>with</code> is
+a keyword in Scala, to invoke these directly you must surround them in back ticks, like this:</p><p><pre class="stHighlighted">
+oneOf (mockCollaborator).documentAdded(`<span class="stReserved">with</span>`(<span class="stQuotedString">"Document"</span>))
+</pre></p><p>By importing the members of the <code>JMockExpectations</code> object passed to
+a <code>JMockCycle</code>'s <code>executing</code> method, you can
+instead call <code>withArg</code> with no back ticks needed:</p><p><pre class="stHighlighted">
+oneOf (mockCollaborator).documentAdded(withArg(<span class="stQuotedString">"Document"</span>))
+</pre>
+</p></div><div class="toggleContainer block">
+          <span class="toggle">
+            Linear Supertypes
+          </span>
+          <div class="superTypes hiddenContent"><span class="extype" name="org.jmock.Expectations">Expectations</span>, <span class="extype" name="org.jmock.AbstractExpectations">AbstractExpectations</span>, <span class="extype" name="org.jmock.syntax.ActionClause">ActionClause</span>, <span class="extype" name="org.jmock.syntax.ArgumentConstraintPhrases">ArgumentConstraintPhrases</span>, <span class="extype" name="org.jmock.syntax.CardinalityClause">CardinalityClause</span>, <span class="extype" name="org.jmock.internal.ExpectationBuilder">ExpectationBuilder</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+        </div></div>
+        
+
+      <div id="mbrsel">
+        <div class="toggle"></div>
+        <div id="memberfilter">
+          <i class="material-icons arrow"></i>
+          <span class="input">
+            <input id="mbrsel-input" placeholder="Filter all members" type="text" accesskey="/" />
+          </span>
+          <i class="clear material-icons"></i>
+        </div>
+        <div id="filterby">
+          <div id="order">
+            <span class="filtertype">Ordering</span>
+            <ol>
+              
+              <li class="alpha in"><span>Alphabetic</span></li>
+              <li class="inherit out"><span>By Inheritance</span></li>
+            </ol>
+          </div>
+          <div class="ancestors">
+                  <span class="filtertype">Inherited<br />
+                  </span>
+                  <ol id="linearization">
+                    <li class="in" name="org.scalatestplus.jmock.JMockExpectations"><span>JMockExpectations</span></li><li class="in" name="org.jmock.Expectations"><span>Expectations</span></li><li class="in" name="org.jmock.AbstractExpectations"><span>AbstractExpectations</span></li><li class="in" name="org.jmock.syntax.ActionClause"><span>ActionClause</span></li><li class="in" name="org.jmock.syntax.ArgumentConstraintPhrases"><span>ArgumentConstraintPhrases</span></li><li class="in" name="org.jmock.syntax.CardinalityClause"><span>CardinalityClause</span></li><li class="in" name="org.jmock.internal.ExpectationBuilder"><span>ExpectationBuilder</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                  </ol>
+                </div><div class="ancestors">
+              <span class="filtertype"></span>
+              <ol>
+                <li class="hideall out"><span>Hide All</span></li>
+                <li class="showall in"><span>Show All</span></li>
+              </ol>
+            </div>
+          <div id="visbl">
+              <span class="filtertype">Visibility</span>
+              <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+            </div>
+        </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        <div id="constructors" class="members">
+              <h3>Instance Constructors</h3>
+              <ol><li name="org.scalatestplus.jmock.JMockExpectations#&lt;init&gt;" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="&lt;init&gt;():org.scalatestplus.jmock.JMockExpectations"></a><a id="&lt;init&gt;:JMockExpectations"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#&lt;init&gt;():org.scalatestplus.jmock.JMockExpectations" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">new</span>
+      </span>
+      <span class="symbol">
+        <span class="name">JMockExpectations</span><span class="params">()</span>
+      </span>
+      
+      
+    </li></ol>
+            </div>
+
+        
+
+        
+
+        <div class="values members">
+              <h3>Value Members</h3>
+              <ol>
+                <li name="scala.AnyRef#!=" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="!=(x$1:Any):Boolean"></a><a id="!=(Any):Boolean"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#!=(x$1:Any):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef###" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="##():Int"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html###():Int" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $hash$hash" class="name">##</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#==" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="==(x$1:Any):Boolean"></a><a id="==(Any):Boolean"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#==(x$1:Any):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="org.jmock.AbstractExpectations#addParameterMatcher" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="addParameterMatcher(x$1:org.hamcrest.Matcher[_]):Unit"></a><a id="addParameterMatcher(Matcher[_]):Unit"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#addParameterMatcher(x$1:org.hamcrest.Matcher[_]):Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">addParameterMatcher</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="org.hamcrest.Matcher">Matcher</span>[_]</span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../jmock/index.html" class="extype" name="org.jmock">org.jmock</a>] </dd><dt>Definition Classes</dt><dd>AbstractExpectations</dd></dl></div>
+    </li><li name="org.jmock.AbstractExpectations#allowing" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="allowing[T](x$1:T):T"></a><a id="allowing[T](T):T"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#allowing[T](x$1:T):T" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">allowing</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="org.jmock.AbstractExpectations.allowing.T">T</span></span>)</span><span class="result">: <span class="extype" name="org.jmock.AbstractExpectations.allowing.T">T</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AbstractExpectations → CardinalityClause</dd></dl></div>
+    </li><li name="org.jmock.AbstractExpectations#allowing" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="allowing(x$1:org.hamcrest.Matcher[_]):org.jmock.syntax.MethodClause"></a><a id="allowing(Matcher[_]):MethodClause"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#allowing(x$1:org.hamcrest.Matcher[_]):org.jmock.syntax.MethodClause" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">allowing</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="org.hamcrest.Matcher">Matcher</span>[_]</span>)</span><span class="result">: <span class="extype" name="org.jmock.syntax.MethodClause">MethodClause</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AbstractExpectations → CardinalityClause</dd></dl></div>
+    </li><li name="scala.Any#asInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="asInstanceOf[T0]:T0"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#asInstanceOf[T0]:T0" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">asInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Any.asInstanceOf.T0">T0</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="org.jmock.AbstractExpectations#atLeast" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="atLeast(x$1:Int):org.jmock.syntax.ReceiverClause"></a><a id="atLeast(Int):ReceiverClause"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#atLeast(x$1:Int):org.jmock.syntax.ReceiverClause" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">atLeast</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="org.jmock.syntax.ReceiverClause">ReceiverClause</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AbstractExpectations → CardinalityClause</dd></dl></div>
+    </li><li name="org.jmock.AbstractExpectations#atMost" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="atMost(x$1:Int):org.jmock.syntax.ReceiverClause"></a><a id="atMost(Int):ReceiverClause"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#atMost(x$1:Int):org.jmock.syntax.ReceiverClause" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">atMost</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="org.jmock.syntax.ReceiverClause">ReceiverClause</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AbstractExpectations → CardinalityClause</dd></dl></div>
+    </li><li name="org.jmock.AbstractExpectations#between" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="between(x$1:Int,x$2:Int):org.jmock.syntax.ReceiverClause"></a><a id="between(Int,Int):ReceiverClause"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#between(x$1:Int,x$2:Int):org.jmock.syntax.ReceiverClause" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">between</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Int">Int</span></span>, <span name="arg1">arg1: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="org.jmock.syntax.ReceiverClause">ReceiverClause</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AbstractExpectations → CardinalityClause</dd></dl></div>
+    </li><li name="org.jmock.AbstractExpectations#buildExpectations" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="buildExpectations(x$1:org.jmock.api.Action,x$2:org.jmock.internal.ExpectationCollector):Unit"></a><a id="buildExpectations(Action,ExpectationCollector):Unit"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#buildExpectations(x$1:org.jmock.api.Action,x$2:org.jmock.internal.ExpectationCollector):Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">buildExpectations</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="org.jmock.api.Action">Action</span></span>, <span name="arg1">arg1: <span class="extype" name="org.jmock.internal.ExpectationCollector">ExpectationCollector</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AbstractExpectations → ExpectationBuilder</dd></dl></div>
+    </li><li name="scala.AnyRef#clone" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="clone():Object"></a><a id="clone():AnyRef"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#clone():Object" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">clone</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../java/lang/index.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@native</span><span class="args">()</span>
+              
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.CloneNotSupportedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="org.jmock.AbstractExpectations#currentBuilder" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="currentBuilder():org.jmock.internal.InvocationExpectationBuilder"></a><a id="currentBuilder():InvocationExpectationBuilder"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#currentBuilder():org.jmock.internal.InvocationExpectationBuilder" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">currentBuilder</span><span class="params">()</span><span class="result">: <span class="extype" name="org.jmock.internal.InvocationExpectationBuilder">InvocationExpectationBuilder</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../jmock/index.html" class="extype" name="org.jmock">org.jmock</a>] </dd><dt>Definition Classes</dt><dd>AbstractExpectations</dd></dl></div>
+    </li><li name="scala.AnyRef#eq" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="eq(x$1:AnyRef):Boolean"></a><a id="eq(AnyRef):Boolean"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#eq(x$1:AnyRef):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="scala.AnyRef#equals" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="equals(x$1:Any):Boolean"></a><a id="equals(Any):Boolean"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#equals(x$1:Any):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">equals</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="org.jmock.AbstractExpectations#exactly" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="exactly(x$1:Int):org.jmock.syntax.ReceiverClause"></a><a id="exactly(Int):ReceiverClause"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#exactly(x$1:Int):org.jmock.syntax.ReceiverClause" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">exactly</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="org.jmock.syntax.ReceiverClause">ReceiverClause</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AbstractExpectations → CardinalityClause</dd></dl></div>
+    </li><li name="scala.AnyRef#finalize" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="finalize():Unit"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#finalize():Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">finalize</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../../../java/lang/index.html" class="extype" name="java.lang">java.lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="symbol">classOf[java.lang.Throwable]</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#getClass" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getClass():Class[_]"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#getClass():Class[_]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getClass</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.Class">Class</span>[_]</span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd><dt>Annotations</dt><dd>
+                <span class="name">@native</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#hashCode" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="hashCode():Int"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#hashCode():Int" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">hashCode</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd><dt>Annotations</dt><dd>
+                <span class="name">@native</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="org.jmock.AbstractExpectations#ignoring" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ignoring(x$1:org.hamcrest.Matcher[_]):org.jmock.syntax.MethodClause"></a><a id="ignoring(Matcher[_]):MethodClause"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#ignoring(x$1:org.hamcrest.Matcher[_]):org.jmock.syntax.MethodClause" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ignoring</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="org.hamcrest.Matcher">Matcher</span>[_]</span>)</span><span class="result">: <span class="extype" name="org.jmock.syntax.MethodClause">MethodClause</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AbstractExpectations → CardinalityClause</dd></dl></div>
+    </li><li name="org.jmock.AbstractExpectations#ignoring" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ignoring[T](x$1:T):T"></a><a id="ignoring[T](T):T"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#ignoring[T](x$1:T):T" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ignoring</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="org.jmock.AbstractExpectations.ignoring.T">T</span></span>)</span><span class="result">: <span class="extype" name="org.jmock.AbstractExpectations.ignoring.T">T</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AbstractExpectations → CardinalityClause</dd></dl></div>
+    </li><li name="org.jmock.AbstractExpectations#inSequence" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="inSequence(x$1:org.jmock.Sequence):Unit"></a><a id="inSequence(Sequence):Unit"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#inSequence(x$1:org.jmock.Sequence):Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">inSequence</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="org.jmock.Sequence">Sequence</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AbstractExpectations</dd></dl></div>
+    </li><li name="org.jmock.AbstractExpectations#inSequences" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="inSequences(x$1:org.jmock.Sequence*):Unit"></a><a id="inSequences(&lt;repeated...&gt;[Sequence]):Unit"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#inSequences(x$1:org.jmock.Sequence*):Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">inSequences</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.&lt;repeated...&gt;">&lt;repeated...&gt;</span>[<span class="extype" name="org.jmock.Sequence">Sequence</span>]</span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AbstractExpectations</dd><dt>Annotations</dt><dd>
+                <span class="name">@transient</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.Any#isInstanceOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="isInstanceOf[T0]:Boolean"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#isInstanceOf[T0]:Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">isInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="scala.AnyRef#ne" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ne(x$1:AnyRef):Boolean"></a><a id="ne(AnyRef):Boolean"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#ne(x$1:AnyRef):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="org.jmock.AbstractExpectations#never" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="never[T](x$1:T):T"></a><a id="never[T](T):T"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#never[T](x$1:T):T" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">never</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="org.jmock.AbstractExpectations.never.T">T</span></span>)</span><span class="result">: <span class="extype" name="org.jmock.AbstractExpectations.never.T">T</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AbstractExpectations → CardinalityClause</dd></dl></div>
+    </li><li name="scala.AnyRef#notify" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notify():Unit"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#notify():Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notify</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@native</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#notifyAll" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="notifyAll():Unit"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#notifyAll():Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">notifyAll</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@native</span><span class="args">()</span>
+              
+        </dd></dl></div>
+    </li><li name="org.jmock.AbstractExpectations#oneOf" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="oneOf[T](x$1:T):T"></a><a id="oneOf[T](T):T"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#oneOf[T](x$1:T):T" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">oneOf</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="org.jmock.AbstractExpectations.oneOf.T">T</span></span>)</span><span class="result">: <span class="extype" name="org.jmock.AbstractExpectations.oneOf.T">T</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AbstractExpectations → CardinalityClause</dd></dl></div>
+    </li><li name="scala.AnyRef#synchronized" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="synchronized[T0](x$1:=&gt;T0):T0"></a><a id="synchronized[T0](⇒T0):T0"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#synchronized[T0](x$1:=&gt;T0):T0" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">synchronized</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="params">(<span name="arg0">arg0: ⇒ <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>)</span><span class="result">: <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="org.jmock.AbstractExpectations#then" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="then(x$1:org.jmock.internal.State):Unit"></a><a id="then(State):Unit"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#then(x$1:org.jmock.internal.State):Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">then</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="org.jmock.internal.State">State</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AbstractExpectations</dd></dl></div>
+    </li><li name="scala.AnyRef#toString" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="toString():String"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#toString():String" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">toString</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait():Unit"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#wait():Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long,x$2:Int):Unit"></a><a id="wait(Long,Int):Unit"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#wait(x$1:Long,x$2:Int):Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>, <span name="arg1">arg1: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="scala.AnyRef#wait" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="wait(x$1:Long):Unit"></a><a id="wait(Long):Unit"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#wait(x$1:Long):Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+                <span class="name">@native</span><span class="args">()</span>
+              
+                <span class="name">@throws</span><span class="args">(<span>
+      
+      <span class="defval" name="classOf[java.lang.InterruptedException]">...</span>
+    </span>)</span>
+              
+        </dd></dl></div>
+    </li><li name="org.jmock.AbstractExpectations#when" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="when(x$1:org.jmock.internal.StatePredicate):Unit"></a><a id="when(StatePredicate):Unit"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#when(x$1:org.jmock.internal.StatePredicate):Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">when</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="org.jmock.internal.StatePredicate">StatePredicate</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AbstractExpectations</dd></dl></div>
+    </li><li name="org.jmock.AbstractExpectations#will" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="will(x$1:org.jmock.api.Action):Unit"></a><a id="will(Action):Unit"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#will(x$1:org.jmock.api.Action):Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">will</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="org.jmock.api.Action">Action</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AbstractExpectations → ActionClause</dd></dl></div>
+    </li><li name="org.jmock.Expectations#with" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="with(x$1:org.hamcrest.Matcher[Double]):Double"></a><a id="with(Matcher[Double]):Double"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#with(x$1:org.hamcrest.Matcher[Double]):Double" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">with</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="org.hamcrest.Matcher">Matcher</span>[<span class="extype" name="java.lang.Double">Double</span>]</span>)</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Expectations</dd></dl></div>
+    </li><li name="org.jmock.Expectations#with" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="with(x$1:org.hamcrest.Matcher[Float]):Float"></a><a id="with(Matcher[Float]):Float"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#with(x$1:org.hamcrest.Matcher[Float]):Float" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">with</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="org.hamcrest.Matcher">Matcher</span>[<span class="extype" name="java.lang.Float">Float</span>]</span>)</span><span class="result">: <span class="extype" name="scala.Float">Float</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Expectations</dd></dl></div>
+    </li><li name="org.jmock.Expectations#with" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="with(x$1:org.hamcrest.Matcher[Long]):Long"></a><a id="with(Matcher[Long]):Long"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#with(x$1:org.hamcrest.Matcher[Long]):Long" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">with</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="org.hamcrest.Matcher">Matcher</span>[<span class="extype" name="java.lang.Long">Long</span>]</span>)</span><span class="result">: <span class="extype" name="scala.Long">Long</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Expectations</dd></dl></div>
+    </li><li name="org.jmock.Expectations#with" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="with(x$1:org.hamcrest.Matcher[Integer]):Int"></a><a id="with(Matcher[Integer]):Int"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#with(x$1:org.hamcrest.Matcher[Integer]):Int" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">with</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="org.hamcrest.Matcher">Matcher</span>[<span class="extype" name="java.lang.Integer">Integer</span>]</span>)</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Expectations</dd></dl></div>
+    </li><li name="org.jmock.Expectations#with" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="with(x$1:org.hamcrest.Matcher[Character]):Char"></a><a id="with(Matcher[Character]):Char"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#with(x$1:org.hamcrest.Matcher[Character]):Char" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">with</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="org.hamcrest.Matcher">Matcher</span>[<span class="extype" name="java.lang.Character">Character</span>]</span>)</span><span class="result">: <span class="extype" name="scala.Char">Char</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Expectations</dd></dl></div>
+    </li><li name="org.jmock.Expectations#with" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="with(x$1:org.hamcrest.Matcher[Short]):Short"></a><a id="with(Matcher[Short]):Short"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#with(x$1:org.hamcrest.Matcher[Short]):Short" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">with</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="org.hamcrest.Matcher">Matcher</span>[<span class="extype" name="java.lang.Short">Short</span>]</span>)</span><span class="result">: <span class="extype" name="scala.Short">Short</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Expectations</dd></dl></div>
+    </li><li name="org.jmock.Expectations#with" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="with(x$1:org.hamcrest.Matcher[Byte]):Byte"></a><a id="with(Matcher[Byte]):Byte"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#with(x$1:org.hamcrest.Matcher[Byte]):Byte" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">with</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="org.hamcrest.Matcher">Matcher</span>[<span class="extype" name="java.lang.Byte">Byte</span>]</span>)</span><span class="result">: <span class="extype" name="scala.Byte">Byte</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Expectations</dd></dl></div>
+    </li><li name="org.jmock.Expectations#with" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="with(x$1:org.hamcrest.Matcher[Boolean]):Boolean"></a><a id="with(Matcher[Boolean]):Boolean"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#with(x$1:org.hamcrest.Matcher[Boolean]):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">with</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="org.hamcrest.Matcher">Matcher</span>[<span class="extype" name="java.lang.Boolean">Boolean</span>]</span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Expectations</dd></dl></div>
+    </li><li name="org.jmock.AbstractExpectations#with" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="with[T](x$1:T):T"></a><a id="with[T](T):T"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#with[T](x$1:T):T" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">with</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="org.jmock.AbstractExpectations.with.T">T</span></span>)</span><span class="result">: <span class="extype" name="org.jmock.AbstractExpectations.with.T">T</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AbstractExpectations</dd></dl></div>
+    </li><li name="org.jmock.AbstractExpectations#with" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="with(x$1:Double):Double"></a><a id="with(Double):Double"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#with(x$1:Double):Double" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">with</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Double">Double</span></span>)</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AbstractExpectations</dd></dl></div>
+    </li><li name="org.jmock.AbstractExpectations#with" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="with(x$1:Float):Float"></a><a id="with(Float):Float"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#with(x$1:Float):Float" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">with</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Float">Float</span></span>)</span><span class="result">: <span class="extype" name="scala.Float">Float</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AbstractExpectations</dd></dl></div>
+    </li><li name="org.jmock.AbstractExpectations#with" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="with(x$1:Long):Long"></a><a id="with(Long):Long"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#with(x$1:Long):Long" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">with</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="result">: <span class="extype" name="scala.Long">Long</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AbstractExpectations</dd></dl></div>
+    </li><li name="org.jmock.AbstractExpectations#with" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="with(x$1:Int):Int"></a><a id="with(Int):Int"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#with(x$1:Int):Int" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">with</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AbstractExpectations</dd></dl></div>
+    </li><li name="org.jmock.AbstractExpectations#with" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="with(x$1:Char):Char"></a><a id="with(Char):Char"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#with(x$1:Char):Char" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">with</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Char">Char</span></span>)</span><span class="result">: <span class="extype" name="scala.Char">Char</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AbstractExpectations</dd></dl></div>
+    </li><li name="org.jmock.AbstractExpectations#with" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="with(x$1:Short):Short"></a><a id="with(Short):Short"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#with(x$1:Short):Short" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">with</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Short">Short</span></span>)</span><span class="result">: <span class="extype" name="scala.Short">Short</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AbstractExpectations</dd></dl></div>
+    </li><li name="org.jmock.AbstractExpectations#with" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="with(x$1:Byte):Byte"></a><a id="with(Byte):Byte"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#with(x$1:Byte):Byte" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">with</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Byte">Byte</span></span>)</span><span class="result">: <span class="extype" name="scala.Byte">Byte</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AbstractExpectations</dd></dl></div>
+    </li><li name="org.jmock.AbstractExpectations#with" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="with(x$1:Boolean):Boolean"></a><a id="with(Boolean):Boolean"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#with(x$1:Boolean):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">with</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AbstractExpectations</dd></dl></div>
+    </li><li name="org.jmock.AbstractExpectations#with" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="with[T](x$1:org.hamcrest.Matcher[T]):T"></a><a id="with[T](Matcher[T]):T"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#with[T](x$1:org.hamcrest.Matcher[T]):T" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">with</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="org.hamcrest.Matcher">Matcher</span>[<span class="extype" name="org.jmock.AbstractExpectations.with.T">T</span>]</span>)</span><span class="result">: <span class="extype" name="org.jmock.AbstractExpectations.with.T">T</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AbstractExpectations → ArgumentConstraintPhrases</dd></dl></div>
+    </li><li name="org.scalatestplus.jmock.JMockExpectations#withArg" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="withArg(matcher:org.hamcrest.Matcher[Char]):Char"></a><a id="withArg(Matcher[Char]):Char"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#withArg(matcher:org.hamcrest.Matcher[Char]):Char" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">withArg</span><span class="params">(<span name="matcher">matcher: <span class="extype" name="org.hamcrest.Matcher">Matcher</span>[<span class="extype" name="scala.Char">Char</span>]</span>)</span><span class="result">: <span class="extype" name="scala.Char">Char</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">Invokes <code>with</code> on this instance, passing in the passed matcher.</p>
+    </li><li name="org.scalatestplus.jmock.JMockExpectations#withArg" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="withArg(matcher:org.hamcrest.Matcher[Double]):Double"></a><a id="withArg(Matcher[Double]):Double"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#withArg(matcher:org.hamcrest.Matcher[Double]):Double" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">withArg</span><span class="params">(<span name="matcher">matcher: <span class="extype" name="org.hamcrest.Matcher">Matcher</span>[<span class="extype" name="scala.Double">Double</span>]</span>)</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">Invokes <code>with</code> on this instance, passing in the passed matcher.</p>
+    </li><li name="org.scalatestplus.jmock.JMockExpectations#withArg" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="withArg(matcher:org.hamcrest.Matcher[Float]):Float"></a><a id="withArg(Matcher[Float]):Float"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#withArg(matcher:org.hamcrest.Matcher[Float]):Float" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">withArg</span><span class="params">(<span name="matcher">matcher: <span class="extype" name="org.hamcrest.Matcher">Matcher</span>[<span class="extype" name="scala.Float">Float</span>]</span>)</span><span class="result">: <span class="extype" name="scala.Float">Float</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">Invokes <code>with</code> on this instance, passing in the passed matcher.</p>
+    </li><li name="org.scalatestplus.jmock.JMockExpectations#withArg" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="withArg(matcher:org.hamcrest.Matcher[Boolean]):Boolean"></a><a id="withArg(Matcher[Boolean]):Boolean"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#withArg(matcher:org.hamcrest.Matcher[Boolean]):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">withArg</span><span class="params">(<span name="matcher">matcher: <span class="extype" name="org.hamcrest.Matcher">Matcher</span>[<span class="extype" name="scala.Boolean">Boolean</span>]</span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">Invokes <code>with</code> on this instance, passing in the passed matcher.</p>
+    </li><li name="org.scalatestplus.jmock.JMockExpectations#withArg" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="withArg(matcher:org.hamcrest.Matcher[Long]):Long"></a><a id="withArg(Matcher[Long]):Long"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#withArg(matcher:org.hamcrest.Matcher[Long]):Long" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">withArg</span><span class="params">(<span name="matcher">matcher: <span class="extype" name="org.hamcrest.Matcher">Matcher</span>[<span class="extype" name="scala.Long">Long</span>]</span>)</span><span class="result">: <span class="extype" name="scala.Long">Long</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">Invokes <code>with</code> on this instance, passing in the passed matcher.</p>
+    </li><li name="org.scalatestplus.jmock.JMockExpectations#withArg" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="withArg(matcher:org.hamcrest.Matcher[Byte]):Byte"></a><a id="withArg(Matcher[Byte]):Byte"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#withArg(matcher:org.hamcrest.Matcher[Byte]):Byte" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">withArg</span><span class="params">(<span name="matcher">matcher: <span class="extype" name="org.hamcrest.Matcher">Matcher</span>[<span class="extype" name="scala.Byte">Byte</span>]</span>)</span><span class="result">: <span class="extype" name="scala.Byte">Byte</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">Invokes <code>with</code> on this instance, passing in the passed matcher.</p>
+    </li><li name="org.scalatestplus.jmock.JMockExpectations#withArg" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="withArg(matcher:org.hamcrest.Matcher[Short]):Short"></a><a id="withArg(Matcher[Short]):Short"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#withArg(matcher:org.hamcrest.Matcher[Short]):Short" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">withArg</span><span class="params">(<span name="matcher">matcher: <span class="extype" name="org.hamcrest.Matcher">Matcher</span>[<span class="extype" name="scala.Short">Short</span>]</span>)</span><span class="result">: <span class="extype" name="scala.Short">Short</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">Invokes <code>with</code> on this instance, passing in the passed matcher.</p>
+    </li><li name="org.scalatestplus.jmock.JMockExpectations#withArg" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="withArg(matcher:org.hamcrest.Matcher[Int]):Int"></a><a id="withArg(Matcher[Int]):Int"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#withArg(matcher:org.hamcrest.Matcher[Int]):Int" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">withArg</span><span class="params">(<span name="matcher">matcher: <span class="extype" name="org.hamcrest.Matcher">Matcher</span>[<span class="extype" name="scala.Int">Int</span>]</span>)</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">Invokes <code>with</code> on this instance, passing in the passed matcher.</p>
+    </li><li name="org.scalatestplus.jmock.JMockExpectations#withArg" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="withArg[T](matcher:org.hamcrest.Matcher[T]):T"></a><a id="withArg[T](Matcher[T]):T"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#withArg[T](matcher:org.hamcrest.Matcher[T]):T" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">withArg</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="matcher">matcher: <span class="extype" name="org.hamcrest.Matcher">Matcher</span>[<span class="extype" name="org.scalatestplus.jmock.JMockExpectations.withArg.T">T</span>]</span>)</span><span class="result">: <span class="extype" name="org.scalatestplus.jmock.JMockExpectations.withArg.T">T</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">Invokes <code>with</code> on this instance, passing in the passed matcher.</p>
+    </li><li name="org.scalatestplus.jmock.JMockExpectations#withArg" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="withArg(value:Char):Char"></a><a id="withArg(Char):Char"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#withArg(value:Char):Char" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">withArg</span><span class="params">(<span name="value">value: <span class="extype" name="scala.Char">Char</span></span>)</span><span class="result">: <span class="extype" name="scala.Char">Char</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">Invokes <code>with</code> on this instance, passing in the passed value.</p>
+    </li><li name="org.scalatestplus.jmock.JMockExpectations#withArg" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="withArg(value:Double):Double"></a><a id="withArg(Double):Double"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#withArg(value:Double):Double" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">withArg</span><span class="params">(<span name="value">value: <span class="extype" name="scala.Double">Double</span></span>)</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">Invokes <code>with</code> on this instance, passing in the passed value.</p>
+    </li><li name="org.scalatestplus.jmock.JMockExpectations#withArg" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="withArg(value:Float):Float"></a><a id="withArg(Float):Float"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#withArg(value:Float):Float" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">withArg</span><span class="params">(<span name="value">value: <span class="extype" name="scala.Float">Float</span></span>)</span><span class="result">: <span class="extype" name="scala.Float">Float</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">Invokes <code>with</code> on this instance, passing in the passed value.</p>
+    </li><li name="org.scalatestplus.jmock.JMockExpectations#withArg" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="withArg(value:Boolean):Boolean"></a><a id="withArg(Boolean):Boolean"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#withArg(value:Boolean):Boolean" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">withArg</span><span class="params">(<span name="value">value: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">Invokes <code>with</code> on this instance, passing in the passed value.</p>
+    </li><li name="org.scalatestplus.jmock.JMockExpectations#withArg" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="withArg(value:Long):Long"></a><a id="withArg(Long):Long"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#withArg(value:Long):Long" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">withArg</span><span class="params">(<span name="value">value: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="result">: <span class="extype" name="scala.Long">Long</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">Invokes <code>with</code> on this instance, passing in the passed value.</p>
+    </li><li name="org.scalatestplus.jmock.JMockExpectations#withArg" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="withArg(value:Byte):Byte"></a><a id="withArg(Byte):Byte"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#withArg(value:Byte):Byte" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">withArg</span><span class="params">(<span name="value">value: <span class="extype" name="scala.Byte">Byte</span></span>)</span><span class="result">: <span class="extype" name="scala.Byte">Byte</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">Invokes <code>with</code> on this instance, passing in the passed value.</p>
+    </li><li name="org.scalatestplus.jmock.JMockExpectations#withArg" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="withArg(value:Short):Short"></a><a id="withArg(Short):Short"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#withArg(value:Short):Short" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">withArg</span><span class="params">(<span name="value">value: <span class="extype" name="scala.Short">Short</span></span>)</span><span class="result">: <span class="extype" name="scala.Short">Short</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">Invokes <code>with</code> on this instance, passing in the passed value.</p>
+    </li><li name="org.scalatestplus.jmock.JMockExpectations#withArg" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="withArg(value:Int):Int"></a><a id="withArg(Int):Int"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#withArg(value:Int):Int" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">withArg</span><span class="params">(<span name="value">value: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">Invokes <code>with</code> on this instance, passing in the passed value.</p>
+    </li><li name="org.scalatestplus.jmock.JMockExpectations#withArg" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="withArg[T](value:T):T"></a><a id="withArg[T](T):T"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#withArg[T](value:T):T" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">withArg</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="value">value: <span class="extype" name="org.scalatestplus.jmock.JMockExpectations.withArg.T">T</span></span>)</span><span class="result">: <span class="extype" name="org.scalatestplus.jmock.JMockExpectations.withArg.T">T</span></span>
+      </span>
+      
+      <p class="shortcomment cmt">Invokes <code>with</code> on this instance, passing in the passed value.</p>
+    </li>
+              </ol>
+            </div>
+
+        
+
+        <div class="values members">
+              <h3>Deprecated Value Members</h3>
+              <ol><li name="org.jmock.AbstractExpectations#one" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="one[T](x$1:T):T"></a><a id="one[T](T):T"></a>
+      <span class="permalink">
+      <a href="../../../org/scalatestplus/jmock/JMockExpectations.html#one[T](x$1:T):T" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name deprecated" title="Deprecated: (Since version ) see corresponding Javadoc for more information.">one</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="org.jmock.AbstractExpectations.one.T">T</span></span>)</span><span class="result">: <span class="extype" name="org.jmock.AbstractExpectations.one.T">T</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AbstractExpectations → CardinalityClause</dd><dt>Annotations</dt><dd>
+                <span class="name">@deprecated</span>
+              
+        </dd><dt>Deprecated</dt><dd class="cmt"><p><i>(Since version )</i> see corresponding Javadoc for more information.</p></dd></dl></div>
+    </li></ol>
+            </div>
+        </div>
+
+        <div id="inheritedMembers">
+        <div class="parent" name="org.jmock.Expectations">
+              <h3>Inherited from <span class="extype" name="org.jmock.Expectations">Expectations</span></h3>
+            </div><div class="parent" name="org.jmock.AbstractExpectations">
+              <h3>Inherited from <span class="extype" name="org.jmock.AbstractExpectations">AbstractExpectations</span></h3>
+            </div><div class="parent" name="org.jmock.syntax.ActionClause">
+              <h3>Inherited from <span class="extype" name="org.jmock.syntax.ActionClause">ActionClause</span></h3>
+            </div><div class="parent" name="org.jmock.syntax.ArgumentConstraintPhrases">
+              <h3>Inherited from <span class="extype" name="org.jmock.syntax.ArgumentConstraintPhrases">ArgumentConstraintPhrases</span></h3>
+            </div><div class="parent" name="org.jmock.syntax.CardinalityClause">
+              <h3>Inherited from <span class="extype" name="org.jmock.syntax.CardinalityClause">CardinalityClause</span></h3>
+            </div><div class="parent" name="org.jmock.internal.ExpectationBuilder">
+              <h3>Inherited from <span class="extype" name="org.jmock.internal.ExpectationBuilder">ExpectationBuilder</span></h3>
+            </div><div class="parent" name="scala.AnyRef">
+              <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
+            </div><div class="parent" name="scala.Any">
+              <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
+            </div>
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+    </body>
+          </div>
+        </div>
+      </div>
+    </body>
+      </html>
