@@ -155,4 +155,5 @@ object Application {
   val latestScaladocFor192 = "http://doc.scalatest.org/1.9.2"
   val latestSeleniumVersion = "2.45.0"  
   val quickStartXmlJar = "https://repo1.maven.org/maven2/org/scala-lang/modules/scala-xml_2.13/1.2.0/scala-xml_2.13-1.2.0.jar"
+  val latestPlusScalaCheckDoc = "plus-scalacheck-1.14/3.2.2.0"
 }
