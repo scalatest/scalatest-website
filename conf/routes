@@ -28,10 +28,15 @@ GET        /getting_started_with_testng_in_scala                        controll
 GET        /at_a_glance/:style                                          controllers.Application.atAGlance(style)
 GET        /at_a_glance                                                 controllers.Application.bareAtAGlance()
 
+GET        /release_notes/3.2.2                                         controllers.ReleaseNotes.v322
+GET        /release_notes/3.2.1                                         controllers.ReleaseNotes.v321
 GET        /release_notes/3.2.0                                         controllers.ReleaseNotes.v320
+GET        /release_notes/3.1.4                                         controllers.ReleaseNotes.v314
+GET        /release_notes/3.1.3                                         controllers.ReleaseNotes.v313
 GET        /release_notes/3.1.2                                         controllers.ReleaseNotes.v312
 GET        /release_notes/3.1.1                                         controllers.ReleaseNotes.v311
 GET        /release_notes/3.1.0                                         controllers.ReleaseNotes.v310
+GET        /release_notes/3.0.9                                         controllers.ReleaseNotes.v309
 GET        /release_notes/3.0.8                                         controllers.ReleaseNotes.v308
 GET        /release_notes/3.0.7                                         controllers.ReleaseNotes.v307
 GET        /release_notes/3.0.6                                         controllers.ReleaseNotes.v306
@@ -101,7 +106,6 @@ GET        /user_guide/matchers_quick_reference                         controll
 GET        /user_guide/using_the_scalatest_maven_plugin                 controllers.UserGuide.usingTheScalatestMavenPlugin
 GET        /user_guide/customizing_scalatest                            controllers.UserGuide.customizingScalatest
 GET        /user_guide/using_scalatest_with_eclipse                     controllers.UserGuide.usingScalatestWithEclipse
-GET        /user_guide/using_selenium                                   controllers.UserGuide.usingSelenium
 GET        /user_guide/migrating_to_20                                  controllers.UserGuide.migratingTo20
 GET        /user_guide/migrating_to_30                                  controllers.UserGuide.migratingTo30
 GET        /user_guide/using_scalatest_with_intellij                    controllers.UserGuide.usingScalatestWithIntelliJ
@@ -138,6 +142,13 @@ GET        /user_guide_1_9_2/using_scalatest_with_eclipse               controll
 
 GET        /plus/play                                                   controllers.Plus.playFramework
 GET        /plus/play/versions                                          controllers.Plus.playVersions
+GET        /plus/selenium                                               controllers.Plus.selenium
+GET        /plus/easymock                                               controllers.Plus.easymock
+GET        /plus/jmock                                                  controllers.Plus.jmock
+GET        /plus/junit                                                  controllers.Plus.junit
+GET        /plus/mockito                                                controllers.Plus.mockito
+GET        /plus/scalacheck                                             controllers.Plus.scalacheck
+GET        /plus/testng                                                 controllers.Plus.testng
 
 GET        /releases/:zipFile                                           controllers.Application.releases(zipFile)
 

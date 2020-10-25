@@ -1,0 +1,48 @@
+@*
+ * Copyright 2010-2020 Artima, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *@
+
+@import controllers.Application.latestVersion
+@import controllers.Application.latestScalaCheckVersion 
+
+@plusPage("ScalaTest + ScalaCheck") {
+<div style="text-align: left">
+
+<h1>ScalaTest + ScalaCheck</h1>
+
+<p>
+The <em>ScalaTest + ScalaCheck</em> integration library makes it fun and easy to use ScalaCheck with ScalaTest.
+To use ScalaTest + ScalaCheck, please add the following to your SBT project dependency:
+</p>
+
+<pre class="stGrayback">
+libraryDependencies += "org.scalatestplus" %% "scalacheck-@latestScalaCheckVersion" % "@latestVersion.0" % "test"
+</pre>
+
+<p>
+For maven you can use:     
+</p>
+
+<pre class="stGrayback">
+&lt;dependency&gt;
+    &lt;groupId&gt;org.scalatestplus&lt;/groupId&gt;
+    &lt;artifactId&gt;scalacheck-@{latestScalaCheckVersion}_2.13&lt;/artifactId&gt;
+    &lt;version&gt;@latestVersion.0&lt;/version&gt;
+    &lt;scope&gt;test&lt;/scope&gt;
+&lt;/dependency&gt;    
+</pre>
+
+</div>
+}
