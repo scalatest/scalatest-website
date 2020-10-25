@@ -690,6 +690,27 @@ will pass a new <code>JMockCycle</code> into each test that needs one.
 <a name="mockito"></a>
 <h1>Using Mockito</h1>
 
+<p>ScalaTest provides integration for <a href="http://mockito.org/" target="_blank">Mockito</a> through <a href="">ScalaTest + Mockito</a> library.</p>
+
+<p>Add the following to you SBT build to use the library:</p>
+
+<pre class="stGrayback">
+libraryDependencies += "org.scalatestplus" %% "mockito-@latestMockitoVersion" % "@latestVersion.0" % "test"
+</pre>
+  
+<p>
+For maven you can use:     
+</p>
+  
+<pre class="stGrayback">
+&lt;dependency&gt;
+    &lt;groupId&gt;org.scalatestplus&lt;/groupId&gt;
+    &lt;artifactId&gt;mockito-@{latestMockitoVersion}_2.13&lt;/artifactId&gt;
+    &lt;version&gt;@latestVersion.0&lt;/version&gt;
+    &lt;scope&gt;test&lt;/scope&gt;
+&lt;/dependency&gt;    
+</pre>
+
 <p>
 ScalaTest's <a href="@routes.Assets.at("/public/scaladoc", latestPlusMockitoDoc + "/org/scalatestplus/mockito/MockitoSugar.html")"><code>MockitoSugar</code></a> trait provides some basic syntax sugar for <a href="http://mockito.org/" target="_blank">Mockito</a>.
 </p>
