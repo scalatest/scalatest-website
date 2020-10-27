@@ -14,8 +14,7 @@
  * limitations under the License.
  *@
 
-@import controllers.Application.latestVersion
-@import controllers.Application.latestEasyMockVersion 
+@import controllers.Application._
 
 @plusPage("ScalaTest + EasyMock") {
 <div style="text-align: left">
@@ -42,6 +41,133 @@ For maven you can use:
     &lt;version&gt;@latestVersion.0&lt;/version&gt;
     &lt;scope&gt;test&lt;/scope&gt;
 &lt;/dependency&gt;    
+</pre>
+
+<p>
+ScalaTest's <a href="@routes.Assets.at("/public/scaladoc", latestPlusEasyMockDoc + "/org/scalatestplus/easymock/EasyMockSugar.html")"><code>EasyMockSugar</code></a> trait provides some basic syntax sugar for <a href="http://easymock.org/" target="_blank">EasyMock</a>.
+</p>
+
+<p>
+Using the EasyMock API directly, you create a mock with:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">val</span> mockCollaborator = createMock(classOf[<span class="stType">Collaborator</span>])
+</pre>
+
+<p>
+With this trait, you can shorten that to:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">val</span> mockCollaborator = mock[<span class="stType">Collaborator</span>]
+</pre>
+
+<p>
+After creating mocks, you set expectations on them, using syntax like this:
+</p>
+
+<pre class="stHighlighted">
+mockCollaborator.documentAdded(<span class="stQuotedString">"Document"</span>)
+mockCollaborator.documentChanged(<span class="stQuotedString">"Document"</span>)
+expectLastCall().times(<span class="stLiteral">3</span>)
+</pre>
+
+<p>
+If you wish to highlight which statements are setting expectations on the mock (versus
+which ones are actually using the mock), you can place them in an <code>expecting</code>
+clause, provided by this trait, like this:
+</p>
+
+<pre class="stHighlighted">
+expecting {
+  mockCollaborator.documentAdded(<span class="stQuotedString">"Document"</span>)
+  mockCollaborator.documentChanged(<span class="stQuotedString">"Document"</span>)
+  lastCall.times(<span class="stLiteral">3</span>)
+}
+</pre>
+
+<p>
+Using an <code>expecting</code> clause is optional, because it does nothing but visually indicate
+which statements are setting expectations on mocks. (Note: this trait also provides the <code>lastCall</code>
+method, which just calls <code>expectLastCall</code>.)
+</p>
+
+<p>
+Once you've set expectations on the mock objects, you must invoke <code>replay</code> on
+the mocks to indicate you are done setting expectations, and will start using the mock.
+After using the mock, you must invoke <code>verify</code> to check to make sure the mock
+was used in accordance with the expectations you set on it. Here's how that looks when you
+use the EasyMock API directly:
+</p>
+
+<pre class="stHighlighted">
+replay(mockCollaborator)
+classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+verify(mockCollaborator)
+</pre>
+
+<p>
+This trait enables you to use the following, more declarative syntax instead:
+</p>
+
+<pre class="stHighlighted">
+whenExecuting(mockCollaborator) {
+  classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+  classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+  classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+  classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+}
+</pre>
+
+<p>
+The <code>whenExecuting</code> method will pass the <code>mockCollaborator</code> to
+<code>replay</code>, execute the passed function (your code that uses the mock), and
+call <code>verify</code>, passing in the <code>mockCollaborator</code>. If you want to
+use multiple mocks, you can pass multiple mocks to <code>whenExecuting</code>.
+</p>
+
+<p>
+To summarize, here's what a typical test using <code>EasyMockSugar</code> looks like:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">val</span> mockCollaborator = mock[<span class="stType">Collaborator</span>]
+<br />expecting {
+  mockCollaborator.documentAdded(<span class="stQuotedString">"Document"</span>)
+  mockCollaborator.documentChanged(<span class="stQuotedString">"Document"</span>)
+  lastCall.times(<span class="stLiteral">3</span>)
+}
+<br />whenExecuting(mockCollaborator) {
+  classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+  classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+  classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+  classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+}
+</pre>
+
+<p>
+An alternative approach is to place your mock objects in a <code>MockObjects</code> holder object referenced
+from an implicit <code>val</code>, then use the overloaded variant of <code>whenExecuting</code> that
+takes an implicit <code>MockObjects</code> parameter. Here's how that would look:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">implicit</span> <span class="stReserved">val</span> mocks = <span class="stType">MockObjects</span>(mock[<span class="stType">Collaborator</span>])
+<br />expecting {
+  mockCollaborator.documentAdded(<span class="stQuotedString">"Document"</span>)
+  mockCollaborator.documentChanged(<span class="stQuotedString">"Document"</span>)
+  lastCall.times(<span class="stLiteral">3</span>)
+}
+<br />whenExecuting {
+  classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+  classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+  classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+  classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+}
 </pre>
 
 </div>

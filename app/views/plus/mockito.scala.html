@@ -14,8 +14,7 @@
  * limitations under the License.
  *@
 
-@import controllers.Application.latestVersion
-@import controllers.Application.latestMockitoVersion 
+@import controllers.Application._
 
 @plusPage("ScalaTest + Mockito") {
 <div style="text-align: left">
@@ -42,6 +41,49 @@ For maven you can use:
     &lt;version&gt;@latestVersion.0&lt;/version&gt;
     &lt;scope&gt;test&lt;/scope&gt;
 &lt;/dependency&gt;    
+</pre>
+
+<p>
+<a href="@routes.Assets.at("/public/scaladoc", latestPlusMockitoDoc + "/org/scalatestplus/mockito/MockitoSugar.html")"><code>MockitoSugar</code></a> trait provides some basic syntax sugar for <a href="http://mockito.org/" target="_blank">Mockito</a>.
+</p>
+  
+<p>
+Using the Mockito API directly, you create a mock with:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">val</span> mockCollaborator = mock(classOf[<span class="stType">Collaborator</span>])
+</pre>
+
+<p>
+Using this trait, you can shorten that to:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">val</span> mockCollaborator = mock[<span class="stType">Collaborator</span>]
+</pre>
+
+<p>
+Here is how the example used in the previous EasyMock and JMock sections would look with Mockito and <code>MockitoSugar</code>:
+</p>
+
+<pre class="stHighlighted">
+<span class="stLineComment">// First, create the mock object</span>
+<span class="stReserved">val</span> mockCollaborator = mock[<span class="stType">Collaborator</span>]
+
+<span class="stLineComment">// Create the class under test and pass the mock to it</span>
+classUnderTest = <span class="stReserved">new</span> <span class="stType">ClassUnderTest</span>
+classUnderTest.addListener(mock)
+
+<span class="stLineComment">// Use the class under test</span>
+classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+
+<span class="stLineComment">// Then verify the class under test used the mock object as expected</span>
+verify(mockCollaborator).documentAdded(<span class="stQuotedString">"Document"</span>)
+verify(mockCollaborator, times(<span class="stLiteral">3</span>)).documentChanged(<span class="stQuotedString">"Document"</span>)
 </pre>
 
 </div>
