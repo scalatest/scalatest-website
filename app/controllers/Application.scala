@@ -165,5 +165,5 @@ object Application {
   val latestPlusScalaCheckDoc = "plus-scalacheck-1.15/3.2.3.0"
   val latestPlusEasyMockDoc = "plus-easymock-3.2/3.2.3.0"
   val latestPlusJMockDoc = "plus-jmock-2.8/3.2.3.0"
-  val latestPlusMockitoDoc = "plus-mockito-3.4/3.2.2.0"
+  val latestPlusMockitoDoc = "plus-mockito-3.4/3.2.3.0"
 }
