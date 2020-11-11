@@ -141,7 +141,7 @@ object Application {
 
   val latestScaladoc =          "http://doc.scalatest.org/3.2.0"
   val latestScalacticScaladoc = "http://doc.scalactic.org/3.2.0"
-  val latestVersion = "3.2.2"
+  val latestVersion = "3.2.3"
   val latestSuperSafeVersion = "1.1.10"
   val milestoneVersion = "3.2.0"
   val milestoneJar = "https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest_2.11/3.2.0-RC3/scalatest_2.11-3.2.0-RC3.jar"
