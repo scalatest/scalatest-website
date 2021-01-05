@@ -166,4 +166,8 @@ object Application {
   val latestPlusEasyMockDoc = "plus-easymock-3.2/3.2.2.0"
   val latestPlusJMockDoc = "plus-jmock-2.8/3.2.2.0"
   val latestPlusMockitoDoc = "plus-mockito-3.4/3.2.2.0"
+
+  def scaladocsPageUrl(file: String, version: String = latestVersion): String = {
+    s"$scaladocsLocation/$version/index.html#$file"
+  }
 }
