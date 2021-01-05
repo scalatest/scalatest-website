@@ -16,7 +16,12 @@
 
 @import controllers.Application.milestoneScaladoc
 @import controllers.Application.latestScaladoc
+@import controllers.Application.scaladocsPageUrl
 @import controllers.Application.milestoneVersion
+
+@docUrl(file: String) = {
+  @scaladocsPageUrl(file, "2.0")
+}
 
 @releaseNotesPage("ScalaTest 2.0 Release Notes") {
 <div style="text-align: left">
@@ -60,32 +65,32 @@ with <code>+-</code> in tests and production code.</li>
 </p>
 
 <ul>
-<li>Added an <a href="@latestScaladoc/#org.scalatest.Outcome"><code>Outcome</code></a> result type to <code>withFixture</code>.</li>
-<li>Added a <a href="@latestScaladoc/#org.scalatest.Status"><code>Status</code></a> result type to <code>Suite</code>'s <code>run</code> methods, and
-used <code>Status</code> to ensure <a href="@latestScaladoc/#org.scalatest.BeforeAndAfterAll"><code>BeforeAndAfterAll</code></a>'s <code>afterAll</code>
+<li>Added an <a href='@docUrl("org.scalatest.Outcome")'><code>Outcome</code></a> result type to <code>withFixture</code>.</li>
+<li>Added a <a href='@docUrl("org.scalatest.Status")'><code>Status</code></a> result type to <code>Suite</code>'s <code>run</code> methods, and
+used <code>Status</code> to ensure <a href='@docUrl("org.scalatest.BeforeAndAfterAll")'><code>BeforeAndAfterAll</code></a>'s <code>afterAll</code>
 method is executed after any parallel execution completes.</li>
-<li>Refactored <code>Suite</code>'s <code>run</code> methods to take an <a href="@latestScaladoc/#org.scalatest.Args"><code>Args</code></a>, to make overriding nicer.</li>
-<li>Added <code>markup</code> to style traits to include <a href="@latestScaladoc/#org.scalatest.FlatSpec@@documenters">markup text for specifications</a>.</li>
+<li>Refactored <code>Suite</code>'s <code>run</code> methods to take an <a href='@docUrl("org.scalatest.Args")'><code>Args</code></a>, to make overriding nicer.</li>
+<li>Added <code>markup</code> to style traits to include <a href='@docUrl("org.scalatest.FlatSpec@documenters")'>markup text for specifications</a>.</li>
 <li>Added <code>note</code> and <code>alert</code> to stye traits for sending
-<a href="@latestScaladoc/#org.scalatest.FlatSpec@@notifiersAlerters">status notifications</a> from tests.</li>
-<li>Added <a href="@{latestScaladoc}/#org.scalatest.Sequential"><code>Sequential</code></a>
-and <a href="@{latestScaladoc}/#org.scalatest.Stepwise"><code>Stepwise</code></a> (to pre-existing
-<a href="@{latestScaladoc}/#org.scalatest.Suites"><code>Suites</code></a>) combinators for suite composition.</li>
-<li>Added support for <code>they</code> (in addition to <code>it</code>) to <a href="@{latestScaladoc}/#org.scalatest.FunSpec"><code>FunSpec</code></a> and <a href="@{latestScaladoc}/#org.scalatest.FlatSpec"><code>FlatSpec</code></a>.</li>
-<li>Added ability to <a href="@latestScaladoc/#org.scalatest.Tag">tag</a> all tests in a suite class by annotating the class with a tag
-annotation. For example, can ignore all tests in a suite class with <a href="@latestScaladoc/#org.scalatest.Ignore"><code>@@Ignore</code></a>.</li>
+<a href='@docUrl("org.scalatest.FlatSpec@notifiersAlerters")'>status notifications</a> from tests.</li>
+<li>Added <a href='@docUrl("org.scalatest.Sequential")'><code>Sequential</code></a>
+and <a href='@docUrl("org.scalatest.Stepwise")'><code>Stepwise</code></a> (to pre-existing
+<a href='@docUrl("org.scalatest.Suites")'><code>Suites</code></a>) combinators for suite composition.</li>
+<li>Added support for <code>they</code> (in addition to <code>it</code>) to <a href='@docUrl("org.scalatest.FunSpec")'><code>FunSpec</code></a> and <a href='@docUrl("org.scalatest.FlatSpec")'><code>FlatSpec</code></a>.</li>
+<li>Added ability to <a href='@docUrl("org.scalatest.Tag")'>tag</a> all tests in a suite class by annotating the class with a tag
+annotation. For example, can ignore all tests in a suite class with <a href='@docUrl("org.scalatest.Ignore")'><code>@@Ignore</code></a>.</li>
 <li>
-Added <a href="@latestScaladoc/#org.scalatest.DynaTags"><code>DynaTags</code></a>
-and a <code>dynaTags</code> field to the primary constructor of class <a href="@latestScaladoc/#org.scalatest.Filter"><code>Filter</code></a> to enable
+Added <a href='@docUrl("org.scalatest.DynaTags")'><code>DynaTags</code></a>
+and a <code>dynaTags</code> field to the primary constructor of class <a href='@docUrl("org.scalatest.Filter")'><code>Filter</code></a> to enable
 the <em>dynamic tagging</em> of tests.
 Dynamic tagging facilitates features such as test name
 wildcards and rerunning previously failed tests; It enables selection of tests
 even in nested suites that can't be instantiated directly.
 </li>
-<li>Added the <code>suiteId</code> lifecycle method to trait <a href="@latestScaladoc/#org.scalatest.Suite"><code>Suite</code></a>. This new lifecycle
+<li>Added the <code>suiteId</code> lifecycle method to trait <a href='@docUrl("org.scalatest.Suite")'><code>Suite</code></a>. This new lifecycle
 method is intended to provide a unique ID for each suite that executes in a suite of tests, so that tests can be dynamically tagged. (A dynamic tag
 identifies tests by <code>suiteId</code> and <code>testName</code>.)</li>
-<li>Added a <code>rerunner</code> lifecycle method to <a href="@latestScaladoc/#org.scalatest.Suite"><code>Suite</code></a>, which provides an optional,
+<li>Added a <code>rerunner</code> lifecycle method to <a href='@docUrl("org.scalatest.Suite")'><code>Suite</code></a>, which provides an optional,
 fully qualified name of a suite (with a public, no-arg constructor) that can be used create to rerun its tests. If class has a public, no-arg
 constructor, then that class's fully qualified name can be returned from <code>rerunner</code>. If it does not have a public, no-arg constructor,
 but rather is created as a nested suite of a class that does have a public, no-arg constructor, then the nested class can return from <code>rerunner</code>
@@ -93,11 +98,11 @@ the fully qualified name of that outer, nesting class. To rerun a test in the ne
 no-arg constructor, and run it. The nesting class will create the actual class in which the test resides, and run it as a nested suite, thereby
 rerunning the test.</li>
 <li>Added a boolean <code>excludeNestedSuites</code> field to the primary constructor of class
-<a href="@latestScaladoc/#org.scalatest.events.Location"><code>Filter</code></a>. This field supports rerunning selected (such as previously failed) tests.</li>
-<li>Added traits <a href="@latestScaladoc/#org.scalatest.Spec"><code>Spec</code></code></a> and
-<a href="@latestScaladoc/#org.scalatest.fixture.Spec"><code>fixture.Spec</code></code></a> to serve as the new style trait
-in which tests are methods, and deprecated the use of <a href="@latestScaladoc/#org.scalatest.Suite"><code>Suite</code></a> as a style trait.</li>
-<li>Added a <a href="@latestScaladoc/#org.scalatest.DoNotDiscover"><code>@@DoNotDiscover</code></a> annotation that prevents discovery of an otherwise discoverable <code>Suite</code> class.</li>
+<a href='@docUrl("org.scalatest.events.Location")'><code>Filter</code></a>. This field supports rerunning selected (such as previously failed) tests.</li>
+<li>Added traits <a href='@docUrl("org.scalatest.Spec")'><code>Spec</code></code></a> and
+<a href='@docUrl("org.scalatest.fixture.Spec")'><code>fixture.Spec</code></code></a> to serve as the new style trait
+in which tests are methods, and deprecated the use of <a href='@docUrl("org.scalatest.Suite")'><code>Suite</code></a> as a style trait.</li>
+<li>Added a <a href='@docUrl("org.scalatest.DoNotDiscover")'><code>@@DoNotDiscover</code></a> annotation that prevents discovery of an otherwise discoverable <code>Suite</code> class.</li>
 </ul>
 
 <p>
@@ -105,30 +110,30 @@ in which tests are methods, and deprecated the use of <a href="@latestScaladoc/#
 </p>
 
 <ul>
-<li>Added trait <a href="@latestScaladoc/#org.scalatest.SuiteMixin"><code>SuiteMixin</code></a> to serve as the new base class
+<li>Added trait <a href='@docUrl("org.scalatest.SuiteMixin")'><code>SuiteMixin</code></a> to serve as the new base class
 for stackable traits that can be mixed into <code>Suite</code>, and deprecated trait
-<a href="@latestScaladoc/#org.scalatest.AbstractSuite"><code>AbstractSuite</code></a>.</li>
-<li>Added <a href="@latestScaladoc/#org.scalatest.TestData"><code>TestData</code></a> trait, made
-<a href="@latestScaladoc/#org.scalatest.Suite$NoArgTest"><code>NoArgTest</code></a> and
-<a href="@latestScaladoc/#org.scalatest.fixture.Suite$OneArgTest"><code>OneArgTest</code></a> implement it,
-and added trait <a href="@{latestScaladoc}/#org.scalatest.BeforeAndAfterEachTestData"><code>BeforeAndAfterEachTestData</code></a> to faciliate using
+<a href='@docUrl("org.scalatest.AbstractSuite")'><code>AbstractSuite</code></a>.</li>
+<li>Added <a href='@docUrl("org.scalatest.TestData")'><code>TestData</code></a> trait, made
+<a href='@docUrl("org.scalatest.Suite$NoArgTest")'><code>NoArgTest</code></a> and
+<a href='@docUrl("org.scalatest.fixture.Suite$OneArgTest")'><code>OneArgTest</code></a> implement it,
+and added trait <a href='@docUrl("org.scalatest.BeforeAndAfterEachTestData")'><code>BeforeAndAfterEachTestData</code></a> to faciliate using
 the test name, text, scopes, and tags, as well as the config map, in <code>withFixture</code>, <code>beforeEach</code>, and <code>afterEach</code> methods.
-<li>Added <a href="@{latestScaladoc}/#org.scalatest.BeforeAndAfterAllConfigMap"><code>BeforeAndAfterAllConfigMap</code></a> to faciliate using the
+<li>Added <a href='@docUrl("org.scalatest.BeforeAndAfterAllConfigMap")'><code>BeforeAndAfterAllConfigMap</code></a> to faciliate using the
 config map in <code>beforeAll</code> and <code>afterAll</code> methods.</li>
-<li>Changed the behavior of <a href="@{latestScaladoc}/#org.scalatest.BeforeAndAfterAll"><code>BeforeAndAfterAll</code></a> so that it only calls
+<li>Changed the behavior of <a href='@docUrl("org.scalatest.BeforeAndAfterAll")'><code>BeforeAndAfterAll</code></a> so that it only calls
 <code>beforeAll</code> and <code>afterAll</code> in the outer instance of
-a <a href="@{latestScaladoc}/#org.scalatest.OneInstancePerTest"><code>OneInstancePerTest</code></a> or
-<a href="@{latestScaladoc}/#org.scalatest.ParallelTestExecution"><code>ParallelTestExecution</code></a>.</li>
-<li>Enhanced <a href="@{latestScaladoc}/#org.scalatest.BeforeAndAfterAll"><code>BeforeAndAfterAll</code></a> and <a href="@{latestScaladoc}/#org.scalatest.BeforeAndAfterAllConfigMap"><code>BeforeAndAfterAllConfigMap</code></a> to
+a <a href='@docUrl("org.scalatest.OneInstancePerTest")'><code>OneInstancePerTest</code></a> or
+<a href='@docUrl("org.scalatest.ParallelTestExecution")'><code>ParallelTestExecution</code></a>.</li>
+<li>Enhanced <a href='@docUrl("org.scalatest.BeforeAndAfterAll")'><code>BeforeAndAfterAll</code></a> and <a href='@docUrl("org.scalatest.BeforeAndAfterAllConfigMap")'><code>BeforeAndAfterAllConfigMap</code></a> to
     take <code>expectedTestCount</code> into consideration when deciding whether to invoke <code>beforeAll</code> and <code>afterAll</code>.</li>
-<li>Modified <a href="@latestScaladoc/#org.scalatest.OneInstancePerTest"><code>OneInstancePerTest</code></a> so that it calls
+<li>Modified <a href='@docUrl("org.scalatest.OneInstancePerTest")'><code>OneInstancePerTest</code></a> so that it calls
 <code>super.runTests</code> which emits events for scopes (such as <code>describe</code> clauses
 in <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.FunSpec"><code>FunSpec</code></a>).</li>
-<li>Similarly, modified <a href="@latestScaladoc/#org.scalatest.ParallelTestExecution"><code>ParallelTestExecution</code></a> so that it calls
+<li>Similarly, modified <a href='@docUrl("org.scalatest.ParallelTestExecution")'><code>ParallelTestExecution</code></a> so that it calls
 <code>super.runTests</code> which emits events for scopes (such as <code>describe</code> clauses in
 <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.FunSpec"><code>FunSpec</code></a>).</li>
-<li>Added a <a href="@{latestScaladoc}/#org.scalatest.Retries"><code>Retries</code></a> trait (and related <a href="@{latestScaladoc}/#org.scalatest.tags.Retryable"><code>Retryable</code></a> tag) and a
-<a href="@{latestScaladoc}/#org.scalautils.Catcher"><code>Catcher</code></a> class to help deal with <em>flickers</em>: tests that
+<li>Added a <a href='@docUrl("org.scalatest.Retries")'><code>Retries</code></a> trait (and related <a href='@docUrl("org.scalatest.tags.Retryable")'><code>Retryable</code></a> tag) and a
+<a href='@docUrl("org.scalautils.Catcher")'><code>Catcher</code></a> class to help deal with <em>flickers</em>: tests that
 usually pass but occasionally fail.</li>
 </ul>
 
@@ -138,18 +143,18 @@ usually pass but occasionally fail.</li>
 
 <ul>
 <li>Added the ability to <em>cancel</em> a test. Added <code>assume</code> and <code>cancel</code> methods to
-<a href="@latestScaladoc/#org.scalatest.Assertions"><code>Assertions</code></a>,
-and added a <code>cancelAfter</code> method to <a href="@{latestScaladoc}/#org.scalatest.concurrent.Timeouts"><code>Timeouts</code></a>.</li>
+<a href='@docUrl("org.scalatest.Assertions")'><code>Assertions</code></a>,
+and added a <code>cancelAfter</code> method to <a href='@docUrl("org.scalatest.concurrent.Timeouts")'><code>Timeouts</code></a>.</li>
 <li>Reimplemented <code>assert</code> and <code>assume</code> as macros that produce descriptive error messages in 
-<a href="@latestScaladoc/#org.scalatest.Assertions"><code>Assertions</code></a>.</li>
-<li>Added <a href="@latestScaladoc/#org.scalatest.Inspectors"><code>Inspectors</code></a> (<code>forAll</code>, <code>forEvery</code>, <code>forAtLeast</code>,
+<a href='@docUrl("org.scalatest.Assertions")'><code>Assertions</code></a>.</li>
+<li>Added <a href='@docUrl("org.scalatest.Inspectors")'><code>Inspectors</code></a> (<code>forAll</code>, <code>forEvery</code>, <code>forAtLeast</code>,
 <code>forAtMost</code>, <code>forBetween</code>, <code>forExactly</code>) to enable assertions about collections, including nested collections.
-<li>Added <a href="@latestScaladoc/#org.scalatest.LoneElement"><code>LoneElement</code></a> to assert against single-element collections.</li>
-<li>Added <a href="@latestScaladoc/#org.scalatest.TryValues"><code>TryValues</code></a> to facilitate assertions about <code>Try</code> values.</li>
-<li>Added <a href="@latestScaladoc/#org.scalatest.concurrent.AsyncAssertions"><code>AsyncAssertions</code></a> to
+<li>Added <a href='@docUrl("org.scalatest.LoneElement")'><code>LoneElement</code></a> to assert against single-element collections.</li>
+<li>Added <a href='@docUrl("org.scalatest.TryValues")'><code>TryValues</code></a> to facilitate assertions about <code>Try</code> values.</li>
+<li>Added <a href='@docUrl("org.scalatest.concurrent.AsyncAssertions")'><code>AsyncAssertions</code></a> to
 <code>org.scalatest.concurrent</code>.</li>
-<li>Added <a href="@{latestScaladoc}/#org.scalatest.concurrent.ScalaFutures"><code>ScalaFutures</code></a> to help write tests involving Scala futures.</li>
-<li>Added <a href="@{latestScaladoc}/#org.scalatest.Checkpoints"><code>Checkpoints</code></a>, which allows you to accumulate and report multiple assertions in a single test.</li>
+<li>Added <a href='@docUrl("org.scalatest.concurrent.ScalaFutures")'><code>ScalaFutures</code></a> to help write tests involving Scala futures.</li>
+<li>Added <a href='@docUrl("org.scalatest.Checkpoints")'><code>Checkpoints</code></a>, which allows you to accumulate and report multiple assertions in a single test.</li>
 </ul>
 
 <p>
@@ -157,21 +162,21 @@ and added a <code>cancelAfter</code> method to <a href="@{latestScaladoc}/#org.s
 </p>
 
 <ul>
-<li>Moved matchers DSL to <a href="@latestScaladoc/#org.scalatest.Matchers"><code>org.scalatest.Matchers</code></a>; deprecated
+<li>Moved matchers DSL to <a href='@docUrl("org.scalatest.Matchers")'><code>org.scalatest.Matchers</code></a>; deprecated
 <code>ShouldMatchers</code> and <code>MustMatchers</code>.</li>
-<li>Refactored matchers to use <a href="@latestScaladoc/#org.scalatest.enablers.package">enabling typeclasses</a> rather than implicit conversions, to make the syntax
+<li>Refactored matchers to use <a href='@docUrl("org.scalatest.enablers.package")'>enabling typeclasses</a> rather than implicit conversions, to make the syntax
 more broadly usable and easier to customize.</li>
-<li>Enhanced <a href="@latestScaladoc/#org.scalatest.Matchers@@workingWithContainers"><code>contain</code> matcher syntax</a> so it an be used to make richer assertions with <code>oneOf</code>, <code>noneOf</code>, <code>allOf</code>,
+<li>Enhanced <a href='@docUrl("org.scalatest.Matchers@workingWithContainers")'><code>contain</code> matcher syntax</a> so it an be used to make richer assertions with <code>oneOf</code>, <code>noneOf</code>, <code>allOf</code>,
 <code>atLeastOneOf</code>, <code>atMostOneOf</code>, <code>inOrder</code>, <code>only</code>, <code>inOrderOnly</code>, <code>theSameElementsAs</code>,
 and <code>theSameElementsInOrderAs</code>.</li>
-<li>Added <a href="@latestScaladoc/#org.scalatest.Matchers@@inspectorShorthands">inspector shorthands</a> (<code>all</code>, <code>every</code>, <code>atLeast</code>
+<li>Added <a href='@docUrl("org.scalatest.Matchers@inspectorShorthands")'>inspector shorthands</a> (<code>all</code>, <code>every</code>, <code>atLeast</code>
 <code>atMost</code>, <code>between</code>, <code>exactly</code>) to the matchers DSL.</li>
-<li>Added an <a href="@latestScaladoc/#org.scalatest.Matchers@@checkingForEmptiness"><code>empty</code> matcher</a>.</li>
-<li>Added <code>a</code> and <code>an</code> matcher syntax to <a href="@latestScaladoc/#org.scalatest.Matchers@@checkingAnObjectsClass">check an object's class</a>.</li>
-<li>Added <a href="@latestScaladoc/#org.scalatest.Matchers@@expectedExceptions"><code>thrownBy</code> matcher syntax</a> for checking for expected exceptions.</li>
-<li>Refactored <a href="@{latestScaladoc}/#org.scalatest.matchers.MatchResult"><code>MatchResult</code></a> to improve runtime performance and enable
-modification of error messages during <a href="@{latestScaladoc}/#org.scalatest.matchers.Matcher@@composingMatchers">matcher composition</a>.</li>
-<li>Added <a href="@{latestScaladoc}/#org.scalautils.Prettifier"><code>Prettifier</code></a> and <a href="@{latestScaladoc}/#org.scalautils.PrettyMethods"><code>PrettyMethods</code></a> to <code>org.scalautils</code>.</li>
+<li>Added an <a href='@docUrl("org.scalatest.Matchers@checkingForEmptiness")'><code>empty</code> matcher</a>.</li>
+<li>Added <code>a</code> and <code>an</code> matcher syntax to <a href='@docUrl("org.scalatest.Matchers@checkingAnObjectsClass")'>check an object's class</a>.</li>
+<li>Added <a href='@docUrl("org.scalatest.Matchers@expectedExceptions")'><code>thrownBy</code> matcher syntax</a> for checking for expected exceptions.</li>
+<li>Refactored <a href='@docUrl("org.scalatest.matchers.MatchResult")'><code>MatchResult</code></a> to improve runtime performance and enable
+modification of error messages during <a href='@docUrl("org.scalatest.matchers.Matcher@composingMatchers")'>matcher composition</a>.</li>
+<li>Added <a href='@docUrl("org.scalautils.Prettifier")'><code>Prettifier</code></a> and <a href='@docUrl("org.scalautils.PrettyMethods")'><code>PrettyMethods</code></a> to <code>org.scalautils</code>.</li>
 <li>Enhanced <code>have length</code> and <code>have size</code> error messages to include the actual length or size.</li>
 <li>Use <code>Ordering</code> instead of <code>Ordered</code> for <code>be &lt;/&gt;/&lt;=/&gt;=</code>.</li>
 </ul>
@@ -181,30 +186,30 @@ modification of error messages during <a href="@{latestScaladoc}/#org.scalatest.
 </p>
 
 <ul>
-<li>For a table of all the available options, see the <a href="@{latestScaladoc}/#org.scalatest.tools.Runner$">main Scaladoc documentation for <code>Runner</code></a>.</li>
-<li>Added support for <a href="@{latestScaladoc}/#org.scalatest.tools.Runner$@@configuringReporters"><em>reminders</em></a>, a summary of failed and/or
+<li>For a table of all the available options, see the <a href='@docUrl("org.scalatest.tools.Runner$")'>main Scaladoc documentation for <code>Runner</code></a>.</li>
+<li>Added support for <a href='@docUrl("org.scalatest.tools.Runner$@configuringReporters")'><em>reminders</em></a>, a summary of failed and/or
 canceled tests that can be optionally printed out at the end of a run in string (stdout, stderr, file) reporters. This obviates the need to scroll backwards
 in search of details about failed and/or canceled tests in console output, and also ensures that such details won't have scrolled off the top and out of existence.</li>
 <li>Enhanced <code>-s</code> to take a glob in addition to a complete, fully-qualified suite class name.</li>
-<li>Added <a href="@{latestScaladoc}/#org.scalatest.tools.Runner$@@slowpokeNotifications"><em>slowpoke notifications</em></a>, which
-emit <a href="@{latestScaladoc}/#org.scalatest.events.AlertProvided"><code>AlertProvided</code></a> events periodically listing
+<li>Added <a href='@docUrl("org.scalatest.tools.Runner$@slowpokeNotifications")'><em>slowpoke notifications</em></a>, which
+emit <a href='@docUrl("org.scalatest.events.AlertProvided")'><code>AlertProvided</code></a> events periodically listing
 tests that have been running longer than a specified time limit. (-W)</li>
-<li>Added ability to <a href="@{latestScaladoc}/#org.scalatest.tools.Runner$@@memorizingAndRerunning">memorize and rerun failed and canceled tests</a>. (-M and -A)</li>
-<li>Added to <a href="@latestScaladoc/#org.scalatest.tools.Runner$"><code>Runner</code></a> a way to specify tests to run by full or partial ("wildcard") name (<code>-z</code>).</li>
+<li>Added ability to <a href='@docUrl("org.scalatest.tools.Runner$@memorizingAndRerunning")'>memorize and rerun failed and canceled tests</a>. (-M and -A)</li>
+<li>Added to <a href='@docUrl("org.scalatest.tools.Runner$")'><code>Runner</code></a> a way to specify tests to run by full or partial ("wildcard") name (<code>-z</code>).</li>
 <li>Enabled on-the-fly sorting of events (with a timeout) during parallel runs (<code>-PS</code>).</li>
-<li>Added <a href="@latestScaladoc/#org.scalatest.tools.Runner$@@configuringReporters">unformatted mode</a> to stdout (<em>-oU</em>), stderr (<code>-eU</code>), and
+<li>Added <a href='@docUrl("org.scalatest.tools.Runner$@configuringReporters")'>unformatted mode</a> to stdout (<em>-oU</em>), stderr (<code>-eU</code>), and
 file reporters (<code>-fU</code>) for helping debug problematic parallel test runs.</li>
 <li>Added a socket reporter (-k), which serializes events to a socket. This facilitates running tests remotely, such as with sbt's forking feature.</li>
 <li>Added a <code>-i</code> command line argument to <code>Runner</code> to provide a way to specify a suite by suite ID. This complements
 the <code>-s</code> command, which allows you to identify a suite by fully qualified name. The <code>-i</code> command was added primarily to allow IDEs
 and other tools to rerun failed (or otherwise selected) tests.</li>
-<li>Added a <code>-t</code> to <a href="@latestScaladoc/#org.scalatest.tools.Runner$"><code>Runner</code></a>, a way to specify a specific test name. A
+<li>Added a <code>-t</code> to <a href='@docUrl("org.scalatest.tools.Runner$")'><code>Runner</code></a>, a way to specify a specific test name. A
 <code>-t</code> clauses may follow <code>-s</code> or <code>-i</code>, or be standalone. All <code>-t</code>'s immediately following a <code>-s</code> or
 <code>-i</code> will be considered tests of the suite specified by that <code>-s</code> or <code>-i</code>.
 If <code>-t</code> <code>&lt;test name&gt;</code> appears standalone, <code>Runner</code> will execute any tests with matching names on
 any suite discovered in the runpath.
 </li>
-<li>Added a <code>-z</code> argument to <a href="@latestScaladoc/#org.scalatest.tools.Runner$"><code>Runner</code></a>, a means to specify test names via a
+<li>Added a <code>-z</code> argument to <a href='@docUrl("org.scalatest.tools.Runner$")'><code>Runner</code></a>, a means to specify test names via a
 wildcard: any test whose string name includes the string specified with <code>-z</code> will be selected. <code>-z</code> clauses may follow
 <code>-s</code> or <code>-i</code> clauses, or be standalone. All <code>-z</code>'s immediately following a <code>-s</code> or <code>-i</code> will be considered wildcards
 selecting tests of the suite by that <code>-s</code> or <code>-i</code>.  If <code>-z</code> <code>&lt;test name wildcard&gt;</code> appears standalone,
@@ -219,7 +224,7 @@ specified with <code>-T</code> plus one second is used for suite sorting.</li>
 a test takes too long.
 Added <code>sortingTimeout</code> to <code>ParallelTestExecution</code>, the default of which is to use the timeout specified to <code>Runner</code> via
 -T (or 15 seconds if no -T given), but you can override the method. Added trait
-<a href="@latestScaladoc/#org.scalatest.DistributedTestSorter"><code>DistributedTestSorter</code></a> to support this feature, and a field holding
+<a href='@docUrl("org.scalatest.DistributedTestSorter")'><code>DistributedTestSorter</code></a> to support this feature, and a field holding
 a <code>DistributedTestSorter</code> in <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.Args"><code>Args</code></a></li>
 </ul>
 
@@ -228,17 +233,17 @@ a <code>DistributedTestSorter</code> in <a href="http://www.artima.com/docs-scal
 </p>
 
 <ul>
-<li>Added new tags <a href="@{latestScaladoc}/#org.scalatest.tags.CPU"><code>CPU</code></a>,
-<a href="@{latestScaladoc}/#org.scalatest.tags.Disk"><code>Disk</code></a>,
-<a href="@{latestScaladoc}/#org.scalatest.tags.Network"><code>Network</code></a>, and reporting these as sbt's built-in <a href="http://www.scala-sbt.org/0.13.0/docs/Detailed-Topics/Parallel-Execution.html#tagging-tasks" target="_blank">resource tags</a>, <code>Tags.CPU</code>,
+<li>Added new tags <a href='@docUrl("org.scalatest.tags.CPU")'><code>CPU</code></a>,
+<a href='@docUrl("org.scalatest.tags.Disk")'><code>Disk</code></a>,
+<a href='@docUrl("org.scalatest.tags.Network")'><code>Network</code></a>, and reporting these as sbt's built-in <a href="http://www.scala-sbt.org/0.13.0/docs/Detailed-Topics/Parallel-Execution.html#tagging-tasks" target="_blank">resource tags</a>, <code>Tags.CPU</code>,
 <code>Tags.Disk</code>, and <code>Tags.Network</code>.</li>
 <li>Added a <em>location API</em> for better integration with tools, especially IDEs. The location API consists of a sealed family of classes and
-objects, consisting of abstract base class <a href="@latestScaladoc/#org.scalatest.events.Location"><code>Location</code></a>, three case
+objects, consisting of abstract base class <a href='@docUrl("org.scalatest.events.Location")'><code>Location</code></a>, three case
 subclasses <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.events.LineInFile"><code>LineInFile</code></a>,
 <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.events.TopOfMethod"><code>TopOfMethod</code></a>,
 and <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.events.TopOfClass"><code>TopOfClass</code></a>, and singleton
 object <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.events.SeeStackDepthException"><code>SeeStackDepthException</code></a>.</li>
-<li>Added a <a href="@latestScaladoc/#org.scalatest.Finders"><code>Finders</code></a> annotation that specifies one or more <code>Finders</code> that can
+<li>Added a <a href='@docUrl("org.scalatest.Finders")'><code>Finders</code></a> annotation that specifies one or more <code>Finders</code> that can
 be used to determine selected tests from an AST in IDEs.</li>
 <li>Enhanced the <a href="/user_guide/using_the_scalatest_maven_plugin">ScalaTest Maven Plugin</a> so that all of the new <code>Runner</code>
 features are accessible to Maven users.</li>
@@ -256,16 +261,16 @@ new Framework API was released as part of sbt 0.13.</li>
 </p>
 
 <ul>
-<li>Added <a href="@{latestScaladoc}/#org.scalatest.events.DiscoveryStarting"><code>DiscoveryStarting</code></a> and <a href="@{latestScaladoc}/#org.scalatest.events.DiscoveryCompleted"><code>DiscoveryCompleted</code></a> events, and enhanced the GUI reporter to use these events to show a spinning icon during discovery.</li>
-<li>Added <a href="@latestScaladoc/#org.scalatest.events.ScopeOpened"><code>ScopeOpened</code></a> and
+<li>Added <a href='@docUrl("org.scalatest.events.DiscoveryStarting")'><code>DiscoveryStarting</code></a> and <a href='@docUrl("org.scalatest.events.DiscoveryCompleted")'><code>DiscoveryCompleted</code></a> events, and enhanced the GUI reporter to use these events to show a spinning icon during discovery.</li>
+<li>Added <a href='@docUrl("org.scalatest.events.ScopeOpened")'><code>ScopeOpened</code></a> and
 <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.events.ScopeClosed"><code>ScopeClosed</code></a> events to indicate <em>scopes</em>, such
 as the scope of a <code>describe</code> clause in a <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.FunSpec"><code>FunSpec</code></a>.
 Previously a &ldquo;scope opened&rdquo; event was indiciated via an
 <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.events.InfoProvided"><code>InfoProvided</code></a> events
 with <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.events.IndentedText"><code>IndentedText</code></a>.</li>
-<li>Added a <a href="@latestScaladoc/#org.scalatest.events.MarkupProvided"><code>MarkupProvided</code></a> event to
+<li>Added a <a href='@docUrl("org.scalatest.events.MarkupProvided")'><code>MarkupProvided</code></a> event to
 indicate some markup text has been provided.</li>
-<li>Added a <code>testText</code> field to all test events (<a href="@latestScaladoc/#org.scalatest.events.TestStarting"><code>TestStarting</code></a>,
+<li>Added a <code>testText</code> field to all test events (<a href='@docUrl("org.scalatest.events.TestStarting")'><code>TestStarting</code></a>,
 <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.events.TestIgnored"><code>TestIgnored</code></a>,
 <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.events.TestPending"><code>TestPending</code></a>,
 <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.events.TestCanceled"><code>TestCanceled</code></a>,
@@ -275,8 +280,8 @@ with IntelliJ IDEA. The &ldquo;test text&rdquo; is either the complete test name
 <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.FunSpec"><code>FunSpec</code></a>, for example, the test text will be the string
 passed to the <code>it</code> method, whereas the full test name will be the test text prefixed by the strings passed to enclosing
 <code>describe</code> method calls.</li>
-<li>Added <code>location</code>, an <code>Option[Location]</code> field, to class <a href="@latestScaladoc/#org.scalatest.events.Event"><code>Event</code></a>.</li>
-<li>Added a <code>suiteId</code> to relevant events: <a href="@latestScaladoc/#org.scalatest.DynaTags"><code>TestStarting</code></a>,
+<li>Added <code>location</code>, an <code>Option[Location]</code> field, to class <a href='@docUrl("org.scalatest.events.Event")'><code>Event</code></a>.</li>
+<li>Added a <code>suiteId</code> to relevant events: <a href='@docUrl("org.scalatest.DynaTags")'><code>TestStarting</code></a>,
 <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.DynaTags"><code>TestSucceeded</code></a>,
 <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.DynaTags"><code>TestFailed</code></a>,
 <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.DynaTags"><code>TestFailed</code></a>,
@@ -286,7 +291,7 @@ passed to the <code>it</code> method, whereas the full test name will be the tes
 <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.DynaTags"><code>SuiteCompleted</code></a>,
 <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.DynaTags"><code>SuiteAborted</code></a>. This enables tests run previously
 to be dynamically tagged in future runs (because a dynamic tag requires both the <code>testName</code> and <code>suiteId</code>).</li>
-<li>Added a <code>recordedEvents</code> field to test completion events: <a href="@latestScaladoc/#org.scalatest.events.TestPending"><code>TestPending</code></a>,
+<li>Added a <code>recordedEvents</code> field to test completion events: <a href='@docUrl("org.scalatest.events.TestPending")'><code>TestPending</code></a>,
 <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.events.TestSucceeded"><code>TestSucceeded</code></a>,
 <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.events.TestFailed"><code>TestFailed</code></a>,
 and <a href="http://www.artima.com/docs-scalatest-2.0.M5b/#org.scalatest.events.TestCanceled"><code>TestCanceled</code></a>. Added sealed
@@ -306,14 +311,14 @@ a test has been received.</li>
 </p>
 
 <ul>
-<li>Added the <a href="@latestScaladoc/#org.scalatest.selenium.WebBrowser">ScalaTest Selenium DSL</a>.</li>
+<li>Added the <a href='@docUrl("org.scalatest.selenium.WebBrowser")'>ScalaTest Selenium DSL</a>.</li>
 <li>Added an HTML reporter. Here's an <a href="http://www.artima.com/html-scalatest-2.0.M5">example HTML report</a>.</li>
 <li>To make thread dumps more clear, gave useful names to ScalaTest threads: The main thread is now <code>ScalaTest-main</code>. The run thread is <code>ScalaTest-run</code>.
     The dispatcher thread is <code>ScalaTest-dispatcher</code>. Thread-pool threads for parallel execution are <code>ScalaTest-N</code>. And main or thread-pool threads running
     test suites are renamed to <code>ScalaTest-running-&lt;name of suite&gt;</code>, then changed back again once the suite has completed.</li>
-<li>Added trait <a href="@{latestScaladoc}/#org.scalatest.fixture.NoArg"><code>NoArg</code></a> to support a relatively rare use case motivated by Akka's TestKit.</li>
-<li>Added <a href="@{latestScaladoc}/#org.scalatest.tags.Slow"><code>Slow</code></a> tag for marking slow tests.</li>
-<li>Added trait <a href="@latestScaladoc/#org.scalautils.TimesOnInt"><code>TimesOnInt</code></a>, which allows you to repeatedly
+<li>Added trait <a href='@docUrl("org.scalatest.fixture.NoArg")'><code>NoArg</code></a> to support a relatively rare use case motivated by Akka's TestKit.</li>
+<li>Added <a href='@docUrl("org.scalatest.tags.Slow")'><code>Slow</code></a> tag for marking slow tests.</li>
+<li>Added trait <a href='@docUrl("org.scalautils.TimesOnInt")'><code>TimesOnInt</code></a>, which allows you to repeatedly
 execute a block of code an integer number of times via syntax such as, <code>3 times println</code>.</li>
 <li>Added <a href="http://www.scalautils.org/user_guide/OrAndEvery"><code>Or</code> and <code>Every</code></a> to ScalaUtils, allowing you to
 represent errors in production code as &ldquo;alternate return values&rdquo; (like Either) and to optionally accumulate errors.</li>
@@ -336,20 +341,20 @@ how to migrate your code if affected, see the <a href="/user_guide/migrating_to_
 <h2>New deprecations</h2>
 
 <ul>
-<li>Deprecated the <code>before</code>/<code>afterEach(TestData)</code> methods in <a href="@latestScaladoc/#org.scalatest.BeforeAndAfterEach"><code>BeforeAndAfterEach</code></a> in favor of <a href="@latestScaladoc/#org.scalatest.BeforeAndAfterEachTestData"><code>BeforeAndAfterEachTestData</code></a>.</li>
-<li>Deprecated <a href="@latestScaladoc/#org.scalatest.FailureOf"><code>FailureOf</code></a> in favor of <a href="@latestScaladoc/#org.scalatest.OutcomeOf"><code>OutcomeOf</code></a>.</li>
-<li>Deprecated <code>expect</code> and <code>expectResult</code> in <a href="@latestScaladoc/#org.scalatest.Assertions"><code>Assertions</code></a> in favor of <code>assertResult</code>.</li>
-<li>Deprecated the use of <a href="@latestScaladoc/#org.scalatest.Suite"><code>Suite</code></a> as a style trait in favor of newly added <a href="@latestScaladoc/#org.scalatest.Spec"><code>Spec</code></a>.</li>
+<li>Deprecated the <code>before</code>/<code>afterEach(TestData)</code> methods in <a href='@docUrl("org.scalatest.BeforeAndAfterEach")'><code>BeforeAndAfterEach</code></a> in favor of <a href='@docUrl("org.scalatest.BeforeAndAfterEachTestData")'><code>BeforeAndAfterEachTestData</code></a>.</li>
+<li>Deprecated <a href='@docUrl("org.scalatest.FailureOf")'><code>FailureOf</code></a> in favor of <a href='@docUrl("org.scalatest.OutcomeOf")'><code>OutcomeOf</code></a>.</li>
+<li>Deprecated <code>expect</code> and <code>expectResult</code> in <a href='@docUrl("org.scalatest.Assertions")'><code>Assertions</code></a> in favor of <code>assertResult</code>.</li>
+<li>Deprecated the use of <a href='@docUrl("org.scalatest.Suite")'><code>Suite</code></a> as a style trait in favor of newly added <a href='@docUrl("org.scalatest.Spec")'><code>Spec</code></a>.</li>
 <li>
 Deprecated the <code>assert</code> and <code>assume</code> methods whose <code>===</code> and <code>!==</code>
 operator return <code>Option[String]</code> in favor of <code>assert</code> and <code>assume</code> macros that return <code>Boolean</code>.
 </li>
-<li>Deprecated the <code>plusOrMinus</code> operator used with <a href="@latestScaladoc/#org.scalatest.Matchers"><code>Matchers</code></a> in
+<li>Deprecated the <code>plusOrMinus</code> operator used with <a href='@docUrl("org.scalatest.Matchers")'><code>Matchers</code></a> in
 favor of the <code>+-</code> symbol.</li>
 <li>
-Deprecated <a href="@latestScaladoc/#org.scalatest.matchers.ShouldMatchers"><code>ShouldMatchers</code></a>
-and <a href="@latestScaladoc/#org.scalatest.matchers.MustMatchers"><code>MustMatchers</code></a>, both members of package
-<code>org.scalatest.matchers</code>, have been deprecated in favor of <a href="@latestScaladoc/#org.scalatest.Matchers"><code>Matchers</code></a>,
+Deprecated <a href='@docUrl("org.scalatest.matchers.ShouldMatchers")'><code>ShouldMatchers</code></a>
+and <a href='@docUrl("org.scalatest.matchers.MustMatchers")'><code>MustMatchers</code></a>, both members of package
+<code>org.scalatest.matchers</code>, have been deprecated in favor of <a href='@docUrl("org.scalatest.Matchers")'><code>Matchers</code></a>,
 which resides in package <code>org.scalatest</code>. (<code>MustMatchers</code> was actually already deprecated in ScalaTest 1.9.2.)  For folks using
 <code>ShouldMatchers</code>, getting rid of the deprecation warning should be as simple as replacing <code>org.scalatest.matchers.ShouldMatchers</code> with
 <code>org.scalatest.Matchers</code>. For folks using <code>MustMatchers</code>, however, it will unfortnately be slightly more trouble, because the new
@@ -363,22 +368,22 @@ are mixing in trait <code>org.scalatest.matchers.MustMatchers</code>, you can in
 </li>
 <li>
 Deprecated the <code>beforeAll</code> and <code>afterAll</code> methods of trait
-<a href="@latestScaladoc/#org.scalatest.BeforeAndAfterAll"><code>BeforeAndAfterAll</code></a> that take a config map
-in favor of newly added <a href="@latestScaladoc/#org.scalatest.BeforeAndAfterAllConfigMap"><code>BeforeAndAfterAllConfigMap</code></a>.
+<a href='@docUrl("org.scalatest.BeforeAndAfterAll")'><code>BeforeAndAfterAll</code></a> that take a config map
+in favor of newly added <a href='@docUrl("org.scalatest.BeforeAndAfterAllConfigMap")'><code>BeforeAndAfterAllConfigMap</code></a>.
 </li>
 <li>Deprecated <code>given</code>/<code>when</code>/<code>then</code>/<code>and</code> methods of trait
-<a href="@latestScaladoc/#org.scalatest.GivenWhenThen"><code>GivenWhenThen</code></a> in favor of capitalized forms,
+<a href='@docUrl("org.scalatest.GivenWhenThen")'><code>GivenWhenThen</code></a> in favor of capitalized forms,
 <code>Given</code>/<code>When</code>/<code>Then</code>/<code>And</code>, because <code>then</code> has been deprecated as an identifier in Scala 2.10.
 </li>
-<li>Deprecated the two previously existing <code>apply</code> methods on <a href="@latestScaladoc/#org.scalatest.Filter"><code>Filter</code></a>, and added
+<li>Deprecated the two previously existing <code>apply</code> methods on <a href='@docUrl("org.scalatest.Filter")'><code>Filter</code></a>, and added
 two new ones that take an additional <code>suiteId</code> parameter.</li>
 </li>
-<li>Deprecated trait <a href="@latestScaladoc/#org.scalatest.AbstractSuite"><code>AbstractSuite</code></a>
-in favor of newly added trait <a href="@latestScaladoc/#org.scalatest.SuiteMixin"><code>SuiteMixin</code></a>, to serve as the new base class
+<li>Deprecated trait <a href='@docUrl("org.scalatest.AbstractSuite")'><code>AbstractSuite</code></a>
+in favor of newly added trait <a href='@docUrl("org.scalatest.SuiteMixin")'><code>SuiteMixin</code></a>, to serve as the new base class
 for stackable traits that can be mixed into <code>Suite</code>.</li>
 <li>
-Deprecated the <code>apply</code> method on <a href="@latestScaladoc/#org.scalatest.Distributor"><code>Distributor</code></a> in favor of a newly added
-overloaded <code>apply</code> method that takes a <a href="@latestScaladoc/#org.scalatest.Args"><code>Args</code></a>.
+Deprecated the <code>apply</code> method on <a href='@docUrl("org.scalatest.Distributor")'><code>Distributor</code></a> in favor of a newly added
+overloaded <code>apply</code> method that takes a <a href='@docUrl("org.scalatest.Args")'><code>Args</code></a>.
 During the deprecation period, the old form will call the new form with default args. The purpose of this change was to make more information available
 to <code>Distributor</code> implementations.</li>
 </ul>
@@ -393,9 +398,9 @@ of <code>BeforeAndAfterAllFunctions</code>.</li>
 <li>Removed <code>MultipleFixtureFeatureSpec</code>, <code>MultipleFixtureFlatSpec</code>, <code>MultipleFixtureFreeSpec</code>,
 <code>MultipleFixtureFunSuite</code>, <code>MultipleFixturePropSpec</code>, <code>MultipleFixtureSpec</code>, and <code>MultipleFixtureWordSpec</code>, which had been
 deprecated since ScalaTest 1.6.1. If you haven't done so already, you'll need to mix in
-<a href="@latestScaladoc/#org.scalatest.ConfigMapFixture"><code>ConfigMapFixture</code></a> to a <code>fixture.X</code> trait instead.</li>
+<a href='@docUrl("org.scalatest.ConfigMapFixture")'><code>ConfigMapFixture</code></a> to a <code>fixture.X</code> trait instead.</li>
 <li>Removed <code>org.scalatest.SuperSuite</code>, which had been deprecated since ScalaTest 1.5. Please use
-<a href="@latestScaladoc/#org.scalatest.Suites"><code>Suites</code></a>  instead.</li>
+<a href='@docUrl("org.scalatest.Suites")'><code>Suites</code></a>  instead.</li>
 <li>Removed the deprecated implicit conversion in the <code>Stopper</code> companion object that converted a <code>Stopper</code> to function
 type <code>() =&gt; Boolean</code>. This
 implicit conversion was added when the inheritance relationship between <code>Stopper</code> and <code>Function0[Boolean]</code> was severed to make
