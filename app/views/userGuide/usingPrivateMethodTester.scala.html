@@ -14,14 +14,14 @@
  * limitations under the License.
  *@
 
-@import controllers.Application.latestScaladoc
+@import controllers.Application.scaladocsPageUrl
 
 @userGuidePage("Using Private Method Tester") {
 <div style="text-align: left">
 
 <h1>Using <code>PrivateMethodTester</code></h1>
 
-<p>ScalaTest's <a href="@latestScaladoc/#org.scalatest.PrivateMethodTester"><code>PrivateMethodTester</code></a> trait facilitates the testing of private methods.</p><p>To test a private method, mix in trait <code>PrivateMethodTester</code> and
+<p>ScalaTest's <a href='@scaladocsPageUrl("org.scalatest.PrivateMethodTester")'><code>PrivateMethodTester</code></a> trait facilitates the testing of private methods.</p><p>To test a private method, mix in trait <code>PrivateMethodTester</code> and
 create a <code>PrivateMethod</code> object, like this:</p><p><pre class="stHighlighted">
 <span class="stReserved">val</span> decorateToStringValue = <span class="stType">PrivateMethod[String]</span>(<span class="stQuotedString">'decorateToStringValue</span>)
 </pre></p><p>The type parameter on <code>PrivateMethod</code>, in this case <code>String</code>, is the result type of the private method
