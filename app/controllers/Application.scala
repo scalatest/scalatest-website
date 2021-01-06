@@ -168,6 +168,10 @@ object Application {
   val latestPlusMockitoDoc = "plus-mockito-3.4/3.2.2.0"
 
   def scaladocsPageUrl(file: String, version: String = latestVersion): String = {
-    s"$scaladocsLocation/$version/index.html#$file"
+    val oldScaladocStyle30Releases = List("3.0.0", "3.0.1", "3.0.2", "3.0.3", "3.0.4")
+    if (version.startsWith("1.") || version.startsWith("2.") || oldScaladocStyle30Releases.contains(version))
+      s"$scaladocsLocation/$version/index.html#$file"
+    else
+      s"$scaladocsLocation/$version/${file.replaceAll("\\.", "/")}/index.html"
   }
 }
