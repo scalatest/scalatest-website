@@ -172,7 +172,7 @@ object Application {
     val filePath = if (version.startsWith("1.") || version.startsWith("2.") || oldScaladocStyle30Releases.contains(version)) {
       s"$version/index.html#$file"
     } else
-      s"$version/${file.replaceAll("\\.", "/")}/index.html"
+      s"$version/${file.replaceAll("\\.", "/")}.html"
 
     routes.Assets.at("/public/scaladoc", filePath).toString
   }
