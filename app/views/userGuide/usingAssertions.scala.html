@@ -14,7 +14,7 @@
  * limitations under the License.
  *@
 
-@import controllers.Application.latestScaladoc
+@import controllers.Application.scaladocsPageUrl
 @import controllers.Application.latestScalacticScaladoc
 
 @userGuidePage("Using assertions") {
@@ -38,8 +38,8 @@ you can switch to the more expressive <a href="/user_guide/using_matchers">match
 </p>
 
 <p>
-ScalaTest's assertions are defined in trait <a href="@latestScaladoc/#org.scalatest.Assertions"><code>Assertions</code></a>, which is
-extended by <a href="@latestScaladoc/#org.scalatest.Suite"><code>Suite</code></a>, the supertrait to
+ScalaTest's assertions are defined in trait <a href='@scaladocsPageUrl("org.scalatest.Assertions")'><code>Assertions</code></a>, which is
+extended by <a href='@scaladocsPageUrl("org.scalatest.Suite")'><code>Suite</code></a>, the supertrait to
 all style traits. Trait <code>Assertions</code> also provides:
 </p>
 
@@ -71,7 +71,7 @@ Scala's <code>assert</code> will complete abruptly with an <code>AssertionError<
 the <code>assert</code> method defined in object <code>Predef</code>, whose members are implicitly imported into every
 Scala source file. This <code>Assertions</code> trait defines another <code>assert</code> method that hides the
 one in <code>Predef</code>. It behaves the same, except that if <code>false</code> is passed it throws
-<a href="@latestScaladoc/#org.scalatest.exceptions.TestFailedException"><code>TestFailedException</code></a> instead of <code>AssertionError</code>.
+<a href='@scaladocsPageUrl("org.scalatest.exceptions.TestFailedException")'><code>TestFailedException</code></a> instead of <code>AssertionError</code>.
 Why? Because unlike <code>AssertionError</code>, <code>TestFailedException</code> carries information about exactly
 which item in the stack trace represents
 the line of test code that failed, which can help users more quickly find an offending line of code in a failing test.
@@ -202,7 +202,7 @@ the test, like this:</p><p><pre class="stHighlighted">
 assume(database.isAvailable)
 </pre></p><p>For each overloaded <code>assert</code> method, trait <code>Assertions</code> provides an
 overloaded <code>assume</code> method with an identical signature and behavior, except the
-<code>assume</code> methods throw <a href="@latestScaladoc/#org.scalatest.exceptions.TestCanceledException"><code>TestCanceledException</code></a> whereas the
+<code>assume</code> methods throw <a href='@scaladocsPageUrl("org.scalatest.exceptions.TestCanceledException")'><code>TestCanceledException</code></a> whereas the
 <code>assert</code> methods throw <code>TestFailedException</code>. As with <code>assert</code>,
 <code>assume</code> hides a Scala method in <code>Predef</code> that performs a similar
 function, but throws <code>AssertionError</code>. And just as you can with <code>assert</code>,
@@ -238,9 +238,9 @@ withClue(<span class="stQuotedString">"this is a clue"</span>) {
 }
 </pre></p><p>The <code>withClue</code> method will only prepend the clue string to the detail
 message of exception types that mix in the <code>ModifiableMessage</code> trait.
-See the documentation for <a href="@latestScaladoc/#org.scalatest.exceptions.ModifiableMessage"><code>ModifiableMessage</code></a> for more information.
+See the documentation for <a href='@scaladocsPageUrl("org.scalatest.exceptions.ModifiableMessage")'><code>ModifiableMessage</code></a> for more information.
 If you wish to place a clue string after a block of code, see the documentation for
-<a href="@latestScaladoc/#org.scalatest.AppendedClues"><code>AppendedClues</code></a>.</p>
+<a href='@scaladocsPageUrl("org.scalatest.AppendedClues")'><code>AppendedClues</code></a>.</p>
 
 <p>
 Next, learn about <a href="tagging_your_tests">tagging your tests</a>.
