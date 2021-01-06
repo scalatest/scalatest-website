@@ -169,9 +169,11 @@ object Application {
 
   def scaladocsPageUrl(file: String, version: String = latestVersion): String = {
     val oldScaladocStyle30Releases = List("3.0.0", "3.0.1", "3.0.2", "3.0.3", "3.0.4")
-    if (version.startsWith("1.") || version.startsWith("2.") || oldScaladocStyle30Releases.contains(version))
-      s"$scaladocsLocation/$version/index.html#$file"
-    else
-      s"$scaladocsLocation/$version/${file.replaceAll("\\.", "/")}/index.html"
+    val filePath = if (version.startsWith("1.") || version.startsWith("2.") || oldScaladocStyle30Releases.contains(version)) {
+      s"$version/index.html#$file"
+    } else
+      s"$version/${file.replaceAll("\\.", "/")}/index.html"
+
+    routes.Assets.at("/public/scaladoc", filePath).toString
   }
 }
