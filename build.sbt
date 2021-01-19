@@ -2,7 +2,7 @@
 
 lazy val root = (project in file(".")).settings(
   name := "scalatest-website",
-  version := "scalatest-201027-ecr",
+  version := "scalatest-210119-ecr",
   scalaVersion := "2.13.2",
   libraryDependencies ++= Seq(
     "org.scalatestplus.play" %% "scalatestplus-play" % "4.0.3"
@@ -11,6 +11,11 @@ lazy val root = (project in file(".")).settings(
   packageName in Docker := "artima/scalatest-website", 
   maintainer in Docker := "Artima Inc.", 
   dockerExposedPorts ++= Seq(9000), 
-  dockerUpdateLatest := true
+  dockerUpdateLatest := true, 
+  javaOptions in Universal ++= Seq(
+    // -J params will be added as jvm parameters
+    "-J-Xmx256m",
+    "-J-Xms128m"
+  )
   //classLoaderLayeringStrategy := ClassLoaderLayeringStrategy.Flat  // Added in sbt 1.3 (https://www.scala-sbt.org/1.x/docs/sbt-1.3-Release-Notes.html), but still not working, so we fall back to sbt 1.2.
 ).enablePlugins(PlayScala, JavaServerAppPackaging, DockerPlugin)
