@@ -53,7 +53,7 @@ for each. But first, here's a table summarizing the options:</p>
     <a href="#getFixtureMethods">get-fixture methods</a>
   </td>
   <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">
-    The <em>extract method</em> refactor helps you create a fresh instances of mutable fixture objects in each test
+    The <em>extract method</em> refactor helps you create fresh instances of mutable fixture objects in each test
     that needs them, but doesn't help you clean them up when you're done.
   </td>
 </tr></p>
@@ -74,7 +74,7 @@ for each. But first, here's a table summarizing the options:</p>
     <a href="#loanFixtureMethods">loan-fixture methods</a>
   </td>
   <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">
-    Factor out dupicate code with the <em>loan pattern</em> when different tests need different fixtures <em>that must be cleaned up afterwards</em>.
+    Factor out duplicate code with the <em>loan pattern</em> when different tests need different fixtures <em>that must be cleaned up afterwards</em>.
   </td>
 </tr></p>
 
@@ -543,7 +543,7 @@ factored out into two <em>stackable fixture traits</em> named <code>Builder</cod
 }
 </pre></p>
 
-<p>By mixing in both the <code>Builder</code> and <code>Buffer</code> traits, <code>ExampleSuite</code> gets both fixtures, which will be
+<p>By mixing in both the <code>Builder</code> and <code>Buffer</code> traits, <code>ExampleSpec</code> gets both fixtures, which will be
 initialized before each test and cleaned up after. The order the traits are mixed together determines the order of execution.
 In this case, <code>Builder</code> is &ldquo;super&rdquo; to <code>Buffer</code>. If you wanted <code>Buffer</code> to be &ldquo;super&rdquo;
 to <code>Builder</code>, you need only switch the order you mix them together, like this:</p>
