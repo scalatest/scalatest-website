@@ -549,13 +549,13 @@ In this case, <code>Builder</code> is &ldquo;super&rdquo; to <code>Buffer</code>
 to <code>Builder</code>, you need only switch the order you mix them together, like this:</p>
 
 <p><pre class="stHighlighted">
-<span class="stReserved">class</span> <span class="stType">Example2Suite</span> <span class="stReserved">extends</span> <span class="stType">Suite</span> <span class="stReserved">with</span> <span class="stType">Buffer</span> <span class="stReserved">with</span> <span class="stType">Builder</span>
+<span class="stReserved">class</span> <span class="stType">Example2Spec</span> <span class="stReserved">extends</span> <span class="stType">Suite</span> <span class="stReserved">with</span> <span class="stType">Buffer</span> <span class="stReserved">with</span> <span class="stType">Builder</span>
 </pre></p>
 
 <p>And if you only need one fixture you mix in only that trait:</p>
 
 <p><pre class="stHighlighted">
-<span class="stReserved">class</span> <span class="stType">Example3Suite</span> <span class="stReserved">extends</span> <span class="stType">Suite</span> <span class="stReserved">with</span> <span class="stType">Builder</span>
+<span class="stReserved">class</span> <span class="stType">Example3Spec</span> <span class="stReserved">extends</span> <span class="stType">Suite</span> <span class="stReserved">with</span> <span class="stType">Builder</span>
 </pre></p>
 
 <p>Another way to create stackable fixture traits is by extending the <a href='@scaladocsPageUrl("org.scalatest.BeforeAndAfterEach")'><code>BeforeAndAfterEach</code></a>
