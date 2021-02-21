@@ -14,7 +14,7 @@
  * limitations under the License.
  *@
 
-@import controllers.Application.latestScaladoc
+@import controllers.Application.scaladocsPageUrl
 @import controllers.Application.latestVersion
 @import controllers.Application.latestSuperSafeVersion
 @import controllers.Application.latestJar
@@ -28,7 +28,10 @@
 <h1>ScalaTest quick start</h1>
 
 <p>
-To get started with ScalaTest, copy this <a href="@latestScaladoc/org/scalatest/flatspec/AnyFlatSpec.html"><code>AnyFlatSpec</code></a> into a file
+<!--
+To get started with ScalaTest, copy this <a href="ATlatestScaladoc/org/scalatest/flatspec/AnyFlatSpec.html"><code>AnyFlatSpec</code></a> into a file
+-->
+To get started with ScalaTest, copy this <a href='@scaladocsPageUrl("org.scalatest.flatspec.AnyFlatSpec", "3.2.2")'><code>AnyFlatSpec</code></a> into a file
 named <code>ExampleSpec.scala</code>:
 </p>
 
