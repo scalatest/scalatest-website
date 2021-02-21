@@ -148,7 +148,7 @@ object Application {
   val latestJar = "https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest-app_2.13/3.2.5/scalatest-app_2.13-3.2.5.jar"
   val milestoneScaladoc = "http://www.artima.com/docs-scalatest-3.2.0-RC3"
   val milestoneScalacticScaladoc = "http://www.artima.com/docs-scalactic-3.2.0-RC3"
-  val scaladocsLocation = "http://doc.scalatest.org"
+  val scaladocsLocation = "https://www.scalatest.org/scaladoc"
   val releasesLocation = "http://www.artima.com/downloadScalaTest"
   val baseScalaVersion = "2.13.4"
   val majorMinorScalaVersion = "2.13"
@@ -166,4 +166,14 @@ object Application {
   val latestPlusEasyMockDoc = "plus-easymock-3.2/3.2.2.0"
   val latestPlusJMockDoc = "plus-jmock-2.8/3.2.2.0"
   val latestPlusMockitoDoc = "plus-mockito-3.4/3.2.2.0"
+
+  def scaladocsPageUrl(file: String, version: String = latestVersion): String = {
+    val oldScaladocStyle30Releases = List("3.0.0", "3.0.1", "3.0.2", "3.0.3", "3.0.4")
+    val filePath = if (version.startsWith("1.") || version.startsWith("2.") || oldScaladocStyle30Releases.contains(version)) {
+      s"$version/index.html#$file"
+    } else
+      s"$version/${file.replaceAll("\\.", "/")}.html"
+
+    routes.Assets.at("/public/scaladoc", filePath).toString
+  }
 }
