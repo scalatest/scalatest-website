@@ -137,7 +137,7 @@ assertResult(<span class="stLiteral">2</span>) {
 the detail message in the <code>TestFailedException</code> will read, &quot;Expected 2, but got 3.&quot;</p><p><a name="forcingFailures"></a></p><h4> Forcing failures </h4><p>If you just need the test to fail, you can write:</p><p><pre class="stHighlighted">
 fail()
 </pre></p><p>Or, if you want the test to fail with a message, write:</p><p><pre class="stHighlighted">
-fail(<span class="stQuotedString">"I've got a bad feeling about this"</span>)
+fail(<span class="stQuotedString">"I've got a bad feeling about this."</span>)
 </pre></p><p><a name="achievingSuccess"></a></p><h4> Achieving success </h4><p>In async style tests, you must end your test body with either <code>Future[Assertion]</code> or
 <code>Assertion</code>. ScalaTest's assertions (including matcher expressions) have result type
 <code>Assertion</code>, so ending with an assertion will satisfy the compiler.
