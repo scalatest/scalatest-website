@@ -282,7 +282,7 @@ default values and meanings are described in the following table:
 minSuccessful
 </td>
 <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
-100
+10
 </td>
 <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">
 the minimum number of successful property evaluations required for the property to pass
@@ -293,7 +293,7 @@ the minimum number of successful property evaluations required for the property 
 maxDiscarded
 </td>
 <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
-500
+50
 </td>
 <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">
 the maximum number of discarded property evaluations allowed during a property check
@@ -335,7 +335,7 @@ specifies the number of worker threads to use during property evaluation
 </table>
 
 <p>
-The <code>forAll</code> methods of trait <code>GeneratorDrivenPropertyChecks</code> each take a <code>PropertyCheckConfig</code>
+The <code>forAll</code> methods of trait <code>GeneratorDrivenPropertyChecks</code> each take a <code>PropertyCheckConfiguration</code>
 object as an implicit parameter. This object provides values for each of the five configuration parameters. Trait <code>Configuration</code>
 provides an implicit <code>val</code> named <code>generatorDrivenConfig</code> with each configuration parameter set to its default value. 
 If you want to set one or more configuration parameters to a different value for all property checks in a suite you can override this
@@ -346,7 +346,7 @@ you want all parameters at their defaults except for <code>minSize</code> and <c
 
 <pre class="stHighlighted">
 <span class="stReserved">implicit</span> <span class="stReserved">override</span> <span class="stReserved">val</span> generatorDrivenConfig =
-  <span class="stType">PropertyCheckConfig</span>(minSize = <span class="stLiteral">10</span>, maxSize = <span class="stLiteral">20</span>)
+  <span class="stType">PropertyCheckConfiguration</span>(minSize = <span class="stLiteral">10</span>, maxSize = <span class="stLiteral">20</span>)
 </pre>
 
 <p>
@@ -355,13 +355,13 @@ Or, if hide it by declaring a variable of the same name in whatever scope you wa
 
 <pre class="stHighlighted">
 <span class="stReserved">implicit</span> <span class="stReserved">val</span> generatorDrivenConfig =
-  <span class="stType">PropertyCheckConfig</span>(minSize = <span class="stLiteral">10</span>, maxSize = <span class="stLiteral">20</span>)
+  <span class="stType">PropertyCheckConfiguration</span>(minSize = <span class="stLiteral">10</span>, maxSize = <span class="stLiteral">20</span>)
 </pre>
 
 <p>
-In addition to taking a <code>PropertyCheckConfig</code> object as an implicit parameter, the <code>forAll</code> methods of trait
+In addition to taking a <code>PropertyCheckConfiguration</code> object as an implicit parameter, the <code>forAll</code> methods of trait
 <code>GeneratorDrivenPropertyChecks</code> also take a variable length argument list of <code>PropertyCheckConfigParam</code>
-objects that you can use to override the values provided by the implicit <code>PropertyCheckConfig</code> for a single <code>forAll</code>
+objects that you can use to override the values provided by the implicit <code>PropertyCheckConfiguration</code> for a single <code>forAll</code>
 invocation. For example, if you want to set <code>minSuccessful</code> to 500 for just one particular <code>forAll</code> invocation,
 you can do so like this:
 </p>
@@ -372,7 +372,7 @@ forAll (minSuccessful(<span class="stLiteral">500</span>)) &#123; (n: <span clas
 
 <p>
 This invocation of <code>forAll</code> will use 500 for <code>minSuccessful</code> and whatever values are specified by the 
-implicitly passed <code>PropertyCheckConfig</code> object for the other configuration parameters.
+implicitly passed <code>PropertyCheckConfiguration</code> object for the other configuration parameters.
 If you want to set multiple configuration parameters in this way, just list them separated by commas:
 </p>
 

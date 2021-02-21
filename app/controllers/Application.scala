@@ -139,18 +139,18 @@ class Application extends Controller {
 
 object Application {
 
-  val latestScaladoc =          "http://doc.scalatest.org/3.2.0"
-  val latestScalacticScaladoc = "http://doc.scalactic.org/3.2.0"
-  val latestVersion = "3.2.3"
-  val latestSuperSafeVersion = "1.1.11"
+  val latestScaladoc =          "https://www.scalatest.org/scaladoc/3.2.3"
+  val latestScalacticScaladoc = "http://www.scalactic.org/scaladoc/3.2.3"
+  val latestVersion = "3.2.5"
+  val latestSuperSafeVersion = "1.1.10"
   val milestoneVersion = "3.2.0"
   val milestoneJar = "https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest_2.11/3.2.0-RC3/scalatest_2.11-3.2.0-RC3.jar"
-  val latestJar = "https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest-app_2.13/3.2.0/scalatest-app_2.13-3.2.0.jar"
+  val latestJar = "https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest-app_2.13/3.2.5/scalatest-app_2.13-3.2.5.jar"
   val milestoneScaladoc = "http://www.artima.com/docs-scalatest-3.2.0-RC3"
   val milestoneScalacticScaladoc = "http://www.artima.com/docs-scalactic-3.2.0-RC3"
-  val scaladocsLocation = "http://doc.scalatest.org"
+  val scaladocsLocation = "https://www.scalatest.org/scaladoc"
   val releasesLocation = "http://www.artima.com/downloadScalaTest"
-  val baseScalaVersion = "2.13.3"
+  val baseScalaVersion = "2.13.4"
   val majorMinorScalaVersion = "2.13"
   val latestScaladocFor192 = "http://doc.scalatest.org/1.9.2"
   val latestSeleniumVersion = "3-141"
@@ -159,11 +159,21 @@ object Application {
   val latestJUnitVersion = "4-13"
   val latestMockitoVersion = "3-4"
   val latestScalaCheckVersion = "1-15"
-  val latestScalaCheckPlusVersion = "3.2.3.0"
+  val latestScalaCheckPlusVersion = "3.2.5.0"
   val latestTestNGVersion = "6-7"  
   val quickStartXmlJar = "https://repo1.maven.org/maven2/org/scala-lang/modules/scala-xml_2.13/1.2.0/scala-xml_2.13-1.2.0.jar"
-  val latestPlusScalaCheckDoc = "plus-scalacheck-1.15/3.2.3.0"
-  val latestPlusEasyMockDoc = "plus-easymock-3.2/3.2.3.0"
-  val latestPlusJMockDoc = "plus-jmock-2.8/3.2.3.0"
-  val latestPlusMockitoDoc = "plus-mockito-3.4/3.2.3.0"
+  val latestPlusScalaCheckDoc = "plus-scalacheck-1.15/3.2.5.0"
+  val latestPlusEasyMockDoc = "plus-easymock-3.2/3.2.5.0"
+  val latestPlusJMockDoc = "plus-jmock-2.8/3.2.5.0"
+  val latestPlusMockitoDoc = "plus-mockito-3.4/3.2.5.0"
+
+  def scaladocsPageUrl(file: String, version: String = latestVersion): String = {
+    val oldScaladocStyle30Releases = List("3.0.0", "3.0.1", "3.0.2", "3.0.3", "3.0.4")
+    val filePath = if (version.startsWith("1.") || version.startsWith("2.") || oldScaladocStyle30Releases.contains(version)) {
+      s"$version/index.html#$file"
+    } else
+      s"$version/${file.replaceAll("\\.", "/")}.html"
+
+    routes.Assets.at("/public/scaladoc", filePath).toString
+  }
 }

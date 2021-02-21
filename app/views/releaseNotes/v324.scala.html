@@ -17,16 +17,18 @@
 @import controllers.Application.latestScaladoc
 @import controllers.Application.milestoneScaladoc
 
-@combinedReleaseNotesPage("Scalactic/ScalaTest 3.2.3 Release Notes") {
+@combinedReleaseNotesPage("Scalactic/ScalaTest 3.2.4 Release Notes") {
     <div style="text-align: left">
 
-        <h1>ScalaTest/Scalactic 3.2.3 Release Notes</h1>
+        <h1>ScalaTest/Scalactic 3.2.4 Release Notes</h1>
 
         <p>
-            ScalaTest/Scalactic 3.2.3 (for Scala 2.10, 2.11, 2.12, and 2.13; on the JVM, JavaScript, native, and Dotty)
+            ScalaTest/Scalactic 3.2.4 (for Scala 2.10, 2.11, 2.12, 2.13, and 3.0.0-RC1; on the JVM, JavaScript, and native)
             includes the enhancements and bug fixes listed below.
-            No source code using ScalaTest/Scalactic 3.2.2 should break, and
-            this release is binary compatible with 3.2.2.
+        <p>
+        </p>
+            <strong>Although this release is binary compatible with 3.2.3, we unfortunately let one source-breaking change
+            related to <code>futureValue</code> needing empty parens slip in, so we recommend you upgrade to <a href="@routes.ReleaseNotes.v325">3.2.5</a> instead.</strong>
         </p>
 
         <p>
@@ -48,29 +50,29 @@
 	<hr></hr>
 
         <p>
-        ScalaTest 3.2.3 is a minor release of ScalaTest that makes a few changes, and supports Scala.js 1.3.0 and Dotty/Scala 3.0.0-M1.
+        ScalaTest 3.2.4 is a minor release of ScalaTest that makes a few changes, and supports Scala.js 1.3.0 and Scala 3.0.0-RC1.
         </p>
 
         <a name="scalatest_bugfixes"></a>
         <h2>Bug Fixes</h2>
 
-        <ul>
-            <li>Fixed <code>NotSerializableException</code> when <code>TryValues</code> or <code>EitherValues</code> raise assertion failure. (<a href="https://github.com/scalatest/scalatest/pull/1884">PR#1884</a>)</li>
-        </ul>
+        <p>ScalaTest 3.2.4 contains no bug fixes.</p>
 
         <a name="scalatest_improvements"></a>
         <h2>Improvements</h2>
 
         <ul>
-            <li>Bumped sbt-osgi version to 0.9.6, for JDK 15 compat (<a href="https://github.com/scalatest/scalatest/pull/1899">PR#1899</a>)</li>
-            <li>Updated to use Scala-js 1.3.0. (<a href="https://github.com/scalatest/scalatest/pull/1911">PR#1911</a>)</li>
-            <li>Updated to use Scala/Dotty 1.0.0-M1. (<a href="https://github.com/scalatest/scalatest/pull/1919">PR#1919</a>)</li>
+            <li>Improved support for Scala 3.</li>
+            <li>Upgraded to Scala 3.0.0-RC1.</li>
+            <li>Upgraded to use Scala 2.13.4</li>
+            <li>Upgraded to use Scala Native 0.4.0</li>
+            <li>Changed to use String's <code>.linesIterator</code> in <code>NumericString</code>.</li>
         </ul>
 
         <a name="scalatest_deprecations"></a>
         <h2>Deprecations</h2>
 
-        <p>ScalaTest 3.2.3 contains no new deprecations.</p>
+        <p>ScalaTest 3.2.4 contains no new deprecations.</p>
 
         <br/>
 
@@ -90,15 +92,13 @@
         <h2>Improvements</h2>
 
         <ul>
-            <li>Bump sbt-osgi version to 0.9.6, for JDK 15 compat. (<a href="https://github.com/scalatest/scalatest/pull/1899">PR#1899</a>)</li>
-            <li>Updated to use Scala-js 1.3.0. (<a href="https://github.com/scalatest/scalatest/pull/1911">PR#1911</a>)</li>
-            <li>Updated to use Scala/Dotty 3.0.0-M1. (<a href="https://github.com/scalatest/scalatest/pull/1919">PR#1919</a>)</li>
+            <li>Updated Dotty support Scala 3.0.0-RC1.</li>
         </ul>
 
         <a name="scalatest_deprecations"></a>
         <h2>Deprecations</h2>
 
-        <p>Scalactic 3.2.3 contains no new deprecations.</p>
+        <p>Scalactic 3.2.4 contains no new deprecations.</p>
 
         <br/>
 
@@ -107,13 +107,19 @@
 
         <h2>ScalaTest/Scalactic Contributors</h2>
 
-        Thanks to the contributors for the ScalaTest/Scalactic 3.2.3 release:
+        Thanks to the contributors for the ScalaTest/Scalactic 3.2.4 release:
 
         <ul>
-            <li><a href="https://github.com/seblm">Sébastian Le Merdy</a></li>
-            <li><a href="https://github.com/SethTisue">Seth Tisue</a></li>
-            <li><a href="https://github.com/cheeseng">Chua Chee Seng</a></li>
-            <li><a href="https://github.com/bvenners">Bill Venners</a></li>
+
+            <li><a href="https://github.com/catap">Kirill A. Korinsky</li>
+            <li><a href="https://github.com/smarter">Guillaume Martres</li>
+            <li><a href="https://github.com/nicolasstucki">Nicolas Stucki</li>
+            <li><a href="https://github.com/liufengyun">Fengyun Liu</li>
+            <li><a href="https://github.com/SethTisue">Seth Tisue</li>
+            <li><a href="https://github.com/sideeffffect">Ondra Pelech</li>
+            <li><a href="https://github.com/cheeseng">Chua Chee Seng</li>
+            <li><a href="https://github.com/bvenners">Bill Venners</li>
+
         </ul>
 
         <br/>
@@ -124,7 +130,7 @@
 
         <p>
             Visit <a href="@routes.ReleaseNotes.releaseNotesIndex">ScalaTest Release Notes</a> for links to the release notes of all previous versions, or
-            step back in time by visiting the <a href="@routes.ReleaseNotes.v322">release notes for the previous version</a>.
+            step back in time by visiting the <a href="@routes.ReleaseNotes.v323">release notes for the previous version</a>.
         </p>
 
     </div>

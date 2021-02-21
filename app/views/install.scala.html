@@ -19,6 +19,7 @@
 @import controllers.Application.majorMinorScalaVersion
 @import controllers.Application.baseScalaVersion
 @import controllers.Application.latestVersion
+@import controllers.Application.scaladocsPageUrl
 
 @nonHomePage("Install") {
 
@@ -31,7 +32,7 @@
 
 <ul>
 <li><a href="/release_notes/@{latestVersion}">Combined @{latestVersion} Release Notes</a></li>
-<li><a href="@routes.Assets.at("/public/scaladoc", "3.2.0/org/scalatest/flatspec/AnyFlatSpec.html")">ScalaTest @{latestVersion} Scaladoc</a></li>
+<li><a href='@scaladocsPageUrl("org.scalatest.flatspec.AnyFlatSpec")'>ScalaTest @{latestVersion} Scaladoc</a></li>
 <li><a href="https://www.scalactic.org/scaladoc/@{latestVersion}/index.html">Scalactic @{latestVersion} Scaladoc</a></li>
 </ul>
 
