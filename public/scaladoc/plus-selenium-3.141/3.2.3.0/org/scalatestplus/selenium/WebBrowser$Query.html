@@ -1,0 +1,655 @@
+<!DOCTYPE html ><html><head><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/><title>ScalaTest + Selenium 3.2.3.0  - org.scalatestplus.selenium.WebBrowser.Query</title><meta content="ScalaTest Selenium 3.2.3.0 - org.scalatestplus.selenium.WebBrowser.Query" name="description"/><meta content="ScalaTest Selenium 3.2.3.0 org.scalatestplus.selenium.WebBrowser.Query" name="keywords"/><meta http-equiv="content-type" content="text/html; charset=UTF-8"/><link href="../../../lib/index.css" media="screen" type="text/css" rel="stylesheet"/><link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet"/><link href="../../../lib/print.css" media="print" type="text/css" rel="stylesheet"/><link href="../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css"/><script type="text/javascript" src="../../../lib/jquery.min.js"></script><script type="text/javascript" src="../../../lib/index.js"></script><script type="text/javascript" src="../../../index.js"></script><script type="text/javascript" src="../../../lib/scheduler.js"></script><script type="text/javascript" src="../../../lib/template.js"></script><script type="text/javascript">/* this variable can be used by the JS to determine the path to the root document */
+var toRoot = '../../../';</script></head><body><div id="search"><span id="doc-title">ScalaTest + Selenium 3.2.3.0<span id="doc-version"></span></span> <span class="close-results"><span class="left">&lt;</span> Back</span><div id="textfilter"><span class="input"><input autocapitalize="none" placeholder="Search" id="index-input" type="text" accesskey="/"/><i class="clear material-icons"></i><i id="search-icon" class="material-icons"></i></span></div></div><div id="search-results"><div id="search-progress"><div id="progress-fill"></div></div><div id="results-content"><div id="entity-results"></div><div id="member-results"></div></div></div><div id="content-scroll-container" style="-webkit-overflow-scrolling: touch;"><div id="content-container" style="-webkit-overflow-scrolling: touch;"><div id="subpackage-spacer"><div id="packages"><h1>Packages</h1><ul><li class="indented0 " name="_root_.root" group="Ungrouped" fullComment="yes" data-isabs="false" visbl="pub"><a id="_root_"></a><a id="root:_root_"></a> <span class="permalink"><a href="../../../index.html" title="Permalink"><i class="material-icons"></i></a></span> <span class="modifier_kind"><span class="modifier"></span> <span class="kind">package</span></span> <span class="symbol"><a href="../../../index.html" title=""><span class="name">root</span></a></span><div class="fullcomment"><dl class="attributes block"><dt>Definition Classes</dt><dd><a href="../../../index.html" name="_root_" id="_root_" class="extype">root</a></dd></dl></div></li><li class="indented1 " name="_root_.org" group="Ungrouped" fullComment="yes" data-isabs="false" visbl="pub"><a id="org"></a><a id="org:org"></a> <span class="permalink"><a href="../../../org/index.html" title="Permalink"><i class="material-icons"></i></a></span> <span class="modifier_kind"><span class="modifier"></span> <span class="kind">package</span></span> <span class="symbol"><a href="../../index.html" title=""><span class="name">org</span></a></span><div class="fullcomment"><dl class="attributes block"><dt>Definition Classes</dt><dd><a href="../../../index.html" name="_root_" id="_root_" class="extype">root</a></dd></dl></div></li><li class="indented2 " name="org.scalatestplus" group="Ungrouped" fullComment="yes" data-isabs="false" visbl="pub"><a id="scalatestplus"></a><a id="scalatestplus:scalatestplus"></a> <span class="permalink"><a href="../../../org/scalatestplus/index.html" title="Permalink"><i class="material-icons"></i></a></span> <span class="modifier_kind"><span class="modifier"></span> <span class="kind">package</span></span> <span class="symbol"><a href="../index.html" title=""><span class="name">scalatestplus</span></a></span><div class="fullcomment"><dl class="attributes block"><dt>Definition Classes</dt><dd><a href="../../index.html" name="org" id="org" class="extype">org</a></dd></dl></div></li><li class="indented3 " name="org.scalatestplus.selenium" group="Ungrouped" fullComment="yes" data-isabs="false" visbl="pub"><a id="selenium"></a><a id="selenium:selenium"></a> <span class="permalink"><a href="../../../org/scalatestplus/selenium/index.html" title="Permalink"><i class="material-icons"></i></a></span> <span class="modifier_kind"><span class="modifier"></span> <span class="kind">package</span></span> <span class="symbol"><a href="index.html" title=""><span class="name">selenium</span></a></span><div class="fullcomment"><dl class="attributes block"><dt>Definition Classes</dt><dd><a href="../index.html" name="org.scalatestplus" id="org.scalatestplus" class="extype">scalatestplus</a></dd></dl></div></li><li class="indented4 " name="org.scalatestplus.selenium.WebBrowser" group="Ungrouped" fullComment="yes" data-isabs="true" visbl="pub"><a id="WebBrowserextendsAnyRef"></a><a id="WebBrowser:WebBrowser"></a> <span class="permalink"><a href="../../../org/scalatestplus/selenium/WebBrowser.html" title="Permalink"><i class="material-icons"></i></a></span> <span class="modifier_kind"><span class="modifier"></span> <span class="kind">trait</span></span> <span class="symbol"><a href="WebBrowser.html" title="Trait that provides a domain specific language (DSL) for writing browser-based tests using Selenium."><span class="name">WebBrowser</span></a><span class="result"> extends <span name="scala.AnyRef" class="extype">AnyRef</span></span></span><p class="shortcomment cmt">Trait that provides a domain specific language (DSL) for writing browser-based tests using <a href="http://seleniumhq.org">Selenium</a>.</p><div class="fullcomment"><div class="comment cmt"><p>Trait that provides a domain specific language (DSL) for writing browser-based tests using <a href="http://seleniumhq.org">Selenium</a>.</p><p>To use ScalaTest's Selenium DSL, mix trait <code>WebBrowser</code> into your test class. This trait provides the DSL in its
+entirety except for one missing piece: an implicit <code>org.openqa.selenium.WebDriver</code>. One way to provide the missing
+implicit driver is to declare one as a member of your test class, like this:</p><p><pre class="stHighlighted">
+<span class="stReserved">import</span> org.scalatest._
+<span class="stReserved">import</span> selenium._
+<span class="stReserved">import</span> org.openqa.selenium._
+<span class="stReserved">import</span> htmlunit._
+<br/><span class="stReserved">class</span> <span class="stType">BlogSpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> <span class="stReserved">with</span> <span class="stType">WebBrowser</span> {
+<br/>  <span class="stReserved">implicit</span> <span class="stReserved">val</span> webDriver: <span class="stType">WebDriver</span> = <span class="stReserved">new</span> <span class="stType">HtmlUnitDriver</span>
+<br/>  <span class="stReserved">val</span> host = <span class="stQuotedString">"http://localhost:9000/"</span>
+<br/>  <span class="stQuotedString">"The blog app home page"</span> should <span class="stQuotedString">"have the correct title"</span> in {
+    go to (host + <span class="stQuotedString">"index.html"</span>)
+    pageTitle should be (<span class="stQuotedString">"Awesome Blog"</span>)
+  }
+}
+</pre></p><p>For convenience, however, ScalaTest provides a <code>WebBrowser</code> subtrait containing an implicit <code>WebDriver</code> for each
+driver provided by Selenium.
+Thus a simpler way to use the <code>HtmlUnit</code> driver, for example, is to extend
+ScalaTest's <a href="HtmlUnit.html"><code>HtmlUnit</code></a> trait, like this:</p><p><pre class="stHighlighted">
+<span class="stReserved">import</span> org.scalatest._
+<span class="stReserved">import</span> selenium._
+<br/><span class="stReserved">class</span> <span class="stType">BlogSpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> <span class="stReserved">with</span> <span class="stType">HtmlUnit</span> {
+<br/>  <span class="stReserved">val</span> host = <span class="stQuotedString">"http://localhost:9000/"</span>
+<br/>  <span class="stQuotedString">"The blog app home page"</span> should <span class="stQuotedString">"have the correct title"</span> in {
+    go to (host + <span class="stQuotedString">"index.html"</span>)
+    pageTitle should be (<span class="stQuotedString">"Awesome Blog"</span>)
+  }
+}
+</pre></p><p>The web driver traits provided by ScalaTest are:</p><p><table style="border-collapse: collapse; border: 1px solid black">
+<tr><th style="background-color: #CCCCCC; border-width: 1px; padding: 3px; text-align: center; border: 1px solid black"><strong>Driver</strong></th><th style="background-color: #CCCCCC; border-width: 1px; padding: 3px; text-align: center; border: 1px solid black"><strong><code>WebBrowser</code> subtrait</strong></th></tr>
+<tr>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+Google Chrome
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+<a href="Chrome.html"><code>Chrome</code></a>
+</td>
+</tr>
+<tr>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+Mozilla Firefox
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+<a href="Firefox.html"><code>Firefox</code></a>
+</td>
+</tr>
+<tr>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+HtmlUnit
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+<a href="HtmlUnit.html"><code>HtmlUnit</code></a>
+</td>
+</tr>
+<tr>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+Microsoft Internet Explorer
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+<a href="InternetExplorer.html"><code>InternetExplorer</code></a>
+</td>
+</tr>
+<tr>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+Apple Safari
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+<a href="Safari.html"><code>Safari</code></a>
+</td>
+</tr>
+</table></p><h4> Navigation </h4><p>You can ask the browser to retrieve a page (go to a URL) like this:</p><p><pre class="stHighlighted">
+go to <span class="stQuotedString">"http://www.artima.com"</span>
+</pre></p><p>Note: If you are using the <em>page object pattern</em>, you can also go to a page using the <code>Page</code> instance, as
+illustrated in the section on <a href="#pageObjects">page objects</a> below.</p><p>Once you have retrieved a page, you can fill in and submit forms, query for the values of page elements, and make assertions.
+In the following example, selenium will go to <code>http://www.google.com</code>, fill in the text box with
+<code>Cheese!</code>, press the submit button, and wait for result returned from an AJAX call:</p><p><pre class="stHighlighted">
+go to <span class="stQuotedString">"http://www.google.com"</span>
+click on <span class="stQuotedString">"q"</span>
+enter(<span class="stQuotedString">"Cheese!"</span>)
+submit()
+<span class="stLineComment">// Google's search is rendered dynamically with JavaScript.</span>
+eventually { pageTitle should be (<span class="stQuotedString">"Cheese! - Google Search"</span>) }
+</pre></p><p>In the above example, the <code>"q"</code> used in &ldquo;<code>click on "q"</code>&rdquo;
+can be either the id or name of an element. ScalaTest's Selenium DSL will try to lookup by id first. If it cannot find
+any element with an id equal to <code>&quot;q&quot;</code>, it will then try lookup by name <code>&quot;q&quot;</code>.</p><p>Alternatively, you can be more specific:</p><p><pre class="stHighlighted">
+click on id(<span class="stQuotedString">"q"</span>)   <span class="stLineComment">// to lookup by id "q" </span>
+click on name(<span class="stQuotedString">"q"</span>) <span class="stLineComment">// to lookup by name "q" </span>
+</pre></p><p>In addition to <code>id</code> and <code>name</code>, you can use the following approaches to lookup elements, just as you can do with
+Selenium's <code>org.openqa.selenium.By</code> class:</p><ul><li><code>xpath</code></li><li><code>className</code></li><li><code>cssSelector</code></li><li><code>linkText</code></li><li><code>partialLinkText</code></li><li><code>tagName</code></li></ul><p>For example, you can select by link text with:</p><p><pre class="stHighlighted">
+click on linkText(<span class="stQuotedString">"click here!"</span>)
+</pre></p><p>If an element is not found via any form of lookup, evaluation will complete abruptly with a <code>TestFailedException</code>.</p><h4> Getting and setting input element values </h4><p>ScalaTest's Selenium DSL provides a clear, simple syntax for accessing and updating the values of input elements such as
+text fields, radio buttons, checkboxes, selection lists, and the input types introduced in HTML5. If a requested element is not found, or if it is found but is
+not of the requested type, an exception will immediately result causing the test to fail.</p><p>The most common way to access field value is through the <code>value</code> property, which is supported by the following
+input types:</p><p><table style="border-collapse: collapse; border: 1px solid black">
+<tr>
+  <th style="background-color: #CCCCCC; border-width: 1px; padding: 3px; text-align: center; border: 1px solid black">
+    <strong>Tag Name</strong>
+  </th>
+  <th style="background-color: #CCCCCC; border-width: 1px; padding: 3px; text-align: center; border: 1px solid black">
+    <strong>Input Type</strong>
+  </th>
+  <th style="background-color: #CCCCCC; border-width: 1px; padding: 3px; text-align: center; border: 1px solid black">
+    <strong>Lookup Method</strong>
+  </th>
+</tr>
+<tr>
+  <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+    <code>input</code>
+  </td>
+  <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+    <code>text</code>
+  </td>
+  <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+    <code>textField</code>
+  </td>
+</tr>
+<tr>
+  <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+    <code>textarea</code>
+  </td>
+  <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+    <code>-</code>
+  </td>
+  <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+    <code>textArea</code>
+  </td>
+</tr>
+<tr>
+  <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+    <code>input</code>
+  </td>
+  <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+    <code>password</code>
+  </td>
+  <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+    <code>pwdField</code>
+  </td>
+</tr>
+<tr>
+  <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+    <code>input</code>
+  </td>
+  <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+    <code>email</code>
+  </td>
+  <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+    <code>emailField</code>
+  </td>
+</tr>
+<tr>
+  <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+    <code>input</code>
+  </td>
+  <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+    <code>color</code>
+  </td>
+  <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+    <code>colorField</code>
+  </td>
+</tr>
+<tr>
+  <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+    <code>input</code>
+  </td>
+  <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+    <code>date</code>
+  </td>
+  <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+    <code>dateField</code>
+  </td>
+</tr>
+<tr>
+  <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+    <code>input</code>
+  </td>
+  <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+    <code>datetime</code>
+  </td>
+  <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+    <code>dateTimeField</code>
+  </td>
+</tr>
+<tr>
+  <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+    <code>input</code>
+  </td>
+  <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+    <code>datetime-local</code>
+  </td>
+  <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+    <code>dateTimeLocalField</code>
+  </td>
+</tr>
+<tr>
+  <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+    <code>input</code>
+  </td>
+  <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+    <code>month</code>
+  </td>
+  <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+    <code>monthField</code>
+  </td>
+</tr>
+<tr>
+  <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+    <code>input</code>
+  </td>
+  <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+    <code>number</code>
+  </td>
+  <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+    <code>numberField</code>
+  </td>
+</tr>
+<tr>
+  <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+    <code>input</code>
+  </td>
+  <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+    <code>range</code>
+  </td>
+  <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+    <code>rangeField</code>
+  </td>
+</tr>
+<tr>
+  <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+    <code>input</code>
+  </td>
+  <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+    <code>search</code>
+  </td>
+  <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+    <code>searchField</code>
+  </td>
+</tr>
+<tr>
+  <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+    <code>input</code>
+  </td>
+  <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+    <code>tel</code>
+  </td>
+  <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+    <code>telField</code>
+  </td>
+</tr>
+<tr>
+  <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+    <code>input</code>
+  </td>
+  <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+    <code>time</code>
+  </td>
+  <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+    <code>timeField</code>
+  </td>
+</tr>
+<tr>
+  <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+    <code>input</code>
+  </td>
+  <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+    <code>url</code>
+  </td>
+  <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+    <code>urlField</code>
+  </td>
+</tr>
+<tr>
+  <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+    <code>input</code>
+  </td>
+  <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+    <code>week</code>
+  </td>
+  <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
+    <code>weekField</code>
+  </td>
+</tr>
+</table></p><p>You can change a input field's value by assigning it via the <code>=</code> operator, like this:</p><p><pre class="stHighlighted">
+textField(<span class="stQuotedString">"q"</span>).value = <span class="stQuotedString">"Cheese!"</span>
+</pre></p><p>And you can access a input field's value by simply invoking <code>value</code> on it:</p><p><pre class="stHighlighted">
+textField(<span class="stQuotedString">"q"</span>).value should be (<span class="stQuotedString">"Cheese!"</span>)
+</pre></p><p>If the text field is empty, <code>value</code> will return an empty string (<code>""</code>).</p><p>You can use the same syntax with other type of input fields by replacing <code>textField</code> with <code>Lookup Method</code> listed in table above,
+for example to use text area:</p><p><pre class="stHighlighted">
+textArea(<span class="stQuotedString">"body"</span>).value = <span class="stQuotedString">"I saw something cool today!"</span>
+textArea(<span class="stQuotedString">"body"</span>).value should be (<span class="stQuotedString">"I saw something cool today!"</span>)
+</pre></p><p>or with a password field:</p><p><pre class="stHighlighted">
+pwdField(<span class="stQuotedString">"secret"</span>).value = <span class="stQuotedString">"Don't tell anybody!"</span>
+pwdField(<span class="stQuotedString">"secret"</span>).value should be (<span class="stQuotedString">"Don't tell anybody!"</span>)
+</pre></p><h5> Alternate Way for Data Entry </h5><p>An alternate way to enter data into a input fields is to use <code>enter</code> or <code>pressKeys</code>.
+Although both of <code>enter</code> and <code>pressKeys</code> send characters to the active element, <code>pressKeys</code> can be used on any kind of
+element, whereas <code>enter</code> can only be used on text entry fields, which include:</p><ul><li><code>textField</code></li><li><code>textArea</code></li><li><code>pwdField</code></li><li><code>emailField</code></li><li><code>searchField</code></li><li><code>telField</code></li><li><code>urlField</code></li></ul><p>Another difference is that <code>enter</code> will clear the text field or area before sending the characters,
+effectively replacing any currently existing text with the new text passed to <code>enter</code>. By contrast,
+<code>pressKeys</code> does not do any clearing&#8212;it just appends more characters to any existing text.
+You can backup with <code>pressKeys</code>, however, by sending explicit backspace characters, <code>"&#92;u0008"</code>.</p><p>To use these commands, you must first click on the input field you are interested in
+to give it the focus. Here's an example:</p><p><pre class="stHighlighted">
+click on <span class="stQuotedString">"q"</span>
+enter(<span class="stQuotedString">"Cheese!"</span>)
+</pre></p><p>Here's a (contrived) example of using <code>pressKeys</code> with backspace to fix a typo:</p><p><pre class="stHighlighted">
+click on <span class="stQuotedString">"q"</span>              <span class="stLineComment">// q is the name or id of a text field or text area</span>
+enter(<span class="stQuotedString">"Cheesey!"</span>)         <span class="stLineComment">// Oops, meant to say Cheese!</span>
+pressKeys(<span class="stQuotedString">"&#92;u0008&#92;u0008"</span>) <span class="stLineComment">// Send two backspaces; now the value is Cheese</span>
+pressKeys(<span class="stQuotedString">"!"</span>)            <span class="stLineComment">// Send the missing exclamation point; now the value is Cheese!</span>
+</pre></p><h5> Radio buttons </h5><p>Radio buttons work together in groups. For example, you could have a group of radio buttons, like this:</p><p><pre>
+&lt;input type="radio" id="opt1" name="group1" value="Option 1"&gt; Option 1&lt;/input&gt;
+&lt;input type="radio" id="opt2" name="group1" value="Option 2"&gt; Option 2&lt;/input&gt;
+&lt;input type="radio" id="opt3" name="group1" value="Option 3"&gt; Option 3&lt;/input&gt;
+</pre></p><p>You can select an option in either of two ways:</p><p><pre class="stHighlighted">
+radioButtonGroup(<span class="stQuotedString">"group1"</span>).value = <span class="stQuotedString">"Option 2"</span>
+radioButtonGroup(<span class="stQuotedString">"group1"</span>).selection = <span class="stType">Some</span>(<span class="stQuotedString">"Option 2"</span>)
+</pre></p><p>Likewise, you can read the currently selected value of a group of radio buttons in two ways:</p><p><pre class="stHighlighted">
+radioButtonGroup(<span class="stQuotedString">"group1"</span>).value should be (<span class="stQuotedString">"Option 2"</span>)
+radioButtonGroup(<span class="stQuotedString">"group1"</span>).selection should be (<span class="stType">Some</span>(<span class="stQuotedString">"Option 2"</span>))
+</pre></p><p>If the radio button has no selection at all, <code>selection</code> will return <code>None</code> whereas <code>value</code>
+will throw a <code>TestFailedException</code>. By using <code>value</code>, you are indicating you expect a selection, and if there
+isn't a selection that should result in a failed test.</p><p>If you would like to work with <code>RadioButton</code> element directly, you can select it by calling <code>radioButton</code>:</p><p><pre class="stHighlighted">
+click on radioButton(<span class="stQuotedString">"opt1"</span>)
+</pre></p><p>you can check if an option is selected by calling <code>isSelected</code>:</p><p><pre class="stHighlighted">
+radioButton(<span class="stQuotedString">"opt1"</span>).isSelected should be (<span class="stReserved">true</span>)
+</pre></p><p>to get the value of radio button, you can call <code>value</code>:</p><p><pre class="stHighlighted">
+radioButton(<span class="stQuotedString">"opt1"</span>).value should be (<span class="stQuotedString">"Option 1"</span>)
+</pre></p><h5> Checkboxes </h5><p>A checkbox in one of two states: selected or cleared. Here's how you select a checkbox:</p><p><pre class="stHighlighted">
+checkbox(<span class="stQuotedString">"cbx1"</span>).select()
+</pre></p><p>And here's how you'd clear one:</p><p><pre class="stHighlighted">
+checkbox(<span class="stQuotedString">"cbx1"</span>).clear()
+</pre></p><p>You can access the current state of a checkbox with <code>isSelected</code>:</p><p><pre class="stHighlighted">
+checkbox(<span class="stQuotedString">"cbx1"</span>).isSelected should be (<span class="stReserved">true</span>)
+</pre></p><h5> Single-selection dropdown lists </h5><p>Given the following single-selection dropdown list:</p><p><pre>
+&lt;select id="select1"&gt;
+ &lt;option value="option1"&gt;Option 1&lt;/option&gt;
+ &lt;option value="option2"&gt;Option 2&lt;/option&gt;
+ &lt;option value="option3"&gt;Option 3&lt;/option&gt;
+&lt;/select&gt;
+</pre></p><p>You could select <code>Option 2</code> in either of two ways:</p><p><pre class="stHighlighted">
+singleSel(<span class="stQuotedString">"select1"</span>).value = <span class="stQuotedString">"option2"</span>
+singleSel(<span class="stQuotedString">"select1"</span>).selection = <span class="stType">Some</span>(<span class="stQuotedString">"option2"</span>)
+</pre></p><p>To clear the selection, either invoke <code>clear</code> or set <code>selection</code> to <code>None</code>:</p><p><pre class="stHighlighted">
+singleSel(<span class="stQuotedString">"select1"</span>).clear()
+singleSel(<span class="stQuotedString">"select1"</span>).selection = <span class="stType">None</span>
+</pre></p><p>You can read the currently selected value of a single-selection list in the same manner as radio buttons:</p><p><pre class="stHighlighted">
+singleSel(<span class="stQuotedString">"select1"</span>).value should be (<span class="stQuotedString">"option2"</span>)
+singleSel(<span class="stQuotedString">"select1"</span>).selection should be (<span class="stType">Some</span>(<span class="stQuotedString">"option2"</span>))
+</pre></p><p>If the single-selection list has no selection at all, <code>selection</code> will return <code>None</code> whereas <code>value</code>
+will throw a <code>TestFailedException</code>. By using <code>value</code>, you are indicating you expect a selection, and if there
+isn't a selection that should result in a failed test.</p><h5> Multiple-selection lists </h5><p>Given the following multiple-selection list:</p><p><pre>
+&lt;select name="select2" multiple="multiple"&gt;
+ &lt;option value="option4"&gt;Option 4&lt;/option&gt;
+ &lt;option value="option5"&gt;Option 5&lt;/option&gt;
+ &lt;option value="option6"&gt;Option 6&lt;/option&gt;
+&lt;/select&gt;
+</pre></p><p>You could select <code>Option 5</code> and <code>Option 6</code> like this:</p><p><pre class="stHighlighted">
+multiSel(<span class="stQuotedString">"select2"</span>).values = <span class="stType">Seq</span>(<span class="stQuotedString">"option5"</span>, <span class="stQuotedString">"option6"</span>)
+</pre></p><p>The previous command would essentially clear all selections first, then select <code>Option 5</code> and <code>Option 6</code>.
+If instead you want to <em>not</em> clear any existing selection, just additionally select <code>Option 5</code> and <code>Option 6</code>,
+you can use the <code>+=</code> operator, like this.</p><p><pre class="stHighlighted">
+multiSel(<span class="stQuotedString">"select2"</span>).values += <span class="stQuotedString">"option5"</span>
+multiSel(<span class="stQuotedString">"select2"</span>).values += <span class="stQuotedString">"option6"</span>
+</pre></p><p>To clear a specific option, pass its name to <code>clear</code>:</p><p><pre class="stHighlighted">
+multiSel(<span class="stQuotedString">"select2"</span>).clear(<span class="stQuotedString">"option5"</span>)
+</pre></p><p>To clear all selections, call <code>clearAll</code>:</p><p><pre class="stHighlighted">
+multiSel(<span class="stQuotedString">"select2"</span>).clearAll()
+</pre></p><p>You can access the current selections with <code>values</code>, which returns an immutable <code>IndexedSeq[String]</code>:</p><p><pre class="stHighlighted">
+multiSel(<span class="stQuotedString">"select2"</span>).values should have size <span class="stLiteral">2</span>
+multiSel(<span class="stQuotedString">"select2"</span>).values(<span class="stLiteral">0</span>) should be (<span class="stQuotedString">"option5"</span>)
+multiSel(<span class="stQuotedString">"select2"</span>).values(<span class="stLiteral">1</span>) should be (<span class="stQuotedString">"option6"</span>)
+</pre></p><h5> Clicking and submitting </h5><p>You can click on any element with &ldquo;<code>click on</code>&rdquo; as shown previously:</p><p><pre class="stHighlighted">
+click on <span class="stQuotedString">"aButton"</span>
+click on name(<span class="stQuotedString">"aTextField"</span>)
+</pre></p><p>If the requested element is not found, <code>click on</code> will throw an exception, failing the test.</p><p>Clicking on a input element will give it the focus. If current focus is in on an input element within a form, you can submit the form by
+calling <code>submit</code>:</p><p><pre class="stHighlighted">
+submit()
+</pre></p><h4> Switching </h4><p>You can switch to a popup alert bo using the following code:</p><p><pre class="stHighlighted">
+switch to alertBox
+</pre></p><p>to switch to a frame, you could:</p><p><pre class="stHighlighted">
+switch to frame(<span class="stLiteral">0</span>) <span class="stLineComment">// switch by index</span>
+switch to frame(<span class="stQuotedString">"name"</span>) <span class="stLineComment">// switch by name</span>
+</pre></p><p>If you have reference to a window handle (can be obtained from calling windowHandle/windowHandles), you can switch to a particular
+window by:</p><p><pre class="stHighlighted">
+switch to window(windowHandle)
+</pre></p><p>You can also switch to active element and default content:</p><p><pre class="stHighlighted">
+switch to activeElement
+switch to defaultContent
+</pre></p><h4> Navigation history </h4><p>In real web browser, you can press the 'Back' button to go back to previous page.  To emulate that action in your test, you can call <code>goBack</code>:</p><p><pre class="stHighlighted">
+goBack()
+</pre></p><p>To emulate the 'Forward' button, you can call:</p><p><pre class="stHighlighted">
+goForward()
+</pre></p><p>And to refresh or reload the current page, you can call:</p><p><pre class="stHighlighted">
+reloadPage()
+</pre></p><h4> Cookies! </h4><p>To create a new cookie, you'll say:</p><p><pre class="stHighlighted">
+add cookie (<span class="stQuotedString">"cookie_name"</span>, <span class="stQuotedString">"cookie_value"</span>)
+</pre></p><p>to read a cookie value, you do:</p><p><pre class="stHighlighted">
+cookie(<span class="stQuotedString">"cookie_name"</span>).value should be (<span class="stQuotedString">"cookie_value"</span>) <span class="stLineComment">// If value is undefined, throws TFE right then and there. Never returns null.</span>
+</pre></p><p>In addition to the common use of name-value cookie, you can pass these extra fields when creating the cookie, available ways are:</p><p><pre class="stHighlighted">
+cookie(name: <span class="stType">String</span>, value: <span class="stType">String</span>)
+cookie(name: <span class="stType">String</span>, value: <span class="stType">String</span>, path: <span class="stType">String</span>)
+cookie(name: <span class="stType">String</span>, value: <span class="stType">String</span>, path: <span class="stType">String</span>, expiry: <span class="stType">Date</span>)
+cookie(name: <span class="stType">String</span>, value: <span class="stType">String</span>, path: <span class="stType">String</span>, expiry: <span class="stType">Date</span>, domain: <span class="stType">String</span>)
+cookie(name: <span class="stType">String</span>, value: <span class="stType">String</span>, path: <span class="stType">String</span>, expiry: <span class="stType">Date</span>, domain: <span class="stType">String</span>, secure: <span class="stType">Boolean</span>)
+</pre></p><p>and to read those extra fields:</p><p><pre class="stHighlighted">
+cookie(<span class="stQuotedString">"cookie_name"</span>).value   <span class="stLineComment">// Read cookie's value</span>
+cookie(<span class="stQuotedString">"cookie_name"</span>).path    <span class="stLineComment">// Read cookie's path</span>
+cookie(<span class="stQuotedString">"cookie_name"</span>).expiry  <span class="stLineComment">// Read cookie's expiry</span>
+cookie(<span class="stQuotedString">"cookie_name"</span>).domain  <span class="stLineComment">// Read cookie's domain</span>
+cookie(<span class="stQuotedString">"cookie_name"</span>).isSecure  <span class="stLineComment">// Read cookie's isSecure flag</span>
+</pre></p><p>In order to delete a cookie, you could use the following code:</p><p><pre class="stHighlighted">
+delete cookie <span class="stQuotedString">"cookie_name"</span>
+</pre></p><p>or to delete all cookies in the same domain:-</p><p><pre class="stHighlighted">
+delete all cookies
+</pre></p><p>To get the underlying Selenium cookie, you can use <code>underlying</code>:</p><p><pre class="stHighlighted">
+cookie(<span class="stQuotedString">"cookie_name"</span>).underlying.validate()  <span class="stLineComment">// call the validate() method on underlying Selenium cookie</span>
+</pre></p><h4> Other useful element properties </h4><p>All element types (<code>textField</code>, <code>textArea</code>, <code>radioButton</code>, <code>checkbox</code>, <code>singleSel</code>, <code>multiSel</code>)
+support the following useful properties:</p><p><table style="border-collapse: collapse; border: 1px solid black">
+<tr><th style="background-color: #CCCCCC; border-width: 1px; padding: 3px; text-align: center; border: 1px solid black"><strong>Method</strong></th><th style="background-color: #CCCCCC; border-width: 1px; padding: 3px; text-align: center; border: 1px solid black"><strong>Description</strong></th></tr>
+<tr>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">
+<code>location</code>
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">
+The XY location of the top-left corner of this <code>Element</code>.
+</td>
+</tr>
+<tr>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">
+<code>size</code>
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">
+The width/height size of this <code>Element</code>.
+</td>
+</tr>
+<tr>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">
+<code>isDisplayed</code>
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">
+Indicates whether this <code>Element</code> is displayed.
+</td>
+</tr>
+<tr>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">
+<code>isEnabled</code>
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">
+Indicates whether this <code>Element</code> is enabled.
+</td>
+</tr>
+<tr>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">
+<code>isSelected</code>
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">
+Indicates whether this <code>Element</code> is selected.
+</td>
+</tr>
+<tr>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">
+<code>tagName</code>
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">
+The tag name of this element.
+</td>
+</tr>
+<tr>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">
+<code>underlying</code>
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">
+The underlying <code>WebElement</code> wrapped by this <code>Element</code>.
+</td>
+</tr>
+<tr>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">
+<code>attribute(name: String)</code>
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">
+The attribute value of the given attribute name of this element, wrapped in a <code>Some</code>, or <code>None</code> if no
+such attribute exists on this <code>Element</code>.
+</td>
+</tr>
+<tr>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">
+<code>text</code>
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">
+Returns the visible (<em>i.e.</em>, not hidden by CSS) text of this element, including sub-elements, without any leading or trailing whitespace.
+</td>
+</tr>
+</table></p><h4> Implicit wait </h4><p>To set Selenium's implicit wait timeout, you can call the <code>implicitlyWait</code> method:</p><p><pre class="stHighlighted">
+implicitlyWait(<span class="stType">Span</span>(<span class="stLiteral">10</span>, <span class="stType">Seconds</span>))
+</pre></p><p>Invoking this method sets the amount of time the driver will wait when searching for an element that is not immediately present. For
+more information, see the documentation for method <code>implicitlyWait</code>.</p><h4> Page source and current URL </h4><p>It is possible to get the html source of currently loaded page, using:</p><p><pre class="stHighlighted">
+pageSource
+</pre></p><p>and if needed, get the current URL of currently loaded page:</p><p><pre class="stHighlighted">
+currentUrl
+</pre></p><h4> Screen capture </h4><p>You can capture screen using the following code:</p><p><pre class="stHighlighted">
+<span class="stReserved">val</span> file = capture
+</pre></p><p>By default, the captured image file will be saved in temporary folder (returned by java.io.tmpdir property), with random file name
+ends with .png extension.  You can specify a fixed file name:</p><p><pre class="stHighlighted">
+capture to <span class="stQuotedString">"MyScreenShot.png"</span>
+</pre></p><p>or</p><p><pre class="stHighlighted">
+capture to <span class="stQuotedString">"MyScreenShot"</span>
+</pre></p><p>Both will result in a same file name <code>MyScreenShot.png</code>.</p><p>You can also change the target folder screenshot file is written to, by saying:</p><p><pre class="stHighlighted">
+setCaptureDir(<span class="stQuotedString">"/home/your_name/screenshots"</span>)
+</pre></p><p>If you want to capture a screenshot when something goes wrong (e.g. test failed), you can use <code>withScreenshot</code>:</p><p><pre class="stHighlighted">
+withScreenshot {
+  assert(<span class="stQuotedString">"Gold"</span> == <span class="stQuotedString">"Silver"</span>, <span class="stQuotedString">"Expected gold, but got silver"</span>)
+}
+</pre></p><p>In case the test code fails, you'll see the screenshot location appended to the error message, for example:</p><p><pre>
+Expected gold but got silver; screenshot capture in /tmp/AbCdEfGhIj.png
+</pre></p><p><a name="pageObjects"></a></p><h4> Using the page object pattern </h4><p>If you use the page object pattern, mixing trait <code>Page</code> into your page classes will allow you to use the <code>go to</code>
+syntax with your page objects. Here's an example:</p><p><pre class="stHighlighted">
+<span class="stReserved">class</span> <span class="stType">HomePage</span> <span class="stReserved">extends</span> <span class="stType">Page</span> {
+  <span class="stReserved">val</span> url = <span class="stQuotedString">"http://localhost:9000/index.html"</span>
+}
+<br/><span class="stReserved">val</span> homePage = <span class="stReserved">new</span> <span class="stType">HomePage</span>
+go to homePage
+</pre></p><h4> Executing JavaScript </h4><p>To execute arbitrary JavaScript, for example, to test some JavaScript functions on your page, pass it to <code>executeScript</code>:</p><p><pre class="stHighlighted">
+go to (host + <span class="stQuotedString">"index.html"</span>)
+<span class="stReserved">val</span> result1 = executeScript(<span class="stQuotedString">"return document.title;"</span>)
+result1 should be (<span class="stQuotedString">"Test Title"</span>)
+<span class="stReserved">val</span> result2 = executeScript(<span class="stQuotedString">"return 'Hello ' + arguments[0]"</span>, <span class="stQuotedString">"ScalaTest"</span>)
+result2 should be (<span class="stQuotedString">"Hello ScalaTest"</span>)
+</pre></p><p>To execute an asynchronous bit of JavaScript, pass it to <code>executeAsyncScript</code>. You can set the script timeout with <code>setScriptTimeout</code>:</p><p><pre class="stHighlighted">
+<span class="stReserved">val</span> script = <span class="stQuotedString">"""</span>
+  <span class="stQuotedString">var callback = arguments[arguments.length - 1];</span>
+  <span class="stQuotedString">window.setTimeout(function() {callback('Hello ScalaTest')}, 500);</span>
+<span class="stQuotedString">"""</span>
+setScriptTimeout(<span class="stLiteral">1</span> second)
+<span class="stReserved">val</span> result = executeAsyncScript(script)
+result should be (<span class="stQuotedString">"Hello ScalaTest"</span>)
+</pre></p><h4> Querying for elements </h4><p>You can query for arbitrary elements via <code>find</code> and <code>findAll</code>. The <code>find</code> method returns the first matching element, wrapped in a <code>Some</code>,
+or <code>None</code> if no element is found. The <code>findAll</code> method returns an immutable <code>IndexedSeq</code> of all matching elements. If no elements match the query, <code>findAll</code>
+returns an empty <code>IndexedSeq</code>. These methods allow you to perform rich queries using <code>for</code> expressions. Here are some examples:</p><p><pre class="stHighlighted">
+<span class="stReserved">val</span> ele: <span class="stType">Option[Element]</span> = find(<span class="stQuotedString">"q"</span>)
+<br/><span class="stReserved">val</span> eles: <span class="stType">colection.immutable.IndexedSeq[Element]</span> = findAll(className(<span class="stQuotedString">"small"</span>))
+<span class="stReserved">for</span> (e <- eles; <span class="stReserved">if</span> e.tagName != <span class="stQuotedString">"input"</span>)
+  e should be (<span class="stQuotedString">'displayed</span>)
+<span class="stReserved">val</span> textFields = eles filter { tf.isInstanceOf[<span class="stType">TextField</span>] }
+</pre></p><h4> Cleaning up </h4><p>To close the current browser window, and exit the driver if the current window was the only one remaining, use <code>close</code>:</p><p><pre class="stHighlighted">
+close()
+</pre></p><p>To close all windows, and exit the driver, use <code>quit</code>:</p><p><pre class="stHighlighted">
+quit()
+</pre></p><p><a name="alternateForms"></a></p><h4> Alternate forms </h4><p>Although statements like &ldquo;<code>delete all cookies</code>&rdquo; fit well with matcher statements
+like &ldquo;<code>title should be ("Cheese!")</code>&rdquo;, they do not fit as well
+with the simple method call form of assertions. If you prefer, you can avoid operator notation
+and instead use alternatives that take the form of plain-old method calls. Here's an example:</p><p><pre class="stHighlighted">
+goTo(<span class="stQuotedString">"http://www.google.com"</span>)
+clickOn(<span class="stQuotedString">"q"</span>)
+textField(<span class="stQuotedString">"q"</span>).value = <span class="stQuotedString">"Cheese!"</span>
+submit()
+<span class="stLineComment">// Google's search is rendered dynamically with JavaScript.</span>
+eventually(assert(pageTitle === <span class="stQuotedString">"Cheese! - Google Search"</span>))
+</pre></p><p>Here's a table showing the complete list of alternatives:</p><p><table style="border-collapse: collapse; border: 1px solid black">
+<tr><th style="background-color: #CCCCCC; border-width: 1px; padding: 3px; text-align: center; border: 1px solid black"><strong>operator notation</strong></th><th style="background-color: #CCCCCC; border-width: 1px; padding: 3px; text-align: center; border: 1px solid black"><strong>method call</strong></th></tr>
+<tr>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">
+<code>go to (host + "index.html")</code>
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">
+<code>goTo(host + "index.html")</code>
+</td>
+</tr>
+<tr>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">
+<code>click on "aButton"</code>
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">
+<code>clickOn("aButton")</code>
+</td>
+</tr>
+<tr>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">
+<code>switch to activeElement</code>
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">
+<code>switchTo(activeElement)</code>
+</td>
+</tr>
+<tr>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">
+<code>add cookie ("cookie_name", "cookie_value")</code>
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">
+<code>addCookie("cookie_name", "cookie_value")</code>
+</td>
+</tr>
+<tr>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">
+<code>delete cookie "cookie_name"</code>
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">
+<code>deleteCookie("cookie_name")</code>
+</td>
+</tr>
+<tr>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">
+<code>delete all cookies</code>
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">
+<code>deleteAllCookies()</code>
+</td>
+</tr>
+<tr>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">
+<code>capture to "MyScreenShot"</code>
+</td>
+<td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">
+<code>captureTo("MyScreenShot")</code>
+</td>
+</tr>
+</table>
+</p></div><dl class="attributes block"><dt>Definition Classes</dt><dd><a href="index.html" name="org.scalatestplus.selenium" id="org.scalatestplus.selenium" class="extype">selenium</a></dd></dl></div></li><li class="current-entities indented4"><span class="separator"></span> <a href="WebBrowser$ActiveElementTarget.html" title="This class supports switching to the currently active element in ScalaTest's Selenium DSL." class="class"></a><a href="WebBrowser$ActiveElementTarget.html" title="This class supports switching to the currently active element in ScalaTest's Selenium DSL.">ActiveElementTarget</a></li><li class="current-entities indented4"><span class="separator"></span> <a href="WebBrowser$AlertTarget.html" title="This class supports switching to the alert box in ScalaTest's Selenium DSL." class="class"></a><a href="WebBrowser$AlertTarget.html" title="This class supports switching to the alert box in ScalaTest's Selenium DSL.">AlertTarget</a></li><li class="current-entities indented4"><span class="separator"></span> <a href="WebBrowser$Checkbox.html" title="This class is part of ScalaTest's Selenium DSL." class="class"></a><a href="WebBrowser$Checkbox.html" title="This class is part of ScalaTest's Selenium DSL.">Checkbox</a></li><li class="current-entities indented4"><span class="separator"></span> <a href="WebBrowser$ClassNameQuery.html" title="A class name query." class="class"></a><a href="WebBrowser$ClassNameQuery.html" title="A class name query.">ClassNameQuery</a></li><li class="current-entities indented4"><span class="separator"></span> <a href="WebBrowser$ColorField.html" title="This class is part of ScalaTest's Selenium DSL." class="class"></a><a href="WebBrowser$ColorField.html" title="This class is part of ScalaTest's Selenium DSL.">ColorField</a></li><li class="current-entities indented4"><span class="separator"></span> <a href="WebBrowser$CookiesNoun.html" title="This class is part of the ScalaTest's Selenium DSL." class="class"></a><a href="WebBrowser$CookiesNoun.html" title="This class is part of the ScalaTest's Selenium DSL.">CookiesNoun</a></li><li class="current-entities indented4"><span class="separator"></span> <a href="WebBrowser$CssSelectorQuery.html" title="A CSS selector query." class="class"></a><a href="WebBrowser$CssSelectorQuery.html" title="A CSS selector query.">CssSelectorQuery</a></li><li class="current-entities indented4"><span class="separator"></span> <a href="WebBrowser$DateField.html" title="This class is part of ScalaTest's Selenium DSL." class="class"></a><a href="WebBrowser$DateField.html" title="This class is part of ScalaTest's Selenium DSL.">DateField</a></li><li class="current-entities indented4"><span class="separator"></span> <a href="WebBrowser$DateTimeField.html" title="This class is part of ScalaTest's Selenium DSL." class="class"></a><a href="WebBrowser$DateTimeField.html" title="This class is part of ScalaTest's Selenium DSL.">DateTimeField</a></li><li class="current-entities indented4"><span class="separator"></span> <a href="WebBrowser$DateTimeLocalField.html" title="This class is part of ScalaTest's Selenium DSL." class="class"></a><a href="WebBrowser$DateTimeLocalField.html" title="This class is part of ScalaTest's Selenium DSL.">DateTimeLocalField</a></li><li class="current-entities indented4"><span class="separator"></span> <a href="WebBrowser$DefaultContentTarget.html" title="This class supports switching to the default content in ScalaTest's Selenium DSL." class="class"></a><a href="WebBrowser$DefaultContentTarget.html" title="This class supports switching to the default content in ScalaTest's Selenium DSL.">DefaultContentTarget</a></li><li class="current-entities indented4"><span class="separator"></span> <a href="WebBrowser$Dimension.html" title="A dimension containing the width and height of a screen element." class="class"></a><a href="WebBrowser$Dimension.html" title="A dimension containing the width and height of a screen element.">Dimension</a></li><li class="current-entities indented4"><span class="separator"></span> <a href="WebBrowser$Element.html" title="Wrapper class for a Selenium WebElement." class="trait"></a><a href="WebBrowser$Element.html" title="Wrapper class for a Selenium WebElement.">Element</a></li><li class="current-entities indented4"><span class="separator"></span> <a href="WebBrowser$EmailField.html" title="This class is part of ScalaTest's Selenium DSL." class="class"></a><a href="WebBrowser$EmailField.html" title="This class is part of ScalaTest's Selenium DSL.">EmailField</a></li><li class="current-entities indented4"><span class="separator"></span> <a href="WebBrowser$FrameElementTarget.html" title="This class supports switching to a frame by element in ScalaTest's Selenium DSL." class="class"></a><a href="WebBrowser$FrameElementTarget.html" title="This class supports switching to a frame by element in ScalaTest's Selenium DSL.">FrameElementTarget</a></li><li class="current-entities indented4"><span class="separator"></span> <a href="WebBrowser$FrameIndexTarget.html" title="This class supports switching to a frame by index in ScalaTest's Selenium DSL." class="class"></a><a href="WebBrowser$FrameIndexTarget.html" title="This class supports switching to a frame by index in ScalaTest's Selenium DSL.">FrameIndexTarget</a></li><li class="current-entities indented4"><span class="separator"></span> <a href="WebBrowser$FrameNameOrIdTarget.html" title="This class supports switching to a frame by name or ID in ScalaTest's Selenium DSL." class="class"></a><a href="WebBrowser$FrameNameOrIdTarget.html" title="This class supports switching to a frame by name or ID in ScalaTest's Selenium DSL.">FrameNameOrIdTarget</a></li><li class="current-entities indented4"><span class="separator"></span> <a href="WebBrowser$FrameWebElementTarget.html" title="This class supports switching to a frame by web element in ScalaTest's Selenium DSL." class="class"></a><a href="WebBrowser$FrameWebElementTarget.html" title="This class supports switching to a frame by web element in ScalaTest's Selenium DSL.">FrameWebElementTarget</a></li><li class="current-entities indented4"><span class="separator"></span> <a href="WebBrowser$IdQuery.html" title="An ID query." class="class"></a><a href="WebBrowser$IdQuery.html" title="An ID query.">IdQuery</a></li><li class="current-entities indented4"><span class="separator"></span> <a href="WebBrowser$LinkTextQuery.html" title="A link text query." class="class"></a><a href="WebBrowser$LinkTextQuery.html" title="A link text query.">LinkTextQuery</a></li><li class="current-entities indented4"><span class="separator"></span> <a href="WebBrowser$MonthField.html" title="This class is part of ScalaTest's Selenium DSL." class="class"></a><a href="WebBrowser$MonthField.html" title="This class is part of ScalaTest's Selenium DSL.">MonthField</a></li><li class="current-entities indented4"><span class="separator"></span> <a href="WebBrowser$MultiSel.html" title="This class is part of ScalaTest's Selenium DSL." class="class"></a><a href="WebBrowser$MultiSel.html" title="This class is part of ScalaTest's Selenium DSL.">MultiSel</a></li><li class="current-entities indented4"><span class="separator"></span> <a href="WebBrowser$MultiSelOptionSeq.html" title="This class is part of ScalaTest's Selenium DSL." class="class"></a><a href="WebBrowser$MultiSelOptionSeq.html" title="This class is part of ScalaTest's Selenium DSL.">MultiSelOptionSeq</a></li><li class="current-entities indented4"><span class="separator"></span> <a href="WebBrowser$NameQuery.html" title="A name query." class="class"></a><a href="WebBrowser$NameQuery.html" title="A name query.">NameQuery</a></li><li class="current-entities indented4"><span class="separator"></span> <a href="WebBrowser$NumberField.html" title="This class is part of ScalaTest's Selenium DSL." class="class"></a><a href="WebBrowser$NumberField.html" title="This class is part of ScalaTest's Selenium DSL.">NumberField</a></li><li class="current-entities indented4"><span class="separator"></span> <a href="WebBrowser$PartialLinkTextQuery.html" title="A partial link text query." class="class"></a><a href="WebBrowser$PartialLinkTextQuery.html" title="A partial link text query.">PartialLinkTextQuery</a></li><li class="current-entities indented4"><span class="separator"></span> <a href="WebBrowser$PasswordField.html" title="This class is part of ScalaTest's Selenium DSL." class="class"></a><a href="WebBrowser$PasswordField.html" title="This class is part of ScalaTest's Selenium DSL.">PasswordField</a></li><li class="current-entities indented4"><span class="separator"></span> <a href="WebBrowser$Point.html" title="A point containing an XY screen location." class="class"></a><a href="WebBrowser$Point.html" title="A point containing an XY screen location.">Point</a></li><li class="current-entities indented4"><span class="separator"></span> <a href="" title="This trait is part of ScalaTest's Selenium DSL." class="trait"></a><a href="" title="This trait is part of ScalaTest's Selenium DSL.">Query</a></li><li class="current-entities indented4"><span class="separator"></span> <a href="WebBrowser$RadioButton.html" title="This class is part of ScalaTest's Selenium DSL." class="class"></a><a href="WebBrowser$RadioButton.html" title="This class is part of ScalaTest's Selenium DSL.">RadioButton</a></li><li class="current-entities indented4"><span class="separator"></span> <a href="WebBrowser$RadioButtonGroup.html" title="This class is part of ScalaTest's Selenium DSL." class="class"></a><a href="WebBrowser$RadioButtonGroup.html" title="This class is part of ScalaTest's Selenium DSL.">RadioButtonGroup</a></li><li class="current-entities indented4"><span class="separator"></span> <a href="WebBrowser$RangeField.html" title="This class is part of ScalaTest's Selenium DSL." class="class"></a><a href="WebBrowser$RangeField.html" title="This class is part of ScalaTest's Selenium DSL.">RangeField</a></li><li class="current-entities indented4"><span class="separator"></span> <a href="WebBrowser$SearchField.html" title="This class is part of ScalaTest's Selenium DSL." class="class"></a><a href="WebBrowser$SearchField.html" title="This class is part of ScalaTest's Selenium DSL.">SearchField</a></li><li class="current-entities indented4"><span class="separator"></span> <a href="WebBrowser$SingleSel.html" title="This class is part of ScalaTest's Selenium DSL." class="class"></a><a href="WebBrowser$SingleSel.html" title="This class is part of ScalaTest's Selenium DSL.">SingleSel</a></li><li class="current-entities indented4"><span class="separator"></span> <a href="WebBrowser$SwitchTarget.html" title="This sealed abstract class supports switching in ScalaTest's Selenium DSL." class="class"></a><a href="WebBrowser$SwitchTarget.html" title="This sealed abstract class supports switching in ScalaTest's Selenium DSL.">SwitchTarget</a></li><li class="current-entities indented4"><span class="separator"></span> <a href="WebBrowser$TagNameQuery.html" title="A tag name query." class="class"></a><a href="WebBrowser$TagNameQuery.html" title="A tag name query.">TagNameQuery</a></li><li class="current-entities indented4"><span class="separator"></span> <a href="WebBrowser$TelField.html" title="This class is part of ScalaTest's Selenium DSL." class="class"></a><a href="WebBrowser$TelField.html" title="This class is part of ScalaTest's Selenium DSL.">TelField</a></li><li class="current-entities indented4"><span class="separator"></span> <a href="WebBrowser$TextArea.html" title="This class is part of ScalaTest's Selenium DSL." class="class"></a><a href="WebBrowser$TextArea.html" title="This class is part of ScalaTest's Selenium DSL.">TextArea</a></li><li class="current-entities indented4"><span class="separator"></span> <a href="WebBrowser$TextField.html" title="This class is part of ScalaTest's Selenium DSL." class="class"></a><a href="WebBrowser$TextField.html" title="This class is part of ScalaTest's Selenium DSL.">TextField</a></li><li class="current-entities indented4"><span class="separator"></span> <a href="WebBrowser$TimeField.html" title="This class is part of ScalaTest's Selenium DSL." class="class"></a><a href="WebBrowser$TimeField.html" title="This class is part of ScalaTest's Selenium DSL.">TimeField</a></li><li class="current-entities indented4"><span class="separator"></span> <a href="WebBrowser$UrlField.html" title="This class is part of ScalaTest's Selenium DSL." class="class"></a><a href="WebBrowser$UrlField.html" title="This class is part of ScalaTest's Selenium DSL.">UrlField</a></li><li class="current-entities indented4"><span class="separator"></span> <a href="WebBrowser$ValueElement.html" title="" class="trait"></a><a href="WebBrowser$ValueElement.html" title="">ValueElement</a></li><li class="current-entities indented4"><span class="separator"></span> <a href="WebBrowser$WeekField.html" title="This class is part of ScalaTest's Selenium DSL." class="class"></a><a href="WebBrowser$WeekField.html" title="This class is part of ScalaTest's Selenium DSL.">WeekField</a></li><li class="current-entities indented4"><span class="separator"></span> <a href="WebBrowser$WindowTarget.html" title="This class supports switching to a window by name or handle in ScalaTest's Selenium DSL." class="class"></a><a href="WebBrowser$WindowTarget.html" title="This class supports switching to a window by name or handle in ScalaTest's Selenium DSL.">WindowTarget</a></li><li class="current-entities indented4"><span class="separator"></span> <a href="WebBrowser$WrappedCookie.html" title="Wrapper class for a Selenium Cookie." class="class"></a><a href="WebBrowser$WrappedCookie.html" title="Wrapper class for a Selenium Cookie.">WrappedCookie</a></li><li class="current-entities indented4"><span class="separator"></span> <a href="WebBrowser$XPathQuery.html" title="An XPath query." class="class"></a><a href="WebBrowser$XPathQuery.html" title="An XPath query.">XPathQuery</a></li><li class="current-entities indented4"><span class="separator"></span> <a href="WebBrowser$add$.html" title="This object is part of ScalaTest's Selenium DSL." class="object"></a><a href="WebBrowser$add$.html" title="This object is part of ScalaTest's Selenium DSL.">add</a></li><li class="current-entities indented4"><span class="separator"></span> <a href="WebBrowser$capture$.html" title="This object is part of ScalaTest's Selenium DSL." class="object"></a><a href="WebBrowser$capture$.html" title="This object is part of ScalaTest's Selenium DSL.">capture</a></li><li class="current-entities indented4"><span class="separator"></span> <a href="WebBrowser$click$.html" title="This object is part of ScalaTest's Selenium DSL." class="object"></a><a href="WebBrowser$click$.html" title="This object is part of ScalaTest's Selenium DSL.">click</a></li><li class="current-entities indented4"><span class="separator"></span> <a href="WebBrowser$delete$.html" title="This object is part of ScalaTest's Selenium DSL." class="object"></a><a href="WebBrowser$delete$.html" title="This object is part of ScalaTest's Selenium DSL.">delete</a></li><li class="current-entities indented4"><span class="separator"></span> <a href="WebBrowser$go$.html" title="This object is part of ScalaTest's Selenium DSL." class="object"></a><a href="WebBrowser$go$.html" title="This object is part of ScalaTest's Selenium DSL.">go</a></li><li class="current-entities indented4"><span class="separator"></span> <a href="WebBrowser$switch$.html" title="This object is part of ScalaTest's Selenium DSL." class="object"></a><a href="WebBrowser$switch$.html" title="This object is part of ScalaTest's Selenium DSL.">switch</a></li></ul></div></div><div id="content"><body class="trait type">
+
+<!-- Top of doc.scalatest.org [javascript] -->
+
+<script type="text/javascript">
+
+var rnd = window.rnd || Math.floor(Math.random()*10e6);
+
+var pid204546 = window.pid204546 || rnd;
+
+var plc204546 = window.plc204546 || 0;
+
+var abkw = window.abkw || '';
+
+var absrc = 'http://ab167933.adbutler-ikon.com/adserve/;ID=167933;size=468x60;setID=204546;type=js;sw='+screen.width+';sh='+screen.height+';spr='+window.devicePixelRatio+';kw='+abkw+';pid='+pid204546+';place='+(plc204546++)+';rnd='+rnd+';click=CLICK_MACRO_PLACEHOLDER';
+
+document.write('<scr'+'ipt src="'+absrc+'" type="text/javascript"></scr'+'ipt>');
+
+</script>
+<div id="definition"><div class="big-circle trait">t</div><p id="owner"><a href="../../index.html" name="org" id="org" class="extype">org</a>.<a href="../index.html" name="org.scalatestplus" id="org.scalatestplus" class="extype">scalatestplus</a>.<a href="index.html" name="org.scalatestplus.selenium" id="org.scalatestplus.selenium" class="extype">selenium</a>.<a href="WebBrowser.html" name="org.scalatestplus.selenium.WebBrowser" id="org.scalatestplus.selenium.WebBrowser" class="extype">WebBrowser</a></p><h1>Query<span class="permalink"><a href="../../../org/scalatestplus/selenium/WebBrowser$Query.html" title="Permalink"><i class="material-icons"></i></a></span></h1><h3><span class="morelinks"></span></h3></div><h4 id="signature" class="signature"><span class="modifier_kind"><span class="modifier">sealed </span> <span class="kind">trait</span></span> <span class="symbol"><span class="name">Query</span><span class="result"> extends <span name="scala.Product" class="extype">Product</span> with <span name="scala.Serializable" class="extype">Serializable</span></span></span></h4><div id="comment" class="fullcommenttop"><div class="comment cmt"><p>This trait is part of ScalaTest's Selenium DSL. Please see the documentation for
+<a href="WebBrowser.html"><code>WebBrowser</code></a> for an overview of the Selenium DSL.</p><p>Subclasses of this trait define different ways of querying for elements, enabling
+syntax such as the following:</p><p><pre class="stHighlighted">
+click on id(<span class="stQuotedString">"q"</span>)
+         ^
+</pre>
+</p></div><div class="toggleContainer"><div class="toggle block"><span>Linear Supertypes</span><div class="superTypes hiddenContent"><a href="https://docs.oracle.com/javase/8/docs/api/java/io/Serializable.html#java.io.Serializable" name="java.io.Serializable" id="java.io.Serializable" class="extype">Serializable</a>, <span name="scala.Product" class="extype">Product</span>, <span name="scala.Equals" class="extype">Equals</span>, <span name="scala.AnyRef" class="extype">AnyRef</span>, <span name="scala.Any" class="extype">Any</span></div></div></div><div class="toggleContainer"><div class="toggle block"><span>Known Subclasses</span><div class="subClasses hiddenContent"><a href="WebBrowser$ClassNameQuery.html" name="org.scalatestplus.selenium.WebBrowser.ClassNameQuery" id="org.scalatestplus.selenium.WebBrowser.ClassNameQuery" class="extype">ClassNameQuery</a>, <a href="WebBrowser$CssSelectorQuery.html" name="org.scalatestplus.selenium.WebBrowser.CssSelectorQuery" id="org.scalatestplus.selenium.WebBrowser.CssSelectorQuery" class="extype">CssSelectorQuery</a>, <a href="WebBrowser$IdQuery.html" name="org.scalatestplus.selenium.WebBrowser.IdQuery" id="org.scalatestplus.selenium.WebBrowser.IdQuery" class="extype">IdQuery</a>, <a href="WebBrowser$LinkTextQuery.html" name="org.scalatestplus.selenium.WebBrowser.LinkTextQuery" id="org.scalatestplus.selenium.WebBrowser.LinkTextQuery" class="extype">LinkTextQuery</a>, <a href="WebBrowser$NameQuery.html" name="org.scalatestplus.selenium.WebBrowser.NameQuery" id="org.scalatestplus.selenium.WebBrowser.NameQuery" class="extype">NameQuery</a>, <a href="WebBrowser$PartialLinkTextQuery.html" name="org.scalatestplus.selenium.WebBrowser.PartialLinkTextQuery" id="org.scalatestplus.selenium.WebBrowser.PartialLinkTextQuery" class="extype">PartialLinkTextQuery</a>, <a href="WebBrowser$TagNameQuery.html" name="org.scalatestplus.selenium.WebBrowser.TagNameQuery" id="org.scalatestplus.selenium.WebBrowser.TagNameQuery" class="extype">TagNameQuery</a>, <a href="WebBrowser$XPathQuery.html" name="org.scalatestplus.selenium.WebBrowser.XPathQuery" id="org.scalatestplus.selenium.WebBrowser.XPathQuery" class="extype">XPathQuery</a></div></div></div></div><div id="mbrsel"><div class="toggle"></div><div id="memberfilter"><i class="material-icons arrow"></i><span class="input"><input placeholder="Filter all members" id="mbrsel-input" type="text" accesskey="/"/></span><i class="clear material-icons"></i></div><div id="filterby"><div id="order"><span class="filtertype">Ordering</span><ol><li class="alpha in"><span>Alphabetic</span></li><li class="inherit out"><span>By Inheritance</span></li></ol></div><div class="ancestors"><span class="filtertype">Inherited<br/></span><ol id="linearization"><li class="in" name="org.scalatestplus.selenium.WebBrowser.Query"><span>Query</span></li><li class="in" name="java.io.Serializable"><span>Serializable</span></li><li class="in" name="scala.Product"><span>Product</span></li><li class="in" name="scala.Equals"><span>Equals</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li></ol></div><div class="ancestors"><span class="filtertype"></span><ol><li class="hideall out"><span>Hide All</span></li><li class="showall in"><span>Show All</span></li></ol></div><div id="visbl"><span class="filtertype">Visibility</span><ol><li class="public in"><span>Public</span></li><li class="protected out"><span>Protected</span></li></ol></div></div></div><div id="template"><div id="allMembers"><div class="values members"><h3>Abstract Value Members</h3><ol><li class="indented0 " name="org.scalatestplus.selenium.WebBrowser.Query#by" group="Ungrouped" fullComment="no" data-isabs="true" visbl="pub"><a id="by:org.openqa.selenium.By"></a><a id="by:By"></a> <span class="permalink"><a href="../../../org/scalatestplus/selenium/WebBrowser$Query.html#by:org.openqa.selenium.By" title="Permalink"><i class="material-icons"></i></a></span> <span class="modifier_kind"><span class="modifier">abstract </span> <span class="kind">val</span></span> <span class="symbol"><span class="name">by</span><span class="result">: <span name="org.openqa.selenium.By" class="extype">By</span></span></span><p class="shortcomment cmt">The Selenium <code>By</code> for this query.</p></li><li class="indented0 " name="scala.Equals#canEqual" group="Ungrouped" fullComment="yes" data-isabs="true" visbl="pub"><a id="canEqual(that:Any):Boolean"></a><a id="canEqual(Any):Boolean"></a> <span class="permalink"><a href="../../../org/scalatestplus/selenium/WebBrowser$Query.html#canEqual(that:Any):Boolean" title="Permalink"><i class="material-icons"></i></a></span> <span class="modifier_kind"><span class="modifier">abstract </span> <span class="kind">def</span></span> <span class="symbol"><span class="name">canEqual</span><span class="params">(<span name="that">that: <span name="scala.Any" class="extype">Any</span></span>)</span><span class="result">: <span name="scala.Boolean" class="extype">Boolean</span></span></span><div class="fullcomment"><dl class="attributes block"><dt>Definition Classes</dt><dd>Equals</dd></dl></div></li><li class="indented0 " name="scala.Product#productArity" group="Ungrouped" fullComment="yes" data-isabs="true" visbl="pub"><a id="productArity:Int"></a> <span class="permalink"><a href="../../../org/scalatestplus/selenium/WebBrowser$Query.html#productArity:Int" title="Permalink"><i class="material-icons"></i></a></span> <span class="modifier_kind"><span class="modifier">abstract </span> <span class="kind">def</span></span> <span class="symbol"><span class="name">productArity</span><span class="result">: <span name="scala.Int" class="extype">Int</span></span></span><div class="fullcomment"><dl class="attributes block"><dt>Definition Classes</dt><dd>Product</dd></dl></div></li><li class="indented0 " name="scala.Product#productElement" group="Ungrouped" fullComment="yes" data-isabs="true" visbl="pub"><a id="productElement(n:Int):Any"></a><a id="productElement(Int):Any"></a> <span class="permalink"><a href="../../../org/scalatestplus/selenium/WebBrowser$Query.html#productElement(n:Int):Any" title="Permalink"><i class="material-icons"></i></a></span> <span class="modifier_kind"><span class="modifier">abstract </span> <span class="kind">def</span></span> <span class="symbol"><span class="name">productElement</span><span class="params">(<span name="n">n: <span name="scala.Int" class="extype">Int</span></span>)</span><span class="result">: <span name="scala.Any" class="extype">Any</span></span></span><div class="fullcomment"><dl class="attributes block"><dt>Definition Classes</dt><dd>Product</dd></dl></div></li><li class="indented0 " name="org.scalatestplus.selenium.WebBrowser.Query#queryString" group="Ungrouped" fullComment="yes" data-isabs="true" visbl="pub"><a id="queryString:String"></a> <span class="permalink"><a href="../../../org/scalatestplus/selenium/WebBrowser$Query.html#queryString:String" title="Permalink"><i class="material-icons"></i></a></span> <span class="modifier_kind"><span class="modifier">abstract </span> <span class="kind">val</span></span> <span class="symbol"><span class="name">queryString</span><span class="result">: <span name="scala.Predef.String" class="extype">String</span></span></span><p class="shortcomment cmt">The query string for this query.</p><div class="fullcomment"><div class="comment cmt"><p>The query string for this query.</p><p>For example, the query string for <code>id("q")</code> is <code>"q"</code>.</p></div></div></li></ol></div><div class="values members"><h3>Concrete Value Members</h3><ol><li class="indented0 " name="scala.AnyRef#!=" group="Ungrouped" fullComment="yes" data-isabs="false" visbl="pub"><a id="!=(x$1:Any):Boolean"></a><a id="!=(Any):Boolean"></a> <span class="permalink"><a href="../../../org/scalatestplus/selenium/WebBrowser$Query.html#!=(x$1:Any):Boolean" title="Permalink"><i class="material-icons"></i></a></span> <span class="modifier_kind"><span class="modifier">final </span> <span class="kind">def</span></span> <span class="symbol"><span class="name" title="gt4s: $bang$eq">!=</span><span class="params">(<span name="arg0">arg0: <span name="scala.Any" class="extype">Any</span></span>)</span><span class="result">: <span name="scala.Boolean" class="extype">Boolean</span></span></span><div class="fullcomment"><dl class="attributes block"><dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div></li><li class="indented0 " name="scala.AnyRef###" group="Ungrouped" fullComment="yes" data-isabs="false" visbl="pub"><a id="##:Int"></a> <span class="permalink"><a href="../../../org/scalatestplus/selenium/WebBrowser$Query.html###:Int" title="Permalink"><i class="material-icons"></i></a></span> <span class="modifier_kind"><span class="modifier">final </span> <span class="kind">def</span></span> <span class="symbol"><span class="name" title="gt4s: $hash$hash">##</span><span class="result">: <span name="scala.Int" class="extype">Int</span></span></span><div class="fullcomment"><dl class="attributes block"><dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div></li><li class="indented0 " name="scala.AnyRef#==" group="Ungrouped" fullComment="yes" data-isabs="false" visbl="pub"><a id="==(x$1:Any):Boolean"></a><a id="==(Any):Boolean"></a> <span class="permalink"><a href="../../../org/scalatestplus/selenium/WebBrowser$Query.html#==(x$1:Any):Boolean" title="Permalink"><i class="material-icons"></i></a></span> <span class="modifier_kind"><span class="modifier">final </span> <span class="kind">def</span></span> <span class="symbol"><span class="name" title="gt4s: $eq$eq">==</span><span class="params">(<span name="arg0">arg0: <span name="scala.Any" class="extype">Any</span></span>)</span><span class="result">: <span name="scala.Boolean" class="extype">Boolean</span></span></span><div class="fullcomment"><dl class="attributes block"><dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div></li><li class="indented0 " name="scala.Any#asInstanceOf" group="Ungrouped" fullComment="yes" data-isabs="false" visbl="pub"><a id="asInstanceOf[T0]:T0"></a> <span class="permalink"><a href="../../../org/scalatestplus/selenium/WebBrowser$Query.html#asInstanceOf[T0]:T0" title="Permalink"><i class="material-icons"></i></a></span> <span class="modifier_kind"><span class="modifier">final </span> <span class="kind">def</span></span> <span class="symbol"><span class="name">asInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span name="scala.Any.asInstanceOf.T0" class="extype">T0</span></span></span><div class="fullcomment"><dl class="attributes block"><dt>Definition Classes</dt><dd>Any</dd></dl></div></li><li class="indented0 " name="scala.AnyRef#clone" group="Ungrouped" fullComment="yes" data-isabs="false" visbl="prt"><a id="clone():Object"></a><a id="clone():AnyRef"></a> <span class="permalink"><a href="../../../org/scalatestplus/selenium/WebBrowser$Query.html#clone():Object" title="Permalink"><i class="material-icons"></i></a></span> <span class="modifier_kind"><span class="modifier"></span> <span class="kind">def</span></span> <span class="symbol"><span class="name">clone</span><span class="params">()</span><span class="result">: <span name="scala.AnyRef" class="extype">AnyRef</span></span></span><div class="fullcomment"><dl class="attributes block"><dt>Attributes</dt><dd>protected[<span name="java.lang" class="extype">lang</span>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd><span class="name">@throws</span><span class="args">(<span><span class="defval">classOf[java.lang.CloneNotSupportedException]</span></span>)</span> <span class="name">@native</span><span class="args">()</span> </dd></dl></div></li><li class="indented0 " name="org.scalatestplus.selenium.WebBrowser.Query#element" group="Ungrouped" fullComment="yes" data-isabs="false" visbl="pub"><a id="element(implicitdriver:org.openqa.selenium.WebDriver,implicitpos:org.scalactic.source.Position):WebBrowser.this.Element"></a><a id="element(WebDriver,Position):Element"></a> <span class="permalink"><a href="../../../org/scalatestplus/selenium/WebBrowser$Query.html#element(implicitdriver:org.openqa.selenium.WebDriver,implicitpos:org.scalactic.source.Position):WebBrowser.this.Element" title="Permalink"><i class="material-icons"></i></a></span> <span class="modifier_kind"><span class="modifier"></span> <span class="kind">def</span></span> <span class="symbol"><span class="name">element</span><span class="params">(<span class="implicit">implicit </span><span name="driver">driver: <span name="org.openqa.selenium.WebDriver" class="extype">WebDriver</span></span>, <span name="pos">pos: <span name="org.scalactic.source.Position" class="extype">Position</span> = <span class="symbol">implicitly[source.Position]</span></span>)</span><span class="result">: <a href="WebBrowser$Element.html" name="org.scalatestplus.selenium.WebBrowser.Element" id="org.scalatestplus.selenium.WebBrowser.Element" class="extype">Element</a></span></span><p class="shortcomment cmt">Returns the first <code>Element</code> selected by this query, or throws <code>TestFailedException</code>
+if no <code>Element</code> is selected.</p><div class="fullcomment"><div class="comment cmt"><p>Returns the first <code>Element</code> selected by this query, or throws <code>TestFailedException</code>
+if no <code>Element</code> is selected.</p><p>The class of the <code>Element</code> returned will be a subtype of <code>Element</code> if appropriate.
+For example, if this query selects a text field, the class of the returned <code>Element</code> will
+be <code>TextField</code>.</p></div><dl class="paramcmts block"><dt class="param">driver</dt><dd class="cmt"><p>the <code>WebDriver</code> with which to drive the browser</p></dd><dt>returns</dt><dd class="cmt"><p>the <code>Element</code> selected by this query</p></dd></dl><dl class="attributes block"><dt>Exceptions thrown</dt><dd><span class="cmt"><p><span name="TestFailedException" class="extype"><code>TestFailedException</code></span> if nothing is selected by this query</p></span></dd></dl></div></li><li class="indented0 " name="scala.AnyRef#eq" group="Ungrouped" fullComment="yes" data-isabs="false" visbl="pub"><a id="eq(x$1:AnyRef):Boolean"></a><a id="eq(AnyRef):Boolean"></a> <span class="permalink"><a href="../../../org/scalatestplus/selenium/WebBrowser$Query.html#eq(x$1:AnyRef):Boolean" title="Permalink"><i class="material-icons"></i></a></span> <span class="modifier_kind"><span class="modifier">final </span> <span class="kind">def</span></span> <span class="symbol"><span class="name">eq</span><span class="params">(<span name="arg0">arg0: <span name="scala.AnyRef" class="extype">AnyRef</span></span>)</span><span class="result">: <span name="scala.Boolean" class="extype">Boolean</span></span></span><div class="fullcomment"><dl class="attributes block"><dt>Definition Classes</dt><dd>AnyRef</dd></dl></div></li><li class="indented0 " name="scala.AnyRef#equals" group="Ungrouped" fullComment="yes" data-isabs="false" visbl="pub"><a id="equals(x$1:Object):Boolean"></a><a id="equals(AnyRef):Boolean"></a> <span class="permalink"><a href="../../../org/scalatestplus/selenium/WebBrowser$Query.html#equals(x$1:Object):Boolean" title="Permalink"><i class="material-icons"></i></a></span> <span class="modifier_kind"><span class="modifier"></span> <span class="kind">def</span></span> <span class="symbol"><span class="name">equals</span><span class="params">(<span name="arg0">arg0: <span name="scala.AnyRef" class="extype">AnyRef</span></span>)</span><span class="result">: <span name="scala.Boolean" class="extype">Boolean</span></span></span><div class="fullcomment"><dl class="attributes block"><dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div></li><li class="indented0 " name="scala.AnyRef#finalize" group="Ungrouped" fullComment="yes" data-isabs="false" visbl="prt"><a id="finalize():Unit"></a> <span class="permalink"><a href="../../../org/scalatestplus/selenium/WebBrowser$Query.html#finalize():Unit" title="Permalink"><i class="material-icons"></i></a></span> <span class="modifier_kind"><span class="modifier"></span> <span class="kind">def</span></span> <span class="symbol"><span class="name">finalize</span><span class="params">()</span><span class="result">: <span name="scala.Unit" class="extype">Unit</span></span></span><div class="fullcomment"><dl class="attributes block"><dt>Attributes</dt><dd>protected[<span name="java.lang" class="extype">lang</span>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd><span class="name">@throws</span><span class="args">(<span><span class="symbol">classOf[java.lang.Throwable]</span></span>)</span> </dd></dl></div></li><li class="indented0 " name="org.scalatestplus.selenium.WebBrowser.Query#findAllElements" group="Ungrouped" fullComment="yes" data-isabs="false" visbl="pub"><a id="findAllElements(implicitdriver:org.openqa.selenium.WebDriver,implicitpos:org.scalactic.source.Position):Iterator[WebBrowser.this.Element]"></a><a id="findAllElements(WebDriver,Position):Iterator[Element]"></a> <span class="permalink"><a href="../../../org/scalatestplus/selenium/WebBrowser$Query.html#findAllElements(implicitdriver:org.openqa.selenium.WebDriver,implicitpos:org.scalactic.source.Position):Iterator[WebBrowser.this.Element]" title="Permalink"><i class="material-icons"></i></a></span> <span class="modifier_kind"><span class="modifier"></span> <span class="kind">def</span></span> <span class="symbol"><span class="name">findAllElements</span><span class="params">(<span class="implicit">implicit </span><span name="driver">driver: <span name="org.openqa.selenium.WebDriver" class="extype">WebDriver</span></span>, <span name="pos">pos: <span name="org.scalactic.source.Position" class="extype">Position</span> = <span class="symbol">implicitly[source.Position]</span></span>)</span><span class="result">: <span name="scala.Iterator" class="extype">Iterator</span>[<a href="WebBrowser$Element.html" name="org.scalatestplus.selenium.WebBrowser.Element" id="org.scalatestplus.selenium.WebBrowser.Element" class="extype">Element</a>]</span></span><p class="shortcomment cmt">Returns an <code>Iterator</code> over all <code>Element</code>s selected by this query.</p><div class="fullcomment"><div class="comment cmt"><p>Returns an <code>Iterator</code> over all <code>Element</code>s selected by this query.</p><p>The class of the <code>Element</code>s produced by the returned <code>Iterator</code> will be a
+subtypes of <code>Element</code> if appropriate.  For example, if an <code>Element</code>representing
+a text field is returned by the <code>Iterator</code>, the class of the returned <code>Element</code> will
+be <code>TextField</code>.</p><p>If no <code>Elements</code> are selected by this query, this method will return an empty <code>Iterator</code> will be returned.</p></div><dl class="paramcmts block"><dt class="param">driver</dt><dd class="cmt"><p>the <code>WebDriver</code> with which to drive the browser</p></dd><dt>returns</dt><dd class="cmt"><p>the <code>Iterator</code> over all <code>Element</code>s selected by this query</p></dd></dl></div></li><li class="indented0 " name="org.scalatestplus.selenium.WebBrowser.Query#findElement" group="Ungrouped" fullComment="yes" data-isabs="false" visbl="pub"><a id="findElement(implicitdriver:org.openqa.selenium.WebDriver,implicitpos:org.scalactic.source.Position):Option[WebBrowser.this.Element]"></a><a id="findElement(WebDriver,Position):Option[Element]"></a> <span class="permalink"><a href="../../../org/scalatestplus/selenium/WebBrowser$Query.html#findElement(implicitdriver:org.openqa.selenium.WebDriver,implicitpos:org.scalactic.source.Position):Option[WebBrowser.this.Element]" title="Permalink"><i class="material-icons"></i></a></span> <span class="modifier_kind"><span class="modifier"></span> <span class="kind">def</span></span> <span class="symbol"><span class="name">findElement</span><span class="params">(<span class="implicit">implicit </span><span name="driver">driver: <span name="org.openqa.selenium.WebDriver" class="extype">WebDriver</span></span>, <span name="pos">pos: <span name="org.scalactic.source.Position" class="extype">Position</span> = <span class="symbol">implicitly[source.Position]</span></span>)</span><span class="result">: <span name="scala.Option" class="extype">Option</span>[<a href="WebBrowser$Element.html" name="org.scalatestplus.selenium.WebBrowser.Element" id="org.scalatestplus.selenium.WebBrowser.Element" class="extype">Element</a>]</span></span><p class="shortcomment cmt">Returns the first <code>Element</code> selected by this query, wrapped in a <code>Some</code>, or <code>None</code>
+if no <code>Element</code> is selected.</p><div class="fullcomment"><div class="comment cmt"><p>Returns the first <code>Element</code> selected by this query, wrapped in a <code>Some</code>, or <code>None</code>
+if no <code>Element</code> is selected.</p><p>The class of the <code>Element</code> returned will be a subtype of <code>Element</code> if appropriate.
+For example, if this query selects a text field, the class of the returned <code>Element</code> will
+be <code>TextField</code>.</p></div><dl class="paramcmts block"><dt class="param">driver</dt><dd class="cmt"><p>the <code>WebDriver</code> with which to drive the browser</p></dd><dt>returns</dt><dd class="cmt"><p>the <code>Element</code> selected by this query, wrapped in a <code>Some</code>, or <code>None</code> if
+  no <code>Element</code> is selected</p></dd></dl></div></li><li class="indented0 " name="scala.AnyRef#getClass" group="Ungrouped" fullComment="yes" data-isabs="false" visbl="pub"><a id="getClass():Class[_]"></a><a id="getClass():Class[_&lt;:AnyRef]"></a> <span class="permalink"><a href="../../../org/scalatestplus/selenium/WebBrowser$Query.html#getClass():Class[_]" title="Permalink"><i class="material-icons"></i></a></span> <span class="modifier_kind"><span class="modifier">final </span> <span class="kind">def</span></span> <span class="symbol"><span class="name">getClass</span><span class="params">()</span><span class="result">: <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html#java.lang.Class" name="java.lang.Class" id="java.lang.Class" class="extype">Class</a>[_ &lt;: <span name="scala.AnyRef" class="extype">AnyRef</span>]</span></span><div class="fullcomment"><dl class="attributes block"><dt>Definition Classes</dt><dd>AnyRef → Any</dd><dt>Annotations</dt><dd><span class="name">@native</span><span class="args">()</span> </dd></dl></div></li><li class="indented0 " name="scala.AnyRef#hashCode" group="Ungrouped" fullComment="yes" data-isabs="false" visbl="pub"><a id="hashCode():Int"></a> <span class="permalink"><a href="../../../org/scalatestplus/selenium/WebBrowser$Query.html#hashCode():Int" title="Permalink"><i class="material-icons"></i></a></span> <span class="modifier_kind"><span class="modifier"></span> <span class="kind">def</span></span> <span class="symbol"><span class="name">hashCode</span><span class="params">()</span><span class="result">: <span name="scala.Int" class="extype">Int</span></span></span><div class="fullcomment"><dl class="attributes block"><dt>Definition Classes</dt><dd>AnyRef → Any</dd><dt>Annotations</dt><dd><span class="name">@native</span><span class="args">()</span> </dd></dl></div></li><li class="indented0 " name="scala.Any#isInstanceOf" group="Ungrouped" fullComment="yes" data-isabs="false" visbl="pub"><a id="isInstanceOf[T0]:Boolean"></a> <span class="permalink"><a href="../../../org/scalatestplus/selenium/WebBrowser$Query.html#isInstanceOf[T0]:Boolean" title="Permalink"><i class="material-icons"></i></a></span> <span class="modifier_kind"><span class="modifier">final </span> <span class="kind">def</span></span> <span class="symbol"><span class="name">isInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span name="scala.Boolean" class="extype">Boolean</span></span></span><div class="fullcomment"><dl class="attributes block"><dt>Definition Classes</dt><dd>Any</dd></dl></div></li><li class="indented0 " name="scala.AnyRef#ne" group="Ungrouped" fullComment="yes" data-isabs="false" visbl="pub"><a id="ne(x$1:AnyRef):Boolean"></a><a id="ne(AnyRef):Boolean"></a> <span class="permalink"><a href="../../../org/scalatestplus/selenium/WebBrowser$Query.html#ne(x$1:AnyRef):Boolean" title="Permalink"><i class="material-icons"></i></a></span> <span class="modifier_kind"><span class="modifier">final </span> <span class="kind">def</span></span> <span class="symbol"><span class="name">ne</span><span class="params">(<span name="arg0">arg0: <span name="scala.AnyRef" class="extype">AnyRef</span></span>)</span><span class="result">: <span name="scala.Boolean" class="extype">Boolean</span></span></span><div class="fullcomment"><dl class="attributes block"><dt>Definition Classes</dt><dd>AnyRef</dd></dl></div></li><li class="indented0 " name="scala.AnyRef#notify" group="Ungrouped" fullComment="yes" data-isabs="false" visbl="pub"><a id="notify():Unit"></a> <span class="permalink"><a href="../../../org/scalatestplus/selenium/WebBrowser$Query.html#notify():Unit" title="Permalink"><i class="material-icons"></i></a></span> <span class="modifier_kind"><span class="modifier">final </span> <span class="kind">def</span></span> <span class="symbol"><span class="name">notify</span><span class="params">()</span><span class="result">: <span name="scala.Unit" class="extype">Unit</span></span></span><div class="fullcomment"><dl class="attributes block"><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd><span class="name">@native</span><span class="args">()</span> </dd></dl></div></li><li class="indented0 " name="scala.AnyRef#notifyAll" group="Ungrouped" fullComment="yes" data-isabs="false" visbl="pub"><a id="notifyAll():Unit"></a> <span class="permalink"><a href="../../../org/scalatestplus/selenium/WebBrowser$Query.html#notifyAll():Unit" title="Permalink"><i class="material-icons"></i></a></span> <span class="modifier_kind"><span class="modifier">final </span> <span class="kind">def</span></span> <span class="symbol"><span class="name">notifyAll</span><span class="params">()</span><span class="result">: <span name="scala.Unit" class="extype">Unit</span></span></span><div class="fullcomment"><dl class="attributes block"><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd><span class="name">@native</span><span class="args">()</span> </dd></dl></div></li><li class="indented0 " name="scala.Product#productElementName" group="Ungrouped" fullComment="yes" data-isabs="false" visbl="pub"><a id="productElementName(n:Int):String"></a><a id="productElementName(Int):String"></a> <span class="permalink"><a href="../../../org/scalatestplus/selenium/WebBrowser$Query.html#productElementName(n:Int):String" title="Permalink"><i class="material-icons"></i></a></span> <span class="modifier_kind"><span class="modifier"></span> <span class="kind">def</span></span> <span class="symbol"><span class="name">productElementName</span><span class="params">(<span name="n">n: <span name="scala.Int" class="extype">Int</span></span>)</span><span class="result">: <span name="scala.Predef.String" class="extype">String</span></span></span><div class="fullcomment"><dl class="attributes block"><dt>Definition Classes</dt><dd>Product</dd></dl></div></li><li class="indented0 " name="scala.Product#productElementNames" group="Ungrouped" fullComment="yes" data-isabs="false" visbl="pub"><a id="productElementNames:Iterator[String]"></a> <span class="permalink"><a href="../../../org/scalatestplus/selenium/WebBrowser$Query.html#productElementNames:Iterator[String]" title="Permalink"><i class="material-icons"></i></a></span> <span class="modifier_kind"><span class="modifier"></span> <span class="kind">def</span></span> <span class="symbol"><span class="name">productElementNames</span><span class="result">: <span name="scala.Iterator" class="extype">Iterator</span>[<span name="scala.Predef.String" class="extype">String</span>]</span></span><div class="fullcomment"><dl class="attributes block"><dt>Definition Classes</dt><dd>Product</dd></dl></div></li><li class="indented0 " name="scala.Product#productIterator" group="Ungrouped" fullComment="yes" data-isabs="false" visbl="pub"><a id="productIterator:Iterator[Any]"></a> <span class="permalink"><a href="../../../org/scalatestplus/selenium/WebBrowser$Query.html#productIterator:Iterator[Any]" title="Permalink"><i class="material-icons"></i></a></span> <span class="modifier_kind"><span class="modifier"></span> <span class="kind">def</span></span> <span class="symbol"><span class="name">productIterator</span><span class="result">: <span name="scala.Iterator" class="extype">Iterator</span>[<span name="scala.Any" class="extype">Any</span>]</span></span><div class="fullcomment"><dl class="attributes block"><dt>Definition Classes</dt><dd>Product</dd></dl></div></li><li class="indented0 " name="scala.Product#productPrefix" group="Ungrouped" fullComment="yes" data-isabs="false" visbl="pub"><a id="productPrefix:String"></a> <span class="permalink"><a href="../../../org/scalatestplus/selenium/WebBrowser$Query.html#productPrefix:String" title="Permalink"><i class="material-icons"></i></a></span> <span class="modifier_kind"><span class="modifier"></span> <span class="kind">def</span></span> <span class="symbol"><span class="name">productPrefix</span><span class="result">: <span name="scala.Predef.String" class="extype">String</span></span></span><div class="fullcomment"><dl class="attributes block"><dt>Definition Classes</dt><dd>Product</dd></dl></div></li><li class="indented0 " name="scala.AnyRef#synchronized" group="Ungrouped" fullComment="yes" data-isabs="false" visbl="pub"><a id="synchronized[T0](x$1:=&gt;T0):T0"></a><a id="synchronized[T0](=&gt;T0):T0"></a> <span class="permalink"><a href="../../../org/scalatestplus/selenium/WebBrowser$Query.html#synchronized[T0](x$1:=&gt;T0):T0" title="Permalink"><i class="material-icons"></i></a></span> <span class="modifier_kind"><span class="modifier">final </span> <span class="kind">def</span></span> <span class="symbol"><span class="name">synchronized</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="params">(<span name="arg0">arg0: =&gt; <span name="java.lang.AnyRef.synchronized.T0" class="extype">T0</span></span>)</span><span class="result">: <span name="java.lang.AnyRef.synchronized.T0" class="extype">T0</span></span></span><div class="fullcomment"><dl class="attributes block"><dt>Definition Classes</dt><dd>AnyRef</dd></dl></div></li><li class="indented0 " name="scala.AnyRef#toString" group="Ungrouped" fullComment="yes" data-isabs="false" visbl="pub"><a id="toString():String"></a> <span class="permalink"><a href="../../../org/scalatestplus/selenium/WebBrowser$Query.html#toString():String" title="Permalink"><i class="material-icons"></i></a></span> <span class="modifier_kind"><span class="modifier"></span> <span class="kind">def</span></span> <span class="symbol"><span class="name">toString</span><span class="params">()</span><span class="result">: <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html#java.lang.String" name="java.lang.String" id="java.lang.String" class="extype">String</a></span></span><div class="fullcomment"><dl class="attributes block"><dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div></li><li class="indented0 " name="scala.AnyRef#wait" group="Ungrouped" fullComment="yes" data-isabs="false" visbl="pub"><a id="wait():Unit"></a> <span class="permalink"><a href="../../../org/scalatestplus/selenium/WebBrowser$Query.html#wait():Unit" title="Permalink"><i class="material-icons"></i></a></span> <span class="modifier_kind"><span class="modifier">final </span> <span class="kind">def</span></span> <span class="symbol"><span class="name">wait</span><span class="params">()</span><span class="result">: <span name="scala.Unit" class="extype">Unit</span></span></span><div class="fullcomment"><dl class="attributes block"><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd><span class="name">@throws</span><span class="args">(<span><span class="defval">classOf[java.lang.InterruptedException]</span></span>)</span> </dd></dl></div></li><li class="indented0 " name="scala.AnyRef#wait" group="Ungrouped" fullComment="yes" data-isabs="false" visbl="pub"><a id="wait(x$1:Long,x$2:Int):Unit"></a><a id="wait(Long,Int):Unit"></a> <span class="permalink"><a href="../../../org/scalatestplus/selenium/WebBrowser$Query.html#wait(x$1:Long,x$2:Int):Unit" title="Permalink"><i class="material-icons"></i></a></span> <span class="modifier_kind"><span class="modifier">final </span> <span class="kind">def</span></span> <span class="symbol"><span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span name="scala.Long" class="extype">Long</span></span>, <span name="arg1">arg1: <span name="scala.Int" class="extype">Int</span></span>)</span><span class="result">: <span name="scala.Unit" class="extype">Unit</span></span></span><div class="fullcomment"><dl class="attributes block"><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd><span class="name">@throws</span><span class="args">(<span><span class="defval">classOf[java.lang.InterruptedException]</span></span>)</span> </dd></dl></div></li><li class="indented0 " name="scala.AnyRef#wait" group="Ungrouped" fullComment="yes" data-isabs="false" visbl="pub"><a id="wait(x$1:Long):Unit"></a><a id="wait(Long):Unit"></a> <span class="permalink"><a href="../../../org/scalatestplus/selenium/WebBrowser$Query.html#wait(x$1:Long):Unit" title="Permalink"><i class="material-icons"></i></a></span> <span class="modifier_kind"><span class="modifier">final </span> <span class="kind">def</span></span> <span class="symbol"><span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span name="scala.Long" class="extype">Long</span></span>)</span><span class="result">: <span name="scala.Unit" class="extype">Unit</span></span></span><div class="fullcomment"><dl class="attributes block"><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd><span class="name">@throws</span><span class="args">(<span><span class="defval">classOf[java.lang.InterruptedException]</span></span>)</span> <span class="name">@native</span><span class="args">()</span> </dd></dl></div></li><li class="indented0 " name="org.scalatestplus.selenium.WebBrowser.Query#webElement" group="Ungrouped" fullComment="yes" data-isabs="false" visbl="pub"><a id="webElement(implicitdriver:org.openqa.selenium.WebDriver,implicitpos:org.scalactic.source.Position):org.openqa.selenium.WebElement"></a><a id="webElement(WebDriver,Position):WebElement"></a> <span class="permalink"><a href="../../../org/scalatestplus/selenium/WebBrowser$Query.html#webElement(implicitdriver:org.openqa.selenium.WebDriver,implicitpos:org.scalactic.source.Position):org.openqa.selenium.WebElement" title="Permalink"><i class="material-icons"></i></a></span> <span class="modifier_kind"><span class="modifier"></span> <span class="kind">def</span></span> <span class="symbol"><span class="name">webElement</span><span class="params">(<span class="implicit">implicit </span><span name="driver">driver: <span name="org.openqa.selenium.WebDriver" class="extype">WebDriver</span></span>, <span name="pos">pos: <span name="org.scalactic.source.Position" class="extype">Position</span> = <span class="symbol">implicitly[source.Position]</span></span>)</span><span class="result">: <span name="org.openqa.selenium.WebElement" class="extype">WebElement</span></span></span><p class="shortcomment cmt">Returns the first <code>WebElement</code> selected by this query, or throws <code>TestFailedException</code>
+if no <code>WebElement</code> is selected.</p><div class="fullcomment"><div class="comment cmt"><p>Returns the first <code>WebElement</code> selected by this query, or throws <code>TestFailedException</code>
+if no <code>WebElement</code> is selected.
+</p></div><dl class="paramcmts block"><dt class="param">driver</dt><dd class="cmt"><p>the <code>WebDriver</code> with which to drive the browser</p></dd><dt>returns</dt><dd class="cmt"><p>the <code>WebElement</code> selected by this query</p></dd></dl><dl class="attributes block"><dt>Exceptions thrown</dt><dd><span class="cmt"><p><span name="TestFailedException" class="extype"><code>TestFailedException</code></span> if nothing is selected by this query</p></span></dd></dl></div></li></ol></div></div><div id="inheritedMembers"><div name="java.io.Serializable" class="parent"><h3>Inherited from <a href="https://docs.oracle.com/javase/8/docs/api/java/io/Serializable.html#java.io.Serializable" name="java.io.Serializable" id="java.io.Serializable" class="extype">Serializable</a></h3></div><div name="scala.Product" class="parent"><h3>Inherited from <span name="scala.Product" class="extype">Product</span></h3></div><div name="scala.Equals" class="parent"><h3>Inherited from <span name="scala.Equals" class="extype">Equals</span></h3></div><div name="scala.AnyRef" class="parent"><h3>Inherited from <span name="scala.AnyRef" class="extype">AnyRef</span></h3></div><div name="scala.Any" class="parent"><h3>Inherited from <span name="scala.Any" class="extype">Any</span></h3></div></div><div id="groupedMembers"><div name="Ungrouped" class="group"><h3>Ungrouped</h3></div></div></div><div id="tooltip"></div><div id="footer"></div></body></div></div></div></body></html>
