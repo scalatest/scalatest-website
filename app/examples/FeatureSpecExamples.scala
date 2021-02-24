@@ -23,20 +23,22 @@ object FeatureSpecExamples extends StyleTraitExamples {
 
   val exampleUsage: String =
     """<span class="stImport">import org.scalatest._</span>
+      |<span class="stImport">import featurespec._</span>
+      |
       |<span class="stReserved">class</span> <span class="stType">TVSet</span> {
       |  <span class="stReserved">private</span> <span class="stReserved">var</span> on: Boolean = false
       |  <span class="stReserved">def</span> isOn: Boolean = on
-      |  <span class="stReserved">def</span> pressPowerButton() { on = !on }
+      |  <span class="stReserved">def</span> pressPowerButton(): Unit = { on = !on }
       |}
       |
-      |<span class="stReserved">class</span> <span class="stType">TVSetSpec</span> <span class="stReserved">extends</span> <span class="stType">FeatureSpec</span> <span class="stReserved">with</span> <span class="stType">GivenWhenThen</span> {
+      |<span class="stReserved">class</span> <span class="stType">TVSetSpec</span> <span class="stReserved">extends</span> <span class="stType">AnyFeatureSpec</span> <span class="stReserved">with</span> <span class="stType">GivenWhenThen</span> {
       |  info(<span class="stLiteral">"As a TV set owner"</span>)
       |  info(<span class="stLiteral">"I want to be able to turn the TV on and off"</span>)
       |  info(<span class="stLiteral">"So I can watch TV when I want"</span>)
       |  info(<span class="stLiteral">"And save energy when I'm not watching TV"</span>)
       |
-      |  feature(<span class="stLiteral">"TV power button"</span>) {
-      |    scenario(<span class="stLiteral">"User presses power button when TV is off"</span>) {
+      |  Feature(<span class="stLiteral">"TV power button"</span>) {
+      |    Scenario(<span class="stLiteral">"User presses power button when TV is off"</span>) {
       |      Given(<span class="stLiteral">"a TV set that is switched off"</span>)
       |      <span class="stReserved">val</span> tv = <span class="stReserved">new</span> <span class="stType">TVSet</span>
       |      assert(!tv.isOn)
@@ -45,7 +47,7 @@ object FeatureSpecExamples extends StyleTraitExamples {
       |      Then(<span class="stLiteral">"the TV should switch on"</span>)
       |      assert(tv.isOn)
       |    }
-      |    scenario(<span class="stLiteral">"User presses power button when TV is on"</span>) {
+      |    Scenario(<span class="stLiteral">"User presses power button when TV is on"</span>) {
       |      Given(<span class="stLiteral">"a TV set that is switched on"</span>)
       |      <span class="stReserved">val</span> tv = <span class="stReserved">new</span> <span class="stType">TVSet</span>
       |      tv.pressPowerButton()
@@ -130,7 +132,7 @@ object FeatureSpecExamples extends StyleTraitExamples {
 
   val fixtureOneArgTest: String =
     """<span class="stImport">import org.scalatest._</span>
-      |<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">fixture.FeatureSpec</span> {
+      |<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">FixtureAnyFeatureSpec</span> {
       |  <span class="stReserved">def</span> setup() { <span class="stBlockComment">/*code omitted*/</span> }
       |  <span class="stReserved">def</span> cleanup() { <span class="stBlockComment">/*code omitted*/</span> }
       |  <span class="stReserved">type</span> FixtureParam = <span class="stType">String</span>
