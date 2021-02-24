@@ -15,16 +15,16 @@
  */
 package examples
 
-object SpecExamples extends StyleTraitExamples {
+object RefSpecExamples extends StyleTraitExamples {
 
-  val name: String = "Spec"
+  val name: String = "RefSpec"
 
-  val description: String = """Spec allows you to define tests as methods, which saves one function literal per test compared to style classes that represent tests as functions. Fewer function literals translates into faster compile times and fewer generated class files, which can help minimize build times. As a result, using Spec can be a good choice in large projects where build times are a concern as well as when generating large numbers of tests programatically via static code generators."""
+  val description: String = """RefSpec allows you to define tests as methods, which saves one function literal per test compared to style classes that represent tests as functions. Fewer function literals translates into faster compile times and fewer generated class files, which can help minimize build times. As a result, using Spec can be a good choice in large projects where build times are a concern as well as when generating large numbers of tests programatically via static code generators."""
 
   val exampleUsage: String =
     """<span class="stImport">import org.scalatest._</span>
       |
-      |<span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">Spec</span> {
+      |<span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">RefSpec</span> {
       |  <span class="stReserved">override</span> <span class="stReserved">def</span> withFixture(test: <span class="stType">NoArgTest</span>) = { <span class="stExplain">// Define a shared fixture</span>
       |    <span class="stExplain">// Shared setup (run at beginning of each test)</span>
       |    <span class="stReserved">try</span> test()
@@ -64,24 +64,6 @@ object SpecExamples extends StyleTraitExamples {
       |      @<span class="stType">Slow<span> <span class="stReserved">def</span> <span class="stLiteral">`should be non-empty`</span> { <span class="stExplain">// Tag a test by placing a tag object after the test name</span>
       |        assert(<span class="stType">Set</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>).nonEmpty)
       |      }
-      |    }
-      |  }
-      |}
-      |
-      |<span class="stExplain">// Can also pass fixtures into tests with fixture.Spec</span>
-      |<span class="stReserved">class</span> <span class="stType">StringSpec</span> <span class="stReserved">extends</span> <span class="stType">fixture.Spec</span> {
-      |  <span class="stReserved">type</span> FixtureParam = <span class="stType">String</span> <span class="stExplain">// Define the type of the passed fixture object</span>
-      |  <span class="stReserved">override</span> <span class="stReserved">def</span> withFixture(test: <span class="stType">OneArgTest</span>) = {
-      |    <span class="stExplain">// Shared setup (run before each test), including...</span>
-      |    <span class="stReserved">val</span> fixture = <span class="stLiteral">"a fixture object"</span> <span class="stExplain">// ...creating a fixture object</span>
-      |    <span class="stReserved">try</span> test(fixture) <span class="stExplain">// Pass the fixture into the test</span>
-      |    <span class="stReserved">finally</span> {
-      |      <span class="stExplain">// Shared cleanup (run at end of each test)</span>
-      |    }
-      |  }
-      |  <span class="stReserved">object</span> <span class="stLiteral">`The passed fixture`</span> {
-      |   <span class="stReserved">def</span> <span class="stLiteral">`can be used in the test`</span> in { s =&gt; <span class="stExplain">// Fixture passed in as s</span>
-      |      assert(s == <span class="stLiteral">"a fixture object"</span>)
       |    }
       |  }
       |}

@@ -40,7 +40,7 @@ object StyleTraitExamples {
       "FunSpec" -> FunSpecExamples,
       "WordSpec" -> WordSpecExamples,
       "FreeSpec" -> FreeSpecExamples,
-      "Spec" -> SpecExamples,
+      "RefSpec" -> RefSpecExamples,
       "PropSpec" -> PropSpecExamples,
       "FeatureSpec" -> FeatureSpecExamples
     )
