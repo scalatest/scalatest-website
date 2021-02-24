@@ -23,6 +23,7 @@ object RefSpecExamples extends StyleTraitExamples {
 
   val exampleUsage: String =
     """<span class="stImport">import org.scalatest._</span>
+      |<span class="stImport">import refspec._</span>
       |
       |<span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">RefSpec</span> {
       |  <span class="stReserved">override</span> <span class="stReserved">def</span> withFixture(test: <span class="stType">NoArgTest</span>) = { <span class="stExplain">// Define a shared fixture</span>
@@ -39,15 +40,15 @@ object RefSpecExamples extends StyleTraitExamples {
       |    <span class="stExplain">// Can describe nested scopes that "narrow" its outer scopes</span>
       |    <span class="stReserved">object</span> <span class="stLiteral">`(when empty)`</span> { <span class="stExplain">// All tests within these curly braces are about "A Set (when empty)"</span>
       |
-      |      <span class="stReserved">def</span> <span class="stLiteral">`should have size 0`</span> {    <span class="stExplain">// Here, 'it' refers to "A Set (when empty)". The full name</span>
+      |      <span class="stReserved">def</span> <span class="stLiteral">`should have size 0`</span> = {    <span class="stExplain">// Here, 'it' refers to "A Set (when empty)". The full name</span>
       |        assert(<span class="stType">Set</span>.empty.size == <span class="stLiteral">0</span>) <span class="stExplain">// of this test is: "A Set (when empty) should have size 0"</span>
       |      }
-      |      <span class="stReserved">def</span> <span class="stLiteral">`should produce NoSuchElementException when head is invoked`</span> { // <span class="stExplain">Define another test</span>
+      |      <span class="stReserved">def</span> <span class="stLiteral">`should produce NoSuchElementException when head is invoked`</span> = { // <span class="stExplain">Define another test</span>
       |        intercept[<span class="stType">NoSuchElementException</span>] {
       |          <span class="stType">Set</span>.empty.head
       |        }
       |      }
-      |      @<span class="stType">Ignore<span> <span class="stReserved">def</span> <span class="stLiteral">`should should be empty`</span> { <span class="stExplain">// To ignore a test, change 'it' to 'ignore'...</span>
+      |      @<span class="stType">Ignore<span> <span class="stReserved">def</span> <span class="stLiteral">`should should be empty`</span> = { <span class="stExplain">// To ignore a test, change 'it' to 'ignore'...</span>
       |        assert(<span class="stType">Set</span>.empty.isEmpty)
       |      }
       |    }
@@ -55,13 +56,13 @@ object RefSpecExamples extends StyleTraitExamples {
       |    <span class="stExplain">// Describe a second nested scope that narrows "A Set" in a different way</span>
       |    <span class="stReserved">object</span> <span class="stLiteral">`(when non-empty)`</span> { <span class="stExplain">// All tests within these curly braces are about "A Set (when non-empty)"</span>
       |
-      |      <span class="stReserved">def</span> <span class="stLiteral">`should have the correct size`</span> { <span class="stExplain">// Here, 'it' refers to "A Set (when non-empty)". This test's full</span>
+      |      <span class="stReserved">def</span> <span class="stLiteral">`should have the correct size`</span> = { <span class="stExplain">// Here, 'it' refers to "A Set (when non-empty)". This test's full</span>
       |        assert(<span class="stType">Set</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>).size == <span class="stLiteral">3</span>)     <span class="stExplain">// name is: "A Set (when non-empty) should have the correct size"</span>
       |      }
       |      <span class="stExplain">// Define a pending test by using { pending } for the body</span>
-      |      <span class="stReserved">def</span> <span class="stLiteral">`return a contained value when head is invoked`</span> { pending }
+      |      <span class="stReserved">def</span> <span class="stLiteral">`return a contained value when head is invoked`</span> = { pending }
       |      <span class="stImport">import org.scalatest.tags.Slow</span>
-      |      @<span class="stType">Slow<span> <span class="stReserved">def</span> <span class="stLiteral">`should be non-empty`</span> { <span class="stExplain">// Tag a test by placing a tag object after the test name</span>
+      |      @<span class="stType">Slow<span> <span class="stReserved">def</span> <span class="stLiteral">`should be non-empty`</span> = { <span class="stExplain">// Tag a test by placing a tag object after the test name</span>
       |        assert(<span class="stType">Set</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>).nonEmpty)
       |      }
       |    }
@@ -69,14 +70,14 @@ object RefSpecExamples extends StyleTraitExamples {
       |}
       |
       |@DoNotDiscover <span class="stExplain">// Disable discovery of a test class</span>
-      |<span class="stReserved">class</span> <span class="stType">InvisibleSpec</span> <span class="stReserved">extends</span> <span class="stType">Spec</span> { <span class="stBlockComment">/*code omitted*/</span> }
+      |<span class="stReserved">class</span> <span class="stType">InvisibleSpec</span> <span class="stReserved">extends</span> <span class="stType">RefSpec</span> { <span class="stBlockComment">/*code omitted*/</span> }
       |
       |@Ignore <span class="stExplain">// Ignore all tests in a test class</span>
-      |<span class="stReserved">class</span> <span class="stType">IgnoredSpec</span> <span class="stReserved">extends</span> <span class="stType">Spec</span> { <span class="stBlockComment">/*code omitted*/</span> }
+      |<span class="stReserved">class</span> <span class="stType">IgnoredSpec</span> <span class="stReserved">extends</span> <span class="stType">RefSpec</span> { <span class="stBlockComment">/*code omitted*/</span> }
       |
       |<span class="stImport">import tags.Slow</span>
       |@Slow <span class="stExplain">// Mark all tests in a test class with a tag</span>
-      |<span class="stReserved">class</span> <span class="stType">SlowSpec</span> <span class="stReserved">extends</span> <span class="stType">Spec</span> { <span class="stBlockComment">/*code omitted*/</span> }
+      |<span class="stReserved">class</span> <span class="stType">SlowSpec</span> <span class="stReserved">extends</span> <span class="stType">RefSpec</span> { <span class="stBlockComment">/*code omitted*/</span> }
       |""".stripMargin
 
   val play2Example: String =

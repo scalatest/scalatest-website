@@ -23,8 +23,9 @@ object FreeSpecExamples extends StyleTraitExamples {
 
   val exampleUsage: String =
     """<span class="stImport">import org.scalatest._</span>
+      |<span class="stImport">import freespec._</span>
       |
-      |<span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">FreeSpec</span> {
+      |<span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">AnyFreeSpec</span> {
       |  <span class="stReserved">override</span> <span class="stReserved">def</span> withFixture(test: <span class="stType">NoArgTest</span>) = { <span class="stExplain">// Define a shared fixture</span>
       |    <span class="stExplain">// Shared setup (run at beginning of each test)</span>
       |    <span class="stReserved">try</span> test()
@@ -68,8 +69,8 @@ object FreeSpecExamples extends StyleTraitExamples {
       |  }
       |}
       |
-      |<span class="stExplain">// Can also pass fixtures into tests with fixture.FreeSpec</span>
-      |<span class="stReserved">class</span> <span class="stType">StringSpec</span> <span class="stReserved">extends</span> <span class="stType">fixture.FreeSpec</span> {
+      |<span class="stExplain">// Can also pass fixtures into tests with FixtureAnyFreeSpec</span>
+      |<span class="stReserved">class</span> <span class="stType">StringSpec</span> <span class="stReserved">extends</span> <span class="stType">FixtureAnyFreeSpec</span> {
       |  <span class="stReserved">type</span> FixtureParam = <span class="stType">String</span> <span class="stExplain">// Define the type of the passed fixture object</span>
       |  <span class="stReserved">override</span> <span class="stReserved">def</span> withFixture(test: <span class="stType">OneArgTest</span>) = {
       |    <span class="stExplain">// Shared setup (run before each test), including...</span>
@@ -87,14 +88,14 @@ object FreeSpecExamples extends StyleTraitExamples {
       |}
       |
       |@DoNotDiscover <span class="stExplain">// Disable discovery of a test class</span>
-      |<span class="stReserved">class</span> <span class="stType">InvisibleSpec</span> <span class="stReserved">extends</span> <span class="stType">FreeSpec</span> { <span class="stBlockComment">/*code omitted*/</span> }
+      |<span class="stReserved">class</span> <span class="stType">InvisibleSpec</span> <span class="stReserved">extends</span> <span class="stType">AnyFreeSpec</span> { <span class="stBlockComment">/*code omitted*/</span> }
       |
       |@Ignore <span class="stExplain">// Ignore all tests in a test class</span>
-      |<span class="stReserved">class</span> <span class="stType">IgnoredSpec</span> <span class="stReserved">extends</span> <span class="stType">FreeSpec</span> { <span class="stBlockComment">/*code omitted*/</span> }
+      |<span class="stReserved">class</span> <span class="stType">IgnoredSpec</span> <span class="stReserved">extends</span> <span class="stType">AnyFreeSpec</span> { <span class="stBlockComment">/*code omitted*/</span> }
       |
       |<span class="stImport">import tags.Slow</span>
       |@Slow <span class="stExplain">// Mark all tests in a test class with a tag</span>
-      |<span class="stReserved">class</span> <span class="stType">SlowSpec</span> <span class="stReserved">extends</span> <span class="stType">FreeSpec</span> { <span class="stBlockComment">/*code omitted*/</span> }
+      |<span class="stReserved">class</span> <span class="stType">SlowSpec</span> <span class="stReserved">extends</span> <span class="stType">AnyFreeSpec</span> { <span class="stBlockComment">/*code omitted*/</span> }
       |""".stripMargin
 
   val play2Example: String =
@@ -165,7 +166,7 @@ object FreeSpecExamples extends StyleTraitExamples {
 
   val fixtureOneArgTest: String =
     """<span class="stImport">import org.scalatest._</span>
-      |<span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">fixture.FreeSpec</span> {
+      |<span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">FixtureAnyFreeSpec</span> {
       |  <span class="stReserved">def</span> setup() { <span class="stBlockComment">/*code omitted*/</span> }
       |  <span class="stReserved">def</span> cleanup() { <span class="stBlockComment">/*code omitted*/</span> }
       |  <span class="stReserved">type</span> FixtureParam = <span class="stType">String</span>
