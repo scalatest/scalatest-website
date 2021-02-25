@@ -105,23 +105,23 @@ Here's a list of the main enhancements in ScalaTest 3.0.0:
 
 <ul>
 <li>Added support for Scala.js.</li>
-<li>Added type <a href='@scaladocsPageUrl("index.html#org.scalatest.compatible.Assertion")'><code>org.scalatest.compatible.Assertion</code></a> to serve
+<li>Added type <a href='@scaladocsPageUrl("org.scalatest.compatible.Assertion")'><code>org.scalatest.compatible.Assertion</code></a> to serve
 as the actual type required by test bodies in the new async styles. Eventually this will be released as a separate Java artifact, just a simple
 marker interface, so third-party libraries can provide assertions that ScalaTest will recognize as valid assertions without requiring the
 third party libraries depend on a version of ScalaTest. They will only need to depend on a version of the scalatest-compat.jar Java artifact, which 
 will be very stable.</li>
-<li>Defined <code>org.scalatest.Assertion</code> as a type alias for the newly added marker interface, <a href='@scaladocsPageUrl("index.html#org.scalatest.compatible.Assertion")'><code>org.scalatest.compatible.Assertion</code></a>.</li>
+<li>Defined <code>org.scalatest.Assertion</code> as a type alias for the newly added marker interface, <a href='@scaladocsPageUrl("org.scalatest.compatible.Assertion")'><code>org.scalatest.compatible.Assertion</code></a>.</li>
 <li>Changed the result type of assertions and matcher expressions from <code>Unit</code> to <code>Assertion</code>.</li>
 <li>Changed the result type of <code>org.scalatest</code> styles from <code>Unit</code> to <code>Any</code> so that users who
 compile with <code>-Ywarn-value-discard</code> will not get warnings for tests that end in an assertion or matcher expression,
 which no longer has a <code>Unit</code> result type.</li>
-<li>Added "async" testing styles&#8212;<a href='@scaladocsPageUrl("index.html#org.scalatest.AsyncFunSuite")'><code>AsyncFunSuite</code></a>,
-<a href='@scaladocsPageUrl("index.html#org.scalatest.AsyncFunSpec")'><code>AsyncFunSpec</code></a>,
-<a href='@scaladocsPageUrl("index.html#org.scalatest.AsyncFlatSpec")'><code>AsyncFlatSpec</code></a>,
-<a href='@scaladocsPageUrl("index.html#org.scalatest.AsyncFreeSpec")'><code>AsyncFreeSpec</code></a>,
-<a href='@scaladocsPageUrl("index.html#org.scalatest.AsyncWordSpec")'><code>AsyncWordspec</code></a>, and
-<a href='@scaladocsPageUrl("index.html#org.scalatest.AsyncFeatureSpec")'><code>AsyncFeatureSpec</code></a>&#8212;in which
-the result type of tests is <code>Future[Assertion]</code>.  All asynchronous style traits mixed in <a href='@scaladocsPageUrl("index.html#org.scalatest.RecoverMethods")'><code>RecoverMethods</code></a>
+<li>Added "async" testing styles&#8212;<a href='@scaladocsPageUrl("org.scalatest.AsyncFunSuite")'><code>AsyncFunSuite</code></a>,
+<a href='@scaladocsPageUrl("org.scalatest.AsyncFunSpec")'><code>AsyncFunSpec</code></a>,
+<a href='@scaladocsPageUrl("org.scalatest.AsyncFlatSpec")'><code>AsyncFlatSpec</code></a>,
+<a href='@scaladocsPageUrl("org.scalatest.AsyncFreeSpec")'><code>AsyncFreeSpec</code></a>,
+<a href='@scaladocsPageUrl("org.scalatest.AsyncWordSpec")'><code>AsyncWordspec</code></a>, and
+<a href='@scaladocsPageUrl("org.scalatest.AsyncFeatureSpec")'><code>AsyncFeatureSpec</code></a>&#8212;in which
+the result type of tests is <code>Future[Assertion]</code>.  All asynchronous style traits mixed in <a href='@scaladocsPageUrl("org.scalatest.RecoverMethods")'><code>RecoverMethods</code></a>
 that contains <code>recoverToExceptionIf</code> for asynchronous use case for <code>intercept</code> and <code>recoverToSucceededIf</code> for asynchronous use case for <code>assertThrows</code>.
 </li>
 <li>Added overloaded <code>exists</code> and <code>forEvery</code> methods to <a href='@scaladocsPageUrl("org.scalatest.prop.TableDrivenPropertyChecks")'><code>TableDrivenPropertyChecks</code></a>. <code>exists</code> succeeds if at
@@ -135,21 +135,21 @@ consistently when mixed in either before and after <a href='@scaladocsPageUrl("o
 In 3.0.0 the ScalaTest JAR file contains only ScalaTest, and has a required dependency on Scalactic. 3.0.0 includes
 a new artifact, scalatest-app, which includes both ScalaTest and Scalactic. The purpose of scalatest-app is to suppose ScalaTest
 being run as an application, such as on the <a href="/quick_start">Quick Start</a> page.</li>
-<li>Added implicit parameters of type <a href="@{latestScalacticScaladoc}/index.html#org.scalactic.Prettifier"><code>Prettifier</code></a> to <a href='@scaladocsPageUrl("index.html#org.scalatest.Assertions")'><code>Assertions</code></a>, <a href='@scaladocsPageUrl("index.html#org.scalatest.Matchers")'><code>Matchers</code></a>, and other classes that produce error messages. This makes it easy to customize the string representation of a type in an error message, for example, to reduce the size of string representations of large collections.</li>
+<li>Added implicit parameters of type <a href="@{latestScalacticScaladoc}/index.html#org.scalactic.Prettifier"><code>Prettifier</code></a> to <a href='@scaladocsPageUrl("org.scalatest.Assertions")'><code>Assertions</code></a>, <a href='@scaladocsPageUrl("org.scalatest.Matchers")'><code>Matchers</code></a>, and other classes that produce error messages. This makes it easy to customize the string representation of a type in an error message, for example, to reduce the size of string representations of large collections.</li>
 <li>Added implicit parameters of type <a href="@{latestScalacticScaladoc}/index.html#org.scalactic.source.Position"><code>source.Position</code></a> to
-<a href='@scaladocsPageUrl("index.html#org.scalatest.Assertions")'><code>Assertions</code></a>, <a href='@scaladocsPageUrl("index.html#org.scalatest.Matchers")'><code>Matchers</code></a>, and other classes that produce error messages. This allowed us to replace the JVM-specific technique we used previously to determine the file name and line number of the offending line of test code prior to 3.0, which involved inspecting the stack. This technique did not work at all when running Scala.js tests on Node.js or Phantom.js, and allows us on the JVM to access an additional piece of information that wasn't available when inspecting the stack: the full path to the source file. The full path was desired for Ensime and will eventually make it out to the reporters (we didn't have time to get it to the reporters in 3.0.0). This also makes it very simple for users to define custom assertions and get the right stack depth (really, the right filename and line number). We've wanted to solve that problem for a very long time, and users have occasionally requested it. For example, it was requested for the scalaz-scalatest library that created custom ScalaTest assertions for Scalaz.</li>
+<a href='@scaladocsPageUrl("org.scalatest.Assertions")'><code>Assertions</code></a>, <a href='@scaladocsPageUrl("org.scalatest.Matchers")'><code>Matchers</code></a>, and other classes that produce error messages. This allowed us to replace the JVM-specific technique we used previously to determine the file name and line number of the offending line of test code prior to 3.0, which involved inspecting the stack. This technique did not work at all when running Scala.js tests on Node.js or Phantom.js, and allows us on the JVM to access an additional piece of information that wasn't available when inspecting the stack: the full path to the source file. The full path was desired for Ensime and will eventually make it out to the reporters (we didn't have time to get it to the reporters in 3.0.0). This also makes it very simple for users to define custom assertions and get the right stack depth (really, the right filename and line number). We've wanted to solve that problem for a very long time, and users have occasionally requested it. For example, it was requested for the scalaz-scalatest library that created custom ScalaTest assertions for Scalaz.</li>
 <li>Added optional string <code>failedCodeFilePathname</code> field to <code>StackDepth</code>, which is mixed into "stack depth exceptions." Changed
-all stack depth exceptions (subclasses of <a href='@scaladocsPageUrl("index.html#org.scalatest.exceptions.StackDepthException")'><code>StackDepthException</code></a> and <a href='@scaladocsPageUrl("index.html#org.scalatest.junit.JUnitTestFailedError")'><code>JUnitTestFailedError</code></a>) so that the constructor takes
+all stack depth exceptions (subclasses of <a href='@scaladocsPageUrl("org.scalatest.exceptions.StackDepthException")'><code>StackDepthException</code></a> and <a href='@scaladocsPageUrl("org.scalatest.junit.JUnitTestFailedError")'><code>JUnitTestFailedError</code></a>) so that the constructor takes
 either a <code>Position</code> or a stack depth function: <code>Either[Position, StackDepthException =&gt; Int]</code>. In most situations a
 <code>Position</code> will now be available, and it will be passed to the constructor. But in some situations a <code>Position</code> cannot
 be used and the old approach of using a stack depth function to find the failing line of source code will still be used.
 be used instead of a </li>
-<li>Added optional string <code>filePathname</code> field to <a href='@scaladocsPageUrl("index.html#org.scalatest.events.LineInFile")'><code>LineInFile</code></a> to allow the full path name of the source file
+<li>Added optional string <code>filePathname</code> field to <a href='@scaladocsPageUrl("org.scalatest.events.LineInFile")'><code>LineInFile</code></a> to allow the full path name of the source file
 that is provided by <code>Position</code> to be passed to reporters.</li>
 <li>Added a V option to string reporters (e.g., -oV) in Runner and ScalaTest's sbt Framework implementation that causes the string reporters to print
 the full path name to the source file containing the failing line of code instead of just the simple file name. This makes it easier for
 ENSIME to allow text editors (such as Emacs, Vim, or Sublime) to click and hop to the failing line of code.</li>
-<li>Ensured that <a href='@scaladocsPageUrl("index.html#org.scalatest.Outcome")'><code>Outcome</code></a>, <a href='@scaladocsPageUrl("index.html#org.scalatest.concurrent.PatienceConfiguration$$PatienceConfigParam")'><code>PatienceConfigParam</code></a>, <a href='@scaladocsPageUrl("index.html#org.scalatest.events.Event")'><code>Event</code></a>, <a href='@scaladocsPageUrl("index.html#org.scalatest.events.Formatter")'><code>Formatter</code></a>, <a href='@scaladocsPageUrl("index.html#org.scalatest.events.Location")'><code>Location</code></a>, <a href='@scaladocsPageUrl("index.html#org.scalatest.prop.Configuration$PropertyCheckConfigParam")'><code>PropertyCheckConfigParam</code></a>, <a href='@scaladocsPageUrl("index.html#org.scalatest.selenium.WebBrowser$Query")'><code>Query</code></a>, and <a href='@scaladocsPageUrl("index.html#org.scalatest.time.Units")'>>>>>>><code>Units</code></a> extended both <code>Product</code> and <code>Serializable</code> to improve type inference.</li>
+<li>Ensured that <a href='@scaladocsPageUrl("org.scalatest.Outcome")'><code>Outcome</code></a>, <a href='@scaladocsPageUrl("org.scalatest.concurrent.PatienceConfiguration$$PatienceConfigParam")'><code>PatienceConfigParam</code></a>, <a href='@scaladocsPageUrl("org.scalatest.events.Event")'><code>Event</code></a>, <a href='@scaladocsPageUrl("org.scalatest.events.Formatter")'><code>Formatter</code></a>, <a href='@scaladocsPageUrl("org.scalatest.events.Location")'><code>Location</code></a>, <a href='@scaladocsPageUrl("org.scalatest.prop.Configuration$PropertyCheckConfigParam")'><code>PropertyCheckConfigParam</code></a>, <a href='@scaladocsPageUrl("org.scalatest.selenium.WebBrowser$Query")'><code>Query</code></a>, and <a href='@scaladocsPageUrl("org.scalatest.time.Units")'>>>>>>><code>Units</code></a> extended both <code>Product</code> and <code>Serializable</code> to improve type inference.</li>
 </ul>
 
 <a name="breakingChanges"></a>
@@ -174,11 +174,11 @@ replace the <code>PrettifierConfig</code> with <code>Prettifier</code>, and <cod
 </p>
 
 <p>
-3) In ScalaTest, one potentially breaking change is in <a href='@scaladocsPageUrl("index.html#org.scalatest.concurrent.TimeLimitedTests")'><code>TimeLimitedTests</code></a>, which now uses an implicit <a href='@scaladocsPageUrl("index.html#org.scalatest.concurrent.Signaler")'><code>Signaler</code></a> instead
-of an implicit <a href='@scaladocsPageUrl("index.html#org.scalatest.concurrent.Interruptor")'><code>Interruptor</code></a>. Whereas the default <code>Interruptor</code> in <code>TimeLimitedTests</code> prior to 3.0 was
-a <a href='@scaladocsPageUrl("index.html#org.scalatest.concurrent.ThreadInterruptor$")'><code>ThreadInterruptor</code></a>, the default signaler is <a href='@scaladocsPageUrl("index.html#org.scalatest.concurrent.DoNotSignal$")'><code>DoNotSignal</code></a>. This default makes more sense with the advent of
+3) In ScalaTest, one potentially breaking change is in <a href='@scaladocsPageUrl("org.scalatest.concurrent.TimeLimitedTests")'><code>TimeLimitedTests</code></a>, which now uses an implicit <a href='@scaladocsPageUrl("org.scalatest.concurrent.Signaler")'><code>Signaler</code></a> instead
+of an implicit <a href='@scaladocsPageUrl("org.scalatest.concurrent.Interruptor")'><code>Interruptor</code></a>. Whereas the default <code>Interruptor</code> in <code>TimeLimitedTests</code> prior to 3.0 was
+a <a href='@scaladocsPageUrl("org.scalatest.concurrent.ThreadInterruptor$")'><code>ThreadInterruptor</code></a>, the default signaler is <a href='@scaladocsPageUrl("org.scalatest.concurrent.DoNotSignal$")'><code>DoNotSignal</code></a>. This default makes more sense with the advent of
 ScalaTest 3.0's support for Scala.js and async testing styles. If you were relying on the default behavior of interrupting a thread on
-the JVM in ScalaTest 2.2.x, you'll need to define an implicit <code>val</code> referring to a <a href='@scaladocsPageUrl("index.html#org.scalatest.concurrent.ThreadSignaler$")'><code>ThreadSignaler</code></a>. If you had alreday overriden
+the JVM in ScalaTest 2.2.x, you'll need to define an implicit <code>val</code> referring to a <a href='@scaladocsPageUrl("org.scalatest.concurrent.ThreadSignaler$")'><code>ThreadSignaler</code></a>. If you had alreday overriden
 the default <code>Interuptor</code> (referenced from <code>defaultInterruptor</code>) you'll need to define a corresponding <code>Signaler</code> instead
 (unless you had defined the <code>Interruptor</code> to be <code>DoNotInterrupt</code>, in which case you can just remove the
 <code>defaultInterruptor</code> override entirely and enjoy the default <code>Signaler</code>, <code>DoNotSignal</code>).
@@ -186,8 +186,8 @@ the default <code>Interuptor</code> (referenced from <code>defaultInterruptor</c
 
 <p>
 4) In 3.0.0, the <code>withFixture</code> method has been moved from
-<a href='@scaladocsPageUrl("index.html#org.scalatest.Suite")'><code>Suite</code></a> to a new trait, <a href='@scaladocsPageUrl("index.html#org.scalatest.TestSuite")'><code>TestSuite</code></a>. This was done to make room for a <code>withFixture</code> method with a different signature in
-<a href='@scaladocsPageUrl("index.html#org.scalatest.AsyncTestSuite")'><code>AsyncTestSuite</code></a>. If you factored out a <code>withFixture</code>
+<a href='@scaladocsPageUrl("org.scalatest.Suite")'><code>Suite</code></a> to a new trait, <a href='@scaladocsPageUrl("org.scalatest.TestSuite")'><code>TestSuite</code></a>. This was done to make room for a <code>withFixture</code> method with a different signature in
+<a href='@scaladocsPageUrl("org.scalatest.AsyncTestSuite")'><code>AsyncTestSuite</code></a>. If you factored out a <code>withFixture</code>
 method into a separate "suite mixin" trait, you'll need to change <code>"Suite"</code> to <code>"TestSuite"</code> and <code>"SuiteMixin"</code>
 to <code>"TestSuiteMixin"</code>. For example, given this trait from 2.2.6:
 </p>
@@ -213,7 +213,7 @@ You will need to add the "Test" prefix, like this:
 </pre>
 
 <p>
-5) In ScalaTest we changed the signature of the <code>whenCompleted</code> method of trait <a href='@scaladocsPageUrl("index.html#org.scalatest.Status")'><code>Status</code></a> changed. Where it previously
+5) In ScalaTest we changed the signature of the <code>whenCompleted</code> method of trait <a href='@scaladocsPageUrl("org.scalatest.Status")'><code>Status</code></a> changed. Where it previously
 took a function of type <code>Boolean =&gt; Unit</code>, it now takes a function of type <code>Try[Boolean] =&gt; Unit</code>. This 
 breaking change should affect very few users.
 </p>
@@ -276,7 +276,7 @@ invocation from such expressions, or if used elsewhere, replace it with a wideni
 <li>Deprecated <code>org.scalactic.Constraint</code>. Please change any occurrences to its new name, <a href="@{latestScalacticScaladoc}/index.html#org.scalactic.CanEqual"><code>CanEqual</code></a>. (<code>Constraint</code>
 should appear explicitly in user code only very rarely if at all, as normally it will be used only implicitly.)</li>
 <li>
-Added an already deprecated implicit conversion to the <a href='@scaladocsPageUrl("index.html#org.scalatest.Filter$")'><code>Filter</code> companion object</a> because the inheritance relationship between <a href='@scaladocsPageUrl("index.html#org.scalatest.Filter")'><code>Filter</code></a> and <code>Function2[Set[String], Map[String, Set[String]], List[(String, Boolean)]]</code> was removed.
+Added an already deprecated implicit conversion to the <a href='@scaladocsPageUrl("org.scalatest.Filter$")'><code>Filter</code> companion object</a> because the inheritance relationship between <a href='@scaladocsPageUrl("org.scalatest.Filter")'><code>Filter</code></a> and <code>Function2[Set[String], Map[String, Set[String]], List[(String, Boolean)]]</code> was removed.
 </li>
 <li>Deprecated <a href='@scaladocsPageUrl("org.scalatest.prop.Configuration$PropertyCheckConfig")'><code>PropertyCheckConfig</code></a> in
 favor of <a href='@scaladocsPageUrl("org.scalatest.prop.Configuration$PropertyCheckConfiguration")'><code>PropertyCheckConfiguration</code></a> in 
