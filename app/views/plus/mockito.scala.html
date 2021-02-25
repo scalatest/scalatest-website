@@ -73,7 +73,7 @@ Here is how the example used in the previous EasyMock and JMock sections would l
 
 <span class="stLineComment">// Create the class under test and pass the mock to it</span>
 classUnderTest = <span class="stReserved">new</span> <span class="stType">ClassUnderTest</span>
-classUnderTest.addListener(mock)
+classUnderTest.addListener(mockCollaborator)
 
 <span class="stLineComment">// Use the class under test</span>
 classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
