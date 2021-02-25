@@ -15,7 +15,7 @@
  *@
 
 @import controllers.Application.scaladocsPageUrl
-@import controllers.Application.latestScalacticScaladoc
+@import controllers.Application.scalacticScaladocsPageUrl
 @import controllers.Application.baseScalaVersion
 
 @userGuidePage("Migrating to 3.0") {
@@ -63,9 +63,9 @@ to <a href="http://groups.google.com/group/scalatest-users"><code>scalatest-user
 <a name="goodAndBadTypeParam"></a>
 <h2><code>Good</code> and <code>Bad</code> type parameters</h2>
 
-<p>The main breaking change in Scalactic in 3.0.0 is that we dropped an unnecessary type parameter in <a href="@{latestScalacticScaladoc}/index.html#org.scalactic.Good"><code>Good</code></a> and <a href="@{latestScalacticScaladoc}/index.html#org.scalactic.Bad"><code>Bad</code></a>, specifying
+<p>The main breaking change in Scalactic in 3.0.0 is that we dropped an unnecessary type parameter in <a href='@scalacticScaladocsPageUrl("org.scalactic.Good")'><code>Good</code></a> and <a href='@scalacticScaladocsPageUrl("org.scalactic.Bad")'><code>Bad</code></a>, specifying
 <code>Nothing</code> for that now missing type parameter
-when extending <a href="@{latestScalacticScaladoc}/index.html#org.scalactic.Or"><code>Or</code></a>.
+when extending <a href='@scalacticScaladocsPageUrl("org.scalactic.Or")'><code>Or</code></a>.
 This will only affect code in which the type parameters for <code>Good</code> or <code>Bad</code> were given explicitly,
 which we expect will be rare in practice. In situations where the type parameters for <code>Good</code> and <code>Bad</code> were being inferred, the
 code should continue to work as before.</p>
@@ -74,14 +74,14 @@ code should continue to work as before.</p>
 <h2><code>Prettifier</code> changes</h2>
 
 <p>
-Because we started using <a href="@{latestScalacticScaladoc}/index.html#org.scalactic.Prettifier"><code>Prettifier</code></a> as an implicit type in 3.0, we dropped its inheritance relationship with
+Because we started using <a href='@scalacticScaladocsPageUrl("org.scalactic.Prettifier")'><code>Prettifier</code></a> as an implicit type in 3.0, we dropped its inheritance relationship with
 <code>Any =&gt; String</code> (so that an implicit <code>Prettifier</code> won't be usable as in implicit conversion from
 <code>Any</code> to <code>String</code>). It is unlikely anyone was actually using <code>Prettifier</code> as a <code>Function1</code>,
 but if so, that will no longer compile and you'll need to convert it to <code>Any =&gt; String</code> explicitly.)
-Furthermore, since <code>Prettifier</code> was now being used as an implicit itself, we changed <a href="@{latestScalacticScaladoc}/index.html#org.scalactic.PrettyMethods"><code>PrettyMethods</code></a> to 
+Furthermore, since <code>Prettifier</code> was now being used as an implicit itself, we changed <a href='@scalacticScaladocsPageUrl("org.scalactic.PrettyMethods")'><code>PrettyMethods</code></a> to 
 require an implicit <code>Prettifier</code> instead of a <a href="http://doc.scalatest.org/2.2.6/index.html#org.scalactic.PrettyMethods$PrettifierConfig"><code>PrettifierConfig</code></a>. Thus if you defined an overridden implicit <code>PrettifierConfig</code>, that will no longer compile, and you'll need to replace
 it with an implicit <code>Prettifier</code> instead. For a quick fix, we left the old <code>PrettyMethods</code> behavior in
-under the name <code>DeprecatedPrettyMethods</code>. If you just change <code>PrettyMethods</code> to <a href="@{latestScalacticScaladoc}/index.html#org.scalactic.DeprecatedPrettyMethods"><code>DeprecatedPrettyMethods</code></a>,
+under the name <code>DeprecatedPrettyMethods</code>. If you just change <code>PrettyMethods</code> to <a href='@scalacticScaladocsPageUrl("org.scalactic.DeprecatedPrettyMethods")'><code>DeprecatedPrettyMethods</code></a>,
 that will get your <code>PrettifierConfig</code> code compiling and working again, but you'll receive a deprecation warning until you
 replace the <code>PrettifierConfig</code> with <code>Prettifier</code>, and <code>DeprecatedPrettyMethods</code> with <code>PrettyMethods</code>.
 </p>

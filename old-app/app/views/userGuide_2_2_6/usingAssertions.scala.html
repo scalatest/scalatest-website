@@ -15,7 +15,7 @@
  *@
 
 @import controllers.Application.scaladocsPageUrl
-@import controllers.Application.latestScalacticScaladoc
+@import controllers.Application.scalacticScaladocsPageUrl
 
 @userGuidePage("Using assertions") {
 <div style="text-align: left">
@@ -91,11 +91,11 @@ to <code>assert</code>, like this:</p><p><pre class="stHighlighted">
 assert(attempted == <span class="stLiteral">1</span>, <span class="stQuotedString">&quot;Execution was attempted &quot;</span> + left + <span class="stQuotedString">&quot; times instead of 1 time&quot;</span>)
 </pre></p><p>Using this form of <code>assert</code>, the failure report will be more specific to your problem domain, thereby
 helping you debug the problem. This <code>Assertions</code> trait also mixes in the
-<a href="@latestScalacticScaladoc/#org.scalactic.TripleEquals"><code>TripleEquals</code></a>, which gives you a <code>===</code> operator
-that allows you to customize <a href="@latestScalacticScaladoc/#org.scalactic.Equality"><code>Equality</code></a> and perform equality checks with a numeric
-<a href="@latestScalacticScaladoc/#org.scalactic.Tolerance"><code>Tolerance</code></a>. You can also use <code>===</code> to enforce type constraints at compile time with
-sibling traits <a href="@latestScalacticScaladoc/#org.scalactic.TypeCheckedTripleEquals"><code>TypeCheckedTripleEquals</code></a> and
-<a href="@latestScalacticScaladoc/#org.scalactic.ConversionCheckedTripleEquals"><code>ConversionCheckedTripleEquals</code></a>.</p><h4> Expected results </h4><p>Although ScalaTest's <code>assert</code> macro provides a natural, readable extension to Scala's <code>assert</code> mechanism that
+<a href='@scalacticScaladocsPageUrl("org.scalactic.TripleEquals")'><code>TripleEquals</code></a>, which gives you a <code>===</code> operator
+that allows you to customize <a href='@scalacticScaladocsPageUrl("org.scalactic.Equality")'><code>Equality</code></a> and perform equality checks with a numeric
+<a href='@scalacticScaladocsPageUrl("org.scalactic.Tolerance")'><code>Tolerance</code></a>. You can also use <code>===</code> to enforce type constraints at compile time with
+sibling traits <a href='@scalacticScaladocsPageUrl("org.scalactic.TypeCheckedTripleEquals")'><code>TypeCheckedTripleEquals</code></a> and
+<a href='@scalacticScaladocsPageUrl("org.scalactic.ConversionCheckedTripleEquals")'><code>ConversionCheckedTripleEquals</code></a>.</p><h4> Expected results </h4><p>Although ScalaTest's <code>assert</code> macro provides a natural, readable extension to Scala's <code>assert</code> mechanism that
 provides good error messages, as the operands become lengthy, the code becomes less readable. In addition, the error messages
 generated for <code>==</code> and <code>===</code> comparisons
 don't distinguish between actual and expected values. The operands are just called <code>left</code> and <code>right</code>,
