@@ -14,7 +14,7 @@
 * limitations under the License.
 *@
 
-@import controllers.Application.latestScaladoc
+@import controllers.Application.scaladocsPageUrl
 
 @releaseNotesPage("ScalaTest 2.1.7 Release Notes") {
     <div style="text-align: left">
@@ -32,7 +32,7 @@ the <code>no-specialization</code> flag and <code>DelayedInit</code> under Scala
         <h2>Changes</h2>
 
         <ul>
-<li>In <a href="@{latestScaladoc}/index.html#org.scalatest.concurrent.AsyncAssertions"><code>AsyncAssertions</code></a>, if a <a href="@{latestScaladoc}/index.html#org.scalatest.concurrent.AsyncAssertions$Waiter"><code>Waiter</code></a> receives <em>more </em> than the expected number of dismissals, it will no longer report
+<li>In <a href='@scaladocsPageUrl("index.html#org.scalatest.concurrent.AsyncAssertions")'><code>AsyncAssertions</code></a>, if a <a href='@scaladocsPageUrl("index.html#org.scalatest.concurrent.AsyncAssertions$Waiter")'>><code>Waiter</code></a> receives <em>more </em> than the expected number of dismissals, it will no longer report
 this as an error: <em>i.e.</em>, receiving greater than the number of expected dismissals without any failed assertion will simply
 cause the the test to complete, not to fail. As of 2.1.7, the only way a <code>Waiter</code> will cause a test to fail is if one of the
 asynchronous assertions to which it is applied fails.</li>
@@ -45,7 +45,7 @@ flag under 2.10.
 </p>
 <p>
 The only place <code>DelayedInit</code> appears in ScalaTest is in its
-<a href="@{latestScaladoc}/index.html#org.scalatest.fixture.NoArg"><code>NoArg</code></a> trait. The documentation for this trait recommends using
+<a href='@scaladocsPageUrl("index.html#org.scalatest.fixture.NoArg")'><code>NoArg</code></a> trait. The documentation for this trait recommends using
 it only as a last resort, when none of the other, simpler alternatives for sharing fixtures will suffice. So <code>NoArg</code> should be only rarely used, but
 if you have used it and lightening strikes, it will take the form of a <code>NoSuchMethodError</code> when your tests run even though everything has compiled fine.
 To solve this problem, do a clean build of your project without the <code>no-specialization</code> flag. If you have any problems with this, please

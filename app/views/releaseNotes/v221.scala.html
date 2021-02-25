@@ -14,7 +14,7 @@
  * limitations under the License.
  *@
 
-@import controllers.Application.latestScaladoc
+@import controllers.Application.scaladocsPageUrl
 @import controllers.Application.milestoneScaladoc
 
 @combinedReleaseNotesPage("Scalactic/ScalaTest 2.2.1 Release Notes") {
@@ -39,9 +39,9 @@ For information on how to use <a href="http://www.scalactic.org/">Scalactic</a> 
 <h2>Enhancements</h2>
 
 <ul>
-<li>Added traits <a href="@{latestScaladoc}/index.html#org.scalatest.StreamlinedXml"><code>StreamlinedXml</code></a>,
-<a href="@{latestScaladoc}/index.html#org.scalatest.StreamlinedXmlNormMethods"><code>StreamlinedXmlNormMethods</code></a>, and
-<a href="@{latestScaladoc}/index.html#org.scalatest.StreamlinedXmlEquality"><code>StreamlinedXmlEquality</code></a>,
+<li>Added traits <a href='@scaladocsPageUrl("index.html#org.scalatest.StreamlinedXml")'><code>StreamlinedXml</code></a>,
+<a href='@scaladocsPageUrl("index.html#org.scalatest.StreamlinedXmlNormMethods")'><code>StreamlinedXmlNormMethods</code></a>, and
+<a href='@scaladocsPageUrl("index.html#org.scalatest.StreamlinedXmlEquality")'><code>StreamlinedXmlEquality</code></a>,
 to make it easier to write tests that compare XML documents.</li>
 </ul>
 
@@ -49,7 +49,7 @@ to make it easier to write tests that compare XML documents.</li>
 <h2>Bug fixes</h2>
 
 <ul>
-<li>Made the <a href="@{latestScaladoc}/index.html#org.scalatest.DiagrammedAssertions"><code>DiagrammedAssertions</code></a> macro work with XML.</li>
+<li>Made the <a href='@scaladocsPageUrl("index.html#org.scalatest.DiagrammedAssertions")'><code>DiagrammedAssertions</code></a> macro work with XML.</li>
 <li>Modified the default assert macro to work around a breaking change in macro support between Scala versions 2.11.1 and 2.11.2.</li>
 </ul>
 

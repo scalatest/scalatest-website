@@ -14,7 +14,7 @@
  * limitations under the License.
  *@
 
-@import controllers.Application.latestScaladoc
+@import controllers.Application.scaladocsPageUrl
 @import controllers.Application.milestoneScaladoc
 
 @combinedReleaseNotesPage("Scalactic/ScalaTest 2.2.0 Release Notes") {
@@ -48,7 +48,7 @@ For information on how to use <a href="http://www.scalactic.org/">Scalactic</a> 
 <a name="introductingScalactic"></a>
 <h2>Introducing the Scalactic library</h2>
 
-<p>In 2.2.0, <a href="@{latestScaladoc}/index.html#org.scalautils.package"><code>org.scalautils</code></a> has been renamed to <a href="@{latestScaladoc}/index.html#org.scalactic.package"><code>org.scalactic</code></a> (rhymes with "galactic"). All existing code using <code>org.scalautils</code> directly will continue to work, but will receive a deprecation warning. Please change <code>scalautils</code> to <code>scalactic</code> when convenient, because after a lengthy deprecation period, <code>org.scalautils</code> will be removed.</p>
+<p>In 2.2.0, <a href='@scaladocsPageUrl("index.html#org.scalautils.package")'><code>org.scalautils</code></a> has been renamed to <a href='@scaladocsPageUrl("index.html#org.scalactic.package")'><code>org.scalactic</code></a> (rhymes with "galactic")'>). All existing code using <code>org.scalautils</code> directly will continue to work, but will receive a deprecation warning. Please change <code>scalautils</code> to <code>scalactic</code> when convenient, because after a lengthy deprecation period, <code>org.scalautils</code> will be removed.</p>
 
 <p>
 ScalaUtils started out as a small library carved out of ScalaTest that made sense for production code as well as tests. It has since been growing more mature as a production-code library focused on quality, and 
@@ -94,7 +94,7 @@ libraryDependencies += "org.scalactic" % "scalactic" % "2.2.0" % "test"
 <a name="enhancedAssertionsErrorMessages"></a>
 <h2>Enhanced <code>Assertions</code> error messages</h2>
 
-<p>For ScalaTest 2.2.0, we have enhanced the macro that produces error messages from the <code>assert</code> methods of trait <a href="@{latestScaladoc}/index.html#org.scalatest.Assertions"><code>Assertions</code></a>.
+<p>For ScalaTest 2.2.0, we have enhanced the macro that produces error messages from the <code>assert</code> methods of trait <a href='@scaladocsPageUrl("index.html#org.scalatest.Assertions")'><code>Assertions</code></a>.
 Here are some examples:</p>
 
 <pre>
@@ -208,7 +208,7 @@ org.scalatest.exceptions.TestCanceledException: <strong>2 equaled 2, but 3 equal
 <a name="diagrammedAssertions"></a>
 <h2><code>DiagrammedAssertions</code></h2>
 
-<p>Building on work that Peter Niederwieser has done in <a href="http://code.google.com/p/spock/">Spock</a> and <a href="https://github.com/pniederw/expecty">Expecty</a>, ScalaTest 2.2.0 introduces trait <a href="@{latestScaladoc}/index.html#org.scalatest.DiagrammedAssertions"><code>DiagrammedAssertions</code></a>. This trait extends <a href="@{latestScaladoc}/index.html#org.scalatest.Assertions"><code>Assertions</code></a> and overrides its <code>assert</code> methods, modifying the default macro to give error messages that show the original line of code and a value for each part of the expression. Here are some examples:</p>
+<p>Building on work that Peter Niederwieser has done in <a href="http://code.google.com/p/spock/">Spock</a> and <a href="https://github.com/pniederw/expecty">Expecty</a>, ScalaTest 2.2.0 introduces trait <a href='@scaladocsPageUrl("index.html#org.scalatest.DiagrammedAssertions")'><code>DiagrammedAssertions</code></a>. This trait extends <a href='@scaladocsPageUrl("index.html#org.scalatest.Assertions")'>><code>Assertions</code></a> and overrides its <code>assert</code> methods, modifying the default macro to give error messages that show the original line of code and a value for each part of the expression. Here are some examples:</p>
 
 <pre>
 scala&gt; import DiagrammedAssertions._
@@ -336,7 +336,7 @@ assert(None.isDefined,
 <a name="scalacticRequirements"></a>
 <h2>Scalactic <code>Requirements</code></h2>
 
-<p>Scalactic includes a new trait that was not in ScalaUtils called <a href="@{latestScaladoc}/index.html#org.scalactic.Requirements"><code>Requirements</code></a>. This trait applies macros to the task of pre-condition checking through methods named <code>require</code>, <code>requireState</code>, and <code>requireNonNull</code>. These three methods aim to improve error messages provided when a pre-condition check fails at runtime in production code. Although it is recommended practice to supply helpful error messages when doing pre-condition checks, often people don't. Instead of this:
+<p>Scalactic includes a new trait that was not in ScalaUtils called <a href='@scaladocsPageUrl("index.html#org.scalactic.Requirements")'><code>Requirements</code></a>. This trait applies macros to the task of pre-condition checking through methods named <code>require</code>, <code>requireState</code>, and <code>requireNonNull</code>. These three methods aim to improve error messages provided when a pre-condition check fails at runtime in production code. Although it is recommended practice to supply helpful error messages when doing pre-condition checks, often people don't. Instead of this:
 
 <pre>
 scala&gt; val length = 5
@@ -429,7 +429,7 @@ Although trait <code>Requirements</code> can help you debug problems that occur 
 <a name="scalacticSnapshots"></a>
 <h2>Scalactic <code>Snapshots</code></h2>
 
-<p>Scalactic also includes a new trait named <a href="@{latestScaladoc}/index.html#org.scalactic.Snapshots"><code>Snapshots</code></a> that was not part of ScalaUtils. <code>Snapshots</code> provides a <code>snap</code> method that takes one or more arguments and results in a <a href="@{latestScaladoc}/index.html#org.scalactic.SnapshotSeq"><code>SnapshotSeq</code></a>, whose <code>toString</code> lists the names and values of each argument. Its intended use case is to help you write debug and log messages that give a "snapshot" of program state. Here's an example:</p>
+<p>Scalactic also includes a new trait named <a href='@scaladocsPageUrl("index.html#org.scalactic.Snapshots")'><code>Snapshots</code></a> that was not part of ScalaUtils. <code>Snapshots</code> provides a <code>snap</code> method that takes one or more arguments and results in a <a href='@scaladocsPageUrl("index.html#org.scalactic.SnapshotSeq")'><code>SnapshotSeq</code></a>, whose <code>toString</code> lists the names and values of each argument. Its intended use case is to help you write debug and log messages that give a "snapshot")'> of program state. Here's an example:</p>
 
 <pre>
 scala&gt; import Snapshots._
@@ -464,7 +464,7 @@ res6: String = <strong>Wow! a was 1, and b was 2, and c was 3, and d was 4, and 
 <a name="newMatchersAndAssertions"></a>
 <h2>New matchers and assertions</h2>
 
-<p>Added a <code>matchPattern</code> matcher that uses a macro to enforce intended usage. ScalaTest's <a href="@{latestScaladoc}/index.html#org.scalatest.Inside"><code>Inside</code></a> trait has long provided an
+<p>Added a <code>matchPattern</code> matcher that uses a macro to enforce intended usage. ScalaTest's <a href='@scaladocsPageUrl("index.html#org.scalatest.Inside")'><code>Inside</code></a> trait has long provided an
 <code>inside</code> construct that allows you to perform assertions on values obtained via a pattern match. Here's an example:</p>
 
 <pre>
@@ -506,7 +506,7 @@ org.scalatest.exceptions.TestFailedException: The partial function passed as the
 
 <p>
 However, the programmer intent in the previous code is less obvious--did they just want to ensure the pattern matched or did they forget
-to add an assertion? The new <a href="@{latestScaladoc}/index.html#org.scalatest.Matchers@@matchingAPattern"><code>matchPattern</code></a> syntax is designed to make this more obvious for users of <a href="@{latestScaladoc}/index.html#org.scalatest.Matchers"><code>Matchers</code></a>.
+to add an assertion? The new <a href='@scaladocsPageUrl("index.html#org.scalatest.Matchers@@matchingAPattern")'><code>matchPattern</code></a> syntax is designed to make this more obvious for users of <a href='@scaladocsPageUrl("index.html#org.scalatest.Matchers")'>><code>Matchers</code></a>.
 Here's what it looks like:
 </p>
 
@@ -555,7 +555,7 @@ scala&gt; name should matchPattern { case Name(first, _, _) =&gt;
 <a name="testRegistration"></a>
 <h2><code>TestRegistration</code> trait</h2>
 
-<p>Added trait <a href="@{latestScaladoc}/index.html#org.scalatest.TestRegistration"><code>TestRegistration</code></a> (and <a href="@{latestScaladoc}/index.html#org.scalatest.fixture.TestRegistration"><code>fixture.TestRegistration</code></a>), which offers methods <code>registerTest</code> and <code>registerIgnoredTest</code>. ScalaTests's style traits that register tests as functions--<code>FunSuite</code>, <code>FunSpec</code>, <code>FeatureSpec</code>, <code>FlatSpec</code>, <code>FreeSpec</code>, <code>PropSpec</code>, and <code>WordSpec</code>--now extend <code>TestRegistration</code>. This provides a more generic way to define tests programmatically, such as this use case from the <a href="https://github.com/typelevel/discipline/blob/master/src/main/scala/scalatest/Discipline.scala">Discipline project</a>. Currently trait <code>Discipline</code> will only work with <code>FunSuite</code>. With this enhancement to ScalaTest <code>Discipline</code> can be made to work with any style in which test are functions registered at construction time.
+<p>Added trait <a href='@scaladocsPageUrl("index.html#org.scalatest.TestRegistration")'><code>TestRegistration</code></a> (and <a href='@scaladocsPageUrl("index.html#org.scalatest.fixture.TestRegistration")'><code>fixture.TestRegistration</code></a>), which offers methods <code>registerTest</code> and <code>registerIgnoredTest</code>. ScalaTests's style traits that register tests as functions--<code>FunSuite</code>, <code>FunSpec</code>, <code>FeatureSpec</code>, <code>FlatSpec</code>, <code>FreeSpec</code>, <code>PropSpec</code>, and <code>WordSpec</code>--now extend <code>TestRegistration</code>. This provides a more generic way to define tests programmatically, such as this use case from the <a href="https://github.com/typelevel/discipline/blob/master/src/main/scala/scalatest/Discipline.scala")'>>Discipline project</a>. Currently trait <code>Discipline</code> will only work with <code>FunSuite</code>. With this enhancement to ScalaTest <code>Discipline</code> can be made to work with any style in which test are functions registered at construction time.
 </p>
 
 <p>
@@ -567,11 +567,11 @@ Another use case for <code>TestRegistration</code> is to make a type error to mi
 
 <ul>
 
-<li>Moved <a href="@{latestScaladoc}/index.html#org.scalatest.selenium.Page"><code>Page</code></a> out of <a href="@{latestScaladoc}/index.html#org.scalatest.selenium.WebBrowser"><code>WebBrowser</code></a> to become a sibling in package <a href="@{latestScaladoc}/index.html#org.scalatest.selenium.package"><code>org.scalatest.selenium</code></a>, to make it easier to create reusabled <code>Page</code> classes.</li>
+<li>Moved <a href='@scaladocsPageUrl("index.html#org.scalatest.selenium.Page")'><code>Page</code></a> out of <a href='@scaladocsPageUrl("index.html#org.scalatest.selenium.WebBrowser")'><code>WebBrowser</code></a> to become a sibling in package <a href='@scaladocsPageUrl("index.html#org.scalatest.selenium.package")'>>><code>org.scalatest.selenium</code></a>, to make it easier to create reusabled <code>Page</code> classes.</li>
 
 <li>Added <code>recover</code> and <code>recoverWith</code> methods to <code>Or</code>, modeled after similar methods in <code>scala.util.Try</code>.</li>
 
-<li>Loosened type restrictions on HTML 5 input elements in the <a href="@{latestScaladoc}/index.html#org.scalatest.selenium.WebBrowser"><code>WebBrowser</code></a> trait's Selenium DSL to better support browsers that do not fully support the new elements. (Contributed by Matt Hughes.)</li>
+<li>Loosened type restrictions on HTML 5 input elements in the <a href='@scaladocsPageUrl("index.html#org.scalatest.selenium.WebBrowser")'><code>WebBrowser</code></a> trait's Selenium DSL to better support browsers that do not fully support the new elements. (Contributed by Matt Hughes.)</li>
 
 <li>Allow multiple <code>-o</code> and <code>-e</code> parameters passed from sbt to ScalaTest's <code>Framework</code> implementation, so that you can
 have a <code>-oS</code>, for example, in your <code>testOptions</code> in the build file and override it, say, with <code>test-only ... -- -oF</code>.</li>
@@ -585,11 +585,11 @@ will discover any tag annotations there that are also annotated with <code>@@Inh
 <code>@@Inherited</code>.
 </li>
 
-<li>Made <a href="@{latestScaladoc}/index.html#org.scalatest.fixture.NoArg"><code>NoArg</code></a> thread safe. Originally it was not synchronized because its
+<li>Made <a href='@scaladocsPageUrl("index.html#org.scalatest.fixture.NoArg")'><code>NoArg</code></a> thread safe. Originally it was not synchronized because its
 intended use is by one thread. Although this behavior was described in its Scaladoc documentation, this was changed in 2.2.0 to make it more bulletproof.
 </li>
 
-<li>Made <a href="@{latestScaladoc}/index.html#org.scalatest.fixture.NoArg"><code>NoArg</code></a> thread safe. Originally it was not synchronized because its
+<li>Made <a href='@scaladocsPageUrl("index.html#org.scalatest.fixture.NoArg")'><code>NoArg</code></a> thread safe. Originally it was not synchronized because its
 intended use is by one thread. Although this behavior was described in its Scaladoc documentation, this was changed in 2.2.0 to make it more bulletproof.
 </li>
 

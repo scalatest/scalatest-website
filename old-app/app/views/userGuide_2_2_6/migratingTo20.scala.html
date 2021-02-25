@@ -14,7 +14,7 @@
  * limitations under the License.
  *@
 
-@import controllers.Application.latestScaladoc
+@import controllers.Application.scaladocsPageUrl
 @import controllers.Application.baseScalaVersion
 
 @userGuidePage("Migrating to 2.0") {
@@ -76,7 +76,7 @@ Scaladoc documentation, see the main documentation for <a href='@scaladocsPageUr
 In 2.0, the <code>withFixture</code> methods declared in
 <a href='@scaladocsPageUrl("org.scalatest.Suite")'><code>Suite</code></a> and <a href="@latestScaladoc/#org.scalatest.fixture.Suite")'><code>fixture.Suite</code></a>, and the
 <a href='@scaladocsPageUrl("org.scalatest.Suite$NoArgTest")'><code>NoArgTest</code></a> and <a href="@latestScaladoc/#org.scalatest.fixture.Suite$OneArgTest")'><code>OneArgTest</code></a> functions passed to them, now
-return an <a href="@{latestScaladoc}/#org.scalatest.Outcome"><code>Outcome</code></a>. Because <code>withFixture</code> previously
+return an <a href='@scaladocsPageUrl("org.scalatest.Outcome")'><code>Outcome</code></a>. Because <code>withFixture</code> previously
 returned <code>Unit</code>, you will need to insert an <code>=</code> before the open curly brace of your overridden <code>withFixture</code> implementations if you
 didn't already do so, and in some cases, <code>: Outcome =</code>.
 </p>
@@ -127,7 +127,7 @@ on <code>Outcome</code> types.
 </pre>
 
 <p>
-To a corresponding pattern match on <a href="@{latestScaladoc}/#org.scalatest.Outcome"><code>Outcome</code></a>:
+To a corresponding pattern match on <a href='@scaladocsPageUrl("org.scalatest.Outcome")'><code>Outcome</code></a>:
 </p>
 
 <pre class="stHighlighted">

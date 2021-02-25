@@ -14,7 +14,7 @@
  * limitations under the License.
  *@
 
-@import controllers.Application.latestScaladoc
+@import controllers.Application.scaladocsPageUrl
 @import controllers.Application.latestScalacticScaladoc
 @import controllers.Application.baseScalaVersion
 
@@ -90,11 +90,11 @@ replace the <code>PrettifierConfig</code> with <code>Prettifier</code>, and <cod
 <h2><code>TimeLimitedTests</code></h2>
 
 <p>
-In ScalaTest, one potentially breaking change is in <a href="@{latestScaladoc}/index.html#org.scalatest.concurrent.TimeLimitedTests"><code>TimeLimitedTests</code></a>, which now uses an implicit <a href="@{latestScaladoc}/index.html#org.scalatest.concurrent.Signaler"><code>Signaler</code></a> instead
-of an implicit <a href="@{latestScaladoc}/index.html#org.scalatest.concurrent.Interruptor"><code>Interruptor</code></a>. Whereas the default <code>Interruptor</code> in <code>TimeLimitedTests</code> prior to 3.0 was
-a <a href="@{latestScaladoc}/index.html#org.scalatest.concurrent.ThreadInterruptor$"><code>ThreadInterruptor</code></a>, the default signaler is <a href="@{latestScaladoc}/index.html#org.scalatest.concurrent.DoNotSignal$"><code>DoNotSignal</code></a>. This default makes more sense with the advent of
+In ScalaTest, one potentially breaking change is in <a href='@scaladocsPageUrl("index.html#org.scalatest.concurrent.TimeLimitedTests")'><code>TimeLimitedTests</code></a>, which now uses an implicit <a href='@scaladocsPageUrl("index.html#org.scalatest.concurrent.Signaler")'>><code>Signaler</code></a> instead
+of an implicit <a href='@scaladocsPageUrl("index.html#org.scalatest.concurrent.Interruptor")'><code>Interruptor</code></a>. Whereas the default <code>Interruptor</code> in <code>TimeLimitedTests</code> prior to 3.0 was
+a <a href='@scaladocsPageUrl("index.html#org.scalatest.concurrent.ThreadInterruptor$")'><code>ThreadInterruptor</code></a>, the default signaler is <a href='@scaladocsPageUrl("index.html#org.scalatest.concurrent.DoNotSignal$")'>><code>DoNotSignal</code></a>. This default makes more sense with the advent of
 ScalaTest 3.0's support for Scala.js and async testing styles. If you were relying on the default behavior of interrupting a thread on
-the JVM in ScalaTest 2.2.x, you'll need to define an implicit <code>val</code> referring to a <a href="@{latestScaladoc}/index.html#org.scalatest.concurrent.ThreadSignaler$"><code>ThreadSignaler</code></a>. If you had alreday overriden
+the JVM in ScalaTest 2.2.x, you'll need to define an implicit <code>val</code> referring to a <a href='@scaladocsPageUrl("index.html#org.scalatest.concurrent.ThreadSignaler$")'><code>ThreadSignaler</code></a>. If you had alreday overriden
 the default <code>Interuptor</code> (referenced from <code>defaultInterruptor</code>) you'll need to define a corresponding <code>Signaler</code> instead
 (unless you had defined the <code>Interruptor</code> to be <code>DoNotInterrupt</code>, in which case you can just remove the
 <code>defaultInterruptor</code> override entirely and enjoy the default <code>Signaler</code>, <code>DoNotSignal</code>).
@@ -105,8 +105,8 @@ the default <code>Interuptor</code> (referenced from <code>defaultInterruptor</c
 
 <p>
 4) In 3.0.0, the <code>withFixture</code> method has been moved from
-<a href="@{latestScaladoc}/index.html#org.scalatest.Suite"><code>Suite</code></a> to a new trait, <a href="@{latestScaladoc}/index.html#org.scalatest.TestSuite"><code>TestSuite</code></a>. This was done to make room for a <code>withFixture</code> method with a different signature in
-<a href="@{latestScaladoc}/index.html#org.scalatest.AsyncTestSuite"><code>AsyncTestSuite</code></a>. If you factored out a <code>withFixture</code>
+<a href='@scaladocsPageUrl("index.html#org.scalatest.Suite")'><code>Suite</code></a> to a new trait, <a href='@scaladocsPageUrl("index.html#org.scalatest.TestSuite")'>><code>TestSuite</code></a>. This was done to make room for a <code>withFixture</code> method with a different signature in
+<a href='@scaladocsPageUrl("index.html#org.scalatest.AsyncTestSuite")'><code>AsyncTestSuite</code></a>. If you factored out a <code>withFixture</code>
 method into a separate "suite mixin" trait, you'll need to change <code>"Suite"</code> to <code>"TestSuite"</code> and <code>"SuiteMixin"</code>
 to <code>"TestSuiteMixin"</code>. For example, given this trait from 2.2.6:
 </p>
@@ -135,7 +135,7 @@ You will need to add the "Test" prefix, like this:
 <h2>Signature of <code>Status.whenCompleted</code></h2>
 
 <p>
-In ScalaTest we changed the signature of the <code>whenCompleted</code> method of trait <a href="@{latestScaladoc}/index.html#org.scalatest.Status"><code>Status</code></a> changed. Where it previously
+In ScalaTest we changed the signature of the <code>whenCompleted</code> method of trait <a href='@scaladocsPageUrl("index.html#org.scalatest.Status")'><code>Status</code></a> changed. Where it previously
 took a function of type <code>Boolean =&gt; Unit</code>, it now takes a function of type <code>Try[Boolean] =&gt; Unit</code>. This 
 breaking change should affect very few users.
 </p>
