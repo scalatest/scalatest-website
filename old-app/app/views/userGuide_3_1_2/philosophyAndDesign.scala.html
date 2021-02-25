@@ -75,8 +75,8 @@ users.
 Scala is a scalable language in two ways. First, Scala can be molded through library and DSL design to fit widely different tasks. Second, Scala
 scales both down to small tasks and up to large ones. It feels as natural to use for small tasks like scripting as it does for large tasks like major software projects built
 by large teams. ScalaTest is scalable in similar ways. First, it can be easily molded by overriding its <em>lifecycle methods</em> to address
-special testing needs when they arise. Second, it is designed facilitate both small tasks in the Scala interpreter (see <a href="@latestScaladoc/#org.scalatest.Assertions$"><code>Assertions</code></a>, <a href="@latestScaladoc/#org.scalatest.matchers.ShouldMatchers$"><code>ShouldMatchers</code></a>,
-and the ScalaTest <a href="@latestScaladoc/#org.scalatest.Shell"><code>Shell</code></a>) and to scale up to testing 
+special testing needs when they arise. Second, it is designed facilitate both small tasks in the Scala interpreter (see <a href='@scaladocsPageUrl("org.scalatest.Assertions$")'><code>Assertions</code></a>, <a href="@latestScaladoc/#org.scalatest.matchers.ShouldMatchers$")'><code>ShouldMatchers</code></a>,
+and the ScalaTest <a href='@scaladocsPageUrl("org.scalatest.Shell")'><code>Shell</code></a>) and to scale up to testing 
 very large software projects built by large teams.
 </p>
 
@@ -92,7 +92,7 @@ The design of ScalaTest can be summed up in one sentence:
 The terms <em>suite</em> and <em>test</em> are defined abstractly in ScalaTest to
 enable a wide variety of implementations. A <em>test</em> in ScalaTest is anything with a name that
 can start and either succeed or fail. A <em>suite</em> is a collection of zero to many tests.  ScalaTest's core trait
-<a href="@latestScaladoc/#org.scalatest.Suite"><code>Suite</code></a>, which represents the concept of a suite of zero to many tests, declares
+<a href='@scaladocsPageUrl("org.scalatest.Suite")'><code>Suite</code></a>, which represents the concept of a suite of zero to many tests, declares
 a <code>run</code> method. To ask a <code>Suite</code> of tests to run itself, you invoke its <code>run</code>
 method.
 </p>
@@ -178,18 +178,18 @@ which simply invokes the function.
 <p>
 How does this design enable ScalaTest to address widely different testing needs? You need look no further than ScalaTest itself
 for examples. First, ScalaTest facilitates several different styles of testing through its <em>style traits</em> such as
-<a href="@latestScaladoc/#org.scalatest.FunSuite"><code>FunSuite</code></a>,
-<a href="@latestScaladoc/#org.scalatest.FunSpec"><code>FunSpec</code></a>, and
-<a href="@latestScaladoc/#org.scalatest.FeatureSpec"><code>FeatureSpec</code></a>. One way to think of these style traits is as examples of ScalaTest using
+<a href='@scaladocsPageUrl("org.scalatest.FunSuite")'><code>FunSuite</code></a>,
+<a href='@scaladocsPageUrl("org.scalatest.FunSpec")'><code>FunSpec</code></a>, and
+<a href='@scaladocsPageUrl("org.scalatest.FeatureSpec")'><code>FeatureSpec</code></a>. One way to think of these style traits is as examples of ScalaTest using
 its own extension points to customize itself. All three override the same five lifecycle methods: <code>run</code>, <code>runTests</code>, <code>testNames</code>,
 <code>tags</code>, and <code>runTest</code>. They inherit the remaining lifecycle methods as is from their supertrait <code>Suite</code>.
 </p>
 
 <p>
 ScalaTest also provides many <em>stackable</em> traits that can be mixed into a style trait, such as
-<a href="@latestScaladoc/#org.scalatest.BeforeAndAfterEach"><code>BeforeAndAfterEach</code></a>,
-<a href="@latestScaladoc/#org.scalatest.OneInstancePerTest"><code>OneInstancePerTest</code></a>, and
-<a href="@latestScaladoc/#org.scalatest.ParallelTestExecution"><code>ParallelTestExecution</code></a>.
+<a href='@scaladocsPageUrl("org.scalatest.BeforeAndAfterEach")'><code>BeforeAndAfterEach</code></a>,
+<a href='@scaladocsPageUrl("org.scalatest.OneInstancePerTest")'><code>OneInstancePerTest</code></a>, and
+<a href='@scaladocsPageUrl("org.scalatest.ParallelTestExecution")'><code>ParallelTestExecution</code></a>.
 Trait <code>BeforeAndAfterEach</code> declares methods <code>beforeEach</code> and <code>afterEach</code>, then 
 overrides just one lifecycle method, <code>runTest</code>, so that it invokes <code>beforeEach</code> before,
 and <code>afterEach</code> after, invoking <code>super.runTest</code>. Both <code>OneInstancePerTest</code> and
@@ -220,11 +220,11 @@ time to invest in becoming an expert in a test framework.
 
 <p>
 One way in which ScalaTest is designed for teams is that it is easy to get started with because it offers styles
-<em>familiar</em> to many users. Users of <a href="@latestScaladoc/#org.scalatest.junit.JUnitSuite">JUnit</a> or <a href="@latestScaladoc/#org.scalatest.testng.TestNGSuite">TestNG</a>, for example, can
+<em>familiar</em> to many users. Users of <a href='@scaladocsPageUrl("org.scalatest.junit.JUnitSuite")'>JUnit</a> or <a href="@latestScaladoc/#org.scalatest.testng.TestNGSuite")'>TestNG</a>, for example, can
 continue using those tools with a few productivity enhancements from ScalaTest sprinkled in. Or if they use
 <a href="/getting_started_with_fun_suite"><code>FunSuite</code> with <code>Assertions</code></a>, they'll find an even nicer DSL for testing that still makes sense
-given their xUnit background. Users of RSpec will find <a href="@latestScaladoc/#org.scalatest.FunSpec"><code>FunSpec</code></a> familiar and easy to get into. Users of Cucumber
-will find <a href="@latestScaladoc/#org.scalatest.FeatureSpec"><code>FeatureSpec</code></a> familiar. In short, one of ScalaTest's design goals is that anyone
+given their xUnit background. Users of RSpec will find <a href='@scaladocsPageUrl("org.scalatest.FunSpec")'><code>FunSpec</code></a> familiar and easy to get into. Users of Cucumber
+will find <a href='@scaladocsPageUrl("org.scalatest.FeatureSpec")'><code>FeatureSpec</code></a> familiar. In short, one of ScalaTest's design goals is that anyone
 who has used a test framework in the past should be able to get going with ScalaTest quickly with minimum effort.
 </p>
 
@@ -253,7 +253,7 @@ Lastly, in addition to trying to make code easy to read and understand, ScalaTes
 to write. To write ScalaTest code, you will need to look at the documentation for examples, but 
 the library is designed to be easy to remember so that you don't have to look again each time you want to write something.
 Besides obviousness of code, one other way in which ScalaTest tries to achieve this is through consistency. Once you learn how
-<a href="@latestScaladoc/#org.scalatest.BeforeAndAfter"><code>BeforeAndAfter</code></a> works, for example, you can use that knowledge when using different style traits, because it
+<a href='@scaladocsPageUrl("org.scalatest.BeforeAndAfter")'><code>BeforeAndAfter</code></a> works, for example, you can use that knowledge when using different style traits, because it
 is consistent. It works the same everywhere. This &ldquo;rememberability&rdquo; is important for teams, because some people on a team will
 inevitably have many other duties besides writing ScalaTest code, so they will have a tendency to forget what they learned.
 </p>

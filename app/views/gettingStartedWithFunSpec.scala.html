@@ -14,7 +14,7 @@
  * limitations under the License.
  *@
 
-@import controllers.Application.latestScaladoc
+@import controllers.Application.scaladocsPageUrl
 @import controllers.Application.latestVersion
 
 @widePage("Getting Started with FunSpec") {
@@ -23,7 +23,7 @@
 <h1>Getting started with <code>FunSpec</code></h1>
 
 <p>
-By learning to use <a href="@latestScaladoc/#org.scalatest.FunSpec"><code>FunSpec</code></a>, simple <a href="/user_guide/using_assertions">assertions</a>, and the <a href="@latestScaladoc/#org.scalatest.BeforeAndAfter"><code>BeforeAndAfter</code></a> trait, you can become
+By learning to use <a href='@scaladocsPageUrl("org.scalatest.FunSpec")'><code>FunSpec</code></a>, simple <a href="/user_guide/using_assertions")'>assertions</a>, and the <a href='@scaladocsPageUrl("org.scalatest.BeforeAndAfter")')'><code>BeforeAndAfter</code></a> trait, you can become
 productive in the BDD style of ScalaTest very quickly. You can then learn and use more of ScalaTest over time.
 </p>
 
@@ -181,7 +181,7 @@ the problem.
 <h2>Factoring out duplicate code</h2>
 
 <p>
-If you want to factor out duplicate code from tests, mix in <a href="@latestScaladoc/#org.scalatest.BeforeAndAfter"><code>BeforeAndAfter</code></a>, surround the code you
+If you want to factor out duplicate code from tests, mix in <a href='@scaladocsPageUrl("org.scalatest.BeforeAndAfter")'><code>BeforeAndAfter</code></a>, surround the code you
 want to run before each test by <code>before { ... }</code>, and after each test by <code>after { ... }</code>. Here's an example that just uses <code>before</code>:
 </p>
 

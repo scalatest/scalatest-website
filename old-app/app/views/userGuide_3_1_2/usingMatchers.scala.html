@@ -30,7 +30,7 @@
 
 <p>
 ScalaTest provides a domain specific language (DSL) for expressing assertions in tests
-using the word <code>should</code>. Just mix in <a href="@latestScaladoc/#org.scalatest.Matchers"><code>Matchers</code></a>, like this:
+using the word <code>should</code>. Just mix in <a href='@scaladocsPageUrl("org.scalatest.Matchers")'><code>Matchers</code></a>, like this:
 </p>
 
 <pre class="stHighlighted">
@@ -100,12 +100,12 @@ result should equal (<span class="stLiteral">3</span>)
 
 <p>Here <code>result</code> is a variable, and can be of any type. If the object is an
 <code>Int</code> with the value 3, execution will continue (<em>i.e.</em>, the expression will result
-in the unit value, <code>()</code>). Otherwise, a <a href="@latestScaladoc/#org.scalatest.exceptions.TestFailedException"><code>TestFailedException</code></a>
+in the unit value, <code>()</code>). Otherwise, a <a href='@scaladocsPageUrl("org.scalatest.exceptions.TestFailedException")'><code>TestFailedException</code></a>
 will be thrown with a detail message that explains the problem, such as <code>"7 did not equal 3"</code>.
 This <code>TestFailedException</code> will cause the test to fail.</p>
 
 <p>
-Trait <a href="@latestScaladoc/#org.scalatest.MustMatchers"><code>MustMatchers</code></a> is an alternative to <a href="@latestScaladoc/#org.scalatest.Matchers"><code>Matchers</code></a> that provides the exact same meaning, syntax, and behavior as <code>Matchers</code>, but
+Trait <a href='@scaladocsPageUrl("org.scalatest.MustMatchers")'><code>MustMatchers</code></a> is an alternative to <a href="@latestScaladoc/#org.scalatest.Matchers")'><code>Matchers</code></a> that provides the exact same meaning, syntax, and behavior as <code>Matchers</code>, but
 uses the verb <code>must</code> instead of <code>should</code>. The two traits differ only in the English semantics of the verb: <code>should</code> is informal,
 making the code feel like conversation between the writer and the reader; <code>must</code> is more formal, making the code feel more like a written specification.
 </p>
@@ -227,7 +227,7 @@ available in scope.
 Similarly, the <code>size</code> syntax can be used with <code>Array</code>, any <code>scala.collection.GenTraversable</code>,
 any <code>java.util.Collection</code>, any <code>java.util.Map</code>, and any type <code>T</code> for which an implicit <code>Size[T]</code> type class is
 available in scope. You can enable the <code>length</code> or <code>size</code> syntax for your own arbitrary types, therefore,
-by defining <a href="@latestScaladoc/#org.scalatest.enables.Length"><code>Length</code></a> or <a href="@latestScaladoc/#org.scalatest.enablers.Size"><code>Size</code></a> type
+by defining <a href='@scaladocsPageUrl("org.scalatest.enables.Length")'><code>Length</code></a> or <a href="@latestScaladoc/#org.scalatest.enablers.Size")'><code>Size</code></a> type
 classes for those types.</p>
 
 <p>In addition, the <code>length</code> syntax can be used with any object that has a field or method named <code>length</code>
@@ -317,7 +317,7 @@ non-empty iterator was not traversableAgain
 not have an appropriately named predicate method, you'll get a <code>TestFailedException</code>
 at runtime with a detailed message that explains the problem.
 (For the details on how a field or method is selected during this
-process, see the documentation for <a href="@latestScaladoc/#org.scalatest.words.BeWord"><code>BeWord</code></a>.)</p>
+process, see the documentation for <a href='@scaladocsPageUrl("org.scalatest.words.BeWord")'><code>BeWord</code></a>.)</p>
 
 <p>If you think it reads better, you can optionally put <code>a</code> or <code>an</code> after
 <code>be</code>. For example, <code>java.io.File</code> has two predicate methods,
@@ -349,7 +349,7 @@ keyEvent should be an actionKey
 by the type parameter of the <code>BePropertyMatcher</code> being used. (For example, <code>file</code> in this example
 would likely be of type <code>BePropertyMatcher[java.io.File]</code>. If used with an appropriate type, such an expression will compile
 and at run time the <code>Boolean</code> property method or field will be accessed directly; <em>i.e.</em>, no reflection will be used.
-See the documentation for <a href="@latestScaladoc/#org.scalatest.matchers.BePropertyMatcher"><code>BePropertyMatcher</code></a> for more information.</p>
+See the documentation for <a href='@scaladocsPageUrl("org.scalatest.matchers.BePropertyMatcher")'><code>BePropertyMatcher</code></a> for more information.</p>
 
 <a name="usingCustomBeMatchers"> </a>
 <h2> Using custom <code>BeMatchers</code> </h2>
@@ -365,7 +365,7 @@ num shouldBe odd
 num should not be even
 </pre></p>
 
-<p>For more information, see the documentation for <a href="@latestScaladoc/#org.scalatest.matchers.BeMatcher"><code>BeMatcher</code></a>.</p>
+<p>For more information, see the documentation for <a href='@scaladocsPageUrl("org.scalatest.matchers.BeMatcher")'><code>BeMatcher</code></a>.</p>
 
 <a name="checkingObjectIdentity"> </a>
 <h2> Checking object identity </h2>
@@ -735,7 +735,7 @@ continue to reap any potential benefits provided by the laziness of the underlyi
 <a name="inspectorShorthands"> </a>
 <h2> Inspector shorthands </h2>
 
-<p>You can use the <a href="@latestScaladoc/#org.scalatest.Inspectors"><code>Inspectors</code></a> syntax with matchers as well as assertions. If you have a multi-dimensional collection, such as a
+<p>You can use the <a href='@scaladocsPageUrl("org.scalatest.Inspectors")'><code>Inspectors</code></a> syntax with matchers as well as assertions. If you have a multi-dimensional collection, such as a
 list of lists, using <code>Inspectors</code> is your best option:</p>
 
 <p><pre class="stHighlighted">
@@ -814,7 +814,7 @@ less than or equal to 10, you could write:</p>
 set.loneElement should be &lt;= <span class="stLiteral">10</span>
 </pre></p>
 
-<p>You can invoke <code>loneElement</code> on any type <code>T</code> for which an implicit <a href="@latestScaladoc/#org.scalatest.enablers.Collecting"><code>Collecting[E, T]</code></a>
+<p>You can invoke <code>loneElement</code> on any type <code>T</code> for which an implicit <a href='@scaladocsPageUrl("org.scalatest.enablers.Collecting")'><code>Collecting[E, T]</code></a>
 is available, where <code>E</code> is the type returned by the <code>loneElement</code> invocation.</p>
 
 <a name="javaCollectionsAndMaps"> </a>
@@ -858,7 +858,7 @@ wrapped in a set of <code>java.util.Map.Entry</code>, but a <code>Map</code> is 
 a collection of <code>Entry</code>. To make Java <code>Map</code>s easier to work with, however,
 ScalaTest matchers allows you to treat a Java <code>Map</code> as a collection of <code>Entry</code>,
 and defines a convenience implementation of <code>java.util.Map.Entry</code> in
-<a href="@latestScaladoc/#org.scalatest.Entry"><code>org.scalatest.Entry</code></a>. Here's how you use it:</p>
+<a href='@scaladocsPageUrl("org.scalatest.Entry")'><code>org.scalatest.Entry</code></a>. Here's how you use it:</p>
 
 <p><pre class="stHighlighted">
 javaMap should contain (<span class="stType">Entry</span>(<span class="stLiteral">2</span>, <span class="stLiteral">3</span>))
@@ -928,7 +928,7 @@ option should be (<span class="stType">Some</span>(<span class="stLiteral">1</sp
 
 <p>As with <code>equal</code> used with default equality, using <code>be</code> on arrays results in <code>deep</code> being called on both arrays prior to
 calling <code>equal</code>. As a result,
-the following expression would <em>not</em> throw a <a href="@latestScaladoc/#org.scalatest.exceptions.TestFailedException"><code>TestFailedException</code></a>:</p>
+the following expression would <em>not</em> throw a <a href='@scaladocsPageUrl("org.scalatest.exceptions.TestFailedException")'><code>TestFailedException</code></a>:</p>
 
 <p><pre class="stHighlighted">
 <span class="stType">Array</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>) should be (<span class="stType">Array</span>(<span class="stLiteral">1</span>, <span class="stLiteral">2</span>)) <span class="stLineComment">// succeeds (i.e., does not throw TestFailedException)</span>
@@ -1121,7 +1121,7 @@ option should === (<span class="stType">Some</span>(<span class="stQuotedString"
 option shouldBe defined
 </pre></p>
 
-<p>If you mix in (or import the members of) <a href="@latestScaladoc/#org.scalatest.OptionValues"><code>OptionValues</code></a>,
+<p>If you mix in (or import the members of) <a href='@scaladocsPageUrl("org.scalatest.OptionValues")'><code>OptionValues</code></a>,
 you can write one statement that indicates you believe an option should be defined and then say something else about its value. Here's an example:</p>
 
 <p><pre class="stHighlighted">
@@ -1161,7 +1161,7 @@ named <code>title</code>, or a public method named <code>getTitle</code>, that w
 in a the string <code>"Programming in Scala"</code>. If all specified properties exist and have their expected values, respectively,
 execution will continue. If one or more of the properties either does not exist, or exists but results in an unexpected value,
 a <code>TestFailedException</code> will be thrown that explains the problem. (For the details on how a field or method is selected during this
-process, see the documentation for <a href="@latestScaladoc/#org.scalatest.Matchers$HavePropertyMatcherGenerator"><code>HavePropertyMatcherGenerator</code></a>.)</p>
+process, see the documentation for <a href='@scaladocsPageUrl("org.scalatest.Matchers$HavePropertyMatcherGenerator")'><code>HavePropertyMatcherGenerator</code></a>.)</p>
 
 <p>When you use this syntax, you must place one or more property values in parentheses after <code>have</code>, seperated by commas, where a <em>property
 value</em> is a symbol indicating the name of the property followed by the expected value in parentheses. The only exceptions to this rule is the syntax
@@ -1210,7 +1210,7 @@ book should have (
 by the type parameter of the <code>HavePropertyMatcher</code> being used. (For example, <code>title</code> in this example
 might be of type <code>HavePropertyMatcher[org.publiclibrary.Book]</code>. If used with an appropriate type, such an expression will compile
 and at run time the property method or field will be accessed directly; <em>i.e.</em>, no reflection will be used.
-See the documentation for <a href="@latestScaladoc/#org.scalatest.matchers.HavePropertyMatcher"><code>HavePropertyMatcher</code></a> for more information.</p>
+See the documentation for <a href='@scaladocsPageUrl("org.scalatest.matchers.HavePropertyMatcher")'><code>HavePropertyMatcher</code></a> for more information.</p>
 
 <a name="lengthSizeHavePropertyMatchers"> </a>
 <h2> Using <code>length</code> and <code>size</code> with <code>HavePropertyMatcher</code>s </h2>
@@ -1235,7 +1235,7 @@ the <code>MatcherFactory1[Any, Length]</code> to a <code>HavePropertyMatcher[&lt
 <h2>Checking that an expression matches a pattern</h2>
 
 <p>
-ScalaTest's <a href="@latestScaladoc/#org.scalatest.Inside"><code>Inside</code></a> trait allows you to make assertions after a pattern match.
+ScalaTest's <a href='@scaladocsPageUrl("org.scalatest.Inside")'><code>Inside</code></a> trait allows you to make assertions after a pattern match.
 Here's an example:
 </p>
 
@@ -1347,7 +1347,7 @@ File essay.text did not have extension "txt"
 </pre></p>
 
 <p>For more information on the fields in a <code>MatchResult</code>, including the subsequent field (or fields) that follow the failure message,
-please see the documentation for <a href="@latestScaladoc/#org.scalatest.matchers.MatchResult"><code>MatchResult</code></a>.</p>
+please see the documentation for <a href='@scaladocsPageUrl("org.scalatest.matchers.MatchResult")'><code>MatchResult</code></a>.</p>
 
 <p><a name="otherways"> </a></p>
 
@@ -1483,7 +1483,7 @@ scala&gt; &quot;7&quot; should beAsIntsGreaterThan (&quot;8&quot;)
 org.scalatest.exceptions.TestFailedException: 7 was not greater than 8
 </pre>
 
-<p>To modify error message, you can use trait <a href="@latestScaladoc/#org.scalatest.matchers.MatcherProducers"><code>MatcherProducers</code></a>, which
+<p>To modify error message, you can use trait <a href='@scaladocsPageUrl("org.scalatest.matchers.MatcherProducers")'><code>MatcherProducers</code></a>, which
 also provides a <code>composeTwice</code> method that performs the <code>compose</code> ...
 <code>andThen</code> ... <code>compose</code> operation:</p>
 
@@ -1528,7 +1528,7 @@ beAsIntsGreaterThan: String =&gt; org.scalatest.matchers.Matcher[String] = &lt;f
 
 <p>The <code>mapResult</code> method takes a function that accepts a <code>MatchResult</code> and produces a new
 <code>MatchResult</code>, which can contain modified arguments and modified error messages. In this example,
-the error messages are being modified by wrapping the old arguments in <a href="@latestScaladoc/#org.scalatest.matchers.LazyArg"><code>LazyArg</code></a>
+the error messages are being modified by wrapping the old arguments in <a href='@scaladocsPageUrl("org.scalatest.matchers.LazyArg")'><code>LazyArg</code></a>
 instances that lazily apply the given prettification functions to the <code>toString</code> result of the old args.
 Now the error message is clearer:</p>
 

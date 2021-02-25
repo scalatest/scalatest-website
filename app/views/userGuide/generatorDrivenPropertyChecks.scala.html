@@ -14,7 +14,7 @@
  * limitations under the License.
  *@
 
-@import controllers.Application.latestScaladoc
+@import controllers.Application.scaladocsPageUrl
 
 @userGuidePage("Generator-driven property checks") {
 <div style="text-align: left">
@@ -22,10 +22,10 @@
 <h1>Generator-driven property checks</h1>
 
 <p>
-To use generator-driven property checks, you must mix in trait <a href="@latestScaladoc/#org.scalatest.prop.GeneratorDrivenPropertyChecks"><code>GeneratorDrivenPropertyChecks</code></a> (or import the
+To use generator-driven property checks, you must mix in trait <a href='@scaladocsPageUrl("org.scalatest.prop.GeneratorDrivenPropertyChecks")'><code>GeneratorDrivenPropertyChecks</code></a> (or import the
 members of its companion object). If you are also using table-driven property checks, you can mix in
-trait <a href="@latestScaladoc/#org.scalatest.prop.PropertyChecks"><code>PropertyChecks</code></a>,
-which extends both <code>GeneratorDrivenPropertyChecks</code> and <a href="@latestScaladoc/#org.scalatest.prop.TableDrivenPropertyChecks"><code>TableDrivenPropertyChecks</code></a>. Generator-driven property checks uses <a href="http://www.scalacheck.org/">ScalaCheck</a>, so you must also include the ScalaCheck JAR file on your classpath when you compile and run your tests.
+trait <a href='@scaladocsPageUrl("org.scalatest.prop.PropertyChecks")'><code>PropertyChecks</code></a>,
+which extends both <code>GeneratorDrivenPropertyChecks</code> and <a href='@scaladocsPageUrl("org.scalatest.prop.TableDrivenPropertyChecks")'><code>TableDrivenPropertyChecks</code></a>. Generator-driven property checks uses <a href="http://www.scalacheck.org/")'>ScalaCheck</a>, so you must also include the ScalaCheck JAR file on your classpath when you compile and run your tests.
 </p>
 
 <p>
@@ -52,7 +52,7 @@ For an example of trait <code>GeneratorDrivenPropertyChecks</code> in action, im
 
 <p>
 To test the behavior of <code>Fraction</code>, you could mix in or import the members of <code>GeneratorDrivenPropertyChecks</code>
-(and <a href="@latestScaladoc/#org.scalatest.matchers.should.Matchers"><code>should.Matchers</code></a>) and check a property using a <code>forAll</code> method, like this:
+(and <a href='@scaladocsPageUrl("org.scalatest.matchers.should.Matchers")'><code>should.Matchers</code></a>) and check a property using a <code>forAll</code> method, like this:
 </p>
 
 <pre class="stHighlighted">
@@ -88,10 +88,10 @@ values provided by ScalaCheck.
 <p>
 The <code>forAll</code> methods use the supplied <code>Arbitrary</code> generators to generate example
 arguments and pass them to the property function, and
-generate a <a href="@latestScaladoc/#org.scalatest.prop.GeneratorDrivenPropertyCheckFailedException"><code>GeneratorDrivenPropertyCheckFailedException</code></a> if the function
-completes abruptly for any exception that would <a href="@latestScaladoc/#org.scalatest.Suite&#64;errorHandling">normally cause</a> a test to
+generate a <a href='@scaladocsPageUrl("org.scalatest.prop.GeneratorDrivenPropertyCheckFailedException")'><code>GeneratorDrivenPropertyCheckFailedException</code></a> if the function
+completes abruptly for any exception that would <a href='@scaladocsPageUrl("org.scalatest.Suite&#64;errorHandling")'>normally cause</a> a test to
 fail in ScalaTest other than <code>DiscardedEvaluationException</code>. An
-<a href="@latestScaladoc/#org.scalatest.prop.DiscardedEvaluationException"><code>DiscardedEvaluationException</code></a>,
+<a href='@scaladocsPageUrl("org.scalatest.prop.DiscardedEvaluationException")'><code>DiscardedEvaluationException</code></a>,
 which is thrown by the <code>whenever</code> method (defined in trait <code>Whenever</code>, which this trait extends) to indicate
 a condition required by the property function is not met by a row
 of passed data, will simply cause <code>forAll</code> to discard that row of data.
@@ -398,7 +398,7 @@ forAll ((validNumers, <span class="stQuotedString">"n"</span>), (validDenoms, <s
 </pre>
 
 <p>
-For more information, see the documentation for trait <a href="@latestScaladoc/#org.scalatest.prop.Configuration"><code>Configuration</code></a>,
+For more information, see the documentation for trait <a href='@scaladocsPageUrl("org.scalatest.prop.Configuration")'><code>Configuration</code></a>,
 a supertrait of <code>GeneratorDrivenPropertyChecks</code>.
 </p>
 

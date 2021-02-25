@@ -21,7 +21,7 @@
 
 <h1>Using <code>OptionValues</code></h1>
 
-<p>ScalaTest's <a href="@latestScaladoc/#org.scalatest.OptionValues"><code>OptionValues</code></a> trait provides an implicit conversion that adds a <code>value</code> method
+<p>ScalaTest's <a href='@scaladocsPageUrl("org.scalatest.OptionValues")'><code>OptionValues</code></a> trait provides an implicit conversion that adds a <code>value</code> method
 to <code>Option</code>, which will return the value of the option if it is defined,
 or throw <code>TestFailedException</code> if not.</p><p>This construct allows you to express in one statement that an option should be defined
 and that its value should meet some expectation. Here's an example:</p><p><pre class="stHighlighted">
@@ -32,8 +32,8 @@ assert(opt.value &gt; <span class="stLiteral">9</span>)
 if the option wasn't defined, it would throw a <code>NoSuchElementException</code>:</p><p><pre class="stHighlighted">
 <span class="stReserved">val</span> opt: <span class="stType">Option[Int]</span> = <span class="stType">None</span>
 <br />opt.get should be &gt; <span class="stLiteral">9</span> <span class="stLineComment">// opt.get throws NoSuchElementException</span>
-</pre></p><p>The <code>NoSuchElementException</code> would cause the test to fail, but without providing a <a href="@latestScaladoc/#org.scalatest.StackDepth">stack depth</a> pointing
-to the failing line of test code. This stack depth, provided by <a href="@latestScaladoc/#org.scalatest.TestFailedException"><code>TestFailedException</code></a> (and a
+</pre></p><p>The <code>NoSuchElementException</code> would cause the test to fail, but without providing a <a href='@scaladocsPageUrl("org.scalatest.StackDepth")'>stack depth</a> pointing
+to the failing line of test code. This stack depth, provided by <a href='@scaladocsPageUrl("org.scalatest.TestFailedException")'><code>TestFailedException</code></a> (and a
 few other ScalaTest exceptions), makes it quicker for
 users to navigate to the cause of the failure. Without <code>OptionValues</code>, to get
 a stack depth exception you would need to make two statements, like this:</p><p><pre class="stHighlighted">

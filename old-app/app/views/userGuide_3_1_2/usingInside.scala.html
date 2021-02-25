@@ -21,7 +21,7 @@
 
 <h1>Using <code>Inside</code></h1>
 
-<p>ScalaTest's <a href="@latestScaladoc/#org.scalatest.Inside"><code>Inside</code></a> trait contains an <code>inside</code> construct, which allows you to make statements about nested object graphs using pattern matching.</p><p>For example, given the following case classes:</p><p><pre class="stHighlighted">
+<p>ScalaTest's <a href='@scaladocsPageUrl("org.scalatest.Inside")'><code>Inside</code></a> trait contains an <code>inside</code> construct, which allows you to make statements about nested object graphs using pattern matching.</p><p>For example, given the following case classes:</p><p><pre class="stHighlighted")'>
 <span class="stReserved">case</span> <span class="stReserved">class</span> <span class="stType">Address</span>(street: <span class="stType">String</span>, city: <span class="stType">String</span>, state: <span class="stType">String</span>, zip: <span class="stType">String</span>)
 <span class="stReserved">case</span> <span class="stReserved">class</span> <span class="stType">Name</span>(first: <span class="stType">String</span>, middle: <span class="stType">String</span>, last: <span class="stType">String</span>)
 <span class="stReserved">case</span> <span class="stReserved">class</span> <span class="stType">Record</span>(name: <span class="stType">Name</span>, address: <span class="stType">Address</span>, age: <span class="stType">Int</span>)

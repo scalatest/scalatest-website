@@ -32,14 +32,14 @@ This allows the testing styles to fit the team while maintaining uniformity in t
 We recommend you select one main style for unit testing and another for acceptance testing.
 Using a different style for unit and acceptance testing can help developers "switch gears" between 
 low-level unit testing to high-level acceptance testing. You may also want to select particular styles to be used in special situations, such as using
-<a href="@latestScaladoc/#org.scalatest.PropSpec@@testMatrix"><code>PropSpec</code> for test matrixes</a>. 
+<a href='@scaladocsPageUrl("org.scalatest.PropSpec@@testMatrix")'><code>PropSpec</code> for test matrixes</a>. 
 We usually write integration tests&mdash;tests that involve subsystems such as a database&mdash;in the same style as the unit tests.
 </p>
 
 <p>
 In short, ScalaTest's flexibility is not intended to enable individual developers to use different testing styles on the same project. 
 Rather, it is intended to enable project leaders to select a best-fit style or styles for the team.
-If you have trouble enforcing chosen styles, you can <a href="@latestScaladoc/#org.scalatest.tools.Runner$@@specifyingChosenStyles">specify the chosen styles</a> in your build.
+If you have trouble enforcing chosen styles, you can <a href='@scaladocsPageUrl("org.scalatest.tools.Runner$@@specifyingChosenStyles")'>specify the chosen styles</a> in your build.
 </p>
 
 <p>
@@ -51,8 +51,8 @@ mixin traits, <em>etc.</em>&mdash;works consistently the same way no matter what
 
 <p>
 If you would rather be told which approach to take rather than pick one yourself, we recommend you use
-<a href="@latestScaladoc/#org.scalatest.FlatSpec"><code>FlatSpec</code></a> for unit and integration testing and
-<a href="@latestScaladoc/#org.scalatest.FeatureSpec"><code>FeatureSpec</code></a> for acceptance testing.
+<a href='@scaladocsPageUrl("org.scalatest.FlatSpec")'><code>FlatSpec</code></a> for unit and integration testing and
+<a href='@scaladocsPageUrl("org.scalatest.FeatureSpec")'><code>FeatureSpec</code></a> for acceptance testing.
 We recommend <code>FlatSpec</code> as the default choice, because it is flat (unnested) like the XUnit tests familiar to most developers, but
 guides you into writing focused tests with descriptive, specification-style names.
 </p>
@@ -70,7 +70,7 @@ information and examples, click on the links:
 <tr><th style="background-color: #CCCCCC; border-width: 1px; padding: 10px; text-align: center; border: 1px solid black">Style Trait Descriptions and Examples</th></tr>
 <tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
 <h2>FunSuite</h2>
-<p class="stStyleDesc">For teams coming from xUnit, <a href="@latestScaladoc/#org.scalatest.FunSuite"><code>FunSuite</code></a> feels comfortable and familiar while still giving some of the benefits of BDD: <code>FunSuite</code> makes it easy to write descriptive test names, natural to write focused tests, and generates specification-like output that can facilitate communication among stakeholders.</p>
+<p class="stStyleDesc">For teams coming from xUnit, <a href='@scaladocsPageUrl("org.scalatest.FunSuite")'><code>FunSuite</code></a> feels comfortable and familiar while still giving some of the benefits of BDD: <code>FunSuite</code> makes it easy to write descriptive test names, natural to write focused tests, and generates specification-like output that can facilitate communication among stakeholders.</p>
 <pre class="stStyleExamples">
 <span class="stReserved">import</span> org.scalatest.FunSuite
 <br /><span class="stReserved">class</span> <span class="stType">SetSuite</span> <span class="stReserved">extends</span> <span class="stType">FunSuite</span> {
@@ -90,7 +90,7 @@ information and examples, click on the links:
 <tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
 <h2>FlatSpec</h2>
 <p class="stStyleDesc">
-A good first step for teams wishing to move from xUnit to BDD, <a href="@latestScaladoc/#org.scalatest.FlatSpec"><code>FlatSpec</code></a>'s structure is
+A good first step for teams wishing to move from xUnit to BDD, <a href='@scaladocsPageUrl("org.scalatest.FlatSpec")'><code>FlatSpec</code></a>'s structure is
 flat like xUnit, so simple and familiar, but the test names must be written in a specification style: "X should Y," "A must B," <em>etc</em>.</p>
 <pre class="stStyleExamples">
 <span class="stReserved">import</span> org.scalatest.FlatSpec
@@ -111,7 +111,7 @@ flat like xUnit, so simple and familiar, but the test names must be written in a
 <tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
 <h2>FunSpec</h2>
 <p class="stStyleDesc">
-For teams coming from Ruby's RSpec tool, <a href="@latestScaladoc/#org.scalatest.FunSpec"><code>FunSpec</code></a> will feel very familiar; More generally, for any team that prefers BDD,
+For teams coming from Ruby's RSpec tool, <a href='@scaladocsPageUrl("org.scalatest.FunSpec")'><code>FunSpec</code></a> will feel very familiar; More generally, for any team that prefers BDD,
 <code>FunSpec</code>'s nesting and gentle guide to structuring text (with <code>describe</code> and <code>it</code>) provides an excellent
 general-purpose choice for writing specification-style tests.
 </p>
@@ -138,7 +138,7 @@ general-purpose choice for writing specification-style tests.
 <tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
 <h2>WordSpec</h2>
 <p class="stStyleDesc">
-For teams coming from specs or specs2, <a href="@latestScaladoc/#org.scalatest.WordSpec"><code>WordSpec</code></a> will feel familiar, and is often the most natural way to port specsN tests to ScalaTest. <code>WordSpec</code> is very prescriptive in how text must be written, so a good fit for teams who want a high degree of discipline enforced upon their specification text.
+For teams coming from specs or specs2, <a href='@scaladocsPageUrl("org.scalatest.WordSpec")'><code>WordSpec</code></a> will feel familiar, and is often the most natural way to port specsN tests to ScalaTest. <code>WordSpec</code> is very prescriptive in how text must be written, so a good fit for teams who want a high degree of discipline enforced upon their specification text.
 </p>
 <pre class="stStyleExamples">
 <span class="stReserved">import</span> org.scalatest.WordSpec
@@ -163,7 +163,7 @@ For teams coming from specs or specs2, <a href="@latestScaladoc/#org.scalatest.W
 <tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
 <h2>FreeSpec</h2>
 <p class="stStyleDesc">
-Because it gives absolute freedom (and no guidance) on how specification text should be written, <a href="@latestScaladoc/#org.scalatest.FreeSpec"><code>FreeSpec</code></a> is a good choice for teams experienced with BDD and able to agree on how to structure the specification text.
+Because it gives absolute freedom (and no guidance) on how specification text should be written, <a href='@scaladocsPageUrl("org.scalatest.FreeSpec")'><code>FreeSpec</code></a> is a good choice for teams experienced with BDD and able to agree on how to structure the specification text.
 </p>
 <pre class="stStyleExamples">
 <span class="stReserved">import</span> org.scalatest.FreeSpec
@@ -188,7 +188,7 @@ Because it gives absolute freedom (and no guidance) on how specification text sh
 <tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
 <h2>PropSpec</h2>
 <p class="stStyleDesc">
-<a href="@latestScaladoc/#org.scalatest.PropSpec">PropSpec</a> is perfect for teams that want to write tests exclusively in terms of property checks; also a good
+<a href='@scaladocsPageUrl("org.scalatest.PropSpec")'>PropSpec</a> is perfect for teams that want to write tests exclusively in terms of property checks; also a good
 choice for writing the occasional test matrix when a different style trait is chosen as the main unit testing style.
 </p>
 <pre class="stStyleExamples">
@@ -221,7 +221,7 @@ choice for writing the occasional test matrix when a different style trait is ch
 <tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
 <h2>FeatureSpec</h2>
 <p class="stStyleDesc">
-Trait <a href="@latestScaladoc/#org.scalatest.FeatureSpec"><code>FeatureSpec</code></a> is primarily intended for acceptance testing, including facilitating the process of programmers working alongside non-programmers to define the acceptance requirements.
+Trait <a href='@scaladocsPageUrl("org.scalatest.FeatureSpec")'><code>FeatureSpec</code></a> is primarily intended for acceptance testing, including facilitating the process of programmers working alongside non-programmers to define the acceptance requirements.
 </p>
 <pre class="stStyleExamples">
 <span class="stReserved">import</span> org.scalatest._
@@ -266,7 +266,7 @@ Trait <a href="@latestScaladoc/#org.scalatest.FeatureSpec"><code>FeatureSpec</co
 <tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">
 <h2>RefSpec (JVM only)</h2>
 <p class="stStyleDesc">
-<a href="@latestScaladoc/#org.scalatest.refspec.RefSpec"><code>RefSpec</code></a> allows you to define tests as methods, which saves one function literal per test
+<a href='@scaladocsPageUrl("org.scalatest.refspec.RefSpec")'><code>RefSpec</code></a> allows you to define tests as methods, which saves one function literal per test
 compared to style classes that represent tests as functions. Fewer function literals translates into faster compile times and fewer generated class files, which
 can help minimize build times. As a result, using <code>Spec</code> can be a good choice in large projects where build times are a concern as well as when
 generating large numbers of tests programatically via static code generators.
