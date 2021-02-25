@@ -30,7 +30,7 @@ pf.valueAt(<span class="stQuotedString">&quot;IV&quot;</span>) should equal (<sp
 assert(pf.valueAt(<span class="stQuotedString">&quot;IV&quot;</span>) === <span class="stLiteral">4</span>)
 </pre></p><p>Were you to simply invoke <code>apply</code> on the <code>PartialFunction</code>, passing in an input value,
 if the partial function wasn't defined at that input, it would throw some exception, but likely not one
-that provides a <a href='@scaladocsPageUrl("org.scalatest.exceptions.StackDepth")'>stack depth</a>:</p><p><pre class="stHighlighted">
+that provides a <a href='@scaladocsPageUrl("org.scalatest.exceptions.StackDepth")'>stack depth</a>:</p><p><pre class="stHighlighted")'>
 <span class="stLineComment">// Note: a Map[K, V] is a PartialFunction[K, V]</span>
 <span class="stReserved">val</span> pf: <span class="stType">PartialFunction[String, Int]</span> = <span class="stType">Map</span>(<span class="stQuotedString">&quot;I&quot;</span> -&gt; <span class="stLiteral">1</span>, <span class="stQuotedString">&quot;II&quot;</span> -&gt; <span class="stLiteral">2</span>, <span class="stQuotedString">&quot;III&quot;</span> -&gt; <span class="stLiteral">3</span>, <span class="stQuotedString">&quot;IV&quot;</span> -&gt; <span class="stLiteral">4</span>)
 <br />pf(<span class="stQuotedString">&quot;V&quot;</span>) should equal (<span class="stLiteral">5</span>) <span class="stLineComment">// pf(&quot;V&quot;) throws NoSuchElementException</span>

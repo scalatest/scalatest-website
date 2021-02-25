@@ -14,7 +14,7 @@
  * limitations under the License.
  *@
 
-@import controllers.Application.latestScaladoc
+@import controllers.Application.scaladocsPageUrl
 @import controllers.Application.baseScalaVersion
 
 @userGuidePage("Migrating to 2.0") {
@@ -60,13 +60,13 @@ to <a href="http://groups.google.com/group/scalatest-users"><code>scalatest-user
 
 <p>
 We greatly enhanced ScalaTest's event model in 2.0 to improve tools integration and reporting. Because it is not possible in Scala to deprecate
-extractors, custom <a href="@latestScaladoc/#org.scalatest.Reporter"><code>Reporter</code></a>s written for ScalaTest 1.x will usually
+extractors, custom <a href='@scaladocsPageUrl("org.scalatest.Reporter")'><code>Reporter</code></a>s written for ScalaTest 1.x will usually
 need to be migrated. You still write custom <code>Reporters</code> in 2.0 the same way as in 1.x: you implement
 <code>apply</code> and handle events, usually by pattern matching on them. In 2.0, however, more events exist, and several of the pre-existing events now have more fields in them
 (though all the old fields still exist and mean the same thing). So if an existing pattern match no longer compiles, look at the event (located in package
-<a href="@latestScaladoc/#org.scalatest.events.package"><code>org.scalatest.events</code></a>) and make necessary changes to your pattern to accomodate the
+<a href='@scaladocsPageUrl("org.scalatest.events.package")'><code>org.scalatest.events</code></a>) and make necessary changes to your pattern to accomodate the
 new structure of the event. You may also want or need to handle events newly added in ScalaTest 2.0. For a nice list of all the 2.0 events, with links to the appropriate
-Scaladoc documentation, see the main documentation for <a href="@latestScaladoc/#org.scalatest.Reporter"><code>Reporter</code></a>.
+Scaladoc documentation, see the main documentation for <a href='@scaladocsPageUrl("org.scalatest.Reporter")'><code>Reporter</code></a>.
 </p>
 
 <a name="withFixtureMethods"></a>
@@ -74,9 +74,9 @@ Scaladoc documentation, see the main documentation for <a href="@latestScaladoc/
 
 <p>
 In 2.0, the <code>withFixture</code> methods declared in
-<a href="@latestScaladoc/#org.scalatest.Suite"><code>Suite</code></a> and <a href="@latestScaladoc/#org.scalatest.fixture.Suite"><code>fixture.Suite</code></a>, and the
-<a href="@latestScaladoc/#org.scalatest.Suite$NoArgTest"><code>NoArgTest</code></a> and <a href="@latestScaladoc/#org.scalatest.fixture.Suite$OneArgTest"><code>OneArgTest</code></a> functions passed to them, now
-return an <a href="@{latestScaladoc}/#org.scalatest.Outcome"><code>Outcome</code></a>. Because <code>withFixture</code> previously
+<a href='@scaladocsPageUrl("org.scalatest.Suite")'><code>Suite</code></a> and <a href="@latestScaladoc/#org.scalatest.fixture.Suite")'><code>fixture.Suite</code></a>, and the
+<a href='@scaladocsPageUrl("org.scalatest.Suite$NoArgTest")'><code>NoArgTest</code></a> and <a href="@latestScaladoc/#org.scalatest.fixture.Suite$OneArgTest")'><code>OneArgTest</code></a> functions passed to them, now
+return an <a href='@scaladocsPageUrl("org.scalatest.Outcome")'><code>Outcome</code></a>. Because <code>withFixture</code> previously
 returned <code>Unit</code>, you will need to insert an <code>=</code> before the open curly brace of your overridden <code>withFixture</code> implementations if you
 didn't already do so, and in some cases, <code>: Outcome =</code>.
 </p>
@@ -127,7 +127,7 @@ on <code>Outcome</code> types.
 </pre>
 
 <p>
-To a corresponding pattern match on <a href="@{latestScaladoc}/#org.scalatest.Outcome"><code>Outcome</code></a>:
+To a corresponding pattern match on <a href='@scaladocsPageUrl("org.scalatest.Outcome")'><code>Outcome</code></a>:
 </p>
 
 <pre class="stHighlighted">
@@ -145,10 +145,10 @@ To a corresponding pattern match on <a href="@{latestScaladoc}/#org.scalatest.Ou
 <h2><code>run</code> method signatures</h2>
 
 <p>
-We modified the signature of four of <a href="@latestScaladoc/#org.scalatest.Suite"><code>Suite</code></a>'s lifecycle methods: <code>run</code>,
+We modified the signature of four of <a href='@scaladocsPageUrl("org.scalatest.Suite")'><code>Suite</code></a>'s lifecycle methods: <code>run</code>,
 <code>runNestedSuites</code>, <code>runTests</code>, and <code>runTest</code>. First, to make these methods more pleasant to override, we gathered 
 the parameters common to these methods into an <code>Args</code> value object. If you have previously overridden them, you'll need to change
-the method signature. Because the parameters have the exact same name inside the <a href="@latestScaladoc/#org.scalatest.Args"><code>Args</code></a>
+the method signature. Because the parameters have the exact same name inside the <a href='@scaladocsPageUrl("org.scalatest.Args")'><code>Args</code></a>
 object, however, you can simply import <code>args._</code>
 to get them back in scope in your existing code.
 </p>
@@ -186,14 +186,14 @@ again be in scope. Note that <em>invocations</em> of methods using the old signa
 
 <p>
 In addition to collecting parameters in <code>Args</code>, we changed the result type from <code>Unit</code> to
-<a href="@latestScaladoc/#org.scalatest.Status"><code>Status</code></a>. A <code>Status</code> is
+<a href='@scaladocsPageUrl("org.scalatest.Status")'><code>Status</code></a>. A <code>Status</code> is
 like a <code>Future[Boolean]</code> that ultimately will indicate whether any failed test or aborted suite occurred. The <code>Status</code> ``completes'' 
 when the tests and/or nested suites started by that method have all completed. Thus you may also need change your code so that an appropriate
 <code>Status</code> is returned. If so, familiarize yourself with the convenience <code>Status</code> subclasses:
-<a href="@latestScaladoc/#org.scalatest.SucceededStatus$"><code>SuccceededStatus</code></a>,
-<a href="@latestScaladoc/#org.scalatest.FailedStatus$"><code>FailedStatus</code></a>,
-<a href="@latestScaladoc/#org.scalatest.StatefulStatus"><code>StatefulStatus</code></a>,
-and <a href="@latestScaladoc/#org.scalatest.CompositeStatus"><code>CompositeStatus</code></a>.
+<a href='@scaladocsPageUrl("org.scalatest.SucceededStatus$")'><code>SuccceededStatus</code></a>,
+<a href='@scaladocsPageUrl("org.scalatest.FailedStatus$")'><code>FailedStatus</code></a>,
+<a href='@scaladocsPageUrl("org.scalatest.StatefulStatus")'><code>StatefulStatus</code></a>,
+and <a href='@scaladocsPageUrl("org.scalatest.CompositeStatus")'><code>CompositeStatus</code></a>.
 </p>
 
 <p>
@@ -236,7 +236,7 @@ Although ScalaTest's matchers have undergone a major refactor in 2.0, all previo
 the same with one potential exception, which should in practice be extremely rare. The potential breakage is that if you included <code>length</code> or <code>size</code>
 along with custom have-property matchers that you wrote, you'll get a compiler error. To fix such an error, add after
 your <code>length</code> or <code>size</code> invocation an <code>(of [&lt;type&gt;])</code> clause, as
-described in the main <a href="@latestScaladoc/#org.scalatest.Matchers@@lengthSizeHavePropertyMatchers">Scaladoc documentation for <code>Matchers</code></a>.
+described in the main <a href='@scaladocsPageUrl("org.scalatest.Matchers@@lengthSizeHavePropertyMatchers")'>Scaladoc documentation for <code>Matchers</code></a>.
 </p>
 
 <a name="styleClasses"></a>

@@ -14,7 +14,7 @@
  * limitations under the License.
  *@
 
-@import controllers.Application.latestScaladoc
+@import controllers.Application.scaladocsPageUrl
 
 @userGuidePage("Tests as specifications") {
 <div style="text-align: left">
@@ -29,7 +29,7 @@ can be executed to verify that behavior. ScalaTest provides rich support for thi
 <p>
 In BDD, test names are sentences that specify a bit of desired behavior that the body of the test will ensure is working. This keeps tests focused
 on just one thing, making it easier to figure out what behavior has been broken when a test fails. To keep the focus on specifying behavior, the word
-&ldquo;test&rdquo; disappears from the source code and is replaced with words that make the code feel more like a specification. For example, in ScalaTest's <a href="@latestScaladoc/#org.scalatest.FunSpec"><code>FunSpec</code></a> trait, you use
+&ldquo;test&rdquo; disappears from the source code and is replaced with words that make the code feel more like a specification. For example, in ScalaTest's <a href='@scaladocsPageUrl("org.scalatest.FunSpec")'><code>FunSpec</code></a> trait, you use
 the word &ldquo;describe&rdquo; to name and qualify the subject under test, and &ldquo;it&rdquo; to mark the beginning of a sentence about a bit of the subject's behavior.  Here's an example <code>FunSpec</code>:
 </p>
 
@@ -136,12 +136,12 @@ Were you to run this <code>StackSpec</code> in the Scala interpreter, you would 
 </pre>
 
 <p>
-ScalaTest provides many traits that facilitate BDD style: Compared to <a href="@latestScaladoc/#org.scalatest.FunSpec"><code>Spec</code></a>,
-<a href="@latestScaladoc/#org.scalatest.WordSpec"><code>WordSpec</code></a> and <a href="@latestScaladoc/#org.scalatest.FlatSpec"><code>FlatSpec</code></a> provide more gramatical structure (<em>e.g.</em>,
+ScalaTest provides many traits that facilitate BDD style: Compared to <a href='@scaladocsPageUrl("org.scalatest.FunSpec")'><code>Spec</code></a>,
+<a href='@scaladocsPageUrl("org.scalatest.WordSpec")'><code>WordSpec</code></a> and <a href="@latestScaladoc/#org.scalatest.FlatSpec")'><code>FlatSpec</code></a> provide more gramatical structure (<em>e.g.</em>,
 test names must include <code>should</code>, <code>can</code>, or <code>must</code>), whereas
-<a href="@latestScaladoc/#org.scalatest.FreeSpec"><code>FreeSpec</code></a> gives complete freedom to the writer. Other BDD traits facilitate specific kinds of
-testing: <a href="@latestScaladoc/#org.scalatest.FeatureSpec"><code>FeatureSpec</code></a>'s syntax
-is geared towards acceptance, integration, and functional testing, and <a href="@latestScaladoc/#org.scalatest.PropSpec"><code>PropSpec</code></a>
+<a href='@scaladocsPageUrl("org.scalatest.FreeSpec")'><code>FreeSpec</code></a> gives complete freedom to the writer. Other BDD traits facilitate specific kinds of
+testing: <a href='@scaladocsPageUrl("org.scalatest.FeatureSpec")'><code>FeatureSpec</code></a>'s syntax
+is geared towards acceptance, integration, and functional testing, and <a href='@scaladocsPageUrl("org.scalatest.PropSpec")'><code>PropSpec</code></a>
 is geared towards property-based testing.
 </p>
 

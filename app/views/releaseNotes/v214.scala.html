@@ -14,7 +14,7 @@
 * limitations under the License.
 *@
 
-@import controllers.Application.latestScaladoc
+@import controllers.Application.scaladocsPageUrl
 
 @releaseNotesPage("ScalaTest 2.1.4 Release Notes") {
     <div style="text-align: left">
@@ -33,7 +33,7 @@ your build to upgrade from earlier 2.1.x releases.
         <h2>Enhancements</h2>
 
         <ul>
-            <li>Added tags <a href="@{latestScaladoc}/index.html#org.scalatest.tags.ChromeBrowser"><code>ChromeBrowser</code></a>, <a href="@{latestScaladoc}/index.html#org.scalatest.tags.FirefoxBrowser"><code>FirefoxBrowser</code></a>, <a href="@{latestScaladoc}/index.html#org.scalatest.tags.HtmlUnitBrowser"><code>HtmlUnitBrowser</code></a>, <a href="@{latestScaladoc}/index.html#org.scalatest.tags.InternetExplorerBrowser"><code>InternetExplorerBrowser</code></a>, and <a href="@{latestScaladoc}/index.html#org.scalatest.tags.SafariBrowser"><code>SafariBrowser</code></a> to facilitate tagging Selenium tests by the browser they use, so that test suites using Selenium can be configured to
+            <li>Added tags <a href='@scaladocsPageUrl("org.scalatest.tags.ChromeBrowser")'><code>ChromeBrowser</code></a>, <a href='@scaladocsPageUrl("org.scalatest.tags.FirefoxBrowser")'><code>FirefoxBrowser</code></a>, <a href='@scaladocsPageUrl("org.scalatest.tags.HtmlUnitBrowser")'><code>HtmlUnitBrowser</code></a>, <a href='@scaladocsPageUrl("org.scalatest.tags.InternetExplorerBrowser")'><code>InternetExplorerBrowser</code></a>, and <a href='@scaladocsPageUrl("org.scalatest.tags.SafariBrowser")'>>>>><code>SafariBrowser</code></a> to facilitate tagging Selenium tests by the browser they use, so that test suites using Selenium can be configured to
 run on specified browsers only.</li>
         </ul>
 

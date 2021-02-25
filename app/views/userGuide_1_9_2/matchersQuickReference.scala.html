@@ -14,7 +14,7 @@
  * limitations under the License.
  *@
 
-@import controllers.Application.latestScaladoc
+@import controllers.Application.scaladocsPageUrl
 
 @userGuidePage("Matchers quick reference") {
 <div style="text-align: left">
@@ -207,7 +207,7 @@ caught.getMessage should be (<span class="stQuotedString">"String index out of r
 
 <tr>
 <td class="quickref"><code>emptySet should be (<span class="stQuotedString">'empty</span>)</code></td>
-<td class="quickref">Accesses <code>empty</code> or <code>isEmpty</code> dynamically (For the details on how a field or method is dynamically selected, see the documentation for <a href="@latestScaladoc/#org.scalatest.matchers.Matchers$BeWord"><code>BeWord</code></a>.)</td>
+<td class="quickref">Accesses <code>empty</code> or <code>isEmpty</code> dynamically (For the details on how a field or method is dynamically selected, see the documentation for <a href='@scaladocsPageUrl("org.scalatest.matchers.Matchers$BeWord")'><code>BeWord</code></a>.)</td>
 </tr>
 
 <tr>
@@ -222,7 +222,7 @@ caught.getMessage should be (<span class="stQuotedString">"String index out of r
 
 <tr>
 <td class="quickref"><code>temp should be a file</code></td>
-<td class="quickref">For static checking (and to get rid of the unslightly tick mark), use a <a href="@latestScaladoc/#org.scalatest.matchers.BePropertyMatcher"><code>BePropertyMatcher</code></a></td>
+<td class="quickref">For static checking (and to get rid of the unslightly tick mark), use a <a href='@scaladocsPageUrl("org.scalatest.matchers.BePropertyMatcher")'><code>BePropertyMatcher</code></a></td>
 </tr>
 
 <tr>
@@ -231,7 +231,7 @@ caught.getMessage should be (<span class="stQuotedString">"String index out of r
 
 <tr>
 <td class="quickref"><code>num should be (odd)</code></td>
-<td class="quickref">To place an arbitrary token after <code>be</code>, use a <a href="@latestScaladoc/#org.scalatest.matchers.BeMatcher"><code>BeMatcher</code></a>.
+<td class="quickref">To place an arbitrary token after <code>be</code>, use a <a href='@scaladocsPageUrl("org.scalatest.matchers.BeMatcher")'><code>BeMatcher</code></a>.
 </tr>
 
 <tr>
@@ -248,7 +248,7 @@ book should have (
 )
 </pre></td>
 <td class="quickref">Check arbitrary properties dynamically with <code>Symbols</code> (For the details on how a field or method is selected during this
-process, see <a href="@latestScaladoc/#org.scalatest.matchers.Matchers$HavePropertyMatcherGenerator"><code>HavePropertyMatcherGenerator</code></a>.)</td>
+process, see <a href='@scaladocsPageUrl("org.scalatest.matchers.Matchers$HavePropertyMatcherGenerator")'><code>HavePropertyMatcherGenerator</code></a>.)</td>
 </tr>
 
 <tr>
@@ -260,7 +260,7 @@ book should have (
   <span class="stQuotedString">pubYear</span> (<span class="stLiteral">2008</span>)
 )
 </pre></td>
-<td class="quickref">Check arbitrary properties statically with <a href="@latestScaladoc/#org.scalatest.matchers.HavePropertyMatcher"><code>HavePropertyMatchers</code></a></td>
+<td class="quickref">Check arbitrary properties statically with <a href='@scaladocsPageUrl("org.scalatest.matchers.HavePropertyMatcher")'><code>HavePropertyMatchers</code></a></td>
 </tr>
 
 <tr>
@@ -434,14 +434,14 @@ book should have (
 <tr>
 <td class="quickref"><code>keyEvent should be an (<span class="stQuotedString">'actionKey</span>)</code></td>
 <td class="quickref">You can check boolean properties dynamically with <code>be</code> and a <code>Symbol</code> (the tick mark syntax); For statically typed approach,
-use a <a href="@latestScaladoc/#org.scalatest.matchers.BePropertyMatcher"><code>BePropertyMatcher</code></a> or
-<a href="@latestScaladoc/#org.scalatest.matchers.BeMatcher"><code>BeMatcher</code></a>.</td>
+use a <a href='@scaladocsPageUrl("org.scalatest.matchers.BePropertyMatcher")'><code>BePropertyMatcher</code></a> or
+<a href='@scaladocsPageUrl("org.scalatest.matchers.BeMatcher")'><code>BeMatcher</code></a>.</td>
 </tr>
 
 <tr>
 <td class="quickref"><code>book should have ('title(<span class="stQuotedString">"A Tale of Two Cities"</span>))</code></td>
 <td class="quickref">You can check arbitrary properties dynamically with <code>have</code> and a <code>Symbol</code> (the tick mark syntax); For a statically type approach,
-use a <a href="@latestScaladoc/#org.scalatest.matchers.HavePropertyMatcher"><code>HavePropertyMatchers</code></a></td>
+use a <a href='@scaladocsPageUrl("org.scalatest.matchers.HavePropertyMatcher")'><code>HavePropertyMatchers</code></a></td>
 </tr>
 
 <tr>
@@ -512,7 +512,7 @@ num should beWithinTolerance
 </pre>
 </td>
 <td class="quickref">You can use a factory method to define a custom matcher (such factory methods
-also exist for <a href="@latestScaladoc/#org.scalatest.matchers.BeMatcher"><code>BeMatcher</code></a>, <a href="@latestScaladoc/#org.scalatest.matchers.BePropertyMatcher"><code>BePropertyMatcher</code></a>, and <a href="@latestScaladoc/#org.scalatest.matchers.HavePropertyMatcher"><code>HavePropertyMatcher</code></a>).</td>
+also exist for <a href='@scaladocsPageUrl("org.scalatest.matchers.BeMatcher")'><code>BeMatcher</code></a>, <a href='@scaladocsPageUrl("org.scalatest.matchers.BePropertyMatcher")'><code>BePropertyMatcher</code></a>, and <a href='@scaladocsPageUrl("org.scalatest.matchers.HavePropertyMatcher")'><code>HavePropertyMatcher</code></a>).</td>
 </tr>
 
 <tr>

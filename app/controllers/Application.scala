@@ -139,8 +139,6 @@ class Application extends Controller {
 
 object Application {
 
-  val latestScaladoc =          "https://www.scalatest.org/scaladoc/3.2.3"
-  val latestScalacticScaladoc = "http://www.scalactic.org/scaladoc/3.2.3"
   val latestVersion = "3.2.5"
   val latestSuperSafeVersion = "1.1.10"
   val milestoneVersion = "3.2.0"
@@ -175,5 +173,14 @@ object Application {
       s"$version/${file.replaceAll("\\.", "/")}.html"
 
     routes.Assets.at("/public/scaladoc", filePath).toString
+  }
+
+  def scalacticScaladocsPageUrl(file: String, version: String = latestVersion): String = {
+    val oldScaladocStyle30Releases = List("3.0.0", "3.0.1", "3.0.2", "3.0.3", "3.0.4")
+    val filePath = if (version.startsWith("1.") || version.startsWith("2.") || oldScaladocStyle30Releases.contains(version)) {
+      s"$version/index.html#$file"
+    } else
+      s"$version/${file.replaceAll("\\.", "/")}.html"
+    s"https://www.scalactic.org/scaladoc/$filePath"
   }
 }
