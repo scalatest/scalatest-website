@@ -56,6 +56,10 @@ class Plus extends Controller {
     Ok(views.html.plus.scalacheck())
   }
 
+  def scalacheckVersions = Action {
+    Ok(views.html.plus.scalacheckVersions())
+  }
+
   def testng = Action {
     Ok(views.html.plus.testng())
   }
