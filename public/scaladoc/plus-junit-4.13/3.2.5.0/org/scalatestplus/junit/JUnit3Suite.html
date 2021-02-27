@@ -21,41 +21,36 @@ document.write('<scr'+'ipt src="'+absrc+'" type="text/javascript"></scr'+'ipt>')
 <div id="definition"><div class="big-circle class">c</div><p id="owner"><a href="../../index.html" name="org" id="org" class="extype">org</a>.<a href="../index.html" name="org.scalatestplus" id="org.scalatestplus" class="extype">scalatestplus</a>.<a href="index.html" name="org.scalatestplus.junit" id="org.scalatestplus.junit" class="extype">junit</a></p><h1>JUnit3Suite<span class="permalink"><a href="../../../org/scalatestplus/junit/JUnit3Suite.html" title="Permalink"><i class="material-icons"></i></a></span></h1><h3><span class="morelinks"></span></h3></div><h4 id="signature" class="signature"><span class="modifier_kind"><span class="modifier"></span> <span class="kind">class</span></span> <span class="symbol"><span class="name">JUnit3Suite</span><span class="result"> extends <span name="junit.framework.TestCase" class="extype">TestCase</span> with <span name="org.scalatest.Suite" class="extype">Suite</span> with <a href="AssertionsForJUnit.html" name="org.scalatestplus.junit.AssertionsForJUnit" id="org.scalatestplus.junit.AssertionsForJUnit" class="extype">AssertionsForJUnit</a></span></span></h4><div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A <code>Suite</code> that is also a <code>junit.framework.TestCase</code>.</p><p>A <code>JUnit3Suite</code> may be run by either JUnit 3 (such as JUnit 3.8) or ScalaTest's runner. You write it the way
 you write a JUnit 3 <code>TestCase</code>. Tests are methods that start with <code>test</code>, take no parameters, and
 have a <code>Unit</code> return type. You manage fixtures with methods <code>setUp</code> and <code>tearDown</code>.
-Here's an example:</p><p><pre class="stHighlight">
-import org.scalatest.junit.JUnit3Suite
-import scala.collection.mutable.ListBuffer
-
-class BlastFromThePastSuite extends JUnit3Suite {
-
-  var sb: StringBuilder = _
-  var lb: ListBuffer[String] = _
-
-  override def setUp(): Unit = {
-    sb = new StringBuilder("ScalaTest is ")
-    lb = new ListBuffer[String]
+Here's an example:</p><p><pre class="stHighlighted">
+<span class="stReserved">import</span> org.scalatest.junit.JUnit3Suite
+<span class="stReserved">import</span> scala.collection.mutable.ListBuffer
+<br/><span class="stReserved">class</span> <span class="stType">BlastFromThePastSuite</span> <span class="stReserved">extends</span> <span class="stType">JUnit3Suite</span> {
+<br/>  <span class="stReserved">var</span> sb: <span class="stType">StringBuilder</span> = _
+  <span class="stReserved">var</span> lb: <span class="stType">ListBuffer[String]</span> = _
+<br/>  <span class="stReserved">override</span> <span class="stReserved">def</span> setUp(): <span class="stType">Unit</span> = {
+    sb = <span class="stReserved">new</span> <span class="stType">StringBuilder</span>(<span class="stQuotedString">"ScalaTest is "</span>)
+    lb = <span class="stReserved">new</span> <span class="stType">ListBuffer[String]</span>
   }
-
-  def testEasy(): Unit = { // Uses JUnit-style assertions
-    sb.append("easy!")
-    assertEquals("ScalaTest is easy!", sb.toString)
+<br/>  <span class="stReserved">def</span> testEasy(): <span class="stType">Unit</span> = { <span class="stLineComment">// Uses JUnit-style assertions</span>
+    sb.append(<span class="stQuotedString">"easy!"</span>)
+    assertEquals(<span class="stQuotedString">"ScalaTest is easy!"</span>, sb.toString)
     assertTrue(lb.isEmpty)
-    lb += "sweet"
+    lb += <span class="stQuotedString">"sweet"</span>
   }
-
-  def testFun(): Unit = { // Uses ScalaTest assertions
-    sb.append("fun!")
-    assert(sb.toString === "ScalaTest is fun!")
+<br/>  <span class="stReserved">def</span> testFun(): <span class="stType">Unit</span> = { <span class="stLineComment">// Uses ScalaTest assertions</span>
+    sb.append(<span class="stQuotedString">"fun!"</span>)
+    assert(sb.toString === <span class="stQuotedString">"ScalaTest is fun!"</span>)
     assert(lb.isEmpty)
   }
 }
 </pre></p><p>You can use either JUnit's assertions, inherited from <code>TestCase</code>, or ScalaTest's, inherited from <code>AssertionsForJUnit</code>.</p><p>When writing JUnit 3 tests in Scala, you should keep in mind that JUnit 3 will not run tests that have a return type other than
-<code>Unit</code>. Thus it is best to explicitly state the <code>Unit</code> result type, like this:</p><p><pre class="stHighlight">
-def testGoodIdea(): Unit = { // result type will be Unit
-  // ...
+<code>Unit</code>. Thus it is best to explicitly state the <code>Unit</code> result type, like this:</p><p><pre class="stHighlighted">
+<span class="stReserved">def</span> testGoodIdea(): <span class="stType">Unit</span> = { <span class="stLineComment">// result type will be Unit</span>
+  <span class="stLineComment">// ...</span>
 }
-</pre></p><p>Instead of this:</p><p><pre class="stHighlight">
-def testBadIdea() = { // result type will be inferred
-  // ...
+</pre></p><p>Instead of this:</p><p><pre class="stHighlighted">
+<span class="stReserved">def</span> testBadIdea() = { <span class="stLineComment">// result type will be inferred</span>
+  <span class="stLineComment">// ...</span>
 }
 </pre></p><p>If the <code>testBadIdea</code> method ends in an expression that has a result type other than <code>Unit</code>, the Scala
 compiler will infer a result type to the <code>testBadIdea</code> method to be the same non-<code>Unit</code> type. As a "result,"

@@ -21,32 +21,27 @@ document.write('<scr'+'ipt src="'+absrc+'" type="text/javascript"></scr'+'ipt>')
 <div id="definition"><div class="big-circle class">c</div><p id="owner"><a href="../../index.html" name="org" id="org" class="extype">org</a>.<a href="../index.html" name="org.scalatestplus" id="org.scalatestplus" class="extype">scalatestplus</a>.<a href="index.html" name="org.scalatestplus.junit" id="org.scalatestplus.junit" class="extype">junit</a></p><h1>JUnitSuite<span class="permalink"><a href="../../../org/scalatestplus/junit/JUnitSuite.html" title="Permalink"><i class="material-icons"></i></a></span></h1><h3><span class="morelinks"></span></h3></div><h4 id="signature" class="signature"><span class="modifier_kind"><span class="modifier"></span> <span class="kind">class</span></span> <span class="symbol"><span class="name">JUnitSuite</span><span class="result"> extends <a href="JUnitSuiteLike.html" name="org.scalatestplus.junit.JUnitSuiteLike" id="org.scalatestplus.junit.JUnitSuiteLike" class="extype">JUnitSuiteLike</a></span></span></h4><div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A suite of tests that can be run with either JUnit or ScalaTest. This class allows you to write JUnit 4 tests
 with ScalaTest's more concise assertion syntax as well as JUnit's assertions (<code>assertEquals</code>, etc.).
 You create tests by defining methods that are annotated with <code>Test</code>, and can create fixtures with
-methods annotated with <code>Before</code> and <code>After</code>. For example:</p><p><pre class="stHighlight">
-import org.scalatest.junit.JUnitSuite
-import scala.collection.mutable.ListBuffer
-import _root_.org.junit.Test
-import _root_.org.junit.Before
-
-class TwoSuite extends JUnitSuite {
-
-  var sb: StringBuilder = _
-  var lb: ListBuffer[String] = _
-
-  @Before def initialize() {
-    sb = new StringBuilder("ScalaTest is ")
-    lb = new ListBuffer[String]
+methods annotated with <code>Before</code> and <code>After</code>. For example:</p><p><pre class="stHighlighted">
+<span class="stReserved">import</span> org.scalatest.junit.JUnitSuite
+<span class="stReserved">import</span> scala.collection.mutable.ListBuffer
+<span class="stReserved">import</span> _root_.org.junit.Test
+<span class="stReserved">import</span> _root_.org.junit.Before
+<br/><span class="stReserved">class</span> <span class="stType">TwoSuite</span> <span class="stReserved">extends</span> <span class="stType">JUnitSuite</span> {
+<br/>  <span class="stReserved">var</span> sb: <span class="stType">StringBuilder</span> = _
+  <span class="stReserved">var</span> lb: <span class="stType">ListBuffer[String]</span> = _
+<br/>  @<span class="stType">Before</span> <span class="stReserved">def</span> initialize() {
+    sb = <span class="stReserved">new</span> <span class="stType">StringBuilder</span>(<span class="stQuotedString">"ScalaTest is "</span>)
+    lb = <span class="stReserved">new</span> <span class="stType">ListBuffer[String]</span>
   }
-
-  @Test def verifyEasy() {
-    sb.append("easy!")
-    assert(sb.toString === "ScalaTest is easy!")
+<br/>  @<span class="stType">Test</span> <span class="stReserved">def</span> verifyEasy() {
+    sb.append(<span class="stQuotedString">"easy!"</span>)
+    assert(sb.toString === <span class="stQuotedString">"ScalaTest is easy!"</span>)
     assert(lb.isEmpty)
-    lb += "sweet"
+    lb += <span class="stQuotedString">"sweet"</span>
   }
-
-  @Test def verifyFun() {
-    sb.append("fun!")
-    assert(sb.toString === "ScalaTest is fun!")
+<br/>  @<span class="stType">Test</span> <span class="stReserved">def</span> verifyFun() {
+    sb.append(<span class="stQuotedString">"fun!"</span>)
+    assert(sb.toString === <span class="stQuotedString">"ScalaTest is fun!"</span>)
     assert(lb.isEmpty)
   }
 }

@@ -33,29 +33,23 @@ assertion methods declared in <code>junit.framework.Assert</code> (such as <code
 and the distinction between failures and errors was essentially dropped. However, some tools that integrate
 with JUnit carry on this distinction, so even if you are using JUnit 4 you may want to use this
 <code>AssertionsForJUnit</code> trait instead of plain-old ScalaTest
-<a href="../Assertions.html"><code>Assertions</code></a>.</p><p>To use this trait in a JUnit 3 <code>TestCase</code>, you can mix it into your <code>TestCase</code> class, like this:</p><p><pre class="stHighlight">
-import junit.framework.TestCase
-import org.scalatest.junit.AssertionsForJUnit
-
-class MyTestCase extends TestCase with AssertionsForJUnit {
-
-  def testSomething() {
-    assert("hi".charAt(1) === 'i')
+<a href="../Assertions.html"><code>Assertions</code></a>.</p><p>To use this trait in a JUnit 3 <code>TestCase</code>, you can mix it into your <code>TestCase</code> class, like this:</p><p><pre class="stHighlighted">
+<span class="stReserved">import</span> junit.framework.TestCase
+<span class="stReserved">import</span> org.scalatest.junit.AssertionsForJUnit
+<br/><span class="stReserved">class</span> <span class="stType">MyTestCase</span> <span class="stReserved">extends</span> <span class="stType">TestCase</span> <span class="stReserved">with</span> <span class="stType">AssertionsForJUnit</span> {
+<br/>  <span class="stReserved">def</span> testSomething() {
+    assert(<span class="stQuotedString">"hi"</span>.charAt(<span class="stLiteral">1</span>) === <span class="stQuotedString">'i'</span>)
   }
-
-  // ...
+<br/>  <span class="stLineComment">// ...</span>
 }
-</pre></p><p>You can alternatively import the methods defined in this trait.</p><p><pre class="stHighlight">
-import junit.framework.TestCase
-import org.scalatest.junit.AssertionsForJUnit._
-
-class MyTestCase extends TestCase {
-
-  def testSomething() {
-    assert("hi".charAt(1) === 'i')
+</pre></p><p>You can alternatively import the methods defined in this trait.</p><p><pre class="stHighlighted">
+<span class="stReserved">import</span> junit.framework.TestCase
+<span class="stReserved">import</span> org.scalatest.junit.AssertionsForJUnit._
+<br/><span class="stReserved">class</span> <span class="stType">MyTestCase</span> <span class="stReserved">extends</span> <span class="stType">TestCase</span> {
+<br/>  <span class="stReserved">def</span> testSomething() {
+    assert(<span class="stQuotedString">"hi"</span>.charAt(<span class="stLiteral">1</span>) === <span class="stQuotedString">'i'</span>)
   }
-
-  // ...
+<br/>  <span class="stLineComment">// ...</span>
 }
 </pre></p><p>For details on the importing approach, see the documentation
 for the <a href="AssertionsForJUnit$.html"><code>AssertionsForJUnit</code> companion object</a>.
