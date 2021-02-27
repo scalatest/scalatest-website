@@ -25,30 +25,30 @@ and passes it to the test function.</p></div></div></li><li class="indented0 " n
 provides some basic syntax sugar for using <a href="http://www.jmock.org/" target="_blank">JMock</a>
 in Scala.</p><div class="fullcomment"><div class="comment cmt"><p>Class that wraps and manages the lifecycle of a single <code>org.jmock.Mockery</code> context object,
 provides some basic syntax sugar for using <a href="http://www.jmock.org/" target="_blank">JMock</a>
-in Scala.</p><p>Using the JMock API directly, you first need a <code>Mockery</code> context object:</p><p><pre class="stHighlight">
-val context = new Mockery
+in Scala.</p><p>Using the JMock API directly, you first need a <code>Mockery</code> context object:</p><p><pre class="stHighlighted">
+<span class="stReserved">val</span> context = <span class="stReserved">new</span> <span class="stType">Mockery</span>
 </pre></p><p><code>JMockCycle</code> uses jMock's <code>ClassImposterizer</code> to support mocking of classes, so the following line
-would also be needed if you wanted that functionality as well:</p><p><pre class="stHighlight">
+would also be needed if you wanted that functionality as well:</p><p><pre class="stHighlighted">
 context.setImposteriser(ClassImposteriser.INSTANCE)
 </pre></p><p>When using this class, you would instead create an instance of this class (which will create and
-wrap a <code>Mockery</code> object) and import its members, like this:</p><p><pre class="stHighlight">
-val cycle = new JMockCycle
-import cycle._
-</pre></p><p>Using the JMock API directly, you would create a mock object like this:</p><p><pre class="stHighlight">
-val mockCollaborator = context.mock(classOf[Collaborator])
-</pre></p><p>Having imported the members of an instance of this class, you can shorten that to:</p><p><pre class="stHighlight">
-val mockCollaborator = mock[Collaborator]
-</pre></p><p>After creating mocks, you set expectations on them, using syntax like this:</p><p><pre class="stHighlight">
+wrap a <code>Mockery</code> object) and import its members, like this:</p><p><pre class="stHighlighted">
+<span class="stReserved">val</span> cycle = <span class="stReserved">new</span> <span class="stType">JMockCycle</span>
+<span class="stReserved">import</span> cycle._
+</pre></p><p>Using the JMock API directly, you would create a mock object like this:</p><p><pre class="stHighlighted">
+<span class="stReserved">val</span> mockCollaborator = context.mock(classOf[<span class="stType">Collaborator</span>])
+</pre></p><p>Having imported the members of an instance of this class, you can shorten that to:</p><p><pre class="stHighlighted">
+<span class="stReserved">val</span> mockCollaborator = mock[<span class="stType">Collaborator</span>]
+</pre></p><p>After creating mocks, you set expectations on them, using syntax like this:</p><p><pre class="stHighlighted">
 context.checking(
-  new Expectations() {
-    oneOf (mockCollaborator).documentAdded("Document")
-    exactly(3).of (mockCollaborator).documentChanged("Document")
+  <span class="stReserved">new</span> <span class="stType">Expectations</span>() {
+    oneOf (mockCollaborator).documentAdded(<span class="stQuotedString">"Document"</span>)
+    exactly(<span class="stLiteral">3</span>).of (mockCollaborator).documentChanged(<span class="stQuotedString">"Document"</span>)
    }
  )
-</pre></p><p>Having imported the members of an instance of this class, you can shorten this step to:</p><p><pre class="stHighlight">
-expecting { e => import e._
-  oneOf (mockCollaborator).documentAdded("Document")
-  exactly(3).of (mockCollaborator).documentChanged("Document")
+</pre></p><p>Having imported the members of an instance of this class, you can shorten this step to:</p><p><pre class="stHighlighted">
+expecting { e => <span class="stReserved">import</span> e._
+  oneOf (mockCollaborator).documentAdded(<span class="stQuotedString">"Document"</span>)
+  exactly(<span class="stLiteral">3</span>).of (mockCollaborator).documentChanged(<span class="stQuotedString">"Document"</span>)
 }
 </pre></p><p>The <code>expecting</code> method will create a new <code>Expectations</code> object, pass it into
 the function you provide, which sets the expectations. After the function returns, the <code>expecting</code>
@@ -58,44 +58,41 @@ method of its internal <code>Mockery</code> context.</p><p>The <code>expecting</
 <code>expectations</code>. <code>JMockExpectations</code> extends <code>org.jmock.Expectations</code> and
 adds several overloaded <code>withArg</code> methods. These <code>withArg</code> methods simply
 invoke corresponding <code>with</code> methods on themselves. Because <code>with</code> is
-a keyword in Scala, to invoke these directly you must surround them in back ticks, like this:</p><p><pre class="stHighlight">
-oneOf (mockCollaborator).documentAdded(`with`("Document"))
+a keyword in Scala, to invoke these directly you must surround them in back ticks, like this:</p><p><pre class="stHighlighted">
+oneOf (mockCollaborator).documentAdded(`<span class="stReserved">with</span>`(<span class="stQuotedString">"Document"</span>))
 </pre></p><p>By importing the members of the passed <code>JMockExpectations</code> object, you can
-instead call <code>withArg</code> with no back ticks needed:</p><p><pre class="stHighlight">
-oneOf (mockCollaborator).documentAdded(withArg("Document"))
+instead call <code>withArg</code> with no back ticks needed:</p><p><pre class="stHighlighted">
+oneOf (mockCollaborator).documentAdded(withArg(<span class="stQuotedString">"Document"</span>))
 </pre></p><p>Once you've set expectations on the mock objects, when using the JMock API directly, you use the mock, then invoke
 <code>assertIsSatisfied</code> on the <code>Mockery</code> context to make sure the mock
-was used in accordance with the expectations you set on it. Here's how that looks:</p><p><pre class="stHighlight">
-classUnderTest.addDocument("Document", new Array[Byte](0))
-classUnderTest.addDocument("Document", new Array[Byte](0))
-classUnderTest.addDocument("Document", new Array[Byte](0))
-classUnderTest.addDocument("Document", new Array[Byte](0))
+was used in accordance with the expectations you set on it. Here's how that looks:</p><p><pre class="stHighlighted">
+classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
 context.assertIsSatisfied()
-</pre></p><p>This class enables you to use the following, more declarative syntax instead:</p><p><pre class="stHighlight">
+</pre></p><p>This class enables you to use the following, more declarative syntax instead:</p><p><pre class="stHighlighted">
 whenExecuting {
-  classUnderTest.addDocument("Document", new Array[Byte](0))
-  classUnderTest.addDocument("Document", new Array[Byte](0))
-  classUnderTest.addDocument("Document", new Array[Byte](0))
-  classUnderTest.addDocument("Document", new Array[Byte](0))
+  classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+  classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+  classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+  classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
 }
 </pre></p><p>The <code>whenExecuting</code> method will execute the passed function, then
 invoke <code>assertIsSatisfied</code> on its internal <code>Mockery</code>
-context object.</p><p>To summarize, here's what a typical test using <code>JMockCycle</code> looks like:</p><p><pre class="stHighlight">
-val cycle = new JMockCycle
-import cycle._
-
-val mockCollaborator = mock[Collaborator]
-
-expecting { e => import e._
-  oneOf (mockCollaborator).documentAdded("Document")
-  exactly(3).of (mockCollaborator).documentChanged("Document")
+context object.</p><p>To summarize, here's what a typical test using <code>JMockCycle</code> looks like:</p><p><pre class="stHighlighted">
+<span class="stReserved">val</span> cycle = <span class="stReserved">new</span> <span class="stType">JMockCycle</span>
+<span class="stReserved">import</span> cycle._
+<br/><span class="stReserved">val</span> mockCollaborator = mock[<span class="stType">Collaborator</span>]
+<br/>expecting { e => <span class="stReserved">import</span> e._
+  oneOf (mockCollaborator).documentAdded(<span class="stQuotedString">"Document"</span>)
+  exactly(<span class="stLiteral">3</span>).of (mockCollaborator).documentChanged(<span class="stQuotedString">"Document"</span>)
 }
-
-whenExecuting {
-  classUnderTest.addDocument("Document", new Array[Byte](0))
-  classUnderTest.addDocument("Document", new Array[Byte](0))
-  classUnderTest.addDocument("Document", new Array[Byte](0))
-  classUnderTest.addDocument("Document", new Array[Byte](0))
+<br/>whenExecuting {
+  classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+  classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+  classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
+  classUnderTest.addDocument(<span class="stQuotedString">"Document"</span>, <span class="stReserved">new</span> <span class="stType">Array[Byte]</span>(<span class="stLiteral">0</span>))
 }
 </pre></p><p>ScalaTest also provides a <a href="JMockCycleFixture.html"><code>JMockCycleFixture</code></a> trait, which
 will pass a new <code>JMockCycle</code> into each test that needs one.</p></div></div></li><li class="indented0 " name="org.scalatestplus.jmock.JMockCycleFixture" group="Ungrouped" fullComment="yes" data-isabs="true" visbl="pub"><a id="JMockCycleFixtureextendsAnyRef" class="anchorToMember"></a><a id="JMockCycleFixture:JMockCycleFixture" class="anchorToMember"></a> <span class="permalink"><a href="../../../org/scalatestplus/jmock/JMockCycleFixture.html" title="Permalink"><i class="material-icons"></i></a></span> <span class="modifier_kind"><span class="modifier"></span> <span class="kind">trait</span></span> <span class="symbol"><a href="JMockCycleFixture.html" title="Trait that will pass a new JMockCycle into any test that needs one."><span class="name">JMockCycleFixture</span></a><span class="result"> extends <span name="scala.AnyRef" class="extype">AnyRef</span></span></span><p class="shortcomment cmt">Trait that will pass a new <code>JMockCycle</code> into any test that needs one.</p><div class="fullcomment"><div class="comment cmt"><p>Trait that will pass a new <code>JMockCycle</code> into any test that needs one.</p><p>This trait, which must be mixed into a <code>fixture.Suite</code>, defines the
@@ -109,11 +106,11 @@ extends <code>org.jmock.Expectations</code>, all of the <code>Expectations</code
 available to be invoked on instances of this class, in addition to
 several overloaded <code>withArg</code> methods defined in this class. These <code>withArg</code> methods simply
 invoke corresponding <code>with</code> methods on <code>this</code>. Because <code>with</code> is
-a keyword in Scala, to invoke these directly you must surround them in back ticks, like this:</p><p><pre class="stHighlight">
-oneOf (mockCollaborator).documentAdded(`with`("Document"))
+a keyword in Scala, to invoke these directly you must surround them in back ticks, like this:</p><p><pre class="stHighlighted">
+oneOf (mockCollaborator).documentAdded(`<span class="stReserved">with</span>`(<span class="stQuotedString">"Document"</span>))
 </pre></p><p>By importing the members of the <code>JMockExpectations</code> object passed to
 a <code>JMockCycle</code>'s <code>executing</code> method, you can
-instead call <code>withArg</code> with no back ticks needed:</p><p><pre class="stHighlight">
-oneOf (mockCollaborator).documentAdded(withArg("Document"))
+instead call <code>withArg</code> with no back ticks needed:</p><p><pre class="stHighlighted">
+oneOf (mockCollaborator).documentAdded(withArg(<span class="stQuotedString">"Document"</span>))
 </pre>
 </p></div></div></li></ol></div></div><div id="inheritedMembers"></div><div id="groupedMembers"><div name="Ungrouped" class="group"><h3>Ungrouped</h3></div></div></div><div id="tooltip"></div><div id="footer"></div></body></div></div></div></body></html>
