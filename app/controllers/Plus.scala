@@ -29,7 +29,7 @@ class Plus extends Controller {
   }
 
   def playVersions = Action {
-    Ok(views.html.plus.playVersions())
+    Redirect("https://github.com/playframework/scalatestplus-play#releases")
   }
 
   def selenium = Action {
