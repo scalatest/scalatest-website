@@ -140,7 +140,7 @@ class Application extends Controller {
 object Application {
 
   val latestVersion = "3.2.5"
-  val latestSuperSafeVersion = "1.1.10"
+  val latestSuperSafeVersion = "1.1.12"
   val milestoneVersion = "3.2.0"
   val milestoneJar = "https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest_2.11/3.2.0-RC3/scalatest_2.11-3.2.0-RC3.jar"
   val latestJar = "https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest-app_2.13/3.2.5/scalatest-app_2.13-3.2.5.jar"
@@ -148,7 +148,7 @@ object Application {
   val milestoneScalacticScaladoc = "http://www.artima.com/docs-scalactic-3.2.0-RC3"
   val scaladocsLocation = "https://www.scalatest.org/scaladoc"
   val releasesLocation = "http://www.artima.com/downloadScalaTest"
-  val baseScalaVersion = "2.13.4"
+  val baseScalaVersion = "2.13.5"
   val majorMinorScalaVersion = "2.13"
   val latestScaladocFor192 = "http://doc.scalatest.org/1.9.2"
   val latestSeleniumVersion = "3-141"
