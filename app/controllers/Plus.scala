@@ -44,16 +44,32 @@ class Plus extends Controller {
     Ok(views.html.plus.easymock())
   }
 
+  def easymockVersions = Action {
+    Ok(views.html.plus.easymockVersions())
+  }
+
   def jmock = Action {
     Ok(views.html.plus.jmock())
+  }
+
+  def jmockVersions = Action {
+    Ok(views.html.plus.jmockVersions())
   }
 
   def junit = Action {
     Ok(views.html.plus.junit())
   }
 
+  def junitVersions = Action {
+    Ok(views.html.plus.junitVersions())
+  }
+
   def mockito = Action {
     Ok(views.html.plus.mockito())
+  }
+
+  def mockitoVersions = Action {
+    Ok(views.html.plus.mockitoVersions())
   }
 
   def scalacheck = Action {
@@ -66,5 +82,9 @@ class Plus extends Controller {
 
   def testng = Action {
     Ok(views.html.plus.testng())
+  }
+
+  def testngVersions = Action {
+    Ok(views.html.plus.testngVersions())
   }
 }

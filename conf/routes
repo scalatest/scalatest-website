@@ -148,12 +148,17 @@ GET        /plus/play/versions                                          controll
 GET        /plus/selenium                                               controllers.Plus.selenium
 GET        /plus/selenium/versions                                      controllers.Plus.seleniumVersions
 GET        /plus/easymock                                               controllers.Plus.easymock
+GET        /plus/easymock/versions                                      controllers.Plus.easymockVersions
 GET        /plus/jmock                                                  controllers.Plus.jmock
+GET        /plus/jmock/versions                                         controllers.Plus.jmockVersions
 GET        /plus/junit                                                  controllers.Plus.junit
+GET        /plus/junit/versions                                         controllers.Plus.junitVersions
 GET        /plus/mockito                                                controllers.Plus.mockito
+GET        /plus/mockito/versions                                       controllers.Plus.mockitoVersions
 GET        /plus/scalacheck                                             controllers.Plus.scalacheck
 GET        /plus/scalacheck/versions                                    controllers.Plus.scalacheckVersions
 GET        /plus/testng                                                 controllers.Plus.testng
+GET        /plus/testng/versions                                        controllers.Plus.testngVersions
 
 GET        /releases/:zipFile                                           controllers.Application.releases(zipFile)
 
