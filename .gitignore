@@ -13,3 +13,5 @@ bin
 .cache
 .idea/
 .idea_modules/
+.DS_Store
+.bsp/
