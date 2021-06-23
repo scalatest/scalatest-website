@@ -301,7 +301,7 @@ The <a href='@scaladocsPageUrl("org.scalatest.featurespec.AnyFeatureSpec")'><cod
   }
 }
 </pre>
-<p class="stStyleDesc">To select just the <code>FreeSpec</code> style in an sbt build, include this line:</p>
+<p class="stStyleDesc">To select just the <code>FeatureSpec</code> style in an sbt build, include this line:</p>
 
 <pre class="stStyleExamples">
 libraryDependencies += <span class="stQuotedString">"org.scalatest"</span> %% <span class="stQuotedString">"scalatest-featurespec"</span> % <span class="stQuotedString">"@{latestVersion}"</span> % <span class="stQuotedString">"test"</span>
@@ -338,7 +338,7 @@ generating large numbers of tests programatically via static code generators.
 <p class="stStyleDesc">
 Note: The "<code>Ref</code>" in <code>RefSpec</code> stands for reflection, which <code>RefSpec</code> uses to discover tests. As reflection is not availble in Scala.js, this class is not available on Scala.js.
 </p>
-<p class="stStyleDesc">To select just the <code>FunSpec</code> style in an sbt build, include this line:</p>
+<p class="stStyleDesc">To select just the <code>RefSpec</code> style in an sbt build, include this line:</p>
 
 <pre class="stStyleExamples">
 libraryDependencies += <span class="stQuotedString">"org.scalatest"</span> %% <span class="stQuotedString">"scalatest-refspec"</span> % <span class="stQuotedString">"@{latestVersion}"</span> % <span class="stQuotedString">"test"</span>
