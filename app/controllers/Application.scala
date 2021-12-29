@@ -33,7 +33,7 @@ class Application extends Controller {
   }
 
   def download = Action {
-    Redirect(routes.Application.install.url)
+    Redirect(routes.Application.install().url)
   }
 
   def olderReleases = Action {
@@ -53,7 +53,7 @@ class Application extends Controller {
   }
 
   def community = Action {
-    Redirect(routes.Application.about.url)
+    Redirect(routes.Application.about().url)
   }
 
   def supersafe = Action {
