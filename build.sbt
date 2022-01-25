@@ -2,7 +2,7 @@
 
 lazy val root = (project in file(".")).settings(
   name := "scalatest-website",
-  version := "scalatest-210921-ecr",
+  version := "scalatest-220125-ecr",
   scalaVersion := "2.13.5",
   libraryDependencies ++= Seq(
     "org.scalatestplus.play" %% "scalatestplus-play" % "4.0.3"
