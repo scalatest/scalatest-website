@@ -1,5 +1,5 @@
 @*
-* Copyright 2010-2021 Artima, Inc.
+* Copyright 2010-2022 Artima, Inc.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -17,13 +17,13 @@
 @import controllers.Application.scaladocsPageUrl
 @import controllers.Application.milestoneScaladoc
 
-@combinedReleaseNotesPage("Scalactic/ScalaTest 3.2.10 Release Notes") {
+@combinedReleaseNotesPage("Scalactic/ScalaTest 3.2.11 Release Notes") {
     <div style="text-align: left">
 
-        <h1>ScalaTest/Scalactic 3.2.10 Release Notes</h1>
+        <h1>ScalaTest/Scalactic 3.2.11 Release Notes</h1>
 
         <p>
-            ScalaTest/Scalactic 3.2.10 (for Scala 2.10, 2.11, 2.12, 2.13, 3.0; on the JVM, JavaScript, and native)
+            ScalaTest/Scalactic 3.2.11 (for Scala 2.10, 2.11, 2.12, 2.13, 3.0; on the JVM, JavaScript, and native)
             includes the enhancements listed below.
         </p>
         
@@ -46,29 +46,26 @@
 	<hr></hr>
 
         <p>
-        ScalaTest 3.2.10 is a minor release of ScalaTest that makes few enhancements, and supports Scala.js 1.7.0 and Scala 3.0.0.
+        ScalaTest 3.2.11 is a minor release of ScalaTest that makes bug fixes, few enhancements, and supports Scala.js 1.7.x and Scala 3.0.x.
         </p>
 
         <a name="scalatest_bugfixes"></a>
         <h2>Bug Fixes</h2>
-        <p>Fixed compilation error if Repeated is included in Diagrams assertion.</p>
-        <p>scaladoc broken links fix.</p>
-        <p>Backport produceMatcher Fix for Scala 3.</p>
-        <p>Fixed javascript error in html reports generated under Scala 3.</p>
-        <p>Made Retrying[Future[T]] to retry even when the code to produce the Future[T] fails with exception.</p>
-        <p>Enabled the should compile and shouldNot compile syntax support for """ string in Scala 3.</p>
-        
+        <p>Changed Valuable class in EitherValues to EitherValuable, and in OptionValues to OptionValuable, for Scala 3 build. (<a href="https://github.com/scalatest/scalatest/pull/2094">PR #2094</a>)</p>
+        <p>Fixed crashing problem when encounters non-serializable throwable or payload in exceptions when running in fork mode by wrapping them as NotSerializableWrapperException or None. (<a href="https://github.com/scalatest/scalatest/pull/2086">PR #2086</a>)</p>
+        <p>Fire RunAborted event when error in creating dispatch reporter, fixing hang problem when it happens. (<a href="https://github.com/scalatest/scalatest/pull/2090">PR #2090</a>)</p>
+        <p>Enhanced checkInOrder implementation in Sequencing.scala to allow other objects to appear in right-hand aggregation as well. (<a href="https://github.com/scalatest/scalatest/pull/2072">PR #2072</a>)</p>
+
         <a name="scalatest_improvements"></a>
         <h2>Improvements</h2>
-        <p>Updated Scala-js to 1.7.0.</p>
-        <p>Updated Scala 3 to 3.0.2.</p>
-        <p>Updated Flexmark version to 0.62.2.</p>
-        <p>Give a friendly message when Flexmark not available on classpath.</p>
-        <p>Enhanced Scala 3 position support.</p>
+        <p>Updated to use scala-js 1.7.1. (<a href="https://github.com/scalatest/scalatest/pull/2067">PR #2067</a>)</p>
+        <p>Updated to use Ant 1.10.12. (<a href="https://github.com/scalatest/scalatest/pull/2091">PR #2091</a>)</p>
+        <p>Updated to scala-xml 2.0.1 for Scala 2.12 and above builds. (<a href="https://github.com/scalatest/scalatest/pull/2093">PR #2093</a>)</p>
+        <p>Updated to use scala-native 0.4.3. (<a href="https://github.com/scalatest/scalatest/pull/2098">PR #2098</a>)</p>
 
         <a name="scalatest_deprecations"></a>
         <h2>Deprecations</h2>
-        <p>ScalaTest 3.2.10 contains no new deprecations.</p>
+        <p>ScalaTest 3.2.11 contains no new deprecations.</p>
         
         <br/>
 
@@ -84,17 +81,18 @@
 
         <a name="scalactic_bugfixes"></a>
         <h2>Bug Fixes</h2>
-        <p>Scalactic 3.2.10 contains no bug fixes..</p>
+        <p>Enhanced Scala 3 macro to support OrderingOps correctly. (<a href="https://github.com/scalatest/scalatest/pull/2089">PR #2089</a>)</p>
 
         <a name="scalactic_improvements"></a>
         <h2>Improvements</h2>
-        <p>Updated Scala-js to 1.7.0.</p>
-        <p>Updated Scala 3 to 3.0.2.</p>
-        <p>Enhanced Scala 3 position support.</p>
+        <p>Updated to use scala-js 1.7.1. (<a href="https://github.com/scalatest/scalatest/pull/2067">PR #2067</a>)</p>
+        <p>Updated to use Ant 1.10.12. (<a href="https://github.com/scalatest/scalatest/pull/2091">PR #2091</a>)</p>
+        <p>Updated to scala-xml 2.0.1 for Scala 2.12 and above builds. (<a href="https://github.com/scalatest/scalatest/pull/2093">PR #2093</a>)</p>
+        <p>Updated to use scala-native 0.4.3. (<a href="https://github.com/scalatest/scalatest/pull/2098">PR #2098</a>)</p>
         
         <a name="scalactic_deprecations"></a>
         <h2>Deprecations</h2>
-        <p>Scalactic 3.2.10 contains no new deprecations.</p>
+        <p>Scalactic 3.2.11 contains no new deprecations.</p>
 
         <br/>
 
@@ -103,12 +101,10 @@
 
         <h2>ScalaTest/Scalactic Contributors</h2>
 
-        Thanks to the contributors for the ScalaTest/Scalactic 3.2.10 release:
+        Thanks to the contributors for the ScalaTest/Scalactic 3.2.11 release:
 
         <ul>
-            <li><a href="https://github.com/taisukeoe">Taisuke Oe</a></li>
-            <li><a href="https://github.com/kelemensanyi">Sandor Kelemen</a></li>
-            <li><a href="https://github.com/SethTisue">Seth Tisue</a></li>
+            <li><a href="https://github.com/wojda">Daniel Wojda</a></li>
             <li><a href="https://github.com/cheeseng">Chua Chee Seng</a></li>
             <li><a href="https://github.com/bvenners">Bill Venners</a></li>
         </ul>
@@ -121,7 +117,7 @@
 
         <p>
             Visit <a href="@routes.ReleaseNotes.releaseNotesIndex">ScalaTest Release Notes</a> for links to the release notes of all previous versions, or
-            step back in time by visiting the <a href="@routes.ReleaseNotes.v329">release notes for the previous version</a>.
+            step back in time by visiting the <a href="@routes.ReleaseNotes.v3210">release notes for the previous version</a>.
         </p>
 
     </div>
