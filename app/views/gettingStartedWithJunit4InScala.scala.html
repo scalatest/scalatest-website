@@ -28,7 +28,7 @@ To use assertions, mix <code>org.scalatest.junit.AssertionsForJUnit</code> into 
 </p>
 
 <pre class="stHighlighted">
-<span class="stReserved">import</span> org.scalatest.junit.AssertionsForJUnit
+<span class="stReserved">import</span> org.scalatestplus.junit.AssertionsForJUnit
 <span class="stReserved">import</span> scala.collection.mutable.ListBuffer
 <span class="stReserved">import</span> org.junit.Assert._
 <span class="stReserved">import</span> org.junit.Test
@@ -107,7 +107,7 @@ If you wish to give yourself the option of running with either JUnit or ScalaTes
 </p>
 
 <pre class="stHighlighted">
-<span class="stReserved">import</span> org.scalatest.junit.JUnitSuite
+<span class="stReserved">import</span> org.scalatestplus.junit.JUnitSuite
 <span class="stReserved">import</span> scala.collection.mutable.ListBuffer
 <span class="stReserved">import</span> org.junit.Assert._
 <span class="stReserved">import</span> org.junit.Test
@@ -181,18 +181,19 @@ Tests: succeeded 2, failed 0, ignored 0, pending 0</span>
 
 <p>
 One final variation you may wish to try is to use ScalaTest's matchers DSL. Simply mix
-in <code>ShouldMatchersForJUnit</code> (or <code>MustMatchersForJUnit</code> if you prefer "must" to "should").
+in <code>org.scalatest.matchers.should.Matchers</code> (or <code>org.scalatest.matchers.should.Matchers</code> if you prefer "must" to "should") and <code>AssertionsForJUnit</code>.
 Here's an example:
 </p>
 
 <pre class="stHighlighted">
-<span class="stReserved">import</span> org.scalatest.junit.JUnitSuite
-<span class="stReserved">import</span> org.scalatest.junit.ShouldMatchersForJUnit
+<span class="stReserved">import</span> org.scalatestplus.junit.JUnitSuite
+<span class="stReserved">import</span> org.scalatestplus.junit.AssertionsForJUnit
+<span class="stReserved">import</span> org.scalatest.matchers.should.Matchers
 <span class="stReserved">import</span> scala.collection.mutable.ListBuffer
 <span class="stReserved">import</span> org.junit.Test
 <span class="stReserved">import</span> org.junit.Before
 
-<span class="stReserved">class</span> <span class="stType">ExampleSuite</span> <span class="stReserved">extends</span> <span class="stType">JUnitSuite</span> <span class="stReserved">with</span> <span class="stType">ShouldMatchersForJUnit</span> {
+<span class="stReserved">class</span> <span class="stType">ExampleSuite</span> <span class="stReserved">extends</span> <span class="stType">JUnitSuite</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> <span class="stReserved">with</span> <span class="stType">AssertionsForJUnit</span> {
 
   <span class="stReserved">var</span> sb: <span class="stType">StringBuilder</span> = _
   <span class="stReserved">var</span> lb: <span class="stType">ListBuffer[String]</span> = _
