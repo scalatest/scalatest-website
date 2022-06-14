@@ -15,6 +15,7 @@
  *@
 
 @import controllers.Application.latestVersion
+@import controllers.Application.latestJUnitDotVersion
 
 @widePage("Getting started with JUnit 4 in Scala") {
 <div style="text-align: left">
@@ -85,7 +86,7 @@ file. Here's how you compile it:
 </p>
 
 <pre class="scala">
-scalac -cp scalatest-@{latestVersion}.jar:junit-4.4.jar ExampleSuite.scala
+scalac -cp scalatest-app-@{latestVersion}.jar:junit-@{latestJUnitDotVersion}.jar ExampleSuite.scala
 </pre>
 
 <p>
@@ -93,8 +94,8 @@ Here's one way to run it using JUnit:
 </p>
 
 <pre class="scala">
-$ scala -cp .:scalatest-@{latestVersion}.jar:junit-4.4.jar org.junit.runner.JUnitCore ExampleSuite
-JUnit version 4.4
+$ scala -cp .:scalatest-app-@{latestVersion}.jar:junit-@{latestJUnitDotVersion}.jar org.junit.runner.JUnitCore ExampleSuite
+JUnit version @{latestJUnitDotVersion}
 ..
 Time: 0.046
 
@@ -154,8 +155,8 @@ Because <code>ExampleSuite</code> is still a valid JUnit test class, it can stil
 </p>
 
 <pre class="scala">
-$ scala -cp .:scalatest-@{latestVersion}.jar:junit-4.4.jar org.junit.runner.JUnitCore ExampleSuite
-JUnit version 4.4
+$ scala -cp .:scalatest-app-@{latestVersion}.jar:junit-@{latestJUnitDotVersion}.jar org.junit.runner.JUnitCore ExampleSuite
+JUnit version @{latestJUnitDotVersion}
 ..
 Time: 0.121
 
@@ -167,7 +168,7 @@ But because it is also a ScalaTest <code>Suite</code>, you can now also run it w
 </p>
 
 <pre class="scala">
-$ scala -cp scalatest-@{latestVersion}.jar:junit-4.4.jar org.scalatest.run ExampleSuite
+$ scala -cp scalatest-app-@{latestVersion}.jar:junit-@{latestJUnitDotVersion}.jar org.scalatest.run ExampleSuite
 <span class="cyanincolor">Run starting. Expected test count is: 2</span>
 <span class="greenincolor">ExampleSuite:
 - verifyFun
@@ -228,14 +229,14 @@ As before, you can run this class with either JUnit or ScalaTest:
 </p>
 
 <pre class="scala">
-$ scala -cp .:scalatest-@{latestVersion}.jar:junit-4.4.jar org.junit.runner.JUnitCore ExampleSuite
-JUnit version 4.4
+$ scala -cp .:scalatest-app-@{latestVersion}.jar:junit-@{latestJUnitDotVersion}.jar org.junit.runner.JUnitCore ExampleSuite
+JUnit version @{latestJUnitDotVersion}
 ..
 Time: 0.136
 
 OK (2 tests)
 
-$ scala -cp scalatest-@{latestVersion}.jar:junit-4.4.jar org.scalatest.runner ExampleSuite
+$ scala -cp scalatest-app-@{latestVersion}.jar:junit-@{latestJUnitDotVersion}.jar org.scalatest.runner ExampleSuite
 <span class="cyanincolor">Run starting. Expected test count is: 2</span>
 <span class="greenincolor">ExampleSuite:
 - verifyFun
