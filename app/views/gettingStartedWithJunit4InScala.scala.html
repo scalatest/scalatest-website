@@ -86,7 +86,8 @@ file. Here's how you compile it:
 </p>
 
 <pre class="scala">
-scalac -cp scalatest-app-@{latestVersion}.jar:junit-@{latestJUnitDotVersion}.jar ExampleSuite.scala
+$ export CLASSPATH=scalatest-app.jar:scalatest-plus-junit.jar:junit.jar
+$ scalac -cp $CLASSPATH ExampleSuite.scala
 </pre>
 
 <p>
@@ -94,7 +95,8 @@ Here's one way to run it using JUnit:
 </p>
 
 <pre class="scala">
-$ scala -cp .:scalatest-app-@{latestVersion}.jar:junit-@{latestJUnitDotVersion}.jar org.junit.runner.JUnitCore ExampleSuite
+$ export CLASSPATH=.:scala-xml.jar:scalatest-app.jar:scalatest-plus-junit.jar:junit.jar  
+$ scala -cp $CLASSPATH org.junit.runner.JUnitCore ExampleSuite
 JUnit version @{latestJUnitDotVersion}
 ..
 Time: 0.046
@@ -155,7 +157,8 @@ Because <code>ExampleSuite</code> is still a valid JUnit test class, it can stil
 </p>
 
 <pre class="scala">
-$ scala -cp .:scalatest-app-@{latestVersion}.jar:junit-@{latestJUnitDotVersion}.jar org.junit.runner.JUnitCore ExampleSuite
+$ export CLASSPATH=.:scala-xml.jar:scalatest-app.jar:scalatest-plus-junit.jar:junit.jar
+$ scala -cp $CLASSPATH org.junit.runner.JUnitCore ExampleSuite
 JUnit version @{latestJUnitDotVersion}
 ..
 Time: 0.121
@@ -168,7 +171,8 @@ But because it is also a ScalaTest <code>Suite</code>, you can now also run it w
 </p>
 
 <pre class="scala">
-$ scala -cp scalatest-app-@{latestVersion}.jar:junit-@{latestJUnitDotVersion}.jar org.scalatest.run ExampleSuite
+$ export CLASSPATH=.:scala-xml.jar:scalatest-app.jar:scalatest-plus-junit.jar:junit.jar  
+$ scala -cp $CLASSPATH org.scalatest.run ExampleSuite
 <span class="cyanincolor">Run starting. Expected test count is: 2</span>
 <span class="greenincolor">ExampleSuite:
 - verifyFun
@@ -229,7 +233,8 @@ As before, you can run this class with either JUnit or ScalaTest:
 </p>
 
 <pre class="scala">
-$ scala -cp .:scalatest-app-@{latestVersion}.jar:junit-@{latestJUnitDotVersion}.jar org.junit.runner.JUnitCore ExampleSuite
+$ export CLASSPATH=.:scala-xml.jar:scalatest-app.jar:scalatest-plus-junit.jar:junit.jar  
+$ scala -cp $CLASSPATH org.junit.runner.JUnitCore ExampleSuite
 JUnit version @{latestJUnitDotVersion}
 ..
 Time: 0.136
