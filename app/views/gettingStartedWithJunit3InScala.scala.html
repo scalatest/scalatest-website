@@ -83,7 +83,8 @@ file. Here's how you compile it:
 </p>
 
 <pre class="scala">
-scalac -cp scalatest-@{latestVersion}.jar:junit-4.4.jar ExampleSuite.scala
+$ export CLASSPATH=scalatest-app.jar:scalatest-plus-junit.jar:junit.jar  
+$ scalac -cp $CLASSPATH ExampleSuite.scala
 </pre>
 
 <p>
@@ -91,7 +92,8 @@ Here's one way to run it using JUnit:
 </p>
 
 <pre class="scala">
-$ scala -cp .:scalatest-@{latestVersion}.jar:junit-4.4.jar junit.textui.TestRunner ExampleSuite
+$ export CLASSPATH=.:scala-xml.jar:scalatest-app.jar:scalatest-plus-junit.jar:junit.jar  
+$ scala -cp $CLASSPATH junit.textui.TestRunner ExampleSuite
 ..
 Time: 0.032
 
@@ -149,7 +151,8 @@ Because <code>ExampleSuite</code> is still a JUnit <code>TestCase</code>, it can
 </p>
 
 <pre class="scala">
-$ scala -cp .:scalatest-@{latestVersion}.jar:junit-4.4.jar junit.textui.TestRunner ExampleSuite
+$ export CLASSPATH=.:scala-xml.jar:scalatest-app.jar:scalatest-plus-junit.jar:junit.jar  
+$ scala -cp $CLASSPATH junit.textui.TestRunner ExampleSuite
 ..
 Time: 0.032
 
@@ -161,7 +164,8 @@ But because it is also a ScalaTest <code>Suite</code>, you can now also run it w
 </p>
 
 <pre class="scala">
-$ scala -cp scalatest-@{latestVersion}.jar:junit-4.4.jar org.scalatest.run ExampleSuite
+$ export CLASSPATH=.:scala-xml.jar:scalatest-app.jar:scalatest-plus-junit.jar:junit.jar  
+$ scala -cp $CLASSPATH org.scalatest.run ExampleSuite
 <span class="cyanincolor">Run starting. Expected test count is: 2</span>
 <span class="greenincolor">ExampleSuite:
 - testFun(ExampleSuite)
@@ -221,13 +225,14 @@ As before, you can run this class with either JUnit or ScalaTest:
 </p>
 
 <pre class="scala">
-$ scala -cp .:scalatest-@{latestVersion}.jar:junit-4.4.jar junit.textui.TestRunner ExampleSuite
+$ export CLASSPATH=.:scala-xml.jar:scalatest-app.jar:scalatest-plus-junit.jar:junit.jar  
+$ scala -cp $CLASSPATH junit.textui.TestRunner ExampleSuite
 ..
 Time: 0.082
 
 OK (2 tests)
 
-$ scala -cp scalatest-@{latestVersion}.jar:junit-4.4.jar org.scalatest.run ExampleSuite
+$ scala -cp $CLASSPATH org.scalatest.run ExampleSuite
 <span class="cyanincolor">Run starting. Expected test count is: 2</span>
 <span class="greenincolor">ExampleSuite:
 - testFun(ExampleSuite)
