@@ -24,7 +24,7 @@
 <p>
 If you want to write JUnit 4 tests in Scala that you run with JUnit, you can
 enjoy more concise code by using ScalaTest's assertions and/or matchers.
-To use assertions, mix <code>org.scalatest.junit.AssertionsForJUnit</code> into your test class:
+To use assertions, mix <code>org.scalatestplus.junit.AssertionsForJUnit</code> into your test class:
 </p>
 
 <pre class="stHighlighted">
@@ -74,7 +74,7 @@ To use assertions, mix <code>org.scalatest.junit.AssertionsForJUnit</code> into 
 <em>Note:</em> JUnit traditionally differentiated between exceptions resulting from assertions, which it called <em>failures</em>,
 and unexpected exceptions, which it called <em>errors</em>. Although this JUnit 3 distinction was dropped from JUnit 4, many tools
 that integrate JUnit 4 still observe the distinction.
-By mixing in <code>org.scalatest.junit.AssertionsForJUnit</code>, you ensure JUnit tools will report failures of ScalaTest assertions
+By mixing in <code>org.scalatestplus.junit.AssertionsForJUnit</code>, you ensure JUnit tools will report failures of ScalaTest assertions
 as failures not errors.
 </blockquote>
 
@@ -102,7 +102,7 @@ OK (2 tests)
 </pre>
 
 <p>
-If you wish to give yourself the option of running with either JUnit or ScalaTest, mix in <code>org.scalatest.junit.JUnitSuite</code>. Trait
+If you wish to give yourself the option of running with either JUnit or ScalaTest, mix in <code>org.scalatestplus.junit.JUnitSuite</code>. Trait
 <code>JUnitSuite</code> already mixes in <code>AssertionsForJUnit</code>:
 </p>
 
@@ -181,7 +181,7 @@ Tests: succeeded 2, failed 0, ignored 0, pending 0</span>
 
 <p>
 One final variation you may wish to try is to use ScalaTest's matchers DSL. Simply mix
-in <code>org.scalatest.matchers.should.Matchers</code> (or <code>org.scalatest.matchers.should.Matchers</code> if you prefer "must" to "should") and <code>AssertionsForJUnit</code>.
+in <code>org.scalatest.matchers.should.Matchers</code> (or <code>org.scalatest.matchers.must.Matchers</code> if you prefer "must" to "should") and <code>AssertionsForJUnit</code>.
 Here's an example:
 </p>
 
