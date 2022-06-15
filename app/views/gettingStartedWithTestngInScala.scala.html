@@ -30,15 +30,14 @@ To use assertions, mix <code>org.scalatest.Assertions</code> into your test clas
 <span class="stReserved">import</span> scala.collection.mutable.ListBuffer
 <span class="stReserved">import</span> org.testng.Assert._
 <span class="stReserved">import</span> org.testng.annotations.Test
-<span class="stReserved">import</span> org.testng.annotations.Configuration
+<span class="stReserved">import</span> org.testng.annotations.BeforeMethod
 
 <span class="stReserved">class</span> <span class="stType">ExampleSuite</span> <span class="stReserved">extends</span> <span class="stType">Assertions</span> {
 
   <span class="stReserved">var</span> sb: <span class="stType">StringBuilder</span> = _
   <span class="stReserved">var</span> lb: <span class="stType">ListBuffer[String]</span> = _
 
-  @@<span class="stType">Configuration</span> { <span class="stReserved">val</span> beforeTestMethod = <span class="stReserved">true</span> }
-  <span class="stReserved">def</span> initialize() {
+  @@<span class="stType">BeforeMethod</span> <span class="stReserved">def</span> initialize() {
     sb = <span class="stReserved">new</span> <span class="stType">StringBuilder</span>(<span class="stQuotedString">"ScalaTest is "</span>)
     lb = <span class="stReserved">new</span> <span class="stType">ListBuffer[String]</span>
   }
@@ -76,7 +75,8 @@ file. Here's how you compile it:
 </p>
 
 <pre class="scala">
-scalac -cp scalatest-1.5.jar:testng.jar ExampleSuite.scala
+$ export CLASSPATH=scalatest-app.jar:scalatest-plus-testng.jar:testng.jar
+$ scalac -cp $CLASSPATH ExampleSuite.scala
 </pre>
 
 <p>
@@ -84,7 +84,8 @@ Here's one way to run it using TestNG:
 </p>
 
 <pre class="scala">
-$ scala -cp .:scalatest-1.5.jar:testng.jar org.testng.TestNG -testclass ExampleSuite
+$ export RUNCLASSPATH=.:$CLASSPATH:scala-xml.jar:jcommander.jar:slf4j-api.jar
+$ scala -cp $RUNCLASSPATH org.testng.TestNG -testclass ExampleSuite
 [Parser] Running:
   Command line suite
 
@@ -96,24 +97,23 @@ Total tests run: 2, Failures: 0, Skips: 0
 </pre>
 
 <p>
-If you wish to give yourself the option of running with either TestNG or ScalaTest, mix in <code>org.scalatest.testng.TestNGSuite</code>. Trait
+If you wish to give yourself the option of running with either TestNG or ScalaTest, mix in <code>org.scalatestplus.testng.TestNGSuite</code>. Trait
 <code>TestNGSuite</code> already mixes in <code>Assertions</code>:
 </p>
 
 <pre class="stHighlighted">
-<span class="stReserved">import</span> org.scalatest.testng.TestNGSuite
+<span class="stReserved">import</span> org.scalatestplus.testng.TestNGSuite
 <span class="stReserved">import</span> scala.collection.mutable.ListBuffer
 <span class="stReserved">import</span> org.testng.Assert._
 <span class="stReserved">import</span> org.testng.annotations.Test
-<span class="stReserved">import</span> org.testng.annotations.Configuration
+<span class="stReserved">import</span> org.testng.annotations.BeforeMethod
 
 <span class="stReserved">class</span> <span class="stType">ExampleSuite</span> <span class="stReserved">extends</span> <span class="stType">TestNGSuite</span> {
 
   <span class="stReserved">var</span> sb: <span class="stType">StringBuilder</span> = _
   <span class="stReserved">var</span> lb: <span class="stType">ListBuffer[String]</span> = _
 
-  @@<span class="stType">Configuration</span> { <span class="stReserved">val</span> beforeTestMethod = <span class="stReserved">true</span> }
-  <span class="stReserved">def</span> initialize() {
+  @@<span class="stType">BeforeMethod</span> <span class="stReserved">def</span> initialize() {
     sb = <span class="stReserved">new</span> <span class="stType">StringBuilder</span>(<span class="stQuotedString">"ScalaTest is "</span>)
     lb = <span class="stReserved">new</span> <span class="stType">ListBuffer[String]</span>
   }
@@ -149,7 +149,7 @@ Because <code>ExampleSuite</code> is still a valid TestNG test class, it can sti
 </p>
 
 <pre class="scala">
-$ scala -cp .:scalatest-1.5.jar:testng.jar org.testng.TestNG -testclass ExampleSuite
+$ scala -cp $RUNCLASSPATH org.testng.TestNG -testclass ExampleSuite
 [Parser] Running:
   Command line suite
 
@@ -165,7 +165,7 @@ But because it is also a ScalaTest <code>Suite</code>, you can now also run it w
 </p>
 
 <pre class="scala">
-$ scala -cp scalatest-1.5.jar:testng.jar org.scalatest.run ExampleSuite
+$ scala -cp $RUNCLASSPATH org.scalatest.run ExampleSuite
 <span class="cyanincolor">Run starting. Expected test count is: 2</span>
 <span class="greenincolor">ExampleSuite:</span>
 [Parser] Running:
@@ -188,25 +188,24 @@ Tests: succeeded 2, failed 0, ignored 0, pending 0</span>
 
 <p>
 One final variation you may wish to try is to use ScalaTest's matchers DSL. Simply mix
-in <code>ShouldMatchers</code> (or <code>MustMatchers</code> if you prefer "must" to "should").
+in <code>org.scalatest.matchers.should.Matchers</code> (or <code>org.scalatest.matchers.must.Matchers</code> if you prefer "must" to "should").
 Here's an example:
 </p>
 
 <pre class="stHighlighted">
-<span class="stReserved">import</span> org.scalatest.testng.TestNGSuite
-<span class="stReserved">import</span> org.scalatest.matchers.ShouldMatchers
+<span class="stReserved">import</span> org.scalatestplus.testng.TestNGSuite
+<span class="stReserved">import</span> org.scalatest.matchers.should.Matchers
 <span class="stReserved">import</span> scala.collection.mutable.ListBuffer
 <span class="stReserved">import</span> org.testng.Assert._
 <span class="stReserved">import</span> org.testng.annotations.Test
-<span class="stReserved">import</span> org.testng.annotations.Configuration
+<span class="stReserved">import</span> org.testng.annotations.BeforeMethod
 
-<span class="stReserved">class</span> <span class="stType">ExampleSuite</span> <span class="stReserved">extends</span> <span class="stType">TestNGSuite</span> <span class="stReserved">with</span> <span class="stType">ShouldMatchers</span> {
+<span class="stReserved">class</span> <span class="stType">ExampleSuite</span> <span class="stReserved">extends</span> <span class="stType">TestNGSuite</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> {
 
   <span class="stReserved">var</span> sb: <span class="stType">StringBuilder</span> = _
   <span class="stReserved">var</span> lb: <span class="stType">ListBuffer[String]</span> = _
 
-  @@<span class="stType">Configuration</span> { <span class="stReserved">val</span> beforeTestMethod = <span class="stReserved">true</span> }
-  <span class="stReserved">def</span> initialize() {
+  @@<span class="stType">BeforeMethod</span> <span class="stReserved"> <span class="stReserved">def</span> initialize() {
     sb = <span class="stReserved">new</span> <span class="stType">StringBuilder</span>(<span class="stQuotedString">"ScalaTest is "</span>)
     lb = <span class="stReserved">new</span> <span class="stType">ListBuffer[String]</span>
   }
@@ -226,7 +225,9 @@ Here's an example:
     sb.toString should be (<span class="stQuotedString">"ScalaTest is fun!"</span>)
     lb should be (<span class="stQuotedString">'empty</span>)
     lb += <span class="stQuotedString">"sweet"</span>
-    evaluating { <span class="stQuotedString">"concise"</span>.charAt(-<span class="stLiteral">1</span>) } should produce [<span class="stType">StringIndexOutOfBoundsException</span>]
+    intercept[<span class="stType">StringIndexOutOfBoundsException</span>] {
+      <span class="stQuotedString">"concise"</span>.charAt(-<span class="stLiteral">1</span>)
+    }
   }
 }
 </pre>
@@ -236,7 +237,7 @@ As before, you can run this class with either JUnit or ScalaTest:
 </p>
 
 <pre class="scala">
-$ scala -cp .:scalatest-1.5.jar:testng.jar org.testng.TestNG -testclass ExampleSuite
+$ scala -cp $RUNCLASSPATH org.testng.TestNG -testclass ExampleSuite
 [Parser] Running:
   Command line suite
 
@@ -246,7 +247,7 @@ Command line suite
 Total tests run: 2, Failures: 0, Skips: 0
 ===============================================
 
-$ scala -cp scalatest-1.5.jar:testng.jar org.scalatest.run ExampleSuite
+$ scala -cp $RUNCLASSPATH org.scalatest.run ExampleSuite
 <span class="cyanincolor">Run starting. Expected test count is: 2</span>
 <span class="greenincolor">ExampleSuite:</span>
 [Parser] Running:
