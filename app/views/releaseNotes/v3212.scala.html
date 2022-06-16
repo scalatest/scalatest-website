@@ -1,0 +1,130 @@
+@*
+* Copyright 2010-2022 Artima, Inc.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*@
+
+@import controllers.Application.scaladocsPageUrl
+@import controllers.Application.milestoneScaladoc
+
+@combinedReleaseNotesPage("Scalactic/ScalaTest 3.2.12 Release Notes") {
+    <div style="text-align: left">
+
+        <h1>ScalaTest/Scalactic 3.2.12 Release Notes</h1>
+
+        <p>
+            ScalaTest/Scalactic 3.2.12 (for Scala 2.10, 2.11, 2.12, 2.13, 3.1; on the JVM, JavaScript, and native)
+            includes the enhancements listed below.
+        </p>
+        
+        <p>
+            For information on how to include ScalaTest in your project, see the <a href="/install">install page</a>.
+            For information on how to use <a href="http://www.scalactic.org/">Scalactic</a> in your production code,
+            see its <a href="http://www.scalactic.org/install">install page</a>.
+        </p>
+
+	<br/>
+
+	<!-- ====================================== SCALA TEST ==================================================== -->
+
+        <hr style="height:3px;border:none;color:#333;background-color:#333;" /> <!-- ############################################### -->
+
+	<div align="center" style="padding-top:0.8rem">
+	<h1>ScalaTest</h1>
+	</div>
+
+	<hr></hr>
+
+        <p>
+        ScalaTest 3.2.12 is a minor release of ScalaTest that makes bug fixes, few enhancements, and supports Scala.js 1.8.x and Scala 3.1.x.
+        </p>
+
+        <a name="scalatest_bugfixes"></a>
+        <h2>Bug Fixes</h2>
+        <p>Get JUnitXmlReporter to handle SuiteAborted event correctly. (<a href="https://github.com/scalatest/scalatest/pull/2103">PR #2103</a>)</p>
+        <p>Handle DeferredAbortedSuite correctly when firing SuiteStarting, SuiteCompleted and SuiteAborted in multiple places. (<a href="https://github.com/scalatest/scalatest/pull/2103">PR #2103</a>)</p>
+
+        <a name="scalatest_improvements"></a>
+        <h2>Improvements</h2>
+        <p>Tweaked failure XML tag in JUnit xml to show only error message in its message attribute, and the stack trace only in the tag body. (<a href="https://github.com/scalatest/scalatest/pull/2103">PR #2103</a>)</p>
+        <p>Resurrected -S Generator Seed Argument. (<a href="https://github.com/scalatest/scalatest/pull/2104">PR #2104</a>, <a href="https://github.com/scalatest/scalatest/pull/2106">PR #2106</a>)</p>
+        <p>Macro Enhancement for OrderingOps. (<a href="https://github.com/scalatest/scalatest/pull/2107">PR #2107</a>)</p>
+        <p>Dropped the use of UUID in TestSortingReporter, replaced with object identity approach. (<a href="https://github.com/scalatest/scalatest/pull/2118">PR #2118</a>)</p>
+        <p>Updated to use Scala-XML 2.1.0. (<a href="https://github.com/scalatest/scalatest/pull/2119">PR #2119</a>)</p>
+        <p>Added Scala-native build for Scala 3. (<a href="https://github.com/scalatest/scalatest/pull/2120">PR #2120</a>)</p>
+        <p>Updated to use Scala-js 1.8.0. (<a href="https://github.com/scalatest/scalatest/pull/2121">PR #2121</a>)</p>
+        <p>Updated to use Scala 3.1.0. (<a href="https://github.com/scalatest/scalatest/pull/2120">PR #2120</a>)</p>
+        <p>Updated to use Scala-native 0.4.4. (<a href="https://github.com/scalatest/scalatest/pull/2106">PR #2106</a>)</p>
+
+        <a name="scalatest_deprecations"></a>
+        <h2>Deprecations</h2>
+        <p>ScalaTest 3.2.12 contains no new deprecations.</p>
+        
+        <br/>
+
+	<!-- ====================================== SCALACTIC ==================================================== -->
+
+        <hr style="height:3px;border:none;color:#333;background-color:#333;" /> <!-- ############################################### -->
+
+	<div align="center" style="padding-top:0.8rem">
+	<h1>Scalactic</h1>
+	</div>
+
+	<hr></hr>
+
+        <a name="scalactic_bugfixes"></a>
+        <h2>Bug Fixes</h2>
+        <p>Scalactic 3.2.12 contains no bug fixes.</p>
+
+        <a name="scalactic_improvements"></a>
+        <h2>Improvements</h2>
+        <p>Macro Enhancement for OrderingOps. (<a href="https://github.com/scalatest/scalatest/pull/2107">PR #2107</a>)</p>
+        <p>Added Scala-native build for Scala 3. (<a href="https://github.com/scalatest/scalatest/pull/2120">PR #2120</a>)</p>
+        <p>Updated to use Scala-js 1.8.0. (<a href="https://github.com/scalatest/scalatest/pull/2121">PR #2121</a>)</p>
+        <p>Updated to use Scala 3.1.0. (<a href="https://github.com/scalatest/scalatest/pull/2120">PR #2120</a>)</p>
+        <p>Updated to use Scala-native 0.4.4. (<a href="https://github.com/scalatest/scalatest/pull/2106">PR #2106</a>)</p>
+        
+        <a name="scalactic_deprecations"></a>
+        <h2>Deprecations</h2>
+        <p>Scalactic 3.2.12 contains no new deprecations.</p>
+
+        <br/>
+
+        <hr style="height:3px;border:none;color:#333;background-color:#333;" />
+        <br/>
+
+        <h2>ScalaTest/Scalactic Contributors</h2>
+
+        Thanks to the contributors for the ScalaTest/Scalactic 3.2.12 release:
+
+        <ul>
+            <li><a href="https://github.com/smarter">Guillaume Martres</a></li>
+            <li><a href="https://github.com/sjrd">Sébastien Doeraene</a></li>
+            <li><a href="https://github.com/catap">Kirill A. Korinsky</a></li>
+            <li><a href="https://github.com/cheeseng">Chua Chee Seng</a></li>
+            <li><a href="https://github.com/bvenners">Bill Venners</a></li>
+        </ul>
+
+        <br/>
+
+	<!-- ====================================== NOTES ==================================================== -->
+
+        <hr style="height:3px;border:none;color:#333;background-color:#333;" /> <!-- ############################################### -->
+
+        <p>
+            Visit <a href="@routes.ReleaseNotes.releaseNotesIndex">ScalaTest Release Notes</a> for links to the release notes of all previous versions, or
+            step back in time by visiting the <a href="@routes.ReleaseNotes.v3211">release notes for the previous version</a>.
+        </p>
+
+    </div>
+}

@@ -139,7 +139,7 @@ class Application extends Controller {
 
 object Application {
 
-  val latestVersion = "3.2.11"
+  val latestVersion = "3.2.12"
   val latestSuperSafeVersion = "1.1.12"
   val milestoneVersion = "3.2.0"
   val milestoneJar = "https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest_2.11/3.2.0-RC3/scalatest_2.11-3.2.0-RC3.jar"
@@ -151,19 +151,19 @@ object Application {
   val baseScalaVersion = "2.13.8"
   val majorMinorScalaVersion = "2.13"
   val latestScaladocFor192 = "http://doc.scalatest.org/1.9.2"
-  val latestSeleniumVersion = "3-141"
-  val latestEasyMockVersion = "3-2" 
-  val latestJMockVersion = "2-8"
+  val latestSeleniumVersion = "4-1"
+  val latestEasyMockVersion = "4-3" 
+  val latestJMockVersion = "2-12"
   val latestJUnitVersion = "4-13"
-  val latestMockitoVersion = "3-4"
-  val latestScalaCheckVersion = "1-15"
-  val latestScalaCheckPlusVersion = "3.2.9.0"
-  val latestTestNGVersion = "6-7"  
+  val latestMockitoVersion = "4-5"
+  val latestScalaCheckVersion = "1-16"
+  val latestScalaCheckPlusVersion = "3.2.12.0"
+  val latestTestNGVersion = "7-5"  
   val quickStartXmlJar = "https://repo1.maven.org/maven2/org/scala-lang/modules/scala-xml_2.13/1.2.0/scala-xml_2.13-1.2.0.jar"
-  val latestPlusScalaCheckDoc = "plus-scalacheck-1.15/3.2.9.0"
-  val latestPlusEasyMockDoc = "plus-easymock-3.2/3.2.9.0"
-  val latestPlusJMockDoc = "plus-jmock-2.8/3.2.9.0"
-  val latestPlusMockitoDoc = "plus-mockito-3.4/3.2.9.0"
+  val latestPlusScalaCheckDoc = "plus-scalacheck-1.16/3.2.12.0"
+  val latestPlusEasyMockDoc = "plus-easymock-4.3/3.2.12.0"
+  val latestPlusJMockDoc = "plus-jmock-2.12/3.2.12.0"
+  val latestPlusMockitoDoc = "plus-mockito-4.5/3.2.12.0"
 
   def scaladocsPageUrl(file: String, version: String = latestVersion): String = {
     val oldScaladocStyle30Releases = List("3.0.0", "3.0.1", "3.0.2", "3.0.3", "3.0.4")
