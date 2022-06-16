@@ -15,6 +15,7 @@
  *@
 
 @import controllers.Application.scaladocsPageUrl
+@import controllers.Application.plusScalaCheck16ScaladocsPageUrl
 
 @userGuidePage("Writing ScalaCheck-style properties") {
 <div style="text-align: left">
@@ -28,8 +29,8 @@ when tests are run. This page describes the ScalaCheck style.
 </p>
 
 <p>
-To write properties in the ScalaCheck style, mix in trait <a href='@scaladocsPageUrl("org.scalatest.prop.Checkers")'><code>Checkers</code></a> or
-import the members of its <a href='@scaladocsPageUrl("org.scalatest.prop.Checkers$")'>companion object</a>. Trait <code>Checkers</code>
+To write properties in the ScalaCheck style, mix in trait <a href='@plusScalaCheck16ScaladocsPageUrl("org.scalatestplus.scalacheck.Checkers")'><code>Checkers</code></a> or
+import the members of its <a href='@plusScalaCheck16ScaladocsPageUrl("org.scalatestplus.scalacheck.Checkers$")'>companion object</a>. Trait <code>Checkers</code>
 contains several <code>check</code> methods that perform ScalaCheck property checks. If ScalaCheck finds a test case for which a property doesn't
 hold, the problem will be reported as a ScalaTest test failure.
 </p>
@@ -228,9 +229,9 @@ for supertrait <a href='@scaladocsPageUrl("org.scalatest.prop.Configuration")'><
 
 <p>
 For the ScalaTest style, you mix in
-trait <a href='@scaladocsPageUrl("org.scalatestplus.scalacheck.ScalaCheckDrivenPropertyChecks")'><code>ScalaCheckDrivenPropertyChecks</code></a> and
+trait <a href='@plusScalaCheck16ScaladocsPageUrl("org.scalatestplus.scalacheck.ScalaCheckDrivenPropertyChecks")'><code>ScalaCheckDrivenPropertyChecks</code></a> and
 express properties with <code>whenever</code> clauses and matcher expressions. For the ScalaCheck style, you mix in trait
-<a href='@scaladocsPageUrl("org.scalatest.prop.Checkers")'><code>Checkers</code></a> and
+<a href='@plusScalaCheck16ScaladocsPageUrl("org.scalatestplus.scalacheck.Checkers")'><code>Checkers</code></a> and
 express properties as boolean expressions, using ScalaCheck's native operators such as <code>==&gt;</code>, <code>:|</code>, <code>|:</code>, and so on, as
 needed.  The purpose of the ScalaTest style is to make property-based
 testing more consistent with the other styles of testing that ScalaTest supports.

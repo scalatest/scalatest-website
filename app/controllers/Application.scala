@@ -175,6 +175,11 @@ object Application {
     routes.Assets.at("/public/scaladoc", filePath).toString
   }
 
+  def plusScalaCheck16ScaladocsPageUrl(file: String, version: String = latestScalaCheckPlusVersion): String = {
+    val filePath = s"plus-scalacheck-1.16/$version/${file.replaceAll("\\.", "/")}.html"
+    routes.Assets.at("/public/scaladoc", filePath).toString
+  }
+
   def scalacticScaladocsPageUrl(file: String, version: String = latestVersion): String = {
     val oldScaladocStyle30Releases = List("3.0.0", "3.0.1", "3.0.2", "3.0.3", "3.0.4")
     val filePath = if (version.startsWith("1.") || version.startsWith("2.") || oldScaladocStyle30Releases.contains(version)) {
