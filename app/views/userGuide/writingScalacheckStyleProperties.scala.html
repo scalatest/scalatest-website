@@ -207,7 +207,7 @@ check((n: <span class="stType">Int</span>) => n + <span class="stLiteral">0</spa
 </pre>
 
 <p>
-The previous configuration approach works the same in <code>Checkers</code> as it does in <code>GeneratorDrivenPropertyChecks</code>.
+The previous configuration approach works the same in <code>Checkers</code> as it does in <code>ScalaCheckDrivenPropertyChecks</code>.
 Trait <code>Checkers</code> also provides one <code>check</code> method that takes an <code>org.scalacheck.Test.Params</code> object,
 in case you want to configure ScalaCheck that way.
 </p>
@@ -228,7 +228,7 @@ for supertrait <a href='@scaladocsPageUrl("org.scalatest.prop.Configuration")'><
 
 <p>
 For the ScalaTest style, you mix in
-trait <a href='@scaladocsPageUrl("org.scalatest.prop.GeneratorDrivenPropertyChecks")'><code>GeneratorDrivenPropertyChecks</code></a> and
+trait <a href='@scaladocsPageUrl("org.scalatestplus.scalacheck.ScalaCheckDrivenPropertyChecks")'><code>ScalaCheckDrivenPropertyChecks</code></a> and
 express properties with <code>whenever</code> clauses and matcher expressions. For the ScalaCheck style, you mix in trait
 <a href='@scaladocsPageUrl("org.scalatest.prop.Checkers")'><code>Checkers</code></a> and
 express properties as boolean expressions, using ScalaCheck's native operators such as <code>==&gt;</code>, <code>:|</code>, <code>|:</code>, and so on, as
@@ -237,7 +237,7 @@ testing more consistent with the other styles of testing that ScalaTest supports
 </p>
 
 <p>
-<code>GeneratorDrivenPropertyChecks</code> is an alternative to <code>Checkers</code>. Both are essentially front-ends to ScalaCheck, and both require that ScalaCheck's jar file be on the class path. The difference is <code>Checkers</code> facilitates the traditional ScalaCheck style of writing properties, whereas <code>GeneratorDrivenPropertyChecks</code> facilitates a ScalaTest style of writing properties that takes advantage of ScalaTest's assertions and matchers. To see the difference, consider an example written in each style. With <code>Checkers</code> you'd usually write a property function like this:
+<code>ScalaCheckDrivenPropertyChecks</code> is an alternative to <code>Checkers</code>. Both are essentially front-ends to ScalaCheck, and both require that ScalaCheck's jar file be on the class path. The difference is <code>Checkers</code> facilitates the traditional ScalaCheck style of writing properties, whereas <code>ScalaCheckDrivenPropertyChecks</code> facilitates a ScalaTest style of writing properties that takes advantage of ScalaTest's assertions and matchers. To see the difference, consider an example written in each style. With <code>Checkers</code> you'd usually write a property function like this:
 </p>
 
 <pre>

@@ -2,8 +2,9 @@ package controllers
 
 import play.api._
 import play.api.mvc._
+import javax.inject.Inject
 
-class UserGuide192 extends Controller {
+class UserGuide192 @Inject() (cc: ControllerComponents) extends AbstractController(cc) {
 
   def userGuideIndex = Action {
     Ok(views.html.userGuide_1_9_2.userGuideIndex())
