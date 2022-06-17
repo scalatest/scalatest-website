@@ -17,8 +17,9 @@ package controllers
 
 import play.api._
 import play.api.mvc._
+import javax.inject.Inject
 
-class Plus extends Controller {
+class Plus @Inject() (cc: ControllerComponents) extends AbstractController(cc) {
 
   def plusIndex = Action {
     Ok(views.html.plus.plusIndex())
