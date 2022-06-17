@@ -25,15 +25,15 @@
 }
 
 <div id="Nav">
-  @genlink("Home",         routes.Application.index.url) |
-  @genlink("Quick Start",  routes.Application.quickStart.url) |
-  @genlink("Install",      routes.Application.install.url) |
-  @genlink("User Guide",   routes.UserGuide.userGuideIndex.url) |
-  @genlink("At A Glance",  routes.Application.bareAtAGlance.url) |
-  @genlink("Scaladoc",     routes.Application.scaladoc.url) |
-  @genlink("SuperSafe",    routes.Application.supersafe.url) |
-  @genlink("Plus",         routes.Plus.plusIndex.url) |
-  <!-- @genlink("Videos",       routes.Application.videos.url) | -->  <!-- Temporarily removed per Bill request  171114 PL -->
-  @genlink("Donate",       routes.Application.donate.url) |
-  @genlink("About",        routes.Application.about.url)
+  @genlink("Home",         routes.Application.index().url) |
+  @genlink("Quick Start",  routes.Application.quickStart().url) |
+  @genlink("Install",      routes.Application.install().url) |
+  @genlink("User Guide",   routes.UserGuide.userGuideIndex().url) |
+  @genlink("At A Glance",  routes.Application.bareAtAGlance().url) |
+  @genlink("Scaladoc",     routes.Application.scaladoc().url) |
+  @genlink("SuperSafe",    routes.Application.supersafe().url) |
+  @genlink("Plus",         routes.Plus.plusIndex().url) |
+  <!-- @genlink("Videos",       routes.Application.videos().url) | -->  <!-- Temporarily removed per Bill request  171114 PL -->
+  @genlink("Donate",       routes.Application.donate().url) |
+  @genlink("About",        routes.Application.about().url)
 </div> <!-- Nav -->
