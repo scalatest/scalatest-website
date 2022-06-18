@@ -3,16 +3,16 @@
 lazy val root = (project in file(".")).settings(
   name := "scalatest-website",
   version := "scalatest-220506-ecr",
-  scalaVersion := "2.13.5",
+  scalaVersion := "2.13.8",
   libraryDependencies ++= Seq(
     "org.scalatestplus.play" %% "scalatestplus-play" % "4.0.3"
   ),
   fork := false, 
-  packageName in Docker := "artima/scalatest-website", 
-  maintainer in Docker := "Artima Inc.", 
+  Docker / packageName := "artima/scalatest-website", 
+  Docker / maintainer := "Artima Inc.", 
   dockerExposedPorts ++= Seq(9000), 
   dockerUpdateLatest := true, 
-  javaOptions in Universal ++= Seq(
+  Universal / javaOptions ++= Seq(
     // -J params will be added as jvm parameters
     "-J-Xmx256m",
     "-J-Xms128m"
