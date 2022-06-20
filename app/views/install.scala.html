@@ -55,13 +55,20 @@ libraryDependencies += <span class="stQuotedString">"org.scalactic"</span> %% <s
 libraryDependencies += <span class="stQuotedString">"org.scalatest"</span> %% <span class="stQuotedString">"scalatest"</span> % <span class="stQuotedString">"@{latestVersion}"</span> % <span class="stQuotedString">"test"</span>
 </pre>
 
+If you're using 3.x version and scala-js, you should use <code>%%%</code> instead in your project:
+
+<pre class="stHighlighted">
+libraryDependencies += <span class="stQuotedString">"org.scalactic"</span> %%% <span class="stQuotedString">"scalactic"</span> % <span class="stQuotedString">"@{latestVersion}"</span>
+libraryDependencies += <span class="stQuotedString">"org.scalatest"</span> %%% <span class="stQuotedString">"scalatest"</span> % <span class="stQuotedString">"@{latestVersion}"</span> % <span class="stQuotedString">"test"</span>
+</pre>
+
 <p>
 The dependency on <a href="https://www.scalactic.org">Scalactic</a>, ScalaTest's sister library focused on quality through types, is recommended but not required.
 </p>
 
 <p>
-2. We also recommend you also include the <a href="/supersafe">SuperSafe Community Edition</a> Scala compiler plugin, which will flag errors in your ScalaTest (and
-Scalactic) code at compile time, by first adding this line to <code>~/.sbt/0.13/global.sbt</code>:
+2. If you're using 3.x version, we also recommend you also include the <a href="/supersafe">SuperSafe Community Edition</a> Scala compiler plugin for Scala 2.x (not supported for Scala 3.x), which will flag errors in your ScalaTest (and
+Scalactic) code at compile time, by first adding this line to <code>~/.sbt/1.0/global.sbt</code> (or <code>~/.sbt/0.13/global.sbt</code> if you're using SBT 0.13.x):
 </p>
 
 <pre class="stHighlighted">
@@ -110,7 +117,8 @@ recommended but not required.
 </p>
 
 <p>
-2. We also recommend you also include the <a href="/supersafe">SuperSafe Community Edition</a> Scala compiler plugin, which will flag errors in your ScalaTest (and
+
+2. If you're using ScalaTest 3.x version, we also recommend you also include the <a href="/supersafe">SuperSafe Community Edition</a> Scala compiler plugin for Scala 2.x (not supported for Scala 3.x), which will flag errors in your ScalaTest (and
 Scalactic) code at compile time, by adding the following lines to your <code>pom.xml</code>:
 </p>
 

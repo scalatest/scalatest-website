@@ -29,7 +29,7 @@ To use assertions, mix <code>org.scalatest.junit.AssertionsForJUnit</code> into 
 
 <pre class="stHighlighted">
 <span class="stReserved">import</span> junit.framework.TestCase
-<span class="stReserved">import</span> org.scalatest.junit.AssertionsForJUnit
+<span class="stReserved">import</span> org.scalatestplus.junit.AssertionsForJUnit
 <span class="stReserved">import</span> scala.collection.mutable.ListBuffer
 <span class="stReserved">import</span> junit.framework.Assert._
 
@@ -72,7 +72,7 @@ To use assertions, mix <code>org.scalatest.junit.AssertionsForJUnit</code> into 
 <blockquote>
 <em>Note:</em> JUnit differentiates between exceptions resulting from assertions, which it calls <em>failures</em>,
 and unexpected exceptions, which it calls <em>errors</em>. 
-By mixing in <code>org.scalatest.junit.AssertionsForJUnit</code>, you ensure JUnit will report failures of ScalaTest assertions
+By mixing in <code>org.scalatestplus.junit.AssertionsForJUnit</code>, you ensure JUnit will report failures of ScalaTest assertions
 as failures not errors.
 </blockquote>
 
@@ -83,7 +83,8 @@ file. Here's how you compile it:
 </p>
 
 <pre class="scala">
-scalac -cp scalatest-@{latestVersion}.jar:junit-4.4.jar ExampleSuite.scala
+$ export CLASSPATH=scalatest-app.jar:scalatest-plus-junit.jar:junit.jar  
+$ scalac -cp $CLASSPATH ExampleSuite.scala
 </pre>
 
 <p>
@@ -91,7 +92,8 @@ Here's one way to run it using JUnit:
 </p>
 
 <pre class="scala">
-$ scala -cp .:scalatest-@{latestVersion}.jar:junit-4.4.jar junit.textui.TestRunner ExampleSuite
+$ export CLASSPATH=.:scala-xml.jar:scalatest-app.jar:scalatest-plus-junit.jar:junit.jar  
+$ scala -cp $CLASSPATH junit.textui.TestRunner ExampleSuite
 ..
 Time: 0.032
 
@@ -99,12 +101,12 @@ OK (2 tests)
 </pre>
 
 <p>
-If you wish to give yourself the option of running with either JUnit or ScalaTest, mix in <code>org.scalatest.junit.JUnit3Suite</code>. Trait
+If you wish to give yourself the option of running with either JUnit or ScalaTest, mix in <code>org.scalatestplus.junit.JUnit3Suite</code>. Trait
 <code>JUnit3Suite</code> is already a <code>junit.framework.TestCase</code> and already mixes in <code>AssertionsForJUnit</code>:
 </p>
 
 <pre class="stHighlighted">
-<span class="stReserved">import</span> org.scalatest.junit.JUnit3Suite
+<span class="stReserved">import</span> org.scalatestplus.junit.JUnit3Suite
 <span class="stReserved">import</span> scala.collection.mutable.ListBuffer
 <span class="stReserved">import</span> junit.framework.Assert._
 
@@ -149,7 +151,8 @@ Because <code>ExampleSuite</code> is still a JUnit <code>TestCase</code>, it can
 </p>
 
 <pre class="scala">
-$ scala -cp .:scalatest-@{latestVersion}.jar:junit-4.4.jar junit.textui.TestRunner ExampleSuite
+$ export CLASSPATH=.:scala-xml.jar:scalatest-app.jar:scalatest-plus-junit.jar:junit.jar  
+$ scala -cp $CLASSPATH junit.textui.TestRunner ExampleSuite
 ..
 Time: 0.032
 
@@ -161,7 +164,8 @@ But because it is also a ScalaTest <code>Suite</code>, you can now also run it w
 </p>
 
 <pre class="scala">
-$ scala -cp scalatest-@{latestVersion}.jar:junit-4.4.jar org.scalatest.run ExampleSuite
+$ export CLASSPATH=.:scala-xml.jar:scalatest-app.jar:scalatest-plus-junit.jar:junit.jar  
+$ scala -cp $CLASSPATH org.scalatest.run ExampleSuite
 <span class="cyanincolor">Run starting. Expected test count is: 2</span>
 <span class="greenincolor">ExampleSuite:
 - testFun(ExampleSuite)
@@ -175,17 +179,18 @@ Tests: succeeded 2, failed 0, ignored 0, pending 0</span>
 
 <p>
 One final variation you may wish to try is to use ScalaTest's matchers DSL. Simply mix
-in <code>ShouldMatchersForJUnit</code> (or <code>MustMatchersForJUnit</code> if you prefer "must" to "should").
+in <code>org.scalatest.matchers.should.Matchers</code> (or <code>org.scalatest.matchers.must.Matchers</code> if you prefer "must" to "should") and <code>AssertionsForJUnit</code>.
 Here's an example:
 </p>
 
 <pre class="stHighlighted">
-<span class="stReserved">import</span> org.scalatest.junit.JUnit3Suite
-<span class="stReserved">import</span> org.scalatest.junit.ShouldMatchersForJUnit
+<span class="stReserved">import</span> org.scalatestplus.junit.JUnit3Suite
+<span class="stReserved">import</span> org.scalatestplus.junit.AssertionsForJUnit
+<span class="stReserved">import</span> org.scalatest.matchers.should.Matchers
 <span class="stReserved">import</span> scala.collection.mutable.ListBuffer
 <span class="stReserved">import</span> junit.framework.Assert._
 
-<span class="stReserved">class</span> <span class="stType">ExampleSuite</span> <span class="stReserved">extends</span> <span class="stType">JUnit3Suite</span> <span class="stReserved">with</span> <span class="stType">ShouldMatchersForJUnit</span> {
+<span class="stReserved">class</span> <span class="stType">ExampleSuite</span> <span class="stReserved">extends</span> <span class="stType">JUnit3Suite</span>  <span class="stReserved">with</span> <span class="stType">Matchers</span> <span class="stReserved">with</span> <span class="stType">AssertionsForJUnit</span> {
 
   <span class="stReserved">var</span> sb: <span class="stType">StringBuilder</span> = _
   <span class="stReserved">var</span> lb: <span class="stType">ListBuffer[String]</span> = _
@@ -220,13 +225,14 @@ As before, you can run this class with either JUnit or ScalaTest:
 </p>
 
 <pre class="scala">
-$ scala -cp .:scalatest-@{latestVersion}.jar:junit-4.4.jar junit.textui.TestRunner ExampleSuite
+$ export CLASSPATH=.:scala-xml.jar:scalatest-app.jar:scalatest-plus-junit.jar:junit.jar  
+$ scala -cp $CLASSPATH junit.textui.TestRunner ExampleSuite
 ..
 Time: 0.082
 
 OK (2 tests)
 
-$ scala -cp scalatest-@{latestVersion}.jar:junit-4.4.jar org.scalatest.run ExampleSuite
+$ scala -cp $CLASSPATH org.scalatest.run ExampleSuite
 <span class="cyanincolor">Run starting. Expected test count is: 2</span>
 <span class="greenincolor">ExampleSuite:
 - testFun(ExampleSuite)
