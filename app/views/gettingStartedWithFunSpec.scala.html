@@ -35,9 +35,9 @@ The code of the test appears in curly braces after the <code>it</code> and its t
 </p>
 
 <pre class="stHighlighted">
-<span class="stReserved">import</span> org.scalatest.FunSpec
+<span class="stReserved">import</span> org.scalatest.funspec.AnyFunSpec
 
-<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">FunSpec</span> {
+<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">AnyFunSpec</span> {
 
   describe(<span class="stQuotedString">"A Stack"</span>) {
 
@@ -81,10 +81,10 @@ You could fill in the tests like this:
 </p>
 
 <pre class="stHighlighted">
-<span class="stReserved">import</span> org.scalatest.FunSpec
+<span class="stReserved">import</span> org.scalatest.funspec.AnyFunSpec
 <span class="stReserved">import</span> scala.collection.mutable.Stack
 
-<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">FunSpec</span> {
+<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">AnyFunSpec</span> {
 
   describe(<span class="stQuotedString">"A Stack"</span>) {
 
@@ -186,11 +186,11 @@ want to run before each test by <code>before { ... }</code>, and after each test
 </p>
 
 <pre class="stHighlighted">
-<span class="stReserved">import</span> org.scalatest.FunSpec
+<span class="stReserved">import</span> org.scalatest.funspec.AnyFunSpec
 <span class="stReserved">import</span> org.scalatest.BeforeAndAfter
 <span class="stReserved">import</span> scala.collection.mutable.Stack
 
-<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">FunSpec</span> <span class="stReserved">with</span> <span class="stType">BeforeAndAfter</span> {
+<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">AnyFunSpec</span> <span class="stReserved">with</span> <span class="stType">BeforeAndAfter</span> {
 
   <span class="stReserved">var</span> stack: <span class="stType">Stack[Int]</span> = _
 

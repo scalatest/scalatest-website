@@ -32,9 +32,9 @@ In a <code>FeatureSpec</code>, you describe <em>scenarios</em> of <em>features</
 </p>
 
 <pre class="stHighlighted">
-<span class="stReserved">import</span> org.scalatest.FeatureSpec
+<span class="stReserved">import</span> org.scalatest.featurespec.AnyFeatureSpec
  
-<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">FeatureSpec</span> {
+<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">AnyFeatureSpec</span> {
  
   Feature(<span class="stQuotedString">"The user can pop an element off the top of the stack"</span>) {
  
@@ -77,10 +77,10 @@ If you wish, you can flesh out the specification by mixing in <a href='@scaladoc
 </p>
 
 <pre class="stHighlighted">
-<span class="stReserved">import</span> org.scalatest.FeatureSpec
+<span class="stReserved">import</span> org.scalatest.featurespec.AnyFeatureSpec
 <span class="stReserved">import</span> org.scalatest.GivenWhenThen
  
-<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">FeatureSpec</span> <span class="stReserved">with</span> <span class="stType">GivenWhenThen</span> {
+<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">AnyFeatureSpec</span> <span class="stReserved">with</span> <span class="stType">GivenWhenThen</span> {
  
   Feature(<span class="stQuotedString">"The user can pop an element off the top of the stack"</span>) {
  
@@ -143,11 +143,11 @@ When you can't put off writing the actual tests themselves any longer, you can f
 </p>
 
 <pre class="stHighlighted">
-<span class="stReserved">import</span> org.scalatest.FeatureSpec
+<span class="stReserved">import</span> org.scalatest.featurespec.AnyFeatureSpec
 <span class="stReserved">import</span> org.scalatest.GivenWhenThen
 <span class="stReserved">import</span> scala.collection.mutable.Stack
  
-<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">FeatureSpec</span> <span class="stReserved">with</span> <span class="stType">GivenWhenThen</span> {
+<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">AnyFeatureSpec</span> <span class="stReserved">with</span> <span class="stType">GivenWhenThen</span> {
  
   Feature(<span class="stQuotedString">"The user can pop an element off the top of the stack"</span>) {
  
@@ -282,12 +282,12 @@ want to run before each test by <code>before { ... }</code>, and after each test
 </p>
 
 <pre class="stHighlighted">
-<span class="stReserved">import</span> org.scalatest.FeatureSpec
+<span class="stReserved">import</span> org.scalatest.featurespec.AnyFeatureSpec
 <span class="stReserved">import</span> org.scalatest.GivenWhenThen
 <span class="stReserved">import</span> org.scalatest.BeforeAndAfter
 <span class="stReserved">import</span> scala.collection.mutable.Stack
  
-<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">FeatureSpec</span> <span class="stReserved">with</span> <span class="stType">GivenWhenThen</span> <span class="stReserved">with</span> <span class="stType">BeforeAndAfter</span> {
+<span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">AnyFeatureSpec</span> <span class="stReserved">with</span> <span class="stType">GivenWhenThen</span> <span class="stReserved">with</span> <span class="stType">BeforeAndAfter</span> {
  
   <span class="stReserved">var</span> stack: <span class="stType">Stack[Int]</span> = _
 

@@ -18,9 +18,9 @@ package controllers
 import play.api._
 import play.api.mvc._
 import examples.StyleTraitExamples
+import javax.inject.Inject
 
-
-class Application extends Controller {
+class Application @Inject() (cc: ControllerComponents) extends AbstractController(cc) {
 
   import Application._
 
@@ -33,7 +33,7 @@ class Application extends Controller {
   }
 
   def download = Action {
-    Redirect(routes.Application.install.url)
+    Redirect(routes.Application.install().url)
   }
 
   def olderReleases = Action {
@@ -53,7 +53,7 @@ class Application extends Controller {
   }
 
   def community = Action {
-    Redirect(routes.Application.about.url)
+    Redirect(routes.Application.about().url)
   }
 
   def supersafe = Action {
@@ -172,6 +172,11 @@ object Application {
     } else
       s"$version/${file.replaceAll("\\.", "/")}.html"
 
+    routes.Assets.at("/public/scaladoc", filePath).toString
+  }
+
+  def plusScalaCheck16ScaladocsPageUrl(file: String, version: String = latestScalaCheckPlusVersion): String = {
+    val filePath = s"plus-scalacheck-1.16/$version/${file.replaceAll("\\.", "/")}.html"
     routes.Assets.at("/public/scaladoc", filePath).toString
   }
 
