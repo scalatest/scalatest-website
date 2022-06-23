@@ -14,7 +14,7 @@
  * limitations under the License.
  *@
 
-@import controllers.Application.scaladocsPageUrl
+@import controllers.Application.{scaladocsPageUrl, plusScalaCheck16ScaladocsPageUrl}
 
 @userGuidePage("Table-driven property checks") {
 <div style="text-align: left">
@@ -23,9 +23,9 @@
 
 <p>
 To use table-driven property checks, you must mix in trait <a href='@scaladocsPageUrl("org.scalatest.prop.TableDrivenPropertyChecks")'><code>TableDrivenPropertyChecks</code></a> (or import the
-members of its companion object). If you are also using generator-driven property checks, you can mix in
-trait <a href='@scaladocsPageUrl("org.scalatest.prop.PropertyChecks")'><code>PropertyChecks</code></a>,
-which extends both <code>TableDrivenPropertyChecks</code> and <a href='@scaladocsPageUrl("org.scalatest.prop.GeneratorDrivenPropertyChecks")'><code>GeneratorDrivenPropertyChecks</code></a>.
+members of its companion object). If you are also using ScalaCheck generator-driven property checks, you can mix in
+trait <a href='@plusScalaCheck16ScaladocsPageUrl("org.scalatestplus.scalacheck.ScalaCheckPropertyChecks")'><code>ScalaCheckPropertyChecks</code></a>,
+which extends both <code>TableDrivenPropertyChecks</code> and <a href='@plusScalaCheck16ScaladocsPageUrl("org.scalatestplus.scalacheck.ScalaCheckDrivenPropertyChecks")'><code>ScalaCheckDrivenPropertyChecks</code></a>.
 </p>
 
 <p>
@@ -119,9 +119,9 @@ example, if the tuples in the table supplied to <code>forAll</code> each contain
 <code>Int</code>, a <code>String</code>, and a <code>List[Char]</code>, then the function supplied
 to <code>forAll</code> must take 3 parameters, an <code>Int</code>, a <code>String</code>,
 and a <code>List[Char]</code>. The <code>forAll</code> method will pass each row of data to
-the function, and generate a <a href='@scaladocsPageUrl("org.scalatest.prop.TableDrivenPropertyCheckFailedException")'><code>TableDrivenPropertyCheckFailedException</code></a> if the function
-completes abruptly for any row of data with any exception that would <a href='@scaladocsPageUrl("org.scalatest.Suite&#64;errorHandling")'>normally cause</a> a test to
-fail in ScalaTest other than <a href='@scaladocsPageUrl("org.scalatest.prop.DiscardedEvaluationException")'><code>DiscardedEvaluationException</code></a>. An
+the function, and generate a <a href='@scaladocsPageUrl("org.scalatest.exceptions.TableDrivenPropertyCheckFailedException")'><code>TableDrivenPropertyCheckFailedException</code></a> if the function
+completes abruptly for any row of data with any exception that would <a href='@scaladocsPageUrl("org.scalatest.Suite")#errorHandling'>normally cause</a> a test to
+fail in ScalaTest other than <a href='@scaladocsPageUrl("org.scalatest.exceptions.DiscardedEvaluationException")'><code>DiscardedEvaluationException</code></a>. An
 <code>DiscardedEvaluationException</code>,
 which is thrown by the <code>whenever</code> method (also defined in this trait) to indicate
 a condition required by the property function is not met by a row
@@ -269,9 +269,9 @@ Given this table, you could check that all invalid combinations produce <code>Il
 
 <pre class="stHighlighted">
 forAll (invalidCombos) { (n: <span class="stType">Int</span>, d: <span class="stType">Int</span>) =>
-  evaluating {
+  an [<span class="stType">IllegalArgumentException</span>] should be thrownBy {
     <span class="stReserved">new</span> <span class="stType">Fraction</span>(n, d)
-  } should produce [<span class="stType">IllegalArgumentException</span>]
+  }
 }
 </pre>
 
