@@ -44,7 +44,7 @@ Here's an example of using ScalaCheck from a <code>JUnitSuite</code>:
 </p>
 <pre class="stHighlighted">
 <span class="stReserved">import</span> org.scalatest.junit.JUnitSuite
-<span class="stReserved">import</span> org.scalatest.prop.Checkers
+<span class="stReserved">import</span> org.scalatestplus.scalacheck.Checkers
 <span class="stReserved">import</span> org.scalacheck.Arbitrary._
 <span class="stReserved">import</span> org.scalacheck.Prop._
 <br /><span class="stReserved">class</span> <span class="stType">MySuite</span> <span class="stReserved">extends</span> <span class="stType">JUnitSuite</span> <span class="stReserved">with</span> <span class="stType">Checkers</span> {
@@ -87,7 +87,7 @@ To execute a suite that mixes in <code>Checkers</code> with ScalaTest's <code>Ru
 
 <p>
 The property checks performed by the <code>check</code> methods of this trait can be flexibly configured via the services
-provided by supertrait <code>Configuration</code>.  The five configuration parameters for property checks along with their
+provided by supertrait <a href='@scaladocsPageUrl("org.scalatest.prop.Configuration")'><code>Configuration</code></a>.  The five configuration parameters for property checks along with their
 default values and meanings are described in the following table:
 </p>
 
@@ -161,7 +161,7 @@ specifies the number of worker threads to use during property evaluation
 </table>
 
 <p>
-The <code>check</code> methods of trait <code>Checkers</code> each take a <code>PropertyCheckConfiguration</code>
+    The <code>check</code> methods of trait <code>Checkers</code> each take a <a href='@scaladocsPageUrl("org.scalatest.prop.Configuration$PropertyCheckConfiguration")'><code>PropertyCheckConfiguration</code></a>
 object as an implicit parameter. This object provides values for each of the five configuration parameters. Trait <code>Configuration</code>
 provides an implicit <code>val</code> named <code>generatorDrivenConfig</code> with each configuration parameter set to its default value.
 If you want to set one or more configuration parameters to a different value for all property checks in a suite you can override this
@@ -216,7 +216,7 @@ in case you want to configure ScalaCheck that way.
 <pre class="stHighlighted">
 <span class="stReserved">import</span> org.scalacheck.Prop
 <span class="stReserved">import</span> org.scalacheck.Test.Params
-<span class="stReserved">import</span> org.scalatest.prop.Checkers._
+<span class="stReserved">import</span> org.scalatestplus.scalacheck.Checkers._
 <br />check(Prop.forAll((n: <span class="stType">Int</span>) => n + <span class="stLiteral">0</span> == n), <span class="stType">Params</span>(minSuccessfulTests = <span class="stLiteral">5</span>))
 </pre>
 
