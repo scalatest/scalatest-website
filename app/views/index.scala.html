@@ -74,7 +74,8 @@ you run it, you get an informal specification of the software being tested:
 </div>
 
 <pre class="scala">
-$ scala -cp scalatest_@{majorMinorScalaVersion}-@{latestVersion}.jar org.scalatest.run ExampleSpec
+$ CLASSPATH=scalatest-app_@{majorMinorScalaVersion}-@{latestVersion}.jar:scala-xml_2.13-2.1.0.jar
+$ scala -cp $CLASSPATH org.scalatest.run ExampleSpec
 <span class="cyanincolor">Discovery starting.
 Discovery completed in 21 milliseconds.
 Run starting. Expected test count is: 2</span>
