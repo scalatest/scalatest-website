@@ -275,6 +275,7 @@ send that information to the reporter:</p>
 <span class="stReserved">package</span> org.scalatest.examples.flatspec.noargtest
 <br /><span class="stReserved">import</span> java.io.File
 <span class="stReserved">import</span> org.scalatest._
+<span class="stReserved">import</span> org.scalatest.flatspec.AnyFlatSpec
 <br /><span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">AnyFlatSpec</span> {
 <br />  <span class="stReserved">override</span> <span class="stReserved">def</span> withFixture(test: <span class="stType">NoArgTest</span>) = {
 <br />    <span class="stReserved">super</span>.withFixture(test) <span class="stReserved">match</span> {
@@ -395,9 +396,9 @@ done in this example. This keeps tests completely isolated, allowing you to run 
 <p></pre>
 <a name="withFixtureOneArgTest"></a></p><h4> Overriding <code>withFixture(OneArgTest)</code> </h4>
 
-<p>If all or most tests need the same fixture, you can avoid some of the boilerplate of the loan-fixture method approach by using a <code>fixture.AnyFlatSpec</code>
+<p>If all or most tests need the same fixture, you can avoid some of the boilerplate of the loan-fixture method approach by using a <code>FixtureAnyFlatSpec</code>
 and overriding <code>withFixture(OneArgTest)</code>.
-Each test in a <code>fixture.AnyFlatSpec</code> takes a fixture as a parameter, allowing you to pass the fixture into
+Each test in a <code>FixtureAnyFlatSpec</code> takes a fixture as a parameter, allowing you to pass the fixture into
 the test. You must indicate the type of the fixture parameter by specifying <code>FixtureParam</code>, and implement a
 <code>withFixture</code> method that takes a <code>OneArgTest</code>. This <code>withFixture</code> method is responsible for
 invoking the one-arg test function, so you can perform fixture set up before, and clean up after, invoking and passing
@@ -418,9 +419,10 @@ withFixture(test.toNoArgTest(theFixture))
 
 <p><pre class="stHighlighted">
 <span class="stReserved">package</span> org.scalatest.examples.flatspec.oneargtest
-<br /><span class="stReserved">import</span> org.scalatest.fixture
+<br /><span class="stReserved">import</span> org.scalatest.flatspec.FixtureAnyFlatSpec
+
 <span class="stReserved">import</span> java.io._
-<br /><span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">fixture.AnyFlatSpec</span> {
+<br /><span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">FixtureAnyFlatSpec</span> {
 <br />  <span class="stReserved">case</span> <span class="stReserved">class</span> <span class="stType">FixtureParam</span>(file: <span class="stType">File</span>, writer: <span class="stType">FileWriter</span>)
 <br />  <span class="stReserved">def</span> withFixture(test: <span class="stType">OneArgTest</span>) = {
     <span class="stReserved">val</span> file = File.createTempFile(<span class="stQuotedString">&quot;hello&quot;</span>, <span class="stQuotedString">&quot;world&quot;</span>) <span class="stLineComment">// create the fixture</span>
@@ -447,7 +449,7 @@ withFixture(test.toNoArgTest(theFixture))
 
 <p>In this example, the tests actually required two fixture objects, a <code>File</code> and a <code>FileWriter</code>. In such situations you can
 simply define the <code>FixtureParam</code> type to be a tuple containing the objects, or as is done in this example, a case class containing
-the objects.  For more information on the <code>withFixture(OneArgTest)</code> technique, see the <a href='@scaladocsPageUrl("org.scalatest.flatspec.AnyFlatSpec")'>documentation for <code>fixture.AnyFlatSpec</code></a>.</p>
+the objects.  For more information on the <code>withFixture(OneArgTest)</code> technique, see the documentation for <a href='@scaladocsPageUrl("org.scalatest.flatspec.FixtureAnyFlatSpec")'> <code>FixtureAnyFlatSpec</code></a>.</p>
 
 <p><a name="beforeAndAfter"> </a></p><h4> Mixing in <code>BeforeAndAfter</code> </h4>
 
