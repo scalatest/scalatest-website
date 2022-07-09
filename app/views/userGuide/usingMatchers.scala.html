@@ -34,8 +34,8 @@ using the word <code>should</code>. Just mix in <a href='@scaladocsPageUrl("org.
 </p>
 
 <pre class="stHighlighted">
-<span class="stReserved">import</span> org.scalatest._
-<span class="stReserved">import</span> matchers.should._
+<span class="stReserved">import</span> org.scalatest.flatspec._
+<span class="stReserved">import</span> org.scalatest.matchers.should._
 
 <span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">AnyFlatSpec</span> <span class="stReserved">with</span> <span class="stType">Matchers</span> &#123; ...
 </pre>
@@ -46,8 +46,8 @@ Scala interpreter. Here's an example where the members of <code>should.Matchers<
 </p>
 
 <pre class="stHighlighted">
-<span class="stReserved">import</span> org.scalatest._
-<span class="stReserved">import</span> matchers.should.Matchers._
+<span class="stReserved">import</span> org.scalatest.flatspec._
+<span class="stReserved">import</span> org.scalatest.matchers.should.Matchers._
 
 <span class="stReserved">class</span> <span class="stType">ExampleSpec</span> <span class="stReserved">extends</span> <span class="stType">AnyFlatSpec</span> &#123; // Can use matchers here ...
 </pre>
