@@ -53,7 +53,7 @@ in your SBT file, or if you use Maven:
 &lt;dependency&gt;
     &lt;groupId&gt;org.scalatestplus&lt;/groupId&gt;
     &lt;artifactId&gt;scalacheck-@{latestScalaCheckVersion}_2.13&lt;/artifactId&gt;
-    &lt;version&gt;@latestScalaCheckVersion&lt;/version&gt;
+    &lt;version&gt;@latestScalaCheckPlusVersion&lt;/version&gt;
     &lt;scope&gt;test&lt;/scope&gt;
 &lt;/dependency&gt;    
 </pre>
@@ -79,7 +79,7 @@ As an example property-based testing using both table- and generator-driven prop
 </pre>
 
 <p>
-If you mix in <code>PropertyChecks</code>, you could use a generator-driven property check to test that the passed values for numerator and
+If you mix in <code>ScalaCheckPropertyChecks</code>, you could use a generator-driven property check to test that the passed values for numerator and
 denominator are properly normalized, like this:
 </p>
 
