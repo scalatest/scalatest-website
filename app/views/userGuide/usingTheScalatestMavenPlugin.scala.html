@@ -27,7 +27,7 @@ and access all functionality of the ScalaTest <code>Runner</code>, including par
 <ul>
 <li>group id: org.scalatest</li>
 <li>artifact id: scalatest-maven-plugin</li>
-<li>version: 2.0.2</li>
+<li>version: 2.1.0</li>
 </ul>
 
 <p>
@@ -49,7 +49,7 @@ Here's an example of how to do this in your pom.xml:
 &lt;plugin&gt;
   &lt;groupId&gt;org.scalatest&lt;/groupId&gt;
   &lt;artifactId&gt;scalatest-maven-plugin&lt;/artifactId&gt;
-  &lt;version&gt;2.0.2&lt;/version&gt;
+  &lt;version&gt;2.1.0&lt;/version&gt;
   &lt;configuration&gt;
     &lt;reportsDirectory&gt;${project.build.directory}/surefire-reports&lt;/reportsDirectory&gt;
     &lt;junitxml&gt;.&lt;/junitxml&gt;
@@ -199,6 +199,11 @@ If set to 0, process never times out. The default value is 0.</td>
 <tr>
 <td class="quickref"><code>testFailureIgnore</code></td>
 <td class="quickref">(TestMojo only) Set to true to avoid failing the build when tests fail</td>
+</tr>
+
+<tr>
+<td class="quickref"><code>noScalaTestIgnore</code></td>
+<td class="quickref">(TestMojo only) Set to true to avoid failing the build when ScalaTest not found on classpath</td>
 </tr>
 
 <tr>
