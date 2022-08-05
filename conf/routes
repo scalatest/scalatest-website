@@ -171,6 +171,7 @@ GET        /plus/testng/versions                                        controll
 GET        /releases/:zipFile                                           controllers.Application.releases(zipFile)
 
 # Map static resources from the /public folder to the /assets and
+GET        /favicon.ico                                                 controllers.Assets.at(path="/public/images", file="favicon.ico")
 # /scaladoc URL paths
 GET        /scaladoc/*file                                              controllers.Assets.at(path="/public/scaladoc", file)
 GET        /assets/*file                                                controllers.Assets.at(path="/public", file)
