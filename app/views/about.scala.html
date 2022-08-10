@@ -66,6 +66,42 @@ Several people have helped with ScalaTest, including:
 <li>Eugene Burmako</li>
 <li>Jason Zaugg</li>
 <li>Matt Hughes</li>
+<li>Fengyun Liu</li>
+<li>Nicolas Stucki</li>
+<li>Bùi Việt Thành</li>
+<li>Shadaj Laddad</li>
+<li>Robert Fries</li>
+<li>Kirill A. Korinsky</li>
+<li>Aaron S. Hawley</li>
+<li>Guillaume Martres</li>
+<li>Allan Renucci</li>
+<li>Seth Tisue</li>
+<li>Taisuke Oe</li>
+<li>Sébastien Doeraene</li>
+<li>Sandor Kelemen</li>
+<li>Martin Odersky</li>
+<li>Benjamin Edwards</li>
+<li>Nguyen Hong Phuc</li>
+<li>Jamie Thompson</li>
+<li>Michael Pilquist</li>
+<li>Sébastian Le Merdy</li>
+<li>Marcos Pereira</li>
+<li>Travis Brown</li>
+<li>John Duffell</li>
+<li>John Sullivan</li>
+<li>Lorenz Mende</li>
+<li>Naftoli Gugenheim</li>
+<li>Ondra Pelech</li>
+<li>Peter Linlor</li>
+<li>Daniel Wojda</li>
+<li>Brendan Maguire</li>
+<li>Joan Goyeau</li>
+<li>Bruno Bonanno</li>
+<li>Arnout Engelen</li>
+<li>João Abecasis</li>
+<li>Tom Grigg</li>
+<li>Pavel Kozlov</li>
+<li>Tim Zhlobich</li>
 </ul>
 
 <p>
@@ -88,11 +124,18 @@ You can git clone it to your local disk with this command
 There are also supporting projects for ScalaTest available here:
 
 <ul>
-<li><a href="https://github.com/scalatest/scalatest-eclipse-plugin">ScalaTest Eclipse Plugin</a></li>
 <li><a href="https://github.com/scalatest/scalatest-maven-plugin">ScalaTest Maven Plugin</a></li>
-<li><a href="https://github.com/scalatest/scalatest-finders">ScalaTest Finders</a></li>
+<li><a href="https://github.com/scalatest/scalatestplus-selenium">ScalaTest + Selenium</a></li>
+<li><a href="https://github.com/scalatest/scalatestplus-scalacheck">ScalaTest + ScalaCheck</a></li>
+<li><a href="https://github.com/scalatest/scalatestplus-junit">ScalaTest + JUnit</a></li>
+<li><a href="https://github.com/scalatest/scalatestplus-testng">ScalaTest + TestNG</a></li>
+<li><a href="https://github.com/scalatest/scalatestplus-mockito">ScalaTest + Mockito</a></li>
+<li><a href="https://github.com/scalatest/scalatestplus-easymock">ScalaTest + EasyMock</a></li>
+<li><a href="https://github.com/scalatest/scalatestplus-jmock">ScalaTest + JMock</a></li>
 <li><a href="https://github.com/scalatest/scalatest-website">ScalaTest Website</a></li>
 <li><a href="https://github.com/scalatest/scalactic-website">Scalactic Website</a></li>
+<li><a href="https://github.com/scalatest/scalatest-eclipse-plugin">ScalaTest Eclipse Plugin</a></li>
+<li><a href="https://github.com/scalatest/scalatest-finders">ScalaTest Finders</a></li>
 </ul>
 
 <p>
@@ -113,19 +156,7 @@ The followings are needed for building ScalaTest:
 </ul>
 
 <p>
-for JDK 6 or 7, use the following options in your SBT launch file:
-</p>
-
-<p>
-<code>SBT_OPTS="-server -Xms512M -Xmx3000M -Xss1M -XX:+CMSClassUnloadingEnabled -XX:+UseConcMarkSweepGC -XX:+CMSIncrementalMode -XX:NewRatio=8 -XX:MaxPermSize=512M"</code>
-</p>
-
-<p>
-for JDK 8, use the following SBT options instead:
-</p>
-
-<p>
-<code>SBT_OPTS="-server -Xms512M -Xmx3000M -Xss1M  -XX:+UseConcMarkSweepGC -XX:NewRatio=8"</code>
+It is recommended to have at least 4GB heap size to build and run the regular test, if you would like to build for generated tests, scala-js or scala-native, you may need up to 11GB of heap size.
 </p>
 
 <h3>Building and Running Tests</h3>
@@ -159,7 +190,7 @@ You can package the ScalaTest JAR file using this command:
 </p>
 
 <p>
-The resulting JAR file will be produced in <code>target/scala-2.10/</code>.
+The resulting JAR file will be produced in the target folder of related module, e.g. for scalatest-core it will be in <code>jvm/core/target/scala-2.13/</code>.
 </p>
 
 <p>
