@@ -22,21 +22,25 @@
 <h1>Generator-driven property checks</h1>
 
 <p>
-To use generator-driven property checks, you must mix in trait <a href='@scaladocsPageUrl("org.scalatest.prop.GeneratorDrivenPropertyChecks")'><code>GeneratorDrivenPropertyChecks</code></a> (or import the
-members of its companion object). If you are also using table-driven property checks, you can mix in
-trait <a href='@scaladocsPageUrl("org.scalatest.prop.PropertyChecks")'><code>PropertyChecks</code></a>,
-which extends both <code>GeneratorDrivenPropertyChecks</code> and <a href='@scaladocsPageUrl("org.scalatest.prop.TableDrivenPropertyChecks")'><code>TableDrivenPropertyChecks</code></a>. Generator-driven property checks uses <a href="http://www.scalacheck.org/")'>ScalaCheck</a>, so you must also include the ScalaCheck JAR file on your classpath when you compile and run your tests.
+To use generator-driven property checks, you must mix in trait <code>org.scalatestplus.scalacheck.ScalaCheckPropertyChecks</code>
+ (previously known as <code>org.scalatest.props.PropertyChecks</code>). If you are also using table-driven property checks, you can mix in
+trait <code>org.scalatestplus.scalacheck.ScalaCheckPropertyChecks</code>,
+which extends both <code>ScalaCheckDrivenPropertyChecks</code> and
+<a href='@scaladocsPageUrl("org.scalatest.prop.TableDrivenPropertyChecks")'><code>TableDrivenPropertyChecks</code></a>.
+Generator-driven property checks uses <a href="http://www.scalacheck.org/")'>ScalaCheck</a> and
+<a href="@routes.Plus.scalacheck()">ScalaTest + ScalaCheck</a>, so you must also include both jars on your classpath when
+you compile and run your tests.
 </p>
 
 <p>
-Trait <code>GeneratorDrivenPropertyChecks</code> contains <code>forAll</code> methods that provide various ways to check properties using
+Trait <code>ScalaCheckDrivenPropertyChecks</code> contains <code>forAll</code> methods that provide various ways to check properties using
 generated data.
 It also contains a <code>wherever</code> method that can be used to indicate a property need only hold whenever
 some condition is true.
 </p>
 
 <p>
-For an example of trait <code>GeneratorDrivenPropertyChecks</code> in action, imagine you want to test this <code>Fraction</code> class:
+For an example of trait <code>ScalaCheckDrivenPropertyChecks</code> in action, imagine you want to test this <code>Fraction</code> class:
 </p>
 
 <pre class="stHighlighted">
@@ -51,7 +55,7 @@ For an example of trait <code>GeneratorDrivenPropertyChecks</code> in action, im
 </pre>
 
 <p>
-To test the behavior of <code>Fraction</code>, you could mix in or import the members of <code>GeneratorDrivenPropertyChecks</code>
+To test the behavior of <code>Fraction</code>, you could mix in or import the members of <code>ScalaCheckDrivenPropertyChecks</code>
 (and <a href='@scaladocsPageUrl("org.scalatest.matchers.should.Matchers")'><code>should.Matchers</code></a>) and check a property using a <code>forAll</code> method, like this:
 </p>
 
@@ -72,7 +76,7 @@ forAll { (n: <span class="stType">Int</span>, d: <span class="stType">Int</span>
 </pre>
 
 <p>
-Trait <code>GeneratorDrivenPropertyChecks</code> provides overloaded <code>forAll</code> methods
+Trait <code>ScalaCheckDrivenPropertyChecks</code> provides overloaded <code>forAll</code> methods
 that allow you to check properties using the data provided by a ScalaCheck generator. The simplest form
 of <code>forAll</code> method takes two parameter lists, the second of which is implicit. The first parameter list
 is a "property" function with one to six parameters. An implicit <code>Arbitrary</code> generator and <code>Shrink</code> object needs to be supplied for
