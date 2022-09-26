@@ -24,6 +24,9 @@ class ReleaseNotes @Inject() (cc: ControllerComponents) extends AbstractControll
   def releaseNotesIndex = Action {
     Ok(views.html.releaseNotes.releaseNotesIndex())
   }
+  def v3214 = Action {
+    Ok(views.html.releaseNotes.v3214())
+  }
   def v3213 = Action {
     Ok(views.html.releaseNotes.v3213())
   }

@@ -1,0 +1,122 @@
+@*
+* Copyright 2010-2022 Artima, Inc.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*@
+
+@import controllers.Application.scaladocsPageUrl
+@import controllers.Application.milestoneScaladoc
+
+@combinedReleaseNotesPage("Scalactic/ScalaTest 3.2.14 Release Notes") {
+<div style="text-align: left">
+
+    <h1>ScalaTest/Scalactic 3.2.14 Release Notes</h1>
+
+    <p>
+        ScalaTest/Scalactic 3.2.14 (for Scala 2.10, 2.11, 2.12, 2.13, 3.1; on the JVM, JavaScript, and native)
+        includes the enhancements listed below.
+    </p>
+
+    <p>
+        For information on how to include ScalaTest in your project, see the <a href="/install">install page</a>.
+        For information on how to use <a href="http://www.scalactic.org/">Scalactic</a> in your production code,
+        see its <a href="http://www.scalactic.org/install">install page</a>.
+    </p>
+
+    <br/>
+
+    <!-- ====================================== SCALA TEST ==================================================== -->
+
+    <hr style="height:3px;border:none;color:#333;background-color:#333;" /> <!-- ############################################### -->
+
+    <div align="center" style="padding-top:0.8rem">
+        <h1>ScalaTest</h1>
+    </div>
+
+    <hr></hr>
+
+    <p>
+        ScalaTest 3.2.14 is a minor release of ScalaTest that makes bug fixes, few enhancements, and supports Scala.js 1.8.x, Scala.native 0.4.5 and Scala 3.1.x.
+    </p>
+
+    <a name="scalatest_bugfixes"></a>
+    <h2>Bug Fixes</h2>
+    <p>Fixed serialization problem for TestFailedException thrown from EitherValues. (<a href="https://github.com/scalatest/scalatest/pull/2159">PR #2159</a>)</p>
+    <p>Set sorting reporter as complete if test run failed unexpected. (<a href="https://github.com/scalatest/scalatest/pull/2161">PR #2161</a>)</p>
+    
+    <a name="scalatest_improvements"></a>
+    <h2>Improvements</h2>
+    <p>Marked matchers DSL with Scala 3 infix keyword. (<a href="https://github.com/scalatest/scalatest/pull/2158">PR #2158</a>)</p>
+    <p>Enabled scaladoc artifact for Scala 3 build. (<a href="https://github.com/scalatest/scalatest/pull/2163">PR #2163</a>)</p>
+    
+    <a name="scalatest_deprecations"></a>
+    <h2>Deprecations</h2>
+    <p>ScalaTest 3.2.14 contains no new deprecations.</p>
+
+    <br/>
+
+    <!-- ====================================== SCALACTIC ==================================================== -->
+
+    <hr style="height:3px;border:none;color:#333;background-color:#333;" /> <!-- ############################################### -->
+
+    <div align="center" style="padding-top:0.8rem">
+        <h1>Scalactic</h1>
+    </div>
+
+    <hr></hr>
+
+    <a name="scalactic_bugfixes"></a>
+    <h2>Bug Fixes</h2>
+    <p>Scalactic 3.2.14 contains no bug fixes.</p>
+
+    <a name="scalactic_improvements"></a>
+    <h2>Improvements</h2>
+    <p>Enhanced pretty print support for case classes. (<a href="https://github.com/scalatest/scalatest/pull/2155">PR #2155</a>)</p>
+    <p>Changed the remaining GenTraversable in Prettifier to Iterable. (<a href="https://github.com/scalatest/scalatest/pull/2156">PR #2156</a>)</p>
+    <p>Whenever possible call .hasDefiniteSize first before calling .size on collection. (<a href="https://github.com/scalatest/scalatest/pull/2156">PR #2156</a>)</p>
+    <p>Enhanced pretty print support for tuples. (<a href="https://github.com/scalatest/scalatest/pull/2160">PR #2160</a>)</p>
+    <p>Enabled scaladoc artifact for Scala 3 build. (<a href="https://github.com/scalatest/scalatest/pull/2163">PR #2163</a>)</p>
+
+    <a name="scalactic_deprecations"></a>
+    <h2>Deprecations</h2>
+    <p>Scalactic 3.2.14 contains no new deprecations.</p>
+
+    <br/>
+
+    <hr style="height:3px;border:none;color:#333;background-color:#333;" />
+    <br/>
+
+    <h2>ScalaTest/Scalactic Contributors</h2>
+
+    Thanks to the contributors for the ScalaTest/Scalactic 3.2.14 release:
+
+    <ul>
+        <li><a href="https://github.com/mdedetrich">Matthew de Detrich</a></li>
+        <li><a href="https://github.com/nimatrueway">Nima Taheri</a></li>
+        <li><a href="https://github.com/cheeseng">Chua Chee Seng</a></li>
+        <li><a href="https://github.com/bvenners">Bill Venners</a></li>
+    </ul>
+
+    <br/>
+
+    <!-- ====================================== NOTES ==================================================== -->
+
+    <hr style="height:3px;border:none;color:#333;background-color:#333;" /> <!-- ############################################### -->
+
+    <p>
+        Visit <a href="@routes.ReleaseNotes.releaseNotesIndex()">ScalaTest Release Notes</a> for links to the release notes of all previous versions, or
+        step back in time by visiting the <a href="@routes.ReleaseNotes.v3213">release notes for the previous version</a>.
+    </p>
+
+</div>
+}
