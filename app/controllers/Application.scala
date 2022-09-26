@@ -140,7 +140,7 @@ class Application @Inject() (cc: ControllerComponents) extends AbstractControlle
 object Application {
 
   val latestVersion = "3.2.14"
-  val latestSuperSafeVersion = "1.1.13"
+  val latestSuperSafeVersion = "1.1.12"
   val milestoneVersion = "3.2.0"
   val milestoneJar = "https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest_2.11/3.2.0-RC3/scalatest_2.11-3.2.0-RC3.jar"
   val latestJar = s"https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest-app_2.13/$latestVersion/scalatest-app_2.13-$latestVersion.jar"
