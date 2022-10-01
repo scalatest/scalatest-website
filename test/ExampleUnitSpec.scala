@@ -15,12 +15,12 @@
  */   
 package test
 
-import org.scalatest._
 import play.api.test._
 import play.api.test.Helpers._
-import org.scalatestplus.play._
+import org.scalatestplus.play.PlaySpec
+import org.scalatestplus.play.guice.GuiceOneAppPerTest
 
-class ExampleUnitSpec extends PlaySpec with OneAppPerTest {
+class ExampleUnitSpec extends PlaySpec with GuiceOneAppPerTest {
 
   "Application" must {
     
