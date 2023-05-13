@@ -139,7 +139,7 @@ class Application @Inject() (cc: ControllerComponents) extends AbstractControlle
 
 object Application {
 
-  val latestVersion = "3.2.15"
+  val latestVersion = "3.2.16"
   val latestSuperSafeVersion = "1.1.12"
   val milestoneVersion = "3.2.0"
   val milestoneJar = "https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest_2.11/3.2.0-RC3/scalatest_2.11-3.2.0-RC3.jar"
@@ -157,13 +157,13 @@ object Application {
   val latestJUnitVersion = "4-13"
   val latestMockitoVersion = "4-6"
   val latestScalaCheckVersion = "1-17"
-  val latestScalaCheckPlusVersion = "3.2.15.0"
+  val latestScalaCheckPlusVersion = "3.2.16.0"
   val latestTestNGVersion = "7-5"  
   val quickStartXmlJar = "https://repo1.maven.org/maven2/org/scala-lang/modules/scala-xml_2.13/2.1.0/scala-xml_2.13-2.1.0.jar"
-  val latestPlusScalaCheckDoc = "plus-scalacheck-1.17/3.2.15.0"
-  val latestPlusEasyMockDoc = "plus-easymock-5.1/3.2.15.0"
-  val latestPlusJMockDoc = "plus-jmock-2.12/3.2.15.0"
-  val latestPlusMockitoDoc = "plus-mockito-4.6/3.2.15.0"
+  val latestPlusScalaCheckDoc = "plus-scalacheck-1.17/3.2.16.0"
+  val latestPlusEasyMockDoc = "plus-easymock-5.1/3.2.16.0"
+  val latestPlusJMockDoc = "plus-jmock-2.12/3.2.16.0"
+  val latestPlusMockitoDoc = "plus-mockito-4.6/3.2.16.0"
 
   def scaladocsPageUrl(file: String, version: String = latestVersion): String = {
     val oldScaladocStyle30Releases = List("3.0.0", "3.0.1", "3.0.2", "3.0.3", "3.0.4")
