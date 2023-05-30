@@ -145,6 +145,21 @@ a property. <code>forAll</code> checks to make sure the property holds for each 
 </p>
 
 <p>
+When you get a failed property check, ScalaTest will report the failure with initial seed so that you can reproduce the failure.  You'll need to pass the initial seed value through <code>-S</code> argument,
+here's an example you pass it through build.sbt:
+</p>
+
+<pre class="stHighlighted">
+testOptions += Tests.Argument(TestFrameworks.ScalaTest, "-S", "123456789")
+</pre>
+
+or if you are using testOnly you can do:
+
+<pre class="scala">
+sbt> testOnly MyTest -- -S 123456879
+</pre>
+
+<p>
 For more information check out the user guide pages for:
 </p>
 
