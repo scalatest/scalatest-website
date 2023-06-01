@@ -32,21 +32,7 @@ overview of <code>AnyFlatSpec</code></a>.</p></div><dl class="attributes block">
 
 <!-- Top of doc.scalatest.org [javascript] -->
 
-<script type="text/javascript">
-
-var rnd = window.rnd || Math.floor(Math.random()*10e6);
-
-var pid204546 = window.pid204546 || rnd;
-
-var plc204546 = window.plc204546 || 0;
-
-var abkw = window.abkw || '';
-
-var absrc = 'http://ab167933.adbutler-ikon.com/adserve/;ID=167933;size=468x60;setID=204546;type=js;sw='+screen.width+';sh='+screen.height+';spr='+window.devicePixelRatio+';kw='+abkw+';pid='+pid204546+';place='+(plc204546++)+';rnd='+rnd+';click=CLICK_MACRO_PLACEHOLDER';
-
-document.write('<scr'+'ipt src="'+absrc+'" type="text/javascript"></scr'+'ipt>');
-
-</script>
+<script id="adsArtimaScript" type="text/javascript" src="https://www.artima.com/assets/javascripts/4ca150665e51d0b1c3890ca1b891c507-ads.js?product=ScalaTest"></script>
 <div id="definition"><div class="big-circle class">c</div><p id="owner"><a href="../../index.html" name="org" id="org" class="extype">org</a>.<a href="../index.html" name="org.scalatest" id="org.scalatest" class="extype">scalatest</a>.<a href="index.html" name="org.scalatest.flatspec" id="org.scalatest.flatspec" class="extype">flatspec</a>.<a href="AnyFlatSpecLike.html" name="org.scalatest.flatspec.AnyFlatSpecLike" id="org.scalatest.flatspec.AnyFlatSpecLike" class="extype">AnyFlatSpecLike</a></p><h1>IgnoreVerbStringTaggedAs<span class="permalink"><a href="../../../org/scalatest/flatspec/AnyFlatSpecLike$IgnoreVerbStringTaggedAs.html" title="Permalink"><i class="material-icons"></i></a></span></h1><h3><span class="morelinks"></span></h3></div><h4 id="signature" class="signature"><span class="modifier_kind"><span class="modifier">final </span> <span class="kind">class</span></span> <span class="symbol"><span class="name">IgnoreVerbStringTaggedAs</span><span class="result"> extends <span name="scala.AnyRef" class="extype">AnyRef</span></span></span></h4><div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Class that supports registration of ignored, tagged tests via the <code>IgnoreWord</code> instance referenced
 from <code>AnyFlatSpec</code>'s <code>ignore</code> field.</p><p>This class enables syntax such as the following registration of an ignored, tagged test:</p><p><pre class="stHighlighted">
 ignore should <span class="stQuotedString">"pop values in last-in-first-out order"</span> taggedAs(<span class="stType">SlowTest</span>) in { ... }
