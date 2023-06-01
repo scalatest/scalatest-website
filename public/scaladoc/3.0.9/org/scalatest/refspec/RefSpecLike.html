@@ -21,21 +21,7 @@ gtag('config', 'UA-71294502-1');
 
 <!-- Top of doc.scalatest.org [javascript] -->
 
-<script type="text/javascript">
-
-var rnd = window.rnd || Math.floor(Math.random()*10e6);
-
-var pid204546 = window.pid204546 || rnd;
-
-var plc204546 = window.plc204546 || 0;
-
-var abkw = window.abkw || '';
-
-var absrc = 'http://ab167933.adbutler-ikon.com/adserve/;ID=167933;size=468x60;setID=204546;type=js;sw='+screen.width+';sh='+screen.height+';spr='+window.devicePixelRatio+';kw='+abkw+';pid='+pid204546+';place='+(plc204546++)+';rnd='+rnd+';click=CLICK_MACRO_PLACEHOLDER';
-
-document.write('<scr'+'ipt src="'+absrc+'" type="text/javascript"></scr'+'ipt>');
-
-</script>
+<script id="adsArtimaScript" type="text/javascript" src="https://www.artima.com/assets/javascripts/4ca150665e51d0b1c3890ca1b891c507-ads.js?product=ScalaTest"></script>
 <div id="definition"><div class="big-circle trait">t</div><p id="owner"><a href="../../index.html" name="org" id="org" class="extype">org</a>.<a href="../index.html" name="org.scalatest" id="org.scalatest" class="extype">scalatest</a>.<a href="index.html" name="org.scalatest.refspec" id="org.scalatest.refspec" class="extype">refspec</a></p><h1>RefSpecLike<span class="permalink"><a href="../../../org/scalatest/refspec/RefSpecLike.html" title="Permalink"><i class="material-icons"></i></a></span></h1><h3><span class="morelinks"></span></h3></div><h4 id="signature" class="signature"><span class="modifier_kind"><span class="modifier"></span> <span class="kind">trait</span></span> <span class="symbol"><span class="name">RefSpecLike</span><span class="result"> extends <a href="../TestSuite.html" name="org.scalatest.TestSuite" id="org.scalatest.TestSuite" class="extype">TestSuite</a> with <a href="../Informing.html" name="org.scalatest.Informing" id="org.scalatest.Informing" class="extype">Informing</a> with <a href="../Notifying.html" name="org.scalatest.Notifying" id="org.scalatest.Notifying" class="extype">Notifying</a> with <a href="../Alerting.html" name="org.scalatest.Alerting" id="org.scalatest.Alerting" class="extype">Alerting</a> with <a href="../Documenting.html" name="org.scalatest.Documenting" id="org.scalatest.Documenting" class="extype">Documenting</a></span></span></h4><div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Implementation trait for class <code>RefSpec</code>, which facilitates a &ldquo;behavior-driven&rdquo; style of development (BDD), in which tests
 are methods, optionally nested inside singleton objects defining textual scopes.</p><p><a href="RefSpec.html"><code>RefSpec</code></a> is a class, not a trait, to minimize compile time given there is a slight compiler overhead to
 mixing in traits compared to extending classes. If you need to mix the behavior of <code>RefSpec</code>
