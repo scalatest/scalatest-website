@@ -66,6 +66,7 @@ scala [-cp scalatest-&lt;version&gt;.jar:...] org.scalatest.tools.Runner [argume
 <tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center"><code>-C<em>[NCXEHLOPQMD] &lt;reporter class&gt;</em></code></td><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">select a custom reporter</td><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center"><code>-C com.company.project.BarReporter</code></td></tr>
 <tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center"><code>-M <em>&lt;file name&gt;</em></code></td><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">memorize failed and canceled tests in a file, so they can be rerun with -A (again)</td><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center"><code>-M rerun.txt</code></td></tr>
 <tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center"><code>-A <em>&lt;file name&gt;</em></code></td><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">used in conjunction with -M (momento) to select previously failed and canceled tests to rerun again</td><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center"><code>-A rerun.txt</code></td></tr>
+<tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center"><code>-S <em>&lt;generator seed&gt;</code></td><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">defines seed used by generator.</td></tr>
 </table></p>
 
 <p>The simplest way to start <code>Runner</code> is to specify the directory containing your compiled tests as the sole element of the runpath, for example:</p>
@@ -454,7 +455,20 @@ method returning a TestSuite.</p>
 <p><pre class="stHighlight">
 -A failed-canceled.txt
 </pre>
-</p></div>
+</p>
+
+<a name="memorizingAndRerunning"> </a>
+<h2> Setting seed for generator </h2>
+
+<p>You can setting seed used by generator tests using <code>-S</code>:</p>
+
+<p><pre class="stHighlight">
+-S 1234567890
+</pre></p>
+
+<p>Generators in property-driven tests will then use the specified seed to reproduce your test failure.</p>
+
+</div>
 
 }
 
