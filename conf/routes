@@ -164,6 +164,8 @@ GET        /plus/jmock                                                  controll
 GET        /plus/jmock/versions                                         controllers.Plus.jmockVersions()
 GET        /plus/junit                                                  controllers.Plus.junit()
 GET        /plus/junit/versions                                         controllers.Plus.junitVersions()
+GET        /plus/junit5                                                 controllers.Plus.junit5()
+GET        /plus/junit5/versions                                        controllers.Plus.junit5Versions()
 GET        /plus/mockito                                                controllers.Plus.mockito()
 GET        /plus/mockito/versions                                       controllers.Plus.mockitoVersions()
 GET        /plus/scalacheck                                             controllers.Plus.scalacheck()
