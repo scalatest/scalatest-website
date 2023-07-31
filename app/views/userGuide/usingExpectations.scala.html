@@ -1,0 +1,197 @@
+@*
+* Copyright 2010-2023 Artima, Inc.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*@
+
+@import controllers.Application.scaladocsPageUrl
+@import controllers.Application.scalacticScaladocsPageUrl
+@import controllers.Application.latestVersion
+@import controllers.Application.majorMinorScalaVersion
+
+@userGuidePage("Using expectations") {
+<div style="text-align: left">
+
+    <h1>Using expectations</h1>
+
+    <p>
+        ScalaTest expectations is different from <a href="@routes.UserGuide.usingAssertions().url">assertions</a> in the way that when failure happens, it does not
+        throw <code>Exception</code> but will return a <code>Fact</code> instead.
+    </p>
+
+    <p>
+        ScalaTest makes three assertions available by default in any style trait. You can use:
+    </p>
+
+    <ul>
+        <li><code>expect</code> for general expectations;</li>
+        <li><code>expectResult</code> to differentiate expected from actual values;</li>
+        <li><code>expectThrows</code> to ensure a bit of code throws an expected exception.</li>
+    </ul>
+
+    <p>
+        ScalaTest's expectations are defined in trait <a href='@scaladocsPageUrl("org.scalatest.expectations.Expectations")'><code>Expectations</code></a>.  You'll
+        need to include an extra dependency to your build file.
+    </p>
+
+    <p>
+        To include ScalaTest Expectations in your sbt project, simply add this line:
+    </p>
+
+<pre class="stHighlighted">
+libraryDependencies += <span class="stQuotedString">"org.scalatest"</span> %% <span class="stQuotedString">"scalatest-expectations"</span> % <span class="stQuotedString">"@{latestVersion}"</span> % <span class="stQuotedString">"test"</span>
+</pre>
+
+    <p>
+        To include ScalaTest in your Maven project, use:
+    </p>
+
+<pre class="stHighlighted">
+&lt;dependency&gt;
+  &lt;groupId&gt;org.scalatest&lt;/groupId&gt;
+  &lt;artifactId&gt;scalatest-expectations_@{majorMinorScalaVersion}&lt;/artifactId&gt;
+  &lt;version&gt;@{latestVersion}&lt;/version&gt;
+  &lt;scope&gt;test&lt;/scope&gt;
+&lt;/dependency&gt;
+</pre>
+
+    <p>
+        Trait <code>Expectations</code> also provides:
+    </p>
+
+    <ul>
+        <li><code>expectDoesNotCompile</code> to ensure a bit of code does not compile;</li>
+        <li><code>expectCompiles</code> to ensure a bit of code does compile;</li>
+        <li><code>expectTypeError</code> to ensure a bit of code does not compile because of a type (not parse) error;</li>
+    </ul>
+
+    <p>
+        All of these constructs are described below.
+    </p>
+
+    <h4>The <code>expect</code> macro</h4>
+
+    <p>In any Scala program, you can write expectations by invoking <code>expect</code> and passing in a <code>Boolean</code> expression,
+        such as:</p><p><pre class="stHighlighted">
+<span class="stReserved">val</span> left = <span class="stLiteral">2</span>
+<span class="stReserved">val</span> right = <span class="stLiteral">1</span>
+expect(left == right)
+</pre></p><p>If the passed expression is <code>true</code>, <code>expect</code> will return a <code>Yes</code>. If <code>false</code>,
+    Scala's <code>expect</code> will return <code>No</code>.
+    The <code>Yes</code> and <code>No</code> returned from ScalaTest's <code>expect</code> provides error messages related to the expression.</p>
+    <p>If you pass the previous <code>Boolean</code> expression, <code>left == right</code> to <code>expect</code> in a ScalaTest test,
+    a failure message will be reported in the <code>No</code>, because <code>expect</code> is implemented as a macro,
+    includes reporting the left and right values.
+    For example, given the same code as above but using ScalaTest expectations:</p><p><pre class="stHighlighted">
+<span class="stReserved">import</span> org.scalatest.Assertions._
+<span class="stReserved">val</span> left = <span class="stLiteral">2</span>
+<span class="stReserved">val</span> right = <span class="stLiteral">1</span>
+expect(left == right)
+</pre></p><p>The detail message in the returned <code>No</code> from this <code>expect</code>
+    will be: &quot;2 did not equal 1&quot;.</p><p>ScalaTest's <code>expect</code> macro works by recognizing patterns in the AST of the expression passed to <code>expect</code> and,
+    for a finite set of common expressions, giving an error message that an equivalent ScalaTest matcher
+    expression would give. Here are some examples, where <code>a</code> is 1, <code>b</code> is 2, <code>c</code> is 3, <code>d</code>
+    is 4, <code>xs</code> is <code>List(a, b, c)</code>, and <code>num</code> is 1.0:</p><p><pre class="stHighlighted">
+expect(a == b || c &gt;= d)
+<span class="stLineComment">// No(1 did not equal 2, and 3 was not greater than or equal to 4)</span>
+
+expect(xs.exists(_ == <span class="stLiteral">4</span>))
+<span class="stLineComment">// No(List(1, 2, 3) did not contain 4)</span>
+
+expect(<span class="stQuotedString">"hello"</span>.startsWith(<span class="stQuotedString">"h"</span>) &amp;&amp; <span class="stQuotedString">"goodbye"</span>.endsWith(<span class="stQuotedString">"y"</span>))
+<span class="stLineComment">// No("hello" started with "h", but "goodbye" did not end with "y")</span>
+
+expect(num.isInstanceOf[<span class="stType">Int</span>])
+<span class="stLineComment">// No(1.0 was not instance of scala.Int)</span>
+
+expect(<span class="stType">Some</span>(<span class="stLiteral">2</span>).isEmpty)
+<span class="stLineComment">// No(Some(2) was not empty)</span>
+</pre></p><p>For expressions that are not recognized, the macro currently prints out a string
+    representation of the (desugared) AST and adds <code>"was false"</code>. Here are some examples of
+    error messages for unrecognized expressions:</p><p><pre class="stHighlighted">
+expect(None.isDefined)
+<span class="stLineComment">// No(scala.None.isDefined was false)</span>
+
+expect(xs.exists(i =&gt; i &gt; <span class="stLiteral">10</span>))
+<span class="stLineComment">// No(xs.exists(((i: Int) => i.>(10))) was false)</span>
+</pre></p>
+    <p><a name="expectedResults")'></a></p><h4> Expected results </h4>
+    <p>The error messages generated for <code>==</code> and <code>===</code> comparisons
+    don't distinguish between actual and expected values. The operands are just called <code>left</code> and <code>right</code>,
+    because if one were named <code>expected</code> and the other <code>actual</code>, it would be difficult for people to
+    remember which was which. To help with these limitations of assertions, <code>Expectations</code> includes a method called <code>expectResult</code> that
+    can be used as an alternative to <code>expect</code>. To use <code>expectResult</code>, you place
+    the expected value in parentheses after <code>expectResult</code>, followed by curly braces containing code
+    that should result in the expected value. For example:</p><p><pre class="stHighlighted">
+<span class="stReserved">val</span> a = <span class="stLiteral">5</span>
+<span class="stReserved">val</span> b = <span class="stLiteral">2</span>
+expectResult(<span class="stLiteral">2</span>) {
+  a - b
+}
+</pre></p><p>In this case, the expected value is <code>2</code>, and the code being tested is <code>a - b</code>. This expectation will return a <code>No</code>, and
+    the detail message in the <code>No</code> will read, &quot;Expected 2, but got 3.&quot;</p>
+    <p>
+    <a name="expectedExceptions"></a></p><h4> Expected exceptions </h4><p>Sometimes you need to test whether a method throws an expected exception under certain circumstances, such
+    as when invalid arguments are passed to the method. You can do this in the JUnit 3 style, like this:</p><p><pre class="stHighlighted">
+<span class="stReserved">val</span> s = <span class="stQuotedString">"hi"</span>
+<span class="stReserved">val f = try</span> {
+  s.charAt(-<span class="stLiteral">1</span>)
+  No("Failed, should not reach here.")
+}
+<span class="stReserved">catch</span> {
+  <span class="stReserved">case</span> _: <span class="stType">IndexOutOfBoundsException</span> =&gt; Yes("Success") <span class="stLineComment"> // Expected, so return yes</span>
+}
+</pre></p><p>If <code>charAt</code> throws <code>IndexOutOfBoundsException</code> as expected, control will transfer
+    to the catch case, which returns a <code>Yes</code>. If, however, <code>charAt</code> fails to throw an exception,
+    the next statement, <code>No("Failed, should not reach here.")</code>, will be run and return a <code>No</code>. </p>
+
+    <p>To make this common use case easier to express and read, ScalaTest provides <code>expectThrows</code>.
+
+    Here's how you use <code>expectThrows</code>:</p><p><a name="expectThrowsMethod"></a>
+    <pre class="stHighlighted">
+<span class="stReserved">val</span> s = <span class="stQuotedString">"hi"</span>
+val r = expectThrows[<span class="stType">IndexOutOfBoundsException</span>] { <span class="stLineComment">// Result type: Fact</span>
+  s.charAt(-<span class="stLiteral">1</span>)
+}
+</pre></p><p>This code behaves much like the previous example. If <code>charAt</code> throws an instance of <code>IndexOutOfBoundsException</code>,
+    <code>expectThrows</code> will return <code>Yes</code>. But if <code>charAt</code> completes normally, or throws a different
+    exception, <code>expectThrows</code> will return a <code>No</code>.</p>
+    <p>You may need to ensure that exception returned with <code></code> have expected values. Here's an example how you do it:</p><p>
+    <pre class="stHighlighted">
+<span class="stReserved">val</span> s = <span class="stQuotedString">"hi"</span>
+<span class="stReserved">val</span> fact =
+  expectThrows[<span class="stType">IndexOutOfBoundsException</span>] { <span class="stLineComment">// Result type: Fact</span>
+    s.charAt(-<span class="stLiteral">1</span>)
+  }
+fact.cause <span class="stLineComment">// fact.cause is Option[Throwable], you may do further checks on it.</span></pre></p>
+    <p><a name="checkingThatCodeDoesNotCompile"></a></p><h4> Checking that a snippet of code does or does not compile </h4><p>Often when creating libraries you may wish to ensure that certain arrangements of code that
+    represent potential &ldquo;user errors&rdquo; do not compile, so that your library is more error resistant.
+    ScalaTest's <code>Expectations</code> trait includes the following syntax for that purpose:</p><p><pre class="stHighlighted">
+expectDoesNotCompile(<span class="stQuotedString">"val a: String = 1"</span>) <span class="stLineComment">// Result type: Fact</span>
+</pre></p><p>If you want to check that a snippet of code does not compile because of a type error (as opposed
+    to a syntax error), use:</p><p><pre class="stHighlighted">
+expectTypeError(<span class="stQuotedString">"val a: String = 1"</span>) <span class="stLineComment">// Result type: Fact</span>
+</pre></p><p>Note that the <code>expectTypeError</code> call will only return <code>Yes</code> if the given snippet of code does not
+    compile because of a type error. A syntax error will still result on a <code>No</code>.</p><p>If you want to state that a snippet of code <em>does</em> compile, you can make that
+    more obvious with:</p><p><pre class="stHighlighted">
+expectCompiles(<span class="stQuotedString">"val a: Int = 1"</span>) <span class="stLineComment">// Result type: Fact</span>
+</pre></p><p>Although the previous three constructs are implemented with macros that determine at compile time whether
+    the snippet of code represented by the string does or does not compile, errors
+    are returned as <code>Fact</code> at runtime.</p>
+
+    <p>
+        Next, learn about <a href="tagging_your_tests">tagging your tests</a>.
+    </p>
+
+</div>
+}
