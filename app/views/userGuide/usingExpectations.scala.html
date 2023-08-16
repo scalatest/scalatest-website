@@ -189,6 +189,30 @@ expectCompiles(<span class="stQuotedString">"val a: Int = 1"</span>) <span class
     the snippet of code represented by the string does or does not compile, errors
     are returned as <code>Fact</code> at runtime.</p>
 
+    <p><a name="gettingAClue"></a></p><h4> Getting a clue </h4><p>If you want more information than is provided by default by the methods of this trait,
+    you can supply a &quot;clue&quot; string in one of several ways.
+    The extra information (or &quot;clues&quot;) you provide will
+    be included in the fact message of the returned <code>Fact</code>. Both
+    <code>expect</code> and <code>expectResult</code> provide a way for a clue to be
+    included directly.
+    Here's an example of clues provided directly in <code>expect</code>:</p><p><pre class="stHighlighted">
+val fact = expect(<span class="stLiteral">1</span> + <span class="stLiteral">1</span> === <span class="stLiteral">3</span>, <span class="stQuotedString">"this is a clue"</span>)
+</pre></p><p>and in <code>expectResult</code>:</p><p><pre class="stHighlighted">
+val fact = expectResult(<span class="stLiteral">3</span>, <span class="stQuotedString">"this is a clue"</span>) { <span class="stLiteral">1</span> + <span class="stLiteral">1</span> }
+</pre></p><p>The <code>Fact</code> returned by the previous two statements will include the clue
+    string, <code>"this is a clue"</code>, in the fact message.
+    To get the same clue in the fact message of an <code>Fact</code> returned
+    by a <code>expectThrows</code> call requires using <code>withClue</code>:</p><p><pre class="stHighlighted">
+withClue(<span class="stQuotedString">"this is a clue"</span>) {
+  val fact = expectThrows[<span class="stType">IndexOutOfBoundsException</span>] {
+    <span class="stQuotedString">"hi"</span>.charAt(-<span class="stLiteral">1</span>)
+  }
+}
+</pre></p><p>The <code>withClue</code> method will only prepend the clue string to the fact
+    message of <code>Fact</code>.
+    If you wish to place a clue string after a block of code, see the documentation for
+    <a href='@scaladocsPageUrl("org.scalatest.AppendedClues")'><code>AppendedClues</code></a>.</p>
+
     <p>
         Next, learn about <a href="tagging_your_tests">tagging your tests</a>.
     </p>
