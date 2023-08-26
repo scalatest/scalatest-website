@@ -387,6 +387,41 @@ choice for writing the occasional test matrix when a different style trait is ch
 libraryDependencies += <span class="stQuotedString">"org.scalatest"</span> %% <span class="stQuotedString">"scalatest-propspec"</span> % <span class="stQuotedString">"@{latestVersion}"</span> % <span class="stQuotedString">"test"</span>
 </pre>
 
+<p class="stStyleDesc">If you would like to use <code>expectations</code> instead of <code>assertions</code>, you may use the pure style:</p>
+
+<pre class="stStyleExamples">
+<span class="stReserved">import</span> org.scalatest._
+<span class="stReserved">import</span> prop._
+<span class="stReserved">import</span> propspec.PropSpec
+<span class="stReserved">import</span> org.scalatest.expectations.Expectations._
+<span class="stReserved">import</span> scala.collection.immutable._
+<br /><span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">PropSpec</span> <span class="stReserved">with</span> <span class="stType">TableDrivenPropertyChecks</span> {
+<br />  <span class="stReserved">val</span> examples =
+    <span class="stType">Table</span>[<span class="stType">Set</span>[<span class="stType">Int</span>]](
+      <span class="stQuotedString">&quot;set&quot;</span>,
+      BitSet.empty,
+      HashSet.empty[<span class="stType">Int</span>],
+      TreeSet.empty[<span class="stType">Int</span>]
+    )
+<br />  property(<span class="stQuotedString">&quot;an empty Set should have size 0&quot;</span>) {
+    forAll(examples) { set =&gt;
+      expect(set.size == <span class="stLiteral">0</span>)
+    }
+  }
+<br />  property(<span class="stQuotedString">&quot;invoking head on an empty set should produce NoSuchElementException&quot;</span>) {
+    forAll(examples) { set =&gt;
+      expectThrows[<span class="stType">NoSuchElementException</span>] { set.head }
+    }
+  }
+}
+</pre>
+
+<p class="stStyleDesc">In order to use <code>expectations</code> you'll need add the following line in sbt build:</p>
+
+<pre class="stStyleExamples">
+libraryDependencies += <span class="stQuotedString">"org.scalatest"</span> %% <span class="stQuotedString">"scalatest-expectations"</span> % <span class="stQuotedString">"@{latestVersion}"</span> % <span class="stQuotedString">"test"</span>
+</pre>
+
 </td>
 </tr>
 
