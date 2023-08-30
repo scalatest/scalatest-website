@@ -1,0 +1,283 @@
+@*
+* Copyright 2010-2017 Artima, Inc.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*@
+
+@import controllers.Application.{scaladocsPageUrl, plusScalaCheck16ScaladocsPageUrl}
+
+@userGuidePage("Table-driven property checks") {
+<div style="text-align: left">
+
+    <h1>Table-driven property checks</h1>
+
+    <p>
+        To use table-driven property checks, you must mix in trait <a href='@scaladocsPageUrl("org.scalatest.prop.TableDrivenPropertyChecks")'><code>TableDrivenPropertyChecks</code></a> (or import the
+        members of its companion object). If you are also using ScalaCheck generator-driven property checks, you can mix in
+        trait <a href='@plusScalaCheck16ScaladocsPageUrl("org.scalatestplus.scalacheck.ScalaCheckPropertyChecks")'><code>ScalaCheckPropertyChecks</code></a>,
+        which extends both <code>TableDrivenPropertyChecks</code> and <a href='@plusScalaCheck16ScaladocsPageUrl("org.scalatestplus.scalacheck.ScalaCheckDrivenPropertyChecks")'><code>ScalaCheckDrivenPropertyChecks</code></a>.
+    </p>
+
+    <p>
+        Trait <code>TableDrivenPropertyChecks</code> contains one <code>forAll</code> method for each <code>TableForN</code>
+        class, <a href='@scaladocsPageUrl("org.scalatest.prop.TableFor1")'><code>TableFor1</code></a>
+        through <a href='@scaladocsPageUrl("org.scalatest.prop.TableFor22")'><code>TableFor22</code></a>, which allow properties to be checked against the
+        rows of a table. It also contains a <code>wherever</code> method that can be used to indicate a property need only hold whenever some
+        condition is true.
+    </p>
+
+    <p>
+        For an example of trait <code>TableDrivenPropertyChecks</code> in action, imagine you want to test this <code>Fraction</code> class:
+    </p>
+
+    <pre class="stHighlighted">
+<span class="stReserved">class</span> <span class="stType">Fraction</span>(n: <span class="stType">Int</span>, d: <span class="stType">Int</span>) {
+<br />  require(d != <span class="stLiteral">0</span>)
+  require(d != Integer.MIN_VALUE)
+  require(n != Integer.MIN_VALUE)
+<br />  <span class="stReserved">val</span> numer = <span class="stReserved">if</span> (d < <span class="stLiteral">0</span>) -<span class="stLiteral">1</span> * n <span class="stReserved">else</span> n
+  <span class="stReserved">val</span> denom = d.abs
+<br />  <span class="stReserved">override</span> <span class="stReserved">def</span> toString = numer + <span class="stQuotedString">" / "</span> + denom
+}
+</pre>
+
+    <p>
+        <code>TableDrivenPropertyChecks</code> allows you to create tables with
+        between 1 and 22 columns and any number of rows. You create a table by passing
+        tuples to one of the factory methods of object <code>Table</code>. Each tuple must have the
+        same arity (number of members). The first tuple you pass must all be strings, because
+        it define names for the columns. Subsequent tuples define the data. After the initial tuple
+        that contains string column names, all tuples must have the same type. For example,
+        if the first tuple after the column names contains two <code>Int</code>s, all subsequent
+        tuples must contain two <code>Int</code> (<em>i.e.</em>, have type
+        <code>Tuple2[Int, Int]</code>).
+    </p>
+
+    <p>
+        To test the behavior of <code>Fraction</code>, you could create a table
+        of numerators and denominators to pass to the constructor of the
+        <code>Fraction</code> class using one of the <code>apply</code> factory methods declared
+        in <code>Table</code>, like this:
+    </p>
+
+    <pre class="stHighlighted">
+<span class="stReserved">import</span> org.scalatest.prop.TableDrivenPropertyChecks._
+<br /><span class="stReserved">val</span> fractions =
+  <span class="stType">Table</span>(
+    (<span class="stQuotedString">"n"</span>, <span class="stQuotedString">"d"</span>),  <span class="stLineComment">// First tuple defines column names</span>
+    (  <span class="stLiteral">1</span>,   <span class="stLiteral">2</span>),  <span class="stLineComment">// Subsequent tuples define the data</span>
+    ( -<span class="stLiteral">1</span>,   <span class="stLiteral">2</span>),
+    (  <span class="stLiteral">1</span>,  -<span class="stLiteral">2</span>),
+    ( -<span class="stLiteral">1</span>,  -<span class="stLiteral">2</span>),
+    (  <span class="stLiteral">3</span>,   <span class="stLiteral">1</span>),
+    ( -<span class="stLiteral">3</span>,   <span class="stLiteral">1</span>),
+    ( -<span class="stLiteral">3</span>,   <span class="stLiteral">0</span>),
+    (  <span class="stLiteral">3</span>,  -<span class="stLiteral">1</span>),
+    (  <span class="stLiteral">3</span>,  Integer.MIN_VALUE),
+    (Integer.MIN_VALUE, <span class="stLiteral">3</span>),
+    ( -<span class="stLiteral">3</span>,  -<span class="stLiteral">1</span>)
+  )
+</pre>
+
+    <p>
+        You could then check a property against each row of the table using a <code>forAll</code> method, like this:
+    </p>
+
+    <pre class="stHighlighted">
+<span class="stReserved">import</span> org.scalatest.matchers.should.Matchers._
+<br />forAll (fractions) { (n: <span class="stType">Int</span>, d: <span class="stType">Int</span>) =>
+<br />  whenever (d != <span class="stLiteral">0</span> && d != Integer.MIN_VALUE
+      && n != Integer.MIN_VALUE) {
+<br />    <span class="stReserved">val</span> f = <span class="stReserved">new</span> <span class="stType">Fraction</span>(n, d)
+<br />    <span class="stReserved">if</span> (n < <span class="stLiteral">0</span> && d < <span class="stLiteral">0</span> || n > <span class="stLiteral">0</span> && d > <span class="stLiteral">0</span>)
+      f.numer should be > <span class="stLiteral">0</span>
+    <span class="stReserved">else</span> <span class="stReserved">if</span> (n != <span class="stLiteral">0</span>)
+      f.numer should be < <span class="stLiteral">0</span>
+    <span class="stReserved">else</span>
+      f.numer should be === <span class="stLiteral">0</span>
+<br />    f.denom should be > <span class="stLiteral">0</span>
+  }
+}
+</pre>
+
+    <p>
+        Trait <code>TableDrivenPropertyChecks</code> provides 22 overloaded <code>forAll</code> methods
+        that allow you to check properties using the data provided by a table. Each <code>forAll</code>
+        method takes two parameter lists. The first parameter list is a table. The second parameter list
+        is a function whose argument types and number matches that of the tuples in the table. For
+        example, if the tuples in the table supplied to <code>forAll</code> each contain an
+        <code>Int</code>, a <code>String</code>, and a <code>List[Char]</code>, then the function supplied
+        to <code>forAll</code> must take 3 parameters, an <code>Int</code>, a <code>String</code>,
+        and a <code>List[Char]</code>. The <code>forAll</code> method will pass each row of data to
+        the function, and generate a <a href='@scaladocsPageUrl("org.scalatest.exceptions.TableDrivenPropertyCheckFailedException")'><code>TableDrivenPropertyCheckFailedException</code></a> if the function
+        completes abruptly for any row of data with any exception that would <a href='@scaladocsPageUrl("org.scalatest.Suite")#errorHandling'>normally cause</a> a test to
+        fail in ScalaTest other than <a href='@scaladocsPageUrl("org.scalatest.exceptions.DiscardedEvaluationException")'><code>DiscardedEvaluationException</code></a>. An
+        <code>DiscardedEvaluationException</code>,
+        which is thrown by the <code>whenever</code> method (also defined in this trait) to indicate
+        a condition required by the property function is not met by a row
+        of passed data, will simply cause <code>forAll</code> to skip that row of data.
+    <p>
+
+        <a name="testingStatefulFunctions"></a><h2>Testing stateful functions</h2>
+
+    <p>
+        One way to use a table with one column is to test subsequent return values
+        of a stateful function. Imagine, for example, you had an object named <code>FiboGen</code>
+        whose <code>next</code> method returned the <em>next</em> fibonacci number, where next
+        means the next number in the series following the number previously returned by <code>next</code>.
+        So the first time <code>next</code> was called, it would return 0. The next time it was called
+        it would return 1. Then 1. Then 2. Then 3, and so on. <code>FiboGen</code> would need to
+        maintain state, because it has to remember where it is in the series. In such a situation,
+        you could create a <code>TableFor1</code> (a table with one column, which you could alternatively
+        think of as one row), in which each row represents
+        the next value you expect.
+    </p>
+
+    <pre class="stHighlighted">
+<span class="stReserved">val</span> first14FiboNums =
+  <span class="stType">Table</span>(<span class="stQuotedString">"n"</span>, <span class="stLiteral">0</span>, <span class="stLiteral">1</span>, <span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>, <span class="stLiteral">5</span>, <span class="stLiteral">8</span>, <span class="stLiteral">13</span>, <span class="stLiteral">21</span>, <span class="stLiteral">34</span>, <span class="stLiteral">55</span>, <span class="stLiteral">89</span>, <span class="stLiteral">144</span>, <span class="stLiteral">233</span>)
+</pre>
+
+    <p>
+        Then in your <code>forAll</code> simply call the function and compare it with the
+        expected return value, like this:
+    </p>
+
+    <pre class="stHighlighted">
+forAll (first14FiboNums) { n =>
+  FiboGen.next should equal (n)
+}
+</pre>
+
+    <a name="testingMutables"></a><h2>Testing mutable objects</h2>
+
+    <p>
+        If you need to test a mutable object, one way you can use tables is to specify
+        state transitions in a table. For example, imagine you wanted to test this mutable
+        <code>Counter</code> class:
+
+    <pre class="stHighlighted">
+<span class="stReserved">class</span> <span class="stType">Counter</span> {
+  <span class="stReserved">private</span> <span class="stReserved">var</span> c = <span class="stLiteral">0</span>
+  <span class="stReserved">def</span> reset() { c = <span class="stLiteral">0</span> }
+  <span class="stReserved">def</span> click() { c += <span class="stLiteral">1</span> }
+  <span class="stReserved">def</span> enter(n: <span class="stType">Int</span>) { c = n }
+  <span class="stReserved">def</span> count = c
+}
+</pre>
+
+    <p>
+        A <code>Counter</code> keeps track of how many times its <code>click</code> method
+        is called. The count starts out at zero and increments with each <code>click</code>
+        invocation. You can also set the count to a specific value by calling <code>enter</code>
+        and passing the value in. And the <code>reset</code> method returns the count back to
+        zero. You could define the actions that initiate state transitions with case classes, like this:
+    </p>
+
+    <pre class="stHighlighted">
+<span class="stReserved">abstract</span> <span class="stReserved">class</span> <span class="stType">Action</span>
+<span class="stReserved">case</span> <span class="stReserved">object</span> <span class="stType">Start</span> <span class="stReserved">extends</span> <span class="stType">Action</span>
+<span class="stReserved">case</span> <span class="stReserved">object</span> <span class="stType">Click</span> <span class="stReserved">extends</span> <span class="stType">Action</span>
+<span class="stReserved">case</span> <span class="stReserved">class</span> <span class="stType">Enter</span>(n: <span class="stType">Int</span>) <span class="stReserved">extends</span> <span class="stType">Action</span>
+</pre>
+
+    <p>
+        Given these actions, you could define a state-transition table like this:
+    </p>
+
+    <pre class="stHighlighted">
+<span class="stReserved">val</span> stateTransitions =
+  <span class="stType">Table</span>(
+    (<span class="stQuotedString">"action"</span>, <span class="stQuotedString">"expectedCount"</span>),
+    (<span class="stType">Start</span>,    <span class="stLiteral">0</span>),
+    (<span class="stType">Click</span>,    <span class="stLiteral">1</span>),
+    (<span class="stType">Click</span>,    <span class="stLiteral">2</span>),
+    (<span class="stType">Click</span>,    <span class="stLiteral">3</span>),
+    (<span class="stType">Enter</span>(<span class="stLiteral">5</span>), <span class="stLiteral">5</span>),
+    (<span class="stType">Click</span>,    <span class="stLiteral">6</span>),
+    (<span class="stType">Enter</span>(<span class="stLiteral">1</span>), <span class="stLiteral">1</span>),
+    (<span class="stType">Click</span>,    <span class="stLiteral">2</span>),
+    (<span class="stType">Click</span>,    <span class="stLiteral">3</span>)
+  )
+</pre>
+
+    <p>
+        To use this in a test, simply do a pattern match inside the function you pass
+        to <code>forAll</code>. Make a pattern for each action, and have the body perform that
+        action when there's a match. Then check that the actual value equals the expected value:
+    </p>
+
+    <pre class="stHighlighted">
+<span class="stReserved">val</span> counter = <span class="stReserved">new</span> <span class="stType">Counter</span>
+forAll (stateTransitions) { (action, expectedCount) =>
+  action <span class="stReserved">match</span> {
+    <span class="stReserved">case</span> <span class="stType">Start</span> => counter.reset()
+    <span class="stReserved">case</span> <span class="stType">Click</span> => counter.click()
+    <span class="stReserved">case</span> <span class="stType">Enter</span>(n) => counter.enter(n)
+  }
+  counter.count should equal (expectedCount)
+}
+</pre>
+
+    <a name="invalidArgCombos"></a><h2>Testing invalid argument combinations</h2>
+
+    <p>
+        A table-driven property check can also be helpful to ensure that the proper exception is thrown when invalid data is
+        passed to a method or constructor. For example, the <code>Fraction</code> constructor shown above should throw <code>IllegalArgumentException</code>
+        if <code>Integer.MIN_VALUE</code> is passed for either the numerator or denominator, or zero is passed for the denominator. This yields the
+        following five combinations of invalid data:
+    </p>
+
+    <table style="border-collapse: collapse; border: 1px solid black">
+        <tr><th style="background-color: #CCCCCC; border-width: 1px; padding: 3px; text-align: center; border: 1px solid black"><code>n</code></th><th style="background-color: #CCCCCC; border-width: 1px; padding: 3px; text-align: center; border: 1px solid black"><code>d</code></th></tr>
+        <tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center"><code>Integer.MIN_VALUE</code></td><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center"><code>Integer.MIN_VALUE</code></td></tr>
+        <tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">a valid value</td><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center"><code>Integer.MIN_VALUE</code></td></tr>
+        <tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center"><code>Integer.MIN_VALUE</code></td><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">a valid value</td></tr>
+        <tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center"><code>Integer.MIN_VALUE</code></td><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">zero</td></tr>
+        <tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">a valid value</td><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">zero</td></tr>
+    </table>
+
+    <p>
+        You can express these combinations in a table:
+    </p>
+
+    <pre class="stHighlighted">
+<span class="stReserved">val</span> invalidCombos =
+  <span class="stType">Table</span>(
+    (<span class="stQuotedString">"n"</span>,               <span class="stQuotedString">"d"</span>),
+    (Integer.MIN_VALUE, Integer.MIN_VALUE),
+    (<span class="stLiteral">1</span>,                 Integer.MIN_VALUE),
+    (Integer.MIN_VALUE, <span class="stLiteral">1</span>),
+    (Integer.MIN_VALUE, <span class="stLiteral">0</span>),
+    (<span class="stLiteral">1</span>,                 <span class="stLiteral">0</span>)
+  )
+</pre>
+
+    <p>
+        Given this table, you could check that all invalid combinations produce <code>IllegalArgumentException</code>, like this:
+    </p>
+
+    <pre class="stHighlighted">
+forAll (invalidCombos) { (n: <span class="stType">Int</span>, d: <span class="stType">Int</span>) =>
+  an [<span class="stType">IllegalArgumentException</span>] should be thrownBy {
+    <span class="stReserved">new</span> <span class="stType">Fraction</span>(n, d)
+  }
+}
+</pre>
+
+    <p>
+        Next, learn about <a href="/user_guide/generator_driven_property_checks">generator-driven property checks</a>.
+    </p>
+
+</div>
+}
