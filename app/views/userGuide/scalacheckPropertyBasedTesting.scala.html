@@ -22,7 +22,7 @@
     <h1>Property-based testing using ScalaCheck</h1>
 
     <p>
-        ScalaTest supports property-based testing, where
+        ScalaTest supports property-based testing using ScalaCheck, where
         a <em>property</em> is a high-level specification of behavior that should hold for a range of data points. For example, a property might
         state that the size of a list returned from a method should always be greater than or equal to the size of the list passed to
         that method. This property should hold no matter what list is passed.
@@ -59,7 +59,7 @@ libraryDependencies += <span class="stQuotedString">"org.scalatestplus"</span> %
 </pre>
 
     <p>
-        To use this style of testing, mix in trait <code>org.scalatestplus.scalacheck.ScalaCheckPropertyChecks</code> (previously known as <code>org.scalatest.props.PropertyChecks</code>, deprecated in 3.0.6), or import the
+        To use this style of testing, mix in trait <code>org.scalatestplus.scalacheck.ScalaCheckPropertyChecks</code>, or import the
         members of its companion object.
     </p>
 
@@ -164,8 +164,8 @@ sbt> testOnly MyTest -- -S 123456879
     </p>
 
     <ul>
-        <li><a href="/user_guide/table_driven_property_checks">Table-driven property checks</a></li>
-        <li><a href="/user_guide/generator_driven_property_checks">Generator-driven property checks</a></li>
+        <li><a href="/user_guide/scalacheck_table_driven_property_checks">Table-driven property checks using ScalaCheck</a></li>
+        <li><a href="/user_guide/scalacheck_driven_property_checks">Generator-driven property checks using ScalaCheck</a></li>
         <li><a href="/user_guide/writing_scalacheck_style_properties">Writing ScalaCheck-style properties</a></li>
     </ul>
 
