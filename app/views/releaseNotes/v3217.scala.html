@@ -1,0 +1,116 @@
+@*
+* Copyright 2010-2023 Artima, Inc.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*@
+
+@import controllers.Application.scaladocsPageUrl
+@import controllers.Application.milestoneScaladoc
+
+@combinedReleaseNotesPage("Scalactic/ScalaTest 3.2.17 Release Notes") {
+<div style="text-align: left">
+
+    <h1>ScalaTest/Scalactic 3.2.17 Release Notes</h1>
+
+    <p>
+        ScalaTest/Scalactic 3.2.17 (for Scala 2.10, 2.11, 2.12, 2.13, 3.1; on the JVM, JavaScript, and native)
+        includes the enhancements listed below.
+    </p>
+
+    <p>
+        For information on how to include ScalaTest in your project, see the <a href="/install">install page</a>.
+        For information on how to use <a href="http://www.scalactic.org/">Scalactic</a> in your production code,
+        see its <a href="http://www.scalactic.org/install">install page</a>.
+    </p>
+
+    <br/>
+
+    <!-- ====================================== SCALA TEST ==================================================== -->
+
+    <hr style="height:3px;border:none;color:#333;background-color:#333;" /> <!-- ############################################### -->
+
+    <div align="center" style="padding-top:0.8rem">
+        <h1>ScalaTest</h1>
+    </div>
+
+    <hr></hr>
+
+    <p>
+        ScalaTest 3.2.17 is a minor release of ScalaTest that makes bug fixes, few enhancements, and supports Scala.js 1.8.x, Scala.native 0.4.9+ and Scala 3.1.x.
+    </p>
+
+    <a name="scalatest_bugfixes"></a>
+    <h2>Bug Fixes</h2>
+    <p>Fixed images not included in scalatest-app jar file problem. (<a href="https://github.com/scalatest/scalatest/pull/2271">PR #2271</a>)</p>
+    <p>Upgraded to JUnit 5.10 in ScalaTest+JUnit5. (<a href="https://github.com/scalatest/scalatestplus-junit5/pull/8">PR #8 in ScalaTest+JUnit5</a>)</p>
+    <p>Upgraded to Selenium 4.12 in ScalaTest+Selenium. (<a href="https://github.com/scalatest/scalatestplus-selenium/pull/25">PR #25 in ScalaTest+Selenium</a>)</p>
+
+    <a name="scalatest_improvements"></a>
+    <h2>Improvements</h2>
+    <p>Improved RunAborted error message. (<a href="https://github.com/scalatest/scalatest/pull/2269">PR #2269</a>)</p>
+
+    <a name="scalatest_deprecations"></a>
+    <h2>Deprecations</h2>
+    <p>ScalaTest 3.2.17 contains no new deprecations.</p>
+
+    <br/>
+
+    <!-- ====================================== SCALACTIC ==================================================== -->
+
+    <hr style="height:3px;border:none;color:#333;background-color:#333;" /> <!-- ############################################### -->
+
+    <div align="center" style="padding-top:0.8rem">
+        <h1>Scalactic</h1>
+    </div>
+
+    <hr></hr>
+
+    <a name="scalactic_bugfixes"></a>
+    <h2>Bug Fixes</h2>
+    <p>Backport macro short-circuit fix to make & and | to have consistent behavior with Scala's & and |. (<a href="https://github.com/scalatest/scalatest/pull/2261">PR #2261</a>)</p>
+
+    <a name="scalactic_improvements"></a>
+    <h2>Improvements</h2>
+    <p>Scalactic 3.2.17 contains no new improvements.</p>
+
+    <a name="scalactic_deprecations"></a>
+    <h2>Deprecations</h2>
+    <p>Scalactic 3.2.17 contains no new deprecations.</p>
+
+    <br/>
+
+    <hr style="height:3px;border:none;color:#333;background-color:#333;" />
+    <br/>
+
+    <h2>ScalaTest/Scalactic Contributors</h2>
+
+    Thanks to the contributors for the ScalaTest/Scalactic 3.2.17 release:
+
+    <ul>
+        <li><a href="https://github.com/cheeseng">Chua Chee Seng</a></li>
+        <li><a href="https://github.com/bvenners">Bill Venners</a></li>
+    </ul>
+
+    <br/>
+
+    <!-- ====================================== NOTES ==================================================== -->
+
+    <hr style="height:3px;border:none;color:#333;background-color:#333;" /> <!-- ############################################### -->
+
+    <p>
+        Visit <a href="@routes.ReleaseNotes.releaseNotesIndex()">ScalaTest Release Notes</a> for links to the release notes of all previous versions, or
+        step back in time by visiting the <a href="@routes.ReleaseNotes.v3216">release notes for the previous version</a>.
+    </p>
+
+</div>
+}
