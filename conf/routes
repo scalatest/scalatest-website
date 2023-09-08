@@ -88,6 +88,7 @@ GET        /release_notes/1.0                                           controll
 GET        /release_notes/0.9.1-0.9.4                                   controllers.ReleaseNotes.v091_094
 
 GET        /user_guide/using_assertions                                 controllers.UserGuide.usingAssertions()
+GET        /user_guide/using_expectations                               controllers.UserGuide.usingExpectations()
 GET        /user_guide/writing_your_first_test                          controllers.UserGuide.writingYourFirstTest()
 GET        /user_guide/tagging_your_tests                               controllers.UserGuide.taggingYourTests()
 GET        /user_guide/running_your_tests                               controllers.UserGuide.runningYourTests()

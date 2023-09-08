@@ -29,6 +29,10 @@ class UserGuide @Inject() (cc: ControllerComponents) extends AbstractController(
     Ok(views.html.userGuide.usingAssertions())
   }
 
+  def usingExpectations = Action {
+    Ok(views.html.userGuide.usingExpectations())
+  }
+
   def writingYourFirstTest = Action {
     Ok(views.html.userGuide.writingYourFirstTest())
   }
