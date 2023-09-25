@@ -16,6 +16,7 @@
 
 @import controllers.Application.latestVersion
 @import controllers.Application.latestJUnit5Version
+@import controllers.Application.baseScalaVersion
 
 @plusPage("ScalaTest + JUnit 5") {
 <div style="text-align: left">
@@ -24,6 +25,18 @@
 
     <p>
         The <em>ScalaTest + JUnit 5</em> integration library makes it fun and easy to use JUnit 5 with ScalaTest.
+    </p>
+
+    <p>
+        <em>ScalaTest + JUnit 5</em> provides the following features:
+    </p>
+
+    <ul>
+        <li>ScalaTest JUnit test engine implementation, this allows ScalaTest suites to be run by JUnit 5 platform, include or exclude ScalaTest suites through tags is supported.</li>
+        <li>The JUnitSuiteLike and JUnitSuite trait that can be run by either ScalaTest runner or JUnit 5 platform.</li>
+    </ul>
+
+    <p>
         To use ScalaTest + JUnit 5, please add the following to your SBT project dependency:
     </p>
 
@@ -43,6 +56,61 @@ libraryDependencies += "org.scalatestplus" %% "junit-@latestJUnit5Version" % "@l
     &lt;scope&gt;test&lt;/scope&gt;
 &lt;/dependency&gt;
 </pre>
+
+    <p>
+        For gradle you can use:
+    </p>
+
+    <pre class="stGrayback">
+dependencies {
+    implementation "org.scala-lang:scala-library:@baseScalaVersion"
+
+    testImplementation "org.scalatest:scalatest_2.13:@latestVersion"
+    testImplementation "org.junit.platform:junit-platform-launcher:1.10.0"
+    testRuntimeOnly "org.junit.platform:junit-platform-engine:1.10.0"
+    testRuntimeOnly "org.scalatestplus:junit-@{latestJUnit5Version}_2.13:@latestVersion.0"
+}
+
+test {
+    useJUnitPlatform {
+        includeEngines 'scalatest'
+        testLogging {
+            events("passed", "skipped", "failed", "standard_error")
+        }
+    }
+}
+</pre>
+
+    <p>
+        For gradle (Kotlin) you can use:
+    </p>
+
+    <pre class="stGrayback">
+dependencies {
+    implementation("org.scala-lang:scala-library:@latestVersion")
+
+    testImplementation("org.scalatest:scalatest_2.13:@latestVersion")
+    testRuntimeOnly("org.junit.platform:junit-platform-engine:1.10.0")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.10.0")
+    testRuntimeOnly("org.scalatestplus:junit-@{latestJUnit5Version}_2.13:@latestVersion.0")
+}
+
+tasks {
+    test{
+        useJUnitPlatform {
+            includeEngines("scalatest")
+            testLogging {
+                events("passed", "skipped", "failed")
+            }
+        }
+    }
+}
+</pre>
+
+    <p>
+        For Gradle project, by default IntelliJ IDEA uses Gradle's test runner to run tests, which at the time of writing does not work with Jump to Source feature.
+        You may switch to use IntelliJ IDEA's test runner by following the instructions <a href="https://www.jetbrains.com/help/idea/work-with-tests-in-gradle.html#configure_gradle_test_runner">here</a>.
+    </p>
 
 </div>
 }
