@@ -16,6 +16,7 @@
 
 @import controllers.Application.latestVersion
 @import controllers.Application.latestJUnit5Version
+@import controllers.Application.majorMinorScalaVersion
 
 @plusPage("ScalaTest + JUnit 5") {
 <div style="text-align: left">
@@ -38,7 +39,7 @@ libraryDependencies += "org.scalatestplus" %% "junit-@latestJUnit5Version" % "@l
     <pre class="stGrayback">
 &lt;dependency&gt;
     &lt;groupId&gt;org.scalatestplus&lt;/groupId&gt;
-    &lt;artifactId&gt;junit-@{latestJUnit5Version}_2.13&lt;/artifactId&gt;
+    &lt;artifactId&gt;junit-@{latestJUnit5Version}_@{majorMinorScalaVersion}&lt;/artifactId&gt;
     &lt;version&gt;@latestVersion.0&lt;/version&gt;
     &lt;scope&gt;test&lt;/scope&gt;
 &lt;/dependency&gt;
