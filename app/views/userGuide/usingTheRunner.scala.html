@@ -15,6 +15,8 @@
  *@
 
 @import controllers.Application.scaladocsPageUrl
+@import controllers.Application.latestVersion
+@import controllers.Application.majorMinorScalaVersion
 
 @userGuidePage("Using the Runner") {
 <div style="text-align: left">
@@ -31,7 +33,8 @@ to run a suite of tests from the command line and see results on the standard ou
 <p>The basic form of a <code>Runner</code> invocation is:</p>
 
 <p><pre class="stExamples">
-scala [-cp scalatest-&lt;version&gt;.jar:...] org.scalatest.tools.Runner [arguments]
+$ CLASSPATH=scalatest-app_@{majorMinorScalaVersion}-@{latestVersion}.jar:scala-xml_3-2.1.0.jar
+$ scala -cp $CLASSPATH org.scalatest.tools.Runner [arguments]
 </pre></p>
 
 <p>The arguments <code>Runner</code> accepts are described in the following table:</p>
@@ -72,7 +75,7 @@ scala [-cp scalatest-&lt;version&gt;.jar:...] org.scalatest.tools.Runner [argume
 <p>The simplest way to start <code>Runner</code> is to specify the directory containing your compiled tests as the sole element of the runpath, for example:</p>
 
 <p><pre class="stExamples">
-scala -classpath scalatest-&lt;version&gt;.jar org.scalatest.tools.Runner -R compiled_tests
+scala -cp $CLASSPATH org.scalatest.tools.Runner -R compiled_tests
 </pre></p>
 
 <p>Given the previous command, <code>Runner</code> will discover and execute all <code>Suite</code>s in the <code>compiled_tests</code> directory and its subdirectories,
@@ -154,7 +157,7 @@ using two reporters, the graphical reporter and a file reporter
 writing to a file named <code>"test.out"</code>, you would type:</p>
 
 <p><pre class="stExamples">
-java -jar scalatest.jar -R mydir <b>-g -f test.out</b> -s MySuite
+$ scala -cp $CLASSPATH org.scalatest.tools.Runner -R mydir <b>-g -f test.out</b> -s MySuite
 </pre></p>
 
 <p>The <code><b>-g</b></code>, <code><b>-o</b></code>, or <code><b>-e</b></code> options can
@@ -446,13 +449,13 @@ method returning a TestSuite.</p>
 
 <p>You can memorize failed and canceled tests using <code>-M</code>:</p>
 
-<p><pre class="stHighlight">
+<p><pre class="stExamples">
 -M failed-canceled.txt
 </pre></p>
 
 <p>All failed and canceled tests will be memorized in <code>failed-canceled.txt</code>, to rerun them again, you use <code>-A</code>:</p>
 
-<p><pre class="stHighlight">
+<p><pre class="stExamples">
 -A failed-canceled.txt
 </pre>
 </p>
@@ -462,7 +465,7 @@ method returning a TestSuite.</p>
 
 <p>You can setting seed used by generator tests using <code>-S</code>:</p>
 
-<p><pre class="stHighlight">
+<p><pre class="stExamples">
 -S 1234567890
 </pre></p>
 
