@@ -69,6 +69,10 @@ class UserGuide @Inject() (cc: ControllerComponents) extends AbstractController(
     Ok(views.html.userGuide.propertyBasedTesting())
   }
 
+  def scalacheckPropertyBasedTesting = Action {
+    Ok(views.html.userGuide.scalacheckPropertyBasedTesting())
+  }
+
   def otherGoodies = Action {
     Ok(views.html.userGuide.otherGoodies())
   }
@@ -97,8 +101,16 @@ class UserGuide @Inject() (cc: ControllerComponents) extends AbstractController(
     Ok(views.html.userGuide.tableDrivenPropertyChecks())
   }
 
+  def scalacheckTableDrivenPropertyChecks = Action {
+    Ok(views.html.userGuide.scalacheckTableDrivenPropertyChecks())
+  }
+
   def generatorDrivenPropertyChecks = Action {
     Ok(views.html.userGuide.generatorDrivenPropertyChecks())
+  }
+
+  def scalacheckDrivenPropertyChecks = Action {
+    Ok(views.html.userGuide.scalacheckDrivenPropertyChecks())
   }
 
   def writingScalacheckStyleProperties = Action {
