@@ -1,0 +1,51 @@
+@*
+* Copyright 2010-2017 Artima, Inc.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*@
+
+@import controllers.Application.scaladocsPageUrl
+@import controllers.Application.latestVersion
+@import controllers.Application.latestSuperSafeVersion
+
+@userGuidePage("Using ScalaTest with Mill") {
+<div style="text-align: left">
+
+    <h1>Using ScalaTest with Mill</h1>
+
+    <p>
+        ScalaTest's <a href='@scaladocsPageUrl("org.scalatest.tools.Framework")'><code>Framework</code></a> supports using ScalaTest from Mill.
+        The following is an example test project you can add in your <code>build.sc</code>:
+    </p>
+
+    <pre class="stHighlighted">
+<span class="reserved">object</span> <span class="type">test</span> <span class="reserved">extends</span> <span class="type">ScalaTests</span> {
+  <span class="reserved">def</span> testFramework = <span class="literal">"org.scalatest.tools.Framework"</span>
+  <span class="reserved">def</span> ivyDeps = <span class="type">Agg</span>(
+    ivy<span class="literal">"org.scalatest::scalatest:@latestVersion"</span>
+  )
+}
+</pre>
+
+    <h2>Running Tests</h2>
+
+    <p>
+        Your test source files go into <code>src</code>. You can run all of them from the command prompt with:
+    </p>
+
+    <pre class="stGrayback">
+&gt; ./mill test
+</pre>
+
+</div>
+}

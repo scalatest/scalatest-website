@@ -133,6 +133,10 @@ class UserGuide @Inject() (cc: ControllerComponents) extends AbstractController(
     Ok(views.html.userGuide.usingTheScalatestMavenPlugin())
   }
 
+  def usingScalatestWithMill = Action {
+    Ok(views.html.userGuide.usingScalaTestWithMill())
+  }
+
   def customizingScalatest = Action {
     Ok(views.html.userGuide.customizingScalatest())
   }
