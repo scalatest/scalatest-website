@@ -29,22 +29,63 @@
     </p>
 
     <pre class="stHighlighted">
-<span class="reserved">object</span> <span class="type">test</span> <span class="reserved">extends</span> <span class="type">ScalaTests</span> {
-  <span class="reserved">def</span> testFramework = <span class="literal">"org.scalatest.tools.Framework"</span>
+<span class="reserved">object</span> <span class="type">test</span> <span class="reserved">extends</span> <span class="type">ScalaTests</span> <span class="reserved">with</span> <span class="type">TestModule.ScalaTest</span>  {
   <span class="reserved">def</span> ivyDeps = <span class="type">Agg</span>(
     ivy<span class="literal">"org.scalatest::scalatest:@latestVersion"</span>
   )
 }
 </pre>
 
-    <h2>Running Tests</h2>
+<h2>Running Tests</h2>
 
-    <p>
-        Your test source files go into <code>src</code>. You can run all of them from the command prompt with:
-    </p>
+<p>
+Your test source files go into <code>src</code>. You can run all of them from the command prompt with:
+</p>
 
-    <pre class="stGrayback">
+<pre class="stGrayback">
 &gt; ./mill test
+</pre>
+
+<p>
+If you want to run particular suites, you can use <code>testOnly</code> and provide their fully qualified names in a space separated list:
+</p>
+
+<pre class="stGrayback">
+&gt; ./mill test.testOnly org.acme.RedSuite org.acme.BlueSuite
+</pre>
+
+<p>
+Or you can specify a glob:
+</p>
+
+<pre class="stGrayback">
+&gt; ./mill test.testOnly *RedSuite
+</pre>
+
+<p>
+To run only tests affected by your latest code changes, either in main or test, you can use <code>testCached</code>:
+</p>
+
+<pre class="stGrayback">
+&gt; ./mill test.testCached
+</pre>
+
+<h2>Specifying ScalaTest Arguments</h2>
+
+<p>
+You can pass arguments to ScalaTest after the test command:
+</p>
+
+<pre class="stGrayback">
+&gt; ./mill test -oD
+</pre>
+
+<p>
+If you are using <code>testCached</code>, you may also specify <code>testCachedArgs</code> in your <code>build.sc</code>:
+</p>
+
+<pre class="stGrayback">
+def testCachedArgs = Seq("-oD")
 </pre>
 
 </div>
