@@ -17,4 +17,4 @@ package test
 
 import org.scalatest._
 
-abstract class UnitSpec extends WordSpec with Matchers with OptionValues
+abstract class UnitSpec extends wordspec.AnyWordSpec with matchers.should.Matchers with OptionValues

@@ -25,3 +25,13 @@ Optionally, you can run published local docker image (please replace APP_SECRET 
 ```
 docker container run --env APP_SECRET=<replace-secret-here> --publish 9000:9000 --detach --name scalatest-website.svc artima/scalatest-website
 ```
+
+To tag and push built image to GitHub Package:
+
+```
+> ECR_IMAGE_VERSION=<replace_version_here>
+> docker tag artima/scalatest-website:scalatest-$ECR_IMAGE_VERSION-ecr ghcr.io/scalatest/scalatest-website:scalatest-$ECR_IMAGE_VERSION-ecr
+> docker tag artima/scalatest-website:latest ghcr.io/scalatest/scalatest-website:latest
+> docker push ghcr.io/scalatest/scalatest-website:scalatest-$ECR_IMAGE_VERSION-ecr
+> docker push ghcr.io/scalatest/scalatest-website:latest
+```
