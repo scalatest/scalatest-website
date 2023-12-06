@@ -117,6 +117,7 @@ GET        /user_guide/using_the_runner                                 controll
 GET        /user_guide/invoking_execute                                 controllers.UserGuide.invokingExecute
 GET        /user_guide/using_the_scalatest_shell                        controllers.UserGuide.usingTheScalatestShell
 GET        /user_guide/using_scalatest_with_sbt                         controllers.UserGuide.usingScalatestWithSbt
+GET        /user_guide/using_scalatest_with_mill                        controllers.UserGuide.usingScalatestWithMill
 GET        /user_guide/using_the_scalatest_ant_task                     controllers.UserGuide.usingTheScalatestAntTask
 GET        /user_guide/matchers_quick_reference                         controllers.UserGuide.matchersQuickReference()
 GET        /user_guide/using_the_scalatest_maven_plugin                 controllers.UserGuide.usingTheScalatestMavenPlugin
