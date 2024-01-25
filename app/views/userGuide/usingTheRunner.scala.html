@@ -430,7 +430,7 @@ for asynchronous operations) from the command line. For more information, see th
 
 <p>If you specify one or more file paths with <code>-b</code> (b for Beust, the last name of TestNG's creator), <code>Runner</code> will create a <code>org.scalatest.testng.TestNGWrapperSuite</code>,
 passing in a <code>List</code> of the specified paths. When executed, the <code>TestNGWrapperSuite</code> will create one <code>TestNG</code> instance
-and pass each specified file path to it for running. If you include <code>-b</code> arguments, you must include TestNG's jar file on the class path or runpath.
+and pass each specified file path to it for running. If you include <code>-b</code> arguments, you must include TestNG's and <a href="@routes.Plus.testng()">ScalaTest + TestNG's</a> jar file on the class path or runpath.
 The <code>-b</code> argument will enable you to run existing <code>TestNG</code> tests, including tests written in Java, as part of a ScalaTest run.
 You need not use <code>-b</code> to run suites written in Scala that extend <code>TestNGSuite</code>. You can simply run such suites with
 <code>-s</code>, <code>-m</code>, or </code>-w</code> parameters.</p>
@@ -443,7 +443,7 @@ You need not use <code>-b</code> to run suites written in Scala that extend <cod
 such as a TestCase, TestSuite, or a class implementing a static suite()
 method returning a TestSuite.</p>
 
-<p>To use this option you must include a JUnit 4 jar file and <a href="@routes.Plus.junit4()">ScalaTest + JUnit 4</a> jar file on your classpath.</p>
+<p>To use this option you must include a JUnit 4's and <a href="@routes.Plus.junit4()">ScalaTest + JUnit 4's</a> jar file on your classpath.</p>
 <a name="memorizingAndRerunning"> </a>
 <h2> Memorizing and rerunning failed and canceled tests </h2>
 
