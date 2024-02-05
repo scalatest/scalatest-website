@@ -151,7 +151,7 @@ object Application {
   val baseScalaVersion = "3.3.1"
   val majorMinorScalaVersion = "3"
   val latestScaladocFor192 = "http://doc.scalatest.org/1.9.2"
-  val latestSeleniumVersion = "4-12"
+  val latestSeleniumVersion = "4-17"
   val latestEasyMockVersion = "5-1"
   val latestJMockVersion = "2-12"
   val latestJUnitVersion = "4-13"
