@@ -156,7 +156,7 @@ object Application {
   val latestJMockVersion = "2-12"
   val latestJUnitVersion = "4-13"
   val latestJUnit5Version = "5-10"
-  val latestMockitoVersion = "5-8"
+  val latestMockitoVersion = "5-10"
   val latestScalaCheckVersion = "1-17"
   val latestScalaCheckPlusVersion = "3.2.17.0"
   val latestTestNGVersion = "7-5"  
@@ -164,7 +164,7 @@ object Application {
   val latestPlusScalaCheckDoc = "plus-scalacheck-1.17/3.2.18.0"
   val latestPlusEasyMockDoc = "plus-easymock-5.1/3.2.18.0"
   val latestPlusJMockDoc = "plus-jmock-2.12/3.2.18.0"
-  val latestPlusMockitoDoc = "plus-mockito-4.11/3.2.17.0"
+  val latestPlusMockitoDoc = "plus-mockito-5.10/3.2.18.0"
 
   def scaladocsPageUrl(file: String, version: String = latestVersion): String = {
     val oldScaladocStyle30Releases = List("3.0.0", "3.0.1", "3.0.2", "3.0.3", "3.0.4")
