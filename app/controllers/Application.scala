@@ -163,7 +163,7 @@ object Application {
   val quickStartXmlJar = "https://repo1.maven.org/maven2/org/scala-lang/modules/scala-xml_3/2.1.0/scala-xml_3-2.1.0.jar"
   val latestPlusScalaCheckDoc = "plus-scalacheck-1.17/3.2.18.0"
   val latestPlusEasyMockDoc = "plus-easymock-5.1/3.2.18.0"
-  val latestPlusJMockDoc = "plus-jmock-2.12/3.2.17.0"
+  val latestPlusJMockDoc = "plus-jmock-2.12/3.2.18.0"
   val latestPlusMockitoDoc = "plus-mockito-4.11/3.2.17.0"
 
   def scaladocsPageUrl(file: String, version: String = latestVersion): String = {
