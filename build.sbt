@@ -2,7 +2,7 @@
 
 lazy val root = (project in file(".")).settings(
   name := "scalatest-website",
-  version := "scalatest-231209-ecr",
+  version := "scalatest-240208-ecr",
   scalaVersion := "3.3.1",
   libraryDependencies ++= Seq(
     guice,
