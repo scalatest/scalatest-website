@@ -30,8 +30,8 @@ To tag and push built image to GitHub Package:
 
 ```
 > ECR_IMAGE_VERSION=<replace_version_here>
-> docker tag artima/scalatest-website:$ECR_IMAGE_VERSION ghcr.io/scalatest/scalatest-website:$ECR_IMAGE_VERSION
-> docker tag artima/scalatest-website:latest ghcr.io/scalatest/scalatest-website:latest
-> docker push ghcr.io/scalatest/scalatest-website:$ECR_IMAGE_VERSION
-> docker push ghcr.io/scalatest/scalatest-website:latest
+> docker tag artima/scalatest-website:$ECR_IMAGE_VERSION ghcr.io/artimahub/scalatest-website:$ECR_IMAGE_VERSION
+> docker tag artima/scalatest-website:latest ghcr.io/artimahub/scalatest-website:latest
+> docker push ghcr.io/artimahub/scalatest-website:$ECR_IMAGE_VERSION
+> docker push ghcr.io/artimahub/scalatest-website:latest
 ```
