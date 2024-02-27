@@ -57,12 +57,12 @@ class Plus @Inject() (cc: ControllerComponents) extends AbstractController(cc) {
     Ok(views.html.plus.jmockVersions())
   }
 
-  def junit = Action {
-    Ok(views.html.plus.junit())
+  def junit4 = Action {
+    Ok(views.html.plus.junit4())
   }
 
-  def junitVersions = Action {
-    Ok(views.html.plus.junitVersions())
+  def junit4Versions = Action {
+    Ok(views.html.plus.junit4Versions())
   }
 
   def junit5 = Action {
