@@ -15,7 +15,8 @@
  *@
 
 @import controllers.Application.latestVersion
-@import controllers.Application.latestTestNGVersion 
+@import controllers.Application.latestTestNGVersion
+@import controllers.Application.majorMinorScalaVersion
 
 @plusPage("ScalaTest + TestNG") {
 <div style="text-align: left">
@@ -38,7 +39,7 @@ For maven you can use:
 <pre class="stGrayback">
 &lt;dependency&gt;
     &lt;groupId&gt;org.scalatestplus&lt;/groupId&gt;
-    &lt;artifactId&gt;testng-@{latestTestNGVersion}_2.13&lt;/artifactId&gt;
+    &lt;artifactId&gt;testng-@{latestTestNGVersion}_@{majorMinorScalaVersion}&lt;/artifactId&gt;
     &lt;version&gt;@latestVersion.0&lt;/version&gt;
     &lt;scope&gt;test&lt;/scope&gt;
 &lt;/dependency&gt;    

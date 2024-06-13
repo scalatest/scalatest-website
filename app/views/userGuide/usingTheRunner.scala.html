@@ -15,6 +15,8 @@
  *@
 
 @import controllers.Application.scaladocsPageUrl
+@import controllers.Application.latestVersion
+@import controllers.Application.majorMinorScalaVersion
 
 @userGuidePage("Using the Runner") {
 <div style="text-align: left">
@@ -31,7 +33,8 @@ to run a suite of tests from the command line and see results on the standard ou
 <p>The basic form of a <code>Runner</code> invocation is:</p>
 
 <p><pre class="stExamples">
-scala [-cp scalatest-&lt;version&gt;.jar:...] org.scalatest.tools.Runner [arguments]
+$ CLASSPATH=scalatest-app_@{majorMinorScalaVersion}-@{latestVersion}.jar:scala-xml_3-2.1.0.jar
+$ scala -cp $CLASSPATH org.scalatest.tools.Runner [arguments]
 </pre></p>
 
 <p>The arguments <code>Runner</code> accepts are described in the following table:</p>
@@ -48,7 +51,7 @@ scala [-cp scalatest-&lt;version&gt;.jar:...] org.scalatest.tools.Runner [argume
 <tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center"><code>-w <em>&lt;wildcard package&gt;</em></code></td><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">requests that suites that are <a href="#membersOnlyWildcard">members of the specified package or its subpackages</a><br/>be discovered and run</td><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center"><code>-w com.company.project</code></td></tr>
 <tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center"><code>-q <em>&lt;suffixes&gt;</em></code></td><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">specify <a href="#specifyingSuffixesToDiscover">suffixes to discover</a></td><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center"><code>-q Spec -q Suite</code></td></tr>
 <tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center"><code>-Q</code></td><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">discover only classes whose names end with <code>Spec</code> or <code>Suite</code><br/>(or other suffixes specified by <code>-q</code>)</td><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center"><code>-Q</code></td></tr>
-<tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center"><code>-j <em>&lt;JUnit class name&gt;</em></code></td><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">instantiate and run a <a href="#specifyingJUnitTests">JUnit test class</a></td><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center"><code>-j StackTestClass</code></td></tr>
+<tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center"><code>-j <em>&lt;JUnit class name&gt;</em></code></td><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">instantiate and run a <a href="#specifyingJUnitTests">JUnit 4 test class</a></td><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center"><code>-j StackTestClass</code></td></tr>
 <tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center"><code>-b <em>&lt;TestNG XML file&gt;</em></code></td><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">run <a href="#specifyingTestNGXML">TestNG tests</a> using the specified TestNG XML file</td><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center"><code>-b testng.xml</code></td></tr>
 <tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center"><code>-F <em>&lt;span scale factor&gt;</em></code></td><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">a factor by which to <a href="#scalingTimeSpans">scale time spans</a><br/>(Note: only one <code>-F</code> is allowed)</td><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center"><code>-F 10</code> <em>or</em> <code>-F 2.5</code></td></tr>
 <tr><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center"><code>-T <em>&lt;sorting timeout&gt;</em></code></td><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center">specifies a integer timeout (in seconds) for sorting the events of<br/>parallel runs back into sequential order</td><td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: center"><code>-T 5</code></td></tr>
@@ -72,7 +75,7 @@ scala [-cp scalatest-&lt;version&gt;.jar:...] org.scalatest.tools.Runner [argume
 <p>The simplest way to start <code>Runner</code> is to specify the directory containing your compiled tests as the sole element of the runpath, for example:</p>
 
 <p><pre class="stExamples">
-scala -classpath scalatest-&lt;version&gt;.jar org.scalatest.tools.Runner -R compiled_tests
+scala -cp $CLASSPATH org.scalatest.tools.Runner -R compiled_tests
 </pre></p>
 
 <p>Given the previous command, <code>Runner</code> will discover and execute all <code>Suite</code>s in the <code>compiled_tests</code> directory and its subdirectories,
@@ -154,7 +157,7 @@ using two reporters, the graphical reporter and a file reporter
 writing to a file named <code>"test.out"</code>, you would type:</p>
 
 <p><pre class="stExamples">
-java -jar scalatest.jar -R mydir <b>-g -f test.out</b> -s MySuite
+$ scala -cp $CLASSPATH org.scalatest.tools.Runner -R mydir <b>-g -f test.out</b> -s MySuite
 </pre></p>
 
 <p>The <code><b>-g</b></code>, <code><b>-o</b></code>, or <code><b>-e</b></code> options can
@@ -427,32 +430,32 @@ for asynchronous operations) from the command line. For more information, see th
 
 <p>If you specify one or more file paths with <code>-b</code> (b for Beust, the last name of TestNG's creator), <code>Runner</code> will create a <code>org.scalatest.testng.TestNGWrapperSuite</code>,
 passing in a <code>List</code> of the specified paths. When executed, the <code>TestNGWrapperSuite</code> will create one <code>TestNG</code> instance
-and pass each specified file path to it for running. If you include <code>-b</code> arguments, you must include TestNG's jar file on the class path or runpath.
+and pass each specified file path to it for running. If you include <code>-b</code> arguments, you must include TestNG's and <a href="@routes.Plus.testng()">ScalaTest + TestNG's</a> jar file on the class path or runpath.
 The <code>-b</code> argument will enable you to run existing <code>TestNG</code> tests, including tests written in Java, as part of a ScalaTest run.
 You need not use <code>-b</code> to run suites written in Scala that extend <code>TestNGSuite</code>. You can simply run such suites with
 <code>-s</code>, <code>-m</code>, or </code>-w</code> parameters.</p>
 
 <a name="specifyingJUnitTests"> </a>
-<h2> Specifying JUnit tests </h2>
+<h2> Specifying JUnit 4 tests </h2>
 
-<p>JUnit tests, including ones written in Java, may be run by specifying
-<code>-j classname</code>, where the classname is a valid JUnit class
+<p>JUnit 4 tests, including ones written in Java, may be run by specifying
+<code>-j classname</code>, where the classname is a valid JUnit 4 class
 such as a TestCase, TestSuite, or a class implementing a static suite()
 method returning a TestSuite.</p>
 
-<p>To use this option you must include a JUnit jar file on your classpath.</p>
+<p>To use this option you must include a JUnit 4's and <a href="@routes.Plus.junit4()">ScalaTest + JUnit 4's</a> jar file on your classpath.</p>
 <a name="memorizingAndRerunning"> </a>
 <h2> Memorizing and rerunning failed and canceled tests </h2>
 
 <p>You can memorize failed and canceled tests using <code>-M</code>:</p>
 
-<p><pre class="stHighlight">
+<p><pre class="stExamples">
 -M failed-canceled.txt
 </pre></p>
 
 <p>All failed and canceled tests will be memorized in <code>failed-canceled.txt</code>, to rerun them again, you use <code>-A</code>:</p>
 
-<p><pre class="stHighlight">
+<p><pre class="stExamples">
 -A failed-canceled.txt
 </pre>
 </p>
@@ -462,7 +465,7 @@ method returning a TestSuite.</p>
 
 <p>You can setting seed used by generator tests using <code>-S</code>:</p>
 
-<p><pre class="stHighlight">
+<p><pre class="stExamples">
 -S 1234567890
 </pre></p>
 
