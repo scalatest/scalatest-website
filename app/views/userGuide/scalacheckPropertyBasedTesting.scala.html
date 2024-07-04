@@ -49,17 +49,17 @@ libraryDependencies += <span class="stQuotedString">"org.scalatestplus"</span> %
         in your SBT file, or if you use Maven:
     </p>
 
-    <pre class="stGrayback">
+<pre class="stGrayback">
 &lt;dependency&gt;
     &lt;groupId&gt;org.scalatestplus&lt;/groupId&gt;
-    &lt;artifactId&gt;scalacheck-@{latestScalaCheckVersion}_2.13&lt;/artifactId&gt;
+    &lt;artifactId&gt;scalacheck-@{latestScalaCheckVersion}_3&lt;/artifactId&gt;
     &lt;version&gt;@latestScalaCheckPlusVersion&lt;/version&gt;
     &lt;scope&gt;test&lt;/scope&gt;
 &lt;/dependency&gt;
 </pre>
 
     <p>
-        To use this style of testing, mix in trait <code>org.scalatestplus.scalacheck.ScalaCheckPropertyChecks</code>, or import the
+        To use this style of testing, mix in trait <code>org.scalatestplus.scalacheck.ScalaCheckPropertyChecks</code> (previously known as <code>org.scalatest.props.PropertyChecks</code>, deprecated in 3.0.6), or import the
         members of its companion object.
     </p>
 

@@ -1,0 +1,137 @@
+@*
+* Copyright 2010-2024 Artima, Inc.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*@
+
+@import controllers.Application.scaladocsPageUrl
+@import controllers.Application.milestoneScaladoc
+
+@combinedReleaseNotesPage("Scalactic/ScalaTest 3.2.19 Release Notes") {
+<div style="text-align: left">
+
+    <h1>ScalaTest/Scalactic 3.2.19 Release Notes</h1>
+
+    <p>
+        ScalaTest/Scalactic 3.2.19 (for Scala 2.10, 2.11, 2.12, 2.13, 3.1; on the JVM, JavaScript, and native)
+        includes the enhancements listed below.
+    </p>
+
+    <p>
+        For information on how to include ScalaTest in your project, see the <a href="/install">install page</a>.
+        For information on how to use <a href="http://www.scalactic.org/">Scalactic</a> in your production code,
+        see its <a href="http://www.scalactic.org/install">install page</a>.
+    </p>
+
+    <br/>
+
+    <!-- ====================================== SCALA TEST ==================================================== -->
+
+    <hr style="height:3px;border:none;color:#333;background-color:#333;" /> <!-- ############################################### -->
+
+    <div align="center" style="padding-top:0.8rem">
+        <h1>ScalaTest</h1>
+    </div>
+
+    <hr></hr>
+
+    <p>
+        ScalaTest 3.2.19 is a minor release of ScalaTest that makes bug fixes, few enhancements, and supports Scala.js 1.8.x, Scala.native 0.5.x and Scala 3.1.x.
+    </p>
+
+    <a name="scalatest_bugfixes"></a>
+    <h2>Bug Fixes</h2>
+    <p>Added wait for tests to finish before continuing.(<a href="https://github.com/scalatest/scalatestplus-junit5/pull/15">ScalaTest + JUnit5 PR #15</a>)</p>
+    <p>Fixed a bug when extracting payload from throwable. (<a href="https://github.com/scalatest/scalatestplus-junit5/pull/16">ScalaTest + JUnit5 PR #16</a>)</p>
+    <p>Updated JUnitSuite example. (<a href="https://github.com/scalatest/scalatestplus-junit5/pull/14">ScalaTest + JUnit5 PR #14</a>)</p>
+
+    <a name="scalatest_improvements"></a>
+    <h2>Improvements</h2>
+    <p>Fixed remaining Scala 3 infix warnings in method used in DSL. (<a href="https://github.com/scalatest/scalatest/pull/2315">PR #2315</a>)</p>
+    <p>Upgraded to Scala Native 0.5. (<a href="https://github.com/scalatest/scalatest/pull/2322">PR #2322</a>)</p>
+    <p>Added support to run tests with dynamic test name when running a suite. (<a href="https://github.com/scalatest/scalatestplus-junit5/pull/19">ScalaTest+JUnit5 PR #19</a>)</p>
+    <p>Added support for ParallelTestExecution. (<a href="https://github.com/scalatest/scalatestplus-junit5/pull/18">ScalaTest+JUnit5 PR #18</a>)</p>
+    <p>Made JUnitRunner Filterable. (<a href="https://github.com/scalatest/scalatestplus-junit/pull/8">ScalaTest+JUnit PR #8</a>)</p>
+    <p>Translate TestCanceled to fireAssumptionFailed. (<a href="https://github.com/scalatest/scalatestplus-junit/pull/28">ScalaTest+JUnit PR #28</a>)</p>
+    <p>Report original arg value if it was shrunk. (<a href="https://github.com/scalatest/scalatestplus-scalacheck/pull/12">ScalaTest+ScalaCheck PR #12</a>)</p>
+    <p>Add convient methods for ArgumentCaptor. (<a href="https://github.com/scalatest/scalatestplus-mockito/pull/27">ScalaTest+Mockito PR #27</a>)</p>
+    <p>Upgraded ScalaCheck version to 1.18 in ScalaTest+ScalaCheck. (<a href="https://github.com/scalatest/scalatestplus-scalacheck/pull/66">ScalaTest+ScalaCheck PR #66</a>)</p>
+    <p>Upgraded JUnit version to 5.10.2 in ScalaTest+JUnit5.</p>
+    <p>Upgraded Mockito version to 5.12 in ScalaTest+Mockito.</p>
+    <p>Upgraded Selenium version to 4.21 in ScalaTest+Selenium.</p>
+    <p>Upgraded TestNG version to 7.10 in ScalaTest+TestNG.</p>
+    <p>Upgraded JMock version to 2.13 in ScalaTest+JMock.</p>
+    <p>Upgraded EasyMock version to 5.3 in ScalaTest+EasyMock.</p>
+
+    <a name="scalatest_deprecations"></a>
+    <h2>Deprecations</h2>
+    <p>ScalaTest 3.2.19 contains no new deprecations.</p>
+
+    <br/>
+
+    <!-- ====================================== SCALACTIC ==================================================== -->
+
+    <hr style="height:3px;border:none;color:#333;background-color:#333;" /> <!-- ############################################### -->
+
+    <div align="center" style="padding-top:0.8rem">
+        <h1>Scalactic</h1>
+    </div>
+
+    <hr></hr>
+
+    <a name="scalactic_bugfixes"></a>
+    <h2>Bug Fixes</h2>
+    <p>Scalactic 3.2.19 contains no new bug fixes.</p>
+
+    <a name="scalactic_improvements"></a>
+    <h2>Improvements</h2>
+    <p>Scalactic 3.2.19 contains no new improvements.</p>
+
+    <a name="scalactic_deprecations"></a>
+    <h2>Deprecations</h2>
+    <p>Scalactic 3.2.19 contains no new deprecations.</p>
+
+    <br/>
+
+    <hr style="height:3px;border:none;color:#333;background-color:#333;" />
+    <br/>
+
+    <h2>ScalaTest/Scalactic Contributors</h2>
+
+    Thanks to the contributors for the ScalaTest/Scalactic 3.2.19 release:
+
+    <ul>
+        <li><a href="https://github.com/catap">Kirill A. Korinsky</a></li>
+        <li><a href="https://github.com/samwright">Sam Wright</a></li>
+        <li><a href="https://github.com/jackhclee">Jack Lee</a></li>
+        <li><a href="https://github.com/SergeKireev">Sergei Kireev</a></li>
+        <li><a href="https://github.com/retronym">Jason Zaugg</a></li>
+        <li><a href="https://github.com/dangerousben">Ben Spencer</a></li>
+        <li><a href="https://github.com/exoego">TATSUNO “Taz” Yasuhiro</a></li>
+        <li><a href="https://github.com/cheeseng">Chua Chee Seng</a></li>
+        <li><a href="https://github.com/bvenners">Bill Venners</a></li>
+    </ul>
+
+    <br/>
+
+    <!-- ====================================== NOTES ==================================================== -->
+
+    <hr style="height:3px;border:none;color:#333;background-color:#333;" /> <!-- ############################################### -->
+
+    <p>
+        Visit <a href="@routes.ReleaseNotes.releaseNotesIndex()">ScalaTest Release Notes</a> for links to the release notes of all previous versions, or
+        step back in time by visiting the <a href="@routes.ReleaseNotes.v3218">release notes for the previous version</a>.
+    </p>
+
+</div>
+}
