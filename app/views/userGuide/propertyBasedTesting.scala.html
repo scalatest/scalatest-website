@@ -37,34 +37,17 @@ result that should hold no matter what valid list is passed.
 
 <p>
 In ScalaTest, properties are specified as functions and the data points used to check properties can be supplied by either tables
-or generators. Generator-driven property checks are performed via integration with <a href="http://www.scalacheck.org/">ScalaCheck</a> through 
-<a href="@routes.Plus.scalacheck()">ScalaTest + ScalaCheck</a> library, by including:
+or generators. Starting from ScalaTest 3.3, generator-driven property checks are performed via ScalaTest generators.
+If you are using ScalaCheck, you may want to refer to <a href="@routes.UserGuide.scalacheckPropertyBasedTesting()">ScalaCheck-driven property checks</a>.
 </p>
 
-<pre class="stHighlighted">
-libraryDependencies += <span class="stQuotedString">"org.scalatestplus"</span> %% <span class="stQuotedString">"scalacheck-@{latestScalaCheckVersion}"</span> % <span class="stQuotedString">"@{latestScalaCheckPlusVersion}"</span> % <span class="stQuotedString">"test"</span>
-</pre>
-
 <p>
-in your SBT file, or if you use Maven:   
-</p>
-
-<pre class="stGrayback">
-&lt;dependency&gt;
-    &lt;groupId&gt;org.scalatestplus&lt;/groupId&gt;
-    &lt;artifactId&gt;scalacheck-@{latestScalaCheckVersion}_3&lt;/artifactId&gt;
-    &lt;version&gt;@latestScalaCheckPlusVersion&lt;/version&gt;
-    &lt;scope&gt;test&lt;/scope&gt;
-&lt;/dependency&gt;    
-</pre>
-
-<p>
-To use this style of testing, mix in trait <code>org.scalatestplus.scalacheck.ScalaCheckPropertyChecks</code> (previously known as <code>org.scalatest.props.PropertyChecks</code>, deprecated in 3.0.6), or import the
+To use this style of testing, mix in trait <code>org.scalatest.prop.PropertyChecks</code>, or import the
 members of its companion object. 
 </p>
 
 <p>
-As an example property-based testing using both table- and generator-driven properties, imagine you want to test this <code>Fraction</code> class:
+As an example property-based testing using both table and generator-driven properties, imagine you want to test this <code>Fraction</code> class:
 </p>
 
 <pre class="stHighlighted">
@@ -79,7 +62,7 @@ As an example property-based testing using both table- and generator-driven prop
 </pre>
 
 <p>
-If you mix in <code>ScalaCheckPropertyChecks</code>, you could use a generator-driven property check to test that the passed values for numerator and
+If you mix in <code>PropertyChecks</code>, you could use a generator-driven property check to test that the passed values for numerator and
 denominator are properly normalized, like this:
 </p>
 
@@ -104,8 +87,8 @@ The <code>forAll</code> method takes a function that expresses a property of <co
 passed as <code>n</code> and <code>d</code>. (This property specifies how the numerator and denominator passed to the <code>Fraction</code>
 constructor should be normalized.) The <code>whenever</code> clause indicates invalid
 values for <code>n</code> and <code>d</code>.
-Any other values are valid. When run, ScalaCheck generators will be passed implicitly to <code>forAll</code> and supply integer values for
-<code>n</code> and <code>d</code>. By default the property will be checked against 10 valid pairs of <code>n</code> and <code>d</code>. Note that this is different from ScalaCheck's default of 100.
+Any other values are valid. When run, ScalaTest generators will be passed implicitly to <code>forAll</code> and supply integer values for
+<code>n</code> and <code>d</code>. By default the property will be checked against 10 valid pairs of <code>n</code> and <code>d</code>.
 </p>
 
 <p>
@@ -144,6 +127,31 @@ After the declaration of the table, <code>forAll</code> is invoked.  This <code>
 a property. <code>forAll</code> checks to make sure the property holds for each row of the table.
 </p>
 
+<h2>Custom Generators</h2>
+
+<p>
+You can define your own generators to suit specific testing needs:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">val</span> evenIntGen = <span class="stType">Generator</span>[<span class="stType">Int</span>] = <span class="stReserved">for</span> {
+  n <- <span class="stType">Generator</span>.choose(<span class="stLiteral">0</span>, <span class="stLiteral">100</span>)
+} <span class="stReserved">yield</span> n * <span class="stLiteral">2</span>
+</pre>
+
+<p>
+You can also combine multiple generators to create more complex types of data:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">val</span> personGen: <span class="stType">Generator</span>[<span class="stType">Person</span>] = <span class="stReserved">for</span> {
+  name <- <span class="stType">Generator</span>.alphaStr
+  age  <- <span class="stType">Generator</span>.choose(<span class="stLiteral">18</span>, <span class="stLiteral">120</span>)
+} <span class="stReserved">yield</span> <span class="stType">Person</span>(name, age)
+</pre>
+
+<h2>Shrinking Failing Value</h2>
+
 <p>
 When you get a failed property check, ScalaTest will report the failure with initial seed so that you can reproduce the failure.  You'll need to pass the initial seed value through <code>-S</code> argument,
 here's an example you pass it through build.sbt:
@@ -160,13 +168,16 @@ sbt> testOnly MyTest -- -S 123456879
 </pre>
 
 <p>
+When a test fails, ScalaTest automatically tries to simplify (or “shrink”) the value to help you identify the root cause of the failure. This feature is invaluable for debugging.
+</p>
+
+<p>
 For more information check out the user guide pages for:
 </p>
 
 <ul>
 <li><a href="/user_guide/table_driven_property_checks">Table-driven property checks</a></li>
 <li><a href="/user_guide/generator_driven_property_checks">Generator-driven property checks</a></li>
-<li><a href="/user_guide/writing_scalacheck_style_properties">Writing ScalaCheck-style properties</a></li>
 </ul>
 
 <p>

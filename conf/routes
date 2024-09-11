@@ -28,6 +28,7 @@ GET        /getting_started_with_testng_in_scala                        controll
 GET        /at_a_glance/:style                                          controllers.Application.atAGlance(style)
 GET        /at_a_glance                                                 controllers.Application.bareAtAGlance()
 
+GET        /release_notes/3.3.0                                         controllers.ReleaseNotes.v330
 GET        /release_notes/3.2.19                                        controllers.ReleaseNotes.v3219
 GET        /release_notes/3.2.18                                        controllers.ReleaseNotes.v3218
 GET        /release_notes/3.2.17                                        controllers.ReleaseNotes.v3217
@@ -100,6 +101,7 @@ GET        /user_guide/using_matchers                                   controll
 GET        /user_guide/testing_with_mock_objects                        controllers.UserGuide.testingWithMockObjects
 GET        /user_guide/tests_as_specifications                          controllers.UserGuide.testsAsSpecifications
 GET        /user_guide/property_based_testing                           controllers.UserGuide.propertyBasedTesting()
+GET        /user_guide/scalacheck_property_based_testing                controllers.UserGuide.scalacheckPropertyBasedTesting()
 GET        /user_guide/other_goodies                                    controllers.UserGuide.otherGoodies
 GET        /user_guide/using_inside                                     controllers.UserGuide.usingInside
 GET        /user_guide/using_OptionValues                               controllers.UserGuide.usingOptionValues
@@ -113,7 +115,9 @@ GET        /user_guide/selecting_a_style                                controll
 GET        /user_guide/defining_base_classes                            controllers.UserGuide.definingBaseClasses()
 GET        /user_guide/using_junit_runner                               controllers.UserGuide.usingJunitRunner
 GET        /user_guide/table_driven_property_checks                     controllers.UserGuide.tableDrivenPropertyChecks
+GET        /user_guide/scalacheck_table_driven_property_checks          controllers.UserGuide.scalacheckTableDrivenPropertyChecks
 GET        /user_guide/generator_driven_property_checks                 controllers.UserGuide.generatorDrivenPropertyChecks
+GET        /user_guide/scalacheck_driven_property_checks                controllers.UserGuide.scalacheckDrivenPropertyChecks
 GET        /user_guide/writing_scalacheck_style_properties              controllers.UserGuide.writingScalacheckStyleProperties
 GET        /user_guide/using_the_runner                                 controllers.UserGuide.usingTheRunner
 GET        /user_guide/invoking_execute                                 controllers.UserGuide.invokingExecute
