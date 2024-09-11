@@ -127,6 +127,31 @@ After the declaration of the table, <code>forAll</code> is invoked.  This <code>
 a property. <code>forAll</code> checks to make sure the property holds for each row of the table.
 </p>
 
+<h2>Custom Generators</h2>
+
+<p>
+You can define your own generators to suit specific testing needs:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">val</span> evenIntGen = <span class="stType">Generator</span>[<span class="stType">Int</span>] = <span class="stReserved">for</span> {
+  n <- <span class="stType">Generator</span>.choose(<span class="stLiteral">0</span>, <span class="stLiteral">100</span>)
+} <span class="stReserved">yield</span> n * <span class="stLiteral">2</span>
+</pre>
+
+<p>
+You can also combine multiple generators to create more complex types of data:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">val</span> personGen: <span class="stType">Generator</span>[<span class="stType">Person</span>] = <span class="stReserved">for</span> {
+  name <- <span class="stType">Generator</span>.alphaStr
+  age  <- <span class="stType">Generator</span>.choose(<span class="stLiteral">18</span>, <span class="stLiteral">120</span>)
+} <span class="stReserved">yield</span> <span class="stType">Person</span>(name, age)
+</pre>
+
+<h2>Shrinking Failing Value</h2>
+
 <p>
 When you get a failed property check, ScalaTest will report the failure with initial seed so that you can reproduce the failure.  You'll need to pass the initial seed value through <code>-S</code> argument,
 here's an example you pass it through build.sbt:
@@ -141,6 +166,10 @@ or if you are using testOnly you can do:
 <pre class="scala">
 sbt> testOnly MyTest -- -S 123456879
 </pre>
+
+<p>
+When a test fails, ScalaTest automatically tries to simplify (or “shrink”) the value to help you identify the root cause of the failure. This feature is invaluable for debugging.
+</p>
 
 <p>
 For more information check out the user guide pages for:
