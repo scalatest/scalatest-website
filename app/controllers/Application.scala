@@ -157,6 +157,7 @@ object Application {
   val latestJMockVersion = "2-13"
   val latestJUnitVersion = "4-13"
   val latestJUnit5Version = "5-10"
+  val latestJUnit5PlusVersion = "3.2.19.1"
   val latestMockitoVersion = "5-12"
   val latestScalaCheckVersion = "1-18"
   val latestScalaCheckPlusVersion = "3.2.19.0"

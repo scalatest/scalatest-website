@@ -16,6 +16,7 @@
 
 @import controllers.Application.latestVersion
 @import controllers.Application.latestJUnit5Version
+@import controllers.Application.latestJUnit5PlusVersion
 @import controllers.Application.baseScalaVersion
 @import controllers.Application.majorMinorScalaVersion
 
@@ -42,7 +43,7 @@
     </p>
 
     <pre class="stGrayback">
-libraryDependencies += "org.scalatestplus" %% "junit-@latestJUnit5Version" % "@latestVersion.0" % "test"
+libraryDependencies += "org.scalatestplus" %% "junit-@latestJUnit5Version" % "@latestJUnit5PlusVersion" % "test"
 </pre>
 
     <p>
@@ -53,7 +54,7 @@ libraryDependencies += "org.scalatestplus" %% "junit-@latestJUnit5Version" % "@l
 &lt;dependency&gt;
     &lt;groupId&gt;org.scalatestplus&lt;/groupId&gt;
     &lt;artifactId&gt;junit-@{latestJUnit5Version}_@{majorMinorScalaVersion}&lt;/artifactId&gt;
-    &lt;version&gt;@latestVersion.0&lt;/version&gt;
+    &lt;version&gt;@latestJUnit5PlusVersion&lt;/version&gt;
     &lt;scope&gt;test&lt;/scope&gt;
 &lt;/dependency&gt;
 </pre>
@@ -69,7 +70,7 @@ dependencies {
     testImplementation "org.scalatest:scalatest_2.13:@latestVersion"
     testImplementation "org.junit.platform:junit-platform-launcher:1.10.0"
     testRuntimeOnly "org.junit.platform:junit-platform-engine:1.10.0"
-    testRuntimeOnly "org.scalatestplus:junit-@{latestJUnit5Version}_2.13:@latestVersion.0"
+    testRuntimeOnly "org.scalatestplus:junit-@{latestJUnit5Version}_2.13:@latestJUnit5PlusVersion"
 }
 
 test {
@@ -93,7 +94,7 @@ dependencies {
     testImplementation("org.scalatest:scalatest_2.13:@latestVersion")
     testRuntimeOnly("org.junit.platform:junit-platform-engine:1.10.0")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.10.0")
-    testRuntimeOnly("org.scalatestplus:junit-@{latestJUnit5Version}_2.13:@latestVersion.0")
+    testRuntimeOnly("org.scalatestplus:junit-@{latestJUnit5Version}_2.13:@latestJUnit5PlusVersion")
 }
 
 tasks {
