@@ -65,11 +65,13 @@ class Application @Inject() (cc: ControllerComponents) extends AbstractControlle
   }
 
   def donate = Action {
-    Ok(views.html.donate())
+    //Ok(views.html.donate())
+    Redirect("https://github.com/sponsors/scalatest", TEMPORARY_REDIRECT)
   }
 
   def sponsor = Action {
-    Ok(views.html.sponsor())
+    //Ok(views.html.sponsor())
+    Redirect("https://github.com/sponsors/scalatest", TEMPORARY_REDIRECT)
   }
 
 /*
