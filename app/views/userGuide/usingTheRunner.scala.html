@@ -34,7 +34,7 @@ to run a suite of tests from the command line and see results on the standard ou
 
 <p><pre class="stExamples">
 $ CLASSPATH=scalatest-app_@{majorMinorScalaVersion}-@{latestVersion}.jar:scala-xml_3-2.1.0.jar
-$ scala -cp $CLASSPATH org.scalatest.tools.Runner [arguments]
+$ scala -cp $CLASSPATH --main-class org.scalatest.tools.Runner -- [arguments]
 </pre></p>
 
 <p>The arguments <code>Runner</code> accepts are described in the following table:</p>
