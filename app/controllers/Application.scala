@@ -141,9 +141,9 @@ class Application @Inject() (cc: ControllerComponents) extends AbstractControlle
 
 object Application {
 
-  val latestVersion = "3.2.19"
+  val latestVersion = "3.2.20"
   val latestSuperSafeVersion = "1.1.12"
-  val supersafeScalaVersion = "2.13.14"
+  val supersafeScalaVersion = "2.13.18"
   val milestoneVersion = "3.2.0"
   val milestoneJar = "https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest_2.11/3.2.0-RC3/scalatest_2.11-3.2.0-RC3.jar"
   val latestJar = s"https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest-app_3/$latestVersion/scalatest-app_3-$latestVersion.jar"
@@ -151,7 +151,7 @@ object Application {
   val milestoneScalacticScaladoc = "http://www.artima.com/docs-scalactic-3.2.0-RC3"
   val scaladocsLocation = "https://www.scalatest.org/scaladoc"
   val releasesLocation = "http://www.artima.com/downloadScalaTest"
-  val baseScalaVersion = "3.3.4"
+  val baseScalaVersion = "3.3.7"
   val majorMinorScalaVersion = "3"
   val latestScaladocFor192 = "http://doc.scalatest.org/1.9.2"
   val latestSeleniumVersion = "4-21"
