@@ -155,7 +155,7 @@ object Application {
   val majorMinorScalaVersion = "3"
   val latestScaladocFor192 = "http://doc.scalatest.org/1.9.2"
   val latestSeleniumVersion = "4-41"
-  val latestEasyMockVersion = "5-3"
+  val latestEasyMockVersion = "5-6"
   val latestJMockVersion = "2-13"
   val latestJUnitVersion = "4-13"
   val latestJUnit5Version = "5-14"
@@ -166,7 +166,7 @@ object Application {
   val latestTestNGVersion = "7-12"
   val quickStartXmlJar = "https://repo1.maven.org/maven2/org/scala-lang/modules/scala-xml_3/2.3.0/scala-xml_3-2.3.0.jar"
   val latestPlusScalaCheckDoc = "plus-scalacheck-1.19/3.2.20.0"
-  val latestPlusEasyMockDoc = "plus-easymock-5.3/3.2.19.0"
+  val latestPlusEasyMockDoc = "plus-easymock-5.6/3.2.20.0"
   val latestPlusJMockDoc = "plus-jmock-2.13/3.2.20.0"
   val latestPlusMockitoDoc = "plus-mockito-5.23/3.2.20.0"
 
