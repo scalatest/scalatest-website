@@ -163,7 +163,7 @@ object Application {
   val latestMockitoVersion = "5-18"
   val latestScalaCheckVersion = "1-19"
   val latestScalaCheckPlusVersion = "3.2.20.0"
-  val latestTestNGVersion = "7-10"
+  val latestTestNGVersion = "7-12"
   val quickStartXmlJar = "https://repo1.maven.org/maven2/org/scala-lang/modules/scala-xml_3/2.3.0/scala-xml_3-2.3.0.jar"
   val latestPlusScalaCheckDoc = "plus-scalacheck-1.19/3.2.20.0"
   val latestPlusEasyMockDoc = "plus-easymock-5.3/3.2.19.0"
