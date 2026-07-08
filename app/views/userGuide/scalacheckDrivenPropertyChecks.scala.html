@@ -23,19 +23,23 @@
 
     <p>
         To use generator-driven property checks, you must mix in trait <code>org.scalatestplus.scalacheck.ScalaCheckPropertyChecks</code>.
-        If you are also using table-driven property checks, you can mix in
-        trait <code>org.scalatestplus.scalacheck.ScalaCheckPropertyChecks</code>,
-        which extends both <code>ScalaCheckDrivenPropertyChecks</code> and
+        If you are also using table-driven property checks, this same trait extends both ScalaCheck
+        generator-driven checks and
         <a href='@scaladocsPageUrl("org.scalatest.prop.TableDrivenPropertyChecks")'><code>TableDrivenPropertyChecks</code></a>.
-        Generator-driven property checks uses <a href="http://www.scalacheck.org/")'>ScalaCheck</a> and
+        Generator-driven property checks use <a href="https://www.scalacheck.org/">ScalaCheck</a> and
         <a href="@routes.Plus.scalacheck()">ScalaTest + ScalaCheck</a>, so you must also include both jars on your classpath when
         you compile and run your tests.
     </p>
 
     <p>
+        If you prefer ScalaTest style with built-in generators and property-check APIs, see
+        <a href="/user_guide/generator_driven_property_checks">Generator-driven property checks</a>.
+    </p>
+
+    <p>
         Trait <code>ScalaCheckDrivenPropertyChecks</code> contains <code>forAll</code> methods that provide various ways to check properties using
         generated data.
-        It also contains a <code>wherever</code> method that can be used to indicate a property need only hold whenever
+        It also contains a <code>whenever</code> method that can be used to indicate a property need only hold whenever
         some condition is true.
     </p>
 

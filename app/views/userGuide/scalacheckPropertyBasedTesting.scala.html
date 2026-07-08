@@ -22,10 +22,15 @@
     <h1>Property-based testing using ScalaCheck</h1>
 
     <p>
-        ScalaTest supports property-based testing using ScalaCheck, where
+        ScalaTest also supports property-based testing using ScalaCheck, where
         a <em>property</em> is a high-level specification of behavior that should hold for a range of data points. For example, a property might
         state that the size of a list returned from a method should always be greater than or equal to the size of the list passed to
         that method. This property should hold no matter what list is passed.
+    </p>
+
+    <p>
+        If you prefer ScalaTest style with built-in generators, see
+        <a href="/user_guide/generator_driven_property_checks">Generator-driven property checks</a>.
     </p>
 
     <p>
@@ -37,7 +42,7 @@
 
     <p>
         In ScalaTest, properties are specified as functions and the data points used to check properties can be supplied by either tables
-        or generators. Generator-driven property checks are performed via integration with <a href="http://www.scalacheck.org/">ScalaCheck</a> through
+        or generators. Generator-driven property checks are performed via integration with <a href="https://www.scalacheck.org/">ScalaCheck</a> through
         <a href="@routes.Plus.scalacheck()">ScalaTest + ScalaCheck</a> library, by including:
     </p>
 

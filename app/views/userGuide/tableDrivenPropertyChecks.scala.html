@@ -47,7 +47,7 @@ For an example of trait <code>TableDrivenPropertyChecks</code> in action, imagin
   require(n != Integer.MIN_VALUE)
 <br />  <span class="stReserved">val</span> numer = <span class="stReserved">if</span> (d < <span class="stLiteral">0</span>) -<span class="stLiteral">1</span> * n <span class="stReserved">else</span> n
   <span class="stReserved">val</span> denom = d.abs
-<br />  <span class="stReserved">override</span> <span class="stReserved">def</span> toString = numer + <span class="stQuotedString">" / "</span> + denom
+<br />  <span class="stReserved">override</span> <span class="stReserved">def</span> toString = <span class="stQuotedString">s"$numer / $denom"</span>
 }
 </pre>
 
@@ -104,7 +104,7 @@ You could then check a property against each row of the table using a <code>forA
     <span class="stReserved">else</span> <span class="stReserved">if</span> (n != <span class="stLiteral">0</span>)
       f.numer should be < <span class="stLiteral">0</span>
     <span class="stReserved">else</span>
-      f.numer should be === <span class="stLiteral">0</span>
+      f.numer should be == <span class="stLiteral">0</span>
 <br />    f.denom should be > <span class="stLiteral">0</span>
   }
 }
@@ -128,7 +128,14 @@ a condition required by the property function is not met by a row
 of passed data, will simply cause <code>forAll</code> to skip that row of data.
 <p>
 
-<a name="testingStatefulFunctions"></a><h2>Testing stateful functions</h2>
+<a name="testingStatefulFunctions"></a><h2>Testing stateful behavior</h2>
+
+<p>
+Tables are also useful for stateful behavior. Whether you are testing a stateful function
+or a mutable object, each row can describe the next expected outcome after one step.
+</p>
+
+<h3>Stateful function example</h3>
 
 <p>
 One way to use a table with one column is to test subsequent return values
@@ -143,6 +150,29 @@ think of as one row), in which each row represents
 the next value you expect.
 </p>
 
+<p>
+Here is one simple implementation of <code>FiboGen</code>:
+</p>
+
+<pre class="stHighlighted">
+<span class="stReserved">object</span> <span class="stType">FiboGen</span> {
+  <span class="stReserved">private</span> <span class="stReserved">var</span> prev = -<span class="stLiteral">1</span>
+  <span class="stReserved">private</span> <span class="stReserved">var</span> curr = <span class="stLiteral">1</span>
+
+  <span class="stReserved">def</span> reset(): <span class="stType">Unit</span> = {
+    prev = -<span class="stLiteral">1</span>
+    curr = <span class="stLiteral">1</span>
+  }
+
+  <span class="stReserved">def</span> next: <span class="stType">Int</span> = {
+    <span class="stReserved">val</span> nextVal = prev + curr
+    prev = curr
+    curr = nextVal
+    nextVal
+  }
+}
+</pre>
+
 <pre class="stHighlighted">
 <span class="stReserved">val</span> first14FiboNums =
   <span class="stType">Table</span>(<span class="stQuotedString">"n"</span>, <span class="stLiteral">0</span>, <span class="stLiteral">1</span>, <span class="stLiteral">1</span>, <span class="stLiteral">2</span>, <span class="stLiteral">3</span>, <span class="stLiteral">5</span>, <span class="stLiteral">8</span>, <span class="stLiteral">13</span>, <span class="stLiteral">21</span>, <span class="stLiteral">34</span>, <span class="stLiteral">55</span>, <span class="stLiteral">89</span>, <span class="stLiteral">144</span>, <span class="stLiteral">233</span>)
@@ -154,24 +184,26 @@ expected return value, like this:
 </p>
 
 <pre class="stHighlighted">
+FiboGen.reset()
+
 forAll (first14FiboNums) { n =>
   FiboGen.next should equal (n)
 }
 </pre>
 
-<a name="testingMutables"></a><h2>Testing mutable objects</h2>
+<a name="testingMutables"></a><h3>Mutable object example</h3>
 
 <p>
-If you need to test a mutable object, one way you can use tables is to specify
+You can apply the same idea to a mutable object by specifying
 state transitions in a table. For example, imagine you wanted to test this mutable
 <code>Counter</code> class:
 
 <pre class="stHighlighted">
 <span class="stReserved">class</span> <span class="stType">Counter</span> {
   <span class="stReserved">private</span> <span class="stReserved">var</span> c = <span class="stLiteral">0</span>
-  <span class="stReserved">def</span> reset() { c = <span class="stLiteral">0</span> }
-  <span class="stReserved">def</span> click() { c += <span class="stLiteral">1</span> }
-  <span class="stReserved">def</span> enter(n: <span class="stType">Int</span>) { c = n }
+  <span class="stReserved">def</span> reset() = { c = <span class="stLiteral">0</span> }
+  <span class="stReserved">def</span> click() = { c += <span class="stLiteral">1</span> }
+  <span class="stReserved">def</span> enter(n: <span class="stType">Int</span>) = { c = n }
   <span class="stReserved">def</span> count = c
 }
 </pre>
