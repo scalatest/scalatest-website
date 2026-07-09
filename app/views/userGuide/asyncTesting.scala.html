@@ -155,9 +155,8 @@ res2: org.scalatest.Assertion = Succeeded</pre>
     </p>
 
     <p>
-        On both the JVM and Scala.js, the default execution context provided by ScalaTest's asynchronous testing styles confines execution to a single thread per test. On JavaScript,
-        where single-threaded execution is the only possibility, the default execution context is <code>scala.scalajs.concurrent.JSExecutionContext.Implicits.queue</code>. On the JVM,
-        the default execution context is a serial execution context provided by ScalaTest itself.
+        On both the JVM and Scala.js, the default execution context provided by ScalaTest's asynchronous testing styles confines execution to a single thread per test, using serial execution context provided by 
+        ScalaTest itself.
     </p>
 
     <p>
@@ -204,12 +203,12 @@ res2: org.scalatest.Assertion = Succeeded</pre>
     </p>
 
     <p>
-        To use a different execution context, just override <code>executionContext</code>. For example, if you prefer to use the <code>runNow</code> execution context on Scala.js instead of the default queue,
-        you would write:
+        To use a different execution context, just override <code>executionContext</code>. For example, if you prefer to use the <code>queue</code> execution context on Scala.js instead of the default 
+        <code>serial execution context</code> provided by ScalaTest, you would write:
     </p>
 
     <pre class="stHighlighted"><span class="stLineComment">// on Scala.js</span>
-<span class="stReserved">implicit override def</span> executionContext = scala.scalajs.concurrent.<span class="stType">JSExecutionContext</span>.<span class="stType">Implicits</span>.runNow</pre>
+<span class="stReserved">implicit override def</span> executionContext = scala.scalajs.concurrent.<span class="stType">JSExecutionContext</span>.<span class="stType">Implicits</span>.queue</pre>
 
     <p>
         If you prefer on the JVM to use the global execution context, which is backed by a thread pool, instead of ScalaTest's default serial execution contex, which confines execution to a single thread,

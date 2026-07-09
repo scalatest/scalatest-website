@@ -65,11 +65,13 @@ class Application @Inject() (cc: ControllerComponents) extends AbstractControlle
   }
 
   def donate = Action {
-    Ok(views.html.donate())
+    //Ok(views.html.donate())
+    Redirect("https://github.com/sponsors/scalatest", TEMPORARY_REDIRECT)
   }
 
   def sponsor = Action {
-    Ok(views.html.sponsor())
+    //Ok(views.html.sponsor())
+    Redirect("https://github.com/sponsors/scalatest", TEMPORARY_REDIRECT)
   }
 
 /*
@@ -141,7 +143,7 @@ object Application {
 
   val latestVersion = "3.3.0"
   val latestSuperSafeVersion = "1.1.12"
-  val supersafeScalaVersion = "2.13.14"
+  val supersafeScalaVersion = "2.13.18"
   val milestoneVersion = "3.2.0"
   val milestoneJar = "https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest_2.11/3.2.0-RC3/scalatest_2.11-3.2.0-RC3.jar"
   val latestJar = s"https://oss.sonatype.org/content/groups/public/org/scalatest/scalatest-app_3/$latestVersion/scalatest-app_3-$latestVersion.jar"
@@ -149,14 +151,15 @@ object Application {
   val milestoneScalacticScaladoc = "http://www.artima.com/docs-scalactic-3.2.0-RC3"
   val scaladocsLocation = "https://www.scalatest.org/scaladoc"
   val releasesLocation = "http://www.artima.com/downloadScalaTest"
-  val baseScalaVersion = "3.3.3"
+  val baseScalaVersion = "3.3.7"
   val majorMinorScalaVersion = "3"
   val latestScaladocFor192 = "http://doc.scalatest.org/1.9.2"
-  val latestSeleniumVersion = "4-21"
-  val latestEasyMockVersion = "5-3"
+  val latestSeleniumVersion = "4-41"
+  val latestEasyMockVersion = "5-6"
   val latestJMockVersion = "2-13"
   val latestJUnitVersion = "4-13"
   val latestJUnit5Version = "5-10"
+  val latestJUnit5PlusVersion = "3.3.0.0"
   val latestMockitoVersion = "5-12"
   val latestScalaCheckVersion = "1-18"
   val latestScalaCheckPlusVersion = "3.3.0.0"
