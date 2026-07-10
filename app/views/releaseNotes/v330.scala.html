@@ -55,10 +55,12 @@
     <p>Pure style traits. (<a href="https://github.com/scalatest/scalatest/pull/2011">PR #2011</a>)</p>
     <p>Expectations, including clue overloads and richer test coverage, separated into its own module. (<a href="https://github.com/scalatest/scalatest/pull/2244">PR #2244</a>)</p>
     <p>Safer PrivateMethodTester. (<a href="https://github.com/scalatest/scalatest/pull/2301">PR #2301</a>)</p>
-    <p>Expanded opaque types coverage and APIs in Scalactic, including finite/non-zero/positive/negative numeric families and generator support.</p>
 
     <a name="scalatest_improvements"></a>
     <h2>Improvements</h2>
+    <p>Refactoring of PropCheckerAsserting for improved generator assertion handling. (<a href="https://github.com/scalatest/scalatest/pull/2415">PR #2415</a>)</p>
+    <p>Cleanup and improvements to NonZeroLongs opaque type implementation. (<a href="https://github.com/scalatest/scalatest/pull/2418">PR #2418</a>)</p>
+    <p>Scaladoc updates for style traits expected type information. (<a href="https://github.com/scalatest/scalatest/pull/2423">PR #2423</a>)</p>
     <p>Switched from flexmark to commonmark in HtmlReporter. (<a href="https://github.com/scalatest/scalatest/pull/2136">PR #2136</a>)</p>
     <p>Escaped String Differ output for clearer diagnostics. (<a href="https://github.com/scalatest/scalatest/pull/2327">PR #2327</a>)</p>
     <p>Expose discovered suites with Runner. (<a href="https://github.com/scalatest/scalatest/pull/2319">PR #2319</a>)</p>
@@ -71,6 +73,8 @@
     <p>Updated to SBT 1.9.6.</p>
     <p>Updated to Ant 1.10.14.</p>
     <p>Updated scala versions for jvm, js and native to newer version.</p>
+    <p>Scala Native now uses test-interface-sbt-defs to avoid test dependency conflicts on newer sbt settings. (<a href="https://github.com/scalatest/scalatest/pull/2425">PR #2425</a>)</p>
+    <p>Build updates for Scala 3.3.8 and Scala Native 0.5.12 compatibility. (<a href="https://github.com/scalatest/scalatest/pull/2428">PR #2428</a>)</p>
 
     <a name="scalatest_breaking_changes"></a>
     <h2>Breaking Changes</h2>
@@ -96,11 +100,11 @@
 
     <a name="scalactic_new_features"></a>
     <h2>New Features</h2>
-    <p>Substantial expansion of opaquetypes support, including finite/non-zero/positive/negative numeric opaque types, richer extension methods, and generator coverage.</p>
-    <p>NonEmpty and anyvals ergonomics improved through broader validation and Scala 3 focused alignment work.</p>
+    <p>New opaque types support in Scalactic, including finite/non-zero/positive/negative numeric families with extension methods and generator coverage. (<a href="https://github.com/scalatest/scalatest/pull/2427">PR #2427</a>)</p>
 
     <a name="scalactic_improvements"></a>
     <h2>Improvements</h2>
+    <p>EnsuringValid consistency across opaque types and anyvals families for Scala 3. (<a href="https://github.com/scalatest/scalatest/pull/2430">PR #2430</a>)</p>
     <p>Updated to SBT 1.9.6.</p>
     <p>Updated scala versions for jvm, js and native to newer version.</p>
 
@@ -108,11 +112,6 @@
     <h2>Breaking Changes</h2>
     <p>Dropped support for Scala 2.10. (<a href="https://github.com/scalatest/scalatest/pull/2052">PR #2052</a>)</p>
     <p>Dropped support for Scala-js 0.6. (<a href="https://github.com/scalatest/scalatest/pull/2052">PR #2052</a>)</p>
-
-    <a name="pending_items"></a>
-    <h2>Pending Items For Release Cut</h2>
-    <p>The following PRs were tracked as 3.3.0 candidates and were still open at draft time. Include only if merged before release cut:</p>
-    <p><a href="https://github.com/scalatest/scalatest/pull/2415">#2415</a>, <a href="https://github.com/scalatest/scalatest/pull/2418">#2418</a>, <a href="https://github.com/scalatest/scalatest/pull/2423">#2423</a>, <a href="https://github.com/scalatest/scalatest/pull/2425">#2425</a>, <a href="https://github.com/scalatest/scalatest/pull/2427">#2427</a>, <a href="https://github.com/scalatest/scalatest/pull/2428">#2428</a>, <a href="https://github.com/scalatest/scalatest/pull/2429">#2429</a>, <a href="https://github.com/scalatest/scalatest/pull/2430">#2430</a>.</p>
 
     <br/>
 
