@@ -151,7 +151,7 @@ object Application {
   val milestoneScalacticScaladoc = "http://www.artima.com/docs-scalactic-3.2.0-RC3"
   val scaladocsLocation = "https://www.scalatest.org/scaladoc"
   val releasesLocation = "http://www.artima.com/downloadScalaTest"
-  val baseScalaVersion = "3.3.7"
+  val baseScalaVersion = "3.3.8"
   val majorMinorScalaVersion = "3"
   val latestScaladocFor192 = "http://doc.scalatest.org/1.9.2"
   val latestSeleniumVersion = "4-41"
