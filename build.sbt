@@ -3,7 +3,7 @@
 lazy val root = (project in file(".")).settings(
   name := "scalatest-website",
   version := "260414",
-  scalaVersion := "3.3.4",
+  scalaVersion := "3.3.8",
   libraryDependencies ++= Seq(
     guice,
     "org.scalatestplus.play" %% "scalatestplus-play" % "7.0.0" % Test
@@ -13,7 +13,7 @@ lazy val root = (project in file(".")).settings(
   Docker / maintainer := "Artima Inc.", 
   dockerExposedPorts ++= Seq(9000), 
   dockerUpdateLatest := true,
-  dockerBaseImage := "eclipse-temurin:17",
+  dockerBaseImage := "eclipse-temurin:25",
   Universal / javaOptions ++= Seq(
     // -J params will be added as jvm parameters
     "-J-Xmx128m",
