@@ -46,7 +46,7 @@ whereas the <code>scalatest-flatspec</code> artifact, for example, contains just
 </p>
 
 <p>
-The style you choose dictates only how the declarations of your tests will look. Everything else in ScalaTest&mdash;assertions, matchers,
+The style you choose dictates only how the declarations of your tests will look. Everything else in ScalaTest&mdash;assertions, expectations, matchers,
 mixin traits, <em>etc.</em>&mdash;works consistently the same way no matter what style you chose.
 </p>
 
@@ -93,6 +93,30 @@ information and examples, click on the links:
 <pre class="stStyleExamples">
 libraryDependencies += <span class="stQuotedString">"org.scalatest"</span> %% <span class="stQuotedString">"scalatest-funsuite"</span> % <span class="stQuotedString">"@{latestVersion}"</span> % <span class="stQuotedString">"test"</span>
 </pre>
+
+<p class="stStyleDesc">If you would like to use <code>expectations</code> instead of <code>assertions</code>, you may use the pure style:</p>
+
+<pre class="stStyleExamples">
+<span class="stReserved">import</span> org.scalatest.funsuite.FunSuite
+<span class="stReserved">import</span> org.scalatest.expectations.Expectations._
+<br /><span class="stReserved">class</span> <span class="stType">SetSuite</span> <span class="stReserved">extends</span> <span class="stType">FunSuite</span> {
+<br />  test(<span class="stQuotedString">&quot;An empty Set should have size 0&quot;</span>) {
+    expect(Set.empty.size == <span class="stLiteral">0</span>)
+  }
+<br />  test(<span class="stQuotedString">&quot;Invoking head on an empty Set should produce NoSuchElementException&quot;</span>) {
+    expectThrows[<span class="stType">NoSuchElementException</span>] {
+      Set.empty.head
+    }
+  }
+}
+</pre>
+
+<p class="stStyleDesc">In order to use <code>expectations</code> you'll need add the following line in sbt build:</p>
+
+<pre class="stStyleExamples">
+libraryDependencies += <span class="stQuotedString">"org.scalatest"</span> %% <span class="stQuotedString">"scalatest-expectations"</span> % <span class="stQuotedString">"@{latestVersion}"</span> % <span class="stQuotedString">"test"</span>
+</pre>
+
 </td>
 </tr>
 
@@ -103,6 +127,7 @@ A good first step for teams wishing to move from xUnit to BDD, the <a href='@sca
 flat like xUnit, so simple and familiar, but the test names must be written in a specification style: "X should Y," "A must B," <em>etc</em>.</p>
 <pre class="stStyleExamples">
 <span class="stReserved">import</span> org.scalatest.flatspec.AnyFlatSpec
+<span class="stReserved">import</span> org.scalatest.expectations.Expectations._
 <br /><span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">AnyFlatSpec</span> {
 <br />  <span class="stQuotedString">&quot;An empty Set&quot;</span> should <span class="stQuotedString">&quot;have size 0&quot;</span> in {
     assert(Set.empty.size == <span class="stLiteral">0</span>)
@@ -118,6 +143,29 @@ flat like xUnit, so simple and familiar, but the test names must be written in a
 
 <pre class="stStyleExamples">
 libraryDependencies += <span class="stQuotedString">"org.scalatest"</span> %% <span class="stQuotedString">"scalatest-flatspec"</span> % <span class="stQuotedString">"@{latestVersion}"</span> % <span class="stQuotedString">"test"</span>
+</pre>
+
+<p class="stStyleDesc">If you would like to use <code>expectations</code> instead of <code>assertions</code>, you may use the pure style:</p>
+
+<pre class="stStyleExamples">
+<span class="stReserved">import</span> org.scalatest.flatspec.FlatSpec
+<span class="stReserved">import</span> org.scalatest.expectations.Expectations._
+<br /><span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">FlatSpec</span> {
+<br />  <span class="stQuotedString">&quot;An empty Set&quot;</span> should <span class="stQuotedString">&quot;have size 0&quot;</span> in {
+    expect(Set.empty.size == <span class="stLiteral">0</span>)
+  }
+<br />  it should <span class="stQuotedString">&quot;produce NoSuchElementException when head is invoked&quot;</span> in {
+    expectThrows[<span class="stType">NoSuchElementException</span>] {
+      Set.empty.head
+    }
+  }
+}
+</pre>
+
+<p class="stStyleDesc">In order to use <code>expectations</code> you'll need add the following line in sbt build:</p>
+
+<pre class="stStyleExamples">
+libraryDependencies += <span class="stQuotedString">"org.scalatest"</span> %% <span class="stQuotedString">"scalatest-expectations"</span> % <span class="stQuotedString">"@{latestVersion}"</span> % <span class="stQuotedString">"test"</span>
 </pre>
 
 </td>
@@ -154,6 +202,33 @@ general-purpose choice for writing specification-style tests.
 libraryDependencies += <span class="stQuotedString">"org.scalatest"</span> %% <span class="stQuotedString">"scalatest-funspec"</span> % <span class="stQuotedString">"@{latestVersion}"</span> % <span class="stQuotedString">"test"</span>
 </pre>
 
+<p class="stStyleDesc">If you would like to use <code>expectations</code> instead of <code>assertions</code>, you may use the pure style:</p>
+
+<pre class="stStyleExamples">
+<span class="stReserved">import</span> org.scalatest.funspec.FunSpec
+<span class="stReserved">import</span> org.scalatest.expectations.Expectations._
+<br /><span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">FunSpec</span> {
+<br />  describe(<span class="stQuotedString">&quot;A Set&quot;</span>) {
+    describe(<span class="stQuotedString">&quot;when empty&quot;</span>) {
+      it(<span class="stQuotedString">&quot;should have size 0&quot;</span>) {
+        assert(Set.empty.size == <span class="stLiteral">0</span>)
+      }
+<br />      it(<span class="stQuotedString">&quot;should produce NoSuchElementException when head is invoked&quot;</span>) {
+        assertThrows[<span class="stType">NoSuchElementException</span>] {
+          Set.empty.head
+        }
+      }
+    }
+  }
+}
+</pre>
+
+<p class="stStyleDesc">In order to use <code>expectations</code> you'll need add the following line in sbt build:</p>
+
+<pre class="stStyleExamples">
+libraryDependencies += <span class="stQuotedString">"org.scalatest"</span> %% <span class="stQuotedString">"scalatest-expectations"</span> % <span class="stQuotedString">"@{latestVersion}"</span> % <span class="stQuotedString">"test"</span>
+</pre>
+
 </td>
 </tr>
 
@@ -185,6 +260,34 @@ For teams coming from specs or specs2, the <a href='@scaladocsPageUrl("org.scala
 <pre class="stStyleExamples">
 libraryDependencies += <span class="stQuotedString">"org.scalatest"</span> %% <span class="stQuotedString">"scalatest-wordspec"</span> % <span class="stQuotedString">"@{latestVersion}"</span> % <span class="stQuotedString">"test"</span>
 </pre>
+
+<p class="stStyleDesc">If you would like to use <code>expectations</code> instead of <code>assertions</code>, you may use the pure style:</p>
+
+<pre class="stStyleExamples">
+<span class="stReserved">import</span> org.scalatest.wordspec.WordSpec
+<span class="stReserved">import</span> org.scalatest.expectations.Expectations._
+<br /><span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">WordSpec</span> {
+<br />  <span class="stQuotedString">&quot;A Set&quot;</span> when {
+    <span class="stQuotedString">&quot;empty&quot;</span> should {
+      <span class="stQuotedString">&quot;have size 0&quot;</span> in {
+        expect(Set.empty.size == <span class="stLiteral">0</span>)
+      }
+<br />      <span class="stQuotedString">&quot;produce NoSuchElementException when head is invoked&quot;</span> in {
+        expectThrows[<span class="stType">NoSuchElementException</span>] {
+          Set.empty.head
+        }
+      }
+    }
+  }
+}
+</pre>
+
+<p class="stStyleDesc">In order to use <code>expectations</code> you'll need add the following line in sbt build:</p>
+
+<pre class="stStyleExamples">
+libraryDependencies += <span class="stQuotedString">"org.scalatest"</span> %% <span class="stQuotedString">"scalatest-expectations"</span> % <span class="stQuotedString">"@{latestVersion}"</span> % <span class="stQuotedString">"test"</span>
+</pre>
+
 </td>
 </tr>
 
@@ -216,6 +319,33 @@ Because it gives absolute freedom (and no guidance) on how specification text sh
 libraryDependencies += <span class="stQuotedString">"org.scalatest"</span> %% <span class="stQuotedString">"scalatest-freespec"</span> % <span class="stQuotedString">"@{latestVersion}"</span> % <span class="stQuotedString">"test"</span>
 </pre>
 
+<p class="stStyleDesc">If you would like to use <code>expectations</code> instead of <code>assertions</code>, you may use the pure style:</p>
+
+<pre class="stStyleExamples">
+<span class="stReserved">import</span> org.scalatest.freespec.FreeSpec
+<span class="stReserved">import</span> org.scalatest.expectations.Expectations._
+<br /><span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">FreeSpec</span> {
+<br />  <span class="stQuotedString">&quot;A Set&quot;</span> - {
+    <span class="stQuotedString">&quot;when empty&quot;</span> - {
+      <span class="stQuotedString">&quot;should have size 0&quot;</span> in {
+        expect(Set.empty.size == <span class="stLiteral">0</span>)
+      }
+<br />      <span class="stQuotedString">&quot;should produce NoSuchElementException when head is invoked&quot;</span> in {
+        expectThrows[<span class="stType">NoSuchElementException</span>] {
+          Set.empty.head
+        }
+      }
+    }
+  }
+}
+</pre>
+
+<p class="stStyleDesc">In order to use <code>expectations</code> you'll need add the following line in sbt build:</p>
+
+<pre class="stStyleExamples">
+libraryDependencies += <span class="stQuotedString">"org.scalatest"</span> %% <span class="stQuotedString">"scalatest-expectations"</span> % <span class="stQuotedString">"@{latestVersion}"</span> % <span class="stQuotedString">"test"</span>
+</pre>
+
 </td>
 </tr>
 
@@ -229,10 +359,11 @@ choice for writing the occasional test matrix when a different style trait is ch
 <span class="stReserved">import</span> org.scalatest._
 <span class="stReserved">import</span> matchers._
 <span class="stReserved">import</span> prop._
+<span class="stReserved">import</span> propspec.AnyPropSpec
 <span class="stReserved">import</span> scala.collection.immutable._
 <br /><span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">AnyPropSpec</span> <span class="stReserved">with</span> <span class="stType">TableDrivenPropertyChecks</span> <span class="stReserved">with</span> <span class="stType">should.Matchers</span> {
 <br />  <span class="stReserved">val</span> examples =
-    <span class="stType">Table</span>(
+    <span class="stType">Table</span>[<span class="stType">Set</span>[<span class="stType">Int</span>]](
       <span class="stQuotedString">&quot;set&quot;</span>,
       BitSet.empty,
       HashSet.empty[<span class="stType">Int</span>],
@@ -256,6 +387,41 @@ choice for writing the occasional test matrix when a different style trait is ch
 libraryDependencies += <span class="stQuotedString">"org.scalatest"</span> %% <span class="stQuotedString">"scalatest-propspec"</span> % <span class="stQuotedString">"@{latestVersion}"</span> % <span class="stQuotedString">"test"</span>
 </pre>
 
+<p class="stStyleDesc">If you would like to use <code>expectations</code> instead of <code>assertions</code>, you may use the pure style:</p>
+
+<pre class="stStyleExamples">
+<span class="stReserved">import</span> org.scalatest._
+<span class="stReserved">import</span> prop._
+<span class="stReserved">import</span> propspec.PropSpec
+<span class="stReserved">import</span> org.scalatest.expectations.Expectations._
+<span class="stReserved">import</span> scala.collection.immutable._
+<br /><span class="stReserved">class</span> <span class="stType">SetSpec</span> <span class="stReserved">extends</span> <span class="stType">PropSpec</span> <span class="stReserved">with</span> <span class="stType">TableDrivenPropertyChecks</span> {
+<br />  <span class="stReserved">val</span> examples =
+    <span class="stType">Table</span>[<span class="stType">Set</span>[<span class="stType">Int</span>]](
+      <span class="stQuotedString">&quot;set&quot;</span>,
+      BitSet.empty,
+      HashSet.empty[<span class="stType">Int</span>],
+      TreeSet.empty[<span class="stType">Int</span>]
+    )
+<br />  property(<span class="stQuotedString">&quot;an empty Set should have size 0&quot;</span>) {
+    forAll(examples) { set =&gt;
+      expect(set.size == <span class="stLiteral">0</span>)
+    }
+  }
+<br />  property(<span class="stQuotedString">&quot;invoking head on an empty set should produce NoSuchElementException&quot;</span>) {
+    forAll(examples) { set =&gt;
+      expectThrows[<span class="stType">NoSuchElementException</span>] { set.head }
+    }
+  }
+}
+</pre>
+
+<p class="stStyleDesc">In order to use <code>expectations</code> you'll need add the following line in sbt build:</p>
+
+<pre class="stStyleExamples">
+libraryDependencies += <span class="stQuotedString">"org.scalatest"</span> %% <span class="stQuotedString">"scalatest-expectations"</span> % <span class="stQuotedString">"@{latestVersion}"</span> % <span class="stQuotedString">"test"</span>
+</pre>
+
 </td>
 </tr>
 
@@ -266,6 +432,7 @@ The <a href='@scaladocsPageUrl("org.scalatest.featurespec.AnyFeatureSpec")'><cod
 </p>
 <pre class="stStyleExamples">
 <span class="stReserved">import</span> org.scalatest._
+<span class="stReserved">import</span> featurespec.AnyFeatureSpec
 <br /><span class="stReserved">class</span> <span class="stType">TVSet</span> {
   <span class="stReserved">private</span> <span class="stReserved">var</span> on: <span class="stType">Boolean</span> = <span class="stReserved">false</span>
   <span class="stReserved">def</span> isOn: <span class="stType">Boolean</span> = on
@@ -301,10 +468,57 @@ The <a href='@scaladocsPageUrl("org.scalatest.featurespec.AnyFeatureSpec")'><cod
   }
 }
 </pre>
+
 <p class="stStyleDesc">To select just the <code>FeatureSpec</code> style in an sbt build, include this line:</p>
 
 <pre class="stStyleExamples">
 libraryDependencies += <span class="stQuotedString">"org.scalatest"</span> %% <span class="stQuotedString">"scalatest-featurespec"</span> % <span class="stQuotedString">"@{latestVersion}"</span> % <span class="stQuotedString">"test"</span>
+</pre>
+
+<p class="stStyleDesc">If you would like to use <code>expectations</code> instead of <code>assertions</code>, you may use the pure style:</p>
+
+<pre class="stStyleExamples">
+<span class="stReserved">import</span> org.scalatest._
+<span class="stReserved">import</span> featurespec.FeatureSpec
+<span class="stReserved">import</span> expectations.Expectations._
+<br /><span class="stReserved">class</span> <span class="stType">TVSet</span> {
+  <span class="stReserved">private</span> <span class="stReserved">var</span> on: <span class="stType">Boolean</span> = <span class="stReserved">false</span>
+  <span class="stReserved">def</span> isOn: <span class="stType">Boolean</span> = on
+  <span class="stReserved">def</span> pressPowerButton() {
+    on = !on
+  }
+}
+<br /><span class="stReserved">class</span> <span class="stType">TVSetSpec</span> <span class="stReserved">extends</span> <span class="stType">FeatureSpec</span> <span class="stReserved">with</span> <span class="stType">GivenWhenThen</span> {
+<br />  info(<span class="stQuotedString">&quot;As a TV set owner&quot;</span>)
+  info(<span class="stQuotedString">&quot;I want to be able to turn the TV on and off&quot;</span>)
+  info(<span class="stQuotedString">&quot;So I can watch TV when I want&quot;</span>)
+  info(<span class="stQuotedString">&quot;And save energy when I'm not watching TV&quot;</span>)
+<br />  feature(<span class="stQuotedString">&quot;TV power button&quot;</span>) {
+    scenario(<span class="stQuotedString">&quot;User presses power button when TV is off&quot;</span>) {
+<br />      <span class="stType">Given</span>(<span class="stQuotedString">&quot;a TV set that is switched off&quot;</span>)
+      <span class="stReserved">val</span> tv = <span class="stReserved">new</span> <span class="stType">TVSet</span>
+<br />      <span class="stType">When</span>(<span class="stQuotedString">&quot;the power button is pressed&quot;</span>)
+      tv.pressPowerButton()
+<br />      <span class="stType">Then</span>(<span class="stQuotedString">&quot;the TV should switch on&quot;</span>)
+      expect(tv.isOn)
+    }
+<br />    scenario(<span class="stQuotedString">&quot;User presses power button when TV is on&quot;</span>) {
+<br />      <span class="stType">Given</span>(<span class="stQuotedString">&quot;a TV set that is switched on&quot;</span>)
+      <span class="stReserved">val</span> tv = <span class="stReserved">new</span> <span class="stType">TVSet</span>
+      tv.pressPowerButton()
+<br />      <span class="stType">When</span>(<span class="stQuotedString">&quot;the power button is pressed&quot;</span>)
+      tv.pressPowerButton()
+<br />      <span class="stType">Then</span>(<span class="stQuotedString">&quot;the TV should switch off&quot;</span>)
+      expect(!tv.isOn)
+    }
+  }
+}
+</pre>
+
+<p class="stStyleDesc">In order to use <code>expectations</code> you'll need add the following line in sbt build:</p>
+
+<pre class="stStyleExamples">
+libraryDependencies += <span class="stQuotedString">"org.scalatest"</span> %% <span class="stQuotedString">"scalatest-expectations"</span> % <span class="stQuotedString">"@{latestVersion}"</span> % <span class="stQuotedString">"test"</span>
 </pre>
 
 </td>
@@ -343,6 +557,8 @@ Note: The "<code>Ref</code>" in <code>RefSpec</code> stands for reflection, whic
 <pre class="stStyleExamples">
 libraryDependencies += <span class="stQuotedString">"org.scalatest"</span> %% <span class="stQuotedString">"scalatest-refspec"</span> % <span class="stQuotedString">"@{latestVersion}"</span> % <span class="stQuotedString">"test"</span>
 </pre>
+
+<p class="stStyleDesc"><code>RefSpec</code> does not support <code>expectations</code>.</p>
 
 </td>
 </tr>
