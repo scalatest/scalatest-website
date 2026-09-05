@@ -1,0 +1,177 @@
+@*
+* Copyright 2010-2017 Artima, Inc.
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*     http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*@
+
+@import controllers.Application._
+
+@userGuidePage("Property-based testing") {
+<div style="text-align: left">
+
+    <h1>Property-based testing using ScalaCheck</h1>
+
+    <p>
+        ScalaTest supports property-based testing using ScalaCheck, where
+        a <em>property</em> is a high-level specification of behavior that should hold for a range of data points. For example, a property might
+        state that the size of a list returned from a method should always be greater than or equal to the size of the list passed to
+        that method. This property should hold no matter what list is passed.
+    </p>
+
+    <p>
+        The difference between a traditional test and a property is that tests traditionally verify behavior based on specific data points checked
+        by the test. A test might pass three or four specific lists of different sizes to a method under test that takes a list, for example, and check the results
+        are as expected. A property, by contrast, would describe at a high level the preconditions of the method under test and specify some aspect of the
+        result that should hold no matter what valid list is passed.
+    </p>
+
+    <p>
+        In ScalaTest, properties are specified as functions and the data points used to check properties can be supplied by either tables
+        or generators. Generator-driven property checks are performed via integration with <a href="http://www.scalacheck.org/">ScalaCheck</a> through
+        <a href="@routes.Plus.scalacheck()">ScalaTest + ScalaCheck</a> library, by including:
+    </p>
+
+    <pre class="stHighlighted">
+libraryDependencies += <span class="stQuotedString">"org.scalatestplus"</span> %% <span class="stQuotedString">"scalacheck-@{latestScalaCheckVersion}"</span> % <span class="stQuotedString">"@{latestScalaCheckPlusVersion}"</span> % <span class="stQuotedString">"test"</span>
+</pre>
+
+    <p>
+        in your SBT file, or if you use Maven:
+    </p>
+
+<pre class="stGrayback">
+&lt;dependency&gt;
+    &lt;groupId&gt;org.scalatestplus&lt;/groupId&gt;
+    &lt;artifactId&gt;scalacheck-@{latestScalaCheckVersion}_3&lt;/artifactId&gt;
+    &lt;version&gt;@latestScalaCheckPlusVersion&lt;/version&gt;
+    &lt;scope&gt;test&lt;/scope&gt;
+&lt;/dependency&gt;
+</pre>
+
+    <p>
+        To use this style of testing, mix in trait <code>org.scalatestplus.scalacheck.ScalaCheckPropertyChecks</code> (previously known as <code>org.scalatest.props.PropertyChecks</code>, deprecated in 3.0.6), or import the
+        members of its companion object.
+    </p>
+
+    <p>
+        As an example property-based testing using both table- and generator-driven properties, imagine you want to test this <code>Fraction</code> class:
+    </p>
+
+    <pre class="stHighlighted">
+<span class="stReserved">class</span> <span class="stType">Fraction</span>(n: <span class="stType">Int</span>, d: <span class="stType">Int</span>) {
+<br />  require(d != <span class="stLiteral">0</span>)
+  require(d != Integer.MIN_VALUE)
+  require(n != Integer.MIN_VALUE)
+<br />  <span class="stReserved">val</span> numer = <span class="stReserved">if</span> (d < <span class="stLiteral">0</span>) -<span class="stLiteral">1</span> * n <span class="stReserved">else</span> n
+  <span class="stReserved">val</span> denom = d.abs
+<br />  <span class="stReserved">override</span> <span class="stReserved">def</span> toString = numer + <span class="stQuotedString">" / "</span> + denom
+}
+</pre>
+
+    <p>
+        If you mix in <code>ScalaCheckPropertyChecks</code>, you could use a generator-driven property check to test that the passed values for numerator and
+        denominator are properly normalized, like this:
+    </p>
+
+    <pre class="stHighlighted">
+forAll { (n: <span class="stType">Int</span>, d: <span class="stType">Int</span>) =>
+<br />  whenever (d != <span class="stLiteral">0</span> && d != Integer.MIN_VALUE
+      && n != Integer.MIN_VALUE) {
+<br />    <span class="stReserved">val</span> f = <span class="stReserved">new</span> <span class="stType">Fraction</span>(n, d)
+<br />    <span class="stReserved">if</span> (n < <span class="stLiteral">0</span> && d < <span class="stLiteral">0</span> || n > <span class="stLiteral">0</span> && d > <span class="stLiteral">0</span>)
+      f.numer should be > <span class="stLiteral">0</span>
+    <span class="stReserved">else</span> <span class="stReserved">if</span> (n != <span class="stLiteral">0</span>)
+      f.numer should be < <span class="stLiteral">0</span>
+    <span class="stReserved">else</span>
+      f.numer should be === <span class="stLiteral">0</span>
+<br />    f.denom should be > <span class="stLiteral">0</span>
+  }
+}
+</pre>
+
+    <p>
+        The <code>forAll</code> method takes a function that expresses a property of <code>Fraction</code> that should hold for any valid values
+        passed as <code>n</code> and <code>d</code>. (This property specifies how the numerator and denominator passed to the <code>Fraction</code>
+        constructor should be normalized.) The <code>whenever</code> clause indicates invalid
+        values for <code>n</code> and <code>d</code>.
+        Any other values are valid. When run, ScalaCheck generators will be passed implicitly to <code>forAll</code> and supply integer values for
+        <code>n</code> and <code>d</code>. By default the property will be checked against 10 valid pairs of <code>n</code> and <code>d</code>. Note that this is different from ScalaCheck's default of 100.
+    </p>
+
+    <p>
+        You might place the previous property check in its own test whose name describes the property at a high level, such as
+        <code>"Fractions should be normalized"</code>.
+        In another test you might use a table-driven property check to test that all combinations of invalid values passed to the <code>Fraction</code> constructor
+        produce the expected <code>IllegalArgumentException</code>, like this:
+    </p>
+
+    <pre class="stHighlighted">
+<span class="stReserved">val</span> invalidCombos =
+  <span class="stType">Table</span>(
+    (<span class="stQuotedString">"n"</span>,               <span class="stQuotedString">"d"</span>),
+    (Integer.MIN_VALUE, Integer.MIN_VALUE),
+    (<span class="stLiteral">1</span>,                 Integer.MIN_VALUE),
+    (Integer.MIN_VALUE, <span class="stLiteral">1</span>),
+    (Integer.MIN_VALUE, <span class="stLiteral">0</span>),
+    (<span class="stLiteral">1</span>,                 <span class="stLiteral">0</span>)
+  )
+<br />forAll (invalidCombos) { (n: <span class="stType">Int</span>, d: <span class="stType">Int</span>) =>
+  evaluating {
+    <span class="stReserved">new</span> <span class="stType">Fraction</span>(n, d)
+  } should produce [<span class="stType">IllegalArgumentException</span>]
+}
+</pre>
+
+    <p>
+        In this example, <code>invalidCombos</code> is a table of two columns, produced by the <code>Table</code> factory method, which takes
+        a comma-separated list of tuples. The first tuple contains the headings (the names of the columns, <code>"n"</code> and <code>"d"</code>). The remaining
+        tuples represent the rows of data. In this example, each row is one example of how invalid data that could be passed to the <code>Fraction</code>
+        constructor.
+    </p>
+
+    <p>
+        After the declaration of the table, <code>forAll</code> is invoked.  This <code>forAll</code> method takes the table, <code>invalidCombos</code>, and
+        a property. <code>forAll</code> checks to make sure the property holds for each row of the table.
+    </p>
+
+    <p>
+        When you get a failed property check, ScalaTest will report the failure with initial seed so that you can reproduce the failure.  You'll need to pass the initial seed value through <code>-S</code> argument,
+        here's an example you pass it through build.sbt:
+    </p>
+
+    <pre class="stHighlighted">
+testOptions += Tests.Argument(TestFrameworks.ScalaTest, "-S", "123456789")
+</pre>
+
+    or if you are using testOnly you can do:
+
+    <pre class="scala">
+sbt> testOnly MyTest -- -S 123456879
+</pre>
+
+    <p>
+        For more information check out the user guide pages for:
+    </p>
+
+    <ul>
+        <li><a href="/user_guide/scalacheck_table_driven_property_checks">Table-driven property checks using ScalaCheck</a></li>
+        <li><a href="/user_guide/scalacheck_driven_property_checks">Generator-driven property checks using ScalaCheck</a></li>
+        <li><a href="/user_guide/writing_scalacheck_style_properties">Writing ScalaCheck-style properties</a></li>
+    </ul>
+
+    <p>
+        Next, learn about <a href="@routes.UserGuide.asyncTesting().url">Asynchronous testing</a>.
+    </p>
+
+</div>
+}
