@@ -54,7 +54,7 @@ for each. But first, here's a table summarizing the options:</p>
   </td>
   <td style="border-width: 1px; padding: 3px; border: 1px solid black; text-align: left">
     The <em>extract method</em> refactor helps you create fresh instances of mutable fixture objects in each test
-    that needs them, but doesn't help you clean them up when you're done.
+    that needs them. The <code>ResourceManager</code> trait can be used to perform any necessary cleanup.
   </td>
 </tr></p>
 
@@ -150,7 +150,7 @@ for each. But first, here's a table summarizing the options:</p>
 
 <p><a name="getFixtureMethods"> </a></p><h4> Calling get-fixture methods </h4>
 
-<p>If you need to create the same mutable fixture objects in multiple tests, and don't need to clean them up after using them, the simplest approach is to write one or
+<p>If you need to create the same mutable fixture objects in multiple tests, the simplest approach is to write one or
 more <em>get-fixture</em> methods. A get-fixture method returns a new instance of a needed fixture object (or a holder object containing
 multiple fixture objects) each time it is called. You can call a get-fixture method at the beginning of each
 test that needs the fixture, storing the returned object or objects in local variables. Here's an example:</p>
@@ -187,10 +187,63 @@ are part of the fixture, but if you prefer, you can import the the members with 
 <p>If you need to configure fixture objects differently in different tests, you can pass configuration into the get-fixture method. For example, if you could pass
 in an initial value for a mutable fixture object as a parameter to the get-fixture method.</p>
 
+<p>If one or multiple of your fixture objects require cleanup, you can use the <code>ResourceManagerFixture</code> trait. It gives you access to a
+<code>org.scalactic.Using.Manager</code> object that can be used to register cleanup functions which will be run in reverse order after the test completes.
+This class works exactly like the <code>scala.util.Using.Manager</code> class available in Scala 2.13 and later. The recommended way to use it is to pass it
+as a parameter to any methods that acquire resources that require cleanup. As soon as the resource has been allocated, it should be passed to the
+<code>Using.Manager</code> to register the necessary cleanup.
+
+Here's an example:
+</p>
+<p>
+<pre class="stHighlighted">
+<span class="stReserved">package</span> org.scalatest.examples.flatspec.getfixture
+<span class="stReserved">import</span> org.scalatest.flatspec.FixtureAnyFlatSpec
+<span class="stReserved">import</span> org.scalatest.fixture.ResourceManagerFixture
+<span class="stReserved">import</span> org.scalactic.Using
+
+class ExampleSpec extends FixtureAnyFlatSpec with ResourceManagerFixture {
+  def fixture(use: Using.Manager) =
+    use(getClass().getResourceAsStream("/some/resource.txt"))
+
+  "Tests" should "clean up after themselves" in { use =>
+    val stream = fixture(use)
+
+    // use stream here
+    // stream will be closed after test is done
+  }
+}
+</pre>
+</p>
+
+<p>
+For objects that implement the <code>java.lang.AutoCloseable</code> interface, <code>Using.Manager</code> works out of the box. Most objects that require
+cleanup, like the stream in the example above, already do this. If yours doesn't, you have several options. You can provide a <code>given</code> instance
+of the <code>org.scalactic.Using.Releasable[A]</code> trait (on Scala 2.13 and later, this is merely an alias for the standard library's
+<code>scala.util.Using.Releasable</code>) trait. The best way to do this is to place it in the relant type's companion object, ensuring that no imports
+are required for the compiler to find it.
+</p><p>
+If a <code>given Using.Relesable</code> is not desired, you can register cleanup calls using lambda syntax like so:
+<pre>
+import java.nio.file.Files
+…
+  def tempFile(use: Using.Manager) = {
+    val path = Files.createTempFile("temp-file", null)
+    use[AutoCloseable] { () => 
+      Files.delete(path)
+    }
+    path
+  }
+…
+</pre>
+This makes use of the fact that lambda expressions in Scala can be used to implement any interface with a single abstract method –
+like <code>AutoCloseable</code>.
+</p>
+
 <p><a name="fixtureContextObjects"> </a></p><h4> Instantiating fixture-context objects  </h4>
 
 <p>An alternate technique that is especially useful when different tests need different combinations of fixture objects is to define the fixture objects as instance variables
-of <em>fixture-context objects</em> whose instantiation forms the body of tests. Like get-fixture methods, fixture-context objects are only
+of <em>fixture-context objects</em> whose instantiation forms the body of tests. Fixture-context objects are only
 appropriate if you don't need to clean up the fixtures after using them.</p>
 
 <p>To use this technique, you define instance variables intialized with fixture objects in traits and/or classes, then in each test instantiate an object that
@@ -316,7 +369,7 @@ implementation.</p>
 
 <p><a name="loanFixtureMethods"> </a></p><h4> Calling loan-fixture methods </h4>
 
-<p>If you need to both pass a fixture object into a test <em>and</em> perform cleanup at the end of the test, you'll need to use the <em>loan pattern</em>.
+<p>If you need to both pass a fixture object into a test <em>and</em> perform cleanup at the end of the test, you can use the <em>loan pattern</em>.
 If different tests need different fixtures that require cleanup, you can implement the loan pattern directly by writing <em>loan-fixture</em> methods.
 A loan-fixture method takes a function whose body forms part or all of a test's code. It creates a fixture, passes it to the test code by invoking the
 function, then cleans up the fixture after the function returns.</p>
@@ -500,6 +553,34 @@ without any synchronization needed on the mutable <code>StringBuilder</code> and
 traits, because the order of execution would be non-obvious.  If you want to factor out before and after code that is common to multiple test suites, you
 should use trait <code>BeforeAndAfterEach</code> instead, as shown later in the next section,
 <a href="#composingFixtures.html">composing fixtures by stacking traits</a>.</p>
+
+<p><a name="resourceManager"> </a></p><h4> Managing suite-scoped fixtures with <code>ResourceManager</code></h4>
+
+<p>Sometimes it is desirable to share fixtures across tests. This is often the case for fixtures that are expensive to create,
+  like a container started using the <code>testcontainers-scala</code> library. To make sure these are properly cleaned up after the
+  suite has finished, ScalaTest includes the <code>ResourceManager</code> trait. Similar to the <code>ResourceManagerFixture</code>
+  trait discussed above, it gives you access to a <code>Using.Manager</code> instance. The differences are that it isn't passed
+  as a fixture parameter but via the <code>suiteScoped</code> method, and that it won't perform cleanup after every test but after
+  all tests in the suite have finished.
+  The intended usage is with <code>lazy val</code>s at the suite level. Here's an example
+
+  <pre>
+    class MySuite extends AnyFunSuite with ResourceManager {
+      lazy val sharedClient = suiteScoped(new ExpensiveClient)
+
+      test("something") {
+        // Use `sharedClient` inside the test.
+        // `sharedClient` will be closed after all tests have finished executing
+      }
+    }
+  </pre>
+
+  Note that <code>suiteScoped</code> must not be called during initialization of the suite, which is why all suite-scoped resources should be declared
+  using <code>lazy</code> in order to defer initialization until the tests start running.
+  An added benefit is that this might avoid initialization of such resources entirely, for example when you're only running a subset of the tests in this
+  suite that don't require that particular fixture. You can even place such a fixture in a shared base class for your tests and it will be instantiated
+  if and only if required by the tests implemented in your suite.
+</p>
 
 <p><a name="composingFixtures"> </a></p><h4> Composing fixtures by stacking traits </h4>
 
